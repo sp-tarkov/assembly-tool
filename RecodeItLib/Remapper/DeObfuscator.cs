@@ -9,7 +9,7 @@ public static class Deobfuscator
 {
     public static void Deobfuscate(string assemblyPath)
     {
-        var executablePath = Path.Combine(DataProvider.DataPath, "Assets", "De4dot", "de4dot.exe");
+        var executablePath = Path.Combine(DataProvider.DataPath, "De4dot", "de4dot.exe");
 
         string token;
 

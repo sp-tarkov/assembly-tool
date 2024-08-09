@@ -33,7 +33,7 @@ public static class Deobfuscator
 
                 if (!method.Body.Instructions.Any(x =>
                         x.OpCode.Code == Code.Callvirt &&
-                        ((MethodDef)x.Operand).FullName == "System.Object System.AppDomain::GetData(System.String)"))
+                        ((IMethodDefOrRef)x.Operand).FullName == "System.Object System.AppDomain::GetData(System.String)"))
                 {
                     continue;
                 }

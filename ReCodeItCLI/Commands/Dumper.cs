@@ -9,13 +9,8 @@ namespace ReCodeIt.Commands;
 [Command("Dumper", Description = "Generates a dumper zip")]
 public class Dumper : ICommand
 {
-    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your DeObfuscated assembly file, folder must contain all references to be resolved.")]
-    public string GameAssemblyPath { get; init; }
-    
-    [CommandParameter(1, IsRequired = true, Description = "The absolute path to your FileChecker.dll file, folder must contain all refgerences to be resolved.")]
-    public string CheckerAssemblyPath { get; init; }
-    
-    private Dumpy _dumpy { get; set; }
+    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your Managed folder for EFT, folder must contain all references to be resolved.")]
+    public string ManagedDirectory { get; init; }
     
     public ValueTask ExecuteAsync(IConsole console)
     {
@@ -23,10 +18,8 @@ public class Dumper : ICommand
         DataProvider.LoadAppSettings();
         
         Logger.Log("Creating Dumper...");
-
-        _dumpy = new Dumpy(GameAssemblyPath, CheckerAssemblyPath, Path.GetDirectoryName(GameAssemblyPath));
-        _dumpy.CreateDumpFolders();
-        _dumpy.CreateDumper();
+        
+        ReCodeItLib.Dumper.Dumper.CreateDumper(ManagedDirectory);
         
         Logger.Log("Complete", ConsoleColor.Green);
         

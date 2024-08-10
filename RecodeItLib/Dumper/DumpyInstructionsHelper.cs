@@ -39,7 +39,8 @@ public static class DumpyInstructionsHelper
     /// <returns>List<Instruction></returns>
     public static List<Instruction> GetRunValidationInstructionsMoveNext(ModuleDefMD assembly, MethodDef method)
     {
-        var importer = new Importer(assembly);
+        // TODO: [CWX] TRIED CHANGING OPTIONS
+        var importer = new Importer(assembly, ImporterOptions.TryToUseExistingAssemblyRefs);
 
         // Add our own local variables
 
@@ -49,8 +50,10 @@ public static class DumpyInstructionsHelper
         method.Body.Variables.Add(sptClass);
 
         // var2 index1 ExceptionType
-        var sptExceptionType = importer.Import(typeof(Exception));
-        var sptException = new Local(sptExceptionType.ToTypeSig());
+        // TODO: [CWX] this is the problem, Exception is being imported via System.Private.CoreLib... Needs to come from MsCorLib in EFT managed Dir
+        var typer = typeof(System.Exception);
+        var sptExceptionType = importer.Import(typer);
+        var sptException = new Local(sptExceptionType.ToTypeSig(true));
         method.Body.Variables.Add(sptException);
 
         return new List<Instruction>

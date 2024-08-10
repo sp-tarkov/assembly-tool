@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using ReCodeIt.Utils;
@@ -32,8 +33,9 @@ public class DumperClass
         }
         
         // will explode if they are not there?
-        _gameModule = DataProvider.LoadModule(_assemblyPath);
-        _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
+        // TODO: [CWX] TRIED OVERRDING 
+        _gameModule = DataProvider.LoadModule(_assemblyPath, _managedPath);
+        _checkerModule = DataProvider.LoadModule(_fileCheckerPath, _managedPath);
         _gameTypes = _gameModule.GetTypes().ToList();
         _checkerTypes = _checkerModule.GetTypes().ToList();
     }
@@ -72,6 +74,7 @@ public class DumperClass
         SetDumpyTaskCode(dumpyTaskType[0]);
 
         // TODO: Write game assembly to file
+        
         _gameModule.Write(Path.Combine(_managedPath, "Assembly-CSharp-dumper.dll"));
         
         // get types

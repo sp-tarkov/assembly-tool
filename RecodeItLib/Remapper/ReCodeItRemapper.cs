@@ -148,53 +148,251 @@ public class ReCodeItRemapper
 
         if (mapping.UseForceRename)
         {
-            HandleDirectRename(mapping, types);
+            HandleDirectRename(mapping, ref types);
             return;
         }
 
+        // Filter down nested objects
         if (mapping.SearchParams.IsNested is false or null)
         {
             types = types.Where(type => tokens.Any(token => type.Name.StartsWith(token)));
         }
+        
+        // Run through a series of filters and report an error if all types are filtered out.
+        
+        if (!FilterTypesByGeneric(mapping, ref types)) return;
+        if (!FilterTypesByMethods(mapping, ref types)) return;
+        if (!FilterTypesByFields(mapping, ref types)) return;
+        if (!FilterTypesByProps(mapping, ref types)) return;
+        if (!FilterTypesByNested(mapping, ref types)) return;
+        
+        types = CtorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.ConstructorParameterCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return;
+        }
+        
+        mapping.TypeCandidates.UnionWith(types);
+    }
 
+    private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
         types = GenericTypeFilters.FilterPublic(types, mapping.SearchParams);
 
         if (!types.Any())
         {
-            Logger.Log($"All types filtered out after public filter for: {mapping.NewTypeName}", ConsoleColor.Red);
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterAbstract(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterSealed(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsSealed);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterInterface(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsInterface);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterStruct(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsStruct);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsEnum);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterAttributes(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasAttribute);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterDerived(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsDerived);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = GenericTypeFilters.FilterByGenericParameters(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasGenericParameters);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
         }
 
-        types = GenericTypeFilters.FilterAbstract(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterSealed(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterInterface(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterStruct(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterAttributes(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterDerived(types, mapping.SearchParams);
-        types = GenericTypeFilters.FilterByGenericParameters(types, mapping.SearchParams);
-
-        types = MethodTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        types = MethodTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        types = MethodTypeFilters.FilterByCount(types, mapping.SearchParams);
-
-        types = FieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        types = FieldTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        types = FieldTypeFilters.FilterByCount(types, mapping.SearchParams);
-
-        types = PropertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        types = PropertyTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        types = PropertyTypeFilters.FilterByCount(types, mapping.SearchParams);
-
-        types = CtorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
-
-        types = NestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        types = NestedTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        types = NestedTypeFilters.FilterByCount(types, mapping.SearchParams);
-
-        mapping.TypeCandidates.UnionWith(types);
+        return true;
     }
 
-    private void HandleDirectRename(RemapModel mapping, IEnumerable<TypeDef> types)
+    private static bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
+        types = MethodTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsInclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = MethodTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsExclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = MethodTypeFilters.FilterByCount(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
+        types = FieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsInclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = FieldTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsExclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = FieldTypeFilters.FilterByCount(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
+        types = PropertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesInclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = PropertyTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesExclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = PropertyTypeFilters.FilterByCount(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
+        types = NestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeInclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = NestedTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeExclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = NestedTypeFilters.FilterByCount(types, mapping.SearchParams);
+        
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void HandleDirectRename(RemapModel mapping, ref IEnumerable<TypeDef> types)
     {
         foreach (var type in types)
         {
@@ -388,5 +586,15 @@ public class ReCodeItRemapper
                 Logger.Log($"{type.Name}", ConsoleColor.Yellow);
             }
         }
+    }
+
+    /// <summary>
+    /// This is used to log that all types for a given remap were filtered out.
+    /// </summary>
+    /// <param name="remap">remap model that failed</param>
+    /// <param name="noMatchReason">Reason for filtering</param>
+    private static void AllTypesFilteredOutFor(RemapModel remap, ENoMatchReason noMatchReason)
+    {
+        Logger.Log($"All types filtered out after `{noMatchReason}` filter for: `{remap.NewTypeName}`", ConsoleColor.Red);
     }
 }

@@ -4,9 +4,12 @@ public enum ENoMatchReason
 {
     AmbiguousWithPreviousMatch,
     AmbiguousNewTypeNames,
+    IsPublic,
     IsEnum,
     IsNested,
     IsSealed,
+    IsInterface,
+    IsStruct,
     IsDerived,
     HasGenericParameters,
     HasAttribute,

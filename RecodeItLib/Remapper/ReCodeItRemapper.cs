@@ -27,11 +27,7 @@ public class ReCodeItRemapper
     private RemapperSettings Settings => DataProvider.Settings.Remapper;
 
     private string OutPath { get; set; } = string.Empty;
-
-    private bool CrossMapMode { get; set; } = false;
-
-    private string AssemblyPath { get; set; }
-
+    
     private List<RemapModel> _remaps = [];
 
     private List<string> _alreadyGivenNames = [];
@@ -43,16 +39,12 @@ public class ReCodeItRemapper
         List<RemapModel> remapModels,
         string assemblyPath,
         string outPath,
-        bool crossMapMode = false,
         bool validate = false)
     {
         _remaps = [];
         _remaps = remapModels;
         Module = DataProvider.LoadModule(assemblyPath);
-
-        AssemblyPath = assemblyPath;
-        CrossMapMode = crossMapMode;
-
+        
         OutPath = outPath;
 
         if (!Validate(_remaps)) return;
@@ -457,12 +449,8 @@ public class ReCodeItRemapper
     private void WriteAssembly()
     {
         var moduleName = Module.Name;
-
-        moduleName = CrossMapMode
-            ? moduleName
-            : moduleName.Replace(".dll", "-Remapped.dll");
-
-        OutPath = Path.Combine(OutPath, moduleName);
+        
+        OutPath = Path.Combine(OutPath, moduleName.Replace(".dll", "-Remapped.dll"));
 
         try
         {
@@ -474,17 +462,23 @@ public class ReCodeItRemapper
             throw;
         }
 
-        if (!CrossMapMode)
+        Logger.Log("Creating Hollow...", ConsoleColor.Yellow);
+        Hollow();
+
+        var hollowedDir = Path.GetDirectoryName(OutPath);
+        var hollowedPath = Path.Combine(hollowedDir, "Hollowed.dll");
+
+        try
         {
-            Logger.Log("Creating Hollow...", ConsoleColor.Yellow);
-            Hollow();
-
-            var hollowedDir = Path.GetDirectoryName(OutPath);
-            var hollowedPath = Path.Combine(hollowedDir, "Hollowed.dll");
             Module.Write(hollowedPath);
-
-            DisplayEndBanner(hollowedPath);
         }
+        catch (Exception e)
+        {
+            Logger.Log(e);
+            throw;
+        }
+        
+        DisplayEndBanner(hollowedPath);
 
         if (DataProvider.Settings.Remapper.MappingPath != string.Empty)
         {

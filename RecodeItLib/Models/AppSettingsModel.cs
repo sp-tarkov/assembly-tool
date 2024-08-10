@@ -42,19 +42,7 @@ public class Settings
             Save();
         }
     }
-
-    private CrossCompilerSettings _crossCompiler;
-
-    public CrossCompilerSettings CrossCompiler
-    {
-        get { return _crossCompiler; }
-        set
-        {
-            _crossCompiler = value;
-            Save();
-        }
-    }
-
+    
     private void Save()
     {
         DataProvider.SaveAppSettings();
@@ -328,47 +316,6 @@ public class AutoMapperSettings
         set
         {
             _methodParamaterBlackList = value;
-            Save();
-        }
-    }
-
-    private void Save()
-    {
-        DataProvider.SaveAppSettings();
-    }
-}
-
-/// <summary>
-/// These are settings for the cross compiler module
-/// </summary>
-public class CrossCompilerSettings
-{
-    private string _lastLoadedProject;
-
-    /// <summary>
-    /// Last Loaded Project Path
-    /// </summary>
-    public string LastLoadedProject
-    {
-        get { return _lastLoadedProject; }
-        set
-        {
-            _lastLoadedProject = value;
-            Save();
-        }
-    }
-
-    private bool _autoLoadLastActiveProj;
-
-    /// <summary>
-    /// Should the last active project be auto loaded
-    /// </summary>
-    public bool AutoLoadLastActiveProject
-    {
-        get { return _autoLoadLastActiveProj; }
-        set
-        {
-            _autoLoadLastActiveProj = value;
             Save();
         }
     }

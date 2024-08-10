@@ -65,9 +65,5 @@
       "_template"
     ],
     "MethodParamaterBlackList": []
-  },
-  "CrossCompiler": {
-    "LastLoadedProject": "",
-    "AutoLoadLastActiveProject": true
   }
 }

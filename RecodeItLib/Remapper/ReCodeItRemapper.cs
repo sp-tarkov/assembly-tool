@@ -231,11 +231,12 @@ public class ReCodeItRemapper
         if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
 
         var winner = remap.TypeCandidates.FirstOrDefault();
+        
+        if (winner is null) { return; }
+        
         remap.TypePrimeCandidate = winner;
         remap.OriginalTypeName = winner.Name.String;
-
-        if (winner is null) { return; }
-
+        
         if (_alreadyGivenNames.Contains(winner.FullName))
         {
             remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);

@@ -1,7 +1,4 @@
-/// This entire file is fucked beyond belief, its just hacked together to make things work for now
-
 using ReCodeIt.AutoMapper;
-using ReCodeIt.CrossCompiler;
 using ReCodeIt.Models;
 using ReCodeIt.ReMapper;
 using ReCodeIt.Utils;
@@ -13,8 +10,6 @@ public partial class ReCodeItForm : Form
 {
     private static ReCodeItRemapper Remapper { get; set; } = new();
     private static ReCodeItAutoMapper AutoMapper { get; set; } = new();
-
-    private static ReCodeItCrossCompiler CrossCompiler { get; set; }
 
     private static Settings AppSettings => DataProvider.Settings;
 
@@ -30,18 +25,14 @@ public partial class ReCodeItForm : Form
     {
         InitializeComponent();
 
-        CrossCompiler = new();
 
         SubscribeToEvents();
         PopulateDomainUpDowns();
         RefreshSettingsPage();
         RefreshAutoMapperPage();
-        RefreshCrossCompilerPage();
         LoadMappingFile();
 
-        var remaps = AppSettings.Remapper.UseProjectMappings
-           ? CrossCompiler.ActiveProject?.RemapModels
-           : DataProvider.Remaps;
+        var remaps = DataProvider.Remaps;
 
         ReloadRemapTreeView(remaps);
     }
@@ -49,7 +40,6 @@ public partial class ReCodeItForm : Form
     private void SubscribeToEvents()
     {
         RemapTreeView.NodeMouseDoubleClick += ManualEditSelectedRemap;
-        CCMappingTreeView.NodeMouseDoubleClick += CCEditSelectedRemap;
         Remapper.OnComplete += ReloadTreeAfterMapping;
 
         #region MANUAL_REMAPPER
@@ -166,45 +156,15 @@ public partial class ReCodeItForm : Form
 
     private void LoadMappingFile()
     {
-        if (AppSettings.CrossCompiler.AutoLoadLastActiveProject
-            && ActiveProjectMappingsCheckbox.Checked)
-        {
-            if (CrossCompiler.ActiveProject == null)
-            {
-                DataProvider.Remaps = DataProvider.LoadMappingFile(AppSettings.Remapper.MappingPath);
-                LoadedMappingFilePath.Text = AppSettings.Remapper.MappingPath;
-                return;
-            }
-
-            LoadedMappingFilePath.Text = $"Project Mode: ({CrossCompiler.ActiveProject.SolutionName})";
-
-            ReloadRemapTreeView(CrossCompiler.ActiveProject.RemapModels);
-
-            return;
-        }
-
         DataProvider.Remaps = DataProvider.LoadMappingFile(AppSettings.Remapper.MappingPath);
         LoadedMappingFilePath.Text = AppSettings.Remapper.MappingPath;
     }
 
     private void UseProjectAutoMapping_Clicked(object sender, EventArgs e)
     {
-        bool enabled = ActiveProjectMappingsCheckbox.Checked;
+        var remaps = DataProvider.Remaps;
 
-        AppSettings.Remapper.UseProjectMappings = enabled;
-
-        var remaps = enabled && CrossCompiler?.ActiveProject?.RemapModels != null
-            ? CrossCompiler?.ActiveProject?.RemapModels
-            : DataProvider.Remaps;
-
-        if (enabled && CrossCompiler?.ActiveProject != null)
-        {
-            LoadedMappingFilePath.Text = $"Project Mode: ({CrossCompiler.ActiveProject.SolutionName})";
-        }
-        else
-        {
-            LoadedMappingFilePath.Text = AppSettings.Remapper?.MappingPath;
-        }
+        LoadedMappingFilePath.Text = AppSettings.Remapper?.MappingPath;
 
         ReloadRemapTreeView(remaps!);
     }
@@ -220,9 +180,7 @@ public partial class ReCodeItForm : Form
 
         bool projectMode = AppSettings.Remapper.UseProjectMappings;
 
-        var remaps = projectMode
-            ? CrossCompiler.ActiveProject.RemapModels
-            : DataProvider.Remaps;
+        var remaps = DataProvider.Remaps;
 
         var matches = remaps
             .Where(x => x.NewTypeName == RMSearchBox.Text
@@ -244,9 +202,7 @@ public partial class ReCodeItForm : Form
     {
         bool projectMode = AppSettings.Remapper.UseProjectMappings;
 
-        var remaps = projectMode
-            ? CrossCompiler.ActiveProject.RemapModels
-            : DataProvider.Remaps;
+        var remaps = DataProvider.Remaps;
 
         RemapTreeView.Nodes.Clear();
         ReloadRemapTreeView(remaps);
@@ -354,9 +310,7 @@ public partial class ReCodeItForm : Form
 
         Logger.Log(projectMode);
 
-        var remaps = projectMode
-            ? CrossCompiler.ActiveProject.RemapModels
-            : DataProvider.Remaps;
+        var remaps = DataProvider.Remaps;
 
         var existingRemap = remaps
             .FirstOrDefault(remap => remap.NewTypeName == newRemap.NewTypeName);
@@ -378,14 +332,7 @@ public partial class ReCodeItForm : Form
             remaps.Insert(index, newRemap);
             RemapTreeView.Nodes.Insert(index, GUIHelpers.GenerateTreeNode(newRemap, this));
 
-            if (projectMode)
-            {
-                ProjectManager.SaveCrossCompilerProjectModel(CrossCompiler.ActiveProject);
-            }
-            else
-            {
-                DataProvider.SaveMapping();
-            }
+            DataProvider.SaveMapping();
 
             ReloadRemapTreeView(remaps);
 
@@ -393,16 +340,8 @@ public partial class ReCodeItForm : Form
             return;
         }
 
-        if (projectMode)
-        {
-            CrossCompiler.ActiveProject.RemapModels.Add(newRemap);
-            ProjectManager.SaveCrossCompilerProjectModel(CrossCompiler.ActiveProject);
-        }
-        else
-        {
-            DataProvider.Remaps.Add(newRemap);
-            DataProvider.SaveMapping();
-        }
+        DataProvider.Remaps.Add(newRemap);
+        DataProvider.SaveMapping();
 
         var node = GUIHelpers.GenerateTreeNode(newRemap, this);
 
@@ -426,9 +365,7 @@ public partial class ReCodeItForm : Form
             {
                 bool projectMode = AppSettings.Remapper.UseProjectMappings;
 
-                var remaps = projectMode
-                    ? CrossCompiler.ActiveProject.RemapModels
-                    : DataProvider.Remaps;
+                var remaps = DataProvider.Remaps;
 
                 remaps.Remove(node.Value);
                 RemapNodes.Remove(node.Key);
@@ -438,29 +375,12 @@ public partial class ReCodeItForm : Form
 
         ResetAllRemapFields();
 
-        if (AppSettings.Remapper.UseProjectMappings)
-        {
-            ProjectManager.SaveCrossCompilerProjectModel(CrossCompiler.ActiveProject);
-            return;
-        }
-
         DataProvider.SaveMapping();
     }
 
     private void RunRemapButton_Click(object sender, EventArgs e)
     {
         if (ReCodeItRemapper.IsRunning) { return; }
-
-        if (AppSettings.Remapper.UseProjectMappings)
-        {
-            Remapper.InitializeRemap(
-                CrossCompiler.ActiveProject.RemapModels,
-                CrossCompiler.ActiveProject.OriginalAssemblyPath,
-                CrossCompiler.ActiveProject.VisualStudioDependencyPath);
-
-            ReloadRemapTreeView(CrossCompiler.ActiveProject.RemapModels);
-            return;
-        }
 
         if (string.IsNullOrEmpty(AppSettings.Remapper.AssemblyPath))
         {
@@ -516,7 +436,6 @@ public partial class ReCodeItForm : Form
         DataProvider.Remaps = DataProvider.LoadMappingFile(result);
         AppSettings.Remapper.MappingPath = result;
         AppSettings.Remapper.UseProjectMappings = false;
-        ActiveProjectMappingsCheckbox.Checked = false;
 
         LoadedMappingFilePath.Text = result;
 
@@ -793,7 +712,6 @@ public partial class ReCodeItForm : Form
         RenamePropertiesCheckbox.Checked = AppSettings.Remapper.MappingSettings.RenameProperties;
         RemapperPublicicize.Checked = AppSettings.Remapper.MappingSettings.Publicize;
         RemapperUnseal.Checked = AppSettings.Remapper.MappingSettings.Unseal;
-        ActiveProjectMappingsCheckbox.Checked = AppSettings.Remapper.UseProjectMappings;
     }
 
     #region CHECKBOXES
@@ -992,200 +910,6 @@ public partial class ReCodeItForm : Form
 
     #endregion AUTOMAPPER
 
-    #region CROSS_COMPILER
-
-    private void OnCCTabPageValidate(object sender, EventArgs e)
-    {
-        RefreshCrossCompilerPage();
-    }
-
-    private void RefreshCrossCompilerPage()
-    {
-        var ccSettings = AppSettings.CrossCompiler;
-
-        CCAutoLoadLastProj.Checked = ccSettings.AutoLoadLastActiveProject;
-
-        if (ccSettings.AutoLoadLastActiveProject)
-        {
-            // Dont continue if its an empty string, it hasnt been set yet
-            if (ccSettings.LastLoadedProject == string.Empty)
-            {
-                return;
-            }
-
-            if (!File.Exists(ccSettings.LastLoadedProject))
-            {
-                ccSettings.LastLoadedProject = string.Empty;
-                MessageBox.Show("Couldnt find last loaded project");
-                return;
-            }
-
-            ProjectManager.LoadProject(ccSettings.LastLoadedProject);
-        }
-
-        if (CrossCompiler.ActiveProject == null)
-        {
-            return;
-        }
-
-        var activeProj = CrossCompiler.ActiveProject;
-
-        CCOriginalAssemblyText.Text = activeProj.OriginalAssemblyPath;
-        CCProjectDepdendencyText.Text = activeProj.VisualStudioDependencyPath;
-        CCVisualStudioProjDirText.Text = activeProj.VisualStudioSolutionPath;
-        CCBuildDirText.Text = activeProj.BuildDirectory;
-
-        ReloadCCRemapTreeView(activeProj.RemapModels);
-    }
-
-    private void CCOriginalAssemblyButton_Click(object sender, EventArgs e)
-    {
-        var result = GUIHelpers.OpenFileDialog("Select a DLL file",
-            "DLL Files (*.dll)|*.dll|All Files (*.*)|*.*");
-
-        if (result != string.Empty)
-        {
-            CCOriginalAssemblyText.Text = result;
-        }
-    }
-
-    private void CCProjectDependencyButton_Click(object sender, EventArgs e)
-    {
-        var result = GUIHelpers.OpenFolderDialog("Select your projects reference folder, this is where the Re-Mapped output will be placed as well.");
-
-        if (result != string.Empty)
-        {
-            CCProjectDepdendencyText.Text = result;
-        }
-    }
-
-    private void CCVisualStudioProjDirButton_Click(object sender, EventArgs e)
-    {
-        var result = GUIHelpers.OpenFileDialog("Select a Visual Studio solution file",
-            "Solution Files (*.sln)|*.sln|All Files (*.*)|*.*");
-
-        if (result != string.Empty)
-        {
-            CCVisualStudioProjDirText.Text = result;
-        }
-    }
-
-    private void CCBuildDirButton_Click(object sender, EventArgs e)
-    {
-        var result = GUIHelpers.OpenFolderDialog("Select where you want to final dll built at");
-
-        if (result != string.Empty)
-        {
-            CCBuildDirText.Text = result;
-        }
-    }
-
-    private void CrossPatchRemapButton_Click(object sender, EventArgs e)
-    {
-        if (CrossCompiler.ActiveProject.RemapModels.Count == 0)
-        {
-            MessageBox.Show("You cannot generate a remapped dll without creating remaps first");
-            return;
-        }
-
-        CrossCompiler.StartRemap();
-    }
-
-    private void CrossPatchRunButton_Click(object sender, EventArgs e)
-    {
-        if (CrossCompiler.ActiveProject == null)
-        {
-            MessageBox.Show("No project is loaded");
-            return;
-        }
-
-        if (CrossCompiler.ActiveProject.RemapModels.Count == 0)
-        {
-            MessageBox.Show("You cannot compile without having created remaps first");
-            return;
-        }
-
-        CrossCompiler.StartCrossCompile();
-    }
-
-    private void CrossCompilerNewProjectButton_Click(object sender, EventArgs e)
-    {
-        if (CCOriginalAssemblyText.Text == string.Empty
-            || CCProjectDepdendencyText.Text == string.Empty
-            || CCVisualStudioProjDirText.Text == string.Empty
-            || CCBuildDirText.Text == string.Empty)
-        {
-            // Dont create a project if any required fields are empty
-            MessageBox.Show("Cannot create a project without setting all paths in the project settings");
-            return;
-        }
-
-        ProjectManager.CreateProject(
-            CCOriginalAssemblyText.Text,
-            CCVisualStudioProjDirText.Text,
-            CCProjectDepdendencyText.Text,
-            CCBuildDirText.Text);
-    }
-
-    private void CCLoadProjButton_Click(object sender, EventArgs e)
-    {
-        var result = GUIHelpers.OpenFileDialog("select a ReCodeItProj.json File",
-               "JSON Files (*.json)|*.json|JSONC Files (*.jsonc)|*.jsonc|All Files (*.*)|*.*");
-
-        if (result != string.Empty)
-        {
-            ProjectManager.LoadProject(result);
-            ReloadCCRemapTreeView(ProjectManager.ActiveProject.RemapModels);
-        }
-    }
-
-    private void CCAutoLoadLastProj_CheckedChanged_1(object sender, EventArgs e)
-    {
-        AppSettings.CrossCompiler.AutoLoadLastActiveProject = CCAutoLoadLastProj.Checked;
-    }
-
-    private void CCImportMappings_Click(object sender, EventArgs e)
-    {
-        if (CrossCompiler.ActiveProject == null)
-        {
-            MessageBox.Show("No project is loaded to add mappings too.");
-            return;
-        }
-
-        var answer = MessageBox.Show(
-            "'Yes' to Add the items to the existing list, or 'No' to clear the list before adding these.",
-            "Add Items to existing list?",
-            MessageBoxButtons.YesNoCancel);
-
-        switch (answer)
-        {
-            case DialogResult.Yes:
-                break;
-
-            case DialogResult.No:
-                CrossCompiler.ActiveProject.RemapModels.Clear();
-                break;
-
-            case DialogResult.Cancel:
-                return;
-
-            default:
-                break;
-        }
-
-        var result = GUIHelpers.OpenFileDialog("Select a mapping file",
-            "JSON Files (*.json)|*.json|JSONC Files (*.jsonc)|*.jsonc|All Files (*.*)|*.*");
-
-        if (result == string.Empty) { return; }
-
-        var remaps = DataProvider.LoadMappingFile(result);
-
-        CrossCompiler.ActiveProject.RemapModels.AddRange(remaps);
-
-        ReloadCCRemapTreeView(CrossCompiler.ActiveProject.RemapModels);
-    }
-
-    #endregion CROSS_COMPILER
 
     // Reset All UI elements to default
     private void ResetAllRemapFields()
@@ -1238,24 +962,6 @@ public partial class ReCodeItForm : Form
         NestedTypesExcludeBox.Items.Clear();
     }
 
-    private void CCEditSelectedRemap(object? sender, TreeNodeMouseClickEventArgs e)
-    {
-        if (e?.Node.Level != 0 || CCMappingTreeView?.SelectedNode?.Index < 0 || CCMappingTreeView?.SelectedNode?.Index == null)
-        {
-            return;
-        }
-
-        _selectedCCRemapTreeIndex = CCMappingTreeView.SelectedNode.Index;
-
-        // Go to remapper page
-        TabControlMain.SelectedIndex = 0;
-
-        DataProvider.Settings.Remapper.UseProjectMappings = true;
-        ActiveProjectMappingsCheckbox.Checked = true;
-
-        EditSelectedRemap(this, e, true);
-    }
-
     private void ManualEditSelectedRemap(object? sender, TreeNodeMouseClickEventArgs e)
     {
         EditSelectedRemap(this, e);
@@ -1279,9 +985,7 @@ public partial class ReCodeItForm : Form
             {
                 bool projectMode = AppSettings.Remapper.UseProjectMappings;
 
-                var remaps = projectMode
-                    ? CrossCompiler.ActiveProject.RemapModels
-                    : DataProvider.Remaps;
+                var remaps = DataProvider.Remaps;
 
                 remap = remaps.FirstOrDefault(x => x.NewTypeName == node.Value.NewTypeName);
 
@@ -1468,17 +1172,6 @@ public partial class ReCodeItForm : Form
         foreach (var remap in remaps)
         {
             RemapTreeView.Nodes.Add(GUIHelpers.GenerateTreeNode(remap, this));
-        }
-    }
-
-    private void ReloadCCRemapTreeView(List<RemapModel> remaps)
-    {
-        CCMappingTreeView.Nodes.Clear();
-        RemapNodes.Clear();
-
-        foreach (var remap in remaps)
-        {
-            CCMappingTreeView.Nodes.Add(GUIHelpers.GenerateTreeNode(remap, this));
         }
     }
 

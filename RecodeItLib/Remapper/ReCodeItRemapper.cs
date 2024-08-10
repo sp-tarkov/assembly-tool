@@ -1,6 +1,5 @@
 ﻿using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeIt.CrossCompiler;
 using ReCodeIt.Enums;
 using ReCodeIt.Models;
 using ReCodeIt.ReMapper.Search;
@@ -12,17 +11,10 @@ namespace ReCodeIt.ReMapper;
 
 public class ReCodeItRemapper
 {
-    public ReCodeItRemapper(ReCodeItCrossCompiler compiler)
-    {
-        _compiler = compiler;
-    }
-
     public ReCodeItRemapper()
     { }
 
     private ModuleDefMD? Module { get; set; }
-
-    private readonly ReCodeItCrossCompiler _compiler;
 
     public static bool IsRunning { get; private set; } = false;
 
@@ -120,11 +112,6 @@ public class ReCodeItRemapper
 
         // We are done, write the assembly
         WriteAssembly();
-
-        if (CrossMapMode)
-        {
-            ProjectManager.SaveCrossCompilerProjectModel(_compiler.ActiveProject);
-        }
     }
 
     private bool Validate(List<RemapModel> remaps)
@@ -219,11 +206,6 @@ public class ReCodeItRemapper
 
                 _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-                if (CrossMapMode)
-                {// Store the original types for caching
-                    _compiler.ActiveProject.ChangedTypes.Add(mapping.NewTypeName, mapping.OriginalTypeName);
-                }
-
                 return;
             }
         }
@@ -268,11 +250,6 @@ public class ReCodeItRemapper
         remap.Succeeded = true;
 
         remap.OriginalTypeName = winner.Name.String;
-
-        if (CrossMapMode)
-        {// Store the original types for caching
-            _compiler.ActiveProject.ChangedTypes.Add(winner.Name.String, remap.OriginalTypeName);
-        }
     }
 
     /// <summary>

@@ -6,22 +6,12 @@ namespace ReCodeIt.Utils;
 
 public static class DataProvider
 {
-    static DataProvider()
-    {
-        if (!Directory.Exists(ReCodeItProjectsPath))
-        {
-            Directory.CreateDirectory(ReCodeItProjectsPath);
-        }
-    }
-
     /// <summary>
     /// Is this running in the CLI?
     /// </summary>
     public static bool IsCli { get; set; } = false;
 
     public static string DataPath => Path.Combine(AppContext.BaseDirectory, "Data");
-
-    public static readonly string ReCodeItProjectsPath = Path.Combine(AppContext.BaseDirectory, "Projects");
 
     public static List<RemapModel> Remaps { get; set; } = [];
 

@@ -69,7 +69,13 @@ public class ReCodeItRemapper
         Stopwatch.Start();
 
         var types = Module.GetTypes();
-
+        
+        if (!types.Any(t => t.Name.Contains("GClass")))
+        {
+            Logger.Log("You must de-obfuscate the assembly before remapping it.\n", ConsoleColor.Red);
+            return;
+        }
+        
         var tasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)
         {

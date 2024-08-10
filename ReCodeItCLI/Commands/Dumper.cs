@@ -17,9 +17,11 @@ public class Dumper : ICommand
         DataProvider.IsCli = true;
         DataProvider.LoadAppSettings();
         
-        Logger.Log("Creating Dumper...");
-        
-        ReCodeItLib.Dumper.Dumper.CreateDumper(ManagedDirectory);
+        Logger.Log("Creating DumperClass...");
+
+        var dumper = new DumperClass(ManagedDirectory);
+        dumper.CreateDumpFolders();
+        dumper.CreateDumper();
         
         Logger.Log("Complete", ConsoleColor.Green);
         

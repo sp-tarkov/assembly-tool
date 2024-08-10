@@ -178,16 +178,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="DumpLib">
-      <HintPath>Assets\DumpLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>..\Assets\MonoCecil\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>..\Assets\MonoCecil\Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>

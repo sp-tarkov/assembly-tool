@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using dnlib.DotNet;
+using dnlib.DotNet.Emit;
 using DumpLib;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
 
 namespace ReCodeItLib.Dumper;
 
@@ -16,13 +18,15 @@ public static class DumpyInstructionsHelper
     /// <param name="assembly">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetBackRequestInstructions(AssemblyDefinition assembly, MethodDefinition method)
+    public static List<Instruction> GetBackRequestInstructions(ModuleDefMD assembly, MethodDef method)
     {
+        var importer = new Importer(assembly);
+
         return new List<Instruction>
         {
             Instruction.Create(OpCodes.Ldarg_1),
             Instruction.Create(OpCodes.Ldloc_S, method.Body.Variables[6]),
-            Instruction.Create(OpCodes.Call, assembly.MainModule.ImportReference(typeof(DumpLib.DumpyTool).GetMethod("LogRequestResponse", new[] { typeof(object), typeof(object) })))
+            Instruction.Create(OpCodes.Call, importer.Import(typeof(DumpLib.DumpyTool).GetMethod("LogRequestResponse", new[] { typeof(object), typeof(object) })))
         };
     }
 
@@ -33,18 +37,20 @@ public static class DumpyInstructionsHelper
     /// <param name="assembly">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetRunValidationInstructionsMoveNext(AssemblyDefinition assembly, MethodDefinition method)
+    public static List<Instruction> GetRunValidationInstructionsMoveNext(ModuleDefMD assembly, MethodDef method)
     {
+        var importer = new Importer(assembly);
+
         // Add our own local variables
 
         // var1 index0 class1159Type
-        var sptClassType = assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType);
-        var sptClass = new VariableDefinition(sptClassType);
+        var sptClassType = assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType);
+        var sptClass = new Local(sptClassType.ToTypeSig());
         method.Body.Variables.Add(sptClass);
 
         // var2 index1 ExceptionType
-        var sptExceptionType = method.Module.ImportReference(typeof(Exception));
-        var sptException = new VariableDefinition(sptExceptionType);
+        var sptExceptionType = importer.Import(typeof(Exception));
+        var sptException = new Local(sptExceptionType.ToTypeSig());
         method.Body.Variables.Add(sptException);
 
         return new List<Instruction>
@@ -52,31 +58,31 @@ public static class DumpyInstructionsHelper
             // most of this is to keep the Async happy
 
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
+            Instruction.Create(OpCodes.Ldfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
             Instruction.Create(OpCodes.Stloc_0),
 
             // this.Succeed = true;
             Instruction.Create(OpCodes.Ldloc_0),
             Instruction.Create(OpCodes.Ldc_I4_1),
-            Instruction.Create(OpCodes.Call, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).Methods.First(x => x.Name == "set_Succeed")),
+            Instruction.Create(OpCodes.Call, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).Methods.First(x => x.Name == "set_Succeed")),
 
             Instruction.Create(OpCodes.Stloc_1),
             Instruction.Create(OpCodes.Ldarg_0),
             Instruction.Create(OpCodes.Ldc_I4_S, (sbyte)-2),
-            Instruction.Create(OpCodes.Stfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
+            Instruction.Create(OpCodes.Stfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldflda, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            Instruction.Create(OpCodes.Ldflda, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
             Instruction.Create(OpCodes.Ldloc_1),
             Instruction.Create(OpCodes.Call,
-                method.Module.ImportReference(assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.Resolve().Methods.First(x => x.Name == "SetException"))),
+                importer.Import(assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "SetException"))),
 
             Instruction.Create(OpCodes.Ldarg_0),
             Instruction.Create(OpCodes.Ldc_I4_S, (sbyte)-2),
-            Instruction.Create(OpCodes.Stfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
+            Instruction.Create(OpCodes.Stfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
 
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldflda, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Call, method.Module.ImportReference(assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.Resolve().Methods.First(x => x.Name == "SetResult"))),
+            Instruction.Create(OpCodes.Ldflda, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            Instruction.Create(OpCodes.Call, importer.Import(assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "SetResult"))),
 
             Instruction.Create(OpCodes.Ret),
         };
@@ -89,28 +95,29 @@ public static class DumpyInstructionsHelper
     /// <param name="assembly">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetEnsureConsistencyInstructions(AssemblyDefinition oldFileChecker, MethodDefinition method)
+    public static List<Instruction> GetEnsureConsistencyInstructions(ModuleDefMD assembly, ModuleDefMD fileChecker, MethodDef method)
     {
+        var importer = new Importer(assembly);
+
         // init local vars
         // var1 index0 TimeSpan type
-        var sptTimeSpanType = method.Module.ImportReference(typeof(TimeSpan));
-        var sptClass = new VariableDefinition(sptTimeSpanType);
+        var sptTimeSpanType = importer.Import(typeof(TimeSpan));
+        var sptClass = new Local(sptTimeSpanType.ToTypeSig());
         method.Body.Variables.Add(sptClass);
 
         // Create genericInstance of a method
-        var type = oldFileChecker.MainModule.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Interfaces[0].InterfaceType;
-        var typeMethod = method.Module.ImportReference(typeof(Task).GetMethod("FromResult"));
-        var instanceType = new GenericInstanceMethod(typeMethod);
-        instanceType.GenericArguments.Add(type);
+        var type = fileChecker.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Interfaces[0].Interface;
+        var typeMethod = importer.Import(typeof(Task).GetMethod("FromResult"));
+        var generac = new MethodSpecUser(typeMethod.ResolveMethodDef(), new GenericInstMethodSig(type.ToTypeSig()));
 
         return new List<Instruction>
         {
             // return Task.FromResult<ICheckResult>(ConsistencyController.CheckResult.Succeed(default(TimeSpan)));
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Initobj, method.Module.ImportReference(typeof(TimeSpan))),
+            Instruction.Create(OpCodes.Initobj, importer.Import(typeof(TimeSpan))),
             Instruction.Create(OpCodes.Ldloc_0),
-            Instruction.Create(OpCodes.Call, oldFileChecker.MainModule.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Methods.First(x => x.Name == "Succeed")),
-            Instruction.Create(OpCodes.Call, instanceType),
+            Instruction.Create(OpCodes.Call, fileChecker.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Methods.First(x => x.Name == "Succeed")),
+            Instruction.Create(OpCodes.Call, generac),
             Instruction.Create(OpCodes.Ret)
         };
     }
@@ -122,50 +129,53 @@ public static class DumpyInstructionsHelper
     /// <param name="assembly">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetRunValidationInstructions(AssemblyDefinition assembly, MethodDefinition method)
+    public static List<Instruction> GetRunValidationInstructions(ModuleDefMD assembly, MethodDef method)
     {
+        var importer = new Importer(assembly);
+
         // Create genericInstance of a method
-        var type = assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0];
-        var typeMethod = method.Module.ImportReference(assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.Resolve().Methods.First(x => x.Name == "Start"));
-        var instanceMethod = new GenericInstanceMethod(typeMethod);
-        instanceMethod.GenericArguments.Add(type);
+        var type = assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0];
+        var typeMethod = importer.Import(typeof(AsyncTaskMethodBuilder).GetMethod("Start"));
+        var generac = new MethodSpecUser(typeMethod as IMethodDefOrRef, new GenericInstMethodSig(type.ToTypeSig()));
 
         return new List<Instruction>
         {
             // <RunValidation>d__.<>t__builder = AsyncTaskMethodBuilder.Create();
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Call, method.Module.ImportReference(assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.Resolve().Methods.First(x => x.Name == "Create"))),
-            Instruction.Create(OpCodes.Stfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            Instruction.Create(OpCodes.Call, importer.Import(assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "Create"))),
+            Instruction.Create(OpCodes.Stfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
 
             // <RunValidation>d__.<>4__this = this;
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
             Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Stfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
+            Instruction.Create(OpCodes.Stfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
 
             // <RunValidation>d__.<>1__state = -1;
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
             Instruction.Create(OpCodes.Ldc_I4_M1),
-            Instruction.Create(OpCodes.Stfld, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
+            Instruction.Create(OpCodes.Stfld, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
 
             // <RunValidation>d__.<>t__builder.Start<Class1159.<RunValidation>d__0>(ref <RunValidation>d__);
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldflda, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            Instruction.Create(OpCodes.Ldflda, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Call, instanceMethod),
+            Instruction.Create(OpCodes.Call, generac),
 
             // return <RunValidation>d__.<>t__builder.Task;
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldflda, assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Call, method.Module.ImportReference(assembly.MainModule.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.Resolve().Methods.First(x => x.Name == "get_Task"))),
+            Instruction.Create(OpCodes.Ldflda, assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            Instruction.Create(OpCodes.Call, importer.Import(assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "get_Task"))),
             Instruction.Create(OpCodes.Ret),
         };
     }
 
-    public static List<Instruction> GetDumpyTaskInstructions(AssemblyDefinition oldAssembly, MethodDefinition method)
+    public static List<Instruction> GetDumpyTaskInstructions(ModuleDefMD assembly, MethodDef method)
     {
+        var importer = new Importer(assembly);
+        
         return new List<Instruction>
         {
-            Instruction.Create(OpCodes.Call, oldAssembly.MainModule.ImportReference(typeof(DumpyTool).GetMethod("StartDumpyTask"))),
+            Instruction.Create(OpCodes.Call, importer.Import(typeof(DumpyTool).GetMethod("StartDumpyTask"))),
             Instruction.Create(OpCodes.Pop)
         };
     }

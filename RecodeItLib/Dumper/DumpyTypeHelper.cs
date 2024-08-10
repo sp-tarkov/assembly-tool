@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Mono.Cecil;
+using dnlib.DotNet;
 
 namespace ReCodeItLib.Dumper;
 
@@ -11,7 +11,7 @@ public static class DumpyTypeHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetBackRequestType(TypeDefinition type)
+    public static bool GetBackRequestType(TypeDef type)
     {
         return type.Methods.Any(m => m.Name == "SendAndHandleRetries");
     }
@@ -21,7 +21,7 @@ public static class DumpyTypeHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetValidateCertificateType(TypeDefinition type)
+    public static bool GetValidateCertType(TypeDef type)
     {
         return type.Methods.Any(m => m.Name == "ValidateCertificate");
     }
@@ -31,7 +31,7 @@ public static class DumpyTypeHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetRunValidationType(TypeDefinition type)
+    public static bool GetRunValidationType(TypeDef type)
     {
         return type.Methods.Any(m => m.Name == "RunValidation");
     }
@@ -42,12 +42,12 @@ public static class DumpyTypeHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetEnsureConsistencyType(TypeDefinition type)
+    public static bool GetEnsureConsistencyType(TypeDef type)
     {
         return type.Name == "ConsistencyController";
     }
 
-    public static bool GetMenuScreenType(TypeDefinition type)
+    public static bool GetMenuscreenType(TypeDef type)
     {
         return type.Name == "MenuScreen";
     }

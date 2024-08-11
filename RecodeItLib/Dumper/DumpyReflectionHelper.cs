@@ -3,7 +3,7 @@ using dnlib.DotNet;
 
 namespace ReCodeItLib.Dumper;
 
-public static class DumpyTypeHelper
+public static class DumpyReflectionHelper
 {
     /// <summary>
     /// <para>Gets the type that has a method called SendAndHandleRetries.</para>
@@ -50,5 +50,40 @@ public static class DumpyTypeHelper
     public static bool GetMenuscreenType(TypeDef type)
     {
         return type.Name == "MenuScreen";
+    }
+
+    public static bool GetBackRequestMethod(MethodDef method)
+    {
+        return method.Parameters.Any(p => p.Name is "backRequest") && method.Parameters.Any(p => p.Name is "bResponse");
+    }
+
+    public static bool GetValidateCertMethods(MethodDef method)
+    {
+        return method.Name == "ValidateCertificate";
+    }
+
+    public static bool GetRunValidationMethod(MethodDef method)
+    {
+        return method.Name == "RunValidation";
+    }
+
+    public static bool GetRunValidationNextMethod(MethodDef method)
+    {
+        return method.Name == "MoveNext";
+    }
+
+    public static bool GetMenuscreenMethod(MethodDef method)
+    {
+        return method.Name == "Awake";
+    }
+
+    public static bool GetEnsureConMethod(MethodDef method)
+    {
+        return method.Name == "EnsureConsistency";
+    }
+
+    public static bool GetEnsureConSingleMethod(MethodDef method)
+    {
+        return method.Name == "EnsureConsistencySingle";
     }
 }

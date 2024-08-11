@@ -10,17 +10,22 @@ public class DumperClass
 {
     private ModuleDefMD? _gameModule { get; set; }
     private ModuleDefMD? _checkerModule { get; set; }
+    private ModuleDefMD? _msModule { get; set; }
     private string _assemblyPath { get; set; }
     private string _fileCheckerPath { get; set; }
+    private string _mscorlibPath { get; set; }
     private string _managedPath { get; set; }
     private List<TypeDef>? _gameTypes { get; set; }
     private List<TypeDef>? _checkerTypes { get; set; }
+    private Importer? _gameImporter { get; set; }
+    private Importer? _checkImporter { get; set; }
 
     public DumperClass(string managedPath)
     {
         _managedPath = managedPath;
-        _assemblyPath = Path.Combine(managedPath, "Assembly-Csharp-cleaned.dll"); // TODO: must be the cleaned one
+        _assemblyPath = Path.Combine(managedPath, "Assembly-Csharp-cleaned.dll");
         _fileCheckerPath = Path.Combine(managedPath, "FilesChecker.dll");
+        _mscorlibPath = Path.Combine(managedPath, "mscorlib.dll");
 
         if (!File.Exists(_assemblyPath))
         {
@@ -32,14 +37,19 @@ public class DumperClass
             Logger.Log($"File FilesChecker.dll does not exist at {_fileCheckerPath}", ConsoleColor.Red);
         }
         
-        // will explode if they are not there?
-        // TODO: [CWX] TRIED OVERRDING 
+        if (!File.Exists(_mscorlibPath))
+        {
+            Logger.Log($"File FilesChecker.dll does not exist at {_fileCheckerPath}", ConsoleColor.Red);
+        }
+        
         _gameModule = DataProvider.LoadModule(_assemblyPath);
         _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
+        _msModule = DataProvider.LoadModule(_mscorlibPath);
         _gameTypes = _gameModule.GetTypes().ToList();
         _checkerTypes = _checkerModule.GetTypes().ToList();
+        _gameImporter = new Importer(_gameModule);
+        _checkImporter = new Importer(_checkerModule);
     }
-    
     
     public void CreateDumper()
     {
@@ -55,11 +65,17 @@ public class DumperClass
             return;
         }
         
-        // get required types
-        var backRequestType = _gameTypes.Where(DumpyTypeHelper.GetBackRequestType).ToList();
-        var validateCertType = _gameTypes.Where(DumpyTypeHelper.GetValidateCertType).ToList();
-        var runValidationType = _gameTypes.Where(DumpyTypeHelper.GetRunValidationType).ToList();
-        var dumpyTaskType = _gameTypes.Where(DumpyTypeHelper.GetMenuscreenType).ToList();
+        if (_msModule == null)
+        {
+            Logger.Log($"_msModule in DumpyRemake was null", ConsoleColor.Red);
+            return;
+        }
+        
+        // get types
+        var backRequestType = _gameTypes.Where(DumpyReflectionHelper.GetBackRequestType).ToList();
+        var validateCertType = _gameTypes.Where(DumpyReflectionHelper.GetValidateCertType).ToList();
+        var runValidationType = _gameTypes.Where(DumpyReflectionHelper.GetRunValidationType).ToList();
+        var dumpyTaskType = _gameTypes.Where(DumpyReflectionHelper.GetMenuscreenType).ToList();
         
         // check types
         CheckNullOrMulti(backRequestType, "BackRequest");
@@ -68,25 +84,25 @@ public class DumperClass
         CheckNullOrMulti(dumpyTaskType, "DumpyTask");
         
         // apply code changes
-        SetBackRequestCode(backRequestType[0]);
-        SetValidateCertCode(validateCertType[0]);
-        SetRunValidationCode(runValidationType[0]);
-        SetDumpyTaskCode(dumpyTaskType[0]);
+        SetBackRequestCode(backRequestType.First());
+        SetValidateCertCode(validateCertType.First());
+        SetRunValidationCode(runValidationType.First());
+        SetDumpyTaskCode(dumpyTaskType.First());
 
-        // TODO: Write game assembly to file
+        // write assembly to disk
         _gameModule.Write(Path.Combine(_managedPath, "Assembly-CSharp-dumper.dll"));
         
         // get types
-        var ensureConsistencyTypes = _checkerTypes.Where(DumpyTypeHelper.GetEnsureConsistencyType).ToList();
+        var ensureConsistencyTypes = _checkerTypes.Where(DumpyReflectionHelper.GetEnsureConsistencyType).ToList();
         
         // check types
         CheckNullOrMulti(ensureConsistencyTypes, "EnsureConsistency");
         
         // apply code changes
-        SetEnsureConsistencyCode(ensureConsistencyTypes[0]);
-        SetEnsureConsistencySingleCode(ensureConsistencyTypes[0]);
+        SetEnsureConsistencyCode(ensureConsistencyTypes.First());
+        SetEnsureConsistencySingleCode(ensureConsistencyTypes.First());
         
-        // TODO: Write fileChecker assembly to file
+        // write assembly to disk
         _checkerModule.Write(Path.Combine(_managedPath, "FilesChecker-dumper.dll"));
     }
     
@@ -124,7 +140,7 @@ public class DumperClass
     private void SetBackRequestCode(TypeDef type)
     {
         // find method
-        var method = type.Methods.First(x => x.Parameters.Any(p => p.Name is "backRequest" && x.Parameters.Any(p => p.Name == "bResponse")));
+        var method = type.Methods.First(DumpyReflectionHelper.GetBackRequestMethod);
 
         if (method == null || method.Body.Instructions.Count != 269)
         {
@@ -132,7 +148,7 @@ public class DumperClass
         }
 
         var startOfInstructions = 252;
-        var liList = DumpyInstructionsHelper.GetBackRequestInstructions(_gameModule, method);
+        var liList = DumpyILHelper.GetBackRequestInstructions(method, _gameImporter);
         var index = method.Body.Instructions[startOfInstructions];
 
         foreach (var li in liList)
@@ -158,8 +174,7 @@ public class DumperClass
     /// <param name="type"></param>
     private void SetValidateCertCode(TypeDef type)
     {
-        var methods = type.Methods.Where(x =>
-            x.Name == "ValidateCertificate"); // should be 2
+        var methods = type.Methods.Where(DumpyReflectionHelper.GetValidateCertMethods); // should be 2
 
         // check make sure nothing has changed
         var firstMethod = methods.FirstOrDefault(m => m.Parameters.Any(p => p.Name == "certificate"));
@@ -203,10 +218,8 @@ public class DumperClass
     /// <param name="type"></param>
     private void SetRunValidationCode(TypeDef type)
     {
-        var importer = new Importer(_gameModule);
-        
-        var method = type.Methods.First(x => x.Name == "RunValidation");
-        var method2 = type.NestedTypes[0].Methods.First(x => x.Name == "MoveNext");
+        var method = type.Methods.First(DumpyReflectionHelper.GetRunValidationMethod);
+        var method2 = type.NestedTypes[0].Methods.First(DumpyReflectionHelper.GetRunValidationNextMethod);
 
         if (method == null || method.Body.Instructions.Count != 25)
         {
@@ -224,8 +237,8 @@ public class DumperClass
         method2.Body.Variables.Clear();
         method2.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyInstructionsHelper.GetRunValidationInstructions(_gameModule, method);
-        var liList2 = DumpyInstructionsHelper.GetRunValidationInstructionsMoveNext(_gameModule, method2);
+        var liList = DumpyILHelper.GetRunValidationInstructions(method, _gameModule, _msModule, _gameImporter);
+        var liList2 = DumpyILHelper.GetRunValidationInstructionsMoveNext(method2, _gameModule, _msModule, _gameImporter);
 
         foreach (var instruction in liList)
         {
@@ -238,35 +251,25 @@ public class DumperClass
         }
 
         var ins = Instruction.Create(OpCodes.Leave_S, method2.Body.Instructions[14]); // Create instruction to jump to index 14
-        var ins1 = Instruction.Create(OpCodes.Leave_S, method2.Body.Instructions[method2.Body.Instructions.IndexOf(method2.Body.Instructions.Last())]); // Create instruction to jump to last index
+        var ins1 = Instruction.Create(OpCodes.Leave_S, method2.Body.Instructions.Last()); // Create instruction to jump to last index
 
         method2.Body.Instructions.InsertAfter(method2.Body.Instructions[5], ins); // Instruction to jump from 5 to 14
         method2.Body.Instructions.InsertAfter(method2.Body.Instructions[14], ins1); // Instruction to jump from 14 to last index
 
-        // Create exception handler with defined indexes
-        var handler = new ExceptionHandler(ExceptionHandlerType.Catch)
-        {
-            TryStart = method2.Body.Instructions[3],
-            TryEnd = method2.Body.Instructions[7],
-            HandlerStart = method2.Body.Instructions[7],
-            HandlerEnd = method2.Body.Instructions[16],
-            CatchType = importer.Import(typeof(Exception)),
-        };
-
         // Add exception handler to method body
-        method2.Body.ExceptionHandlers.Add(handler);
+        method2.Body.ExceptionHandlers.Add(DumpyILHelper.GetExceptionHandler(method2, _gameImporter, _msModule));
     }
 
     private void SetDumpyTaskCode(TypeDef type)
     {
-        var method = type.Methods.First(x => x.Name == "Awake");
+        var method = type.Methods.First(DumpyReflectionHelper.GetMenuscreenMethod);
 
         if (method == null || method.Body.Instructions.Count != 62)
         {
             Logger.Log($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!", ConsoleColor.Red);
         }
 
-        var liList = DumpyInstructionsHelper.GetDumpyTaskInstructions(_gameModule, method);
+        var liList = DumpyILHelper.GetDumpyTaskInstructions(method, _gameModule, _gameImporter);
 
         var index = method.Body.Instructions.First(x => x.OpCode == OpCodes.Ret);
 
@@ -285,7 +288,7 @@ public class DumperClass
     /// <param name="type"></param>
     private void SetEnsureConsistencyCode(TypeDef type)
     {
-        var method = type.Methods.First(x => x.Name == "EnsureConsistency");
+        var method = type.Methods.First(DumpyReflectionHelper.GetEnsureConMethod);
 
         if (method == null || method.Body.Instructions.Count != 152)
         {
@@ -297,7 +300,7 @@ public class DumperClass
         method.Body.Variables.Clear();
         method.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyInstructionsHelper.GetEnsureConsistencyInstructions(_gameModule, _checkerModule, method);
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
         
         foreach (var li in liList)
         {
@@ -314,7 +317,7 @@ public class DumperClass
     /// <param name="type"></param>
     private void SetEnsureConsistencySingleCode(TypeDef type)
     {
-        var method = type.Methods.First(x => x.Name == "EnsureConsistencySingle");
+        var method = type.Methods.First(DumpyReflectionHelper.GetEnsureConSingleMethod);
 
         if (method == null || method.Body.Instructions.Count != 101)
         {
@@ -326,7 +329,7 @@ public class DumperClass
         method.Body.Variables.Clear();
         method.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyInstructionsHelper.GetEnsureConsistencyInstructions(_gameModule, _checkerModule, method);
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
         
         foreach (var li in liList)
         {

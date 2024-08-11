@@ -127,32 +127,4 @@ public static class DataProvider
 
         return module;
     }
-    
-    public static ModuleDefMD LoadModule(string path, string dir)
-    {
-        var mcOptions = new ModuleCreationOptions(CreateModuleContext(path, dir));
-        ModuleDefMD module = ModuleDefMD.Load(path, mcOptions);
-
-        module.Context = mcOptions.Context;
-
-        if (module is null)
-        {
-            throw new NullReferenceException("Module is null...");
-        }
-
-        return module;
-    }
-    
-    public static ModuleContext CreateModuleContext(string path, string dir) {
-        var ctx = new ModuleContext();
-        var asmRe = new TestAssResolver(dir, ctx);
-        asmRe.EnableFrameworkRedirect = false;
-        asmRe.FindExactMatch = false;
-        var res = new Resolver(asmRe);
-        res.ProjectWinMDRefs = false;
-        ctx.AssemblyResolver = asmRe;
-        ctx.Resolver = res;
-        asmRe.DefaultModuleContext = ctx;
-        return ctx;
-    }
 }

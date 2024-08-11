@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using DumpLib;
+using ReCodeIt.Utils;
 
 namespace ReCodeItLib.Dumper;
 
@@ -41,6 +42,7 @@ public static class DumpyInstructionsHelper
     {
         // TODO: [CWX] TRIED CHANGING OPTIONS
         var importer = new Importer(assembly, ImporterOptions.TryToUseExistingAssemblyRefs);
+        var test = ModuleDefMD.Load("C:\\Battlestate Games\\Escape from Tarkov\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll");
 
         // Add our own local variables
 
@@ -51,9 +53,9 @@ public static class DumpyInstructionsHelper
 
         // var2 index1 ExceptionType
         // TODO: [CWX] this is the problem, Exception is being imported via System.Private.CoreLib... Needs to come from MsCorLib in EFT managed Dir
-        var typer = typeof(System.Exception);
+        var typer = test.GetTypes().First(x => x.Name.ToLower() == "exception");
         var sptExceptionType = importer.Import(typer);
-        var sptException = new Local(sptExceptionType.ToTypeSig(true));
+        var sptException = new Local(sptExceptionType.ToTypeSig());
         method.Body.Variables.Add(sptException);
 
         return new List<Instruction>
@@ -101,23 +103,24 @@ public static class DumpyInstructionsHelper
     public static List<Instruction> GetEnsureConsistencyInstructions(ModuleDefMD assembly, ModuleDefMD fileChecker, MethodDef method)
     {
         var importer = new Importer(assembly);
-
+        var test = ModuleDefMD.Load("C:\\Battlestate Games\\Escape from Tarkov\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll");
+        
         // init local vars
         // var1 index0 TimeSpan type
-        var sptTimeSpanType = importer.Import(typeof(TimeSpan));
+        var sptTimeSpanType = importer.Import(test.GetTypes().First(x => x.Name == "TimeSpan"));
         var sptClass = new Local(sptTimeSpanType.ToTypeSig());
         method.Body.Variables.Add(sptClass);
 
         // Create genericInstance of a method
         var type = fileChecker.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Interfaces[0].Interface;
-        var typeMethod = importer.Import(typeof(Task).GetMethod("FromResult"));
-        var generac = new MethodSpecUser(typeMethod.ResolveMethodDef(), new GenericInstMethodSig(type.ToTypeSig()));
+        var typeMethod = importer.Import(test.GetTypes().First(x => x.Name == "Task").Methods.First(x => x.Name == "FromResult"));
+        var generac = new MethodSpecUser(typeMethod as IMethodDefOrRef, new GenericInstMethodSig(type.ToTypeSig()));
 
         return new List<Instruction>
         {
             // return Task.FromResult<ICheckResult>(ConsistencyController.CheckResult.Succeed(default(TimeSpan)));
             Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Initobj, importer.Import(typeof(TimeSpan))),
+            Instruction.Create(OpCodes.Initobj, sptTimeSpanType),
             Instruction.Create(OpCodes.Ldloc_0),
             Instruction.Create(OpCodes.Call, fileChecker.GetTypes().First(DumpyTypeHelper.GetEnsureConsistencyType).NestedTypes[0].Methods.First(x => x.Name == "Succeed")),
             Instruction.Create(OpCodes.Call, generac),
@@ -135,10 +138,11 @@ public static class DumpyInstructionsHelper
     public static List<Instruction> GetRunValidationInstructions(ModuleDefMD assembly, MethodDef method)
     {
         var importer = new Importer(assembly);
+        var test = ModuleDefMD.Load("C:\\Battlestate Games\\Escape from Tarkov\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll");
 
         // Create genericInstance of a method
         var type = assembly.GetTypes().First(DumpyTypeHelper.GetRunValidationType).NestedTypes[0];
-        var typeMethod = importer.Import(typeof(AsyncTaskMethodBuilder).GetMethod("Start"));
+        var typeMethod = importer.Import(test.GetTypes().First(x => x.Name == "AsyncTaskMethodBuilder").Methods.First(x => x.Name == "Start"));
         var generac = new MethodSpecUser(typeMethod as IMethodDefOrRef, new GenericInstMethodSig(type.ToTypeSig()));
 
         return new List<Instruction>

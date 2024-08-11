@@ -34,8 +34,8 @@ public class DumperClass
         
         // will explode if they are not there?
         // TODO: [CWX] TRIED OVERRDING 
-        _gameModule = DataProvider.LoadModule(_assemblyPath, _managedPath);
-        _checkerModule = DataProvider.LoadModule(_fileCheckerPath, _managedPath);
+        _gameModule = DataProvider.LoadModule(_assemblyPath);
+        _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
         _gameTypes = _gameModule.GetTypes().ToList();
         _checkerTypes = _checkerModule.GetTypes().ToList();
     }
@@ -74,7 +74,6 @@ public class DumperClass
         SetDumpyTaskCode(dumpyTaskType[0]);
 
         // TODO: Write game assembly to file
-        
         _gameModule.Write(Path.Combine(_managedPath, "Assembly-CSharp-dumper.dll"));
         
         // get types
@@ -93,7 +92,7 @@ public class DumperClass
     
     public void CreateDumpFolders()
     {
-        // create dumper folders
+        // TODO: create dumper folders
     }
 
     /// <summary>
@@ -302,7 +301,7 @@ public class DumperClass
         
         foreach (var li in liList)
         {
-            method.Body.Instructions.Append(li);
+            method.Body.Instructions.Add(li);
         }
     }
 
@@ -331,7 +330,7 @@ public class DumperClass
         
         foreach (var li in liList)
         {
-            method.Body.Instructions.Append(li);
+            method.Body.Instructions.Add(li);
         }
     }
 }

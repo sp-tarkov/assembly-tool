@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using ReCodeIt.Utils;
+using System.IO.Compression;
 
 namespace ReCodeItLib.Dumper;
 
@@ -108,7 +109,31 @@ public class DumperClass
     
     public void CreateDumpFolders()
     {
-        // TODO: create dumper folders
+        Directory.CreateDirectory(Path.Combine(_managedPath, "DumperZip"));
+        Directory.CreateDirectory(Path.Combine(_managedPath, "Dumper/DUMPDATA"));
+        Directory.CreateDirectory(Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/backup"));
+    }
+    
+    public void CopyFiles()
+    {
+        File.Copy(Path.Combine(_managedPath, "Assembly-CSharp.dll"), Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/backup/Assembly-CSharp.dll"), true);
+        File.Copy(Path.Combine(_managedPath, "FilesChecker.dll"), Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/backup/FilesChecker.dll"), true);
+        File.Copy(Path.Combine(_managedPath, "Assembly-CSharp-dumper.dll"), Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/Assembly-CSharp.dll"), true);
+        File.Copy(Path.Combine(_managedPath, "FilesChecker-dumper.dll"), Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/FilesChecker.dll"), true);
+        File.Copy("./DumpLib.dll", Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/DumpLib.dll"), true);
+        File.Copy("./DUMPDATA/botReqData.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/botReqData.json"), true);
+        File.Copy("./DUMPDATA/config.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/config.json"), true);
+        File.Copy("./DUMPDATA/raidSettings.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/raidSettings.json"), true);
+    }
+
+    public void ZipFiles()
+    {
+        if (File.Exists(Path.Combine(_managedPath, "DumperZip/Dumper.zip")))
+        {
+            File.Delete(Path.Combine(_managedPath, "DumperZip/Dumper.zip"));
+        }
+        
+        ZipFile.CreateFromDirectory(Path.Combine(_managedPath, "Dumper"), Path.Combine(_managedPath, "DumperZip/Dumper.zip"), CompressionLevel.Optimal, false);
     }
 
     /// <summary>

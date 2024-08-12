@@ -22,6 +22,8 @@ public class Dumper : ICommand
         var dumper = new DumperClass(ManagedDirectory);
         dumper.CreateDumpFolders();
         dumper.CreateDumper();
+        dumper.CopyFiles();
+        dumper.ZipFiles();
         
         Logger.Log("Complete", ConsoleColor.Green);
         

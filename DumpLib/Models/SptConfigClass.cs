@@ -18,8 +18,6 @@
         public string DateTimeFormat { get; set; }
 
         public bool QuickDumpEnabled { get; set; }
-
-        public SptReflections SptReflections { get; set; }
         
         public SptTimings SptTimings { get; set; }
     }
@@ -35,23 +33,5 @@
         /// Default: 5m * 60s * 1000ms = 300000ms
         /// </summary>
         public int AllIterationDelayMs { get; set; }
-    }
-
-    public class SptReflections
-    {
-        /// <summary>
-        /// Default: "get_MainURLFull" as of 128476 client
-        /// </summary>
-        public string MainUrlPropName { get; set; }
-        
-        /// <summary>
-        /// Default: "Params" as of 128476 client
-        /// </summary>
-        public string ParamFieldName { get; set; }
-        
-        /// <summary>
-        /// Default: "responseText" as of 128476 client
-        /// </summary>
-        public string RequestFieldName { get; set; }
     }
 }

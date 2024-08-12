@@ -309,14 +309,14 @@ namespace DumpLib
         {
             try
             {
-                var uri = new Uri((string)requestType.GetType().GetMethod(ConfigSettings.SptReflections.MainUrlPropName).Invoke(requestType, null));
+                var uri = new Uri((string)requestType.GetType().GetMethod("get_MainURLFull").Invoke(requestType, null));
                 var path = (Directory.GetCurrentDirectory() + "\\HTTP_DATA\\").Replace("\\\\", "\\");
                 var file = uri.LocalPath.Replace("/", ".").Remove(0, 1);
                 var time = DateTime.Now.ToString(ConfigSettings.DateTimeFormat);
 
                 if (Directory.CreateDirectory(path).Exists)
                 {
-                    var reqParams = requestType.GetType().GetField(ConfigSettings.SptReflections.ParamFieldName).GetValue(requestType);
+                    var reqParams = requestType.GetType().GetField("Params").GetValue(requestType);
                     if (Directory.CreateDirectory($@"{path}req.{file}").Exists)
                     {
                         if (reqParams != null)

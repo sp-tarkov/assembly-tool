@@ -7,14 +7,21 @@
         <LangVersion>latestmajor</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <DestinationFolder>..\Assets\Dumper</DestinationFolder>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
-    <Target Name="CopyDll" AfterTargets="Build">
-        <Exec Command="copy $(TargetPath) $(DestinationFolder)" />
-    </Target>
+    <ItemGroup>
+      <None Update="DUMPDATA\botReqData.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="DUMPDATA\config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="DUMPDATA\raidSettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>

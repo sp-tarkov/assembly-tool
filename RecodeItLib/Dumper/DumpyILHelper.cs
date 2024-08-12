@@ -160,11 +160,11 @@ public static class DumpyILHelper
         };
     }
 
-    public static List<Instruction> GetDumpyTaskInstructions(MethodDef method, ModuleDefMD assembly, Importer? gameImporter)
+    public static List<Instruction> GetDumpyTaskInstructions(MethodDef method, ModuleDefMD dumpModule, Importer? gameImporter)
     {
         return new List<Instruction>
         {
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(typeof(DumpyTool).GetMethod("StartDumpyTask"))),
+            Instruction.Create(OpCodes.Call, gameImporter?.Import(dumpModule.GetTypes().First(x => x.Name == "DumpyTool").Methods.First(m => m.Name == "StartDumpyTask"))),
             Instruction.Create(OpCodes.Pop)
         };
     }

@@ -12,9 +12,11 @@ public class DumperClass
     private ModuleDefMD? _gameModule { get; set; }
     private ModuleDefMD? _checkerModule { get; set; }
     private ModuleDefMD? _msModule { get; set; }
+    private ModuleDefMD? _dumpModule { get; set; }
     private string _assemblyPath { get; set; }
     private string _fileCheckerPath { get; set; }
     private string _mscorlibPath { get; set; }
+    private string _dumpLibPath { get; set; }
     private string _managedPath { get; set; }
     private List<TypeDef>? _gameTypes { get; set; }
     private List<TypeDef>? _checkerTypes { get; set; }
@@ -27,6 +29,7 @@ public class DumperClass
         _assemblyPath = Path.Combine(managedPath, "Assembly-Csharp-cleaned.dll");
         _fileCheckerPath = Path.Combine(managedPath, "FilesChecker.dll");
         _mscorlibPath = Path.Combine(managedPath, "mscorlib.dll");
+        _dumpLibPath = "./DumpLib.dll";
 
         if (!File.Exists(_assemblyPath))
         {
@@ -40,12 +43,18 @@ public class DumperClass
         
         if (!File.Exists(_mscorlibPath))
         {
-            Logger.Log($"File FilesChecker.dll does not exist at {_fileCheckerPath}", ConsoleColor.Red);
+            Logger.Log($"File FilesChecker.dll does not exist at {_mscorlibPath}", ConsoleColor.Red);
+        }
+        
+        if (!File.Exists(_dumpLibPath))
+        {
+            Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
         }
         
         _gameModule = DataProvider.LoadModule(_assemblyPath);
         _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
         _msModule = DataProvider.LoadModule(_mscorlibPath);
+        _dumpModule = DataProvider.LoadModule(_dumpLibPath);
         _gameTypes = _gameModule.GetTypes().ToList();
         _checkerTypes = _checkerModule.GetTypes().ToList();
         _gameImporter = new Importer(_gameModule);
@@ -56,19 +65,25 @@ public class DumperClass
     {
         if (_gameModule == null || _gameTypes == null)
         {
-            Logger.Log($"_gameModule or _gameTypes in DumpyRemake was null", ConsoleColor.Red);
+            Logger.Log($"_gameModule or _gameTypes in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
 
         if (_checkerModule == null || _checkerTypes == null)
         {
-            Logger.Log($"_checkerModule or _checkerTypes in DumpyRemake was null", ConsoleColor.Red);
+            Logger.Log($"_checkerModule or _checkerTypes in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
         
         if (_msModule == null)
         {
-            Logger.Log($"_msModule in DumpyRemake was null", ConsoleColor.Red);
+            Logger.Log($"_msModule in CreateDumper() was null", ConsoleColor.Red);
+            return;
+        }
+        
+        if (_dumpModule == null)
+        {
+            Logger.Log($"_dumpModule in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
         
@@ -294,7 +309,7 @@ public class DumperClass
             Logger.Log($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!", ConsoleColor.Red);
         }
 
-        var liList = DumpyILHelper.GetDumpyTaskInstructions(method, _gameModule, _gameImporter);
+        var liList = DumpyILHelper.GetDumpyTaskInstructions(method,_dumpModule, _gameImporter);
 
         var index = method.Body.Instructions.First(x => x.OpCode == OpCodes.Ret);
 

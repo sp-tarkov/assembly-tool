@@ -8,13 +8,13 @@ namespace DumpLib.Helpers
     public static class ReflectionHelper
     {
         private static Assembly _newtonAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Newtonsoft.Json.dll").Replace("\\\\", "\\"));
-        
+
         private static Assembly _msAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll").Replace("\\\\", "\\"));
-        
+
         private static Assembly _eftAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll").Replace("\\\\", "\\"));
 
         private static Assembly _comfortAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Comfort.dll").Replace("\\\\", "\\"));
-        
+
         /// <summary>
         /// Method to get Singleton<> type from Comfort.dll
         /// </summary>
@@ -32,7 +32,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get ClientApplication<> type from EFT's assembly
         /// </summary>
@@ -50,7 +50,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get (as of 25/01/2024 - GInterface145) type from EFT's assembly
         /// </summary>
@@ -69,7 +69,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get TarkovApplication type from EFT's assembly
         /// </summary>
@@ -87,7 +87,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get (as of 25/01/2024 - GClass1464) type from EFT's assembly
         /// </summary>
@@ -127,7 +127,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get FieldInfo of a field on the TarkovApplication Type for later use
         /// </summary>
@@ -146,7 +146,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get the Instance of a Singleton(Type) passed in
         /// </summary>
@@ -167,7 +167,7 @@ namespace DumpLib.Helpers
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Method to get BackendSession object from the instance passed in
         /// </summary>

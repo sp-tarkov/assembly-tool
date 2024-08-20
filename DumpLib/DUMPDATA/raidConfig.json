@@ -1,0 +1,30 @@
+﻿{
+  "keyId": null,
+  "location": "Interchange",
+  "timeVariant": "CURR",
+  "metabolismDisabled": false,
+  "timeAndWeatherSettings": {
+    "isRandomTime": false,
+    "isRandomWeather": false,
+    "cloudinessType": "Clear",
+    "rainType": "NoRain",
+    "windType": "Light",
+    "fogType": "NoFog",
+    "timeFlowType": "x1",
+    "hourOfDay": -1
+  },
+  "botSettings": {
+    "isScavWars": false,
+    "botAmount": "AsOnline"
+  },
+  "wavesSettings": {
+    "botAmount": "AsOnline",
+    "botDifficulty": "AsOnline",
+    "isBosses": true,
+    "isTaggedAndCursed": false
+  },
+  "side": "Pmc",
+  "raidMode": "Local",
+  "playersSpawnPlace": "SamePlace",
+  "CanShowGroupPreview": true
+}

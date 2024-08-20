@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DumpLib.Helpers
 {
-    public static class UtilsHelper
+    public static class Utils
     {
         private static string _loggerPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\Log.txt").Replace("\\\\", "\\");
         

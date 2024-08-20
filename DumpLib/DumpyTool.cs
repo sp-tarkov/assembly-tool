@@ -8,294 +8,184 @@ namespace DumpLib
     public static class DumpyTool
     {
         /// <summary>
-        ///
-        /// </summary>
-        public static string DumpDataPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\").Replace("\\\\", "\\");
-
-        public static SptConfigClass ConfigSettings = (SptConfigClass)GetSptConfig();
-
-        /// <summary>
-        /// always start from 1 as their iterations are 1 to 6
-        /// </summary>
-        public static int Iteration = 1;
-
-        /// <summary>
-        /// <para>Method to create a "combined" Type that takes a GenericType</para>
-        /// <para>Example: ClientApplication + GInterface145 = ClientApplication(GInterface145)</para>
-        /// </summary>
-        /// <param name="firstType">Object (Type)</param>
-        /// <param name="secondType">Object (Type)</param>
-        /// <returns>Type</returns>
-        public static Type CreateGenericType(object firstType, object secondType)
-        {
-            try
-            {
-                return (firstType as Type).MakeGenericType(new Type[] { secondType as Type });
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("CreateCombinedType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static MethodInfo CreateDeserializerMethod(object type)
-        {
-            try
-            {
-                return ReflectionHelper.GetDeserializerMethodInfo().MakeGenericMethod(new Type[] { type as Type });
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("CreateCombinedMethod");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public static object CreateBackendSessionAndTarkovApp(out object tarkovApp)
-        {
-            try
-            {
-                // To get to this point and keeping this generic
-                // Get types required
-                var singletonType = ReflectionHelper.GetSingletonType();
-                var clientApplicationType = ReflectionHelper.GetClientApplicationType();
-                var interfaceType = ReflectionHelper.GetInterfaceType();
-
-                // Create singleton
-                var clientApplicationInterfaceType = CreateGenericType(clientApplicationType, interfaceType);
-                var singletonClientApplicationInterfaceType = CreateGenericType(singletonType, clientApplicationInterfaceType);
-
-                // Get singleton instance
-                var singletonClientApplicationInterfaceInstance = ReflectionHelper.GetSingletonInstance(singletonClientApplicationInterfaceType);
-
-                tarkovApp = singletonClientApplicationInterfaceInstance;
-                return ReflectionHelper.GetBackendSession(singletonClientApplicationInterfaceInstance);
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("CreateBackendSession");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public static object GetWaveSettings()
-        {
-            try
-            {
-                // combine List<> and WaveSettingsType
-                var listWaveType = CreateGenericType(ReflectionHelper.GetListType(), ReflectionHelper.GetWaveSettingsType());
-
-                // combine with JsonConvert.DeserializeObject<>() and invoke with getCurrentDir + "\\DUMPDATA\\.replace("\\\\","\\") + "botReqData.json";
-                return CreateDeserializerMethod(listWaveType).Invoke(null, new[] { File.ReadAllText(Path.Combine(DumpDataPath, "botReqData.json")) });
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetWaveSettings");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public static object GetSptConfig()
-        {
-            try
-            {
-                return CreateDeserializerMethod(typeof(SptConfigClass)).Invoke(null,
-                    new[] { File.ReadAllText(Path.Combine(DumpDataPath, "config.json")) });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
-        public static object GetRaidSettings()
-        {
-            try
-            {
-                return CreateDeserializerMethod(ReflectionHelper.GetLocalRaidSettingsType()).Invoke(null,
-                    new[] { File.ReadAllText(Path.Combine(DumpDataPath, "raidSettings.json")) });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
-        public static bool GotBackend = false;
-        public static object WaveSettings = null;
-        public static object RaidSettings = null;
-        public static object AppRaidSettings = null;
-        public static FieldInfo MainMenuController = null;
-        public static object Session = null;
-        public static object TarkovApp = null;
-        public static int ErrorCounter = 0;
-
-        /// <summary>
         /// Method to run main menu Task, this will request data from BSG, map loot and bot data
         /// </summary>
         public static async Task StartDumpyTask()
         {
-            if (!ConfigSettings.QuickDumpEnabled)
+            if (!DataHelper.ConfigSettings.QuickDumpEnabled)
             {
                 return;
             }
+            Utils.LogInfo("[Dumpy] Starting Dumpy");
 
             await Task.Factory.StartNew(async delegate
             {
-                UtilsHelper.LogInfo("[Dumpy] Starting Dumpy Loop");
-                while (true)
+                bool run = true;
+                while (run)
                 {
                     try
                     {
-                        if (!GotBackend)
-                        {
-                            // get client backend session
-                            Session = CreateBackendSessionAndTarkovApp(out TarkovApp);
-                            // get field for MainMenuController
-                            MainMenuController = ReflectionHelper.GetMainMenuControllerField();
-                            // get wave information from json
-                            WaveSettings = GetWaveSettings();
-                            // get Raid Settings from json
-                            RaidSettings = GetRaidSettings();
-                            // get Raid settings from tarkovApp
-                            AppRaidSettings = ReflectionHelper.GetRaidSettingsFromApp(TarkovApp);
-
-                            CheckVariableConditions();
-                            GotBackend = true;
-                        }
+                        SetupBackend();
                     }
                     catch (Exception e)
                     {
-                        UtilsHelper.LogError("[Dumpy] Exception occured in StartDumpyTask::GotBackend");
-                        UtilsHelper.LogError(e);
+                        Utils.LogError("[Dumpy] Exception occured in SetupBackend");
+                        Utils.LogError(e);
 
-                        if (ErrorCounter > 3)
+                        if (DataHelper.ErrorCounter >= 3)
                         {
-                            UtilsHelper.LogError("[Dumpy] ErrorsCounter was above 3, exiting app!");
-                            // use EFT method to close app
-                            ReflectionHelper.GetApplicationQuitMethod().Invoke(null, null);
+                            Utils.LogError("[Dumpy] ErrorsCounter was 3, exiting app!");
+                            MethodHelper.GetApplicationQuitMethod().Invoke(null, null);
                         }
 
-                        ErrorCounter += 1;
+                        DataHelper.ErrorCounter += 1;
 
-                        UtilsHelper.LogError("[Dumpy] Resetting backend and trying again");
-                        ClearVariables();
+                        Utils.LogError("[Dumpy] Resetting backend and trying again");
+                        DataHelper.ClearVariables();
+                        DataHelper.GotBackend = false;
                     }
 
-                    try
+                    if (DataHelper.GotBackend)
                     {
-                        if (Iteration > 6)
+                        try
                         {
-                            // reset to 1
-                            Iteration = 1;
-
-                            UtilsHelper.LogInfo($"[Dumpy] Restarting Loop in {ConfigSettings.SptTimings.AllIterationDelayMs}ms");
-                            var controller = MainMenuController.GetValue(TarkovApp);
-
-                            if (controller != null)
+                            // Although there are now no map iterations, use the iterations to "reset" the afk montior
+                            if (DataHelper.Iteration > 6)
                             {
-                                controller.GetType().GetMethod("StopAfkMonitor").Invoke(controller, null);
+                                DataHelper.Iteration = 1;
+
+                                var controller = DataHelper.MainMenuController.GetValue(DataHelper.TarkovApp);
+                                if (controller != null)
+                                {
+                                    controller.GetType().GetMethod("StopAfkMonitor").Invoke(controller, null);
+                                }
+
+                                Utils.LogInfo($"[Dumpy] Restarting Loop in {DataHelper.ConfigSettings.SptTimings.AllIterationDelayMs}ms");
+                                await Task.Delay(DataHelper.ConfigSettings.SptTimings.AllIterationDelayMs);
+                            }
+                            else
+                            {
+                                Utils.LogInfo($"Dumpy iteration number: {DataHelper.Iteration}");
+                                foreach (var map in DataHelper.ConfigSettings.MapNames)
+                                {
+                                    // Set location in the RaidSettings object
+                                    Utils.LogInfo($"[Dumpy] Setting LocalRaidSettings location to: {map}");
+                                    DataHelper.LocalRaidSettings.GetType().GetField("location")
+                                        .SetValue(DataHelper.LocalRaidSettings, map);
+
+                                    // Set location in the RaidConfig object
+                                    Utils.LogInfo($"[Dumpy] Setting RaidSettings location to: {map}");
+                                    DataHelper.RaidSettings.GetType().GetProperty("SelectedLocation")
+                                        .SetValue(DataHelper.RaidSettings, ReflectionHelper.CheckLocationID(map));
+
+                                    // "/client/raid/configuration"
+                                    // Call server with new map name in RaidSettings
+                                    Utils.LogInfo($"[Dumpy] Sending RaidConfig");
+                                    await (Task)DataHelper.Session.GetType().GetMethod("SendRaidSettings")
+                                        .Invoke(DataHelper.Session, new[] { DataHelper.RaidSettings });
+
+                                    // Artificial wait to hopefully keep BSG off our toes
+                                    Utils.LogInfo("Waiting 10s");
+                                    await Task.Delay(10000);
+
+                                    // "/client/match/local/start"
+                                    // Call server with new map name in LocalRaidSettings
+                                    Utils.LogInfo($"[Dumpy] Getting loot for {map}");
+                                    var localRaidSettings = DataHelper.Session.GetType().GetMethod("LocalRaidStarted")
+                                        .Invoke(DataHelper.Session, new[] { DataHelper.LocalRaidSettings });
+                                    // Await the task
+                                    await (Task)localRaidSettings;
+                                    // Get the result
+                                    var result = localRaidSettings.GetType().GetProperty("Result").GetValue(localRaidSettings);
+                                    // get the string from the result
+                                    var result2 = (string)result.GetType().GetField("serverId").GetValue(result);
+                                    // set that to our LocalRaidSettings object
+                                    DataHelper.LocalRaidSettings.GetType().GetField("serverId").SetValue(DataHelper.LocalRaidSettings, result2);
+
+                                    // Artificial wait to hopefully keep BSG off our toes
+                                    Utils.LogInfo("Waiting 10s");
+                                    await Task.Delay(10000);
+
+                                    // "/client/game/bot/generate"
+                                    // Call server with bot wave data
+                                    Utils.LogInfo($"[Dumpy] Getting Bot Data");
+                                    await (Task)DataHelper.Session.GetType().GetMethod("LoadBots")
+                                        .Invoke(DataHelper.Session, new[] { DataHelper.WaveSettings });
+
+                                    // Artificial wait to hopefully keep BSG off our toes
+                                    Utils.LogInfo("Waiting 10s");
+                                    await Task.Delay(10000);
+
+                                    var emptyArray = ReflectionHelper.CreateGenericMethod(typeof(Array).GetMethod("Empty"), TypeHelper.GetJsonTokenCreateType())
+                                        .Invoke(null, null);
+                                    Utils.LogInfo($"[Dumpy] Sending local raid ended");
+                                    await (Task)DataHelper.Session.GetType().GetMethod("LocalRaidEnded")
+                                        .Invoke(DataHelper.Session, new object[]
+                                        {
+                                            DataHelper.LocalRaidSettings,
+                                            DataHelper.EndRaidClass,
+                                            emptyArray,
+                                            Activator.CreateInstance(ReflectionHelper.CreateGenericType(TypeHelper.GetDictionaryType(), typeof(string),
+                                                emptyArray.GetType()))
+                                        });
+                                    
+                                    // after, reset LocalRaidSettings.serverId to null;
+                                    DataHelper.LocalRaidSettings.GetType().GetField("serverId").SetValue(DataHelper.LocalRaidSettings, null);
+
+                                    await Task.Delay(DataHelper.ConfigSettings.SptTimings.SingleIterationDelayMs);
+                                }
+
+                                DataHelper.Iteration++;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Utils.LogError("[Dumpy] Exception occured in StartDumpyTask::Iteration");
+                            Utils.LogError(e);
+
+                            if (DataHelper.ErrorCounter >= 3)
+                            {
+                                Utils.LogError("[Dumpy] ErrorsCounter was 3, exiting app");
+                                MethodHelper.GetApplicationQuitMethod().Invoke(null, null);
                             }
 
-                            await Task.Delay(ConfigSettings.SptTimings.AllIterationDelayMs);
+                            DataHelper.ErrorCounter += 1;
+
+                            Utils.LogError("[Dumpy] Resetting backend and trying again");
+                            DataHelper.ClearVariables();
                         }
-                        else
-                        {
-                            UtilsHelper.LogInfo($"Map iteration number: {Iteration}");
-                            foreach (var map in ConfigSettings.MapNames)
-                            {
-                                // theory is send a request SendRaidSettings before starting
-
-                                // Set location in the RaidSettings object
-                                UtilsHelper.LogInfo($"[Dumpy] Setting RaidSettings location to: {map}");
-                                RaidSettings.GetType().GetField("location").SetValue(RaidSettings, map);
-
-                                // Call server with new map name
-                                UtilsHelper.LogInfo($"[Dumpy] Getting loot for {map}");
-                                await (Task)Session.GetType().GetMethod("LocalRaidStarted")
-                                    .Invoke(Session, new[] { RaidSettings });
-
-                                // Call server with bot wave data
-                                UtilsHelper.LogInfo($"[Dumpy] Getting Bot Data");
-                                await (Task)Session.GetType().GetMethod("LoadBots")
-                                    .Invoke(Session, new[] { WaveSettings });
-
-                                await Task.Delay(ConfigSettings.SptTimings.SingleIterationDelayMs);
-                            }
-
-                            Iteration++;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        UtilsHelper.LogError("[Dumpy] Exception occured in StartDumpyTask::Iteration");
-                        UtilsHelper.LogError(e);
-
-                        if (ErrorCounter > 3)
-                        {
-                            UtilsHelper.LogError("[Dumpy] ErrorsCounter was above 3, exiting app");
-                            // use EFT method to close app
-                            ReflectionHelper.GetApplicationQuitMethod().Invoke(null, null);
-                        }
-
-                        ErrorCounter += 1;
-
-                        UtilsHelper.LogError("[Dumpy] Resetting backend and trying again");
-                        ClearVariables();
                     }
                 }
             }, TaskCreationOptions.LongRunning);
         }
 
-        private static void CheckVariableConditions()
+        private static void SetupBackend()
         {
-            UtilsHelper.LogInfo($"[Dumpy] CheckVariableConditions");
-            UtilsHelper.LogInfo($"[Dumpy] GotBackend- type: {GotBackend.GetType()} null?: {GotBackend == null}");
-            UtilsHelper.LogInfo($"[Dumpy] WaveSettings- type: {WaveSettings.GetType()} null?: {WaveSettings == null}");
-            UtilsHelper.LogInfo($"[Dumpy] MainMenuController- type: {MainMenuController.GetType()} null?: {MainMenuController == null}");
-            UtilsHelper.LogInfo($"[Dumpy] Session- type: {Session.GetType()} null?: {Session == null}");
-            UtilsHelper.LogInfo($"[Dumpy] TarkovApp- type: {TarkovApp.GetType()} null?: {TarkovApp == null}");
-            UtilsHelper.LogInfo($"[Dumpy] RaidSettings- type: {RaidSettings.GetType()} null?: {RaidSettings == null}");
-            UtilsHelper.LogInfo($"[Dumpy] CheckVariableConditions");
-            UtilsHelper.LogInfo($"[Dumpy] AppRaidSettings- type: {AppRaidSettings.GetType()} null?: {AppRaidSettings == null}");
-            UtilsHelper.LogInfo($"[Dumpy] CheckVariableConditions");
-            UtilsHelper.LogInfo($"[Dumpy] -----------------------------------------------------------------------------");
+            if (!DataHelper.GotBackend)
+            {
+                // get client backend session
+                DataHelper.Session = ReflectionHelper.CreateBackendSessionAndTarkovApp(out DataHelper.TarkovApp);
+                // get field for MainMenuController
+                DataHelper.MainMenuController = ReflectionHelper.GetMainMenuControllerField();
+                // get wave information from json
+                DataHelper.WaveSettings = ReflectionHelper.GetWaveSettings();
+                // get Raid Settings from json
+                DataHelper.LocalRaidSettings = DataHelper.GetLocalRaidSettings();
+                // get Raid Config from json
+                DataHelper.RaidSettings = DataHelper.GetRaidConfigSettings();
+                // get locationDetails
+                DataHelper.LocationValues = ReflectionHelper.GetLocationValuesFromSession();
+                // get End raid class from json
+                DataHelper.EndRaidClass = DataHelper.GetEndRaidClass();
+                // get player profile
+                DataHelper.PlayerProfile = ReflectionHelper.GetPlayerProfile();
+                // Set up end raid class
+                DataHelper.EndRaidClass.GetType().GetField("profile").SetValue(DataHelper.EndRaidClass, DataHelper.PlayerProfile);
+
+                DataHelper.GotBackend = true;
+            }
         }
 
-        private static void ClearVariables()
-        {
-            GotBackend = false;
-            WaveSettings = null;
-            MainMenuController = null;
-            Session = null;
-            TarkovApp = null;
-            RaidSettings = null;
-            AppRaidSettings = null;
-        }
 
         /// <summary>
         /// Method to log Requests and Responses
@@ -309,7 +199,7 @@ namespace DumpLib
                 var uri = new Uri((string)requestType.GetType().GetMethod("get_MainURLFull").Invoke(requestType, null));
                 var path = (Directory.GetCurrentDirectory() + "\\HTTP_DATA\\").Replace("\\\\", "\\");
                 var file = uri.LocalPath.Replace("/", ".").Remove(0, 1);
-                var time = DateTime.Now.ToString(ConfigSettings.DateTimeFormat);
+                var time = DateTime.Now.ToString(DataHelper.ConfigSettings.DateTimeFormat);
 
                 if (Directory.CreateDirectory(path).Exists)
                 {
@@ -317,17 +207,21 @@ namespace DumpLib
                     if (Directory.CreateDirectory($@"{path}req.{file}").Exists)
                     {
                         if (reqParams != null)
-                            File.WriteAllText($@"{path}req.{file}\\req.{file}_{time}_{ConfigSettings.Name}.json", JsonConvert.SerializeObject(reqParams));
+                        {
+                            File.WriteAllText($@"{path}req.{file}\\req.{file}_{time}_{DataHelper.ConfigSettings.Name}.json", JsonConvert.SerializeObject(reqParams));
+                        }
                     }
 
                     if (Directory.CreateDirectory($@"{path}resp.{file}").Exists)
-                        File.WriteAllText($@"{path}resp.{file}\\resp.{file}_{time}_{ConfigSettings.Name}.json", (string)responseText);
+                    {
+                        File.WriteAllText($@"{path}resp.{file}\\resp.{file}_{time}_{DataHelper.ConfigSettings.Name}.json", (string)responseText);
+                    }
                 }
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("[Dumpy] Exception occured at LogRequestResponse");
-                UtilsHelper.LogError(e);
+                Utils.LogError("[Dumpy] Exception occured at LogRequestResponse");
+                Utils.LogError(e);
                 throw;
             }
         }

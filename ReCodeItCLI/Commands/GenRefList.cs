@@ -15,6 +15,7 @@ public class GenRefList : ICommand
     {
         "Class",
         "GClass",
+        "GControl",
         "GInterface",
         "Interface",
         "GStruct"

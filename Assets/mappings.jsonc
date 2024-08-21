@@ -370,12 +370,14 @@
   },
   {
     "NewTypeName": "BotPresetClass",
-    "OriginalTypeName": "GClass1",
+    "OriginalTypeName": "GClass1311",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "MethodCount": 0,
-      "IncludeMethods": [],
+      "MethodCount": 1,
+      "IncludeMethods": [
+		"LogDebugInfo"
+	  ],
       "ExcludeMethods": [],
       "IncludeFields": [
         "MAX_AIMING_UPGRADE_BY_TIME"
@@ -487,8 +489,8 @@
     }
   },
   {
-    "NewTypeName": "ItemFactory",
-    "OriginalTypeName": "GClass4",
+    "NewTypeName": "ItemFactoryClass",
+    "OriginalTypeName": "GClass1594",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -497,7 +499,10 @@
         "ComponentialItemToItem"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+		"UNKNOWN_TEMPLATE_ID",
+		"OBSERVED_PLAYER_TEMP_CONTAINER_NAME"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -784,21 +789,27 @@
   },
   {
     "NewTypeName": "BossLogicClass",
-    "OriginalTypeName": "GClass398",
+    "OriginalTypeName": "GClass402",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsDerived": true,
       "HasGenericParameters": false,
       "ConstructorParameterCount": 2,
-      "MethodCount": 1,
       "IncludeMethods": [
-        "SetPatrolMode"
+        "SetPatrolMode",
+		"CanStartUseStimulator"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeFields": [
+      	"FollowersPositions"
+      ],
+      "ExcludeFields": [
+      	"float_8"
+      ],
+      "IncludeProperties": [
+      	"EnoughtHaveGoodCovers"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -985,9 +996,13 @@
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "airdropSynchronizableObject_0"
+        "airdropSynchronizableObject_0",
+	"eairdropFallingStage_1"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+		"eairdropFallingStage_1",
+		"offlineMode"
+	  ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -1283,24 +1298,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "LootItemClass",
-    "OriginalTypeName": "GClass0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "AllSlotsWithoutArrayInside"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // BSG renamed to CompoundItem
+  // {
+    // "NewTypeName": "LootItemClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "AllSlotsWithoutArrayInside"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ArmorClass",
     "OriginalTypeName": "GClass2877",
@@ -1598,24 +1614,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EquipmentClass",
-    "OriginalTypeName": "GClass0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "PaymentSlots"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Now called InventoryEquipment
+  // {
+    // "NewTypeName": "EquipmentClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "PaymentSlots"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "FoodClass",
     "OriginalTypeName": "GClass2961",
@@ -1769,24 +1786,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "InventoryControllerClass",
-    "OriginalTypeName": "GClass0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "SortingTableActive"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // now called InventoryController
+  // {
+    // "NewTypeName": "InventoryControllerClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "SortingTableActive"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BossKojaniyBrainClass",
     "OriginalTypeName": "GClass322",
@@ -2012,25 +2030,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "HostManagerClass",
-    "OriginalTypeName": "GClass2548",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "PropertyCount": 2,
-      "IncludeMethods": [
-        "GetStatistics"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "HostManagerClass",
+    // "OriginalTypeName": "GClass2548",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "PropertyCount": 2,
+      // "IncludeMethods": [
+        // "GetStatistics"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "IMeasureStatistics",
     "OriginalTypeName": "GInterface102",
@@ -3042,13 +3060,13 @@
   },
   {
     "NewTypeName": "LootItemPositionClass",
-    "OriginalTypeName": "GClass0",
+    "OriginalTypeName": "GClass1276",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsEnum": false,
       "HasAttribute": false,
-      "MethodCount": 1,
+      "MethodCount": 0,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
@@ -4126,46 +4144,48 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "IProfile",
-    "OriginalTypeName": "GInterface0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "InventoryInfo",
-        "Experience"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "IInventoryController",
-    "OriginalTypeName": "GInterface0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [
-        "StopProcesses",
-        "TryRunNetworkTransaction"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // renamed to IInventoryProfileInfo
+  // {
+    // "NewTypeName": "IProfile",
+    // "OriginalTypeName": "GInterface0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "InventoryInfo",
+        // "Experience"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Removed?
+  // {
+    // "NewTypeName": "IInventoryController",
+    // "OriginalTypeName": "GInterface0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": true,
+      // "IncludeMethods": [
+        // "StopProcesses",
+        // "TryRunNetworkTransaction"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "IDestroyResult",
     "OriginalTypeName": "GInterface373",
@@ -4720,30 +4740,31 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ItemAddressClass",
-    "OriginalTypeName": "GClass3010",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "IncludeMethods": [
-        "AddWithoutRestrictions"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "LocationInGrid"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "Item",
-        "ContainerName"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Possibly renamed by bsg to ItemAddress
+  // {
+    // "NewTypeName": "ItemAddressClass",
+    // "OriginalTypeName": "GClass3010",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "IncludeMethods": [
+        // "AddWithoutRestrictions"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "LocationInGrid"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "Item",
+        // "ContainerName"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "FirearmLightStateStruct",
     "OriginalTypeName": "GStruct163",
@@ -4787,25 +4808,26 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "FromObjectAbstractClass",
-    "OriginalTypeName": "GClass4",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": true,
-      "IncludeMethods": [
-        "FromStackSlotItemAddress"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Split into multiple by bsg, needs remapping
+  // {
+    // "NewTypeName": "FromObjectAbstractClass",
+    // "OriginalTypeName": "GClass4",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": true,
+      // "IncludeMethods": [
+        // "FromStackSlotItemAddress"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BackendConfigAbstractClass",
     "OriginalTypeName": "GClass583",
@@ -4989,31 +5011,31 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "InventoryItemFromToClass",
-    "OriginalTypeName": "GClass2899",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "MethodCount": 3,
-      "NestedTypeCount": 2,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [
-        "item_1"
-      ],
-      "IncludeProperties": [
-        "Item"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "InventoryItemFromToClass",
+    // "OriginalTypeName": "GClass3089",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": false,
+      // "MethodCount": 3,
+      // "NestedTypeCount": 2,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [
+        // "item_1"
+      // ],
+      // "IncludeProperties": [
+        // "Item"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "VisibilityIndicesClass",
     "OriginalTypeName": "GClass1096`1",
@@ -5330,62 +5352,26 @@
   },
   {
     "NewTypeName": "InventoryContainerClass",
-    "OriginalTypeName": "GClass0",
+    "OriginalTypeName": "GControl6",
     "UseForceRename": false,
     "SearchParams": {
+    	
       "IsPublic": true,
+      "IsAbstract": false,
+      "IsStruct": false,
       "IsDerived": true,
-      "MatchBaseClass": "InventoryController",
+	"ConstructorParameterCount": 3,
       "IncludeMethods": [
-        "FindQuestGridToPickUp"
+        "FindQuestGridToPickUp",
+	"ConvertOperationResultToOperation",
+	"RollBack"
       ],
       "ExcludeMethods": [
         "GetTraderServicesDataFromServer"
       ],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CreateItemsOperationClass",
-    "OriginalTypeName": "GClass4",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "HasGenericParameters": false,
-      "IncludeMethods": [
-        "CreateFromDescriptor",
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CreateItemsDescriptorClass",
-    "OriginalTypeName": "GClass1521",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "FieldCount": 1,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
       "IncludeFields": [
-        "Items"
-      ],
+		"backendIdGenerator_0"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -5393,122 +5379,170 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "PurchaseTraderServiceOperationClass",
-    "OriginalTypeName": "GClass13",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ServiceData",
-        "SubServiceId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "PurchaseTraderServiceDescriptorClass",
-    "OriginalTypeName": "GClass1510",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SubServiceId",
-        "ServiceType"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "AddOperationClass",
-    "OriginalTypeName": "GClass2903",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Dispose",
-        "ToString"
-      ],
-      "ExcludeMethods": [
-        "TargetItem"
-      ],
-      "IncludeFields": [
-        "Item",
-        "To"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "AddDescriptorClass",
-    "OriginalTypeName": "GClass1564",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "ToString",
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ItemId",
-        "To"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "RemoveOperationClass",
-    "OriginalTypeName": "GClass3102",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "itemAddress_0",
-        "item_0"
-      ],
-      "ExcludeFields": [
-        "slot_0"
-      ],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Split into many different classes
+  // {
+    // "NewTypeName": "CreateItemsOperationClass",
+    // "OriginalTypeName": "GClass4",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+      // "HasGenericParameters": false,
+      // "IncludeMethods": [
+        // "CreateFromDescriptor",
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Appears to be removed by bsg
+  // {
+    // "NewTypeName": "CreateItemsDescriptorClass",
+    // "OriginalTypeName": "GClass1521",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+	  // "IsDerived": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Items"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "PurchaseTraderServiceOperationClass",
+    // "OriginalTypeName": "GClass13",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "ServiceData",
+        // "SubServiceId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Removed by bsg
+  // {
+    // "NewTypeName": "PurchaseTraderServiceDescriptorClass",
+    // "OriginalTypeName": "GClass1510",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SubServiceId",
+        // "ServiceType"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "AddOperationClass",
+    // "OriginalTypeName": "GClass2903",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Dispose",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [
+        // "TargetItem"
+      // ],
+      // "IncludeFields": [
+        // "Item",
+        // "To"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "AddDescriptorClass",
+    // "OriginalTypeName": "GClass1564",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "ToString",
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "ItemId",
+        // "To"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // removed by bsg
+  // {
+    // "NewTypeName": "RemoveOperationClass",
+    // "OriginalTypeName": "GClass3102",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 3,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "itemAddress_0",
+        // "item_0"
+      // ],
+      // "ExcludeFields": [
+        // "slot_0"
+      // ],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "MoveDescriptorClass",
     "OriginalTypeName": "GClass1659",
@@ -5553,26 +5587,26 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "SplitOperationClass",
-    "OriginalTypeName": "GClass16",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 7,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "IdGenerator",
-        "CloneId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "SplitOperationClass",
+    // "OriginalTypeName": "GClass16",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 7,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "IdGenerator",
+        // "CloneId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "SplitDescriptorClass",
     "OriginalTypeName": "GClass1663",
@@ -5597,40 +5631,40 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "MergeOperationClass",
-    "OriginalTypeName": "GClass2926",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "IsDerived": true,
-      "MethodCount": 3,
-      "FieldCount": 6,
-      "IncludeMethods": [
-        "ToString",
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "TargetItem",
-        "To",
-        "From"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "Item1",
-        "From1",
-        "To1",
-        "Item2",
-        "From2",
-        "To2"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "MergeOperationClass",
+    // "OriginalTypeName": "GClass2926",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+      // "IsDerived": true,
+      // "MethodCount": 3,
+      // "FieldCount": 6,
+      // "IncludeMethods": [
+        // "ToString",
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "TargetItem",
+        // "To",
+        // "From"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "Item1",
+        // "From1",
+        // "To1",
+        // "Item2",
+        // "From2",
+        // "To2"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "MergeDescriptorClass",
     "OriginalTypeName": "GClass1658",
@@ -5651,50 +5685,50 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "TransferOperationClass",
-    "OriginalTypeName": "GClass1544",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 5,
-      "MethodCount": 3,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "TargetItem",
-        "Count"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "TransferDescriptorClass",
-    "OriginalTypeName": "GClass943",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Item1Id",
-        "ItemId",
-        "Count"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "TransferOperationClass",
+    // "OriginalTypeName": "GClass1544",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 5,
+      // "MethodCount": 3,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "TargetItem",
+        // "Count"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "TransferDescriptorClass",
+    // "OriginalTypeName": "GClass943",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Item1Id",
+        // "ItemId",
+        // "Count"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "SwapOperationClass",
     "OriginalTypeName": "GClass3090",
@@ -5714,29 +5748,29 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "SwapDescriptorClass",
-    "OriginalTypeName": "GClass1581",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 5,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "DestroyedItems"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "SwapDescriptorClass",
+    // "OriginalTypeName": "GClass1581",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 5,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "DestroyedItems"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ThrowOperationClass",
     "OriginalTypeName": "GClass3091",
@@ -5782,7 +5816,7 @@
   },
   {
     "NewTypeName": "ToggleOperationClass",
-    "OriginalTypeName": "GClass346",
+    "OriginalTypeName": "GClass3111",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5791,7 +5825,7 @@
       ],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "FACESHIELD_ON_ID"
+        "togglableComponent_0"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -5800,117 +5834,119 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "FoldOperationClass",
-    "OriginalTypeName": "GClass346",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Foldable",
-        "NewValue",
-        "From"
-      ],
-      "ExcludeFields": [
-        "TargetItem"
-      ],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ShotOperationClass",
-    "OriginalTypeName": "GClass13",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "FaceShield",
-        "From"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SetupItemOperationClass",
-    "OriginalTypeName": "GClass2933",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "PropertyCount": 3,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SetupTime",
-        "Rotation"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SetupItemDescriptorClass",
-    "OriginalTypeName": "GClass707",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SetupTime",
-        "Rotation",
-        "ItemId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "TagOperationClass",
-    "OriginalTypeName": "GClass13",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Tag",
-        "Name",
-        "Color"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "FoldOperationClass",
+    // "OriginalTypeName": "GClass346",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Foldable",
+        // "NewValue",
+        // "From"
+      // ],
+      // "ExcludeFields": [
+        // "TargetItem"
+      // ],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "ShotOperationClass",
+    // "OriginalTypeName": "GClass3119",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose",
+		// "ToDescriptor",
+		// "ExecuteInternal"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "FaceShield",
+        // "From"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "SetupItemOperationClass",
+    // "OriginalTypeName": "GClass2933",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "PropertyCount": 3,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SetupTime",
+        // "Rotation"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "SetupItemDescriptorClass",
+    // "OriginalTypeName": "GClass707",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SetupTime",
+        // "Rotation",
+        // "ItemId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "TagOperationClass",
+    // "OriginalTypeName": "GClass3056",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Tag",
+        // "Name",
+        // "Color"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "TagDescriptorClass",
     "OriginalTypeName": "GClass1666",
@@ -5933,77 +5969,77 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "StationaryOperationClass",
-    "OriginalTypeName": "GClass48",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 1,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "StationaryWeapon"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "WeaponRechamberOperationClass",
-    "OriginalTypeName": "GClass397",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsEnum": false,
-      "IsSealed": false,
-      "HasAttribute": false,
-      "HasGenericParameters": false,
-      "MethodCount": 3,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "item_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "WeaponId"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ApplyKeyOperationClass",
-    "OriginalTypeName": "GClass13",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "lockableComponent_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "StationaryOperationClass",
+    // "OriginalTypeName": "GClass48",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "StationaryWeapon"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "WeaponRechamberOperationClass",
+    // "OriginalTypeName": "GClass3113",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsEnum": false,
+      // "IsSealed": false,
+      // "HasAttribute": false,
+      // "HasGenericParameters": false,
+      // "MethodCount": 3,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "item_0"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "WeaponId"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "ApplyKeyOperationClass",
+    // "OriginalTypeName": "GClass13",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "lockableComponent_0"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ApplyKeyDescriptorClass",
     "OriginalTypeName": "GClass1642",
@@ -6025,28 +6061,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "CreateMapMarkerOperationClass",
-    "OriginalTypeName": "GClass29`1",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Marker",
-        "Map"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "CreateMapMarkerOperationClass",
+    // "OriginalTypeName": "GClass29`1",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Marker",
+        // "Map"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "CreateMapMarkerDescriptorClass",
     "OriginalTypeName": "GClass1645",
@@ -6069,99 +6105,99 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EditMapMarkerOperationClass",
-    "OriginalTypeName": "GStruct70",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 5,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Map",
-        "Marker"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "EditMapMarkerDescriptorClass",
-    "OriginalTypeName": "GClass1590",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 4,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "MapItemId",
-        "MapMarker"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "DeleteMapMarkerOperationClass",
-    "OriginalTypeName": "GClass2912",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 5,
-      "MethodCount": 2,
-      "FieldCount": 4,
-      "PropertyCount": 0,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Map"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "DeleteMapMarkerOperationDescriptorClass",
-    "OriginalTypeName": "GClass1591",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "MapItemId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "EditMapMarkerOperationClass",
+    // "OriginalTypeName": "GStruct70",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 5,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Map",
+        // "Marker"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "EditMapMarkerDescriptorClass",
+    // "OriginalTypeName": "GClass1590",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 4,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "MapItemId",
+        // "MapMarker"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "DeleteMapMarkerOperationClass",
+    // "OriginalTypeName": "GClass2912",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 5,
+      // "MethodCount": 2,
+      // "FieldCount": 4,
+      // "PropertyCount": 0,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Map"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "DeleteMapMarkerOperationDescriptorClass",
+    // "OriginalTypeName": "GClass1591",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "MapItemId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "AddNoteOperationClass",
     "OriginalTypeName": "GClass3270",
@@ -6208,27 +6244,27 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EditNoteOperationClass",
-    "OriginalTypeName": "GClass213",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 3,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "NotesManager",
-        "Index"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "EditNoteOperationClass",
+    // "OriginalTypeName": "GClass213",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 3,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "NotesManager",
+        // "Index"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EditNoteDescriptorClass",
     "OriginalTypeName": "GClass1649",
@@ -6252,26 +6288,26 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "DeleteNoteOperationClass",
-    "OriginalTypeName": "GClass2913",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "NotesManager",
-        "Index"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "DeleteNoteOperationClass",
+    // "OriginalTypeName": "GClass2913",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 4,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "NotesManager",
+        // "Index"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "DeleteNoteDescriptorClass",
     "OriginalTypeName": "GClass2031",
@@ -6313,48 +6349,50 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "QuestHandoverOperationClass",
-    "OriginalTypeName": "GClass247",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 4,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "FromDescriptor"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "QuestHandoverDescriptorClass",
-    "OriginalTypeName": "GClass1",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 0,
-      "FieldCount": 2,
-      "PropertyCount": 0,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ConditionId",
-        "ItemIds"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "QuestHandoverOperationClass",
+    // "OriginalTypeName": "GClass247",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 4,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "FromDescriptor"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+   // {
+     // "NewTypeName": "QuestHandoverDescriptorClass",
+     // "OriginalTypeName": "GClass1675",
+     // "UseForceRename": false,
+     // "SearchParams": {
+       // "IsPublic": true,
+       // "MethodCount": 0,
+       // "FieldCount": 2,
+       // "PropertyCount": 0,
+       // "IncludeMethods": [
+		// "ToQuestOperation"
+	   // ],
+       // "ExcludeMethods": [],
+       // "IncludeFields": [
+         // "ConditionId",
+         // "ItemIds"
+       // ],
+       // "ExcludeFields": [],
+       // "IncludeProperties": [],
+       // "ExcludeProperties": [],
+       // "IncludeNestedTypes": [],
+       // "ExcludeNestedTypes": []
+     // }
+   // },
   {
     "NewTypeName": "CheckMagazineOperationClass",
     "OriginalTypeName": "GClass3115",
@@ -6378,22 +6416,30 @@
   },
   {
     "NewTypeName": "CheckMagazineDescriptorClass",
-    "OriginalTypeName": "GClass707",
+    "OriginalTypeName": "GClass1644",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "IsSealed": false,
+      "IsClass": true,
+      "IsAbstract": false,
+      "IsDerived": true,
+      "IsAbstract": false,
       "HasAttribute": false,
       "IncludeMethods": [
-        "Clone"
+		"ToInventoryOperation"
       ],
-      "ExcludeMethods": [],
+      "ExcludeMethods": [
+      	"Dispose"
+      ],
       "IncludeFields": [
         "SkillLevel",
         "CheckStatus",
         "ItemId"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+      	"QuestId",
+	"position"
+      ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -7043,25 +7089,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "GridItemAddressDescriptorClass",
-    "OriginalTypeName": "GClass1559",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 1,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "LocationInGrid"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "GridItemAddressDescriptorClass",
+    // "OriginalTypeName": "GClass1559",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "LocationInGrid"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EFTPhysicsClass",
     "OriginalTypeName": "GClass684",
@@ -7103,24 +7149,24 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "BossSpawnWaveManagerClass",
-    "OriginalTypeName": "GClass0",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "BossSpawnWaves"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "BossSpawnWaveManagerClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "BossSpawnWaves"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EFTDateTimeClass",
     "OriginalTypeName": "GClass1370",
@@ -8019,34 +8065,34 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ChessboardMatrixClass",
-    "OriginalTypeName": "GClass943",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsNested": false,
-      "HasAttribute": true,
-      "IsDerived": false,
-      "HasGenericParameters": false,
-      "IncludeMethods": [
-        "ChessboardMatrix"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "RowCount",
-        "ColumnCount"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "ChessboardMatrixClass",
+    // "OriginalTypeName": "GClass943",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsNested": false,
+      // "HasAttribute": true,
+      // "IsDerived": false,
+      // "HasGenericParameters": false,
+      // "IncludeMethods": [
+        // "ChessboardMatrix"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "RowCount",
+        // "ColumnCount"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BasePhysicalClass",
     "OriginalTypeName": "GClass716",
@@ -8261,35 +8307,35 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ItemDescriptionClass",
-    "OriginalTypeName": "GClass707",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsNested": false,
-      "IsDerived": false,
-      "HasGenericParameters": false,
-      "MethodCount": 1,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "IsUnderBarrelDeviceActive",
-        "Malfunction",
-        "ShellsInUnderbarrelWeapon"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "ItemDescriptionClass",
+    // "OriginalTypeName": "GClass707",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsNested": false,
+      // "IsDerived": false,
+      // "HasGenericParameters": false,
+      // "MethodCount": 1,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "IsUnderBarrelDeviceActive",
+        // "Malfunction",
+        // "ShellsInUnderbarrelWeapon"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EntityNodeClass",
     "OriginalTypeName": "GClass3147",
@@ -8391,52 +8437,52 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "KeyInteractionResultClass",
-    "OriginalTypeName": "GClass511",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "MethodCount": 4,
-      "FieldCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Key",
-        "From",
-        "DiscardResult",
-        "Succeed"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "UnloadOperationClass",
-    "OriginalTypeName": "GClass3120`1",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "SucceedAmmoManipulationHandler"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "InternalOperation"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "KeyInteractionResultClass",
+    // "OriginalTypeName": "GClass511",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "MethodCount": 4,
+      // "FieldCount": 4,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Key",
+        // "From",
+        // "DiscardResult",
+        // "Succeed"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "UnloadOperationClass",
+    // "OriginalTypeName": "GClass3120`1",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "ConstructorParameterCount": 3,
+      // "IncludeMethods": [
+        // "SucceedAmmoManipulationHandler"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "InternalOperation"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ResourceKeyManagerAbstractClass",
     "OriginalTypeName": "GClass1493",
@@ -8467,18 +8513,20 @@
   },
   {
     "NewTypeName": "LocalQuestControllerClass",
-    "OriginalTypeName": "GClass2599",
+    "OriginalTypeName": "GClass3479",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsDerived": true,
       "ConstructorParameterCount": 4,
       "NestedTypeCount": 5,
-      "IncludeMethods": [],
+      "IncludeMethods": [
+		"FinishQuest"
+	  ],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "ginterface161_0"
-      ],
+		"iQuestActions"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],

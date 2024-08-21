@@ -139,6 +139,8 @@ public class DumperClass
         File.Copy("./DUMPDATA/botReqData.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/botReqData.json"), true);
         File.Copy("./DUMPDATA/config.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/config.json"), true);
         File.Copy("./DUMPDATA/raidSettings.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/raidSettings.json"), true);
+        File.Copy("./DUMPDATA/raidConfig.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/raidConfig.json"), true);
+        File.Copy("./DUMPDATA/endRaid.json", Path.Combine(_managedPath, "Dumper/DUMPDATA/endRaid.json"), true);
     }
 
     public void ZipFiles()

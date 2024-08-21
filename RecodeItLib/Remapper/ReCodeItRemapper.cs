@@ -482,7 +482,7 @@ public class ReCodeItRemapper
 
         if (DataProvider.Settings.Remapper.MappingPath != string.Empty)
         {
-            DataProvider.UpdateMapping(DataProvider.Settings.Remapper.MappingPath, _remaps);
+            DataProvider.UpdateMapping(DataProvider.Settings.Remapper.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
         Stopwatch.Reset();

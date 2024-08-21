@@ -1,7 +1,7 @@
 ﻿{
   "serverId": null,
-  "location": "Lighthouse",
+  "location": "Interchange",
   "timeVariant": "CURR",
-  "mode": "PVE_OFFLINE",
+  "mode": "TRAINING",
   "playerSide": "Pmc"
 }

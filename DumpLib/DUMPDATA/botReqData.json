@@ -1,4 +1,3 @@
-
 [
 	{"Role":"assault","Limit":2,"Difficulty":"easy"},
 	{"Role":"assault","Limit":2,"Difficulty":"normal"},
@@ -35,5 +34,6 @@
 	{"Role":"bossKojaniy","Limit":2,"Difficulty":"normal"},
 	{"Role":"followerKojaniy","Limit":2,"Difficulty":"normal"},
 	{"Role":"skier","Limit":2,"Difficulty":"normal"},
-	{"Role":"peacemaker","Limit":2,"Difficulty":"normal"}
+	{"Role":"peacemaker","Limit":2,"Difficulty":"normal"},
+	{"Role":"bossPartisan","Limit":2,"Difficulty":"normal"}
 ]

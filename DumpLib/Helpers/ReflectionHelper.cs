@@ -2,132 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace DumpLib.Helpers
 {
     public static class ReflectionHelper
     {
-        private static Assembly _newtonAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Newtonsoft.Json.dll").Replace("\\\\", "\\"));
-
-        private static Assembly _msAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll").Replace("\\\\", "\\"));
-
-        private static Assembly _eftAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll").Replace("\\\\", "\\"));
-
-        private static Assembly _comfortAssembly = Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Comfort.dll").Replace("\\\\", "\\"));
-
-        /// <summary>
-        /// Method to get Singleton<> type from Comfort.dll
-        /// </summary>
-        /// <returns>Type</returns>
-        public static Type GetSingletonType()
-        {
-            try
-            {
-                return _comfortAssembly.GetTypes().First(x => x.Name.StartsWith("Singleton"));
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetSingletonType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Method to get ClientApplication<> type from EFT's assembly
-        /// </summary>
-        /// <returns>Type</returns>
-        public static Type GetClientApplicationType()
-        {
-            try
-            {
-                return _eftAssembly.GetTypes().First(x => x.Name.StartsWith("ClientApplication"));
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetClientApplicationType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Method to get (as of 25/01/2024 - GInterface145) type from EFT's assembly
-        /// </summary>
-        /// <returns>Type</returns>
-        public static Type GetInterfaceType()
-        {
-            try
-            {
-                return _eftAssembly.GetTypes()
-                    .First(x => x.IsInterface && x.GetMethods().Any(m => m.Name == "GetPhpSessionId"));
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetInterfaceType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Method to get TarkovApplication type from EFT's assembly
-        /// </summary>
-        /// <returns>Type</returns>
-        public static Type GetTarkovApplicationType()
-        {
-            try
-            {
-                return _eftAssembly.GetTypes().First(x => x.Name == "TarkovApplication");
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetTarkovApplicationType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Method to get (as of 25/01/2024 - GClass1464) type from EFT's assembly
-        /// </summary>
-        /// <returns></returns>
-        public static object GetWaveSettingsType()
-        {
-            try
-            {
-                return _eftAssembly.GetTypes().First(x =>
-                {
-                    // if type contains Role, Limit and Difficulty, return true
-                    var fields = x.GetFields();
-                    if (fields.Any(f => f.Name == "Role") && fields.Any(f => f.Name == "Limit") && fields.Any(f => f.Name == "Difficulty") && fields.Length == 3)
-                        return true;
-
-                    return false;
-                });
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetWaveSettingsType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
-        public static Type GetListType()
-        {
-            try
-            {
-                return _msAssembly.GetTypes().First(x => x.Name.StartsWith("List") && x.Namespace == "System.Collections.Generic");
-            }
-            catch (Exception e)
-            {
-                UtilsHelper.LogError("GetListType");
-                UtilsHelper.LogError(e);
-                throw;
-            }
-        }
-
         /// <summary>
         /// Method to get FieldInfo of a field on the TarkovApplication Type for later use
         /// </summary>
@@ -136,13 +16,13 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return GetTarkovApplicationType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                return TypeHelper.GetTarkovApplicationType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
                     .First(x => x.FieldType.GetMethods().Any(m => m.Name == "StopAfkMonitor"));
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetMainMenuControllerField");
-                UtilsHelper.LogError(e);
+                Utils.LogError("GetMainMenuControllerField");
+                Utils.LogError(e);
                 throw;
             }
         }
@@ -162,8 +42,8 @@ namespace DumpLib.Helpers
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetSingletonInstance");
-                UtilsHelper.LogError(e);
+                Utils.LogError("GetSingletonInstance");
+                Utils.LogError(e);
                 throw;
             }
         }
@@ -177,82 +57,181 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return GetTarkovApplicationType().GetMethod("GetClientBackEndSession").Invoke(instance, null);
+                return TypeHelper.GetTarkovApplicationType().GetMethod("GetClientBackEndSession").Invoke(instance, null);
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetBackendSession");
-                UtilsHelper.LogError(e);
+                Utils.LogError("GetBackendSession");
+                Utils.LogError(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// Method to get DeserializeObject from Newtonsoft assembly
+        /// <para>Method to create a "combined" Type that takes a GenericType</para>
+        /// <para>Example: ClientApplication + GInterface145 = ClientApplication(GInterface145)</para>
         /// </summary>
-        /// <returns>MethodInfo</returns>
-        public static MethodInfo GetDeserializerMethodInfo()
+        /// <param name="firstType">Object (Type)</param>
+        /// <param name="secondType">Object (Type)</param>
+        /// <returns>Type</returns>
+        public static Type CreateGenericType(object firstType, object secondType)
         {
             try
             {
-                return _newtonAssembly.GetTypes().First(x => x.Name == "JsonConvert").GetMethods().First(m =>
-                    m.Name == "DeserializeObject" && m.IsGenericMethodDefinition && m.GetParameters().Length == 1 &&
-                    m.GetParameters().Any(p => p.ParameterType == typeof(string)));
+                return (firstType as Type).MakeGenericType(new Type[] { secondType as Type });
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetDeserializerMethodInfo");
-                UtilsHelper.LogError(e);
+                Utils.LogError("CreateGenericType1");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static Type CreateGenericType(object firstType, object secondType, object thirdType)
+        {
+            try
+            {
+                return (firstType as Type).MakeGenericType(new Type[] { secondType as Type, thirdType as Type });
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("CreateGenericType2");
+                Utils.LogError(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// Method to get Quit method from EFT (as of 20/05/2024 - GClass1955)
+        ///
         /// </summary>
-        /// <returns>MethodInfo</returns>
-        public static MethodInfo GetApplicationQuitMethod()
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static MethodInfo CreateDeserializerMethod(object type)
         {
             try
             {
-                return _eftAssembly.GetTypes().First(x => x.GetMethods().Any(y => y.Name == "Quit")).GetMethod("Quit");
+                return MethodHelper.GetDeserializerMethodInfo().MakeGenericMethod(new Type[] { type as Type });
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetApplicationQuitMethod");
-                UtilsHelper.LogError(e);
+                Utils.LogError("CreateDeserializerMethod");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static MethodInfo CreateGenericMethod(MethodInfo method, object type)
+        {
+            try
+            {
+                return method.MakeGenericMethod(new Type[] { type as Type });
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("CreateGenericMethod");
+                Utils.LogError(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// Method to get LocalRaidSettings Type from EFT
+        ///
         /// </summary>
-        /// <returns>object</returns>
-        public static object GetLocalRaidSettingsType()
+        /// <returns></returns>
+        public static object CreateBackendSessionAndTarkovApp(out object tarkovApp)
         {
             try
             {
-                return _eftAssembly.GetTypes().First(x => x.Name == "LocalRaidSettings");
+                // To get to this point and keeping this generic
+                // Get types required
+                var singletonType = TypeHelper.GetSingletonType();
+                var clientApplicationType = TypeHelper.GetClientApplicationType();
+                var interfaceType = TypeHelper.GetInterfaceType();
+
+                // Create singleton
+                var clientApplicationInterfaceType = CreateGenericType(clientApplicationType, interfaceType);
+                var singletonClientApplicationInterfaceType = CreateGenericType(singletonType, clientApplicationInterfaceType);
+
+                // Get singleton instance
+                var singletonClientApplicationInterfaceInstance = ReflectionHelper.GetSingletonInstance(singletonClientApplicationInterfaceType);
+
+                tarkovApp = singletonClientApplicationInterfaceInstance;
+                return ReflectionHelper.GetBackendSession(singletonClientApplicationInterfaceInstance);
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetLocalRaidSettingsType");
-                UtilsHelper.LogError(e);
+                Utils.LogError("CreateBackendSessionAndTarkovApp");
+                Utils.LogError(e);
                 throw;
             }
         }
 
-        public static object GetRaidSettingsFromApp(object tarkovApp)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public static object GetWaveSettings()
         {
             try
             {
-                return tarkovApp.GetType().GetField("_raidSettings").GetValue(tarkovApp);
+                // combine List<> and WaveSettingsType
+                var listWaveType = CreateGenericType(TypeHelper.GetListType(), TypeHelper.GetWaveSettingsType());
+
+                // combine with JsonConvert.DeserializeObject<>() and invoke with getCurrentDir + "\\DUMPDATA\\.replace("\\\\","\\") + "botReqData.json";
+                return CreateDeserializerMethod(listWaveType)
+                    .Invoke(null, new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "botReqData.json")) });
             }
             catch (Exception e)
             {
-                UtilsHelper.LogError("GetRaidSettingsFromApp");
-                UtilsHelper.LogError(e);
+                Utils.LogError("GetWaveSettings");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static object GetLocationValuesFromSession()
+        {
+            try
+            {
+                var locationsProp = DataHelper.Session.GetType().GetProperty("LocationSettings").GetValue(DataHelper.Session);
+                return locationsProp.GetType().GetField("locations").GetValue(locationsProp);
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("GetLocationValuesFromSession");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static object CheckLocationID(string map)
+        {
+            try
+            {
+                var values = (IEnumerable<object>)DataHelper.LocationValues.GetType().GetProperty("Values").GetValue(DataHelper.LocationValues);
+                return values.FirstOrDefault(x => x.GetType().GetField("Id").GetValue(x).ToString().ToLower().Contains(map.ToLower()));
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("CheckLocationID");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static object GetPlayerProfile()
+        {
+            try
+            {
+                var profile = DataHelper.Session.GetType().GetProperty("Profile").GetValue(DataHelper.Session);
+                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileType());
+                return converterMethod.Invoke(null, new[] { profile, Array.Empty<JsonConverter>() });
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("GetPlayerProfile");
+                Utils.LogError(e);
                 throw;
             }
         }

@@ -19,6 +19,12 @@ internal static class RenameHelper
         // Rename all fields and properties first
         if (DataProvider.Settings.Remapper.MappingSettings.RenameFields)
         {
+            if (remap.TypePrimeCandidate == null)
+            {
+                Logger.Log($"Unable to rename {remap.NewTypeName} as TypePrimeCandidate value is null/empty, skipping", ConsoleColor.Red);
+                return;
+            }
+
             RenameAllFields(
                 remap.TypePrimeCandidate.Name.String,
                 remap.NewTypeName,

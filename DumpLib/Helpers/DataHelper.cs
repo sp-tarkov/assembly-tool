@@ -22,7 +22,6 @@ public static class DataHelper
 
     public static SptConfigClass ConfigSettings = GetSptConfig();
     
-    public static int Iteration = 1;
     public static bool GotBackend = false;
     public static object WaveSettings = null;
     public static object LocalRaidSettings = null;

@@ -449,8 +449,13 @@ public class ReCodeItRemapper
     private void WriteAssembly()
     {
         var moduleName = Module.Name;
-        
-        OutPath = Path.Combine(OutPath, moduleName.Replace(".dll", "-Remapped.dll"));
+
+        var dllName = "-cleaned-remapped.dll";
+        if (Settings.MappingSettings.Publicize)
+        {
+            dllName = "-cleaned-remapped-publicized.dll";
+        }
+        OutPath = Path.Combine(OutPath, moduleName.Replace(".dll", dllName));
 
         try
         {
@@ -466,7 +471,7 @@ public class ReCodeItRemapper
         Hollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
-        var hollowedPath = Path.Combine(hollowedDir, "Hollowed.dll");
+        var hollowedPath = Path.Combine(hollowedDir, "Assembly-CSharp-hollowed.dll");
 
         try
         {

@@ -43,6 +43,8 @@ public class ReCodeItRemapper
     {
         _remaps = [];
         _remaps = remapModels;
+        _alreadyGivenNames = [];
+        
         Module = DataProvider.LoadModule(assemblyPath);
         
         OutPath = outPath;

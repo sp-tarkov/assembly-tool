@@ -97,7 +97,7 @@ public static class DataProvider
     {
         if (!File.Exists(path))
         {
-            throw new FileNotFoundException($"path `{path}` does not exist...");
+            File.Create(path).Close();
         }
 
         JsonSerializerSettings settings = new()

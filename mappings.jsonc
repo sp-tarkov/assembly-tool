@@ -1,7 +1,7 @@
 [
   {
     "NewTypeName": "BattleeyePatchClass",
-    "OriginalTypeName": "Class1278",
+    "OriginalTypeName": "Class1315",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -20,7 +20,7 @@
   },
   {
     "NewTypeName": "TraderDialogInteractionScreenClass",
-    "OriginalTypeName": "GClass2011",
+    "OriginalTypeName": "GClass2095",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -40,7 +40,7 @@
   },
   {
     "NewTypeName": "PostRaidHealthScreenClass",
-    "OriginalTypeName": "Class1294",
+    "OriginalTypeName": "Class1331",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -62,7 +62,7 @@
   },
   {
     "NewTypeName": "BackendDummyClass",
-    "OriginalTypeName": "GClass1871",
+    "OriginalTypeName": "GClass1945",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -83,7 +83,7 @@
   },
   {
     "NewTypeName": "SpawnSystemClass",
-    "OriginalTypeName": "Class2288",
+    "OriginalTypeName": "Class2327",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -109,7 +109,7 @@
   },
   {
     "NewTypeName": "BackendAbstractClass",
-    "OriginalTypeName": "Class269`1",
+    "OriginalTypeName": "Class282`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -130,7 +130,7 @@
   },
   {
     "NewTypeName": "DataHandler",
-    "OriginalTypeName": "Class277",
+    "OriginalTypeName": "Class290",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -149,7 +149,7 @@
   },
   {
     "NewTypeName": "SslCertPatchClass",
-    "OriginalTypeName": "Class943",
+    "OriginalTypeName": "Class964",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -186,7 +186,7 @@
   },
   {
     "NewTypeName": "RecodableItemClass",
-    "OriginalTypeName": "GClass2793",
+    "OriginalTypeName": "GClass2981",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -205,7 +205,7 @@
   },
   {
     "NewTypeName": "RadioTransmitterHandlerClass",
-    "OriginalTypeName": "GClass1515",
+    "OriginalTypeName": "GClass1592",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -223,7 +223,7 @@
   },
   {
     "NewTypeName": "ExfiltrationControllerClass",
-    "OriginalTypeName": "GClass1286",
+    "OriginalTypeName": "GClass1332",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -241,7 +241,7 @@
   },
   {
     "NewTypeName": "GameServerClass",
-    "OriginalTypeName": "GClass1206",
+    "OriginalTypeName": "GClass1255",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -262,7 +262,7 @@
   },
   {
     "NewTypeName": "QuestItemClass",
-    "OriginalTypeName": "GClass1217",
+    "OriginalTypeName": "GClass1266",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -283,7 +283,7 @@
   },
   {
     "NewTypeName": "EnemyInfoClass",
-    "OriginalTypeName": "GClass566`1",
+    "OriginalTypeName": "GClass588`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -310,7 +310,7 @@
   },
   {
     "NewTypeName": "InsuredItemClass",
-    "OriginalTypeName": "GClass1223",
+    "OriginalTypeName": "GClass1272",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -332,7 +332,7 @@
   },
   {
     "NewTypeName": "BackendConfigClass",
-    "OriginalTypeName": "GClass1259",
+    "OriginalTypeName": "GClass1308",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -351,7 +351,7 @@
   },
   {
     "NewTypeName": "LocationSettingsClass",
-    "OriginalTypeName": "GClass1244",
+    "OriginalTypeName": "GClass1293",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -370,12 +370,14 @@
   },
   {
     "NewTypeName": "BotPresetClass",
-    "OriginalTypeName": "GClass1262",
+    "OriginalTypeName": "GClass1311",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "MethodCount": 0,
-      "IncludeMethods": [],
+      "MethodCount": 1,
+      "IncludeMethods": [
+		"LogDebugInfo"
+	  ],
       "ExcludeMethods": [],
       "IncludeFields": [
         "MAX_AIMING_UPGRADE_BY_TIME"
@@ -389,7 +391,7 @@
   },
   {
     "NewTypeName": "BotMemoryClass",
-    "OriginalTypeName": "GClass1329",
+    "OriginalTypeName": "GClass1375",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -407,7 +409,7 @@
   },
   {
     "NewTypeName": "BackendConfigSettingsClass",
-    "OriginalTypeName": "GClass1340",
+    "OriginalTypeName": "GClass1411",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -426,7 +428,7 @@
   },
   {
     "NewTypeName": "SharedGameSettingsClass",
-    "OriginalTypeName": "GClass1929",
+    "OriginalTypeName": "GClass2010",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -445,7 +447,7 @@
   },
   {
     "NewTypeName": "WaveInfo",
-    "OriginalTypeName": "GClass1498",
+    "OriginalTypeName": "GClass1568",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -469,7 +471,7 @@
   },
   {
     "NewTypeName": "GameTimerClass",
-    "OriginalTypeName": "GClass1506",
+    "OriginalTypeName": "GClass1576",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -487,8 +489,8 @@
     }
   },
   {
-    "NewTypeName": "ItemFactory",
-    "OriginalTypeName": "GClass1517",
+    "NewTypeName": "ItemFactoryClass",
+    "OriginalTypeName": "GClass1594",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -497,7 +499,10 @@
         "ComponentialItemToItem"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+		"UNKNOWN_TEMPLATE_ID",
+		"OBSERVED_PLAYER_TEMP_CONTAINER_NAME"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -507,7 +512,7 @@
   },
   {
     "NewTypeName": "ProfileStatusClass",
-    "OriginalTypeName": "GClass1782",
+    "OriginalTypeName": "GClass1847",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -526,7 +531,7 @@
   },
   {
     "NewTypeName": "InfoClass",
-    "OriginalTypeName": "GClass1795",
+    "OriginalTypeName": "GClass1861",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -544,7 +549,7 @@
   },
   {
     "NewTypeName": "PoolManager",
-    "OriginalTypeName": "GClass1836",
+    "OriginalTypeName": "GClass1910",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -563,7 +568,7 @@
   },
   {
     "NewTypeName": "MainMenuController",
-    "OriginalTypeName": "GClass1861",
+    "OriginalTypeName": "GClass1935",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -582,7 +587,7 @@
   },
   {
     "NewTypeName": "GameGraphicsClass",
-    "OriginalTypeName": "GClass968",
+    "OriginalTypeName": "GClass999",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -610,7 +615,7 @@
   },
   {
     "NewTypeName": "ProfileChangesPocoClass",
-    "OriginalTypeName": "GClass1875",
+    "OriginalTypeName": "GClass1949",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -629,7 +634,7 @@
   },
   {
     "NewTypeName": "LoggerFactoryClass",
-    "OriginalTypeName": "GClass1925",
+    "OriginalTypeName": "GClass2000",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -649,7 +654,7 @@
   },
   {
     "NewTypeName": "EnergyControllerClass",
-    "OriginalTypeName": "GClass1958",
+    "OriginalTypeName": "GClass2039",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -668,7 +673,7 @@
   },
   {
     "NewTypeName": "HideoutClass",
-    "OriginalTypeName": "GClass1961",
+    "OriginalTypeName": "GClass2042",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -687,7 +692,7 @@
   },
   {
     "NewTypeName": "ProductionControllerClass",
-    "OriginalTypeName": "GClass1974",
+    "OriginalTypeName": "GClass2056",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -706,7 +711,7 @@
   },
   {
     "NewTypeName": "NotificationAbstractClass",
-    "OriginalTypeName": "GClass2016",
+    "OriginalTypeName": "GClass2100",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -727,7 +732,7 @@
   },
   {
     "NewTypeName": "NotificationManagerClass",
-    "OriginalTypeName": "GClass2099",
+    "OriginalTypeName": "GClass2183",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -746,7 +751,7 @@
   },
   {
     "NewTypeName": "CameraClass",
-    "OriginalTypeName": "GClass3010",
+    "OriginalTypeName": "GClass3207",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -765,7 +770,7 @@
   },
   {
     "NewTypeName": "TraderAssortmentControllerClass",
-    "OriginalTypeName": "GClass2102",
+    "OriginalTypeName": "GClass2186",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -784,21 +789,27 @@
   },
   {
     "NewTypeName": "BossLogicClass",
-    "OriginalTypeName": "GClass381",
+    "OriginalTypeName": "GClass402",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsDerived": true,
       "HasGenericParameters": false,
       "ConstructorParameterCount": 2,
-      "MethodCount": 1,
       "IncludeMethods": [
-        "SetPatrolMode"
+        "SetPatrolMode",
+		"CanStartUseStimulator"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeFields": [
+      	"FollowersPositions"
+      ],
+      "ExcludeFields": [
+      	"float_8"
+      ],
+      "IncludeProperties": [
+      	"EnoughtHaveGoodCovers"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -806,7 +817,7 @@
   },
   {
     "NewTypeName": "IContainer",
-    "OriginalTypeName": "GInterface403",
+    "OriginalTypeName": "GInterface440",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -826,7 +837,7 @@
   },
   {
     "NewTypeName": "TraderClass",
-    "OriginalTypeName": "GClass2105",
+    "OriginalTypeName": "GClass2189",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -845,7 +856,7 @@
   },
   {
     "NewTypeName": "WeatherClass",
-    "OriginalTypeName": "GClass2158",
+    "OriginalTypeName": "GClass2258",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -863,7 +874,7 @@
   },
   {
     "NewTypeName": "ClientMetrics",
-    "OriginalTypeName": "GClass2181",
+    "OriginalTypeName": "GClass2282",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -882,7 +893,7 @@
   },
   {
     "NewTypeName": "MetricsClass",
-    "OriginalTypeName": "GClass2191",
+    "OriginalTypeName": "GClass2292",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -901,7 +912,7 @@
   },
   {
     "NewTypeName": "MetricsConfigClass",
-    "OriginalTypeName": "GClass2192",
+    "OriginalTypeName": "GClass2293",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -922,7 +933,7 @@
   },
   {
     "NewTypeName": "SynchronizableObjectLogicProcessorClass",
-    "OriginalTypeName": "GClass2197",
+    "OriginalTypeName": "GClass2299",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -940,7 +951,7 @@
   },
   {
     "NewTypeName": "AirdropManagerAbstractClass",
-    "OriginalTypeName": "GClass2198",
+    "OriginalTypeName": "GClass2301",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -959,7 +970,7 @@
   },
   {
     "NewTypeName": "AirdropManagerClass",
-    "OriginalTypeName": "GClass2200",
+    "OriginalTypeName": "GClass2303",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -978,16 +989,20 @@
   },
   {
     "NewTypeName": "AirdropLogicClass",
-    "OriginalTypeName": "GClass2201",
+    "OriginalTypeName": "GClass2304",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "airdropSynchronizableObject_0"
+        "airdropSynchronizableObject_0",
+	"eairdropFallingStage_1"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+		"eairdropFallingStage_1",
+		"offlineMode"
+	  ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -996,7 +1011,7 @@
   },
   {
     "NewTypeName": "AirplaneLogicClass",
-    "OriginalTypeName": "GClass2206",
+    "OriginalTypeName": "GClass2309",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1018,7 +1033,7 @@
   },
   {
     "NewTypeName": "QuestDataClass",
-    "OriginalTypeName": "GClass3321",
+    "OriginalTypeName": "GClass3521",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1037,7 +1052,7 @@
   },
   {
     "NewTypeName": "AbstractQuestClass",
-    "OriginalTypeName": "GClass1277`1",
+    "OriginalTypeName": "GClass1326`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1057,7 +1072,7 @@
   },
   {
     "NewTypeName": "QuestControllerAbstractClass",
-    "OriginalTypeName": "GClass3297`1",
+    "OriginalTypeName": "GClass3496`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1076,7 +1091,7 @@
   },
   {
     "NewTypeName": "RawQuestClass",
-    "OriginalTypeName": "GClass3322",
+    "OriginalTypeName": "GClass3522",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1096,7 +1111,7 @@
   },
   {
     "NewTypeName": "DailyQuestClass",
-    "OriginalTypeName": "GClass3328",
+    "OriginalTypeName": "GClass3528",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1116,7 +1131,7 @@
   },
   {
     "NewTypeName": "SessionCountersClass",
-    "OriginalTypeName": "GClass2259",
+    "OriginalTypeName": "GClass2367",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1134,7 +1149,7 @@
   },
   {
     "NewTypeName": "HealthControllerClass",
-    "OriginalTypeName": "GClass2476",
+    "OriginalTypeName": "GClass2645",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1152,7 +1167,7 @@
   },
   {
     "NewTypeName": "TreatmentDataClass",
-    "OriginalTypeName": "GClass2515",
+    "OriginalTypeName": "GClass2684",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1173,7 +1188,7 @@
   },
   {
     "NewTypeName": "Equipment",
-    "OriginalTypeName": "GClass257",
+    "OriginalTypeName": "GClass273",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1195,7 +1210,7 @@
   },
   {
     "NewTypeName": "SecureContainerTemplateClass",
-    "OriginalTypeName": "GClass2642",
+    "OriginalTypeName": "GClass2827",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1213,7 +1228,7 @@
   },
   {
     "NewTypeName": "Meds2Class",
-    "OriginalTypeName": "GClass2670",
+    "OriginalTypeName": "GClass2855",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1231,7 +1246,7 @@
   },
   {
     "NewTypeName": "RepairKitClass",
-    "OriginalTypeName": "GClass2675",
+    "OriginalTypeName": "GClass2860",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1249,7 +1264,7 @@
   },
   {
     "NewTypeName": "MoneyClass",
-    "OriginalTypeName": "GClass2683",
+    "OriginalTypeName": "GClass2870",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1267,7 +1282,7 @@
   },
   {
     "NewTypeName": "ThrowableWeaponClass",
-    "OriginalTypeName": "GClass2685",
+    "OriginalTypeName": "GClass2872",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1283,27 +1298,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "LootItemClass",
-    "OriginalTypeName": "GClass2687",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "AllSlotsWithoutArrayInside"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // BSG renamed to CompoundItem
+  // {
+    // "NewTypeName": "LootItemClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "AllSlotsWithoutArrayInside"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ArmorClass",
-    "OriginalTypeName": "GClass2690",
+    "OriginalTypeName": "GClass2877",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1323,7 +1339,7 @@
   },
   {
     "NewTypeName": "GogglesClass",
-    "OriginalTypeName": "GClass2696",
+    "OriginalTypeName": "GClass2883",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1342,7 +1358,7 @@
   },
   {
     "NewTypeName": "SightModClass",
-    "OriginalTypeName": "GClass2715",
+    "OriginalTypeName": "GClass2902",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1360,7 +1376,7 @@
   },
   {
     "NewTypeName": "BossKnightBrainClass",
-    "OriginalTypeName": "GClass275",
+    "OriginalTypeName": "GClass292",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1384,7 +1400,7 @@
   },
   {
     "NewTypeName": "ExUsecBrainClass",
-    "OriginalTypeName": "GClass276",
+    "OriginalTypeName": "GClass293",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1404,7 +1420,7 @@
   },
   {
     "NewTypeName": "MagazineClass",
-    "OriginalTypeName": "GClass2727",
+    "OriginalTypeName": "GClass2914",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1422,7 +1438,7 @@
   },
   {
     "NewTypeName": "CylinderMagazineClass",
-    "OriginalTypeName": "GClass2728",
+    "OriginalTypeName": "GClass2915",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1440,7 +1456,7 @@
   },
   {
     "NewTypeName": "SpringDrivenCylinderMagazineClass",
-    "OriginalTypeName": "GClass2729",
+    "OriginalTypeName": "GClass2916",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1459,7 +1475,7 @@
   },
   {
     "NewTypeName": "MountModClass",
-    "OriginalTypeName": "GClass2735",
+    "OriginalTypeName": "GClass2922",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1482,7 +1498,7 @@
   },
   {
     "NewTypeName": "StockItemClass",
-    "OriginalTypeName": "GClass2732",
+    "OriginalTypeName": "GClass2919",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1504,7 +1520,7 @@
   },
   {
     "NewTypeName": "BarrelModClass",
-    "OriginalTypeName": "GClass2734",
+    "OriginalTypeName": "GClass2921",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1525,7 +1541,7 @@
   },
   {
     "NewTypeName": "SearchableItemClass",
-    "OriginalTypeName": "GClass2738",
+    "OriginalTypeName": "GClass2925",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1543,7 +1559,7 @@
   },
   {
     "NewTypeName": "ItemContainerClass",
-    "OriginalTypeName": "GClass2740",
+    "OriginalTypeName": "GClass2927",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1562,7 +1578,7 @@
   },
   {
     "NewTypeName": "SortingTableClass",
-    "OriginalTypeName": "GClass2761",
+    "OriginalTypeName": "GClass2947",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1582,7 +1598,7 @@
   },
   {
     "NewTypeName": "StashClass",
-    "OriginalTypeName": "GClass2760",
+    "OriginalTypeName": "GClass2946",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1598,27 +1614,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EquipmentClass",
-    "OriginalTypeName": "GClass2759",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "PaymentSlots"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Now called InventoryEquipment
+  // {
+    // "NewTypeName": "EquipmentClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "PaymentSlots"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "FoodClass",
-    "OriginalTypeName": "GClass2775",
+    "OriginalTypeName": "GClass2961",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1636,7 +1653,7 @@
   },
   {
     "NewTypeName": "KnifeClass",
-    "OriginalTypeName": "GClass2781",
+    "OriginalTypeName": "GClass2967",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1654,7 +1671,7 @@
   },
   {
     "NewTypeName": "MedsClass",
-    "OriginalTypeName": "GClass2783",
+    "OriginalTypeName": "GClass2969",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1681,7 +1698,7 @@
   },
   {
     "NewTypeName": "BulletClass",
-    "OriginalTypeName": "GClass2795",
+    "OriginalTypeName": "GClass2983",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1699,7 +1716,7 @@
   },
   {
     "NewTypeName": "GrenadeClass",
-    "OriginalTypeName": "GClass2798",
+    "OriginalTypeName": "GClass2986",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1717,7 +1734,7 @@
   },
   {
     "NewTypeName": "TemplateIdToObjectMappingsClass",
-    "OriginalTypeName": "GClass2800",
+    "OriginalTypeName": "GClass2989",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1735,7 +1752,7 @@
   },
   {
     "NewTypeName": "ItemAttributeClass",
-    "OriginalTypeName": "GClass2808",
+    "OriginalTypeName": "GClass2995",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1753,7 +1770,7 @@
   },
   {
     "NewTypeName": "TraderControllerClass",
-    "OriginalTypeName": "GClass2817",
+    "OriginalTypeName": "GClass3003",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1769,27 +1786,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "InventoryControllerClass",
-    "OriginalTypeName": "GClass2820",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "SortingTableActive"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // now called InventoryController
+  // {
+    // "NewTypeName": "InventoryControllerClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "SortingTableActive"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BossKojaniyBrainClass",
-    "OriginalTypeName": "GClass305",
+    "OriginalTypeName": "GClass322",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1809,7 +1827,7 @@
   },
   {
     "NewTypeName": "RagdollClass",
-    "OriginalTypeName": "GClass3030",
+    "OriginalTypeName": "GClass3227",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1827,7 +1845,7 @@
   },
   {
     "NewTypeName": "ShootPointClass",
-    "OriginalTypeName": "GClass326",
+    "OriginalTypeName": "GClass343",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1846,7 +1864,7 @@
   },
   {
     "NewTypeName": "UserInterfaceClass",
-    "OriginalTypeName": "GClass3178`1",
+    "OriginalTypeName": "GClass3375`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1865,7 +1883,7 @@
   },
   {
     "NewTypeName": "AICoreControllerClass",
-    "OriginalTypeName": "GClass27",
+    "OriginalTypeName": "GClass28",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1883,7 +1901,7 @@
   },
   {
     "NewTypeName": "InsuranceCompanyClass",
-    "OriginalTypeName": "GClass3252",
+    "OriginalTypeName": "GClass3452",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1902,7 +1920,7 @@
   },
   {
     "NewTypeName": "ItemClass",
-    "OriginalTypeName": "GClass3253",
+    "OriginalTypeName": "GClass3453",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1921,7 +1939,7 @@
   },
   {
     "NewTypeName": "ISubInteractions",
-    "OriginalTypeName": "GInterface385",
+    "OriginalTypeName": "GInterface422",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1940,7 +1958,7 @@
   },
   {
     "NewTypeName": "RagfairSettingsClass",
-    "OriginalTypeName": "GClass3261",
+    "OriginalTypeName": "GClass3461",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1959,7 +1977,7 @@
   },
   {
     "NewTypeName": "SonicInfoClass",
-    "OriginalTypeName": "GClass934",
+    "OriginalTypeName": "GClass965",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1977,7 +1995,7 @@
   },
   {
     "NewTypeName": "HideoutControllerClass",
-    "OriginalTypeName": "GClass1984",
+    "OriginalTypeName": "GClass2068",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -1995,7 +2013,7 @@
   },
   {
     "NewTypeName": "RagFairClass",
-    "OriginalTypeName": "GClass3264",
+    "OriginalTypeName": "GClass3464",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2012,28 +2030,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "HostManagerClass",
-    "OriginalTypeName": "GClass2548",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "PropertyCount": 2,
-      "IncludeMethods": [
-        "GetStatistics"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "HostManagerClass",
+    // "OriginalTypeName": "GClass2548",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "PropertyCount": 2,
+      // "IncludeMethods": [
+        // "GetStatistics"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "IMeasureStatistics",
-    "OriginalTypeName": "GInterface90",
+    "OriginalTypeName": "GInterface102",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2054,7 +2072,7 @@
   },
   {
     "NewTypeName": "IHandsThrowController",
-    "OriginalTypeName": "GInterface140",
+    "OriginalTypeName": "GInterface152",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2073,7 +2091,7 @@
   },
   {
     "NewTypeName": "CustomizationClass",
-    "OriginalTypeName": "GClass1910",
+    "OriginalTypeName": "GClass1985",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2095,7 +2113,7 @@
   },
   {
     "NewTypeName": "JobPriority",
-    "OriginalTypeName": "GClass3427",
+    "OriginalTypeName": "GClass3628",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2113,7 +2131,7 @@
   },
   {
     "NewTypeName": "BindableState",
-    "OriginalTypeName": "GClass3450`1",
+    "OriginalTypeName": "GClass3651`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2136,7 +2154,7 @@
   },
   {
     "NewTypeName": "BundleLock",
-    "OriginalTypeName": "GClass3464",
+    "OriginalTypeName": "GClass3665",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2158,7 +2176,7 @@
   },
   {
     "NewTypeName": "DependencyGraph",
-    "OriginalTypeName": "GClass3465`1",
+    "OriginalTypeName": "GClass3666`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2178,7 +2196,7 @@
   },
   {
     "NewTypeName": "BotCurrentEnemiesClass",
-    "OriginalTypeName": "GClass500",
+    "OriginalTypeName": "GClass518",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2198,7 +2216,7 @@
   },
   {
     "NewTypeName": "BotSettingsClass",
-    "OriginalTypeName": "GClass508",
+    "OriginalTypeName": "GClass526",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2216,7 +2234,7 @@
   },
   {
     "NewTypeName": "ScatteringSettingsClass",
-    "OriginalTypeName": "GClass539",
+    "OriginalTypeName": "GClass561",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2234,7 +2252,7 @@
   },
   {
     "NewTypeName": "BotDifficultySettingsClass",
-    "OriginalTypeName": "GClass544",
+    "OriginalTypeName": "GClass566",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2254,7 +2272,7 @@
   },
   {
     "NewTypeName": "BossSpawnerClass",
-    "OriginalTypeName": "GClass589",
+    "OriginalTypeName": "GClass611",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2272,7 +2290,7 @@
   },
   {
     "NewTypeName": "ZoneLeaveControllerClass",
-    "OriginalTypeName": "GClass594",
+    "OriginalTypeName": "GClass615",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2290,7 +2308,7 @@
   },
   {
     "NewTypeName": "BotsClass",
-    "OriginalTypeName": "GClass595",
+    "OriginalTypeName": "GClass616",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2308,7 +2326,7 @@
   },
   {
     "NewTypeName": "ProfileDataClass",
-    "OriginalTypeName": "GClass607",
+    "OriginalTypeName": "GClass628",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2336,7 +2354,7 @@
   },
   {
     "NewTypeName": "WeaponAnimationSpeedControllerClass",
-    "OriginalTypeName": "GClass678",
+    "OriginalTypeName": "GClass699",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2354,7 +2372,7 @@
   },
   {
     "NewTypeName": "TimerClass",
-    "OriginalTypeName": "GClass716",
+    "OriginalTypeName": "GClass737",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2374,7 +2392,7 @@
   },
   {
     "NewTypeName": "LayerMaskClass",
-    "OriginalTypeName": "GClass745",
+    "OriginalTypeName": "GClass766",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2392,7 +2410,7 @@
   },
   {
     "NewTypeName": "DecalMeshClass",
-    "OriginalTypeName": "GClass931",
+    "OriginalTypeName": "GClass962",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2410,7 +2428,7 @@
   },
   {
     "NewTypeName": "ChatServerClass",
-    "OriginalTypeName": "GClass943",
+    "OriginalTypeName": "GClass974",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2428,7 +2446,7 @@
   },
   {
     "NewTypeName": "ChatMessageClass",
-    "OriginalTypeName": "GClass959",
+    "OriginalTypeName": "GClass990",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2447,7 +2465,7 @@
   },
   {
     "NewTypeName": "IBotController",
-    "OriginalTypeName": "GInterface0",
+    "OriginalTypeName": "GInterface1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2466,7 +2484,7 @@
   },
   {
     "NewTypeName": "IBackendStatus",
-    "OriginalTypeName": "GInterface15",
+    "OriginalTypeName": "GInterface16",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2488,7 +2506,7 @@
   },
   {
     "NewTypeName": "ISession",
-    "OriginalTypeName": "GInterface158",
+    "OriginalTypeName": "GInterface171",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2507,7 +2525,7 @@
   },
   {
     "NewTypeName": "IBotCreator",
-    "OriginalTypeName": "GInterface20",
+    "OriginalTypeName": "GInterface21",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2526,7 +2544,7 @@
   },
   {
     "NewTypeName": "IConnectionHandler",
-    "OriginalTypeName": "GInterface195",
+    "OriginalTypeName": "GInterface210",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2545,7 +2563,7 @@
   },
   {
     "NewTypeName": "ISynchronizableObject",
-    "OriginalTypeName": "GInterface205",
+    "OriginalTypeName": "GInterface226",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2564,7 +2582,7 @@
   },
   {
     "NewTypeName": "IEffect",
-    "OriginalTypeName": "GInterface247",
+    "OriginalTypeName": "GInterface277",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2583,7 +2601,7 @@
   },
   {
     "NewTypeName": "IZones",
-    "OriginalTypeName": "GInterface363",
+    "OriginalTypeName": "GInterface399",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2602,7 +2620,7 @@
   },
   {
     "NewTypeName": "ISpawnPoints",
-    "OriginalTypeName": "GInterface364",
+    "OriginalTypeName": "GInterface400",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2621,7 +2639,7 @@
   },
   {
     "NewTypeName": "ISpawnSystem",
-    "OriginalTypeName": "GInterface365",
+    "OriginalTypeName": "GInterface401",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2640,7 +2658,7 @@
   },
   {
     "NewTypeName": "IEasyBundle",
-    "OriginalTypeName": "GInterface420",
+    "OriginalTypeName": "GInterface458",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2659,7 +2677,7 @@
   },
   {
     "NewTypeName": "IBundleLock",
-    "OriginalTypeName": "GInterface421",
+    "OriginalTypeName": "GInterface459",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2678,7 +2696,7 @@
   },
   {
     "NewTypeName": "IBackendInterface",
-    "OriginalTypeName": "GInterface33`1",
+    "OriginalTypeName": "GInterface34`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2698,7 +2716,7 @@
   },
   {
     "NewTypeName": "IRollback",
-    "OriginalTypeName": "GInterface133",
+    "OriginalTypeName": "GInterface145",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2720,7 +2738,7 @@
   },
   {
     "NewTypeName": "IExecute",
-    "OriginalTypeName": "GInterface134",
+    "OriginalTypeName": "GInterface146",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2743,7 +2761,7 @@
   },
   {
     "NewTypeName": "DamageInfo",
-    "OriginalTypeName": "GStruct396",
+    "OriginalTypeName": "GStruct394",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2761,7 +2779,7 @@
   },
   {
     "NewTypeName": "AirplaneDataPacketStruct",
-    "OriginalTypeName": "GStruct41",
+    "OriginalTypeName": "GStruct42",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2779,7 +2797,7 @@
   },
   {
     "NewTypeName": "IAssetsManager",
-    "OriginalTypeName": "GInterface375",
+    "OriginalTypeName": "GInterface412",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2798,7 +2816,7 @@
   },
   {
     "NewTypeName": "IEasyAssets",
-    "OriginalTypeName": "GInterface422",
+    "OriginalTypeName": "GInterface460",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2817,7 +2835,7 @@
   },
   {
     "NewTypeName": "BaseLogicLayerAbstractClass",
-    "OriginalTypeName": "GClass29",
+    "OriginalTypeName": "GClass30",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2836,7 +2854,7 @@
   },
   {
     "NewTypeName": "AssetsManagerSingletonClass",
-    "OriginalTypeName": "GClass1428",
+    "OriginalTypeName": "GClass1498",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2857,7 +2875,7 @@
   },
   {
     "NewTypeName": "AssetsManagerClass",
-    "OriginalTypeName": "GClass3059",
+    "OriginalTypeName": "GClass3256",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2877,7 +2895,7 @@
   },
   {
     "NewTypeName": "BundlesManagerClass",
-    "OriginalTypeName": "GClass3064",
+    "OriginalTypeName": "GClass3261",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2895,7 +2913,7 @@
   },
   {
     "NewTypeName": "AICoreAgentClass",
-    "OriginalTypeName": "GClass26`1",
+    "OriginalTypeName": "GClass27`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2914,7 +2932,7 @@
   },
   {
     "NewTypeName": "BaseLogicLayerSimpleAbstractClass",
-    "OriginalTypeName": "GClass30",
+    "OriginalTypeName": "GClass31",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2933,7 +2951,7 @@
   },
   {
     "NewTypeName": "AICoreLayerClass",
-    "OriginalTypeName": "GClass28`1",
+    "OriginalTypeName": "GClass29`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2954,7 +2972,7 @@
   },
   {
     "NewTypeName": "BaseNodeAbstractClass",
-    "OriginalTypeName": "GClass139",
+    "OriginalTypeName": "GClass153",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -2981,7 +2999,7 @@
   },
   {
     "NewTypeName": "AICoreStrategyAbstractClass",
-    "OriginalTypeName": "GClass262`1",
+    "OriginalTypeName": "GClass278`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3042,13 +3060,13 @@
   },
   {
     "NewTypeName": "LootItemPositionClass",
-    "OriginalTypeName": "GClass1227",
+    "OriginalTypeName": "GClass1276",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsEnum": false,
       "HasAttribute": false,
-      "MethodCount": 1,
+      "MethodCount": 0,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
@@ -3063,7 +3081,7 @@
   },
   {
     "NewTypeName": "BotWaveDataClass",
-    "OriginalTypeName": "GClass1499",
+    "OriginalTypeName": "GClass1569",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3081,7 +3099,7 @@
   },
   {
     "NewTypeName": "BTRControllerClass",
-    "OriginalTypeName": "GClass2984",
+    "OriginalTypeName": "GClass3148",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3100,7 +3118,7 @@
   },
   {
     "NewTypeName": "BTRDataPacket",
-    "OriginalTypeName": "GStruct384",
+    "OriginalTypeName": "GStruct382",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3119,7 +3137,7 @@
   },
   {
     "NewTypeName": "PlayerInteractPacket",
-    "OriginalTypeName": "GStruct170",
+    "OriginalTypeName": "GStruct169",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3139,7 +3157,7 @@
   },
   {
     "NewTypeName": "AchievementDataClass",
-    "OriginalTypeName": "GClass3330",
+    "OriginalTypeName": "GClass3530",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3158,7 +3176,7 @@
   },
   {
     "NewTypeName": "AchievementControllerClass",
-    "OriginalTypeName": "GClass3285",
+    "OriginalTypeName": "GClass3485",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3180,7 +3198,7 @@
   },
   {
     "NewTypeName": "BufferZoneControllerClass",
-    "OriginalTypeName": "GClass3017",
+    "OriginalTypeName": "GClass3214",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3198,7 +3216,7 @@
   },
   {
     "NewTypeName": "GetActionsClass",
-    "OriginalTypeName": "GClass1901",
+    "OriginalTypeName": "GClass1976",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3216,7 +3234,7 @@
   },
   {
     "NewTypeName": "AbstractQuestControllerClass",
-    "OriginalTypeName": "GClass3277",
+    "OriginalTypeName": "GClass3477",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3235,7 +3253,7 @@
   },
   {
     "NewTypeName": "AbstractAchievementControllerClass",
-    "OriginalTypeName": "GClass3282",
+    "OriginalTypeName": "GClass3482",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3275,7 +3293,7 @@
   },
   {
     "NewTypeName": "HalloweenEventControllerClass",
-    "OriginalTypeName": "GClass1512",
+    "OriginalTypeName": "GClass1589",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3293,7 +3311,7 @@
   },
   {
     "NewTypeName": "ImprovementControllerClass",
-    "OriginalTypeName": "GClass1966",
+    "OriginalTypeName": "GClass2047",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3311,7 +3329,7 @@
   },
   {
     "NewTypeName": "EditorsCoverPointDebugDataClass",
-    "OriginalTypeName": "GClass333",
+    "OriginalTypeName": "GClass350",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3329,7 +3347,7 @@
   },
   {
     "NewTypeName": "CoverSearchDefenceDataClass",
-    "OriginalTypeName": "GClass329",
+    "OriginalTypeName": "GClass346",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3348,7 +3366,7 @@
   },
   {
     "NewTypeName": "IHandsController",
-    "OriginalTypeName": "GInterface135",
+    "OriginalTypeName": "GInterface147",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3369,7 +3387,7 @@
   },
   {
     "NewTypeName": "PathControllerClass",
-    "OriginalTypeName": "GClass433",
+    "OriginalTypeName": "GClass451",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3389,7 +3407,7 @@
   },
   {
     "NewTypeName": "IBossLogic",
-    "OriginalTypeName": "GInterface8",
+    "OriginalTypeName": "GInterface9",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3409,7 +3427,7 @@
   },
   {
     "NewTypeName": "ISharedBallisticsCalculator",
-    "OriginalTypeName": "GInterface374",
+    "OriginalTypeName": "GInterface411",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3428,7 +3446,7 @@
   },
   {
     "NewTypeName": "FastAnimatorProcessorClass",
-    "OriginalTypeName": "GClass1164",
+    "OriginalTypeName": "GClass1216",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3448,7 +3466,7 @@
   },
   {
     "NewTypeName": "IBackEndSession",
-    "OriginalTypeName": "GInterface157",
+    "OriginalTypeName": "GInterface170",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3467,7 +3485,7 @@
   },
   {
     "NewTypeName": "BotEventHandler",
-    "OriginalTypeName": "GClass612",
+    "OriginalTypeName": "GClass633",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3486,7 +3504,7 @@
   },
   {
     "NewTypeName": "GlobalEventHandlerClass",
-    "OriginalTypeName": "GClass2982",
+    "OriginalTypeName": "GClass3182",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3506,7 +3524,7 @@
   },
   {
     "NewTypeName": "CultistEventsClass",
-    "OriginalTypeName": "GClass467",
+    "OriginalTypeName": "GClass485",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3529,7 +3547,7 @@
   },
   {
     "NewTypeName": "RepairControllerClass",
-    "OriginalTypeName": "GClass2146",
+    "OriginalTypeName": "GClass2230",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3547,7 +3565,7 @@
   },
   {
     "NewTypeName": "IRepairer",
-    "OriginalTypeName": "GInterface200",
+    "OriginalTypeName": "GInterface215",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3568,7 +3586,7 @@
   },
   {
     "NewTypeName": "ICommandMessage",
-    "OriginalTypeName": "GInterface236",
+    "OriginalTypeName": "GInterface267",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3589,7 +3607,7 @@
   },
   {
     "NewTypeName": "MarginsStruct",
-    "OriginalTypeName": "GStruct57",
+    "OriginalTypeName": "GStruct58",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3613,7 +3631,7 @@
   },
   {
     "NewTypeName": "ProjectorHelperClass",
-    "OriginalTypeName": "GClass929",
+    "OriginalTypeName": "GClass960",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3632,7 +3650,7 @@
   },
   {
     "NewTypeName": "IMatchmakerPlayersController",
-    "OriginalTypeName": "GInterface402",
+    "OriginalTypeName": "GInterface439",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3652,7 +3670,7 @@
   },
   {
     "NewTypeName": "SocialNetworkClass",
-    "OriginalTypeName": "GClass1883",
+    "OriginalTypeName": "GClass1957",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3671,7 +3689,7 @@
   },
   {
     "NewTypeName": "OnEventClass",
-    "OriginalTypeName": "GClass3435`1",
+    "OriginalTypeName": "GClass3636`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3697,7 +3715,7 @@
   },
   {
     "NewTypeName": "IHandler",
-    "OriginalTypeName": "GInterface417",
+    "OriginalTypeName": "GInterface454",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3716,7 +3734,7 @@
   },
   {
     "NewTypeName": "SourceContainerClass",
-    "OriginalTypeName": "GClass1007",
+    "OriginalTypeName": "GClass1049",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3734,7 +3752,7 @@
   },
   {
     "NewTypeName": "IValueListener",
-    "OriginalTypeName": "GInterface81",
+    "OriginalTypeName": "GInterface93",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3753,7 +3771,7 @@
   },
   {
     "NewTypeName": "FastAnimatorControllerClass",
-    "OriginalTypeName": "GClass1137",
+    "OriginalTypeName": "GClass1189",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3772,7 +3790,7 @@
   },
   {
     "NewTypeName": "SpeedAnimParamClass",
-    "OriginalTypeName": "GClass1148",
+    "OriginalTypeName": "GClass1200",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3791,7 +3809,7 @@
   },
   {
     "NewTypeName": "IFPSMeasureStatistics",
-    "OriginalTypeName": "GInterface86",
+    "OriginalTypeName": "GInterface98",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3810,7 +3828,7 @@
   },
   {
     "NewTypeName": "IEventsConsumer",
-    "OriginalTypeName": "GInterface96",
+    "OriginalTypeName": "GInterface108",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3829,7 +3847,7 @@
   },
   {
     "NewTypeName": "IConditionCounter",
-    "OriginalTypeName": "GInterface409",
+    "OriginalTypeName": "GInterface446",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3849,7 +3867,7 @@
   },
   {
     "NewTypeName": "PhraseSpeakerClass",
-    "OriginalTypeName": "GClass1843",
+    "OriginalTypeName": "GClass1917",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3869,7 +3887,7 @@
   },
   {
     "NewTypeName": "MasterSkillClass",
-    "OriginalTypeName": "GClass1802",
+    "OriginalTypeName": "GClass1875",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3889,7 +3907,7 @@
   },
   {
     "NewTypeName": "PacketEncryptorAbstractClass",
-    "OriginalTypeName": "GClass1681",
+    "OriginalTypeName": "GClass2697",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3909,7 +3927,7 @@
   },
   {
     "NewTypeName": "ISerializer",
-    "OriginalTypeName": "GInterface89",
+    "OriginalTypeName": "GInterface101",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3929,7 +3947,7 @@
   },
   {
     "NewTypeName": "FootprintStruct",
-    "OriginalTypeName": "GStruct201",
+    "OriginalTypeName": "GStruct205",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3949,7 +3967,7 @@
   },
   {
     "NewTypeName": "ResourceTypeStruct",
-    "OriginalTypeName": "GStruct107",
+    "OriginalTypeName": "GStruct108",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3968,7 +3986,7 @@
   },
   {
     "NewTypeName": "MetricsEventsClass",
-    "OriginalTypeName": "GClass2193",
+    "OriginalTypeName": "GClass2294",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -3988,7 +4006,7 @@
   },
   {
     "NewTypeName": "VersionNumberClass",
-    "OriginalTypeName": "GClass1437",
+    "OriginalTypeName": "GClass1507",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4010,7 +4028,7 @@
   },
   {
     "NewTypeName": "LoginResponseClass",
-    "OriginalTypeName": "GClass1220",
+    "OriginalTypeName": "GClass1269",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4029,7 +4047,7 @@
   },
   {
     "NewTypeName": "DialogueClass",
-    "OriginalTypeName": "GClass962",
+    "OriginalTypeName": "GClass993",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4048,7 +4066,7 @@
   },
   {
     "NewTypeName": "StashGridClass",
-    "OriginalTypeName": "GClass2556",
+    "OriginalTypeName": "GClass2744",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4069,7 +4087,7 @@
   },
   {
     "NewTypeName": "DialogOptionDataStruct",
-    "OriginalTypeName": "GStruct248",
+    "OriginalTypeName": "GStruct251",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4088,7 +4106,7 @@
   },
   {
     "NewTypeName": "HandsControllerClass",
-    "OriginalTypeName": "GClass2434",
+    "OriginalTypeName": "GClass2604",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4107,7 +4125,7 @@
   },
   {
     "NewTypeName": "IIdGenerator",
-    "OriginalTypeName": "GInterface337",
+    "OriginalTypeName": "GInterface367",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4126,49 +4144,51 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "IProfile",
-    "OriginalTypeName": "GInterface330",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "InventoryInfo",
-        "Experience"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "IInventoryController",
-    "OriginalTypeName": "GInterface331",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [
-        "StopProcesses",
-        "TryRunNetworkTransaction"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // renamed to IInventoryProfileInfo
+  // {
+    // "NewTypeName": "IProfile",
+    // "OriginalTypeName": "GInterface0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "InventoryInfo",
+        // "Experience"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Removed?
+  // {
+    // "NewTypeName": "IInventoryController",
+    // "OriginalTypeName": "GInterface0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": true,
+      // "IncludeMethods": [
+        // "StopProcesses",
+        // "TryRunNetworkTransaction"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "IDestroyResult",
-    "OriginalTypeName": "GInterface342",
+    "OriginalTypeName": "GInterface373",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4189,7 +4209,7 @@
   },
   {
     "NewTypeName": "NotesManagerClass",
-    "OriginalTypeName": "GClass2551",
+    "OriginalTypeName": "GClass2739",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4209,7 +4229,7 @@
   },
   {
     "NewTypeName": "ItemContextClass",
-    "OriginalTypeName": "GClass2885",
+    "OriginalTypeName": "GClass3075",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4228,7 +4248,7 @@
   },
   {
     "NewTypeName": "HandbookClass",
-    "OriginalTypeName": "GClass2948",
+    "OriginalTypeName": "GClass3144",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4247,7 +4267,7 @@
   },
   {
     "NewTypeName": "JobYieldClass",
-    "OriginalTypeName": "GClass3429",
+    "OriginalTypeName": "GClass3630",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4266,7 +4286,7 @@
   },
   {
     "NewTypeName": "MagazineBuildClass",
-    "OriginalTypeName": "GClass2147",
+    "OriginalTypeName": "GClass2231",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4285,7 +4305,7 @@
   },
   {
     "NewTypeName": "MatchmakerPlayerControllerClass",
-    "OriginalTypeName": "GClass3238",
+    "OriginalTypeName": "GClass3438",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4304,7 +4324,7 @@
   },
   {
     "NewTypeName": "EftBulletClass",
-    "OriginalTypeName": "GClass3055",
+    "OriginalTypeName": "GClass3252",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4324,7 +4344,7 @@
   },
   {
     "NewTypeName": "DynamicInteractionClass",
-    "OriginalTypeName": "GClass3120",
+    "OriginalTypeName": "GClass3317",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4345,7 +4365,7 @@
   },
   {
     "NewTypeName": "ItemInfoInteractionsAbstractClass",
-    "OriginalTypeName": "GClass3087`1",
+    "OriginalTypeName": "GClass3284`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4365,7 +4385,7 @@
   },
   {
     "NewTypeName": "ItemContextAbstractClass",
-    "OriginalTypeName": "GClass2872",
+    "OriginalTypeName": "GClass3062",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4386,7 +4406,7 @@
   },
   {
     "NewTypeName": "CacheResourcesPopAbstractClass",
-    "OriginalTypeName": "GClass2185",
+    "OriginalTypeName": "GClass2286",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4405,7 +4425,7 @@
   },
   {
     "NewTypeName": "SkillClass",
-    "OriginalTypeName": "GClass1803",
+    "OriginalTypeName": "GClass1876",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4425,7 +4445,7 @@
   },
   {
     "NewTypeName": "ReachableClass",
-    "OriginalTypeName": "GClass363",
+    "OriginalTypeName": "GClass380",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4445,7 +4465,7 @@
   },
   {
     "NewTypeName": "WeaponSkillClass",
-    "OriginalTypeName": "GClass1805",
+    "OriginalTypeName": "GClass1878",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4464,7 +4484,7 @@
   },
   {
     "NewTypeName": "ActionsTypesClass",
-    "OriginalTypeName": "GClass3074",
+    "OriginalTypeName": "GClass3271",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4486,7 +4506,7 @@
   },
   {
     "NewTypeName": "ActionsReturnClass",
-    "OriginalTypeName": "GClass3075",
+    "OriginalTypeName": "GClass3272",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4506,7 +4526,7 @@
   },
   {
     "NewTypeName": "IHealthEffect",
-    "OriginalTypeName": "GInterface308",
+    "OriginalTypeName": "GInterface339",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4526,7 +4546,7 @@
   },
   {
     "NewTypeName": "IMedkitResource",
-    "OriginalTypeName": "GInterface314",
+    "OriginalTypeName": "GInterface345",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4546,7 +4566,7 @@
   },
   {
     "NewTypeName": "SessionCounterTypesAbstractClass",
-    "OriginalTypeName": "GClass2258",
+    "OriginalTypeName": "GClass2366",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4567,7 +4587,7 @@
   },
   {
     "NewTypeName": "InteractionsHandlerClass",
-    "OriginalTypeName": "GClass2833",
+    "OriginalTypeName": "GClass3011",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4586,7 +4606,7 @@
   },
   {
     "NewTypeName": "HardwareDescriptionClass",
-    "OriginalTypeName": "GClass1845",
+    "OriginalTypeName": "GClass1919",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4625,7 +4645,7 @@
   },
   {
     "NewTypeName": "LocaleManagerClass",
-    "OriginalTypeName": "GClass1897",
+    "OriginalTypeName": "GClass1972",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4643,7 +4663,7 @@
   },
   {
     "NewTypeName": "EasyAssetHelperClass",
-    "OriginalTypeName": "Class3258",
+    "OriginalTypeName": "Class3309",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -4663,7 +4683,7 @@
   },
   {
     "NewTypeName": "ProfileEndpointFactoryAbstractClass",
-    "OriginalTypeName": "Class271",
+    "OriginalTypeName": "Class284",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -4683,7 +4703,7 @@
   },
   {
     "NewTypeName": "IWeapon",
-    "OriginalTypeName": "GInterface338",
+    "OriginalTypeName": "GInterface368",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4704,7 +4724,7 @@
   },
   {
     "NewTypeName": "AmmoPackReloadingClass",
-    "OriginalTypeName": "GClass2552",
+    "OriginalTypeName": "GClass2740",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4720,33 +4740,34 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ItemAddressClass",
-    "OriginalTypeName": "GClass2828",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "IncludeMethods": [
-        "AddWithoutRestrictions"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "LocationInGrid"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "Item",
-        "ContainerName"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Possibly renamed by bsg to ItemAddress
+  // {
+    // "NewTypeName": "ItemAddressClass",
+    // "OriginalTypeName": "GClass3010",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "IncludeMethods": [
+        // "AddWithoutRestrictions"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "LocationInGrid"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "Item",
+        // "ContainerName"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "FirearmLightStateStruct",
-    "OriginalTypeName": "GStruct165",
+    "OriginalTypeName": "GStruct163",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4767,7 +4788,7 @@
   },
   {
     "NewTypeName": "FirearmScopeStateStruct",
-    "OriginalTypeName": "GStruct166",
+    "OriginalTypeName": "GStruct164",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4787,28 +4808,29 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "FromObjectAbstractClass",
-    "OriginalTypeName": "GClass1666",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": true,
-      "IncludeMethods": [
-        "FromStackSlotItemAddress"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Split into multiple by bsg, needs remapping
+  // {
+    // "NewTypeName": "FromObjectAbstractClass",
+    // "OriginalTypeName": "GClass4",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": true,
+      // "IncludeMethods": [
+        // "FromStackSlotItemAddress"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BackendConfigAbstractClass",
-    "OriginalTypeName": "GClass561",
+    "OriginalTypeName": "GClass583",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4827,7 +4849,7 @@
   },
   {
     "NewTypeName": "ApplicationConfigClass",
-    "OriginalTypeName": "GClass801",
+    "OriginalTypeName": "GClass825",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4847,7 +4869,7 @@
   },
   {
     "NewTypeName": "AchievementsBookClass",
-    "OriginalTypeName": "GClass3440",
+    "OriginalTypeName": "GClass3641",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4893,7 +4915,7 @@
   },
   {
     "NewTypeName": "CharacterStruct",
-    "OriginalTypeName": "GStruct204",
+    "OriginalTypeName": "GStruct208",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4912,7 +4934,7 @@
   },
   {
     "NewTypeName": "AssetPoolAbstractClass",
-    "OriginalTypeName": "GClass3068`1",
+    "OriginalTypeName": "GClass3265`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4933,7 +4955,7 @@
   },
   {
     "NewTypeName": "RepairKitItemClass",
-    "OriginalTypeName": "GClass2788",
+    "OriginalTypeName": "GClass2974",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4952,7 +4974,7 @@
   },
   {
     "NewTypeName": "TimeRangeInfoStruct",
-    "OriginalTypeName": "GStruct96",
+    "OriginalTypeName": "GStruct98",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4971,7 +4993,7 @@
   },
   {
     "NewTypeName": "SeasonChangedEventClass",
-    "OriginalTypeName": "GClass2979",
+    "OriginalTypeName": "GClass3178",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -4989,34 +5011,34 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "InventoryItemFromToClass",
-    "OriginalTypeName": "GClass2899",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "MethodCount": 3,
-      "NestedTypeCount": 2,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [
-        "item_1"
-      ],
-      "IncludeProperties": [
-        "Item"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "InventoryItemFromToClass",
+    // "OriginalTypeName": "GClass3089",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsInterface": false,
+      // "MethodCount": 3,
+      // "NestedTypeCount": 2,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [
+        // "item_1"
+      // ],
+      // "IncludeProperties": [
+        // "Item"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "VisibilityIndicesClass",
-    "OriginalTypeName": "GClass1043`1",
+    "OriginalTypeName": "GClass1096`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5037,7 +5059,7 @@
   },
   {
     "NewTypeName": "CurrentStateAbstractClass",
-    "OriginalTypeName": "GClass1142",
+    "OriginalTypeName": "GClass1194",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5058,7 +5080,7 @@
   },
   {
     "NewTypeName": "TransitionClass",
-    "OriginalTypeName": "GClass1141",
+    "OriginalTypeName": "GClass1193",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5077,7 +5099,7 @@
   },
   {
     "NewTypeName": "ThresholdClass",
-    "OriginalTypeName": "GClass1147",
+    "OriginalTypeName": "GClass1199",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5097,7 +5119,7 @@
   },
   {
     "NewTypeName": "FloatQuantizerStruct",
-    "OriginalTypeName": "GStruct101",
+    "OriginalTypeName": "GStruct103",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5118,7 +5140,7 @@
   },
   {
     "NewTypeName": "DisconnectionInfoStruct",
-    "OriginalTypeName": "GStruct116",
+    "OriginalTypeName": "GStruct117",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5137,7 +5159,7 @@
   },
   {
     "NewTypeName": "INATIntroductionListener",
-    "OriginalTypeName": "GInterface103",
+    "OriginalTypeName": "GInterface115",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5157,7 +5179,7 @@
   },
   {
     "NewTypeName": "IOnNetworkEvent",
-    "OriginalTypeName": "GInterface100",
+    "OriginalTypeName": "GInterface112",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5177,7 +5199,7 @@
   },
   {
     "NewTypeName": "MarkOfUnknownItemClass",
-    "OriginalTypeName": "GClass2791",
+    "OriginalTypeName": "GClass2977",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5196,7 +5218,7 @@
   },
   {
     "NewTypeName": "IOnItemAdded",
-    "OriginalTypeName": "GInterface117",
+    "OriginalTypeName": "GInterface131",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5215,7 +5237,7 @@
   },
   {
     "NewTypeName": "IOnItemRemoved",
-    "OriginalTypeName": "GInterface118",
+    "OriginalTypeName": "GInterface132",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5234,7 +5256,7 @@
   },
   {
     "NewTypeName": "IOnSetInHands",
-    "OriginalTypeName": "GInterface129",
+    "OriginalTypeName": "GInterface141",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5253,7 +5275,7 @@
   },
   {
     "NewTypeName": "PedometerClass",
-    "OriginalTypeName": "GClass1693",
+    "OriginalTypeName": "GClass1756",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5272,7 +5294,7 @@
   },
   {
     "NewTypeName": "MovementInfoPacketStruct",
-    "OriginalTypeName": "GStruct167",
+    "OriginalTypeName": "GStruct165",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5291,7 +5313,7 @@
   },
   {
     "NewTypeName": "GrenadePacketStruct",
-    "OriginalTypeName": "GStruct326",
+    "OriginalTypeName": "GStruct331",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5311,7 +5333,7 @@
   },
   {
     "NewTypeName": "ICurrentRaidNumber",
-    "OriginalTypeName": "GInterface203",
+    "OriginalTypeName": "GInterface224",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5330,60 +5352,26 @@
   },
   {
     "NewTypeName": "InventoryContainerClass",
-    "OriginalTypeName": "GClass2822",
+    "OriginalTypeName": "GControl6",
     "UseForceRename": false,
     "SearchParams": {
+    	
       "IsPublic": true,
+      "IsAbstract": false,
+      "IsStruct": false,
+      "IsDerived": true,
+	"ConstructorParameterCount": 3,
       "IncludeMethods": [
-        "FindQuestGridToPickUp"
+        "FindQuestGridToPickUp",
+	"ConvertOperationResultToOperation",
+	"RollBack"
       ],
       "ExcludeMethods": [
         "GetTraderServicesDataFromServer"
       ],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CreateItemsOperationClass",
-    "OriginalTypeName": "GClass2910",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "HasGenericParameters": false,
-      "IncludeMethods": [
-        "CreateFromDescriptor",
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CreateItemsDescriptorClass",
-    "OriginalTypeName": "GClass1605",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "FieldCount": 1,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
       "IncludeFields": [
-        "Items"
-      ],
+		"backendIdGenerator_0"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -5391,125 +5379,173 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "PurchaseTraderServiceOperationClass",
-    "OriginalTypeName": "GClass2928",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ServiceData",
-        "SubServiceId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "PurchaseTraderServiceDescriptorClass",
-    "OriginalTypeName": "GClass1606",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SubServiceId",
-        "ServiceType"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "AddOperationClass",
-    "OriginalTypeName": "GClass2903",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Dispose",
-        "ToString"
-      ],
-      "ExcludeMethods": [
-        "TargetItem"
-      ],
-      "IncludeFields": [
-        "Item",
-        "To"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "AddDescriptorClass",
-    "OriginalTypeName": "GClass1564",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "ToString",
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ItemId",
-        "To"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "RemoveOperationClass",
-    "OriginalTypeName": "GClass2931",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "itemAddress_0",
-        "item_0"
-      ],
-      "ExcludeFields": [
-        "slot_0"
-      ],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // Split into many different classes
+  // {
+    // "NewTypeName": "CreateItemsOperationClass",
+    // "OriginalTypeName": "GClass4",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+      // "HasGenericParameters": false,
+      // "IncludeMethods": [
+        // "CreateFromDescriptor",
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Appears to be removed by bsg
+  // {
+    // "NewTypeName": "CreateItemsDescriptorClass",
+    // "OriginalTypeName": "GClass1521",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+	  // "IsDerived": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Items"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "PurchaseTraderServiceOperationClass",
+    // "OriginalTypeName": "GClass13",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "ServiceData",
+        // "SubServiceId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // Removed by bsg
+  // {
+    // "NewTypeName": "PurchaseTraderServiceDescriptorClass",
+    // "OriginalTypeName": "GClass1510",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SubServiceId",
+        // "ServiceType"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "AddOperationClass",
+    // "OriginalTypeName": "GClass2903",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Dispose",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [
+        // "TargetItem"
+      // ],
+      // "IncludeFields": [
+        // "Item",
+        // "To"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "AddDescriptorClass",
+    // "OriginalTypeName": "GClass1564",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "ToString",
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "ItemId",
+        // "To"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // removed by bsg
+  // {
+    // "NewTypeName": "RemoveOperationClass",
+    // "OriginalTypeName": "GClass3102",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 3,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "itemAddress_0",
+        // "item_0"
+      // ],
+      // "ExcludeFields": [
+        // "slot_0"
+      // ],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "MoveDescriptorClass",
-    "OriginalTypeName": "GClass1576",
+    "OriginalTypeName": "GClass1659",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5531,7 +5567,7 @@
   },
   {
     "NewTypeName": "MoveAllOperationClass",
-    "OriginalTypeName": "GClass2927",
+    "OriginalTypeName": "GClass1196",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5551,29 +5587,29 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "SplitOperationClass",
-    "OriginalTypeName": "GClass2935",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 7,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "IdGenerator",
-        "CloneId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "SplitOperationClass",
+    // "OriginalTypeName": "GClass16",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 7,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "IdGenerator",
+        // "CloneId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "SplitDescriptorClass",
-    "OriginalTypeName": "GClass1578",
+    "OriginalTypeName": "GClass1663",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5595,43 +5631,43 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "MergeOperationClass",
-    "OriginalTypeName": "GClass2926",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": true,
-      "IsDerived": true,
-      "MethodCount": 3,
-      "FieldCount": 6,
-      "IncludeMethods": [
-        "ToString",
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "TargetItem",
-        "To",
-        "From"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "Item1",
-        "From1",
-        "To1",
-        "Item2",
-        "From2",
-        "To2"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "MergeOperationClass",
+    // "OriginalTypeName": "GClass2926",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsSealed": true,
+      // "IsDerived": true,
+      // "MethodCount": 3,
+      // "FieldCount": 6,
+      // "IncludeMethods": [
+        // "ToString",
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "TargetItem",
+        // "To",
+        // "From"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "Item1",
+        // "From1",
+        // "To1",
+        // "Item2",
+        // "From2",
+        // "To2"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "MergeDescriptorClass",
-    "OriginalTypeName": "GClass1579",
+    "OriginalTypeName": "GClass1658",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5649,53 +5685,53 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "TransferOperationClass",
-    "OriginalTypeName": "GClass2939",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 5,
-      "MethodCount": 3,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "TargetItem",
-        "Count"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "TransferDescriptorClass",
-    "OriginalTypeName": "GClass1580",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Item1Id",
-        "ItemId",
-        "Count"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "TransferOperationClass",
+    // "OriginalTypeName": "GClass1544",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 5,
+      // "MethodCount": 3,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "TargetItem",
+        // "Count"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "TransferDescriptorClass",
+    // "OriginalTypeName": "GClass943",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Item1Id",
+        // "ItemId",
+        // "Count"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "SwapOperationClass",
-    "OriginalTypeName": "GClass2900",
+    "OriginalTypeName": "GClass3090",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5712,32 +5748,32 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "SwapDescriptorClass",
-    "OriginalTypeName": "GClass1581",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 5,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "DestroyedItems"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "SwapDescriptorClass",
+    // "OriginalTypeName": "GClass1581",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 5,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "DestroyedItems"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ThrowOperationClass",
-    "OriginalTypeName": "GClass2901",
+    "OriginalTypeName": "GClass3091",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5759,7 +5795,7 @@
   },
   {
     "NewTypeName": "ThrowDescriptorClass",
-    "OriginalTypeName": "GClass1582",
+    "OriginalTypeName": "GClass1667",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5780,7 +5816,7 @@
   },
   {
     "NewTypeName": "ToggleOperationClass",
-    "OriginalTypeName": "GClass2938",
+    "OriginalTypeName": "GClass3111",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5789,7 +5825,7 @@
       ],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "FACESHIELD_ON_ID"
+        "togglableComponent_0"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -5798,120 +5834,122 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "FoldOperationClass",
-    "OriginalTypeName": "GClass2920",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Foldable",
-        "NewValue",
-        "From"
-      ],
-      "ExcludeFields": [
-        "TargetItem"
-      ],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ShotOperationClass",
-    "OriginalTypeName": "GClass2934",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "FaceShield",
-        "From"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SetupItemOperationClass",
-    "OriginalTypeName": "GClass2933",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "PropertyCount": 3,
-      "IncludeMethods": [
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SetupTime",
-        "Rotation"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SetupItemDescriptorClass",
-    "OriginalTypeName": "GClass1586",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "SetupTime",
-        "Rotation",
-        "ItemId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "TagOperationClass",
-    "OriginalTypeName": "GClass2937",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Tag",
-        "Name",
-        "Color"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "FoldOperationClass",
+    // "OriginalTypeName": "GClass346",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Foldable",
+        // "NewValue",
+        // "From"
+      // ],
+      // "ExcludeFields": [
+        // "TargetItem"
+      // ],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "ShotOperationClass",
+    // "OriginalTypeName": "GClass3119",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose",
+		// "ToDescriptor",
+		// "ExecuteInternal"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "FaceShield",
+        // "From"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "SetupItemOperationClass",
+    // "OriginalTypeName": "GClass2933",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "PropertyCount": 3,
+      // "IncludeMethods": [
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SetupTime",
+        // "Rotation"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "SetupItemDescriptorClass",
+    // "OriginalTypeName": "GClass707",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "SetupTime",
+        // "Rotation",
+        // "ItemId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "TagOperationClass",
+    // "OriginalTypeName": "GClass3056",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Tag",
+        // "Name",
+        // "Color"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "TagDescriptorClass",
-    "OriginalTypeName": "GClass1595",
+    "OriginalTypeName": "GClass1666",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -5931,80 +5969,80 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "StationaryOperationClass",
-    "OriginalTypeName": "GClass2936",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 1,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "StationaryWeapon"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "WeaponRechamberOperationClass",
-    "OriginalTypeName": "GClass2941",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsEnum": false,
-      "IsSealed": false,
-      "HasAttribute": false,
-      "HasGenericParameters": false,
-      "MethodCount": 3,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "item_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "WeaponId"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ApplyKeyOperationClass",
-    "OriginalTypeName": "GClass2906",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "lockableComponent_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "StationaryOperationClass",
+    // "OriginalTypeName": "GClass48",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "StationaryWeapon"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "WeaponRechamberOperationClass",
+    // "OriginalTypeName": "GClass3113",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsEnum": false,
+      // "IsSealed": false,
+      // "HasAttribute": false,
+      // "HasGenericParameters": false,
+      // "MethodCount": 3,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "item_0"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "WeaponId"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "ApplyKeyOperationClass",
+    // "OriginalTypeName": "GClass13",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "lockableComponent_0"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ApplyKeyDescriptorClass",
-    "OriginalTypeName": "GClass1587",
+    "OriginalTypeName": "GClass1642",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6023,31 +6061,31 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "CreateMapMarkerOperationClass",
-    "OriginalTypeName": "GClass2911",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Marker",
-        "Map"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "CreateMapMarkerOperationClass",
+    // "OriginalTypeName": "GClass29`1",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Marker",
+        // "Map"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "CreateMapMarkerDescriptorClass",
-    "OriginalTypeName": "GClass1589",
+    "OriginalTypeName": "GClass1645",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6067,102 +6105,102 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EditMapMarkerOperationClass",
-    "OriginalTypeName": "GClass2915",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 5,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Map",
-        "Marker"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "EditMapMarkerDescriptorClass",
-    "OriginalTypeName": "GClass1590",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 4,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "MapItemId",
-        "MapMarker"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "DeleteMapMarkerOperationClass",
-    "OriginalTypeName": "GClass2912",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 5,
-      "MethodCount": 2,
-      "FieldCount": 4,
-      "PropertyCount": 0,
-      "IncludeMethods": [
-        "Dispose"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Map"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "DeleteMapMarkerOperationDescriptorClass",
-    "OriginalTypeName": "GClass1591",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 3,
-      "IncludeMethods": [
-        "Clone",
-        "ToString"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "MapItemId"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "EditMapMarkerOperationClass",
+    // "OriginalTypeName": "GStruct70",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 5,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Map",
+        // "Marker"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "EditMapMarkerDescriptorClass",
+    // "OriginalTypeName": "GClass1590",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 4,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "MapItemId",
+        // "MapMarker"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "DeleteMapMarkerOperationClass",
+    // "OriginalTypeName": "GClass2912",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 5,
+      // "MethodCount": 2,
+      // "FieldCount": 4,
+      // "PropertyCount": 0,
+      // "IncludeMethods": [
+        // "Dispose"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Map"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "DeleteMapMarkerOperationDescriptorClass",
+    // "OriginalTypeName": "GClass1591",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 3,
+      // "IncludeMethods": [
+        // "Clone",
+        // "ToString"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "MapItemId"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "AddNoteOperationClass",
-    "OriginalTypeName": "GClass2902",
+    "OriginalTypeName": "GClass3270",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6186,7 +6224,7 @@
   },
   {
     "NewTypeName": "AddNoteDescriptorClass",
-    "OriginalTypeName": "GClass1592",
+    "OriginalTypeName": "GClass1641",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6206,30 +6244,30 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "EditNoteOperationClass",
-    "OriginalTypeName": "GClass2916",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 2,
-      "FieldCount": 3,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "NotesManager",
-        "Index"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "EditNoteOperationClass",
+    // "OriginalTypeName": "GClass213",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 2,
+      // "FieldCount": 3,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "NotesManager",
+        // "Index"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EditNoteDescriptorClass",
-    "OriginalTypeName": "GClass1593",
+    "OriginalTypeName": "GClass1649",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6250,29 +6288,29 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "DeleteNoteOperationClass",
-    "OriginalTypeName": "GClass2913",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "NotesManager",
-        "Index"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "DeleteNoteOperationClass",
+    // "OriginalTypeName": "GClass2913",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 4,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "NotesManager",
+        // "Index"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "DeleteNoteDescriptorClass",
-    "OriginalTypeName": "GClass1594",
+    "OriginalTypeName": "GClass2031",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6295,7 +6333,7 @@
   },
   {
     "NewTypeName": "ExamineOperationClass",
-    "OriginalTypeName": "GClass2919",
+    "OriginalTypeName": "GClass3118",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6311,51 +6349,53 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "QuestHandoverOperationClass",
-    "OriginalTypeName": "GClass2945",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 4,
-      "FieldCount": 2,
-      "IncludeMethods": [
-        "FromDescriptor"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "QuestHandoverDescriptorClass",
-    "OriginalTypeName": "GClass1602",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "MethodCount": 0,
-      "FieldCount": 2,
-      "PropertyCount": 0,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "ConditionId",
-        "ItemIds"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "QuestHandoverOperationClass",
+    // "OriginalTypeName": "GClass247",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "MethodCount": 4,
+      // "FieldCount": 2,
+      // "IncludeMethods": [
+        // "FromDescriptor"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+   // {
+     // "NewTypeName": "QuestHandoverDescriptorClass",
+     // "OriginalTypeName": "GClass1675",
+     // "UseForceRename": false,
+     // "SearchParams": {
+       // "IsPublic": true,
+       // "MethodCount": 0,
+       // "FieldCount": 2,
+       // "PropertyCount": 0,
+       // "IncludeMethods": [
+		// "ToQuestOperation"
+	   // ],
+       // "ExcludeMethods": [],
+       // "IncludeFields": [
+         // "ConditionId",
+         // "ItemIds"
+       // ],
+       // "ExcludeFields": [],
+       // "IncludeProperties": [],
+       // "ExcludeProperties": [],
+       // "IncludeNestedTypes": [],
+       // "ExcludeNestedTypes": []
+     // }
+   // },
   {
     "NewTypeName": "CheckMagazineOperationClass",
-    "OriginalTypeName": "GClass2909",
+    "OriginalTypeName": "GClass3115",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6376,22 +6416,30 @@
   },
   {
     "NewTypeName": "CheckMagazineDescriptorClass",
-    "OriginalTypeName": "GClass1572",
+    "OriginalTypeName": "GClass1644",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "IsSealed": false,
+      "IsClass": true,
+      "IsAbstract": false,
+      "IsDerived": true,
+      "IsAbstract": false,
       "HasAttribute": false,
       "IncludeMethods": [
-        "Clone"
+		"ToInventoryOperation"
       ],
-      "ExcludeMethods": [],
+      "ExcludeMethods": [
+      	"Dispose"
+      ],
       "IncludeFields": [
         "SkillLevel",
         "CheckStatus",
         "ItemId"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+      	"QuestId",
+	"position"
+      ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -6400,7 +6448,7 @@
   },
   {
     "NewTypeName": "IPlayerAndPetProfile",
-    "OriginalTypeName": "GInterface159",
+    "OriginalTypeName": "GInterface172",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6421,7 +6469,7 @@
   },
   {
     "NewTypeName": "IQuestActions",
-    "OriginalTypeName": "GInterface161",
+    "OriginalTypeName": "GInterface174",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6440,7 +6488,7 @@
   },
   {
     "NewTypeName": "IChatInteractions",
-    "OriginalTypeName": "GInterface162",
+    "OriginalTypeName": "GInterface175",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6459,7 +6507,7 @@
   },
   {
     "NewTypeName": "ITraderInteractions",
-    "OriginalTypeName": "GInterface196",
+    "OriginalTypeName": "GInterface211",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6478,7 +6526,7 @@
   },
   {
     "NewTypeName": "IRepairInteractions",
-    "OriginalTypeName": "GInterface199",
+    "OriginalTypeName": "GInterface214",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6499,7 +6547,7 @@
   },
   {
     "NewTypeName": "WeaponBuildsStorageClass",
-    "OriginalTypeName": "GClass3257",
+    "OriginalTypeName": "GClass3457",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6520,7 +6568,7 @@
   },
   {
     "NewTypeName": "EquipmentBuildsStorageClass",
-    "OriginalTypeName": "GClass3255",
+    "OriginalTypeName": "GClass3455",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6540,7 +6588,7 @@
   },
   {
     "NewTypeName": "ProductionBuildAbstractClass",
-    "OriginalTypeName": "GClass1976",
+    "OriginalTypeName": "GClass2058",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6560,7 +6608,7 @@
   },
   {
     "NewTypeName": "IGame",
-    "OriginalTypeName": "GInterface112",
+    "OriginalTypeName": "GInterface126",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6580,7 +6628,7 @@
   },
   {
     "NewTypeName": "IInputTree",
-    "OriginalTypeName": "GInterface172",
+    "OriginalTypeName": "GInterface187",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6599,7 +6647,7 @@
   },
   {
     "NewTypeName": "IRaiseEvents",
-    "OriginalTypeName": "GInterface339",
+    "OriginalTypeName": "GInterface370",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6621,7 +6669,7 @@
   },
   {
     "NewTypeName": "IInventoryEventResult",
-    "OriginalTypeName": "GInterface411",
+    "OriginalTypeName": "GInterface448",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6643,7 +6691,7 @@
   },
   {
     "NewTypeName": "UriParamsClass",
-    "OriginalTypeName": "Class1778",
+    "OriginalTypeName": "Class1835",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": false,
@@ -6663,7 +6711,7 @@
   },
   {
     "NewTypeName": "BotsPresets",
-    "OriginalTypeName": "GClass602",
+    "OriginalTypeName": "GClass623",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6683,7 +6731,7 @@
   },
   {
     "NewTypeName": "LoggerClass",
-    "OriginalTypeName": "GClass628",
+    "OriginalTypeName": "GClass649",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6704,7 +6752,7 @@
   },
   {
     "NewTypeName": "SkillActionClass",
-    "OriginalTypeName": "GClass1815",
+    "OriginalTypeName": "GClass1888",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6725,7 +6773,7 @@
   },
   {
     "NewTypeName": "SkillBuffClass",
-    "OriginalTypeName": "GClass1809",
+    "OriginalTypeName": "GClass1882",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6745,7 +6793,7 @@
   },
   {
     "NewTypeName": "SkillBuffAbstractClass",
-    "OriginalTypeName": "GClass1808",
+    "OriginalTypeName": "GClass1881",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6766,7 +6814,7 @@
   },
   {
     "NewTypeName": "BotSettingsRepoAbstractClass",
-    "OriginalTypeName": "GClass711",
+    "OriginalTypeName": "GClass732",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6791,7 +6839,7 @@
   },
   {
     "NewTypeName": "BTRDialogClass",
-    "OriginalTypeName": "GClass3206",
+    "OriginalTypeName": "GClass3402",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6817,7 +6865,7 @@
   },
   {
     "NewTypeName": "CreateRaidSettingsForProfileClass",
-    "OriginalTypeName": "GClass3231",
+    "OriginalTypeName": "GClass3431",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6842,7 +6890,7 @@
   },
   {
     "NewTypeName": "RagfairOfferSellHelperClass",
-    "OriginalTypeName": "GClass3138",
+    "OriginalTypeName": "GClass3335",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6865,7 +6913,7 @@
   },
   {
     "NewTypeName": "IPlayerOwner",
-    "OriginalTypeName": "GInterface106",
+    "OriginalTypeName": "GInterface119",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6886,7 +6934,7 @@
   },
   {
     "NewTypeName": "ProfileHealthClass",
-    "OriginalTypeName": "GClass1791",
+    "OriginalTypeName": "GClass1857",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6912,7 +6960,7 @@
   },
   {
     "NewTypeName": "CorpseLootItemClass",
-    "OriginalTypeName": "GClass1228",
+    "OriginalTypeName": "GClass1277",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6936,7 +6984,7 @@
   },
   {
     "NewTypeName": "NetworkHealthControllerAbstractClass",
-    "OriginalTypeName": "GClass2474",
+    "OriginalTypeName": "GClass2643",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6958,7 +7006,7 @@
   },
   {
     "NewTypeName": "NetworkBodyEffectsAbstractClass",
-    "OriginalTypeName": "GClass2477",
+    "OriginalTypeName": "GClass2646",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6984,7 +7032,7 @@
   },
   {
     "NewTypeName": "QuestClass",
-    "OriginalTypeName": "GClass1278",
+    "OriginalTypeName": "GClass1327",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7002,7 +7050,7 @@
   },
   {
     "NewTypeName": "TaskConditionCounterClass",
-    "OriginalTypeName": "GClass3293",
+    "OriginalTypeName": "GClass3492",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7023,7 +7071,7 @@
   },
   {
     "NewTypeName": "StatNotificationClass",
-    "OriginalTypeName": "GClass2096",
+    "OriginalTypeName": "GClass2180",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7041,28 +7089,28 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "GridItemAddressDescriptorClass",
-    "OriginalTypeName": "GClass1559",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 1,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "LocationInGrid"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "GridItemAddressDescriptorClass",
+    // "OriginalTypeName": "GClass1559",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "FieldCount": 1,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "LocationInGrid"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EFTPhysicsClass",
-    "OriginalTypeName": "GClass663",
+    "OriginalTypeName": "GClass684",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7080,7 +7128,7 @@
   },
   {
     "NewTypeName": "SpawnPointManagerClass",
-    "OriginalTypeName": "GClass2995",
+    "OriginalTypeName": "GClass3192",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7101,27 +7149,27 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "BossSpawnWaveManagerClass",
-    "OriginalTypeName": "GClass592",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "BossSpawnWaves"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "BossSpawnWaveManagerClass",
+    // "OriginalTypeName": "GClass0",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "BossSpawnWaves"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EFTDateTimeClass",
-    "OriginalTypeName": "GClass1324",
+    "OriginalTypeName": "GClass1370",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7139,7 +7187,7 @@
   },
   {
     "NewTypeName": "CurrentScreenSingleton",
-    "OriginalTypeName": "GClass3179",
+    "OriginalTypeName": "GClass3376",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7159,7 +7207,7 @@
   },
   {
     "NewTypeName": "TimeHasComeScreenClass",
-    "OriginalTypeName": "GClass3236",
+    "OriginalTypeName": "GClass3436",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7180,7 +7228,7 @@
   },
   {
     "NewTypeName": "FinalCountdownScreenClass",
-    "OriginalTypeName": "GClass3235",
+    "OriginalTypeName": "GClass3435",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7200,7 +7248,7 @@
   },
   {
     "NewTypeName": "SkillBonusAbstractClass",
-    "OriginalTypeName": "GClass1438",
+    "OriginalTypeName": "GClass1508",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7228,7 +7276,7 @@
   },
   {
     "NewTypeName": "CustomizationSolverClass",
-    "OriginalTypeName": "GClass1475",
+    "OriginalTypeName": "GClass1545",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7256,7 +7304,7 @@
   },
   {
     "NewTypeName": "IAudioSourceGroups",
-    "OriginalTypeName": "GInterface31",
+    "OriginalTypeName": "GInterface32",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7279,7 +7327,7 @@
   },
   {
     "NewTypeName": "IDataSender",
-    "OriginalTypeName": "GInterface164",
+    "OriginalTypeName": "GInterface178",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7303,7 +7351,7 @@
   },
   {
     "NewTypeName": "IBotTimer",
-    "OriginalTypeName": "GInterface13",
+    "OriginalTypeName": "GInterface14",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7331,7 +7379,7 @@
   },
   {
     "NewTypeName": "IFrameIndexer",
-    "OriginalTypeName": "GInterface113",
+    "OriginalTypeName": "GInterface127",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7352,7 +7400,7 @@
   },
   {
     "NewTypeName": "IOnHandsUseCallback",
-    "OriginalTypeName": "GInterface147",
+    "OriginalTypeName": "GInterface159",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7376,7 +7424,7 @@
   },
   {
     "NewTypeName": "IHideoutConsumer",
-    "OriginalTypeName": "GInterface180",
+    "OriginalTypeName": "GInterface195",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7402,7 +7450,7 @@
   },
   {
     "NewTypeName": "ICompleteItemsStorage",
-    "OriginalTypeName": "GInterface182",
+    "OriginalTypeName": "GInterface197",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7431,7 +7479,7 @@
   },
   {
     "NewTypeName": "IActorEvents",
-    "OriginalTypeName": "GInterface24",
+    "OriginalTypeName": "GInterface25",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7461,7 +7509,7 @@
   },
   {
     "NewTypeName": "IPlayerBuff",
-    "OriginalTypeName": "GInterface244",
+    "OriginalTypeName": "GInterface274",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7487,7 +7535,7 @@
   },
   {
     "NewTypeName": "IKillableLootItem",
-    "OriginalTypeName": "GInterface12",
+    "OriginalTypeName": "GInterface13",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7509,7 +7557,7 @@
   },
   {
     "NewTypeName": "IBot",
-    "OriginalTypeName": "GInterface1",
+    "OriginalTypeName": "GInterface2",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7540,7 +7588,7 @@
   },
   {
     "NewTypeName": "LogConfiguratorAbstractClass",
-    "OriginalTypeName": "GClass652",
+    "OriginalTypeName": "GClass673",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7566,7 +7614,7 @@
   },
   {
     "NewTypeName": "IDataReader",
-    "OriginalTypeName": "GInterface88",
+    "OriginalTypeName": "GInterface100",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7594,7 +7642,7 @@
   },
   {
     "NewTypeName": "CultistAmuletClass",
-    "OriginalTypeName": "GClass2774",
+    "OriginalTypeName": "GClass2960",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7616,7 +7664,7 @@
   },
   {
     "NewTypeName": "BotAimingClass",
-    "OriginalTypeName": "GClass529",
+    "OriginalTypeName": "GClass551",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7650,7 +7698,7 @@
   },
   {
     "NewTypeName": "BotFirstAidClass",
-    "OriginalTypeName": "GClass423",
+    "OriginalTypeName": "GClass441",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7679,7 +7727,7 @@
   },
   {
     "NewTypeName": "FleaTaxCalculatorAbstractClass",
-    "OriginalTypeName": "GClass2145",
+    "OriginalTypeName": "GClass2229",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7702,7 +7750,7 @@
   },
   {
     "NewTypeName": "LocationExitClass",
-    "OriginalTypeName": "GClass1253",
+    "OriginalTypeName": "GClass1302",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7727,7 +7775,7 @@
   },
   {
     "NewTypeName": "BotCreationDataClass",
-    "OriginalTypeName": "GClass604",
+    "OriginalTypeName": "GClass625",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7756,7 +7804,7 @@
   },
   {
     "NewTypeName": "LocationStatisticsCollectorAbstractClass",
-    "OriginalTypeName": "GClass1825",
+    "OriginalTypeName": "GClass1899",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7784,7 +7832,7 @@
   },
   {
     "NewTypeName": "TraderServicesClass",
-    "OriginalTypeName": "GClass1829",
+    "OriginalTypeName": "GClass1903",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7812,7 +7860,7 @@
   },
   {
     "NewTypeName": "QuestDictionaryClass",
-    "OriginalTypeName": "GClass2187`1",
+    "OriginalTypeName": "GClass2288`1",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7838,7 +7886,7 @@
   },
   {
     "NewTypeName": "IconLoaderClass",
-    "OriginalTypeName": "GClass3077",
+    "OriginalTypeName": "GClass3274",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7872,7 +7920,7 @@
   },
   {
     "NewTypeName": "AddViewList",
-    "OriginalTypeName": "GClass783",
+    "OriginalTypeName": "GClass805",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7898,7 +7946,7 @@
   },
   {
     "NewTypeName": "SessionCounterIdentifierValueClass",
-    "OriginalTypeName": "GClass1822",
+    "OriginalTypeName": "GClass1896",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7926,7 +7974,7 @@
   },
   {
     "NewTypeName": "MathHelperClass",
-    "OriginalTypeName": "GClass911",
+    "OriginalTypeName": "GClass942",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7955,7 +8003,7 @@
   },
   {
     "NewTypeName": "WeaponMalfunctionStateClass",
-    "OriginalTypeName": "GClass2801",
+    "OriginalTypeName": "MalfunctionState",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7990,7 +8038,7 @@
   },
   {
     "NewTypeName": "CompositeDisposableClass",
-    "OriginalTypeName": "GClass782",
+    "OriginalTypeName": "GClass804",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8017,37 +8065,37 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ChessboardMatrixClass",
-    "OriginalTypeName": "GClass912",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsNested": false,
-      "HasAttribute": true,
-      "IsDerived": false,
-      "HasGenericParameters": false,
-      "IncludeMethods": [
-        "ChessboardMatrix"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "RowCount",
-        "ColumnCount"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "ChessboardMatrixClass",
+    // "OriginalTypeName": "GClass943",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsNested": false,
+      // "HasAttribute": true,
+      // "IsDerived": false,
+      // "HasGenericParameters": false,
+      // "IncludeMethods": [
+        // "ChessboardMatrix"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "RowCount",
+        // "ColumnCount"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "BasePhysicalClass",
-    "OriginalTypeName": "GClass695",
+    "OriginalTypeName": "GClass716",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8076,7 +8124,7 @@
   },
   {
     "NewTypeName": "TaskCompletionClass",
-    "OriginalTypeName": "GClass2447",
+    "OriginalTypeName": "GClass2617",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8102,7 +8150,7 @@
   },
   {
     "NewTypeName": "WeaponManagerClass",
-    "OriginalTypeName": "GClass1703",
+    "OriginalTypeName": "GClass1765",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8157,7 +8205,7 @@
   },
   {
     "NewTypeName": "MagazineBuildPresetClass",
-    "OriginalTypeName": "GClass2148",
+    "OriginalTypeName": "GClass2232",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8183,7 +8231,7 @@
   },
   {
     "NewTypeName": "FirearmHandsControllerClass",
-    "OriginalTypeName": "GClass2428",
+    "OriginalTypeName": "GClass2598",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8208,7 +8256,7 @@
   },
   {
     "NewTypeName": "CoreBotSettingsClass",
-    "OriginalTypeName": "GClass542",
+    "OriginalTypeName": "GClass564",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8234,7 +8282,7 @@
   },
   {
     "NewTypeName": "ProfileInfoSettingsClass",
-    "OriginalTypeName": "GClass1783",
+    "OriginalTypeName": "GClass1848",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8259,38 +8307,38 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "ItemDescriptionClass",
-    "OriginalTypeName": "GClass1530",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
-      "IsNested": false,
-      "IsDerived": false,
-      "HasGenericParameters": false,
-      "MethodCount": 1,
-      "IncludeMethods": [
-        "Clone"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "IsUnderBarrelDeviceActive",
-        "Malfunction",
-        "ShellsInUnderbarrelWeapon"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "ItemDescriptionClass",
+    // "OriginalTypeName": "GClass707",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": false,
+      // "IsInterface": false,
+      // "IsStruct": false,
+      // "IsNested": false,
+      // "IsDerived": false,
+      // "HasGenericParameters": false,
+      // "MethodCount": 1,
+      // "IncludeMethods": [
+        // "Clone"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "IsUnderBarrelDeviceActive",
+        // "Malfunction",
+        // "ShellsInUnderbarrelWeapon"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "EntityNodeClass",
-    "OriginalTypeName": "GClass2951",
+    "OriginalTypeName": "GClass3147",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8317,7 +8365,7 @@
   },
   {
     "NewTypeName": "CounterCreatorAbstractClass",
-    "OriginalTypeName": "GClass21",
+    "OriginalTypeName": "GClass22",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8346,7 +8394,7 @@
   },
   {
     "NewTypeName": "ObservedVaultingParametersClass",
-    "OriginalTypeName": "GClass2214",
+    "OriginalTypeName": "GClass2322",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8372,7 +8420,7 @@
   },
   {
     "NewTypeName": "IViewFilter",
-    "OriginalTypeName": "GInterface111",
+    "OriginalTypeName": "GInterface125",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8389,55 +8437,55 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "KeyInteractionResultClass",
-    "OriginalTypeName": "GClass3031",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "MethodCount": 4,
-      "FieldCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Key",
-        "From",
-        "DiscardResult",
-        "Succeed"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "UnloadOperationClass",
-    "OriginalTypeName": "GClass2923",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "SucceedAmmoManipulationHandler"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "InternalOperation"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "KeyInteractionResultClass",
+    // "OriginalTypeName": "GClass511",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "MethodCount": 4,
+      // "FieldCount": 4,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "Key",
+        // "From",
+        // "DiscardResult",
+        // "Succeed"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
+  // {
+    // "NewTypeName": "UnloadOperationClass",
+    // "OriginalTypeName": "GClass3120`1",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsDerived": true,
+      // "ConstructorParameterCount": 3,
+      // "IncludeMethods": [
+        // "SucceedAmmoManipulationHandler"
+      // ],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "InternalOperation"
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ResourceKeyManagerAbstractClass",
-    "OriginalTypeName": "GClass1419",
+    "OriginalTypeName": "GClass1493",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8465,18 +8513,20 @@
   },
   {
     "NewTypeName": "LocalQuestControllerClass",
-    "OriginalTypeName": "GClass3279",
+    "OriginalTypeName": "GClass3479",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsDerived": true,
       "ConstructorParameterCount": 4,
       "NestedTypeCount": 5,
-      "IncludeMethods": [],
+      "IncludeMethods": [
+		"FinishQuest"
+	  ],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "ginterface161_0"
-      ],
+		"iQuestActions"
+	  ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -8486,7 +8536,7 @@
   },
   {
     "NewTypeName": "PlayerPhysicalClass",
-    "OriginalTypeName": "GClass696",
+    "OriginalTypeName": "GClass717",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -8510,7 +8560,7 @@
   },
   {
     "NewTypeName": "ShotInfoClass",
-    "OriginalTypeName": "GClass1711",
+    "OriginalTypeName": "GClass1773",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,

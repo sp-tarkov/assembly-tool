@@ -376,8 +376,8 @@
       "IsPublic": true,
       "MethodCount": 1,
       "IncludeMethods": [
-		"LogDebugInfo"
-	  ],
+        "LogDebugInfo"
+      ],
       "ExcludeMethods": [],
       "IncludeFields": [
         "MAX_AIMING_UPGRADE_BY_TIME"
@@ -500,9 +500,9 @@
       ],
       "ExcludeMethods": [],
       "IncludeFields": [
-		"UNKNOWN_TEMPLATE_ID",
-		"OBSERVED_PLAYER_TEMP_CONTAINER_NAME"
-	  ],
+        "UNKNOWN_TEMPLATE_ID",
+        "OBSERVED_PLAYER_TEMP_CONTAINER_NAME"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -798,17 +798,17 @@
       "ConstructorParameterCount": 2,
       "IncludeMethods": [
         "SetPatrolMode",
-		"CanStartUseStimulator"
+        "CanStartUseStimulator"
       ],
       "ExcludeMethods": [],
       "IncludeFields": [
-      	"FollowersPositions"
+        "FollowersPositions"
       ],
       "ExcludeFields": [
-      	"float_8"
+        "float_8"
       ],
       "IncludeProperties": [
-      	"EnoughtHaveGoodCovers"
+        "EnoughtHaveGoodCovers"
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -997,12 +997,12 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "airdropSynchronizableObject_0",
-	"eairdropFallingStage_1"
+        "eairdropFallingStage_1"
       ],
       "ExcludeFields": [
-		"eairdropFallingStage_1",
-		"offlineMode"
-	  ],
+        "eairdropFallingStage_1",
+        "offlineMode"
+      ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -1298,25 +1298,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // BSG renamed to CompoundItem
-  // {
-    // "NewTypeName": "LootItemClass",
-    // "OriginalTypeName": "GClass0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "AllSlotsWithoutArrayInside"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "ArmorClass",
     "OriginalTypeName": "GClass2877",
@@ -1614,25 +1595,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // Now called InventoryEquipment
-  // {
-    // "NewTypeName": "EquipmentClass",
-    // "OriginalTypeName": "GClass0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "PaymentSlots"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "FoodClass",
     "OriginalTypeName": "GClass2961",
@@ -1786,25 +1748,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // now called InventoryController
-  // {
-    // "NewTypeName": "InventoryControllerClass",
-    // "OriginalTypeName": "GClass0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "SortingTableActive"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "BossKojaniyBrainClass",
     "OriginalTypeName": "GClass322",
@@ -2030,25 +1973,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "HostManagerClass",
-    // "OriginalTypeName": "GClass2548",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "PropertyCount": 2,
-      // "IncludeMethods": [
-        // "GetStatistics"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "IMeasureStatistics",
     "OriginalTypeName": "GInterface102",
@@ -4144,48 +4068,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // renamed to IInventoryProfileInfo
-  // {
-    // "NewTypeName": "IProfile",
-    // "OriginalTypeName": "GInterface0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsInterface": true,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "InventoryInfo",
-        // "Experience"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // Removed?
-  // {
-    // "NewTypeName": "IInventoryController",
-    // "OriginalTypeName": "GInterface0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsInterface": true,
-      // "IncludeMethods": [
-        // "StopProcesses",
-        // "TryRunNetworkTransaction"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "IDestroyResult",
     "OriginalTypeName": "GInterface373",
@@ -4740,31 +4622,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // Possibly renamed by bsg to ItemAddress
-  // {
-    // "NewTypeName": "ItemAddressClass",
-    // "OriginalTypeName": "GClass3010",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsDerived": true,
-      // "IncludeMethods": [
-        // "AddWithoutRestrictions"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "LocationInGrid"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "Item",
-        // "ContainerName"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "FirearmLightStateStruct",
     "OriginalTypeName": "GStruct163",
@@ -4808,26 +4665,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // Split into multiple by bsg, needs remapping
-  // {
-    // "NewTypeName": "FromObjectAbstractClass",
-    // "OriginalTypeName": "GClass4",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsAbstract": true,
-      // "IncludeMethods": [
-        // "FromStackSlotItemAddress"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "BackendConfigAbstractClass",
     "OriginalTypeName": "GClass583",
@@ -5011,31 +4848,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "InventoryItemFromToClass",
-    // "OriginalTypeName": "GClass3089",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsInterface": false,
-      // "MethodCount": 3,
-      // "NestedTypeCount": 2,
-      // "IncludeMethods": [
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [
-        // "item_1"
-      // ],
-      // "IncludeProperties": [
-        // "Item"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "VisibilityIndicesClass",
     "OriginalTypeName": "GClass1096`1",
@@ -5355,23 +5167,22 @@
     "OriginalTypeName": "GControl6",
     "UseForceRename": false,
     "SearchParams": {
-    	
       "IsPublic": true,
       "IsAbstract": false,
       "IsStruct": false,
       "IsDerived": true,
-	"ConstructorParameterCount": 3,
+      "ConstructorParameterCount": 3,
       "IncludeMethods": [
         "FindQuestGridToPickUp",
-	"ConvertOperationResultToOperation",
-	"RollBack"
+        "ConvertOperationResultToOperation",
+        "RollBack"
       ],
       "ExcludeMethods": [
         "GetTraderServicesDataFromServer"
       ],
       "IncludeFields": [
-		"backendIdGenerator_0"
-	  ],
+        "backendIdGenerator_0"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -5379,170 +5190,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // Split into many different classes
-  // {
-    // "NewTypeName": "CreateItemsOperationClass",
-    // "OriginalTypeName": "GClass4",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsSealed": true,
-      // "HasGenericParameters": false,
-      // "IncludeMethods": [
-        // "CreateFromDescriptor",
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // Appears to be removed by bsg
-  // {
-    // "NewTypeName": "CreateItemsDescriptorClass",
-    // "OriginalTypeName": "GClass1521",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsSealed": true,
-	  // "IsDerived": true,
-      // "FieldCount": 1,
-      // "IncludeMethods": [
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Items"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "PurchaseTraderServiceOperationClass",
-    // "OriginalTypeName": "GClass13",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "ServiceData",
-        // "SubServiceId"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // Removed by bsg
-  // {
-    // "NewTypeName": "PurchaseTraderServiceDescriptorClass",
-    // "OriginalTypeName": "GClass1510",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "FieldCount": 2,
-      // "IncludeMethods": [
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "SubServiceId",
-        // "ServiceType"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "AddOperationClass",
-    // "OriginalTypeName": "GClass2903",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsDerived": true,
-      // "FieldCount": 3,
-      // "IncludeMethods": [
-        // "Dispose",
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [
-        // "TargetItem"
-      // ],
-      // "IncludeFields": [
-        // "Item",
-        // "To"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "AddDescriptorClass",
-    // "OriginalTypeName": "GClass1564",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "FieldCount": 2,
-      // "IncludeMethods": [
-        // "ToString",
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "ItemId",
-        // "To"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // removed by bsg
-  // {
-    // "NewTypeName": "RemoveOperationClass",
-    // "OriginalTypeName": "GClass3102",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 3,
-      // "IncludeMethods": [
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "itemAddress_0",
-        // "item_0"
-      // ],
-      // "ExcludeFields": [
-        // "slot_0"
-      // ],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "MoveDescriptorClass",
     "OriginalTypeName": "GClass1659",
@@ -5587,26 +5234,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "SplitOperationClass",
-    // "OriginalTypeName": "GClass16",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 7,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "IdGenerator",
-        // "CloneId"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "SplitDescriptorClass",
     "OriginalTypeName": "GClass1663",
@@ -5631,40 +5258,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "MergeOperationClass",
-    // "OriginalTypeName": "GClass2926",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsSealed": true,
-      // "IsDerived": true,
-      // "MethodCount": 3,
-      // "FieldCount": 6,
-      // "IncludeMethods": [
-        // "ToString",
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "TargetItem",
-        // "To",
-        // "From"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "Item1",
-        // "From1",
-        // "To1",
-        // "Item2",
-        // "From2",
-        // "To2"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "MergeDescriptorClass",
     "OriginalTypeName": "GClass1658",
@@ -5685,50 +5278,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "TransferOperationClass",
-    // "OriginalTypeName": "GClass1544",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 5,
-      // "MethodCount": 3,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "TargetItem",
-        // "Count"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "TransferDescriptorClass",
-    // "OriginalTypeName": "GClass943",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Clone",
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Item1Id",
-        // "ItemId",
-        // "Count"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "SwapOperationClass",
     "OriginalTypeName": "GClass3090",
@@ -5748,29 +5297,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "SwapDescriptorClass",
-    // "OriginalTypeName": "GClass1581",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 2,
-      // "FieldCount": 5,
-      // "IncludeMethods": [
-        // "Clone",
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "DestroyedItems"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "ThrowOperationClass",
     "OriginalTypeName": "GClass3091",
@@ -5834,119 +5360,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "FoldOperationClass",
-    // "OriginalTypeName": "GClass346",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Foldable",
-        // "NewValue",
-        // "From"
-      // ],
-      // "ExcludeFields": [
-        // "TargetItem"
-      // ],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "ShotOperationClass",
-    // "OriginalTypeName": "GClass3119",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Dispose",
-		// "ToDescriptor",
-		// "ExecuteInternal"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "FaceShield",
-        // "From"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "SetupItemOperationClass",
-    // "OriginalTypeName": "GClass2933",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "PropertyCount": 3,
-      // "IncludeMethods": [
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "SetupTime",
-        // "Rotation"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "SetupItemDescriptorClass",
-    // "OriginalTypeName": "GClass707",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "SetupTime",
-        // "Rotation",
-        // "ItemId"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "TagOperationClass",
-    // "OriginalTypeName": "GClass3056",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Tag",
-        // "Name",
-        // "Color"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "TagDescriptorClass",
     "OriginalTypeName": "GClass1666",
@@ -5969,77 +5382,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "StationaryOperationClass",
-    // "OriginalTypeName": "GClass48",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "FieldCount": 1,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "StationaryWeapon"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "WeaponRechamberOperationClass",
-    // "OriginalTypeName": "GClass3113",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsAbstract": false,
-      // "IsInterface": false,
-      // "IsStruct": false,
-      // "IsEnum": false,
-      // "IsSealed": false,
-      // "HasAttribute": false,
-      // "HasGenericParameters": false,
-      // "MethodCount": 3,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "item_0"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "WeaponId"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "ApplyKeyOperationClass",
-    // "OriginalTypeName": "GClass13",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "lockableComponent_0"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "ApplyKeyDescriptorClass",
     "OriginalTypeName": "GClass1642",
@@ -6061,28 +5403,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "CreateMapMarkerOperationClass",
-    // "OriginalTypeName": "GClass29`1",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "FieldCount": 3,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Marker",
-        // "Map"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "CreateMapMarkerDescriptorClass",
     "OriginalTypeName": "GClass1645",
@@ -6105,99 +5425,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "EditMapMarkerOperationClass",
-    // "OriginalTypeName": "GStruct70",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 2,
-      // "FieldCount": 5,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Map",
-        // "Marker"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "EditMapMarkerDescriptorClass",
-    // "OriginalTypeName": "GClass1590",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 2,
-      // "FieldCount": 4,
-      // "IncludeMethods": [
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "MapItemId",
-        // "MapMarker"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "DeleteMapMarkerOperationClass",
-    // "OriginalTypeName": "GClass2912",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 5,
-      // "MethodCount": 2,
-      // "FieldCount": 4,
-      // "PropertyCount": 0,
-      // "IncludeMethods": [
-        // "Dispose"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Map"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "DeleteMapMarkerOperationDescriptorClass",
-    // "OriginalTypeName": "GClass1591",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 2,
-      // "FieldCount": 3,
-      // "IncludeMethods": [
-        // "Clone",
-        // "ToString"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "MapItemId"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "AddNoteOperationClass",
     "OriginalTypeName": "GClass3270",
@@ -6244,27 +5471,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "EditNoteOperationClass",
-    // "OriginalTypeName": "GClass213",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 2,
-      // "FieldCount": 3,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "NotesManager",
-        // "Index"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "EditNoteDescriptorClass",
     "OriginalTypeName": "GClass1649",
@@ -6288,26 +5494,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "DeleteNoteOperationClass",
-    // "OriginalTypeName": "GClass2913",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 4,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "NotesManager",
-        // "Index"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "DeleteNoteDescriptorClass",
     "OriginalTypeName": "GClass2031",
@@ -6349,50 +5535,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "QuestHandoverOperationClass",
-    // "OriginalTypeName": "GClass247",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "MethodCount": 4,
-      // "FieldCount": 2,
-      // "IncludeMethods": [
-        // "FromDescriptor"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-   // {
-     // "NewTypeName": "QuestHandoverDescriptorClass",
-     // "OriginalTypeName": "GClass1675",
-     // "UseForceRename": false,
-     // "SearchParams": {
-       // "IsPublic": true,
-       // "MethodCount": 0,
-       // "FieldCount": 2,
-       // "PropertyCount": 0,
-       // "IncludeMethods": [
-		// "ToQuestOperation"
-	   // ],
-       // "ExcludeMethods": [],
-       // "IncludeFields": [
-         // "ConditionId",
-         // "ItemIds"
-       // ],
-       // "ExcludeFields": [],
-       // "IncludeProperties": [],
-       // "ExcludeProperties": [],
-       // "IncludeNestedTypes": [],
-       // "ExcludeNestedTypes": []
-     // }
-   // },
   {
     "NewTypeName": "CheckMagazineOperationClass",
     "OriginalTypeName": "GClass3115",
@@ -6420,16 +5562,14 @@
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "IsClass": true,
-      "IsAbstract": false,
-      "IsDerived": true,
       "IsAbstract": false,
       "HasAttribute": false,
+      "IsDerived": true,
       "IncludeMethods": [
-		"ToInventoryOperation"
+        "ToInventoryOperation"
       ],
       "ExcludeMethods": [
-      	"Dispose"
+        "Dispose"
       ],
       "IncludeFields": [
         "SkillLevel",
@@ -6437,8 +5577,8 @@
         "ItemId"
       ],
       "ExcludeFields": [
-      	"QuestId",
-	"position"
+        "QuestId",
+        "position"
       ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -7089,25 +6229,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "GridItemAddressDescriptorClass",
-    // "OriginalTypeName": "GClass1559",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "FieldCount": 1,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "LocationInGrid"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "EFTPhysicsClass",
     "OriginalTypeName": "GClass684",
@@ -7149,24 +6270,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "BossSpawnWaveManagerClass",
-    // "OriginalTypeName": "GClass0",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "BossSpawnWaves"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "EFTDateTimeClass",
     "OriginalTypeName": "GClass1370",
@@ -8065,34 +7168,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "ChessboardMatrixClass",
-    // "OriginalTypeName": "GClass943",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsAbstract": false,
-      // "IsInterface": false,
-      // "IsStruct": false,
-      // "IsNested": false,
-      // "HasAttribute": true,
-      // "IsDerived": false,
-      // "HasGenericParameters": false,
-      // "IncludeMethods": [
-        // "ChessboardMatrix"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "RowCount",
-        // "ColumnCount"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "BasePhysicalClass",
     "OriginalTypeName": "GClass716",
@@ -8307,35 +7382,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "ItemDescriptionClass",
-    // "OriginalTypeName": "GClass707",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsAbstract": false,
-      // "IsInterface": false,
-      // "IsStruct": false,
-      // "IsNested": false,
-      // "IsDerived": false,
-      // "HasGenericParameters": false,
-      // "MethodCount": 1,
-      // "IncludeMethods": [
-        // "Clone"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "IsUnderBarrelDeviceActive",
-        // "Malfunction",
-        // "ShellsInUnderbarrelWeapon"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "EntityNodeClass",
     "OriginalTypeName": "GClass3147",
@@ -8437,52 +7483,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "KeyInteractionResultClass",
-    // "OriginalTypeName": "GClass511",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsDerived": true,
-      // "MethodCount": 4,
-      // "FieldCount": 4,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "Key",
-        // "From",
-        // "DiscardResult",
-        // "Succeed"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
-  // {
-    // "NewTypeName": "UnloadOperationClass",
-    // "OriginalTypeName": "GClass3120`1",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsDerived": true,
-      // "ConstructorParameterCount": 3,
-      // "IncludeMethods": [
-        // "SucceedAmmoManipulationHandler"
-      // ],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "InternalOperation"
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "ResourceKeyManagerAbstractClass",
     "OriginalTypeName": "GClass1493",
@@ -8521,12 +7521,12 @@
       "ConstructorParameterCount": 4,
       "NestedTypeCount": 5,
       "IncludeMethods": [
-		"FinishQuest"
-	  ],
+        "FinishQuest"
+      ],
       "ExcludeMethods": [],
       "IncludeFields": [
-		"iQuestActions"
-	  ],
+        "iQuestActions"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -8574,6 +7574,485 @@
         "Material",
         "Silent"
       ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "AbstractSkillClass",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "SummaryLevel"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "JumpState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "ApplyMovementAndRotation"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "JumpLandingState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 5,
+      "IncludeMethods": [
+        "Enter",
+        "ManualAnimatorMoveUpdate"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "Transit2ProneState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 1,
+      "IncludeMethods": [
+        "Enter",
+        "Jump"
+      ],
+      "ExcludeMethods": [
+        "Exit"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "Prone2StandState",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 1,
+      "IncludeMethods": [
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [
+        "ProcessAnimatorMovement",
+        "LateUpdate",
+        "RecalculateCapsuleColliderSize",
+        "OnDestroy"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "IdleState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 5,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Jump",
+        "Kick"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SideStepState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "MethodCount": 6,
+      "FieldCount": 3,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BlindFireState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 2,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [
+        "Plant"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ProneIdleState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 4,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Enter",
+        "Exit",
+        "Prone"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ProneMoveState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 2,
+      "PropertyCount": 1,
+      "IncludeMethods": [
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [
+        "Vaulting"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "RollState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 7,
+      "IncludeMethods": [
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "TransitionState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 1,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Enter",
+        "BlendMotion"
+      ],
+      "ExcludeMethods": [
+        "Exit"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SprintState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 2,
+      "PropertyCount": 1,
+      "IncludeMethods": [
+        "ChangePose",
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [
+        "Jump"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "RunState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "PropertyCount": 4,
+      "IncludeMethods": [
+        "Enter",
+        "Exit",
+        "UpdatePosition"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BreachDoorState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 4,
+      "IncludeMethods": [
+        "Enter",
+        "Exit",
+        "ExecuteDoorInteraction"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ApproachState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "PropertyCount": 2,
+      "IncludeMethods": [
+        "BlindFire",
+        "Enter",
+        "Exit",
+        "Prone"
+      ],
+      "ExcludeMethods": [
+        "Rotate"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LootState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 4,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Process"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "DoorInteractionState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "ExecuteDoorInteraction",
+        "ExecuteInteraction",
+        "StartStates"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "StationaryState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "BlindFire",
+        "ChangePose",
+        "Exit",
+        "Enter"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "OutOfOperationRange"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ClimbOverState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 1,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "ManualAnimatorMoveUpdate",
+        "Enter",
+        "Exit"
+      ],
+      "ExcludeMethods": [
+        "Pickup"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ClimbUpState",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 0,
+      "PropertyCount": 0,
+      "IncludeMethods": [
+        "Enter",
+        "Exit",
+        "Rotate",
+        "ProcessAnimatorMovement"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BaseAnimationOperation",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "IsNested": true,
+      "NTParentName": "Player",
+      "IncludeMethods": [
+        "Reset",
+        "OnEnd"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],

@@ -220,6 +220,9 @@ namespace DumpLib.Helpers
             }
         }
 
+        /// <summary>
+        /// DONT USE ANYMORE, USE GETPROFILECOMPLETEDATA()
+        /// </summary>
         public static object GetPlayerProfile()
         {
             try
@@ -231,6 +234,48 @@ namespace DumpLib.Helpers
             catch (Exception e)
             {
                 Utils.LogError("GetPlayerProfile");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// TODO: Rename as its not an actual shim
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static object GetProfileShim()
+        {
+            try
+            {
+                var typeToUse = TypeHelper.GetProfileShimType();
+                var instance = Activator.CreateInstance(typeToUse,
+                    new object[]
+                    {
+                        DataHelper.Session.GetType().GetProperty("Profile").GetValue(DataHelper.Session),
+                        TypeHelper.GetProfileSearchControllerType().GetField("Instance").GetValue(null)
+                    });
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("GetProfileShim");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static object GetProfileCompleteData()
+        {
+            try
+            {
+                var completeData = ReflectionHelper.GetProfileShim();
+                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileShimType());
+                return converterMethod.Invoke(null, new[] { completeData, Array.Empty<JsonConverter>() });
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("GetProfileCompleteData");
                 Utils.LogError(e);
                 throw;
             }

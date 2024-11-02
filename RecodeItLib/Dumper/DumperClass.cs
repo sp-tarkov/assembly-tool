@@ -222,7 +222,8 @@ public class DumperClass
         var firstMethod = methods.FirstOrDefault(m => m.Parameters.Any(p => p.Name == "certificate"));
         var secondMethod = methods.FirstOrDefault(m => m.Parameters.Any(p => p.Name == "certificateData"));
 
-        if (firstMethod?.Body.Instructions.Count != 55 || secondMethod?.Body.Instructions.Count != 14)
+        // as of 01/11/24 firstMethod returns true, so its now only 2 instructions, was 55 (this may change, BSG have byppassed their own SSL checks atm)
+        if (firstMethod?.Body.Instructions.Count != 2 || secondMethod?.Body.Instructions.Count != 14) 
         {
             Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod.Body.Instructions.Count}, " +
                        $"method with 'certificateData' as a param - before: 14, now: {secondMethod.Body.Instructions.Count}", ConsoleColor.Red);

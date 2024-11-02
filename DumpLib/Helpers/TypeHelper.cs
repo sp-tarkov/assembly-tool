@@ -222,11 +222,11 @@ public static class TypeHelper
             {
                 var fields = x.GetFields();
                 var methods = x.GetMethods();
-                
-                return fields.Length == 6 && 
-                       fields.Any(f => f.Name == "location") && 
+
+                return fields.Length == 6 &&
+                       fields.Any(f => f.Name == "location") &&
                        fields.Any(f => f.Name == "_id") &&
-                       methods.Any(m => m.Name == "Clone") && 
+                       methods.Any(m => m.Name == "Clone") &&
                        methods.Any(m => m.Name == "ToString");
             });
         }
@@ -249,6 +249,58 @@ public static class TypeHelper
         catch (Exception e)
         {
             Utils.LogError("GetDictionaryType");
+            Utils.LogError(e);
+            throw;
+        }
+    }
+
+    public static Type GetProfileShimType()
+    {
+        try
+        {
+            return DataHelper._eftAssembly.GetTypes().First(x =>
+            {
+                var fields = x.GetFields();
+                var constructors = x.GetConstructors();
+                var properties = x.GetProperties();
+                var methods = x.GetMethods();
+            
+                return fields.Length == 25 && constructors.Length == 2 &&
+                       properties.Length == 0 && methods.Length == 4 &&
+                       fields.Any(f => f.Name == "KarmaValue") &&
+                       fields.Any(f => f.Name == "Encyclopedia") &&
+                       fields.Any(f => f.Name == "Id") &&
+                       fields.Any(f => f.Name == "AccountId") &&
+                       fields.Any(f => f.Name == "PetId") &&
+                       fields.Any(f => f.Name == "Customization");
+            });
+        }
+        catch (Exception e)
+        {
+            Utils.LogError("GetProfileShimType");
+            Utils.LogError(e);
+            throw;
+        }
+    }
+
+    public static Type GetProfileSearchControllerType()
+    {
+        try
+        {
+            return DataHelper._eftAssembly.GetTypes().First(x =>
+            {
+                var fields = x.GetFields();
+                var methods = x.GetMethods();
+
+                return fields.Length == 1 && methods.Length == 17 &&
+                       !x.IsInterface && methods.Any(m => m.Name == "IsItemKnown") &&
+                       methods.Any(m => m.Name == "TryFindChangedContainer") &&
+                       methods.Any(m => m.Name == "GetObserverItemState");
+            });
+        }
+        catch (Exception e)
+        {
+            Utils.LogError("GetProfileSearchControllerType");
             Utils.LogError(e);
             throw;
         }

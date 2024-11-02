@@ -168,7 +168,7 @@ namespace DumpLib
                 // get End raid class from json
                 DataHelper.EndRaidClass = DataHelper.GetEndRaidClass();
                 // get player profile
-                DataHelper.PlayerProfile = ReflectionHelper.GetPlayerProfile();
+                DataHelper.PlayerProfile = ReflectionHelper.GetProfileCompleteData();
                 // Set up end raid class
                 DataHelper.EndRaidClass.GetType().GetField("profile").SetValue(DataHelper.EndRaidClass, DataHelper.PlayerProfile);
 

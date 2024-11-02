@@ -32,7 +32,7 @@ public class MethodHelper
     }
 
     /// <summary>
-    /// Method to get Quit method from EFT (as of 20/05/2024 - GClass1955)
+    /// Method to get Quit method from EFT (as of 02/11/2024 - GClass2193)
     /// </summary>
     /// <returns>MethodInfo</returns>
     public static MethodInfo GetApplicationQuitMethod()
@@ -40,8 +40,11 @@ public class MethodHelper
         try
         {
             return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.GetMethods().Any(y =>
-                    y.Name == "Quit")
+                {
+                    var methods = x.GetMethods();
+
+                    return methods.Any(m => m.Name == "Quit") && methods.Any(m => m.Name == "QuitWithCode");
+                }
             ).GetMethod("Quit");
         }
         catch (Exception e)

@@ -2684,18 +2684,25 @@
     }
   },
   {
-    "NewTypeName": "DamageInfo",
-    "OriginalTypeName": "GStruct394",
+    "NewTypeName": "DamageInfoStruct",
+    "OriginalTypeName": "GStruct421",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "OverDamageFrom"
+        "OverDamageFrom",
+		"Player",
+		"BodyPartColliderType",
+		"HittedBallisticColliders"
       ],
       "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeProperties": [
+		"Penetrated",
+		"HaveOwner",
+		"Blunt"
+	  ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -5278,25 +5285,25 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "SwapOperationClass",
-    "OriginalTypeName": "GClass3090",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 7,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "DestroysMainItem"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "SwapOperationClass",
+    // "OriginalTypeName": "GClass3090",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "ConstructorParameterCount": 7,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [
+        // "DestroysMainItem"
+      // ],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "ThrowOperationClass",
     "OriginalTypeName": "GClass3091",
@@ -6310,17 +6317,21 @@
   },
   {
     "NewTypeName": "TimeHasComeScreenClass",
-    "OriginalTypeName": "GClass3436",
+    "OriginalTypeName": "GClass3563",
     "UseForceRename": false,
     "SearchParams": {
+		"ConstructorParameterCount": 3,
       "IsPublic": true,
       "IsNested": true,
-      "IsSealed": true,
+      "IsSealed": false,
       "NTParentName": "MatchmakerTimeHasCome",
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "SearchingForServer"
+		"ScreenType",
+        "IsReconnecting",
+		"SwitchTaskBarButtonsAvailability",
+		"LimitedServersAvailability"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -7667,7 +7678,8 @@
       "FieldCount": 1,
       "IncludeMethods": [
         "Enter",
-        "Exit"
+        "Exit",
+		"ManualAnimatorMoveUpdate"
       ],
       "ExcludeMethods": [
         "ProcessAnimatorMovement",

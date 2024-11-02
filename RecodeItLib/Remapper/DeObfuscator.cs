@@ -7,7 +7,7 @@ namespace ReCodeItLib.Remapper;
 
 public static class Deobfuscator
 {
-    public static void Deobfuscate(string assemblyPath)
+    public static void Deobfuscate(string assemblyPath, bool isLauncher = false)
     {
         var executablePath = Path.Combine(DataProvider.DataPath, "De4dot", "de4dot.exe");
 
@@ -54,13 +54,18 @@ public static class Deobfuscator
         token = $"0x{(deobfRid.Raw | deobfRid.Rid):x4}";
         Console.WriteLine($"Deobfuscation token: {token}");
 
-        var process = Process.Start(executablePath,
-            $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"");
+        var cmd = isLauncher
+            ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\""
+            : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
+        
+        var process = Process.Start(executablePath, cmd);
 
         process.WaitForExit();
 
+        var extName = isLauncher ? "-cleaned.exe" : "-cleaned.dll";
+        
         // Fixes "ResolutionScope is null" by rewriting the assembly
-        var cleanedDllPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + "-cleaned.dll");
+        var cleanedDllPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + extName);
 
         ModuleDefMD assemblyRewrite = null;
 

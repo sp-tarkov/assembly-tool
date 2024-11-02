@@ -9,8 +9,11 @@ namespace ReCodeIt.Commands;
 [Command("DeObfuscate", Description = "Generates a de-obfuscated -cleaned dll in the folder your assembly is in")]
 public class DeObfuscate : ICommand
 {
-    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your obfuscated assembly file, folder must contain all references to be resolved.")]
+    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your obfuscated assembly or exe file, folder must contain all references to be resolved.")]
     public string AssemblyPath { get; init; }
+
+    [CommandParameter(1, IsRequired = false, Description = "Is the target the EFT launcher?")]
+    public bool IsLauncher { get; init; } = false;
 
     public ValueTask ExecuteAsync(IConsole console)
     {
@@ -19,7 +22,7 @@ public class DeObfuscate : ICommand
 
         Logger.Log("Deobfuscating assembly...");
 
-        Deobfuscator.Deobfuscate(AssemblyPath);
+        Deobfuscator.Deobfuscate(AssemblyPath, IsLauncher);
 
         Logger.Log("Complete", ConsoleColor.Green);
 

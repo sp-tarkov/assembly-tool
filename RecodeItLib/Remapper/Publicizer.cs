@@ -7,7 +7,7 @@ internal static class SPTPublicizer
 {
     private static ModuleDefMD MainModule;
 
-    public static void PublicizeClasses(ModuleDefMD definition)
+    public static void PublicizeClasses(ModuleDefMD definition, bool isLauncher = false)
     {
         var types = definition.GetTypes();
 
@@ -15,15 +15,15 @@ internal static class SPTPublicizer
         {
             if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
 
-            PublicizeType(type);
+            PublicizeType(type, isLauncher);
         }
     }
 
-    private static void PublicizeType(TypeDef type)
+    private static void PublicizeType(TypeDef type, bool isLauncher)
     {
         // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
         // nameof(CompilerGeneratedAttribute))) { return; }
-
+        
         if (!type.IsNested && !type.IsPublic || type.IsNested && !type.IsNestedPublic)
         {
             if (!type.Interfaces.Any(i => i.Interface.Name == "IEffect"))
@@ -32,17 +32,17 @@ internal static class SPTPublicizer
                 type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
             }
         }
-
-        if (type.IsSealed)
+        
+        if (type.IsSealed && !isLauncher)
         {
             type.Attributes &= ~TypeAttributes.Sealed; // Remove the Sealed attribute if it exists
         }
-
+        
         foreach (var method in type.Methods)
         {
             PublicizeMethod(method);
         }
-
+        
         foreach (var property in type.Properties)
         {
             if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
@@ -69,7 +69,7 @@ internal static class SPTPublicizer
         */
         foreach (var nestedType in type.NestedTypes)
         {
-            PublicizeType(nestedType);
+            PublicizeType(nestedType, isLauncher);
         }
     }
 

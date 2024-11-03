@@ -76,7 +76,7 @@ public static class Deobfuscator
 
             if (isLauncher)
             {
-                SPTPublicizer.PublicizeClasses(assemblyRewrite);
+                SPTPublicizer.PublicizeClasses(assemblyRewrite, true);
             }
         }
 

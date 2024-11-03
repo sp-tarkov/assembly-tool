@@ -2,6 +2,7 @@
 using dnlib.DotNet.Emit;
 using ReCodeIt.Utils;
 using System.Diagnostics;
+using ReCodeIt.ReMapper;
 
 namespace ReCodeItLib.Remapper;
 
@@ -55,7 +56,7 @@ public static class Deobfuscator
         Console.WriteLine($"Deobfuscation token: {token}");
 
         var cmd = isLauncher
-            ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\""
+            ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
             : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
         
         var process = Process.Start(executablePath, cmd);
@@ -72,6 +73,11 @@ public static class Deobfuscator
         using (var memoryStream = new MemoryStream(File.ReadAllBytes(cleanedDllPath)))
         {
             assemblyRewrite = ModuleDefMD.Load(memoryStream, modCtx);
+
+            if (isLauncher)
+            {
+                SPTPublicizer.PublicizeClasses(assemblyRewrite);
+            }
         }
 
         assemblyRewrite.Write(cleanedDllPath);

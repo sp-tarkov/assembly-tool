@@ -8071,5 +8071,260 @@
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
     }
+  },
+  {
+    "NewTypeName": "GrenadeFactoryClass",
+    "OriginalTypeName": "Gclass737",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": false,
+      "IsDerived": false,
+      "IncludeMethods": [
+        "AddSmokeGrenade",
+        "AddStunGrenade",
+        "AddGrenade"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "NetworkHealthSyncStruct",
+    "OriginalTypeName": "GStruct358",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Nested",
+        "SyncType",
+        "Data"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "ESyncType"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SeasonsSettingsClass",
+    "OriginalTypeName": "GClass2359",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "SpringSnowFactorDefault",
+        "SpringSnowFactor"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "PausedEffectsStruct",
+    "OriginalTypeName": "GStruct357",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "SaveInfo"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ID",
+        "HealthController",
+        "Type",
+        "BodyPart",
+        "Strength",
+        "State"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LootSyncStruct",
+    "OriginalTypeName": "GStruct128",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "Position",
+        "Rotation",
+        "Velocity",
+        "AngularVelocity",
+        "Done"
+      ],
+      "ExcludeFields": [
+        "CollisionNumber"
+      ],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "IPlayerBridge",
+    "OriginalTypeName": "GInterface20",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": true,
+      "IsNested": true,
+      "IncludeMethods": [
+        "ApplyDamageInfo",
+        "ApplyShot",
+        "CheckArmorHitByDirection"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "iPlayer",
+        "WorldTime",
+        "UsingSimplifiedSkeleton"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "FlareGunFireOperationClass",
+    "OriginalTypeName": "GClass1768",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "PrepareShot",
+        "OnFireEvent",
+        "SetTriggerPressed",
+        "OnFireEndEvent",
+        "CanNotBeInterrupted"
+      ],
+      "ExcludeMethods": [
+        "FastForward"
+      ],
+      "IncludeFields": [
+        "bulletClass"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "IsOneOffFireOperationClass",
+    "OriginalTypeName": "GClass1770",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "StartFireAnimation",
+        "PrepareShot",
+        "OnFireEvent",
+        "SetTriggerPressed",
+        "OnFireEndEvent",
+        "FastForward"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "bulletClass"
+      ],
+      "ExcludeFields": [
+        "singleShotData_0"
+      ],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "RevolverFireOperationClass",
+    "OriginalTypeName": "GClass1767",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "OnFireEvent",
+        "OnAddAmmoInChamber",
+        "SetTriggerPressed",
+        "SetInventoryOpened",
+        "OnFireEndEvent",
+        "OnIdleStartEvent",
+        "OnShellEjectEvent"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "cylinderMagazineClass"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "GenericFireOperationClass",
+    "OriginalTypeName": "GClass1765",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "StartFireAnimation",
+        "OnFireEvent",
+        "PrepareShot",
+        "RemoveAmmoFromChamber",
+        "OnAddAmmoInChamber",
+        "OnShellEjectEvent"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "singleShotData_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
   }
 ]

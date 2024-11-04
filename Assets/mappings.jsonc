@@ -3048,7 +3048,7 @@
     }
   },
   {
-    "NewTypeName": "BTRDataPacket",
+    "NewTypeName": "BTRDataPacketStruct",
     "OriginalTypeName": "GStruct382",
     "UseForceRename": false,
     "SearchParams": {
@@ -3067,7 +3067,7 @@
     }
   },
   {
-    "NewTypeName": "PlayerInteractPacket",
+    "NewTypeName": "PlayerInteractPacketStruct",
     "OriginalTypeName": "GStruct169",
     "UseForceRename": false,
     "SearchParams": {
@@ -8445,7 +8445,7 @@
     }
   },
   {
-    "NewTypeName": "QuickReloadMagPacket",
+    "NewTypeName": "QuickReloadMagPacketStruct",
     "OriginalTypeName": "GStruct202",
     "UseForceRename": false,
     "SearchParams": {
@@ -8467,7 +8467,7 @@
     }
   },
   {
-    "NewTypeName": "FirearmPacket",
+    "NewTypeName": "FirearmPacketStruct",
     "OriginalTypeName": "GStruct199",
     "UseForceRename": false,
     "SearchParams": {
@@ -8486,7 +8486,7 @@
     }
   },
   {
-    "NewTypeName": "ChangeFireModePacket",
+    "NewTypeName": "ChangeFireModePacketStruct",
     "OriginalTypeName": "GStruct192",
     "UseForceRename": false,
     "SearchParams": {
@@ -8506,7 +8506,7 @@
     }
   },
   {
-    "NewTypeName": "ToggleTacticalComboPacket",
+    "NewTypeName": "ToggleTacticalComboPacketStruct",
     "OriginalTypeName": "GStruct194",
     "UseForceRename": false,
     "SearchParams": {
@@ -8526,7 +8526,7 @@
     }
   },
   {
-    "NewTypeName": "TacticalComboStatusPacket",
+    "NewTypeName": "TacticalComboStatusPacketStruct",
     "OriginalTypeName": "GStruct195",
     "UseForceRename": false,
     "SearchParams": {
@@ -8548,7 +8548,7 @@
     }
   },
   {
-    "NewTypeName": "ChangeSightsModePacket",
+    "NewTypeName": "ChangeSightsModePacketStruct",
     "OriginalTypeName": "GStruct197",
     "UseForceRename": false,
     "SearchParams": {
@@ -8568,7 +8568,7 @@
     }
   },
   {
-    "NewTypeName": "SightModeStatusPacket",
+    "NewTypeName": "SightModeStatusPacketStruct",
     "OriginalTypeName": "GStruct198",
     "UseForceRename": false,
     "SearchParams": {
@@ -8590,7 +8590,7 @@
     }
   },
   {
-    "NewTypeName": "LauncherRangeStatePacket",
+    "NewTypeName": "LauncherRangeStatePacketStruct",
     "OriginalTypeName": "GStruct196",
     "UseForceRename": false,
     "SearchParams": {
@@ -8611,7 +8611,7 @@
     }
   },
   {
-    "NewTypeName": "FiredShotInfosPacket",
+    "NewTypeName": "FiredShotInfosPacketStruct",
     "OriginalTypeName": "GStruct191",
     "UseForceRename": false,
     "SearchParams": {
@@ -8638,7 +8638,7 @@
     }
   },
   {
-    "NewTypeName": "FlareShotInfoPacket",
+    "NewTypeName": "FlareShotInfoPacketStruct",
     "OriginalTypeName": "GStruct336",
     "UseForceRename": false,
     "SearchParams": {
@@ -8660,7 +8660,7 @@
     }
   },
   {
-    "NewTypeName": "LauncherReloadInfoPacket",
+    "NewTypeName": "LauncherReloadInfoPacketStruct",
     "OriginalTypeName": "GStruct344",
     "UseForceRename": false,
     "SearchParams": {

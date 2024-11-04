@@ -2693,16 +2693,16 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "OverDamageFrom",
-		"Player",
-		"BodyPartColliderType",
-		"HittedBallisticColliders"
+        "Player",
+        "BodyPartColliderType",
+        "HittedBallisticColliders"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [
-		"Penetrated",
-		"HaveOwner",
-		"Blunt"
-	  ],
+        "Penetrated",
+        "HaveOwner",
+        "Blunt"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -6320,18 +6320,18 @@
     "OriginalTypeName": "GClass3563",
     "UseForceRename": false,
     "SearchParams": {
-		"ConstructorParameterCount": 3,
       "IsPublic": true,
       "IsNested": true,
       "IsSealed": false,
       "NTParentName": "MatchmakerTimeHasCome",
+      "ConstructorParameterCount": 3,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-		"ScreenType",
+        "ScreenType",
         "IsReconnecting",
-		"SwitchTaskBarButtonsAvailability",
-		"LimitedServersAvailability"
+        "SwitchTaskBarButtonsAvailability",
+        "LimitedServersAvailability"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -7672,6 +7672,7 @@
   },
   {
     "NewTypeName": "Prone2StandState",
+    "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7679,7 +7680,7 @@
       "IncludeMethods": [
         "Enter",
         "Exit",
-		"ManualAnimatorMoveUpdate"
+        "ManualAnimatorMoveUpdate"
       ],
       "ExcludeMethods": [
         "ProcessAnimatorMovement",
@@ -8203,13 +8204,13 @@
         "CheckArmorHitByDirection"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
         "iPlayer",
         "WorldTime",
         "UsingSimplifiedSkeleton"
       ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -8319,6 +8320,358 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "singleShotData_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "RandomsSetupInfo",
+    "OriginalTypeName": "GClass3357",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 3,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Seed",
+        "Count",
+        "Index"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "NoteClass",
+    "OriginalTypeName": "GClass2844",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "CopyFields"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Time",
+        "Text"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "INetworkSession",
+    "OriginalTypeName": "GInterface189",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": true,
+      "IncludeMethods": [
+        "StartGameAfterTeleport",
+        "RestartGameInitiate"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "IBitWriter",
+    "OriginalTypeName": "GInterface113",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": true,
+      "IncludeMethods": [
+        "Write",
+        "Flush"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "BitsWritten",
+        "BytesWritten"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BitWriter",
+    "OriginalTypeName": "GClass1277",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "Write",
+        "Flush",
+        "Serialize",
+        "Reset"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "iMeasureStatistics"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "IsOverflow",
+        "BitsWritten",
+        "BitsCount",
+        "BitsRemain",
+        "BytesWritten",
+        "Buffer",
+        "StreamMode"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "QuickReloadMagPacket",
+    "OriginalTypeName": "GStruct202",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Reload",
+        "MagId"
+      ],
+      "ExcludeFields": [
+        "LocationDescription"
+      ],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "FirearmPacket",
+    "OriginalTypeName": "GStruct199",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "HasShotsRealShots"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ChangeFireModePacket",
+    "OriginalTypeName": "GStruct192",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ChangeFireMode",
+        "FireMode"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ToggleTacticalComboPacket",
+    "OriginalTypeName": "GStruct194",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ToggleTacticalCombo",
+        "TacticalComboStatuses"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "TacticalComboStatusPacket",
+    "OriginalTypeName": "GStruct195",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "IsActive",
+        "SelectedMode",
+        "ScopeCalibrationIndex"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ChangeSightsModePacket",
+    "OriginalTypeName": "GStruct197",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ChangeSightMode",
+        "SightModeStatuses"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SightModeStatusPacket",
+    "OriginalTypeName": "GStruct198",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "SelectedMode",
+        "ScopeIndexInsideSight",
+        "ScopeCalibrationIndex"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LauncherRangeStatePacket",
+    "OriginalTypeName": "GStruct196",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ChangeLauncherRange",
+        "RangeValue",
+        "LastRangeValue"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "FiredShotInfosPacket",
+    "OriginalTypeName": "GStruct191",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "IsPrimaryActive",
+        "AmmoAfterShot",
+        "EShotType",
+        "ShotPosition",
+        "ShotDirection",
+        "FireportPosition",
+        "ChamberIndex",
+        "Overheat",
+        "UnderbarrelShot"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "FlareShotInfoPacket",
+    "OriginalTypeName": "GStruct336",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "StartOneShotFire",
+        "WasShot",
+        "ShotPosition",
+        "ShotForward"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LauncherReloadInfoPacket",
+    "OriginalTypeName": "GStruct344",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "FieldCount": 2,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Reload",
+        "AmmoIds"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],

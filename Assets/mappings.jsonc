@@ -8289,7 +8289,9 @@
         "OnIdleStartEvent",
         "OnShellEjectEvent"
       ],
-      "ExcludeMethods": [],
+      "ExcludeMethods": [
+        "SetScopeMode"
+      ],
       "IncludeFields": [
         "cylinderMagazineClass"
       ],

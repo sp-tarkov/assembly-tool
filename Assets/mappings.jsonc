@@ -5285,25 +5285,6 @@
       "ExcludeNestedTypes": []
     }
   },
-  // {
-    // "NewTypeName": "SwapOperationClass",
-    // "OriginalTypeName": "GClass3090",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "ConstructorParameterCount": 7,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [
-        // "DestroysMainItem"
-      // ],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "ThrowOperationClass",
     "OriginalTypeName": "GClass3091",
@@ -8095,7 +8076,7 @@
     }
   },
   {
-    "NewTypeName": "NetworkHealthSyncStruct",
+    "NewTypeName": "NetworkHealthSyncPacketStruct",
     "OriginalTypeName": "GStruct358",
     "UseForceRename": false,
     "SearchParams": {
@@ -8289,7 +8270,9 @@
         "OnIdleStartEvent",
         "OnShellEjectEvent"
       ],
-      "ExcludeMethods": [],
+      "ExcludeMethods": [
+        "SetScopeMode"
+      ],
       "IncludeFields": [
         "cylinderMagazineClass"
       ],
@@ -8319,6 +8302,469 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "singleShotData_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BaseDescriptorClass",
+    "OriginalTypeName": "GClass1693",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "IncludeMethods": [
+        "ToInventoryOperation"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "OperationId",
+        "OwnerId",
+        "Operation"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "BaseInventoryOperationClass",
+    "OriginalTypeName": "GClass3192",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "IncludeMethods": [
+        "WaitingForForeignEvents"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Id",
+        "Status",
+        "OwnerId"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "FoldOperationClass",
+    "OriginalTypeName": "GClass3208",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Foldable",
+        "NewValue"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "FoldCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SwapOperationClass",
+    "OriginalTypeName": "GClass3196",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ExecuteInternal",
+        "ToDescriptor",
+        "ToBaseInventoryCommand"
+      ],
+      "ExcludeMethods": [
+        "Dispose"
+      ],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Item",
+        "From",
+        "DestroysMainItem"
+      ],
+      "ExcludeProperties": [
+        "To"
+      ],
+      "IncludeNestedTypes": [
+        "SwapCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "MergeOperationClass",
+    "OriginalTypeName": "GClass3209",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ToDescriptor"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Item1",
+        "Item2"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "MergeCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "TransferOperationClass",
+    "OriginalTypeName": "GClass3219",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ExecuteInternal",
+        "ToDescriptor",
+        "ToBaseInventoryCommand"
+      ],
+      "ExcludeMethods": [
+        "Dispose"
+      ],
+      "IncludeFields": [
+        "item_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Item1",
+        "From1",
+        "To1",
+        "Item2",
+        "From2",
+        "To2"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "TransferCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ApplyKeyOperationClass",
+    "OriginalTypeName": "GClass3200",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ExecuteInternal",
+        "ToDescriptor",
+        "ToBaseInventoryCommand"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "keyComponent_0",
+        "lockableComponent_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "ApplyCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "RemoveOperationClass",
+    "OriginalTypeName": "GClass3213",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ExecuteInternal",
+        "ToDescriptor"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "item_0",
+        "itemAddress_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Item"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "RemoveCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "SplitOperationClass",
+    "OriginalTypeName": "GClass3216",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "ToDescriptor"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Item1",
+        "From1",
+        "To1"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "SplitCommand"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "PlayerSearchControllerClass",
+    "OriginalTypeName": "GClass1967",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "SetItemAsTemporaryKnown",
+        "RemoveItemFromTemporaryKnown",
+        "ForgetItem"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "AISearchControllerClass",
+    "OriginalTypeName": "GClass1969",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsSealed": true,
+      "IncludeMethods": [
+        "SetItemAsSearched",
+        "SetItemAsKnown",
+        "StopSearching",
+        "SearchContents",
+        "GetObserverItemState"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [
+        "SearchOperations"
+      ],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "MemoryControllerClass",
+    "OriginalTypeName": "GClass839",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "EmptyWorkingSet",
+        "Collect"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "GCEnabled"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ArmorResistanceStruct",
+    "OriginalTypeName": "GStruct23",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "GetPenetrationChance"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "RealResistance",
+        "ArmorClassResistance"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ShotIdStruct",
+    "OriginalTypeName": "GStruct420",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "Equals"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "EMPTY_SHOT_ID"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LoadingProgressStruct",
+    "OriginalTypeName": "GStruct122",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Progress",
+        "Stage"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "TransitControllerAbstractClass",
+    "OriginalTypeName": "GClass1640",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "IncludeMethods": [
+        "DisableTransitPoints",
+        "IsTransit",
+        "IsTransitPlayer"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "transitPlayers"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "NetworkHealthExtraDataTypeStruct",
+    "OriginalTypeName": "GStruct359",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IsNested": true,
+      "IncludeMethods": [
+        "ToString"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "EffectId",
+        "Type",
+        "BodyPart",
+        "ExtraDataType",
+        "ExtraData"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [
+        "EExtraDataType"
+      ],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "NetworkHealthDataPacketStruct",
+    "OriginalTypeName": "GStruct377",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IsNested": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "AddEffect",
+        "RemoveEffect",
+        "EffectNextState",
+        "EffectStateTime",
+        "EffectStrength"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "DestroyedItemsStruct",
+    "OriginalTypeName": "GStruct384",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "Deconstruct"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Item",
+        "NumberToDestroy",
+        "NumberToPreserve"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],

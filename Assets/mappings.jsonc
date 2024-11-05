@@ -1974,7 +1974,7 @@
     }
   },
   {
-    "NewTypeName": "IMeasureStatistics",
+    "NewTypeName": "IWriteMeasureStatistics",
     "OriginalTypeName": "GInterface102",
     "UseForceRename": false,
     "SearchParams": {
@@ -8391,7 +8391,7 @@
     }
   },
   {
-    "NewTypeName": "IBitWriter",
+    "NewTypeName": "IDataWriter",
     "OriginalTypeName": "GInterface113",
     "UseForceRename": false,
     "SearchParams": {
@@ -8414,7 +8414,7 @@
     }
   },
   {
-    "NewTypeName": "BitWriter",
+    "NewTypeName": "DataWriter",
     "OriginalTypeName": "GClass1277",
     "UseForceRename": false,
     "SearchParams": {
@@ -8675,6 +8675,446 @@
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "KnifePacketStruct",
+    "OriginalTypeName": "GStruct343",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ExamineWeapon",
+        "BrakeCombo",
+        "MakeKnifeKick",
+        "AlternativeKick",
+        "Gesture",
+        "EnableInventoryPacket",
+        "HitsForApproval",
+        "CompassPacket"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "HasCommandsForHands"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "EnableInventoryPacketStruct",
+    "OriginalTypeName": "GStruct335",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "EnableInventory",
+        "InventoryStatus"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "CompassPacketStruct",
+    "OriginalTypeName": "GStruct330",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Toggle",
+        "Status"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "LootRayInfoPacketStruct",
+    "OriginalTypeName": "GStruct143",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "FieldCount": 2,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "origin",
+        "direction"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "PhraseCommandPacketStruct",
+    "OriginalTypeName": "GStruct346",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "HasPhrase",
+        "PhraseId",
+        "PhraseCommand"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "EmptyHandPacketStruct",
+    "OriginalTypeName": "GStruct334",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "FieldCount": 3,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Gesture",
+        "CompassPacket",
+        "EnableInventoryPacket"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "HasCommandsForHands"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "UsableItemPacketStruct",
+    "OriginalTypeName": "GStruct353",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ExamineWeapon",
+        "Gesture",
+        "ToggleAim",
+        "IsAiming",
+        "HideItem",
+        "EnableInventoryPacket",
+        "CompassPacket"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "HasCommandsForHands"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "TripwireSoundInteractionPacketStruct",
+    "OriginalTypeName": "GStruct185",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "hasCriticalData",
+        "interactionStatus",
+        "isSuccess",
+        "hasMultiTool"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "ViewPacketStruct",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "WeaponOverlap"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "CutsceneEndedPacketStruct",
+    "OriginalTypeName": "",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "CutsceneSceneNameHash",
+        "CutsceneID",
+        "IsStarted",
+        "TransformPosition"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "HelmetLightPacketStruct",
+    "OriginalTypeName": "GStruct193",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "IsSilent",
+        "LightStates"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "DevelopHealPacketStruct",
+    "OriginalTypeName": "GStruct145",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "BodyPart",
+        "Value"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "DevelopTeleportPacketStruct",
+    "OriginalTypeName": "GStruct146",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "FieldCount": 1,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Position"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "PacketAuxiliaryDataPacketStruct",
+    "OriginalTypeName": "GStruct164",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "DeltaTime",
+        "DeltaTimeFromPreviousPacket",
+        "TimeFromHeadPacketReceivedAtTheFrame"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "Client2ServerPacketStruct",
+    "OriginalTypeName": "GStruct168",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [
+        "AddInventoryCommand",
+        "ClearNonStaticData",
+        "Set",
+        "SetPhraseCommand"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "HasImportantData",
+        "HasCommandsForHands"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "IReadMeasureStatistics",
+    "OriginalTypeName": "GInterface109",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": true,
+      "IncludeMethods": [
+        "Reset",
+        "ReadBits",
+        "ReadBytes",
+        "ReadAlign"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Buffer",
+        "BitsRead",
+        "BytesRead"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "MeasureStatisticsWriterClass",
+    "OriginalTypeName": "GClass1276",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": false,
+      "IncludeMethods": [
+        "Reset",
+        "WriteBits",
+        "WriteBytes",
+        "FlushBits"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Buffer",
+        "IsOverflow",
+        "BitsWritten",
+        "BitsCount",
+        "BytesWritten",
+        "TotalBytes"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "MeasureStatisticsReaderClass",
+    "OriginalTypeName": "GClass1274",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsInterface": false,
+      "IncludeMethods": [
+        "ReadBits",
+        "ReadBytes",
+        "ReadAlign",
+        "Reset"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Buffer",
+        "IsOverflow",
+        "BitsRead",
+        "BytesRead",
+        "TotalBytes"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": []
+    }
+  },
+  {
+    "NewTypeName": "DataReader",
+    "OriginalTypeName": "GClass1275",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "ReadLimitedInt32",
+        "ReadUInt32UsingBitRange",
+        "Reset",
+        "Serialize"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Buffer",
+        "BitsRead",
+        "BitsCount",
+        "IsOverflow",
+        "BytesRead",
+        "StreamMode"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []

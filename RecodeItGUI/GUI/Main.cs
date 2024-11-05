@@ -113,6 +113,22 @@ public partial class ReCodeItForm : Form
             }
         };
 
+        EventsIncludeTextField.KeyDown += (sender, e) =>
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                EventsAddButton_Click(sender, e);
+            }
+        };
+
+        EventsExcludeTextField.KeyDown += (sender, e) =>
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                EventsExcludeAddButton_Click(sender, e);
+            }
+        };
+
         #endregion MANUAL_REMAPPER
 
         #region AUTOMAPPER
@@ -287,6 +303,8 @@ public partial class ReCodeItForm : Form
                 ExcludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesExcludeBox),
                 IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox),
                 ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox),
+                IncludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsIncludeBox),
+                ExcludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsExcludeBox)
             }
         };
 
@@ -631,6 +649,45 @@ public partial class ReCodeItForm : Form
         }
     }
 
+
+    private void EventsAddButton_Click(object sender, EventArgs e)
+    {
+        if (EventsIncludeTextField.Text == string.Empty) return;
+
+        if (!EventsIncludeBox.Items.Contains(EventsIncludeTextField.Text))
+        {
+            EventsIncludeBox.Items.Add(EventsIncludeTextField.Text);
+            EventsIncludeTextField.Clear();
+        }
+    }
+
+    private void EventsRemoveButton_Click(object sender, EventArgs e)
+    {
+        if (EventsIncludeBox.SelectedItem != null)
+        {
+            EventsIncludeBox.Items.Remove(EventsIncludeBox.SelectedItem);
+        }
+    }
+
+    private void EventsExcludeAddButton_Click(object sender, EventArgs e)
+    {
+        if (EventsExcludeTextField.Text == string.Empty) return;
+
+        if (!EventsExcludeBox.Items.Contains(EventsExcludeTextField.Text))
+        {
+            EventsExcludeBox.Items.Add(EventsExcludeTextField.Text);
+            EventsExcludeTextField.Clear();
+        }
+    }
+
+    private void EventsExcludeRemoveButton_Click(object sender, EventArgs e)
+    {
+        if (EventsExcludeBox.SelectedItem != null)
+        {
+            EventsExcludeBox.Items.Remove(EventsExcludeBox.SelectedItem);
+        }
+    }
+
     private void AutoMapperExcludeAddButton_Click(object sender, EventArgs e)
     {
         if (AutoMapperTypesToIgnoreTextField.Text == string.Empty) return;
@@ -932,6 +989,8 @@ public partial class ReCodeItForm : Form
         PropertiesExcludeTextField.Clear();
         NestedTypesIncludeTextField.Clear();
         NestedTypesExcludeTextField.Clear();
+        EventsIncludeTextField.Clear();
+        EventsExcludeTextField.Clear();
 
         // Numeric UpDowns
 
@@ -960,6 +1019,8 @@ public partial class ReCodeItForm : Form
         PropertiesExcludeBox.Items.Clear();
         NestedTypesIncludeBox.Items.Clear();
         NestedTypesExcludeBox.Items.Clear();
+        EventsIncludeBox.Items.Clear();
+        EventsExcludeBox.Items.Clear();
     }
 
     private void ManualEditSelectedRemap(object? sender, TreeNodeMouseClickEventArgs e)
@@ -1122,6 +1183,16 @@ public partial class ReCodeItForm : Form
         {
             NestedTypesExcludeBox.Items.Add(method);
         }
+
+        foreach (var method in remap.SearchParams.IncludeEvents)
+        {
+            EventsIncludeBox.Items.Add(method);
+        }
+
+        foreach (var method in remap.SearchParams.ExcludeEvents)
+        {
+            EventsExcludeBox.Items.Add(method);
+        }
     }
 
     private void PopulateDomainUpDowns()
@@ -1183,4 +1254,5 @@ public partial class ReCodeItForm : Form
             UseShellExecute = true
         });
     }
+
 }

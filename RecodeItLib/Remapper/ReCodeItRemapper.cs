@@ -158,6 +158,7 @@ public class ReCodeItRemapper
         if (!FilterTypesByMethods(mapping, ref types)) return;
         if (!FilterTypesByFields(mapping, ref types)) return;
         if (!FilterTypesByProps(mapping, ref types)) return;
+        if (!FilterTypesByEvents(mapping, ref types)) return;
         if (!FilterTypesByNested(mapping, ref types)) return;
         
         types = CtorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
@@ -385,7 +386,30 @@ public class ReCodeItRemapper
         
         return true;
     }
-    
+
+    private static bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    {
+        types = EventTypeFilters.FilterByInclude(types, mapping.SearchParams);
+
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesInclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+
+        types = EventTypeFilters.FilterByExclude(types, mapping.SearchParams);
+
+        if (!types.Any())
+        {
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesExclude);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+
+        return true;
+    }
+
     private void HandleDirectRename(RemapModel mapping, ref IEnumerable<TypeDef> types)
     {
         foreach (var type in types)

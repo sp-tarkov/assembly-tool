@@ -101,6 +101,8 @@ public class SearchParams
     public List<string> ExcludeProperties { get; set; }
     public List<string> IncludeNestedTypes { get; set; }
     public List<string> ExcludeNestedTypes { get; set; }
+    public List<string> IncludeEvents { get; set; } = [];
+    public List<string> ExcludeEvents { get; set; } = [];
 
     #endregion LISTS
 

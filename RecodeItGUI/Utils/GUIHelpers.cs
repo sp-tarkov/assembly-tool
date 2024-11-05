@@ -251,12 +251,28 @@ internal static class GUIHelpers
             remapTreeItem.Nodes.Add(includeNestedTypes);
         }
 
-        if (model.SearchParams.IncludeNestedTypes?.Count > 0)
+        if (model.SearchParams.ExcludeNestedTypes?.Count > 0)
         {
             var excludeNestedTypes =
                 GenerateNodeFromList(model.SearchParams.ExcludeNestedTypes, "Exclude Nested Types");
 
             remapTreeItem.Nodes.Add(excludeNestedTypes);
+        }
+
+        if (model.SearchParams.IncludeEvents?.Count > 0)
+        {
+            var includeEvents =
+                GenerateNodeFromList(model.SearchParams.IncludeEvents, "Include Events");
+
+            remapTreeItem.Nodes.Add(includeEvents);
+        }
+
+        if (model.SearchParams.ExcludeEvents?.Count > 0)
+        {
+            var excludeEvents =
+                GenerateNodeFromList(model.SearchParams.ExcludeEvents, "Exclude Events");
+
+            remapTreeItem.Nodes.Add(excludeEvents);
         }
 
         ReCodeItForm.RemapNodes.Add(remapTreeItem, model);

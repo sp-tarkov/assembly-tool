@@ -51,7 +51,6 @@ public static class Logger
                     LogInternal(messageToLog);
                 _heldMessages.Remove(heldMessagesKP.Key);
             }
-
         }
     }
 
@@ -84,7 +83,7 @@ public static class Logger
     }
 
     private const string _defaultFileName = "ReCodeIt.log";
-    private static string _logPath => Path.Combine(AppContext.BaseDirectory, "Data", "Settings.jsonc");
+    private static string _logPath => Path.Combine(AppContext.BaseDirectory, "Data", "ReCodeIt.log");
     public static void ClearLog()
     {
         if (File.Exists(_logPath))

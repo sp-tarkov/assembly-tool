@@ -402,7 +402,7 @@ public class ReCodeItRemapper
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventExclude);
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }

@@ -27,5 +27,5 @@ public enum ENoMatchReason
     NestedTypeExclude,
     NestedTypeCount,
     EventsInclude,
-    EventExclude
+    EventsExclude
 }

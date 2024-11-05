@@ -393,7 +393,7 @@ public class ReCodeItRemapper
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesInclude);
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -402,7 +402,7 @@ public class ReCodeItRemapper
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesExclude);
+            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }

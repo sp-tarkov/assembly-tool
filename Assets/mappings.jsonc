@@ -2223,7 +2223,7 @@
     }
   },
   {
-    "NewTypeName": "DamageInfo",
+    "NewTypeName": "DamageInfoStruct",
     "OriginalTypeName": "GStruct421",
     "UseForceRename": false,
     "SearchParams": {

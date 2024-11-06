@@ -7,6 +7,11 @@ namespace ReCodeIt.Utils;
 
 public static class DataProvider
 {
+    static DataProvider()
+    {
+        LoadItems();
+    }
+    
     /// <summary>
     /// Is this running in the CLI?
     /// </summary>
@@ -15,7 +20,8 @@ public static class DataProvider
     public static string DataPath => Path.Combine(AppContext.BaseDirectory, "Data");
 
     public static List<RemapModel> Remaps { get; set; } = [];
-
+    public static Dictionary<string, ItemTemplateModel>? ItemTemplates { get; private set; }
+    
     public static Settings Settings { get; private set; }
 
     public static void LoadAppSettings()
@@ -116,7 +122,7 @@ public static class DataProvider
     public static ModuleDefMD LoadModule(string path)
     {
         var mcOptions = new ModuleCreationOptions(ModuleDef.CreateModuleContext());
-        ModuleDefMD module = ModuleDefMD.Load(path, mcOptions);
+        var module = ModuleDefMD.Load(path, mcOptions);
 
         module.Context = mcOptions.Context;
 
@@ -126,5 +132,13 @@ public static class DataProvider
         }
 
         return module;
+    }
+
+    private static void LoadItems()
+    {
+        var itemsPath = Path.Combine(DataPath, "items.json");
+        var jsonText = File.ReadAllText(itemsPath);
+
+        ItemTemplates = JsonConvert.DeserializeObject<Dictionary<string, ItemTemplateModel>>(jsonText);
     }
 }

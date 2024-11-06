@@ -62,8 +62,8 @@ public class ReCodeItRemapper
             Logger.Log("You must de-obfuscate the assembly before remapping it.\n", ConsoleColor.Red);
             return;
         }
-
-        HandleTypeTableRemaps(assemblyPath, types);
+        
+        GenerateDynamicRemaps(assemblyPath, types);
         
         var tasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)
@@ -430,28 +430,46 @@ public class ReCodeItRemapper
         }
     }
 
-    private void HandleTypeTableRemaps(string path, IEnumerable<TypeDef> types)
+    private void GenerateDynamicRemaps(string path, IEnumerable<TypeDef> types)
     {
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
-        var templateMappingTypeDef = types.Single(t => t.FindField("TypeTable") != null);
+        var templateMappingTypeDef = types.SingleOrDefault(t => t.FindField("TypeTable") != null);
+        
+        if (templateMappingTypeDef is null)
+        {
+            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
+            return;
+        }
+        
         var assembly = Assembly.LoadFrom(path);
         var templateMappingClass = assembly.Modules
             .First()
             .GetType(templateMappingTypeDef.Name);
-
+        
         if (templateMappingClass is null)
         {
-            Logger.Log($"Could not find {templateMappingTypeDef.Name} in the assembly.", ConsoleColor.Red);
+            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
             return;
         }
         
         var typeTable = (Dictionary<string, Type>)templateMappingClass
             .GetField("TypeTable")
             .GetValue(templateMappingClass);
-
-        foreach (var type in typeTable)
+        
+        BuildAssociationFromTable(typeTable, "ItemClass");
+        
+        var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
+            .GetField("TemplateTypeTable")
+            .GetValue(templateMappingClass);
+        
+        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
+    }
+    
+    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
+    {
+        foreach (var type in table)
         {
             if (DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template))
             {
@@ -462,7 +480,7 @@ public class ReCodeItRemapper
                 var remap = new RemapModel
                 {
                     OriginalTypeName = type.Value.Name,
-                    NewTypeName = $"{template._name}Class",
+                    NewTypeName = $"{template._name}{extName}",
                     UseForceRename = true
                 };
                 

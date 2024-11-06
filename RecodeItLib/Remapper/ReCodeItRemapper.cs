@@ -477,6 +477,8 @@ public class ReCodeItRemapper
                     
                 Logger.Log($"Key: {type.Key} Type: {type.Value.Name} Associated to {template._name}", ConsoleColor.Green);
 
+                if (template._name.EndsWith("Item") && extName == "ItemClass") extName = "Class";
+                
                 var remap = new RemapModel
                 {
                     OriginalTypeName = type.Value.Name,

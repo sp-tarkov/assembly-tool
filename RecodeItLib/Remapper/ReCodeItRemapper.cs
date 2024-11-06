@@ -462,7 +462,7 @@ public class ReCodeItRemapper
                 var remap = new RemapModel
                 {
                     OriginalTypeName = type.Value.Name,
-                    NewTypeName = $"{template._name}",
+                    NewTypeName = $"{template._name}Class",
                     UseForceRename = true
                 };
                 

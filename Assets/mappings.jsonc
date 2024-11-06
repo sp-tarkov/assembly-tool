@@ -185,25 +185,6 @@
     }
   },
   {
-    "NewTypeName": "RecodableItemClass",
-    "OriginalTypeName": "GClass2981",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "IncludeMethods": [
-        "OnAddRecodableItem"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
     "NewTypeName": "RadioTransmitterHandlerClass",
     "OriginalTypeName": "GClass1592",
     "UseForceRename": false,
@@ -1209,153 +1190,6 @@
     }
   },
   {
-    "NewTypeName": "SecureContainerTemplateClass",
-    "OriginalTypeName": "GClass2827",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "containType"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "Meds2Class",
-    "OriginalTypeName": "GClass2855",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "BodyPartTimeMults"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "RepairKitClass",
-    "OriginalTypeName": "GClass2860",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "TargetItemFilter"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "MoneyClass",
-    "OriginalTypeName": "GClass2870",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "eqMax"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ThrowableWeaponClass",
-    "OriginalTypeName": "GClass2872",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "MinFragmentDamage"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ArmorClass",
-    "OriginalTypeName": "GClass2877",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 2,
-      "MethodCount": 1,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "FaceShield"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "GogglesClass",
-    "OriginalTypeName": "GClass2883",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "BlindnessProtection"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SightModClass",
-    "OriginalTypeName": "GClass2902",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Sight"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
     "NewTypeName": "BossKnightBrainClass",
     "OriginalTypeName": "GClass292",
     "UseForceRename": false,
@@ -1393,301 +1227,6 @@
       "ExcludeFields": [],
       "IncludeProperties": [
         "AbstractSuppressStationary_0"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "MagazineClass",
-    "OriginalTypeName": "GClass2914",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "LoadUnloadModifier"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CylinderMagazineClass",
-    "OriginalTypeName": "GClass2915",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "Camoras"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SpringDrivenCylinderMagazineClass",
-    "OriginalTypeName": "GClass2916",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "FieldCount": 0,
-      "IncludeMethods": [
-        "CamoraIndexForDoubleActionFire"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "MountModClass",
-    "OriginalTypeName": "GClass2922",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsDerived": true,
-      "ConstructorParameterCount": 2,
-      "FieldCount": 0,
-      "PropertyCount": 2,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "HeatFactor",
-        "CoolFactor"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "StockItemClass",
-    "OriginalTypeName": "GClass2919",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Foldable"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "HeatFactor",
-        "CoolFactor",
-        "DurabilityBurnModificator"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "BarrelModClass",
-    "OriginalTypeName": "GClass2921",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "DurabilityBurnModificator",
-        "HeatFactor",
-        "CoolFactor",
-        "CenterOfImpactMOA"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SearchableItemClass",
-    "OriginalTypeName": "GClass2925",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "SearchSound"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "ItemContainerClass",
-    "OriginalTypeName": "GClass2927",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "isSecured"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "SortingTableClass",
-    "OriginalTypeName": "GClass2947",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "ClampSize"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [
-        "CanStretchHorizontally"
-      ],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "StashClass",
-    "OriginalTypeName": "GClass2946",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [
-        "UpdateBonuses"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "FoodClass",
-    "OriginalTypeName": "GClass2961",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "FoodDrinkComponent"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "KnifeClass",
-    "OriginalTypeName": "GClass2967",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "KnifeComponent"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "MedsClass",
-    "OriginalTypeName": "GClass2969",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "ConstructorParameterCount": 2,
-      "MethodCount": 1,
-      "FieldCount": 2,
-      "PropertyCount": 1,
-      "NestedTypeCount": 0,
-      "IncludeMethods": [],
-      "ExcludeMethods": [
-        "ToString"
-      ],
-      "IncludeFields": [
-        "HealthEffectsComponent",
-        "MedKitComponent",
-        ""
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "BulletClass",
-    "OriginalTypeName": "GClass2983",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "GetBulletSpeed"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "GrenadeClass",
-    "OriginalTypeName": "GClass2986",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "MinTimeToContactExplode"
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
@@ -2693,16 +2232,10 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "OverDamageFrom",
-		"Player",
-		"BodyPartColliderType",
-		"HittedBallisticColliders"
+		"Player"
       ],
       "ExcludeFields": [],
-      "IncludeProperties": [
-		"Penetrated",
-		"HaveOwner",
-		"Blunt"
-	  ],
+      "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -4798,25 +4331,6 @@
     }
   },
   {
-    "NewTypeName": "RepairKitItemClass",
-    "OriginalTypeName": "GClass2974",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "TargetItemFilter",
-        "RepairQuality"
-      ],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
     "NewTypeName": "TimeRangeInfoStruct",
     "OriginalTypeName": "GStruct98",
     "UseForceRename": false,
@@ -5011,25 +4525,6 @@
       "IncludeFields": [],
       "ExcludeFields": [],
       "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "MarkOfUnknownItemClass",
-    "OriginalTypeName": "GClass2977",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [
-        "ScavKillExpPenalty",
-        "ScavKillStandingPenalty"
-      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": []
@@ -6736,28 +6231,6 @@
     }
   },
   {
-    "NewTypeName": "CultistAmuletClass",
-    "OriginalTypeName": "GClass2960",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": false,
-      "IsNested": false,
-      "IncludeMethods": [
-        "TryExpendCharge"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "CultistAmuletComponent"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
     "NewTypeName": "BotAimingClass",
     "OriginalTypeName": "GClass551",
     "UseForceRename": false,
@@ -7659,8 +7132,7 @@
       "FieldCount": 1,
       "IncludeMethods": [
         "Enter",
-        "Exit",
-		"ManualAnimatorMoveUpdate"
+        "Exit"
       ],
       "ExcludeMethods": [
         "ProcessAnimatorMovement",

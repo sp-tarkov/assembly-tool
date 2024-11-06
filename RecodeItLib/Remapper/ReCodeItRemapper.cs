@@ -6,6 +6,7 @@ using ReCodeIt.ReMapper.Search;
 using ReCodeIt.Utils;
 using ReCodeItLib.Remapper.Search;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace ReCodeIt.ReMapper;
 
@@ -62,6 +63,8 @@ public class ReCodeItRemapper
             return;
         }
         
+        GenerateDynamicRemaps(assemblyPath, types);
+        
         var tasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)
         {
@@ -95,7 +98,7 @@ public class ReCodeItRemapper
             );
         }
         Task.WaitAll(renameTasks.ToArray());
-
+        
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         if (Settings.MappingSettings.Publicize)
         {
@@ -103,7 +106,7 @@ public class ReCodeItRemapper
 
             SPTPublicizer.PublicizeClasses(Module);
         }
-
+        
         // We are done, write the assembly
         WriteAssembly();
     }
@@ -427,6 +430,68 @@ public class ReCodeItRemapper
         }
     }
 
+    private void GenerateDynamicRemaps(string path, IEnumerable<TypeDef> types)
+    {
+        // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
+        // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
+        // This is also necessary because we can't access non-compile time constants with dnlib.
+        var templateMappingTypeDef = types.SingleOrDefault(t => t.FindField("TypeTable") != null);
+        
+        if (templateMappingTypeDef is null)
+        {
+            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
+            return;
+        }
+        
+        var assembly = Assembly.LoadFrom(path);
+        var templateMappingClass = assembly.Modules
+            .First()
+            .GetType(templateMappingTypeDef.Name);
+        
+        if (templateMappingClass is null)
+        {
+            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
+            return;
+        }
+        
+        var typeTable = (Dictionary<string, Type>)templateMappingClass
+            .GetField("TypeTable")
+            .GetValue(templateMappingClass);
+        
+        BuildAssociationFromTable(typeTable, "ItemClass");
+        
+        var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
+            .GetField("TemplateTypeTable")
+            .GetValue(templateMappingClass);
+        
+        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
+    }
+    
+    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
+    {
+        foreach (var type in table)
+        {
+            if (DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template))
+            {
+                if (!type.Value.Name.StartsWith("GClass")) continue;
+                    
+                Logger.Log($"Key: {type.Key} Type: {type.Value.Name} Associated to {template._name}", ConsoleColor.Green);
+
+                var remap = new RemapModel
+                {
+                    OriginalTypeName = type.Value.Name,
+                    NewTypeName = $"{template._name}{extName}",
+                    UseForceRename = true
+                };
+                
+                _remaps.Add(remap);
+                continue;
+            }
+                
+            Logger.Log($"Found no association for key: {type.Key} Type: {type.Value}", ConsoleColor.Yellow);
+        }
+    }
+    
     /// <summary>
     /// Choose the best possible match from all remaps
     /// </summary>

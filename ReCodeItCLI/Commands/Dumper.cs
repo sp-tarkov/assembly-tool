@@ -4,7 +4,7 @@ using CliFx.Infrastructure;
 using ReCodeIt.Utils;
 using ReCodeItLib.Dumper;
 
-namespace ReCodeIt.Commands;
+namespace ReCodeItCLI.Commands;
 
 [Command("Dumper", Description = "Generates a dumper zip")]
 public class Dumper : ICommand

@@ -4,7 +4,7 @@ using CliFx.Infrastructure;
 using ReCodeIt.ReMapper;
 using ReCodeIt.Utils;
 
-namespace ReCodeIt.Commands;
+namespace ReCodeItCLI.Commands;
 
 [Command("ReMap", Description = "Generates a re-mapped dll provided a mapping file and de-obfuscated dll")]
 public class ReMap : ICommand

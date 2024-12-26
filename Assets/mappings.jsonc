@@ -1191,11 +1191,11 @@
   },
   {
     "NewTypeName": "BossKnightBrainClass",
-    "OriginalTypeName": "GClass292",
+    "OriginalTypeName": "GClass317",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "FieldCount": 11,
+      "FieldCount": 12,
       "IncludeMethods": [
         "ForceRecalcShootPos",
         "EventsPriority"
@@ -2434,33 +2434,33 @@
       "ExcludeNestedTypes": []
     }
   },
-  {
-    "NewTypeName": "BaseNodeAbstractClass",
-    "OriginalTypeName": "GClass153",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": true,
-      "IsDerived": true,
-      "HasGenericParameters": false,
-      "ConstructorParameterCount": 1,
-      "MethodCount": 0,
-      "FieldCount": 1,
-      "PropertyCount": 0,
-      "NestedTypeCount": 0,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "botOwner_0",
-        ""
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
+  // {
+    // "NewTypeName": "BaseNodeAbstractClass",
+    // "OriginalTypeName": "GClass153",
+    // "UseForceRename": false,
+    // "SearchParams": {
+      // "IsPublic": true,
+      // "IsAbstract": true,
+      // "IsDerived": true,
+      // "HasGenericParameters": false,
+      // "ConstructorParameterCount": 2,
+      // "MethodCount": 0,
+      // "FieldCount": 1,
+      // "PropertyCount": 0,
+      // "NestedTypeCount": 0,
+      // "IncludeMethods": [],
+      // "ExcludeMethods": [],
+      // "IncludeFields": [
+        // "botOwner_0",
+        // ""
+      // ],
+      // "ExcludeFields": [],
+      // "IncludeProperties": [],
+      // "ExcludeProperties": [],
+      // "IncludeNestedTypes": [],
+      // "ExcludeNestedTypes": []
+    // }
+  // },
   {
     "NewTypeName": "AICoreStrategyAbstractClass",
     "OriginalTypeName": "GClass278`1",
@@ -2503,17 +2503,18 @@
   },
   {
     "NewTypeName": "AICoreActionResultStruct",
-    "OriginalTypeName": "GStruct8`1",
+    "OriginalTypeName": "GStruct8'2",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "HasGenericParameters": true,
-      "ConstructorParameterCount": 2,
+      "ConstructorParameterCount": 3,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
         "Reason",
-        "Action"
+        "Action",
+		"Data"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -2640,13 +2641,13 @@
   },
   {
     "NewTypeName": "AchievementControllerClass",
-    "OriginalTypeName": "GClass3485",
+    "OriginalTypeName": "GClass3700",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsSealed": true,
       "HasGenericParameters": false,
-      "FieldCount": 0,
+      "FieldCount": 1,
       "IncludeMethods": [
         "FinishAchievement",
         "SetConditionalStatus"
@@ -2930,13 +2931,15 @@
   },
   {
     "NewTypeName": "IBackEndSession",
-    "OriginalTypeName": "GInterface170",
+    "OriginalTypeName": "GInterface194",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsInterface": true,
       "IncludeMethods": [
-        "ApplyCustomizationWear"
+        "GetAvailableCustomizationsStorage",
+		"ApplyCustomization",
+		"ValidateNickname"
       ],
       "ExcludeMethods": [],
       "IncludeFields": [],
@@ -6978,12 +6981,12 @@
   },
   {
     "NewTypeName": "LocalQuestControllerClass",
-    "OriginalTypeName": "GClass3479",
+    "OriginalTypeName": "GClass3694",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsDerived": true,
-      "ConstructorParameterCount": 4,
+      "ConstructorParameterCount": 3,
       "NestedTypeCount": 5,
       "IncludeMethods": [
         "FinishQuest"

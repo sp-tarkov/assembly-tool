@@ -50,6 +50,7 @@
       "Class",
       "GClass",
       "GStruct",
+      "GControl",
       "ValueStruct",
       "Interface",
       "GInterface"

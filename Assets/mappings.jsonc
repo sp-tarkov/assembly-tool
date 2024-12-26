@@ -5102,36 +5102,6 @@
     }
   },
   {
-    "NewTypeName": "InventoryContainerClass",
-    "OriginalTypeName": "GControl6",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsStruct": false,
-      "IsDerived": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "FindQuestGridToPickUp",
-        "ConvertOperationResultToOperation",
-        "RollBack"
-      ],
-      "ExcludeMethods": [
-        "GetTraderServicesDataFromServer"
-      ],
-      "IncludeFields": [
-        "backendIdGenerator_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": [],
-      "IncludeEvents": [],
-      "ExcludeEvents": []
-    }
-  },
-  {
     "NewTypeName": "MoveDescriptorClass",
     "OriginalTypeName": "GClass1659",
     "UseForceRename": false,

@@ -3,12 +3,12 @@ using CliFx.Attributes;
 using CliFx.Infrastructure;
 using dnlib.DotNet;
 
-namespace ReCodeIt.Commands;
+namespace ReCodeItCLI.Commands;
 
 [Command("GenRefCountList", Description = "Generates a print out of the most used classes. Useful to prioritize remap targets")]
 public class GenRefList : ICommand
 {
-    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your de-obfuscated dll, remapped dll.")]
+    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your de-obfuscated and remapped dll.")]
     public string AssemblyPath { get; init; }
 
     private static readonly List<string> Match = new()

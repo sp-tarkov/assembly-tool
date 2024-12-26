@@ -3633,28 +3633,6 @@
     }
   },
   {
-    "NewTypeName": "IConditionCounter",
-    "OriginalTypeName": "GInterface446",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [
-        "CheckVisibilityStatus",
-        "TransitionStatus"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": [],
-      "IncludeEvents": [],
-      "ExcludeEvents": []
-    }
-  },
-  {
     "NewTypeName": "PhraseSpeakerClass",
     "OriginalTypeName": "GClass1917",
     "UseForceRename": false,
@@ -5973,19 +5951,24 @@
     "SearchParams": {
       "IsPublic": true,
       "IsAbstract": true,
-      "IsNested": false,
       "IncludeMethods": [
         "GetScavRoleKey",
         "IsHostileToEverybody",
         "ShallUseFastAnimator",
         "IsMidPriorityBossOrFollower",
         "IsSiutable",
-        "GetPhraseTagFromRole"
+        "GetPhraseTagFromRole",
+        "IsBossOrFollower",
+        "IsFollower"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "bool_0"
+      ],
       "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeProperties": [
+        "String_0"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": [],
@@ -6119,32 +6102,6 @@
       "IncludeNestedTypes": [
         "ValueInfo"
       ],
-      "ExcludeNestedTypes": [],
-      "IncludeEvents": [],
-      "ExcludeEvents": []
-    }
-  },
-  {
-    "NewTypeName": "CorpseLootItemClass",
-    "OriginalTypeName": "GClass1277",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": false,
-      "MethodCount": 0,
-      "FieldCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Customization",
-        "Side",
-        "Bones",
-        "ProfileID"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
       "ExcludeNestedTypes": [],
       "IncludeEvents": [],
       "ExcludeEvents": []
@@ -6356,7 +6313,7 @@
   },
   {
     "NewTypeName": "TimeHasComeScreenClass",
-    "OriginalTypeName": "GClass3563",
+    "OriginalTypeName": "GClass3627",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -6367,13 +6324,16 @@
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-        "ScreenType",
-        "IsReconnecting",
-        "SwitchTaskBarButtonsAvailability",
-        "LimitedServersAvailability"
+        "Session",
+        "Matchmaker",
+        "RaidSettings"
       ],
       "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeProperties": [
+        "ScreenType",
+        "TaskBarButtonsAvailability",
+        "LimitedServersAvailability"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
       "ExcludeNestedTypes": [],
@@ -6435,13 +6395,12 @@
   },
   {
     "NewTypeName": "CustomizationSolverClass",
-    "OriginalTypeName": "GClass1545",
+    "OriginalTypeName": "GClass1617",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "IsAbstract": false,
       "IsNested": false,
-      "IsSealed": false,
+      "IsSealed": true,
       "IncludeMethods": [
         "GetBundle",
         "GetWatchBundle",
@@ -6449,7 +6408,10 @@
         "GetAnyCustomizationItem"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "HideoutMannequinPoses",
+        "HideoutCustomizationItems"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [
         "NeedToCheckAvailable",
@@ -7406,22 +7368,24 @@
   },
   {
     "NewTypeName": "FirearmHandsControllerClass",
-    "OriginalTypeName": "GClass2598",
+    "OriginalTypeName": "GClass2763",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
       "IsNested": false,
+      "IsSealed": true,
       "IsDerived": true,
-      "HasGenericParameters": false,
       "IncludeMethods": [
-        "UpdateAmmoInChamberVisual",
-        "UpdateTacticalComboVisualControllers"
+        "UpdateTacticalComboVisualControllers",
+        "DisableLightsState",
+        "Execute"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "firearmAnimationHandsController_0",
+        "tacticalComboVisualController_0"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -7804,7 +7768,8 @@
         "ProcessAnimatorMovement",
         "LateUpdate",
         "RecalculateCapsuleColliderSize",
-        "OnDestroy"
+        "OnDestroy",
+        "ChangeSpeed"
       ],
       "IncludeFields": [],
       "ExcludeFields": [],

@@ -15,7 +15,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -35,7 +37,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -57,7 +61,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -78,7 +84,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -104,7 +112,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -125,7 +135,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -144,7 +156,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -163,7 +177,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -181,7 +197,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -199,7 +217,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -217,7 +237,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -238,7 +260,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -259,7 +283,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -286,15 +312,21 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
     "NewTypeName": "InsuredItemClass",
-    "OriginalTypeName": "GClass1272",
+    "OriginalTypeName": "GClass1321",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
+      "IsStruct": false,
+      "IsSealed": true,
+      "HasAttribute": true,
+      "ConstructorParameterCount": 0,
       "MethodCount": 0,
       "FieldCount": 2,
       "PropertyCount": 0,
@@ -304,11 +336,24 @@
         "itemId",
         "tid"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+        "SlotNumber",
+        "ContainedItem",
+        "GridNumber",
+        "ContainedItems",
+        "QuestId",
+        "Value",
+        "Arena",
+        "ExpirationTime",
+        "Mastering",
+        "Timestamp"
+      ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -327,7 +372,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -346,7 +393,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -367,7 +416,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -385,7 +436,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -404,7 +457,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -423,7 +478,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -447,7 +504,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -466,7 +525,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -488,7 +549,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -507,7 +570,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -525,7 +590,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -544,7 +611,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -563,7 +632,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -591,7 +662,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -610,7 +683,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -630,7 +705,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -649,7 +726,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -668,7 +747,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -687,7 +768,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -708,7 +791,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -727,7 +812,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -746,7 +833,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -765,7 +854,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -793,7 +884,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -813,7 +906,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -832,7 +927,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -850,7 +947,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -869,7 +968,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -888,7 +989,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -909,7 +1012,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -927,7 +1032,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -946,7 +1053,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -965,7 +1074,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -987,7 +1098,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1009,7 +1122,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1028,7 +1143,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1048,7 +1165,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1067,7 +1186,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1087,7 +1208,9 @@
         "ExpirationTime"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1107,7 +1230,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1125,7 +1250,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1143,7 +1270,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1164,7 +1293,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1186,7 +1317,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1210,7 +1343,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1230,7 +1365,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1248,7 +1385,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1266,7 +1405,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1284,7 +1425,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1304,7 +1447,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1322,7 +1467,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1341,7 +1488,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1360,7 +1509,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1378,7 +1529,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1397,7 +1550,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1416,7 +1571,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1435,7 +1592,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1454,7 +1613,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1472,7 +1633,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1490,7 +1653,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1509,7 +1674,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1530,7 +1697,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1549,7 +1718,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1571,7 +1742,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1589,7 +1762,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1612,7 +1787,9 @@
         "HasHandlers"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1634,7 +1811,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1654,7 +1833,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1674,7 +1855,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1692,7 +1875,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1710,7 +1895,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1730,7 +1917,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1748,7 +1937,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1766,7 +1957,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1784,7 +1977,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1812,7 +2007,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1830,7 +2027,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1850,7 +2049,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1868,7 +2069,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1886,7 +2089,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1904,7 +2109,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1923,7 +2130,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1942,7 +2151,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1964,7 +2175,9 @@
         "SnowLevelOnTerrain"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -1983,7 +2196,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2002,7 +2217,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2021,7 +2238,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2040,7 +2259,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2059,7 +2280,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2078,7 +2301,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2097,7 +2322,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2116,7 +2343,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2135,7 +2364,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2154,7 +2385,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2174,7 +2407,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2196,7 +2431,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2219,7 +2456,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2232,13 +2471,15 @@
       "ExcludeMethods": [],
       "IncludeFields": [
         "OverDamageFrom",
-		"Player"
+        "Player"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2256,7 +2497,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2275,7 +2518,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2294,7 +2539,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2313,7 +2560,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2334,7 +2583,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2354,7 +2605,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2372,7 +2625,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2391,7 +2646,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2410,7 +2667,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2431,36 +2690,11 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
-  // {
-    // "NewTypeName": "BaseNodeAbstractClass",
-    // "OriginalTypeName": "GClass153",
-    // "UseForceRename": false,
-    // "SearchParams": {
-      // "IsPublic": true,
-      // "IsAbstract": true,
-      // "IsDerived": true,
-      // "HasGenericParameters": false,
-      // "ConstructorParameterCount": 2,
-      // "MethodCount": 0,
-      // "FieldCount": 1,
-      // "PropertyCount": 0,
-      // "NestedTypeCount": 0,
-      // "IncludeMethods": [],
-      // "ExcludeMethods": [],
-      // "IncludeFields": [
-        // "botOwner_0",
-        // ""
-      // ],
-      // "ExcludeFields": [],
-      // "IncludeProperties": [],
-      // "ExcludeProperties": [],
-      // "IncludeNestedTypes": [],
-      // "ExcludeNestedTypes": []
-    // }
-  // },
   {
     "NewTypeName": "AICoreStrategyAbstractClass",
     "OriginalTypeName": "GClass278`1",
@@ -2478,7 +2712,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2498,7 +2734,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2514,13 +2752,15 @@
       "IncludeFields": [
         "Reason",
         "Action",
-		"Data"
+        "Data"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2541,7 +2781,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2559,7 +2801,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2578,7 +2822,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2597,7 +2843,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2617,7 +2865,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2636,7 +2886,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2658,7 +2910,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2676,7 +2930,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2694,7 +2950,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2713,7 +2971,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2735,7 +2995,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2753,7 +3015,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2771,7 +3035,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2789,7 +3055,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2807,7 +3075,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2826,7 +3096,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2847,7 +3119,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2867,7 +3141,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2887,7 +3163,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2906,7 +3184,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2926,7 +3206,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2938,8 +3220,8 @@
       "IsInterface": true,
       "IncludeMethods": [
         "GetAvailableCustomizationsStorage",
-		"ApplyCustomization",
-		"ValidateNickname"
+        "ApplyCustomization",
+        "ValidateNickname"
       ],
       "ExcludeMethods": [],
       "IncludeFields": [],
@@ -2947,7 +3229,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2966,7 +3250,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -2986,7 +3272,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3009,7 +3297,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3027,7 +3317,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3048,7 +3340,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3069,7 +3363,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3093,7 +3389,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3112,7 +3410,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3132,7 +3432,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3151,7 +3453,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3177,7 +3481,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3196,7 +3502,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3214,7 +3522,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3233,7 +3543,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3252,7 +3564,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3271,7 +3585,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3290,7 +3606,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3309,27 +3627,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "IConditionCounter",
-    "OriginalTypeName": "GInterface446",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsInterface": true,
-      "IncludeMethods": [
-        "CheckVisibilityStatus",
-        "TransitionStatus"
-      ],
-      "ExcludeMethods": [],
-      "IncludeFields": [],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3349,7 +3649,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3369,7 +3671,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3389,7 +3693,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3409,7 +3715,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3429,7 +3737,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3448,7 +3758,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3468,7 +3780,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3490,7 +3804,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3509,7 +3825,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3528,7 +3846,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3549,7 +3869,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3568,7 +3890,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3587,7 +3911,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3608,7 +3934,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3629,7 +3957,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3649,7 +3979,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3668,7 +4000,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3687,7 +4021,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3706,7 +4042,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3725,7 +4063,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3744,7 +4084,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3764,7 +4106,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3785,7 +4129,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3805,7 +4151,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3826,7 +4174,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3845,7 +4195,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3865,7 +4217,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3885,7 +4239,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3904,7 +4260,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3926,7 +4284,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3946,7 +4306,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3966,7 +4328,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -3986,7 +4350,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4007,7 +4373,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4026,7 +4394,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4046,7 +4416,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4065,7 +4437,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4083,7 +4457,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4103,7 +4479,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4123,7 +4501,9 @@
       "IncludeNestedTypes": [
         "InventoryWarning"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4144,7 +4524,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4162,7 +4544,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4183,7 +4567,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4205,7 +4591,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4224,7 +4612,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4244,7 +4634,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4265,7 +4657,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4290,7 +4684,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4309,7 +4705,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4330,7 +4728,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4349,7 +4749,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4369,7 +4771,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4390,7 +4794,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4411,7 +4817,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4430,7 +4838,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4450,7 +4860,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4471,7 +4883,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4490,7 +4904,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4510,7 +4926,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4530,7 +4948,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4549,7 +4969,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4568,7 +4990,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4587,7 +5011,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4606,7 +5032,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4625,7 +5053,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4645,7 +5075,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4664,35 +5096,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "InventoryContainerClass",
-    "OriginalTypeName": "GControl6",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsAbstract": false,
-      "IsStruct": false,
-      "IsDerived": true,
-      "ConstructorParameterCount": 3,
-      "IncludeMethods": [
-        "FindQuestGridToPickUp",
-        "ConvertOperationResultToOperation",
-        "RollBack"
-      ],
-      "ExcludeMethods": [
-        "GetTraderServicesDataFromServer"
-      ],
-      "IncludeFields": [
-        "backendIdGenerator_0"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4714,7 +5120,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4736,7 +5144,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4760,7 +5170,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4780,7 +5192,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4802,7 +5216,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4823,7 +5239,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4843,7 +5261,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4865,7 +5285,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4886,7 +5308,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4908,7 +5332,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4932,7 +5358,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4954,7 +5382,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -4977,7 +5407,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5000,7 +5432,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5018,7 +5452,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5039,7 +5475,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5069,7 +5507,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5090,7 +5530,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5109,7 +5551,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5128,7 +5572,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5147,7 +5593,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5168,7 +5616,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5189,7 +5639,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5209,7 +5661,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5229,7 +5683,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5249,7 +5705,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5268,7 +5726,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5290,7 +5750,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5312,7 +5774,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5332,7 +5796,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5352,7 +5818,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5373,7 +5841,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5394,7 +5864,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5414,7 +5886,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5435,7 +5909,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5445,22 +5921,29 @@
     "SearchParams": {
       "IsPublic": true,
       "IsAbstract": true,
-      "IsNested": false,
       "IncludeMethods": [
         "GetScavRoleKey",
         "IsHostileToEverybody",
         "ShallUseFastAnimator",
         "IsMidPriorityBossOrFollower",
         "IsSiutable",
-        "GetPhraseTagFromRole"
+        "GetPhraseTagFromRole",
+        "IsBossOrFollower",
+        "IsFollower"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "bool_0"
+      ],
       "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeProperties": [
+        "String_0"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5486,7 +5969,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5511,7 +5996,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5534,7 +6021,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5555,7 +6044,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5581,31 +6072,9 @@
       "IncludeNestedTypes": [
         "ValueInfo"
       ],
-      "ExcludeNestedTypes": []
-    }
-  },
-  {
-    "NewTypeName": "CorpseLootItemClass",
-    "OriginalTypeName": "GClass1277",
-    "UseForceRename": false,
-    "SearchParams": {
-      "IsPublic": true,
-      "IsSealed": false,
-      "MethodCount": 0,
-      "FieldCount": 4,
-      "IncludeMethods": [],
-      "ExcludeMethods": [],
-      "IncludeFields": [
-        "Customization",
-        "Side",
-        "Bones",
-        "ProfileID"
-      ],
-      "ExcludeFields": [],
-      "IncludeProperties": [],
-      "ExcludeProperties": [],
-      "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5627,7 +6096,9 @@
       "IncludeNestedTypes": [
         "Berserk"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5653,7 +6124,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5671,7 +6144,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5692,7 +6167,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5712,7 +6189,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5730,7 +6209,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5753,7 +6234,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5771,7 +6254,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5791,32 +6276,39 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
     "NewTypeName": "TimeHasComeScreenClass",
-    "OriginalTypeName": "GClass3563",
+    "OriginalTypeName": "GClass3627",
     "UseForceRename": false,
     "SearchParams": {
-		"ConstructorParameterCount": 3,
       "IsPublic": true,
       "IsNested": true,
       "IsSealed": false,
       "NTParentName": "MatchmakerTimeHasCome",
+      "ConstructorParameterCount": 3,
       "IncludeMethods": [],
       "ExcludeMethods": [],
       "IncludeFields": [
-		"ScreenType",
-        "IsReconnecting",
-		"SwitchTaskBarButtonsAvailability",
-		"LimitedServersAvailability"
+        "Session",
+        "Matchmaker",
+        "RaidSettings"
       ],
       "ExcludeFields": [],
-      "IncludeProperties": [],
+      "IncludeProperties": [
+        "ScreenType",
+        "TaskBarButtonsAvailability",
+        "LimitedServersAvailability"
+      ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5836,7 +6328,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5864,18 +6358,19 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
     "NewTypeName": "CustomizationSolverClass",
-    "OriginalTypeName": "GClass1545",
+    "OriginalTypeName": "GClass1617",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
-      "IsAbstract": false,
       "IsNested": false,
-      "IsSealed": false,
+      "IsSealed": true,
       "IncludeMethods": [
         "GetBundle",
         "GetWatchBundle",
@@ -5883,7 +6378,10 @@
         "GetAnyCustomizationItem"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "HideoutMannequinPoses",
+        "HideoutCustomizationItems"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [
         "NeedToCheckAvailable",
@@ -5892,7 +6390,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5915,7 +6415,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5939,7 +6441,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5967,7 +6471,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -5988,7 +6494,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6012,7 +6520,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6038,7 +6548,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6067,7 +6579,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6097,7 +6611,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6123,7 +6639,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6145,7 +6663,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6176,7 +6696,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6202,7 +6724,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6230,7 +6754,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6264,7 +6790,9 @@
         "Status"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6293,7 +6821,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6316,7 +6846,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6341,7 +6873,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6370,7 +6904,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6398,7 +6934,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6426,7 +6964,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6452,7 +6992,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6486,7 +7028,9 @@
         "ColumnCount"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6512,7 +7056,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6540,7 +7086,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6569,7 +7117,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6604,7 +7154,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6633,7 +7185,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6662,7 +7216,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6688,7 +7244,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6716,7 +7274,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6743,7 +7303,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6769,32 +7331,38 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
     "NewTypeName": "FirearmHandsControllerClass",
-    "OriginalTypeName": "GClass2598",
+    "OriginalTypeName": "GClass2763",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
       "IsAbstract": false,
-      "IsInterface": false,
-      "IsStruct": false,
       "IsNested": false,
+      "IsSealed": true,
       "IsDerived": true,
-      "HasGenericParameters": false,
       "IncludeMethods": [
-        "UpdateAmmoInChamberVisual",
-        "UpdateTacticalComboVisualControllers"
+        "UpdateTacticalComboVisualControllers",
+        "DisableLightsState",
+        "Execute"
       ],
       "ExcludeMethods": [],
-      "IncludeFields": [],
+      "IncludeFields": [
+        "firearmAnimationHandsController_0",
+        "tacticalComboVisualController_0"
+      ],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6820,7 +7388,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6847,7 +7417,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6874,7 +7446,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6903,7 +7477,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6929,7 +7505,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6948,7 +7526,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6976,7 +7556,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -6999,7 +7581,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7023,7 +7607,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7046,7 +7632,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7064,7 +7652,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7082,7 +7672,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7102,7 +7694,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7124,11 +7718,14 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
     "NewTypeName": "Prone2StandState",
+    "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
@@ -7141,14 +7738,17 @@
         "ProcessAnimatorMovement",
         "LateUpdate",
         "RecalculateCapsuleColliderSize",
-        "OnDestroy"
+        "OnDestroy",
+        "ChangeSpeed"
       ],
       "IncludeFields": [],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7169,7 +7769,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7191,7 +7793,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7214,7 +7818,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7236,7 +7842,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7259,7 +7867,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7279,7 +7889,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7302,7 +7914,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7326,7 +7940,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7347,7 +7963,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7368,7 +7986,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7392,7 +8012,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7412,7 +8034,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7433,7 +8057,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7456,7 +8082,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7480,7 +8108,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7503,7 +8133,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7525,7 +8157,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7547,7 +8181,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7570,7 +8206,9 @@
       "IncludeNestedTypes": [
         "ESyncType"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7590,7 +8228,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7616,7 +8256,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7642,7 +8284,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7668,7 +8312,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7696,7 +8342,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7725,7 +8373,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7755,7 +8405,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7782,7 +8434,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7805,7 +8459,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7828,7 +8484,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7850,7 +8508,9 @@
       "IncludeNestedTypes": [
         "FoldCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7881,7 +8541,9 @@
       "IncludeNestedTypes": [
         "SwapCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7905,7 +8567,9 @@
       "IncludeNestedTypes": [
         "MergeCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7939,7 +8603,9 @@
       "IncludeNestedTypes": [
         "TransferCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7965,7 +8631,9 @@
       "IncludeNestedTypes": [
         "ApplyCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -7992,7 +8660,9 @@
       "IncludeNestedTypes": [
         "RemoveCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8017,7 +8687,9 @@
       "IncludeNestedTypes": [
         "SplitCommand"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8038,7 +8710,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8063,7 +8737,9 @@
         "SearchOperations"
       ],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8084,7 +8760,9 @@
       ],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8106,7 +8784,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8127,7 +8807,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8147,7 +8829,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8170,7 +8854,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8198,7 +8884,9 @@
       "IncludeNestedTypes": [
         "EExtraDataType"
       ],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8222,7 +8910,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {
@@ -8245,7 +8935,9 @@
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   }
 ]

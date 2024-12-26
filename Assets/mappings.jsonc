@@ -291,10 +291,14 @@
   },
   {
     "NewTypeName": "InsuredItemClass",
-    "OriginalTypeName": "GClass1272",
+    "OriginalTypeName": "GClass1321",
     "UseForceRename": false,
     "SearchParams": {
       "IsPublic": true,
+      "IsStruct": false,
+      "IsSealed": true,
+      "HasAttribute": true,
+      "ConstructorParameterCount": 0,
       "MethodCount": 0,
       "FieldCount": 2,
       "PropertyCount": 0,
@@ -304,11 +308,24 @@
         "itemId",
         "tid"
       ],
-      "ExcludeFields": [],
+      "ExcludeFields": [
+        "SlotNumber",
+        "ContainedItem",
+        "GridNumber",
+        "ContainedItems",
+        "QuestId",
+        "Value",
+        "Arena",
+        "ExpirationTime",
+        "Mastering",
+        "Timestamp"
+      ],
       "IncludeProperties": [],
       "ExcludeProperties": [],
       "IncludeNestedTypes": [],
-      "ExcludeNestedTypes": []
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
     }
   },
   {

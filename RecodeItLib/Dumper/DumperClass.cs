@@ -264,9 +264,9 @@ public class DumperClass
         var method = type.Methods.First(DumpyReflectionHelper.GetRunValidationMethod);
         var method2 = type.NestedTypes[0].Methods.First(DumpyReflectionHelper.GetRunValidationNextMethod);
 
-        if (method == null || method.Body.Instructions.Count != 25)
+        if (method == null || method.Body.Instructions.Count != 23)
         {
-            Logger.Log($"RunValidation Instructions count has changed from 25 to {method.Body.Instructions.Count}");
+            Logger.Log($"RunValidation Instructions count has changed from 23 to {method.Body.Instructions.Count}");
         }
 
         if (method2 == null || method2.Body.Instructions.Count != 171)

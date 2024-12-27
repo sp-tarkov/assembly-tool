@@ -265,14 +265,16 @@ public static class TypeHelper
                 var properties = x.GetProperties();
                 var methods = x.GetMethods();
             
-                return fields.Length == 25 && constructors.Length == 2 &&
-                       properties.Length == 0 && methods.Length == 4 &&
-                       fields.Any(f => f.Name == "KarmaValue") &&
-                       fields.Any(f => f.Name == "Encyclopedia") &&
-                       fields.Any(f => f.Name == "Id") &&
-                       fields.Any(f => f.Name == "AccountId") &&
-                       fields.Any(f => f.Name == "PetId") &&
-                       fields.Any(f => f.Name == "Customization");
+                return fields.Length == 26 
+                       && constructors.Length == 2 
+                       && properties.Length == 0 
+                       && methods.Length == 4
+                       && fields.Any(f => f.Name == "KarmaValue") 
+                       && fields.Any(f => f.Name == "Encyclopedia") 
+                       && fields.Any(f => f.Name == "Id") 
+                       && fields.Any(f => f.Name == "AccountId") 
+                       && fields.Any(f => f.Name == "PetId") 
+                       && fields.Any(f => f.Name == "Customization");
             });
         }
         catch (Exception e)

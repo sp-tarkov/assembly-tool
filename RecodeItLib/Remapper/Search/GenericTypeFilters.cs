@@ -20,15 +20,12 @@ internal static class GenericTypeFilters
         {
             if (parms.IsNested is true)
             {
-                Logger.Log("IsNested Public", ConsoleColor.Yellow);
-
                 types = types.Where(t => t.IsNestedPublic);
 
                 types = FilterNestedByName(types, parms);
             }
             else
             {
-                Logger.Log("IsPublic is true", ConsoleColor.Yellow);
                 types = types.Where(t => t.IsPublic);
             }
         }
@@ -36,8 +33,6 @@ internal static class GenericTypeFilters
         {
             if (parms.IsNested is true)
             {
-                Logger.Log("IsNested Private or family", ConsoleColor.Yellow);
-
                 types = types.Where(t => t.IsNestedPrivate
                                          || t.IsNestedFamily
                                          || t.IsNestedFamilyAndAssembly
@@ -47,7 +42,6 @@ internal static class GenericTypeFilters
             }
             else
             {
-                Logger.Log("IsPublic is false", ConsoleColor.Yellow);
                 types = types.Where(t => t.IsNotPublic);
             }
         }
@@ -59,7 +53,6 @@ internal static class GenericTypeFilters
     {
         if (parms.NTParentName is not null)
         {
-            Logger.Log($"NT Parent: {parms.NTParentName}", ConsoleColor.Yellow);
             types = types.Where(t => t.DeclaringType.Name.String == parms.NTParentName);
         }
 
@@ -77,12 +70,10 @@ internal static class GenericTypeFilters
         // Filter based on abstract or not
         if (parms.IsAbstract is true)
         {
-            Logger.Log("IsAbstract is true", ConsoleColor.Yellow);
             types = types.Where(t => t.IsAbstract && !t.IsInterface);
         }
         else if (parms.IsAbstract is false)
         {
-            Logger.Log("IsAbstract is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.IsAbstract);
         }
 
@@ -100,12 +91,10 @@ internal static class GenericTypeFilters
         // Filter based on abstract or not
         if (parms.IsSealed is true)
         {
-            Logger.Log("IsSealed is true", ConsoleColor.Yellow);
             types = types.Where(t => t.IsSealed);
         }
         else if (parms.IsSealed is false)
         {
-            Logger.Log("IsSealed is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.IsSealed);
         }
 
@@ -123,12 +112,10 @@ internal static class GenericTypeFilters
         // Filter based on interface or not
         if (parms.IsInterface is true)
         {
-            Logger.Log("IsInterface is true", ConsoleColor.Yellow);
             types = types.Where(t => t.IsInterface);
         }
         else if (parms.IsInterface is false)
         {
-            Logger.Log("IsInterface is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.IsInterface);
         }
 
@@ -145,12 +132,10 @@ internal static class GenericTypeFilters
     {
         if (parms.IsStruct is true)
         {
-            Logger.Log("IsStruct is true", ConsoleColor.Yellow);
             types = types.Where(t => t.IsValueType && !t.IsEnum);
         }
         else if (parms.IsStruct is false)
         {
-            Logger.Log("IsStruct is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.IsValueType);
         }
 
@@ -168,12 +153,10 @@ internal static class GenericTypeFilters
         // Filter based on enum or not
         if (parms.IsEnum is true)
         {
-            Logger.Log("IsEnum is true", ConsoleColor.Yellow);
             types = types.Where(t => t.IsEnum);
         }
         else if (parms.IsEnum is false)
         {
-            Logger.Log("IsEnum is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.IsEnum);
         }
 
@@ -191,12 +174,10 @@ internal static class GenericTypeFilters
         // Filter based on HasAttribute or not
         if (parms.HasAttribute is true)
         {
-            Logger.Log("HasAttribute is true", ConsoleColor.Yellow);
             types = types.Where(t => t.HasCustomAttributes);
         }
         else if (parms.HasAttribute is false)
         {
-            Logger.Log("HasAttribute is false", ConsoleColor.Yellow);
             types = types.Where(t => !t.HasCustomAttributes);
         }
 
@@ -214,24 +195,20 @@ internal static class GenericTypeFilters
         // Filter based on IsDerived or not
         if (parms.IsDerived is true)
         {
-            Logger.Log("IsDerived is true", ConsoleColor.Yellow);
             types = types.Where(t => t.GetBaseType()?.Name?.String != "Object");
 
             if (parms.MatchBaseClass is not null and not "")
             {
-                Logger.Log($"Matching base class: {parms.MatchBaseClass}", ConsoleColor.Yellow);
                 types = types.Where(t => t.GetBaseType()?.Name?.String == parms.MatchBaseClass);
             }
 
             if (parms.IgnoreBaseClass is not null and not "")
             {
-                Logger.Log($"Ignoring base class: {parms.MatchBaseClass}", ConsoleColor.Yellow);
                 types = types.Where(t => t.GetBaseType()?.Name?.String != parms.IgnoreBaseClass);
             }
         }
         else if (parms.IsDerived is false)
         {
-            Logger.Log("IsDerived is false", ConsoleColor.Yellow);
             types = types.Where(t => t.GetBaseType()?.Name?.String is "Object");
         }
 
@@ -247,8 +224,7 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterByGenericParameters(IEnumerable<TypeDef> types, SearchParams parms)
     {
         if (parms.HasGenericParameters is null) return types;
-
-        Logger.Log("Matching generic parameters", ConsoleColor.Yellow);
+        
         types = types.Where(t => t.HasGenericParameters == parms.HasGenericParameters);
 
         return types;

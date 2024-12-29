@@ -71,7 +71,6 @@ public class ReCodeItRemapper
             tasks.Add(
                 Task.Factory.StartNew(() =>
                 {
-                    Logger.Log($"\nFinding best match for {remap.NewTypeName}...", ConsoleColor.Gray);
                     ScoreMapping(remap, types);
                 })
             );

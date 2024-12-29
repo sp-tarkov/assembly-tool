@@ -69,7 +69,6 @@ internal static class FieldTypeFilters
 
         if (parms.FieldCount >= 0)
         {
-            Logger.Log("Matching field count", ConsoleColor.Yellow);
             types = types.Where(t => t.Fields.Count == parms.FieldCount);
         }
 

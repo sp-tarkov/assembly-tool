@@ -88,9 +88,7 @@ internal static class RenameHelper
 
                     // Dont need to do extra work
                     if (field.Name == newFieldName) { continue; }
-
-                    Logger.Log($"Renaming field on type {type.Name} named `{field.Name}` with type `{field.FieldType.TypeName}` to `{newFieldName}`", ConsoleColor.Green);
-
+                    
                     var oldName = field.Name.ToString();
 
                     field.Name = newFieldName;
@@ -126,8 +124,7 @@ internal static class RenameHelper
                 if (instr.Operand is MemberRef memRef && memRef.Name == oldName)
                 {
                     //if (!memRef.Name.IsFieldOrPropNameInList(TokensToMatch)) continue;
-
-                    Logger.Log($"Renaming MemRef in method {method.DeclaringType.Name}::{method.Name} from `{memRef.Name}` to `{newDef.Name}`", ConsoleColor.Yellow);
+                    
                     memRef.Name = newDef.Name;
                 }
             }
@@ -160,8 +157,7 @@ internal static class RenameHelper
             if (instr.Operand is FieldDef fieldDef && fieldDef.Name == oldName)
             {
                 if (!fieldDef.Name.IsFieldOrPropNameInList(TokensToMatch)) continue;
-
-                Logger.Log($"Renaming fieldDef in method {method.Name} from `{fieldDef.Name}` to `{newDef.Name}`", ConsoleColor.Yellow);
+                
                 fieldDef.Name = newDef.Name;
             }
         }
@@ -196,8 +192,7 @@ internal static class RenameHelper
 
                     // Dont need to do extra work
                     if (property.Name == newPropertyName) { continue; }
-
-                    Logger.Log($"Renaming property on type {type.Name} named `{property.Name}` with type `{property.PropertySig.RetType.TypeName}` to `{newPropertyName}`", ConsoleColor.Green);
+                    
                     property.Name = new UTF8String(newPropertyName);
 
                     propertyCount++;

@@ -69,7 +69,6 @@ internal static class PropertyTypeFilters
 
         if (parms.PropertyCount >= 0)
         {
-            Logger.Log("Matching property count", ConsoleColor.Yellow);
             types = types.Where(t => t.Properties.Count == parms.PropertyCount);
         }
 

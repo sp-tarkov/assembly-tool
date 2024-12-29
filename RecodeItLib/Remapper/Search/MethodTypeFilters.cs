@@ -69,7 +69,6 @@ internal static class MethodTypeFilters
 
         if (parms.MethodCount >= 0)
         {
-            Logger.Log("Matching method count", ConsoleColor.Yellow);
             types = types.Where(t => GetMethodCountExcludingConstructors(t) == parms.MethodCount);
         }
 

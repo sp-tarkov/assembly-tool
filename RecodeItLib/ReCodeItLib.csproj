@@ -176,6 +176,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\de4dot\de4dot.cui\de4dot.cui.csproj" />
     <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
   </ItemGroup>
 </Project>

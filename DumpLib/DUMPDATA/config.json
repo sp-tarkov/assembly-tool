@@ -1,10 +1,10 @@
 {
 	"Name": "Dumper",
-	"MapNames": [ "Interchange", "factory4_day", "laboratory", "bigmap", "Lighthouse", "RezervBase", "Sandbox", "Sandbox_high", "Shoreline", "TarkovStreets", "Woods" ],
+	"MapNames": [ "Interchange", "factory4_day", "factory_night", "laboratory", "bigmap", "Lighthouse", "RezervBase", "Sandbox", "Sandbox_high", "Shoreline", "TarkovStreets", "Woods" ],
 	"DateTimeFormat": "yyyy-MM-dd_HH-mm-ss",
 	"QuickDumpEnabled": false,
 	"SptTimings": {
 		"SingleIterationDelayMs": 10000,
-		"AllIterationDelayMs": 300000
+		"AllIterationDelayMs": 100000
 	}
 }

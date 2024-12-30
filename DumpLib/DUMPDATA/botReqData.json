@@ -39,5 +39,7 @@
 	{"Role":"infectedPmc","Limit":2,"Difficulty":"normal"},
 	{"Role":"infectedCivil","Limit":2,"Difficulty":"normal"},
 	{"Role":"infectedLaborant","Limit":2,"Difficulty":"normal"},
-	{"Role":"infectedTagilla","Limit":2,"Difficulty":"normal"}
+	{"Role":"infectedTagilla","Limit":2,"Difficulty":"normal"},
+	{"Role":"bossPartisan","Limit":2,"Difficulty":"normal"},
+	{"Role":"followerSanitar","Limit":2,"Difficulty":"normal"}
 ]

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <PlatformTarget>x64</PlatformTarget>
     <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1337,7 +1337,8 @@
         "SetBossSanitar"
       ],
       "IncludeFields": [
-        "int_9"
+        "int_9",
+        "int_10"
       ],
       "ExcludeFields": [],
       "IncludeProperties": [],
@@ -4400,7 +4401,7 @@
     }
   },
   {
-    "NewTypeName": "HardwareDescriptionClass",
+    "NewTypeName": "HardwareDescriptionClass", // 2 matches - both used in same classes...why bsg
     "OriginalTypeName": "GClass1919",
     "UseForceRename": false,
     "SearchParams": {
@@ -4646,13 +4647,16 @@
     "SearchParams": {
       "IsPublic": true,
       "HasGenericParameters": false,
+	  "ConstructorParameterCount": 4,
       "IncludeMethods": [
         "RemoveConditionalsWithoutTemplate"
       ],
       "ExcludeMethods": [
         "AddTemplates"
       ],
-      "IncludeFields": [],
+      "IncludeFields": [
+			"ienumerable_1"
+	],
       "ExcludeFields": [],
       "IncludeProperties": [],
       "ExcludeProperties": [],
@@ -6760,7 +6764,7 @@
     }
   },
   {
-    "NewTypeName": "BotAimingClass",
+    "NewTypeName": "BotAimingClass", // 2 matches, one for normal weapon aiming and 1 for under barrel launhers, both classes are identical
     "OriginalTypeName": "GClass551",
     "UseForceRename": false,
     "SearchParams": {

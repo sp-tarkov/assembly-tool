@@ -119,6 +119,7 @@ namespace de4dot.cui {
 				Logger.n("Use -v/-vv option or set environment variable {0}=1 to see all messages", showAllMessagesEnvName);
 			}
 
+			/*
 			if (IsN00bUser()) {
 				Console.Error.WriteLine("\n\nPress any key to exit...\n");
 				try {
@@ -127,7 +128,7 @@ namespace de4dot.cui {
 				catch (InvalidOperationException) {
 				}
 			}
-
+			*/
 			return exitCode;
 		}
 

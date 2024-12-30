@@ -10,7 +10,6 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(SolutionDir)/Assets/Templates&quot; &quot;$(TargetDir)Data&quot; /E /I /Y" />
-    <Exec Command="xcopy &quot;$(SolutionDir)/Assets/de4dot&quot; &quot;$(TargetDir)Data/de4dot&quot; /E /I /Y" />
   </Target>
   
   <ItemGroup>

@@ -34,7 +34,8 @@ public static class Deobfuscator
 
                 if (!method.Body.Instructions.Any(x =>
                         x.OpCode.Code == Code.Callvirt &&
-                        ((IMethodDefOrRef)x.Operand).FullName == "System.Object System.AppDomain::GetData(System.String)"))
+                        ((IMethodDefOrRef)x.Operand).FullName ==
+                        "System.Object System.AppDomain::GetData(System.String)"))
                 {
                     continue;
                 }
@@ -45,7 +46,8 @@ public static class Deobfuscator
 
         if (potentialStringDelegates.Count != 1)
         {
-            Logger.Log($"Expected to find 1 potential string delegate method; found {potentialStringDelegates.Count}. Candidates: {string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))}");
+            Logger.Log(
+                $"Expected to find 1 potential string delegate method; found {potentialStringDelegates.Count}. Candidates: {string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))}");
         }
 
         var methodDef = potentialStringDelegates[0];
@@ -55,14 +57,26 @@ public static class Deobfuscator
         token = $"0x{(deobfRid.Raw | deobfRid.Rid):x4}";
         Console.WriteLine($"Deobfuscation token: {token}");
 
-        var cmd = isLauncher
-            ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
-            : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
+        string[] dllArgs = [
+            "--un-name",
+            "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*",
+            assemblyPath,
+            "--strtyp",
+            "delegate", 
+            "--strtok",
+            $"\"{token}\""
+        ];
         
-        var process = Process.Start(executablePath, cmd);
-
-        process.WaitForExit();
-
+        string[] launcherArgs = [
+            "--un-name",
+            "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*",
+            assemblyPath,
+            "--strtok",
+            $"\"{token}\""
+        ];
+        
+        de4dot.cui.Program.Main(isLauncher ? launcherArgs : dllArgs);
+        
         var extName = isLauncher ? "-cleaned.exe" : "-cleaned.dll";
         
         // Fixes "ResolutionScope is null" by rewriting the assembly

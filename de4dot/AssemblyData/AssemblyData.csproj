@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Reference Include="System.Runtime.Remoting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\de4dot.blocks\de4dot.blocks.csproj" />
+    <ProjectReference Include="..\de4dot.mdecrypt\de4dot.mdecrypt.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -8939,5 +8939,718 @@
       "IncludeEvents": [],
       "ExcludeEvents": []
     }
+  },
+  {
+    "NewTypeName": "ArtilleryPacketStruct",
+    "OriginalTypeName": "GStruct133",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "id",
+        "position",
+        "explosion"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "RagdollPacketStruct",
+    "OriginalTypeName": "GStruct132",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "Position",
+        "Done",
+        "TransformSyncs",
+        "IsNotValidPosition"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "TransitInteractionPacketStruct",
+    "OriginalTypeName": "GStruct180",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "hasInteraction",
+        "pointId",
+        "keyId",
+        "time"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "TransitionStatusStruct",
+    "OriginalTypeName": "GStruct140",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "bool_0",
+        "bool_1",
+        "edateTime_0",
+        "eraidMode_0",
+        "esideType_0",
+        "string_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "InTransition",
+        "Location",
+        "Mode",
+        "Side",
+        "Time",
+        "Training"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "SpawnSettingsStruct",
+    "OriginalTypeName": "GStruct396",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "float_2",
+        "float_3",
+        "float_4",
+        "int_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "MaxBotPerZone",
+        "MaxPossibleDistFreePointsSqr",
+        "MinPossibleDistFreePointsSqr",
+        "SpawnSafeDistanceSqr"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "ExplosiveHitArmorColliderStruct",
+    "OriginalTypeName": "GStruct214",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "ConstructorParameterCount": 2,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "BodyPartColliderType",
+        "ArmorPlateCollider"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "MountingPacketStruct",
+    "OriginalTypeName": "GStruct184",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "HasCriticalData",
+        "IsMounted",
+        "MountingPoint",
+        "CurrentMountingPointVerticalOffset",
+        "MountingDirection",
+        "MountingCommand",
+        "TransitionTime"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "GrenadeDataPacketStruct",
+    "OriginalTypeName": "GStruct134",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "Position",
+        "Rotation",
+        "Velocity",
+        "AngularVelocity",
+        "CollisionNumber",
+        "Done"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "StationaryPacketStruct",
+    "OriginalTypeName": "GStruct182",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "HasInteraction",
+        "Id",
+        "StationaryCommand",
+        "FinalizeObserverCrutch",
+        "IsStationaryFinal"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "WorldInteractiveDataPacketStruct",
+    "OriginalTypeName": "GStruct421",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IsNested": true,
+      "NTParentName": "WorldInteractiveObject",
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Id",
+        "State",
+        "Angle",
+        "Updated",
+        "IsBroken"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "NetId"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "PhysicalStateStruct",
+    "OriginalTypeName": "GStruct37",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IsNested": true,
+      "FieldCount": 3,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "StaminaExhausted",
+        "OxygenExhausted",
+        "HandsExhausted"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "SmokeGrenadeDataPacketStruct",
+    "OriginalTypeName": "GStruct36",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsStruct": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "Position",
+        "Id",
+        "Template",
+        "Time",
+        "Orientation",
+        "PlatformId"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "AmmoPackReloadOperationClass",
+    "OriginalTypeName": "GClass1779",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "CanReload",
+        "Start"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ammoPackReloadingClass",
+        "magazineItemClass",
+        "bool_1",
+        "int_0",
+        "bool_2"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Boolean_0"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "AmmoPackReloadInternalOneChamberOperationClass",
+    "OriginalTypeName": "GClass1781",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "FieldCount": 2,
+      "IncludeMethods": [
+        "CommitReloadWithAmmo",
+        "method_10",
+        "SwitchToIdle",
+        "method_9"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "ammoItemClass",
+        "bool_3"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "AmmoPackReloadInternalBoltOpenOperationClass",
+    "OriginalTypeName": "GClass1782",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IsDerived": true,
+      "IncludeMethods": [
+        "method_10",
+        "CommitReloadWithAmmo",
+        "SwitchToIdle",
+        "method_9"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "item_0",
+        "bool_3",
+        "bool_4"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "BotSearchControllerClass",
+    "OriginalTypeName": "GClass2002",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "PropertyCount": 3,
+      "IncludeMethods": [
+        "CanStartNewSearchOperation",
+        "ContainsUnknownItems",
+        "GetObserverItemState",
+        "IsItemKnown",
+        "IsSearched",
+        "SearchContents",
+        "SetItemAsKnown",
+        "SetItemAsSearched",
+        "StopSearching",
+        "TryFindChangedContainer"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "CanSearch",
+        "ProfileId",
+        "SearchOperations"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [
+        "OnItemFound",
+        "OnItemSearched"
+      ],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "EFTWriterClass",
+    "OriginalTypeName": "GClass1211",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "method_0",
+        "method_1",
+        "method_2",
+        "Reset",
+        "ToArray",
+        "ToArraySegment",
+        "ToString",
+        "Write",
+        "WriteByte",
+        "WriteBytes"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "byte_0",
+        "Position",
+        "utf8Encoding_0"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Capacity"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "SyncObjectProcessorClass",
+    "OriginalTypeName": "GClass2448",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsDerived": false,
+      "IncludeMethods": [
+        "Dispose",
+        "GetSynchronizableObjects",
+        "GetSyncObjectStrategyByType",
+        "InitStaticObject",
+        "InitSyncObject",
+        "ManualUpdate",
+        "method_0",
+        "method_1",
+        "method_2",
+        "RemoveNonActiveAndStaticObjects",
+        "ReturnToPool",
+        "TakeFromPool",
+        "WriteSyncObjects"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "AirdropManager",
+        "byte_0",
+        "levelPhysicsSettings_0",
+        "list_0",
+        "list_1",
+        "TripwireManager"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Settings",
+        "TakeSynchronizedObjectId"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "TransitSettingsClass",
+    "OriginalTypeName": "GClass1504",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsNested": true,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "active",
+        "DeliveryMinPrice",
+        "DeliveryPrice",
+        "ModDeliveryCost",
+        "BearPriceMod",
+        "UsecPriceMod",
+        "ScavPriceMod",
+        "CoefficientDiscountCharisma",
+        "ClearAllPlayerEffectsOnTransit",
+        "RestoreHealthOnDestroyedParts",
+        "PercentageOfMissingHealthRestore",
+        "PercentageOfMissingWaterRestore",
+        "PercentageOfMissingEnergyRestore"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "LocalGameLoggerClass",
+    "OriginalTypeName": "GClass697",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsDerived": true,
+      "ConstructorParameterCount": 3,
+      "IncludeMethods": [
+        "method_3",
+        "method_4",
+        "method_5",
+        "method_6",
+        "method_7",
+        "method_8"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "idictionary_0",
+        "idictionary_1",
+        "stringBuilder_1",
+        "stringBuilder_2"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "TransitDataClass",
+    "OriginalTypeName": "GClass1666",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "ConstructorParameterCount": 4,
+      "IncludeMethods": [],
+      "ExcludeMethods": [],
+      "IncludeFields": [
+        "raidId",
+        "count",
+        "maps",
+        "events"
+      ],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "HandsControllerToEnumClass",
+    "OriginalTypeName": "GClass1836",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "MethodCount": 1,
+      "IncludeMethods": [
+        "FromController"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "EFTItemSerializerClass",
+    "OriginalTypeName": "GClass1712",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "IncludeMethods": [
+        "DeserializeComponent",
+        "DeserializeItem",
+        "DeserializeLootData",
+        "SerializeItem",
+        "SerializeLootData",
+        "SerializeNestedItem",
+        "smethod_0",
+        "smethod_1",
+        "smethod_2",
+        "smethod_3",
+        "smethod_4"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "SpawnSystemCreatorClass",
+    "OriginalTypeName": "GClass3369",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IsAbstract": true,
+      "MethodCount": 3,
+      "IncludeMethods": [
+        "CreateSpawnSystem"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
+  },
+  {
+    "NewTypeName": "EFTReaderClass",
+    "OriginalTypeName": "GClass1206",
+    "UseForceRename": false,
+    "SearchParams": {
+      "IsPublic": true,
+      "IncludeMethods": [
+        "SetBuffer",
+        "method_0",
+        "method_1",
+        "ReadByte",
+        "ReadBytes",
+        "ReadBytesSegment",
+        "Read"
+      ],
+      "ExcludeMethods": [],
+      "IncludeFields": [],
+      "ExcludeFields": [],
+      "IncludeProperties": [
+        "Remaining",
+        "Capacity"
+      ],
+      "ExcludeProperties": [],
+      "IncludeNestedTypes": [],
+      "ExcludeNestedTypes": [],
+      "IncludeEvents": [],
+      "ExcludeEvents": []
+    }
   }
 ]

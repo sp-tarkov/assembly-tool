@@ -46,18 +46,7 @@ internal static class RenameHelper
 
         Logger.Log($"{remap.TypePrimeCandidate.Name.String} Renamed.", ConsoleColor.Green);
     }
-
-    /// <summary>
-    /// Only used by the manual remapper, should probably be removed
-    /// </summary>
-    /// <param name="module"></param>
-    /// <param name="remap"></param>
-    /// <param name="type"></param>
-    public static void RenameAllDirect(IEnumerable<TypeDef> types, RemapModel remap, TypeDef type)
-    {
-        RenameAll(types, remap, true);
-    }
-
+    
     /// <summary>
     /// Rename all fields recursively, returns number of fields changed
     /// </summary>
@@ -130,39 +119,7 @@ internal static class RenameHelper
             }
         }
     }
-
-    private static void RenameAllFieldRefsInMethods(IEnumerable<TypeDef> typesToCheck, FieldDef newDef, string oldName)
-    {
-        foreach (var type in typesToCheck)
-        {
-            foreach (var method in type.Methods)
-            {
-                if (!method.HasBody) continue;
-
-                ChangeFieldNamesInMethods(method, newDef, oldName);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Rename all field and member refs in a method
-    /// </summary>
-    /// <param name="method"></param>
-    /// <param name="newDef"></param>
-    /// <param name="oldName"></param>
-    private static void ChangeFieldNamesInMethods(MethodDef method, FieldDef newDef, string oldName)
-    {
-        foreach (var instr in method.Body.Instructions)
-        {
-            if (instr.Operand is FieldDef fieldDef && fieldDef.Name == oldName)
-            {
-                if (!fieldDef.Name.IsFieldOrPropNameInList(TokensToMatch)) continue;
-                
-                fieldDef.Name = newDef.Name;
-            }
-        }
-    }
-
+    
     /// <summary>
     /// Rename all properties recursively, returns number of fields changed
     /// </summary>

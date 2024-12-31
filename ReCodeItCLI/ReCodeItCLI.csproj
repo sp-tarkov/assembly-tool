@@ -7,10 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(SolutionDir)/Assets/Templates&quot; &quot;$(TargetDir)Data&quot; /E /I /Y" />
-  </Target>
   
   <ItemGroup>
     <ProjectReference Include="..\RecodeItLib\ReCodeItLib.csproj" />
@@ -20,4 +16,41 @@
     <PackageReference Include="CliFx" Version="2.3.5" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <AssemblyServerProj>$(SolutionDir)de4dot\AssemblyServer-x64\AssemblyServer-x64.csproj</AssemblyServerProj>
+    <de4dot-x64Proj>$(SolutionDir)de4dot\de4dot-x64\de4dot-x64.csproj</de4dot-x64Proj>
+  </PropertyGroup>
+
+  <Target Name="GetOutputPath" Returns="@(OutputPath)">
+    <!-- Emit the OutputPath property -->
+    <Output TaskParameter="OutputItems" ItemName="OutputPath" />
+  </Target>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <de4dot Include="$(SolutionDir)de4dot\$(Configuration)\net48\*.*" />
+      <templates Include="$(SolutionDir)Assets\Templates\**\*.*" />
+      <Cli Include="$(ProjectDir)$(OutDir)\*.*" />
+    </ItemGroup>
+
+    <MSBuild Projects="$(AssemblyServerProj)" Properties="Configuration=$(Configuration)" />
+    <MSBuild Projects="$(de4dot-x64Proj)" Properties="Configuration=$(Configuration)" />
+    
+    <RemoveDir Directories="$(SolutionDir)Build" />
+    
+    <Copy
+            SourceFiles="@(Cli)"
+            DestinationFolder="$(SolutionDir)Build\%(RecursiveDir)"
+    />
+    
+    <Copy
+            SourceFiles="@(de4dot);"
+            DestinationFolder="$(SolutionDir)Build\de4dot\%(RecursiveDir)"
+    />
+    <Copy
+            SourceFiles="@(templates);"
+            DestinationFolder="$(SolutionDir)Build\Data\%(RecursiveDir)"
+    />
+  </Target>
+  
 </Project>

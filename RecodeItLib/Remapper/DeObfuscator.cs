@@ -9,9 +9,7 @@ namespace ReCodeItLib.Remapper;
 public static class Deobfuscator
 {
     public static void Deobfuscate(string assemblyPath, bool isLauncher = false)
-    {
-        var executablePath = Path.Combine(DataProvider.DataPath, "De4dot", "de4dot-x64.exe");
-
+    { 
         string token;
 
         ModuleContext modCtx = ModuleDef.CreateModuleContext();
@@ -57,43 +55,13 @@ public static class Deobfuscator
         token = $"0x{(deobfRid.Raw | deobfRid.Rid):x4}";
         Console.WriteLine($"Deobfuscation token: {token}");
 
-        string[] dllArgs = [
-            "--un-name",
-            "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*",
-            assemblyPath,
-            "--strtyp",
-            "delegate", 
-            "--strtok",
-            $"\"{token}\""
-        ];
+        var cmd = isLauncher
+            ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
+            : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
         
-        string[] launcherArgs = [
-            "--un-name",
-            "!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*",
-            assemblyPath,
-            "--strtok",
-            $"\"{token}\""
-        ];
+        var executablePath = Path.Combine(AppContext.BaseDirectory, "de4dot", "de4dot-x64.exe");
         
-        de4dot.cui.Program.Main(isLauncher ? launcherArgs : dllArgs);
-        
-        var extName = isLauncher ? "-cleaned.exe" : "-cleaned.dll";
-        
-        // Fixes "ResolutionScope is null" by rewriting the assembly
-        var cleanedDllPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + extName);
-
-        ModuleDefMD assemblyRewrite = null;
-
-        using (var memoryStream = new MemoryStream(File.ReadAllBytes(cleanedDllPath)))
-        {
-            assemblyRewrite = ModuleDefMD.Load(memoryStream, modCtx);
-
-            if (isLauncher)
-            {
-                SPTPublicizer.PublicizeClasses(assemblyRewrite, true);
-            }
-        }
-
-        assemblyRewrite.Write(cleanedDllPath);
+        var process = Process.Start(executablePath, cmd);
+        process.WaitForExit();
     }
 }

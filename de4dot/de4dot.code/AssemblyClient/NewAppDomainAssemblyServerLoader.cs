@@ -35,7 +35,7 @@ namespace de4dot.code.AssemblyClient {
 		public override void LoadServer(string filename) {
 			if (appDomain != null)
 				throw new ApplicationException("Server is already loaded");
-
+			
 			appDomain = AppDomain.CreateDomain(Utils.RandomName(15, 20));
 			thread = new Thread(new ThreadStart(() => {
 				try {

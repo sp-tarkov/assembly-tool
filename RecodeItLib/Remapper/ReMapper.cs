@@ -52,7 +52,7 @@ public class ReMapper
         
         var types = Module.GetTypes();
         
-        TryDeObfuscate(ref types, assemblyPath);
+        TryDeObfuscate(types, assemblyPath);
         FindBestMatches(types);
         ChooseBestMatches();
 
@@ -72,7 +72,7 @@ public class ReMapper
         WriteAssembly();
     }
 
-    private void TryDeObfuscate(ref IEnumerable<TypeDef> types, string assemblyPath)
+    private void TryDeObfuscate(IEnumerable<TypeDef> types, string assemblyPath)
     {
         if (!Module!.GetTypes().Any(t => t.Name.Contains("GClass")))
         {

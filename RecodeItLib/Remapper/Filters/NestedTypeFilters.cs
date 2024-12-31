@@ -1,27 +1,27 @@
 ﻿using dnlib.DotNet;
 using ReCodeItLib.Models;
 
-namespace ReCodeItLib.ReMapper.Search;
+namespace ReCodeItLib.ReMapper.Filters;
 
-internal static class PropertyTypeFilters
+internal static class NestedTypeFilters
 {
     /// <summary>
-    /// Filters based on property includes
+    /// Filters based on nested type includes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IncludeProperties.Count == 0) return types;
+        if (parms.IncludeNestedTypes.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.IncludeProperties
-                .All(includeName => type.Properties
-                    .Any(prop => prop.Name.String == includeName)))
+            if (parms.IncludeNestedTypes
+                .All(includeName => type.NestedTypes
+                    .Any(nestedType => nestedType.Name.String == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -31,21 +31,21 @@ internal static class PropertyTypeFilters
     }
 
     /// <summary>
-    /// Filters based on property excludes
+    /// Filters based on nested type excludes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ExcludeProperties.Count == 0) return types;
+        if (parms.ExcludeNestedTypes.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            var match = type.Properties
-                .Where(prop => parms.ExcludeProperties.Contains(prop.Name.String));
+            var match = type.Fields
+                .Where(field => parms.ExcludeNestedTypes.Contains(field.Name.String));
 
             if (!match.Any())
             {
@@ -57,18 +57,18 @@ internal static class PropertyTypeFilters
     }
 
     /// <summary>
-    /// Filters based on property count
+    /// Filters based on nested type count
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.PropertyCount is null) return types;
+        if (parms.NestedTypeCount is null) return types;
 
-        if (parms.PropertyCount >= 0)
+        if (parms.NestedTypeCount >= 0)
         {
-            types = types.Where(t => t.Properties.Count == parms.PropertyCount);
+            types = types.Where(t => t.NestedTypes.Count == parms.NestedTypeCount);
         }
 
         return types;

@@ -1,27 +1,27 @@
 ﻿using dnlib.DotNet;
 using ReCodeItLib.Models;
 
-namespace ReCodeItLib.ReMapper.Search;
+namespace ReCodeItLib.ReMapper.Filters;
 
-internal static class MethodTypeFilters
+internal static class PropertyTypeFilters
 {
     /// <summary>
-    /// Filters based on method includes
+    /// Filters based on property includes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IncludeMethods.Count == 0) return types;
+        if (parms.IncludeProperties.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.IncludeMethods
-                .All(includeName => type.Methods
-                    .Any(method => method.Name.String == includeName)))
+            if (parms.IncludeProperties
+                .All(includeName => type.Properties
+                    .Any(prop => prop.Name.String == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -31,21 +31,21 @@ internal static class MethodTypeFilters
     }
 
     /// <summary>
-    /// Filters based on method excludes
+    /// Filters based on property excludes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ExcludeMethods.Count == 0) return types;
+        if (parms.ExcludeProperties.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            var match = type.Methods
-                .Where(method => parms.ExcludeMethods.Contains(method.Name.String));
+            var match = type.Properties
+                .Where(prop => parms.ExcludeProperties.Contains(prop.Name.String));
 
             if (!match.Any())
             {
@@ -57,38 +57,20 @@ internal static class MethodTypeFilters
     }
 
     /// <summary>
-    /// Filters based on method count
+    /// Filters based on property count
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.MethodCount is null) return types;
+        if (parms.PropertyCount is null) return types;
 
-        if (parms.MethodCount >= 0)
+        if (parms.PropertyCount >= 0)
         {
-            types = types.Where(t => GetMethodCountExcludingConstructors(t) == parms.MethodCount);
+            types = types.Where(t => t.Properties.Count == parms.PropertyCount);
         }
 
         return types;
-    }
-
-    /// <summary>
-    /// We don't want the constructors included in the count
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    private static int GetMethodCountExcludingConstructors(TypeDef type)
-    {
-        int count = 0;
-        foreach (var method in type.Methods)
-        {
-            if (!method.IsConstructor && !method.IsSpecialName && !method.IsGetter && !method.IsSetter)
-            {
-                count++;
-            }
-        }
-        return count;
     }
 }

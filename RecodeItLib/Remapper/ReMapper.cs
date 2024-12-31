@@ -2,7 +2,6 @@
 using dnlib.DotNet.Emit;
 using ReCodeItLib.Enums;
 using ReCodeItLib.Models;
-using ReCodeItLib.ReMapper.Search;
 using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
@@ -53,9 +52,31 @@ public class ReMapper
         
         var types = Module.GetTypes();
         
-        if (!types.Any(t => t.Name.Contains("GClass")))
+        TryDeObfuscate(ref types, assemblyPath);
+        FindBestMatches(types);
+        ChooseBestMatches();
+
+        // Don't go any further during a validation
+        if (validate)
         {
-            Logger.Log("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
+            new Statistics(_remaps, Stopwatch, OutPath)
+                .DisplayStatistics(true);
+            
+            return;
+        }
+        
+        RenameMatches(types);
+        Publicize();
+        
+        // We are done, write the assembly
+        WriteAssembly();
+    }
+
+    private void TryDeObfuscate(ref IEnumerable<TypeDef> types, string assemblyPath)
+    {
+        if (!Module!.GetTypes().Any(t => t.Name.Contains("GClass")))
+        {
+            Logger.LogSync("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
             
             Module.Dispose();
             Module = null;
@@ -74,16 +95,18 @@ public class ReMapper
             types = Module.GetTypes();
             
             GenerateDynamicRemaps(newPath, types);
-        }
-        else
-        {
-            GenerateDynamicRemaps(assemblyPath, types);
+            return;
         }
         
+        GenerateDynamicRemaps(assemblyPath, types);
+    }
+
+    private void FindBestMatches(IEnumerable<TypeDef> types)
+    {
         Logger.LogSync("Finding Best Matches...", ConsoleColor.Green);
         
-        var tasks = new List<Task>(remapModels.Count);
-        foreach (var remap in remapModels)
+        var tasks = new List<Task>(_remaps.Count);
+        foreach (var remap in _remaps)
         {
             tasks.Add(
                 Task.Factory.StartNew(() =>
@@ -99,22 +122,14 @@ public class ReMapper
         }
         
         Task.WaitAll(tasks.ToArray());
+    }
 
-        ChooseBestMatches();
-
-        // Don't go any further during a validation
-        if (validate)
-        {
-            new Statistics(_remaps, Stopwatch, OutPath)
-                .DisplayStatistics(true);
-            
-            return;
-        }
-
+    private void RenameMatches(IEnumerable<TypeDef> types)
+    {
         Logger.LogSync("\nRenaming...", ConsoleColor.Green);
         
-        var renameTasks = new List<Task>(remapModels.Count);
-        foreach (var remap in remapModels)
+        var renameTasks = new List<Task>(_remaps.Count);
+        foreach (var remap in _remaps)
         {
             renameTasks.Add(
                 Task.Factory.StartNew(() =>
@@ -126,11 +141,14 @@ public class ReMapper
         
         while (!renameTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
         {
-            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count(), tasks.Count - 1, 50);
+            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count(), renameTasks.Count, 50);
         }
         
         Task.WaitAll(renameTasks.ToArray());
-        
+    }
+
+    private void Publicize()
+    {
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         if (Settings!.MappingSettings!.Publicize)
         {
@@ -138,11 +156,8 @@ public class ReMapper
 
             SPTPublicizer.PublicizeClasses(Module);
         }
-        
-        // We are done, write the assembly
-        WriteAssembly();
     }
-
+    
     private bool Validate(List<RemapModel> remaps)
     {
         var duplicateGroups = remaps
@@ -188,270 +203,13 @@ public class ReMapper
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
+        var filters = new TypeFilters();
         
-        if (!FilterTypesByGeneric(mapping, ref types)) return;
-        if (!FilterTypesByMethods(mapping, ref types)) return;
-        if (!FilterTypesByFields(mapping, ref types)) return;
-        if (!FilterTypesByProps(mapping, ref types)) return;
-        if (!FilterTypesByEvents(mapping, ref types)) return;
-        if (!FilterTypesByNested(mapping, ref types)) return;
-        
-        types = CtorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.ConstructorParameterCount);
-            mapping.TypeCandidates.UnionWith(types);
-            return;
-        }
+        if (!filters.DoesTypePassFilters(mapping, ref types)) return;
         
         mapping.TypeCandidates.UnionWith(types);
     }
-
-    private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = GenericTypeFilters.FilterPublic(types, mapping.SearchParams);
-
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterAbstract(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterSealed(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsSealed);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterInterface(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsInterface);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterStruct(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsStruct);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsEnum);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterAttributes(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasAttribute);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterDerived(types, mapping.SearchParams);
-        if (types.Count() == 1) return true;
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsDerived);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = GenericTypeFilters.FilterByGenericParameters(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasGenericParameters);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        return true;
-    }
-
-    private static bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = MethodTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsInclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = MethodTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsExclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = MethodTypeFilters.FilterByCount(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsCount);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        return true;
-    }
-
-    private static bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = FieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsInclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = FieldTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsExclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = FieldTypeFilters.FilterByCount(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsCount);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        return true;
-    }
-
-    private static bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = PropertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesInclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = PropertyTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesExclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = PropertyTypeFilters.FilterByCount(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesCount);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        return true;
-    }
-
-    private static bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = NestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeInclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = NestedTypeFilters.FilterByExclude(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeExclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        types = NestedTypeFilters.FilterByCount(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeCount);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
-        return true;
-    }
-
-    private static bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDef> types)
-    {
-        types = EventTypeFilters.FilterByInclude(types, mapping.SearchParams);
-
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsInclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        types = EventTypeFilters.FilterByExclude(types, mapping.SearchParams);
-
-        if (!types.Any())
-        {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsExclude);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-
-        return true;
-    }
-
+    
     private void HandleDirectRename(RemapModel mapping, ref IEnumerable<TypeDef> types)
     {
         foreach (var type in types)
@@ -639,15 +397,5 @@ public class ReMapper
                 method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
             }
         }
-    }
-    
-    /// <summary>
-    /// This is used to log that all types for a given remap were filtered out.
-    /// </summary>
-    /// <param name="remap">remap model that failed</param>
-    /// <param name="noMatchReason">Reason for filtering</param>
-    private static void AllTypesFilteredOutFor(RemapModel remap, ENoMatchReason noMatchReason)
-    {
-        Logger.Log($"All types filtered out after `{noMatchReason}` filter for: `{remap.NewTypeName}`", ConsoleColor.Red);
     }
 }

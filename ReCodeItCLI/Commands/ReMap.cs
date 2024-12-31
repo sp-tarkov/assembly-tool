@@ -12,10 +12,10 @@ public class ReMap : ICommand
     private ReCodeItRemapper _remapper { get; set; } = new();
 
     [CommandParameter(0, IsRequired = true, Description = "The absolute path to your mapping.json file, supports .json and .jsonc")]
-    public string MappingJsonPath { get; init; }
+    public required string MappingJsonPath { get; init; }
 
     [CommandParameter(1, IsRequired = true, Description = "The absolute path to your de-obfuscated dll, containing all references that it needs to resolve.")]
-    public string AssemblyPath { get; init; }
+    public required string AssemblyPath { get; init; }
 
     [CommandParameter(2, IsRequired = true, Description = "If true, the re-mapper will publicize all types, methods, and properties")]
     public bool Publicize { get; init; }
@@ -36,8 +36,15 @@ public class ReMap : ICommand
         remapperSettings.Publicize = Publicize;
 
         var remaps = DataProvider.LoadMappingFile(MappingJsonPath);
+
+        var outPath = Path.GetDirectoryName(AssemblyPath);
+
+        if (outPath is null)
+        {
+            throw new DirectoryNotFoundException("OutPath could not be resolved.");
+        }
         
-        _remapper.InitializeRemap(remaps, AssemblyPath, Path.GetDirectoryName(AssemblyPath));
+        _remapper.InitializeRemap(remaps, AssemblyPath, outPath);
 
         // Wait for log termination
         Logger.Terminate();

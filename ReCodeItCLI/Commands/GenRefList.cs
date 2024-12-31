@@ -9,7 +9,7 @@ namespace ReCodeItCLI.Commands;
 public class GenRefList : ICommand
 {
     [CommandParameter(0, IsRequired = true, Description = "The absolute path to your de-obfuscated and remapped dll.")]
-    public string AssemblyPath { get; init; }
+    public required string AssemblyPath { get; init; }
 
     private static readonly List<string> Match = new()
     {
@@ -28,22 +28,21 @@ public class GenRefList : ICommand
         // Sort and display the top 10 most referenced types
         foreach (var pair in references.OrderByDescending(p => p.Value).Take(100))
         {
-            Console.WriteLine($"{pair.Key}: {pair.Value}");
+            console.Output.WriteLine($"{pair.Key}: {pair.Value}");
         }
 
         return default;
     }
 
-    public static Dictionary<string, int> CountTypeReferences(string assemblyPath)
+    private static Dictionary<string, int> CountTypeReferences(string assemblyPath)
     {
         var typeReferenceCounts = new Dictionary<string, int>();
 
-        using (var module = ModuleDefMD.Load(assemblyPath))
+        using var module = ModuleDefMD.Load(assemblyPath);
+        
+        foreach (var type in module.GetTypes())
         {
-            foreach (var type in module.GetTypes())
-            {
-                CountReferencesInType(type, typeReferenceCounts);
-            }
+            CountReferencesInType(type, typeReferenceCounts);
         }
 
         return typeReferenceCounts;

@@ -26,11 +26,11 @@
     <Output TaskParameter="OutputItems" ItemName="OutputPath" />
   </Target>
   
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)' == '$(Configuration)'">
     <RemoveDir Directories="$(SolutionDir)Build\**\*.*" />
   </Target>
   
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == '$(Configuration)'">
     <ItemGroup>
       <de4dot Include="$(SolutionDir)de4dot\$(Configuration)\net48\*.*" />
       <templates Include="$(SolutionDir)Assets\Templates\**\*.*" />

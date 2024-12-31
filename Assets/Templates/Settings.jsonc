@@ -13,39 +13,7 @@
       "RenameProperties": true,
       "Publicize": true,
       "Unseal": true
-    }
-  },
-  "AutoMapper": {
-    "AssemblyPath": "",
-    "OutputPath": "",
-    "RequiredMatches": 5,
-    "MinLengthToMatch": 7,
-    "SearchMethods": true,
-    "MappingSettings": {
-      "RenameFields": true,
-      "RenameProperties": true,
-      "Publicize": true,
-      "Unseal": true
     },
-    "TypesToIgnore": [
-      "Boolean",
-      "List",
-      "Dictionary",
-      "Byte",
-      "Int16",
-      "Int32",
-      "Func",
-      "Action",
-      "Object",
-      "String",
-      "Vector2",
-      "Vector3",
-      "Vector4",
-      "Stream",
-      "HashSet",
-      "Double",
-      "IEnumerator"
-    ],
     "TokensToMatch": [
       "Class",
       "GClass",
@@ -54,18 +22,6 @@
       "ValueStruct",
       "Interface",
       "GInterface"
-    ],
-    "PropertyFieldBlackList": [
-      "Columns",
-      "mColumns",
-      "Template",
-      "Condition",
-      "Conditions",
-      "Counter",
-      "Instance",
-      "Command",
-      "_template"
-    ],
-    "MethodParamaterBlackList": []
+    ]
   }
 }

@@ -6,7 +6,7 @@ namespace ReCodeIt.ReMapper;
 
 internal static class RenameHelper
 {
-    private static List<string>? TokensToMatch => DataProvider.Settings?.AutoMapper?.TokensToMatch;
+    private static List<string>? TokensToMatch => DataProvider.Settings?.Remapper?.TokensToMatch;
 
     /// <summary>
     /// Only used by the manual remapper, should probably be removed

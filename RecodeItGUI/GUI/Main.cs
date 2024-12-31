@@ -172,16 +172,7 @@ public partial class ReCodeItForm : Form
         DataProvider.Remaps = DataProvider.LoadMappingFile(AppSettings.Remapper.MappingPath);
         LoadedMappingFilePath.Text = AppSettings.Remapper.MappingPath;
     }
-
-    private void UseProjectAutoMapping_Clicked(object sender, EventArgs e)
-    {
-        var remaps = DataProvider.Remaps;
-
-        LoadedMappingFilePath.Text = AppSettings.Remapper?.MappingPath;
-
-        ReloadRemapTreeView(remaps!);
-    }
-
+    
     #region BUTTONS
 
     #region MAIN_BUTTONS
@@ -682,35 +673,17 @@ public partial class ReCodeItForm : Form
 
     private void AutoMapperExcludeAddButton_Click(object sender, EventArgs e)
     {
-        if (AutoMapperTypesToIgnoreTextField.Text == string.Empty) return;
-
-        if (!AutoMapperTypesExcludeBox.Items.Contains(AutoMapperTypesToIgnoreTextField.Text))
-        {
-            DataProvider.Settings.AutoMapper.TypesToIgnore.Add(AutoMapperTypesToIgnoreTextField.Text);
-            AutoMapperTypesExcludeBox.Items.Add(AutoMapperTypesToIgnoreTextField.Text);
-            AutoMapperTypesToIgnoreTextField.Clear();
-
-            DataProvider.SaveAppSettings();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperExcludeRemoveButton_Click(object sender, EventArgs e)
     {
-        if (AutoMapperTypesExcludeBox.SelectedItem != null)
-        {
-            DataProvider.Settings.AutoMapper.TypesToIgnore.RemoveAt(AutoMapperTypesExcludeBox.SelectedIndex);
-            AutoMapperTypesExcludeBox.Items.Remove(AutoMapperTypesExcludeBox.SelectedItem);
-
-            DataProvider.SaveAppSettings();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void RunAutoRemapButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(DataProvider.Settings.AutoMapper.AssemblyPath))
-        {
-            MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     #endregion LISTBOX_BUTTONS
@@ -773,16 +746,7 @@ public partial class ReCodeItForm : Form
     }
 
     #endregion CHECKBOXES
-
-    #region UPDOWNS
-
-    private void AutoMapperRequiredMatchesUpDown_ValueChanged(object sender, EventArgs e)
-    {
-        DataProvider.Settings.AutoMapper.RequiredMatches = (int)AutoMapperRequiredMatchesUpDown.Value;
-    }
-
-    #endregion UPDOWNS
-
+    
     #endregion SETTINGS_TAB
 
     #region AUTOMAPPER
@@ -792,166 +756,81 @@ public partial class ReCodeItForm : Form
         AutoMapperTypesExcludeBox.Items.Clear();
         AutoMapperTokensBox.Items.Clear();
         AutoMapperFPBox.Items.Clear();
-
-        var settings = AppSettings.AutoMapper;
-
-        AutoMapperRequiredMatchesUpDown.Value = settings.RequiredMatches;
-        AutoMapperMinLengthUpDown.Value = settings.MinLengthToMatch;
-        AutoMapperSearchMethodsCheckBox.Checked = settings.SearchMethods;
-        AutoMapperRenameFields.Checked = settings.MappingSettings.RenameFields;
-        AutoMapperRenameProps.Checked = settings.MappingSettings.RenameProperties;
-        AutoMapperPublicize.Checked = settings.MappingSettings.Publicize;
-        AutoMapperUnseal.Checked = settings.MappingSettings.Unseal;
-
-        foreach (var type in settings.TypesToIgnore)
-        {
-            AutoMapperTypesExcludeBox.Items.Add(type);
-        }
-
-        foreach (var token in settings.TokensToMatch)
-        {
-            AutoMapperTokensBox.Items.Add(token);
-        }
-
-        foreach (var fp in settings.PropertyFieldBlackList)
-        {
-            AutoMapperFPBox.Items.Add(fp);
-        }
-
-        foreach (var mp in settings.MethodParameterBlackList)
-        {
-            AutoMapperMethodBox.Items.Add(mp);
-        }
     }
 
     private void AutoMapperChooseTargetPathButton_Click(object sender, EventArgs e)
     {
-        var result = GUIHelpers.OpenFileDialog("Select a DLL file",
-            "DLL Files (*.dll)|*.dll|All Files (*.*)|*.*");
-
-        if (result != string.Empty)
-        {
-            AppSettings.AutoMapper.AssemblyPath = result;
-            AutoMapperTargetPath.Text = result;
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperChooseOutpathButton_Click(object sender, EventArgs e)
     {
-        var result = GUIHelpers.OpenFolderDialog("Select an output directory");
-
-        if (result != string.Empty)
-        {
-            AppSettings.AutoMapper.OutputPath = result;
-            AutoMapperOuputPath.Text = result;
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperRequiredMatchesUpDown_ValueChanged_1(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.RequiredMatches = (int)AutoMapperRequiredMatchesUpDown.Value;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperMinLengthUpDown_ValueChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.MinLengthToMatch = (int)AutoMapperMinLengthUpDown.Value;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperTokensAddButton_Click(object sender, EventArgs e)
     {
-        if (!AutoMapperTokensBox.Items.Contains(AutoMapperTokensTextField.Text))
-        {
-            AutoMapperTokensBox.Items.Add(AutoMapperTokensTextField.Text);
-            AppSettings.AutoMapper.TokensToMatch.Add(AutoMapperTokensTextField.Text);
-
-            DataProvider.SaveAppSettings();
-            AutoMapperTokensTextField.Clear();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperTokensRemoveButton_Click(object sender, EventArgs e)
     {
-        if (AutoMapperTokensBox.SelectedItem != null)
-        {
-            AppSettings.AutoMapper.TokensToMatch.RemoveAt(AutoMapperTokensBox.SelectedIndex);
-            AutoMapperTokensBox.Items.Remove(AutoMapperTokensBox.SelectedItem);
-            DataProvider.SaveAppSettings();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperFPAddButton_Click(object sender, EventArgs e)
     {
-        if (!AutoMapperFPBox.Items.Contains(AutoMapperFPTextField.Text))
-        {
-            AutoMapperFPBox.Items.Add(AutoMapperFPTextField.Text);
-            AppSettings.AutoMapper.PropertyFieldBlackList.Add(AutoMapperFPTextField.Text);
-
-            DataProvider.SaveAppSettings();
-            AutoMapperFPTextField.Clear();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperFPRemoveButton_Click(object sender, EventArgs e)
     {
-        if (AutoMapperFPBox.SelectedItem != null)
-        {
-            AppSettings.AutoMapper.PropertyFieldBlackList.RemoveAt(AutoMapperFPBox.SelectedIndex);
-            AutoMapperFPBox.Items.Remove(AutoMapperFPBox.SelectedItem);
-
-            DataProvider.SaveAppSettings();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperMethodAddButton_Click(object sender, EventArgs e)
     {
-        if (!AutoMapperMethodBox.Items.Contains(AutoMapperMethodTextBox.Text))
-        {
-            AutoMapperMethodBox.Items.Add(AutoMapperMethodTextBox.Text);
-
-            AppSettings.AutoMapper.MethodParameterBlackList.Add(AutoMapperMethodTextBox.Text);
-
-            DataProvider.SaveAppSettings();
-            AutoMapperMethodTextBox.Clear();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperMethodRemoveButton_Click(object sender, EventArgs e)
     {
-        if (AutoMapperMethodBox.SelectedItem != null)
-        {
-            AppSettings.AutoMapper.MethodParameterBlackList
-                .RemoveAt(AutoMapperMethodBox.SelectedIndex);
-
-            AutoMapperMethodBox.Items
-                .Remove(AutoMapperMethodBox.SelectedItem);
-
-            DataProvider.SaveAppSettings();
-        }
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void SearchMethodsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.SearchMethods = AutoMapperSearchMethodsCheckBox.Checked;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperRenameFields_CheckedChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.MappingSettings.RenameFields = AutoMapperRenameFields.Checked;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperRenameProps_CheckedChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.MappingSettings.RenameProperties = AutoMapperRenameProps.Checked;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperPublicize_CheckedChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.MappingSettings.Publicize = AutoMapperPublicize.Checked;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     private void AutoMapperUnseal_CheckedChanged(object sender, EventArgs e)
     {
-        AppSettings.AutoMapper.MappingSettings.Unseal = AutoMapperUnseal.Checked;
+        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
     }
 
     #endregion AUTOMAPPER

@@ -30,18 +30,6 @@ public class Settings
             Save();
         }
     }
-
-    private AutoMapperSettings? _autoMapper;
-
-    public AutoMapperSettings? AutoMapper
-    {
-        get { return _autoMapper; }
-        set
-        {
-            _autoMapper = value;
-            Save();
-        }
-    }
     
     private void Save()
     {
@@ -161,124 +149,10 @@ public class RemapperSettings
         }
     }
 
-    private void Save()
-    {
-        DataProvider.SaveAppSettings();
-    }
-}
-
-/// <summary>
-/// These are settings for the auto mapping
-/// </summary>
-public class AutoMapperSettings
-{
-    private string _assemblyPath = string.Empty;
-
-    /// <summary>
-    /// Path to the assembly we want to remap
-    /// </summary>
-    public string AssemblyPath
-    {
-        get { return _assemblyPath; }
-        set
-        {
-            _assemblyPath = value;
-            Save();
-        }
-    }
-
-    private string _outputPath = string.Empty;
-
-    /// <summary>
-    /// Path including the filename and extension we want to write the changes to
-    /// </summary>
-    public string OutputPath
-    {
-        get { return _outputPath; }
-        set
-        {
-            _outputPath = value;
-            Save();
-        }
-    }
-
-    private int _requiredMatches;
-
-    /// <summary>
-    /// Minimum number of times a member must have this name in the assembly before considering it
-    /// for remapping
-    /// </summary>
-    public int RequiredMatches
-    {
-        get { return _requiredMatches; }
-        set
-        {
-            _requiredMatches = value;
-            Save();
-        }
-    }
-
-    private int _minLengthToMatch;
-
-    /// <summary>
-    /// Minimum length of the field/property name in code before it will be considered for a rename
-    /// </summary>
-    public int MinLengthToMatch
-    {
-        get { return _minLengthToMatch; }
-        set
-        {
-            _minLengthToMatch = value;
-            Save();
-        }
-    }
-
-    private bool _searchMethods;
-
-    /// <summary>
-    /// Will attempt to map types from method meta data and parameters
-    /// </summary>
-    public bool SearchMethods
-    {
-        get { return _searchMethods; }
-        set
-        {
-            _searchMethods = value;
-            Save();
-        }
-    }
-
-    private MappingSettings? _mappingSettings;
-
-    public MappingSettings? MappingSettings
-    {
-        get { return _mappingSettings; }
-        set
-        {
-            _mappingSettings = value;
-            Save();
-        }
-    }
-
-    private List<string> _typesToIgnore = [];
-
-    /// <summary>
-    /// Any member name you want to ignore while iterating through the assembly
-    /// </summary>
-    public List<string> TypesToIgnore
-    {
-        get { return _typesToIgnore; }
-        set
-        {
-            _typesToIgnore = value;
-            Save();
-        }
-    }
-
     private List<string> _tokensToMatch = [];
 
     /// <summary>
-    /// The auto mapper will look for these tokens in class names and prioritize those
+    /// The re-mapper will look for these tokens in class names, otherwise they will be skipped
     /// </summary>
     public List<string> TokensToMatch
     {
@@ -289,37 +163,7 @@ public class AutoMapperSettings
             Save();
         }
     }
-
-    private List<string> _propertyFieldBlacklist = [];
-
-    /// <summary>
-    /// Property or fields names to ignore in the automap, these are case sanitized so case does not matter
-    /// </summary>
-    public List<string> PropertyFieldBlackList
-    {
-        get { return _propertyFieldBlacklist; }
-        set
-        {
-            _propertyFieldBlacklist = value;
-            Save();
-        }
-    }
-
-    private List<string> _methodParameterBlackList = [];
-
-    /// <summary>
-    /// method parameter names to ignore in the automap, these are case sanitized so case does not matter
-    /// </summary>
-    public List<string> MethodParameterBlackList
-    {
-        get { return _methodParameterBlackList; }
-        set
-        {
-            _methodParameterBlackList = value;
-            Save();
-        }
-    }
-
+    
     private void Save()
     {
         DataProvider.SaveAppSettings();

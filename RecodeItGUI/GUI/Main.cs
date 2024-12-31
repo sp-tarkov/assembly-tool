@@ -7,7 +7,7 @@ namespace ReCodeIt.GUI;
 
 public partial class ReCodeItForm : Form
 {
-    private static ReCodeItRemapper Remapper { get; set; } = new();
+    private static ReMapper Remapper { get; set; } = new();
     private static Settings AppSettings => DataProvider.Settings;
 
     private bool _isSearched = false;
@@ -349,7 +349,7 @@ public partial class ReCodeItForm : Form
 
     private void RunRemapButton_Click(object sender, EventArgs e)
     {
-        if (ReCodeItRemapper.IsRunning) { return; }
+        if (ReMapper.IsRunning) { return; }
 
         if (string.IsNullOrEmpty(AppSettings.Remapper.AssemblyPath))
         {

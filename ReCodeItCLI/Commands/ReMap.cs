@@ -9,7 +9,7 @@ namespace ReCodeItCLI.Commands;
 [Command("ReMap", Description = "Generates a re-mapped dll provided a mapping file and de-obfuscated dll")]
 public class ReMap : ICommand
 {
-    private ReCodeItRemapper _remapper { get; set; } = new();
+    private ReMapper _remapper { get; set; } = new();
 
     [CommandParameter(0, IsRequired = true, Description = "The absolute path to your mapping.json file, supports .json and .jsonc")]
     public required string MappingJsonPath { get; init; }

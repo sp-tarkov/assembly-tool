@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace ReCodeItLib.ReMapper;
 
-public class ReCodeItRemapper
+public class ReMapper
 {
     private ModuleDefMD? Module { get; set; }
 

@@ -38,9 +38,6 @@ partial class ReCodeItForm
         DebugLoggingCheckbox = new CheckBox();
         SilentModeCheckbox = new CheckBox();
         GithubLinkLabel = new LinkLabel();
-        AutoMapperRequiredMatchesUpDown = new NumericUpDown();
-        RunAutoRemapButton = new Button();
-        AutoMapperMinLengthUpDown = new NumericUpDown();
         RenamePropertiesCheckbox = new CheckBox();
         RenameFieldsCheckbox = new CheckBox();
         RunRemapButton = new Button();
@@ -77,34 +74,6 @@ partial class ReCodeItForm
         ValidateRemapButton = new Button();
         SettingsTab = new TabPage();
         groupBox2 = new GroupBox();
-        AutoMapperTab = new TabPage();
-        AutoMapperUnseal = new CheckBox();
-        AutoMapperPublicize = new CheckBox();
-        AutoMapperRenameProps = new CheckBox();
-        AutoMapperRenameFields = new CheckBox();
-        AutoMapperOuputPath = new TextBox();
-        AutoMapperTargetPath = new TextBox();
-        AutoMapperMethodTextBox = new TextBox();
-        AutoMapperFPTextField = new TextBox();
-        AutoMapperTokensTextField = new TextBox();
-        AutoMapperTypesToIgnoreTextField = new TextBox();
-        AutoMapperChooseOutpathButton = new Button();
-        AutoMapperChooseTargetPathButton = new Button();
-        AutoMapperMethodRemoveButton = new Button();
-        AutoMapperMethodAddButton = new Button();
-        AutoMapperMethodBox = new ListBox();
-        AutoMapperSearchMethodsCheckBox = new CheckBox();
-        AutoMapperFPRemoveButton = new Button();
-        AutoMapperFPAddButton = new Button();
-        AutoMapperFPBox = new ListBox();
-        AutoMapperTokensRemoveButton = new Button();
-        AutoMapperTokensAddButton = new Button();
-        AutoMapperTokensBox = new ListBox();
-        label3 = new Label();
-        label2 = new Label();
-        AutoMapperExcludeTypesRemoveButton = new Button();
-        AutoMapperExcludeTypesAddButton = new Button();
-        AutoMapperTypesExcludeBox = new ListBox();
         RemapperTabPage = new TabPage();
         label1 = new Label();
         RMSearchBox = new TextBox();
@@ -179,8 +148,6 @@ partial class ReCodeItForm
         groupBox6 = new GroupBox();
         groupBox7 = new GroupBox();
         groupBox6.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)AutoMapperRequiredMatchesUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)AutoMapperMinLengthUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize)ConstuctorCountUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize)PropertyCountUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize)FieldCountUpDown).BeginInit();
@@ -188,7 +155,6 @@ partial class ReCodeItForm
         ((System.ComponentModel.ISupportInitialize)NestedTypeCountUpDown).BeginInit();
         SettingsTab.SuspendLayout();
         groupBox2.SuspendLayout();
-        AutoMapperTab.SuspendLayout();
         RemapperTabPage.SuspendLayout();
         groupBox1.SuspendLayout();
         tabControl1.SuspendLayout();
@@ -208,31 +174,27 @@ partial class ReCodeItForm
         groupBox6.Controls.Add(button1);
         groupBox6.Controls.Add(button2);
         groupBox6.Controls.Add(listBox1);
-        groupBox6.Location = new Point(4, 4);
-        groupBox6.Margin = new Padding(2);
+        groupBox6.Location = new Point(6, 7);
         groupBox6.Name = "groupBox6";
-        groupBox6.Padding = new Padding(2);
-        groupBox6.Size = new Size(255, 491);
+        groupBox6.Size = new Size(364, 818);
         groupBox6.TabIndex = 0;
         groupBox6.TabStop = false;
         groupBox6.Text = "Advanced Method Search";
         // 
         // button1
         // 
-        button1.Location = new Point(173, 466);
-        button1.Margin = new Padding(2);
+        button1.Location = new Point(247, 777);
         button1.Name = "button1";
-        button1.Size = new Size(78, 20);
+        button1.Size = new Size(111, 33);
         button1.TabIndex = 20;
         button1.Text = "Remove";
         button1.UseVisualStyleBackColor = true;
         // 
         // button2
         // 
-        button2.Location = new Point(4, 466);
-        button2.Margin = new Padding(2);
+        button2.Location = new Point(6, 777);
         button2.Name = "button2";
-        button2.Size = new Size(78, 20);
+        button2.Size = new Size(111, 33);
         button2.TabIndex = 19;
         button2.Text = "Add";
         button2.UseVisualStyleBackColor = true;
@@ -241,20 +203,17 @@ partial class ReCodeItForm
         // 
         listBox1.BackColor = Color.Gray;
         listBox1.FormattingEnabled = true;
-        listBox1.ItemHeight = 15;
-        listBox1.Location = new Point(4, 325);
-        listBox1.Margin = new Padding(2);
+        listBox1.ItemHeight = 25;
+        listBox1.Location = new Point(6, 542);
         listBox1.Name = "listBox1";
-        listBox1.Size = new Size(248, 139);
+        listBox1.Size = new Size(353, 229);
         listBox1.TabIndex = 18;
         // 
         // groupBox7
         // 
-        groupBox7.Location = new Point(270, 4);
-        groupBox7.Margin = new Padding(2);
+        groupBox7.Location = new Point(386, 7);
         groupBox7.Name = "groupBox7";
-        groupBox7.Padding = new Padding(2);
-        groupBox7.Size = new Size(248, 491);
+        groupBox7.Size = new Size(354, 818);
         groupBox7.TabIndex = 1;
         groupBox7.TabStop = false;
         groupBox7.Text = "Advanced Property Search";
@@ -262,10 +221,9 @@ partial class ReCodeItForm
         // DebugLoggingCheckbox
         // 
         DebugLoggingCheckbox.AutoSize = true;
-        DebugLoggingCheckbox.Location = new Point(4, 18);
-        DebugLoggingCheckbox.Margin = new Padding(2);
+        DebugLoggingCheckbox.Location = new Point(6, 30);
         DebugLoggingCheckbox.Name = "DebugLoggingCheckbox";
-        DebugLoggingCheckbox.Size = new Size(105, 19);
+        DebugLoggingCheckbox.Size = new Size(159, 29);
         DebugLoggingCheckbox.TabIndex = 0;
         DebugLoggingCheckbox.Text = "Debug logging";
         toolTip1.SetToolTip(DebugLoggingCheckbox, "Enables debug logging for the appliaction");
@@ -275,10 +233,9 @@ partial class ReCodeItForm
         // SilentModeCheckbox
         // 
         SilentModeCheckbox.AutoSize = true;
-        SilentModeCheckbox.Location = new Point(4, 39);
-        SilentModeCheckbox.Margin = new Padding(2);
+        SilentModeCheckbox.Location = new Point(6, 65);
         SilentModeCheckbox.Name = "SilentModeCheckbox";
-        SilentModeCheckbox.Size = new Size(89, 19);
+        SilentModeCheckbox.Size = new Size(133, 29);
         SilentModeCheckbox.TabIndex = 2;
         SilentModeCheckbox.Text = "Silent Mode";
         toolTip1.SetToolTip(SilentModeCheckbox, "Silent mode stops the ReMapper from prompting you if its okay to continue at every selection");
@@ -288,57 +245,23 @@ partial class ReCodeItForm
         // GithubLinkLabel
         // 
         GithubLinkLabel.AutoSize = true;
-        GithubLinkLabel.Location = new Point(4, 188);
-        GithubLinkLabel.Margin = new Padding(2, 0, 2, 0);
+        GithubLinkLabel.Location = new Point(6, 313);
         GithubLinkLabel.Name = "GithubLinkLabel";
-        GithubLinkLabel.Size = new Size(203, 15);
+        GithubLinkLabel.Size = new Size(301, 25);
         GithubLinkLabel.TabIndex = 3;
         GithubLinkLabel.TabStop = true;
         GithubLinkLabel.Text = "https://github.com/CJ-SPT/ReCodeIt";
         toolTip1.SetToolTip(GithubLinkLabel, "Be sure to report issues here!");
         GithubLinkLabel.LinkClicked += GithubLinkLabel_LinkClicked;
         // 
-        // AutoMapperRequiredMatchesUpDown
-        // 
-        AutoMapperRequiredMatchesUpDown.Location = new Point(126, 48);
-        AutoMapperRequiredMatchesUpDown.Margin = new Padding(2);
-        AutoMapperRequiredMatchesUpDown.Name = "AutoMapperRequiredMatchesUpDown";
-        AutoMapperRequiredMatchesUpDown.Size = new Size(40, 23);
-        AutoMapperRequiredMatchesUpDown.TabIndex = 26;
-        toolTip1.SetToolTip(AutoMapperRequiredMatchesUpDown, "The number of times a type must be paired with a name in code to be considered for renaming");
-        AutoMapperRequiredMatchesUpDown.ValueChanged += AutoMapperRequiredMatchesUpDown_ValueChanged_1;
-        // 
-        // RunAutoRemapButton
-        // 
-        RunAutoRemapButton.Location = new Point(4, 48);
-        RunAutoRemapButton.Margin = new Padding(2);
-        RunAutoRemapButton.Name = "RunAutoRemapButton";
-        RunAutoRemapButton.Size = new Size(118, 20);
-        RunAutoRemapButton.TabIndex = 28;
-        RunAutoRemapButton.Text = "Run Auto Remap";
-        toolTip1.SetToolTip(RunAutoRemapButton, "Run the automatic mapping");
-        RunAutoRemapButton.UseVisualStyleBackColor = true;
-        RunAutoRemapButton.Click += RunAutoRemapButton_Click;
-        // 
-        // AutoMapperMinLengthUpDown
-        // 
-        AutoMapperMinLengthUpDown.Location = new Point(126, 70);
-        AutoMapperMinLengthUpDown.Margin = new Padding(2);
-        AutoMapperMinLengthUpDown.Name = "AutoMapperMinLengthUpDown";
-        AutoMapperMinLengthUpDown.Size = new Size(40, 23);
-        AutoMapperMinLengthUpDown.TabIndex = 29;
-        toolTip1.SetToolTip(AutoMapperMinLengthUpDown, "Minimum length of the fields name that is required for it to be considered");
-        AutoMapperMinLengthUpDown.ValueChanged += AutoMapperMinLengthUpDown_ValueChanged;
-        // 
         // RenamePropertiesCheckbox
         // 
         RenamePropertiesCheckbox.AutoSize = true;
         RenamePropertiesCheckbox.Checked = true;
         RenamePropertiesCheckbox.CheckState = CheckState.Checked;
-        RenamePropertiesCheckbox.Location = new Point(670, 443);
-        RenamePropertiesCheckbox.Margin = new Padding(2);
+        RenamePropertiesCheckbox.Location = new Point(957, 738);
         RenamePropertiesCheckbox.Name = "RenamePropertiesCheckbox";
-        RenamePropertiesCheckbox.Size = new Size(125, 19);
+        RenamePropertiesCheckbox.Size = new Size(186, 29);
         RenamePropertiesCheckbox.TabIndex = 28;
         RenamePropertiesCheckbox.Text = "Rename Properties";
         toolTip1.SetToolTip(RenamePropertiesCheckbox, "Renames all remapped types associated properties (GClass100_0 becomes ReCodeIt_0)");
@@ -350,10 +273,9 @@ partial class ReCodeItForm
         RenameFieldsCheckbox.AutoSize = true;
         RenameFieldsCheckbox.Checked = true;
         RenameFieldsCheckbox.CheckState = CheckState.Checked;
-        RenameFieldsCheckbox.Location = new Point(548, 443);
-        RenameFieldsCheckbox.Margin = new Padding(2);
+        RenameFieldsCheckbox.Location = new Point(783, 738);
         RenameFieldsCheckbox.Name = "RenameFieldsCheckbox";
-        RenameFieldsCheckbox.Size = new Size(102, 19);
+        RenameFieldsCheckbox.Size = new Size(151, 29);
         RenameFieldsCheckbox.TabIndex = 26;
         RenameFieldsCheckbox.Text = "Rename Fields";
         toolTip1.SetToolTip(RenameFieldsCheckbox, "Renames all remapped types associated fields (_gClass100_0 becomes _reCodeIt_0)");
@@ -363,10 +285,9 @@ partial class ReCodeItForm
         // RunRemapButton
         // 
         RunRemapButton.BackColor = SystemColors.ButtonShadow;
-        RunRemapButton.Location = new Point(668, 419);
-        RunRemapButton.Margin = new Padding(2);
+        RunRemapButton.Location = new Point(954, 698);
         RunRemapButton.Name = "RunRemapButton";
-        RunRemapButton.Size = new Size(118, 20);
+        RunRemapButton.Size = new Size(169, 33);
         RunRemapButton.TabIndex = 16;
         RunRemapButton.Text = "Run Remap";
         toolTip1.SetToolTip(RunRemapButton, "Generate a remapped dll based on the paths chosen in the top left");
@@ -376,10 +297,9 @@ partial class ReCodeItForm
         // RemoveRemapButton
         // 
         RemoveRemapButton.BackColor = SystemColors.ButtonShadow;
-        RemoveRemapButton.Location = new Point(668, 395);
-        RemoveRemapButton.Margin = new Padding(2);
+        RemoveRemapButton.Location = new Point(954, 658);
         RemoveRemapButton.Name = "RemoveRemapButton";
-        RemoveRemapButton.Size = new Size(118, 20);
+        RemoveRemapButton.Size = new Size(169, 33);
         RemoveRemapButton.TabIndex = 2;
         RemoveRemapButton.Text = "Remove Remap";
         toolTip1.SetToolTip(RemoveRemapButton, "Remove a remap from the list");
@@ -391,10 +311,9 @@ partial class ReCodeItForm
         RemapperPublicicize.AutoSize = true;
         RemapperPublicicize.Checked = true;
         RemapperPublicicize.CheckState = CheckState.Checked;
-        RemapperPublicicize.Location = new Point(548, 464);
-        RemapperPublicicize.Margin = new Padding(2);
+        RemapperPublicicize.Location = new Point(783, 773);
         RemapperPublicicize.Name = "RemapperPublicicize";
-        RemapperPublicicize.Size = new Size(73, 19);
+        RemapperPublicicize.Size = new Size(106, 29);
         RemapperPublicicize.TabIndex = 35;
         RemapperPublicicize.Text = "Publicize";
         toolTip1.SetToolTip(RemapperPublicicize, "Publicize all classes, properties and methods. Fields are excluded for technical reasons");
@@ -404,10 +323,9 @@ partial class ReCodeItForm
         // SaveRemapButton
         // 
         SaveRemapButton.BackColor = SystemColors.ButtonShadow;
-        SaveRemapButton.Location = new Point(547, 395);
-        SaveRemapButton.Margin = new Padding(2);
+        SaveRemapButton.Location = new Point(781, 658);
         SaveRemapButton.Name = "SaveRemapButton";
-        SaveRemapButton.Size = new Size(118, 20);
+        SaveRemapButton.Size = new Size(169, 33);
         SaveRemapButton.TabIndex = 4;
         SaveRemapButton.Text = "Add Remap";
         toolTip1.SetToolTip(SaveRemapButton, "Add a remap to the list, if the \"New Name\" field contains a remap that already exists, it will be overwritten.");
@@ -419,10 +337,9 @@ partial class ReCodeItForm
         RemapperUnseal.AutoSize = true;
         RemapperUnseal.Checked = true;
         RemapperUnseal.CheckState = CheckState.Checked;
-        RemapperUnseal.Location = new Point(670, 464);
-        RemapperUnseal.Margin = new Padding(2);
+        RemapperUnseal.Location = new Point(957, 773);
         RemapperUnseal.Name = "RemapperUnseal";
-        RemapperUnseal.Size = new Size(61, 19);
+        RemapperUnseal.Size = new Size(90, 29);
         RemapperUnseal.TabIndex = 36;
         RemapperUnseal.Text = "Unseal";
         toolTip1.SetToolTip(RemapperUnseal, "Unseal all sealed classes");
@@ -431,10 +348,9 @@ partial class ReCodeItForm
         // 
         // PickAssemblyPathButton
         // 
-        PickAssemblyPathButton.Location = new Point(855, 346);
-        PickAssemblyPathButton.Margin = new Padding(2);
+        PickAssemblyPathButton.Location = new Point(1221, 577);
         PickAssemblyPathButton.Name = "PickAssemblyPathButton";
-        PickAssemblyPathButton.Size = new Size(78, 20);
+        PickAssemblyPathButton.Size = new Size(111, 33);
         PickAssemblyPathButton.TabIndex = 31;
         PickAssemblyPathButton.Text = "Choose";
         toolTip1.SetToolTip(PickAssemblyPathButton, "The programs original assembly you wish to remap.\r\n\r\nTarget the one in the programs install location.");
@@ -444,10 +360,9 @@ partial class ReCodeItForm
         // LoadMappingFileButton
         // 
         LoadMappingFileButton.BackColor = SystemColors.ButtonShadow;
-        LoadMappingFileButton.Location = new Point(813, 526);
-        LoadMappingFileButton.Margin = new Padding(2);
+        LoadMappingFileButton.Location = new Point(1161, 877);
         LoadMappingFileButton.Name = "LoadMappingFileButton";
-        LoadMappingFileButton.Size = new Size(118, 24);
+        LoadMappingFileButton.Size = new Size(169, 40);
         LoadMappingFileButton.TabIndex = 18;
         LoadMappingFileButton.Text = "Load Mapping File";
         toolTip1.SetToolTip(LoadMappingFileButton, "Load a standalone mapping file from disk");
@@ -456,10 +371,9 @@ partial class ReCodeItForm
         // 
         // OutputDirectoryButton
         // 
-        OutputDirectoryButton.Location = new Point(855, 370);
-        OutputDirectoryButton.Margin = new Padding(2);
+        OutputDirectoryButton.Location = new Point(1221, 617);
         OutputDirectoryButton.Name = "OutputDirectoryButton";
-        OutputDirectoryButton.Size = new Size(78, 20);
+        OutputDirectoryButton.Size = new Size(111, 33);
         OutputDirectoryButton.TabIndex = 32;
         OutputDirectoryButton.Text = "Choose";
         toolTip1.SetToolTip(OutputDirectoryButton, "Directory where you want the remapped dll placed.");
@@ -469,10 +383,9 @@ partial class ReCodeItForm
         // ConstuctorCountUpDown
         // 
         ConstuctorCountUpDown.BackColor = SystemColors.ScrollBar;
-        ConstuctorCountUpDown.Location = new Point(304, 5);
-        ConstuctorCountUpDown.Margin = new Padding(2);
+        ConstuctorCountUpDown.Location = new Point(434, 8);
         ConstuctorCountUpDown.Name = "ConstuctorCountUpDown";
-        ConstuctorCountUpDown.Size = new Size(38, 23);
+        ConstuctorCountUpDown.Size = new Size(54, 31);
         ConstuctorCountUpDown.TabIndex = 19;
         toolTip1.SetToolTip(ConstuctorCountUpDown, "How many parameters is the constructor take?");
         // 
@@ -480,20 +393,18 @@ partial class ReCodeItForm
         // 
         IsPublicComboBox.BackColor = SystemColors.ScrollBar;
         IsPublicComboBox.FormattingEnabled = true;
-        IsPublicComboBox.Location = new Point(12, 49);
-        IsPublicComboBox.Margin = new Padding(2);
+        IsPublicComboBox.Location = new Point(17, 82);
         IsPublicComboBox.Name = "IsPublicComboBox";
-        IsPublicComboBox.Size = new Size(147, 23);
+        IsPublicComboBox.Size = new Size(208, 33);
         IsPublicComboBox.TabIndex = 38;
         toolTip1.SetToolTip(IsPublicComboBox, "Is the type public? This is required.");
         // 
         // RemapperUseForceRename
         // 
         RemapperUseForceRename.AutoSize = true;
-        RemapperUseForceRename.Location = new Point(162, 26);
-        RemapperUseForceRename.Margin = new Padding(2);
+        RemapperUseForceRename.Location = new Point(231, 43);
         RemapperUseForceRename.Name = "RemapperUseForceRename";
-        RemapperUseForceRename.Size = new Size(101, 19);
+        RemapperUseForceRename.Size = new Size(149, 29);
         RemapperUseForceRename.TabIndex = 37;
         RemapperUseForceRename.Text = "Force Rename";
         toolTip1.SetToolTip(RemapperUseForceRename, "Should we force the rename and not use a search pattern.\r\n\r\nRequires \"Original Name\" to be filled in.");
@@ -503,20 +414,18 @@ partial class ReCodeItForm
         // 
         IsAbstractComboBox.BackColor = SystemColors.ScrollBar;
         IsAbstractComboBox.FormattingEnabled = true;
-        IsAbstractComboBox.Location = new Point(12, 71);
-        IsAbstractComboBox.Margin = new Padding(2);
+        IsAbstractComboBox.Location = new Point(17, 118);
         IsAbstractComboBox.Name = "IsAbstractComboBox";
-        IsAbstractComboBox.Size = new Size(147, 23);
+        IsAbstractComboBox.Size = new Size(208, 33);
         IsAbstractComboBox.TabIndex = 40;
         toolTip1.SetToolTip(IsAbstractComboBox, "Is the type abstract? ");
         // 
         // PropertyCountUpDown
         // 
         PropertyCountUpDown.BackColor = SystemColors.ScrollBar;
-        PropertyCountUpDown.Location = new Point(304, 73);
-        PropertyCountUpDown.Margin = new Padding(2);
+        PropertyCountUpDown.Location = new Point(434, 122);
         PropertyCountUpDown.Name = "PropertyCountUpDown";
-        PropertyCountUpDown.Size = new Size(38, 23);
+        PropertyCountUpDown.Size = new Size(54, 31);
         PropertyCountUpDown.TabIndex = 5;
         toolTip1.SetToolTip(PropertyCountUpDown, "How many properties are there?");
         // 
@@ -524,20 +433,18 @@ partial class ReCodeItForm
         // 
         IsSealedComboBox.BackColor = SystemColors.ScrollBar;
         IsSealedComboBox.FormattingEnabled = true;
-        IsSealedComboBox.Location = new Point(12, 94);
-        IsSealedComboBox.Margin = new Padding(2);
+        IsSealedComboBox.Location = new Point(17, 157);
         IsSealedComboBox.Name = "IsSealedComboBox";
-        IsSealedComboBox.Size = new Size(147, 23);
+        IsSealedComboBox.Size = new Size(208, 33);
         IsSealedComboBox.TabIndex = 42;
         toolTip1.SetToolTip(IsSealedComboBox, "Is the type sealed?");
         // 
         // FieldCountUpDown
         // 
         FieldCountUpDown.BackColor = SystemColors.ScrollBar;
-        FieldCountUpDown.Location = new Point(304, 50);
-        FieldCountUpDown.Margin = new Padding(2);
+        FieldCountUpDown.Location = new Point(434, 83);
         FieldCountUpDown.Name = "FieldCountUpDown";
-        FieldCountUpDown.Size = new Size(38, 23);
+        FieldCountUpDown.Size = new Size(54, 31);
         FieldCountUpDown.TabIndex = 3;
         toolTip1.SetToolTip(FieldCountUpDown, "How many fields are there?");
         // 
@@ -545,31 +452,28 @@ partial class ReCodeItForm
         // 
         IsInterfaceComboBox.BackColor = SystemColors.ScrollBar;
         IsInterfaceComboBox.FormattingEnabled = true;
-        IsInterfaceComboBox.Location = new Point(12, 118);
-        IsInterfaceComboBox.Margin = new Padding(2);
+        IsInterfaceComboBox.Location = new Point(17, 197);
         IsInterfaceComboBox.Name = "IsInterfaceComboBox";
-        IsInterfaceComboBox.Size = new Size(147, 23);
+        IsInterfaceComboBox.Size = new Size(208, 33);
         IsInterfaceComboBox.TabIndex = 44;
         toolTip1.SetToolTip(IsInterfaceComboBox, "Is the type an interface?");
         // 
         // NestedTypeParentName
         // 
         NestedTypeParentName.BackColor = SystemColors.ScrollBar;
-        NestedTypeParentName.Location = new Point(160, 239);
-        NestedTypeParentName.Margin = new Padding(2);
+        NestedTypeParentName.Location = new Point(229, 398);
         NestedTypeParentName.Name = "NestedTypeParentName";
         NestedTypeParentName.PlaceholderText = "Nested Type Parent Name";
-        NestedTypeParentName.Size = new Size(147, 23);
+        NestedTypeParentName.Size = new Size(208, 31);
         NestedTypeParentName.TabIndex = 0;
         toolTip1.SetToolTip(NestedTypeParentName, "The name of the parent class if it is nested. Requires IsNested to be true.");
         // 
         // MethodCountUpDown
         // 
         MethodCountUpDown.BackColor = SystemColors.ScrollBar;
-        MethodCountUpDown.Location = new Point(304, 27);
-        MethodCountUpDown.Margin = new Padding(2);
+        MethodCountUpDown.Location = new Point(434, 45);
         MethodCountUpDown.Name = "MethodCountUpDown";
-        MethodCountUpDown.Size = new Size(38, 23);
+        MethodCountUpDown.Size = new Size(54, 31);
         MethodCountUpDown.TabIndex = 6;
         toolTip1.SetToolTip(MethodCountUpDown, "How many methods are there?");
         // 
@@ -577,32 +481,29 @@ partial class ReCodeItForm
         // 
         IsEnumComboBox.BackColor = SystemColors.ScrollBar;
         IsEnumComboBox.FormattingEnabled = true;
-        IsEnumComboBox.Location = new Point(12, 164);
-        IsEnumComboBox.Margin = new Padding(2);
+        IsEnumComboBox.Location = new Point(17, 273);
         IsEnumComboBox.Name = "IsEnumComboBox";
-        IsEnumComboBox.Size = new Size(147, 23);
+        IsEnumComboBox.Size = new Size(208, 33);
         IsEnumComboBox.TabIndex = 46;
         toolTip1.SetToolTip(IsEnumComboBox, "Is the type an enum?");
         // 
         // BaseClassIncludeTextFIeld
         // 
         BaseClassIncludeTextFIeld.BackColor = SystemColors.ScrollBar;
-        BaseClassIncludeTextFIeld.Location = new Point(160, 260);
-        BaseClassIncludeTextFIeld.Margin = new Padding(2);
+        BaseClassIncludeTextFIeld.Location = new Point(229, 433);
         BaseClassIncludeTextFIeld.Name = "BaseClassIncludeTextFIeld";
         BaseClassIncludeTextFIeld.PlaceholderText = "Include Base Class";
-        BaseClassIncludeTextFIeld.Size = new Size(147, 23);
+        BaseClassIncludeTextFIeld.Size = new Size(208, 31);
         BaseClassIncludeTextFIeld.TabIndex = 2;
         toolTip1.SetToolTip(BaseClassIncludeTextFIeld, "Specifiy the base class. Requires IsDerived to be true");
         // 
         // OriginalTypeName
         // 
         OriginalTypeName.BackColor = SystemColors.ScrollBar;
-        OriginalTypeName.Location = new Point(12, 26);
-        OriginalTypeName.Margin = new Padding(2);
+        OriginalTypeName.Location = new Point(17, 43);
         OriginalTypeName.Name = "OriginalTypeName";
         OriginalTypeName.PlaceholderText = "Original Name";
-        OriginalTypeName.Size = new Size(147, 23);
+        OriginalTypeName.Size = new Size(208, 31);
         OriginalTypeName.TabIndex = 1;
         toolTip1.SetToolTip(OriginalTypeName, "The original name of the type, you can leave this blank if not using force rename.");
         // 
@@ -610,30 +511,27 @@ partial class ReCodeItForm
         // 
         HasAttributeComboBox.BackColor = SystemColors.ScrollBar;
         HasAttributeComboBox.FormattingEnabled = true;
-        HasAttributeComboBox.Location = new Point(12, 187);
-        HasAttributeComboBox.Margin = new Padding(2);
+        HasAttributeComboBox.Location = new Point(17, 312);
         HasAttributeComboBox.Name = "HasAttributeComboBox";
-        HasAttributeComboBox.Size = new Size(147, 23);
+        HasAttributeComboBox.Size = new Size(208, 33);
         HasAttributeComboBox.TabIndex = 48;
         toolTip1.SetToolTip(HasAttributeComboBox, "does the type have an attribute?");
         // 
         // NestedTypeCountUpDown
         // 
         NestedTypeCountUpDown.BackColor = SystemColors.ScrollBar;
-        NestedTypeCountUpDown.Location = new Point(304, 95);
-        NestedTypeCountUpDown.Margin = new Padding(2);
+        NestedTypeCountUpDown.Location = new Point(434, 158);
         NestedTypeCountUpDown.Name = "NestedTypeCountUpDown";
-        NestedTypeCountUpDown.Size = new Size(38, 23);
+        NestedTypeCountUpDown.Size = new Size(54, 31);
         NestedTypeCountUpDown.TabIndex = 4;
         toolTip1.SetToolTip(NestedTypeCountUpDown, "How many nested types are there?");
         // 
         // IsDerivedUpDown
         // 
         IsDerivedUpDown.BackColor = SystemColors.ScrollBar;
-        IsDerivedUpDown.Location = new Point(12, 261);
-        IsDerivedUpDown.Margin = new Padding(2);
+        IsDerivedUpDown.Location = new Point(17, 435);
         IsDerivedUpDown.Name = "IsDerivedUpDown";
-        IsDerivedUpDown.Size = new Size(144, 23);
+        IsDerivedUpDown.Size = new Size(206, 31);
         IsDerivedUpDown.Sorted = true;
         IsDerivedUpDown.TabIndex = 6;
         IsDerivedUpDown.Text = "IsDerived";
@@ -643,20 +541,18 @@ partial class ReCodeItForm
         // 
         HasGenericParamsComboBox.BackColor = SystemColors.ScrollBar;
         HasGenericParamsComboBox.FormattingEnabled = true;
-        HasGenericParamsComboBox.Location = new Point(12, 211);
-        HasGenericParamsComboBox.Margin = new Padding(2);
+        HasGenericParamsComboBox.Location = new Point(17, 352);
         HasGenericParamsComboBox.Name = "HasGenericParamsComboBox";
-        HasGenericParamsComboBox.Size = new Size(147, 23);
+        HasGenericParamsComboBox.Size = new Size(208, 33);
         HasGenericParamsComboBox.TabIndex = 50;
         toolTip1.SetToolTip(HasGenericParamsComboBox, "Does the type have generic parameters?");
         // 
         // IsNestedUpDown
         // 
         IsNestedUpDown.BackColor = SystemColors.ScrollBar;
-        IsNestedUpDown.Location = new Point(12, 239);
-        IsNestedUpDown.Margin = new Padding(2);
+        IsNestedUpDown.Location = new Point(17, 398);
         IsNestedUpDown.Name = "IsNestedUpDown";
-        IsNestedUpDown.Size = new Size(144, 23);
+        IsNestedUpDown.Size = new Size(206, 31);
         IsNestedUpDown.Sorted = true;
         IsNestedUpDown.TabIndex = 3;
         IsNestedUpDown.Text = "IsNested";
@@ -665,11 +561,10 @@ partial class ReCodeItForm
         // BaseClassExcludeTextField
         // 
         BaseClassExcludeTextField.BackColor = SystemColors.ScrollBar;
-        BaseClassExcludeTextField.Location = new Point(312, 260);
-        BaseClassExcludeTextField.Margin = new Padding(2);
+        BaseClassExcludeTextField.Location = new Point(446, 433);
         BaseClassExcludeTextField.Name = "BaseClassExcludeTextField";
         BaseClassExcludeTextField.PlaceholderText = "Exclude Base Class";
-        BaseClassExcludeTextField.Size = new Size(147, 23);
+        BaseClassExcludeTextField.Size = new Size(208, 31);
         BaseClassExcludeTextField.TabIndex = 1;
         toolTip1.SetToolTip(BaseClassExcludeTextField, "Exclude a base class. Requires IsDerived to be true");
         // 
@@ -677,42 +572,38 @@ partial class ReCodeItForm
         // 
         IsStructComboBox.BackColor = SystemColors.ScrollBar;
         IsStructComboBox.FormattingEnabled = true;
-        IsStructComboBox.Location = new Point(12, 141);
-        IsStructComboBox.Margin = new Padding(2);
+        IsStructComboBox.Location = new Point(17, 235);
         IsStructComboBox.Name = "IsStructComboBox";
-        IsStructComboBox.Size = new Size(147, 23);
+        IsStructComboBox.Size = new Size(208, 33);
         IsStructComboBox.TabIndex = 52;
         toolTip1.SetToolTip(IsStructComboBox, "Is the type an enum?");
         // 
         // NewTypeName
         // 
         NewTypeName.BackColor = SystemColors.ScrollBar;
-        NewTypeName.Location = new Point(12, 4);
-        NewTypeName.Margin = new Padding(2);
+        NewTypeName.Location = new Point(17, 7);
         NewTypeName.Name = "NewTypeName";
         NewTypeName.PlaceholderText = "New Name";
-        NewTypeName.Size = new Size(147, 23);
+        NewTypeName.Size = new Size(208, 31);
         NewTypeName.TabIndex = 0;
         toolTip1.SetToolTip(NewTypeName, "The new name of the type you wish to remap");
         // 
         // LoadedMappingFilePath
         // 
         LoadedMappingFilePath.BackColor = SystemColors.ScrollBar;
-        LoadedMappingFilePath.Location = new Point(547, 527);
-        LoadedMappingFilePath.Margin = new Padding(2);
+        LoadedMappingFilePath.Location = new Point(781, 878);
         LoadedMappingFilePath.Name = "LoadedMappingFilePath";
         LoadedMappingFilePath.PlaceholderText = "Loaded Mapping File";
         LoadedMappingFilePath.ReadOnly = true;
-        LoadedMappingFilePath.Size = new Size(255, 23);
+        LoadedMappingFilePath.Size = new Size(363, 31);
         LoadedMappingFilePath.TabIndex = 38;
         toolTip1.SetToolTip(LoadedMappingFilePath, "Shows which mapping file you are working on, a standalone or a projects mappings");
         // 
         // ResetSearchButton
         // 
-        ResetSearchButton.Location = new Point(853, 8);
-        ResetSearchButton.Margin = new Padding(2);
+        ResetSearchButton.Location = new Point(1219, 13);
         ResetSearchButton.Name = "ResetSearchButton";
-        ResetSearchButton.Size = new Size(78, 20);
+        ResetSearchButton.Size = new Size(111, 33);
         ResetSearchButton.TabIndex = 40;
         ResetSearchButton.Text = "Clear";
         toolTip1.SetToolTip(ResetSearchButton, "The programs original assembly you wish to remap.\r\n\r\nTarget the one in the programs install location.");
@@ -722,10 +613,9 @@ partial class ReCodeItForm
         // ValidateRemapButton
         // 
         ValidateRemapButton.BackColor = SystemColors.ButtonShadow;
-        ValidateRemapButton.Location = new Point(548, 419);
-        ValidateRemapButton.Margin = new Padding(2);
+        ValidateRemapButton.Location = new Point(783, 698);
         ValidateRemapButton.Name = "ValidateRemapButton";
-        ValidateRemapButton.Size = new Size(118, 20);
+        ValidateRemapButton.Size = new Size(169, 33);
         ValidateRemapButton.TabIndex = 54;
         ValidateRemapButton.Text = "Validate Remap";
         toolTip1.SetToolTip(ValidateRemapButton, "Validates the current remap in the editor, saves you from running the entire process to find a match for a single remap.");
@@ -736,11 +626,10 @@ partial class ReCodeItForm
         // 
         SettingsTab.BackColor = SystemColors.ControlDarkDark;
         SettingsTab.Controls.Add(groupBox2);
-        SettingsTab.Location = new Point(4, 24);
-        SettingsTab.Margin = new Padding(2);
+        SettingsTab.Location = new Point(4, 34);
         SettingsTab.Name = "SettingsTab";
-        SettingsTab.Padding = new Padding(2);
-        SettingsTab.Size = new Size(947, 567);
+        SettingsTab.Padding = new Padding(3, 3, 3, 3);
+        SettingsTab.Size = new Size(1356, 954);
         SettingsTab.TabIndex = 2;
         SettingsTab.Text = "Settings";
         // 
@@ -749,359 +638,12 @@ partial class ReCodeItForm
         groupBox2.Controls.Add(GithubLinkLabel);
         groupBox2.Controls.Add(SilentModeCheckbox);
         groupBox2.Controls.Add(DebugLoggingCheckbox);
-        groupBox2.Location = new Point(9, 4);
-        groupBox2.Margin = new Padding(2);
+        groupBox2.Location = new Point(13, 7);
         groupBox2.Name = "groupBox2";
-        groupBox2.Padding = new Padding(2);
-        groupBox2.Size = new Size(312, 210);
+        groupBox2.Size = new Size(446, 350);
         groupBox2.TabIndex = 0;
         groupBox2.TabStop = false;
         groupBox2.Text = "App Settings";
-        // 
-        // AutoMapperTab
-        // 
-        AutoMapperTab.BackColor = SystemColors.ControlDarkDark;
-        AutoMapperTab.Controls.Add(AutoMapperUnseal);
-        AutoMapperTab.Controls.Add(AutoMapperPublicize);
-        AutoMapperTab.Controls.Add(AutoMapperRenameProps);
-        AutoMapperTab.Controls.Add(AutoMapperRenameFields);
-        AutoMapperTab.Controls.Add(AutoMapperOuputPath);
-        AutoMapperTab.Controls.Add(AutoMapperTargetPath);
-        AutoMapperTab.Controls.Add(AutoMapperMethodTextBox);
-        AutoMapperTab.Controls.Add(AutoMapperFPTextField);
-        AutoMapperTab.Controls.Add(AutoMapperTokensTextField);
-        AutoMapperTab.Controls.Add(AutoMapperTypesToIgnoreTextField);
-        AutoMapperTab.Controls.Add(AutoMapperChooseOutpathButton);
-        AutoMapperTab.Controls.Add(AutoMapperChooseTargetPathButton);
-        AutoMapperTab.Controls.Add(AutoMapperMethodRemoveButton);
-        AutoMapperTab.Controls.Add(AutoMapperMethodAddButton);
-        AutoMapperTab.Controls.Add(AutoMapperMethodBox);
-        AutoMapperTab.Controls.Add(AutoMapperSearchMethodsCheckBox);
-        AutoMapperTab.Controls.Add(AutoMapperFPRemoveButton);
-        AutoMapperTab.Controls.Add(AutoMapperFPAddButton);
-        AutoMapperTab.Controls.Add(AutoMapperFPBox);
-        AutoMapperTab.Controls.Add(AutoMapperTokensRemoveButton);
-        AutoMapperTab.Controls.Add(AutoMapperTokensAddButton);
-        AutoMapperTab.Controls.Add(AutoMapperTokensBox);
-        AutoMapperTab.Controls.Add(label3);
-        AutoMapperTab.Controls.Add(AutoMapperMinLengthUpDown);
-        AutoMapperTab.Controls.Add(RunAutoRemapButton);
-        AutoMapperTab.Controls.Add(label2);
-        AutoMapperTab.Controls.Add(AutoMapperRequiredMatchesUpDown);
-        AutoMapperTab.Controls.Add(AutoMapperExcludeTypesRemoveButton);
-        AutoMapperTab.Controls.Add(AutoMapperExcludeTypesAddButton);
-        AutoMapperTab.Controls.Add(AutoMapperTypesExcludeBox);
-        AutoMapperTab.Location = new Point(4, 24);
-        AutoMapperTab.Margin = new Padding(2);
-        AutoMapperTab.Name = "AutoMapperTab";
-        AutoMapperTab.Padding = new Padding(2);
-        AutoMapperTab.Size = new Size(947, 567);
-        AutoMapperTab.TabIndex = 3;
-        AutoMapperTab.Text = "Auto Mapper";
-        // 
-        // AutoMapperUnseal
-        // 
-        AutoMapperUnseal.AutoSize = true;
-        AutoMapperUnseal.Checked = true;
-        AutoMapperUnseal.CheckState = CheckState.Checked;
-        AutoMapperUnseal.Location = new Point(376, 82);
-        AutoMapperUnseal.Margin = new Padding(2);
-        AutoMapperUnseal.Name = "AutoMapperUnseal";
-        AutoMapperUnseal.Size = new Size(61, 19);
-        AutoMapperUnseal.TabIndex = 51;
-        AutoMapperUnseal.Text = "Unseal";
-        AutoMapperUnseal.UseVisualStyleBackColor = true;
-        AutoMapperUnseal.CheckedChanged += AutoMapperUnseal_CheckedChanged;
-        // 
-        // AutoMapperPublicize
-        // 
-        AutoMapperPublicize.AutoSize = true;
-        AutoMapperPublicize.Checked = true;
-        AutoMapperPublicize.CheckState = CheckState.Checked;
-        AutoMapperPublicize.Location = new Point(376, 61);
-        AutoMapperPublicize.Margin = new Padding(2);
-        AutoMapperPublicize.Name = "AutoMapperPublicize";
-        AutoMapperPublicize.Size = new Size(73, 19);
-        AutoMapperPublicize.TabIndex = 50;
-        AutoMapperPublicize.Text = "Publicize";
-        AutoMapperPublicize.UseVisualStyleBackColor = true;
-        AutoMapperPublicize.CheckedChanged += AutoMapperPublicize_CheckedChanged;
-        // 
-        // AutoMapperRenameProps
-        // 
-        AutoMapperRenameProps.AutoSize = true;
-        AutoMapperRenameProps.Checked = true;
-        AutoMapperRenameProps.CheckState = CheckState.Checked;
-        AutoMapperRenameProps.Location = new Point(376, 40);
-        AutoMapperRenameProps.Margin = new Padding(2);
-        AutoMapperRenameProps.Name = "AutoMapperRenameProps";
-        AutoMapperRenameProps.Size = new Size(125, 19);
-        AutoMapperRenameProps.TabIndex = 49;
-        AutoMapperRenameProps.Text = "Rename Properties";
-        AutoMapperRenameProps.UseVisualStyleBackColor = true;
-        AutoMapperRenameProps.CheckedChanged += AutoMapperRenameProps_CheckedChanged;
-        // 
-        // AutoMapperRenameFields
-        // 
-        AutoMapperRenameFields.AutoSize = true;
-        AutoMapperRenameFields.Checked = true;
-        AutoMapperRenameFields.CheckState = CheckState.Checked;
-        AutoMapperRenameFields.Location = new Point(376, 19);
-        AutoMapperRenameFields.Margin = new Padding(2);
-        AutoMapperRenameFields.Name = "AutoMapperRenameFields";
-        AutoMapperRenameFields.Size = new Size(102, 19);
-        AutoMapperRenameFields.TabIndex = 48;
-        AutoMapperRenameFields.Text = "Rename Fields";
-        AutoMapperRenameFields.UseVisualStyleBackColor = true;
-        AutoMapperRenameFields.CheckedChanged += AutoMapperRenameFields_CheckedChanged;
-        // 
-        // AutoMapperOuputPath
-        // 
-        AutoMapperOuputPath.BackColor = SystemColors.ScrollBar;
-        AutoMapperOuputPath.Location = new Point(4, 26);
-        AutoMapperOuputPath.Margin = new Padding(2);
-        AutoMapperOuputPath.Name = "AutoMapperOuputPath";
-        AutoMapperOuputPath.PlaceholderText = "Output Directory";
-        AutoMapperOuputPath.ReadOnly = true;
-        AutoMapperOuputPath.Size = new Size(209, 23);
-        AutoMapperOuputPath.TabIndex = 47;
-        // 
-        // AutoMapperTargetPath
-        // 
-        AutoMapperTargetPath.BackColor = SystemColors.ScrollBar;
-        AutoMapperTargetPath.Location = new Point(4, 4);
-        AutoMapperTargetPath.Margin = new Padding(2);
-        AutoMapperTargetPath.Name = "AutoMapperTargetPath";
-        AutoMapperTargetPath.PlaceholderText = "Target Assembly";
-        AutoMapperTargetPath.ReadOnly = true;
-        AutoMapperTargetPath.Size = new Size(209, 23);
-        AutoMapperTargetPath.TabIndex = 46;
-        // 
-        // AutoMapperMethodTextBox
-        // 
-        AutoMapperMethodTextBox.BackColor = SystemColors.ScrollBar;
-        AutoMapperMethodTextBox.Location = new Point(256, 298);
-        AutoMapperMethodTextBox.Margin = new Padding(2);
-        AutoMapperMethodTextBox.Name = "AutoMapperMethodTextBox";
-        AutoMapperMethodTextBox.PlaceholderText = "method parameter names to blacklist";
-        AutoMapperMethodTextBox.Size = new Size(248, 23);
-        AutoMapperMethodTextBox.TabIndex = 43;
-        // 
-        // AutoMapperFPTextField
-        // 
-        AutoMapperFPTextField.BackColor = SystemColors.ScrollBar;
-        AutoMapperFPTextField.Location = new Point(4, 298);
-        AutoMapperFPTextField.Margin = new Padding(2);
-        AutoMapperFPTextField.Name = "AutoMapperFPTextField";
-        AutoMapperFPTextField.PlaceholderText = "Field or property names to blacklist";
-        AutoMapperFPTextField.Size = new Size(248, 23);
-        AutoMapperFPTextField.TabIndex = 38;
-        // 
-        // AutoMapperTokensTextField
-        // 
-        AutoMapperTokensTextField.BackColor = SystemColors.ScrollBar;
-        AutoMapperTokensTextField.Location = new Point(256, 104);
-        AutoMapperTokensTextField.Margin = new Padding(2);
-        AutoMapperTokensTextField.Name = "AutoMapperTokensTextField";
-        AutoMapperTokensTextField.PlaceholderText = "Class Tokens To Match During Renaming";
-        AutoMapperTokensTextField.Size = new Size(248, 23);
-        AutoMapperTokensTextField.TabIndex = 34;
-        // 
-        // AutoMapperTypesToIgnoreTextField
-        // 
-        AutoMapperTypesToIgnoreTextField.BackColor = SystemColors.ScrollBar;
-        AutoMapperTypesToIgnoreTextField.Location = new Point(4, 104);
-        AutoMapperTypesToIgnoreTextField.Margin = new Padding(2);
-        AutoMapperTypesToIgnoreTextField.Name = "AutoMapperTypesToIgnoreTextField";
-        AutoMapperTypesToIgnoreTextField.PlaceholderText = "Type Exclude";
-        AutoMapperTypesToIgnoreTextField.Size = new Size(248, 23);
-        AutoMapperTypesToIgnoreTextField.TabIndex = 24;
-        // 
-        // AutoMapperChooseOutpathButton
-        // 
-        AutoMapperChooseOutpathButton.Location = new Point(216, 25);
-        AutoMapperChooseOutpathButton.Margin = new Padding(2);
-        AutoMapperChooseOutpathButton.Name = "AutoMapperChooseOutpathButton";
-        AutoMapperChooseOutpathButton.Size = new Size(78, 20);
-        AutoMapperChooseOutpathButton.TabIndex = 45;
-        AutoMapperChooseOutpathButton.Text = "Choose";
-        AutoMapperChooseOutpathButton.UseVisualStyleBackColor = true;
-        AutoMapperChooseOutpathButton.Click += AutoMapperChooseOutpathButton_Click;
-        // 
-        // AutoMapperChooseTargetPathButton
-        // 
-        AutoMapperChooseTargetPathButton.Location = new Point(216, 2);
-        AutoMapperChooseTargetPathButton.Margin = new Padding(2);
-        AutoMapperChooseTargetPathButton.Name = "AutoMapperChooseTargetPathButton";
-        AutoMapperChooseTargetPathButton.Size = new Size(78, 20);
-        AutoMapperChooseTargetPathButton.TabIndex = 44;
-        AutoMapperChooseTargetPathButton.Text = "Choose";
-        AutoMapperChooseTargetPathButton.UseVisualStyleBackColor = true;
-        AutoMapperChooseTargetPathButton.Click += AutoMapperChooseTargetPathButton_Click;
-        // 
-        // AutoMapperMethodRemoveButton
-        // 
-        AutoMapperMethodRemoveButton.Location = new Point(424, 461);
-        AutoMapperMethodRemoveButton.Margin = new Padding(2);
-        AutoMapperMethodRemoveButton.Name = "AutoMapperMethodRemoveButton";
-        AutoMapperMethodRemoveButton.Size = new Size(78, 20);
-        AutoMapperMethodRemoveButton.TabIndex = 42;
-        AutoMapperMethodRemoveButton.Text = "Remove";
-        AutoMapperMethodRemoveButton.UseVisualStyleBackColor = true;
-        AutoMapperMethodRemoveButton.Click += AutoMapperMethodRemoveButton_Click;
-        // 
-        // AutoMapperMethodAddButton
-        // 
-        AutoMapperMethodAddButton.Location = new Point(256, 461);
-        AutoMapperMethodAddButton.Margin = new Padding(2);
-        AutoMapperMethodAddButton.Name = "AutoMapperMethodAddButton";
-        AutoMapperMethodAddButton.Size = new Size(78, 20);
-        AutoMapperMethodAddButton.TabIndex = 41;
-        AutoMapperMethodAddButton.Text = "Add";
-        AutoMapperMethodAddButton.UseVisualStyleBackColor = true;
-        AutoMapperMethodAddButton.Click += AutoMapperMethodAddButton_Click;
-        // 
-        // AutoMapperMethodBox
-        // 
-        AutoMapperMethodBox.BackColor = Color.Gray;
-        AutoMapperMethodBox.FormattingEnabled = true;
-        AutoMapperMethodBox.ItemHeight = 15;
-        AutoMapperMethodBox.Location = new Point(256, 320);
-        AutoMapperMethodBox.Margin = new Padding(2);
-        AutoMapperMethodBox.Name = "AutoMapperMethodBox";
-        AutoMapperMethodBox.Size = new Size(248, 139);
-        AutoMapperMethodBox.TabIndex = 40;
-        // 
-        // AutoMapperSearchMethodsCheckBox
-        // 
-        AutoMapperSearchMethodsCheckBox.AutoSize = true;
-        AutoMapperSearchMethodsCheckBox.Location = new Point(375, 1);
-        AutoMapperSearchMethodsCheckBox.Margin = new Padding(2);
-        AutoMapperSearchMethodsCheckBox.Name = "AutoMapperSearchMethodsCheckBox";
-        AutoMapperSearchMethodsCheckBox.Size = new Size(197, 19);
-        AutoMapperSearchMethodsCheckBox.TabIndex = 39;
-        AutoMapperSearchMethodsCheckBox.Text = "Search Methods (Experiemental)";
-        AutoMapperSearchMethodsCheckBox.UseVisualStyleBackColor = true;
-        AutoMapperSearchMethodsCheckBox.CheckedChanged += SearchMethodsCheckBox_CheckedChanged;
-        // 
-        // AutoMapperFPRemoveButton
-        // 
-        AutoMapperFPRemoveButton.Location = new Point(173, 461);
-        AutoMapperFPRemoveButton.Margin = new Padding(2);
-        AutoMapperFPRemoveButton.Name = "AutoMapperFPRemoveButton";
-        AutoMapperFPRemoveButton.Size = new Size(78, 20);
-        AutoMapperFPRemoveButton.TabIndex = 37;
-        AutoMapperFPRemoveButton.Text = "Remove";
-        AutoMapperFPRemoveButton.UseVisualStyleBackColor = true;
-        AutoMapperFPRemoveButton.Click += AutoMapperFPRemoveButton_Click;
-        // 
-        // AutoMapperFPAddButton
-        // 
-        AutoMapperFPAddButton.Location = new Point(4, 461);
-        AutoMapperFPAddButton.Margin = new Padding(2);
-        AutoMapperFPAddButton.Name = "AutoMapperFPAddButton";
-        AutoMapperFPAddButton.Size = new Size(78, 20);
-        AutoMapperFPAddButton.TabIndex = 36;
-        AutoMapperFPAddButton.Text = "Add";
-        AutoMapperFPAddButton.UseVisualStyleBackColor = true;
-        AutoMapperFPAddButton.Click += AutoMapperFPAddButton_Click;
-        // 
-        // AutoMapperFPBox
-        // 
-        AutoMapperFPBox.BackColor = Color.Gray;
-        AutoMapperFPBox.FormattingEnabled = true;
-        AutoMapperFPBox.ItemHeight = 15;
-        AutoMapperFPBox.Location = new Point(4, 320);
-        AutoMapperFPBox.Margin = new Padding(2);
-        AutoMapperFPBox.Name = "AutoMapperFPBox";
-        AutoMapperFPBox.Size = new Size(248, 139);
-        AutoMapperFPBox.TabIndex = 35;
-        // 
-        // AutoMapperTokensRemoveButton
-        // 
-        AutoMapperTokensRemoveButton.Location = new Point(424, 267);
-        AutoMapperTokensRemoveButton.Margin = new Padding(2);
-        AutoMapperTokensRemoveButton.Name = "AutoMapperTokensRemoveButton";
-        AutoMapperTokensRemoveButton.Size = new Size(78, 20);
-        AutoMapperTokensRemoveButton.TabIndex = 33;
-        AutoMapperTokensRemoveButton.Text = "Remove";
-        AutoMapperTokensRemoveButton.UseVisualStyleBackColor = true;
-        AutoMapperTokensRemoveButton.Click += AutoMapperTokensRemoveButton_Click;
-        // 
-        // AutoMapperTokensAddButton
-        // 
-        AutoMapperTokensAddButton.Location = new Point(256, 267);
-        AutoMapperTokensAddButton.Margin = new Padding(2);
-        AutoMapperTokensAddButton.Name = "AutoMapperTokensAddButton";
-        AutoMapperTokensAddButton.Size = new Size(78, 20);
-        AutoMapperTokensAddButton.TabIndex = 32;
-        AutoMapperTokensAddButton.Text = "Add";
-        AutoMapperTokensAddButton.UseVisualStyleBackColor = true;
-        AutoMapperTokensAddButton.Click += AutoMapperTokensAddButton_Click;
-        // 
-        // AutoMapperTokensBox
-        // 
-        AutoMapperTokensBox.BackColor = Color.Gray;
-        AutoMapperTokensBox.FormattingEnabled = true;
-        AutoMapperTokensBox.ItemHeight = 15;
-        AutoMapperTokensBox.Location = new Point(256, 126);
-        AutoMapperTokensBox.Margin = new Padding(2);
-        AutoMapperTokensBox.Name = "AutoMapperTokensBox";
-        AutoMapperTokensBox.Size = new Size(248, 139);
-        AutoMapperTokensBox.TabIndex = 31;
-        // 
-        // label3
-        // 
-        label3.AutoSize = true;
-        label3.Location = new Point(170, 71);
-        label3.Margin = new Padding(2, 0, 2, 0);
-        label3.Name = "label3";
-        label3.Size = new Size(183, 15);
-        label3.TabIndex = 30;
-        label3.Text = "Min Length of field or prop name";
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(170, 52);
-        label2.Margin = new Padding(2, 0, 2, 0);
-        label2.Name = "label2";
-        label2.Size = new Size(102, 15);
-        label2.TabIndex = 27;
-        label2.Text = "Required Matches";
-        // 
-        // AutoMapperExcludeTypesRemoveButton
-        // 
-        AutoMapperExcludeTypesRemoveButton.Location = new Point(173, 267);
-        AutoMapperExcludeTypesRemoveButton.Margin = new Padding(2);
-        AutoMapperExcludeTypesRemoveButton.Name = "AutoMapperExcludeTypesRemoveButton";
-        AutoMapperExcludeTypesRemoveButton.Size = new Size(78, 20);
-        AutoMapperExcludeTypesRemoveButton.TabIndex = 23;
-        AutoMapperExcludeTypesRemoveButton.Text = "Remove";
-        AutoMapperExcludeTypesRemoveButton.UseVisualStyleBackColor = true;
-        AutoMapperExcludeTypesRemoveButton.Click += AutoMapperExcludeRemoveButton_Click;
-        // 
-        // AutoMapperExcludeTypesAddButton
-        // 
-        AutoMapperExcludeTypesAddButton.Location = new Point(4, 267);
-        AutoMapperExcludeTypesAddButton.Margin = new Padding(2);
-        AutoMapperExcludeTypesAddButton.Name = "AutoMapperExcludeTypesAddButton";
-        AutoMapperExcludeTypesAddButton.Size = new Size(78, 20);
-        AutoMapperExcludeTypesAddButton.TabIndex = 22;
-        AutoMapperExcludeTypesAddButton.Text = "Add";
-        AutoMapperExcludeTypesAddButton.UseVisualStyleBackColor = true;
-        AutoMapperExcludeTypesAddButton.Click += AutoMapperExcludeAddButton_Click;
-        // 
-        // AutoMapperTypesExcludeBox
-        // 
-        AutoMapperTypesExcludeBox.BackColor = Color.Gray;
-        AutoMapperTypesExcludeBox.FormattingEnabled = true;
-        AutoMapperTypesExcludeBox.ItemHeight = 15;
-        AutoMapperTypesExcludeBox.Location = new Point(4, 126);
-        AutoMapperTypesExcludeBox.Margin = new Padding(2);
-        AutoMapperTypesExcludeBox.Name = "AutoMapperTypesExcludeBox";
-        AutoMapperTypesExcludeBox.Size = new Size(248, 139);
-        AutoMapperTypesExcludeBox.TabIndex = 21;
         // 
         // RemapperTabPage
         // 
@@ -1125,74 +667,66 @@ partial class ReCodeItForm
         RemapperTabPage.Controls.Add(RunRemapButton);
         RemapperTabPage.Controls.Add(RenameFieldsCheckbox);
         RemapperTabPage.Controls.Add(RenamePropertiesCheckbox);
-        RemapperTabPage.Location = new Point(4, 24);
-        RemapperTabPage.Margin = new Padding(2);
+        RemapperTabPage.Location = new Point(4, 34);
         RemapperTabPage.Name = "RemapperTabPage";
-        RemapperTabPage.Padding = new Padding(2);
-        RemapperTabPage.Size = new Size(947, 567);
+        RemapperTabPage.Padding = new Padding(3, 3, 3, 3);
+        RemapperTabPage.Size = new Size(1356, 954);
         RemapperTabPage.TabIndex = 1;
         RemapperTabPage.Text = "Remapper";
         // 
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(544, 28);
-        label1.Margin = new Padding(2, 0, 2, 0);
+        label1.Location = new Point(777, 47);
         label1.Name = "label1";
-        label1.Size = new Size(155, 15);
+        label1.Size = new Size(235, 25);
         label1.TabIndex = 41;
         label1.Text = "Double click to edit a remap";
         // 
         // RMSearchBox
         // 
         RMSearchBox.BackColor = SystemColors.ScrollBar;
-        RMSearchBox.Location = new Point(547, 10);
-        RMSearchBox.Margin = new Padding(2);
+        RMSearchBox.Location = new Point(781, 17);
         RMSearchBox.Name = "RMSearchBox";
         RMSearchBox.PlaceholderText = "Search";
-        RMSearchBox.Size = new Size(303, 23);
+        RMSearchBox.Size = new Size(431, 31);
         RMSearchBox.TabIndex = 38;
         RMSearchBox.TextChanged += SearchTreeView;
         // 
         // RemapperOutputDirectoryPath
         // 
         RemapperOutputDirectoryPath.BackColor = SystemColors.ScrollBar;
-        RemapperOutputDirectoryPath.Location = new Point(547, 371);
-        RemapperOutputDirectoryPath.Margin = new Padding(2);
+        RemapperOutputDirectoryPath.Location = new Point(781, 618);
         RemapperOutputDirectoryPath.Name = "RemapperOutputDirectoryPath";
         RemapperOutputDirectoryPath.PlaceholderText = "Output Directory";
         RemapperOutputDirectoryPath.ReadOnly = true;
-        RemapperOutputDirectoryPath.Size = new Size(303, 23);
+        RemapperOutputDirectoryPath.Size = new Size(431, 31);
         RemapperOutputDirectoryPath.TabIndex = 34;
         // 
         // TargetAssemblyPath
         // 
         TargetAssemblyPath.BackColor = SystemColors.ScrollBar;
-        TargetAssemblyPath.Location = new Point(547, 349);
-        TargetAssemblyPath.Margin = new Padding(2);
+        TargetAssemblyPath.Location = new Point(781, 582);
         TargetAssemblyPath.Name = "TargetAssemblyPath";
         TargetAssemblyPath.PlaceholderText = "Target Assembly";
         TargetAssemblyPath.ReadOnly = true;
-        TargetAssemblyPath.Size = new Size(303, 23);
+        TargetAssemblyPath.Size = new Size(431, 31);
         TargetAssemblyPath.TabIndex = 33;
         // 
         // RemapTreeView
         // 
         RemapTreeView.BackColor = Color.Gray;
-        RemapTreeView.Location = new Point(548, 43);
-        RemapTreeView.Margin = new Padding(2);
+        RemapTreeView.Location = new Point(783, 72);
         RemapTreeView.Name = "RemapTreeView";
-        RemapTreeView.Size = new Size(384, 303);
+        RemapTreeView.Size = new Size(547, 502);
         RemapTreeView.TabIndex = 1;
         // 
         // groupBox1
         // 
         groupBox1.Controls.Add(tabControl1);
-        groupBox1.Location = new Point(4, 4);
-        groupBox1.Margin = new Padding(2);
+        groupBox1.Location = new Point(6, 7);
         groupBox1.Name = "groupBox1";
-        groupBox1.Padding = new Padding(2);
-        groupBox1.Size = new Size(538, 542);
+        groupBox1.Size = new Size(769, 903);
         groupBox1.TabIndex = 0;
         groupBox1.TabStop = false;
         groupBox1.Text = "Remap Editor";
@@ -1202,11 +736,10 @@ partial class ReCodeItForm
         tabControl1.Controls.Add(RMBasicTab);
         tabControl1.Controls.Add(tabPage6);
         tabControl1.Controls.Add(RMSearchTab);
-        tabControl1.Location = new Point(7, 18);
-        tabControl1.Margin = new Padding(2);
+        tabControl1.Location = new Point(10, 30);
         tabControl1.Name = "tabControl1";
         tabControl1.SelectedIndex = 0;
-        tabControl1.Size = new Size(527, 528);
+        tabControl1.Size = new Size(753, 880);
         tabControl1.TabIndex = 54;
         // 
         // RMBasicTab
@@ -1247,11 +780,10 @@ partial class ReCodeItForm
         RMBasicTab.Controls.Add(IsPublicComboBox);
         RMBasicTab.Controls.Add(ConstructorCountEnabled);
         RMBasicTab.Controls.Add(ConstuctorCountUpDown);
-        RMBasicTab.Location = new Point(4, 24);
-        RMBasicTab.Margin = new Padding(2);
+        RMBasicTab.Location = new Point(4, 34);
         RMBasicTab.Name = "RMBasicTab";
-        RMBasicTab.Padding = new Padding(2);
-        RMBasicTab.Size = new Size(519, 500);
+        RMBasicTab.Padding = new Padding(3, 3, 3, 3);
+        RMBasicTab.Size = new Size(745, 842);
         RMBasicTab.TabIndex = 0;
         RMBasicTab.Text = "Basic";
         // 
@@ -1262,11 +794,10 @@ partial class ReCodeItForm
         Inclusions.Controls.Add(tabPage3);
         Inclusions.Controls.Add(tabPage4);
         Inclusions.Controls.Add(tabPage5);
-        Inclusions.Location = new Point(4, 286);
-        Inclusions.Margin = new Padding(2);
+        Inclusions.Location = new Point(6, 477);
         Inclusions.Name = "Inclusions";
         Inclusions.SelectedIndex = 0;
-        Inclusions.Size = new Size(526, 218);
+        Inclusions.Size = new Size(751, 363);
         Inclusions.TabIndex = 14;
         // 
         // tabPage1
@@ -1281,40 +812,36 @@ partial class ReCodeItForm
         tabPage1.Controls.Add(MethodIncludeAddButton);
         tabPage1.Controls.Add(MethodExcludeBox);
         tabPage1.Controls.Add(MethodIncludeBox);
-        tabPage1.Location = new Point(4, 24);
-        tabPage1.Margin = new Padding(2);
+        tabPage1.Location = new Point(4, 34);
         tabPage1.Name = "tabPage1";
-        tabPage1.Padding = new Padding(2);
-        tabPage1.Size = new Size(518, 190);
+        tabPage1.Padding = new Padding(3, 3, 3, 3);
+        tabPage1.Size = new Size(743, 325);
         tabPage1.TabIndex = 0;
         tabPage1.Text = "Methods";
         // 
         // ExcludeMethodTextBox
         // 
         ExcludeMethodTextBox.BackColor = SystemColors.ScrollBar;
-        ExcludeMethodTextBox.Location = new Point(267, 4);
-        ExcludeMethodTextBox.Margin = new Padding(2);
+        ExcludeMethodTextBox.Location = new Point(381, 7);
         ExcludeMethodTextBox.Name = "ExcludeMethodTextBox";
         ExcludeMethodTextBox.PlaceholderText = "Exclude Methods";
-        ExcludeMethodTextBox.Size = new Size(248, 23);
+        ExcludeMethodTextBox.Size = new Size(353, 31);
         ExcludeMethodTextBox.TabIndex = 21;
         // 
         // IncludeMethodTextBox
         // 
         IncludeMethodTextBox.BackColor = SystemColors.ScrollBar;
-        IncludeMethodTextBox.Location = new Point(4, 4);
-        IncludeMethodTextBox.Margin = new Padding(2);
+        IncludeMethodTextBox.Location = new Point(6, 7);
         IncludeMethodTextBox.Name = "IncludeMethodTextBox";
         IncludeMethodTextBox.PlaceholderText = "Include Methods";
-        IncludeMethodTextBox.Size = new Size(248, 23);
+        IncludeMethodTextBox.Size = new Size(353, 31);
         IncludeMethodTextBox.TabIndex = 20;
         // 
         // MethodExcludeRemoveButton
         // 
-        MethodExcludeRemoveButton.Location = new Point(435, 167);
-        MethodExcludeRemoveButton.Margin = new Padding(2);
+        MethodExcludeRemoveButton.Location = new Point(621, 278);
         MethodExcludeRemoveButton.Name = "MethodExcludeRemoveButton";
-        MethodExcludeRemoveButton.Size = new Size(78, 22);
+        MethodExcludeRemoveButton.Size = new Size(111, 37);
         MethodExcludeRemoveButton.TabIndex = 19;
         MethodExcludeRemoveButton.Text = "Remove";
         MethodExcludeRemoveButton.UseVisualStyleBackColor = true;
@@ -1322,10 +849,9 @@ partial class ReCodeItForm
         // 
         // MethodExcludeAddButton
         // 
-        MethodExcludeAddButton.Location = new Point(267, 167);
-        MethodExcludeAddButton.Margin = new Padding(2);
+        MethodExcludeAddButton.Location = new Point(381, 278);
         MethodExcludeAddButton.Name = "MethodExcludeAddButton";
-        MethodExcludeAddButton.Size = new Size(78, 20);
+        MethodExcludeAddButton.Size = new Size(111, 33);
         MethodExcludeAddButton.TabIndex = 18;
         MethodExcludeAddButton.Text = "Add";
         MethodExcludeAddButton.UseVisualStyleBackColor = true;
@@ -1333,10 +859,9 @@ partial class ReCodeItForm
         // 
         // MethodIncludeRemoveButton
         // 
-        MethodIncludeRemoveButton.Location = new Point(173, 167);
-        MethodIncludeRemoveButton.Margin = new Padding(2);
+        MethodIncludeRemoveButton.Location = new Point(247, 278);
         MethodIncludeRemoveButton.Name = "MethodIncludeRemoveButton";
-        MethodIncludeRemoveButton.Size = new Size(78, 20);
+        MethodIncludeRemoveButton.Size = new Size(111, 33);
         MethodIncludeRemoveButton.TabIndex = 17;
         MethodIncludeRemoveButton.Text = "Remove";
         MethodIncludeRemoveButton.UseVisualStyleBackColor = true;
@@ -1344,10 +869,9 @@ partial class ReCodeItForm
         // 
         // MethodIncludeAddButton
         // 
-        MethodIncludeAddButton.Location = new Point(4, 167);
-        MethodIncludeAddButton.Margin = new Padding(2);
+        MethodIncludeAddButton.Location = new Point(6, 278);
         MethodIncludeAddButton.Name = "MethodIncludeAddButton";
-        MethodIncludeAddButton.Size = new Size(78, 20);
+        MethodIncludeAddButton.Size = new Size(111, 33);
         MethodIncludeAddButton.TabIndex = 16;
         MethodIncludeAddButton.Text = "Add";
         MethodIncludeAddButton.UseVisualStyleBackColor = true;
@@ -1357,22 +881,20 @@ partial class ReCodeItForm
         // 
         MethodExcludeBox.BackColor = Color.Gray;
         MethodExcludeBox.FormattingEnabled = true;
-        MethodExcludeBox.ItemHeight = 15;
-        MethodExcludeBox.Location = new Point(267, 26);
-        MethodExcludeBox.Margin = new Padding(2);
+        MethodExcludeBox.ItemHeight = 25;
+        MethodExcludeBox.Location = new Point(381, 43);
         MethodExcludeBox.Name = "MethodExcludeBox";
-        MethodExcludeBox.Size = new Size(248, 139);
+        MethodExcludeBox.Size = new Size(353, 229);
         MethodExcludeBox.TabIndex = 15;
         // 
         // MethodIncludeBox
         // 
         MethodIncludeBox.BackColor = Color.Gray;
         MethodIncludeBox.FormattingEnabled = true;
-        MethodIncludeBox.ItemHeight = 15;
-        MethodIncludeBox.Location = new Point(4, 26);
-        MethodIncludeBox.Margin = new Padding(2);
+        MethodIncludeBox.ItemHeight = 25;
+        MethodIncludeBox.Location = new Point(6, 43);
         MethodIncludeBox.Name = "MethodIncludeBox";
-        MethodIncludeBox.Size = new Size(248, 139);
+        MethodIncludeBox.Size = new Size(353, 229);
         MethodIncludeBox.TabIndex = 14;
         // 
         // tabPage2
@@ -1386,41 +908,37 @@ partial class ReCodeItForm
         tabPage2.Controls.Add(FIeldIncludeAddButton);
         tabPage2.Controls.Add(FieldExcludeBox);
         tabPage2.Controls.Add(FieldIncludeBox);
-        tabPage2.Location = new Point(4, 24);
-        tabPage2.Margin = new Padding(2);
+        tabPage2.Location = new Point(4, 34);
         tabPage2.Name = "tabPage2";
-        tabPage2.Padding = new Padding(2);
-        tabPage2.Size = new Size(518, 190);
+        tabPage2.Padding = new Padding(3, 3, 3, 3);
+        tabPage2.Size = new Size(743, 325);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Fields";
         // 
         // FieldsExcludeTextInput
         // 
         FieldsExcludeTextInput.BackColor = SystemColors.ScrollBar;
-        FieldsExcludeTextInput.Location = new Point(267, 4);
-        FieldsExcludeTextInput.Margin = new Padding(2);
+        FieldsExcludeTextInput.Location = new Point(381, 7);
         FieldsExcludeTextInput.Name = "FieldsExcludeTextInput";
         FieldsExcludeTextInput.PlaceholderText = "Exclude Fields";
-        FieldsExcludeTextInput.Size = new Size(248, 23);
+        FieldsExcludeTextInput.Size = new Size(353, 31);
         FieldsExcludeTextInput.TabIndex = 27;
         // 
         // FieldsIncludeTextInput
         // 
         FieldsIncludeTextInput.BackColor = SystemColors.ScrollBar;
-        FieldsIncludeTextInput.Location = new Point(4, 4);
-        FieldsIncludeTextInput.Margin = new Padding(2);
+        FieldsIncludeTextInput.Location = new Point(6, 7);
         FieldsIncludeTextInput.Name = "FieldsIncludeTextInput";
         FieldsIncludeTextInput.PlaceholderText = "Include Fields";
-        FieldsIncludeTextInput.Size = new Size(248, 23);
+        FieldsIncludeTextInput.Size = new Size(353, 31);
         FieldsIncludeTextInput.TabIndex = 26;
         // 
         // FieldExcludeRemoveButton
         // 
         FieldExcludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        FieldExcludeRemoveButton.Location = new Point(435, 167);
-        FieldExcludeRemoveButton.Margin = new Padding(2);
+        FieldExcludeRemoveButton.Location = new Point(621, 278);
         FieldExcludeRemoveButton.Name = "FieldExcludeRemoveButton";
-        FieldExcludeRemoveButton.Size = new Size(78, 20);
+        FieldExcludeRemoveButton.Size = new Size(111, 33);
         FieldExcludeRemoveButton.TabIndex = 25;
         FieldExcludeRemoveButton.Text = "Remove";
         FieldExcludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1429,10 +947,9 @@ partial class ReCodeItForm
         // FieldExcludeAddButton
         // 
         FieldExcludeAddButton.BackColor = SystemColors.ButtonShadow;
-        FieldExcludeAddButton.Location = new Point(267, 167);
-        FieldExcludeAddButton.Margin = new Padding(2);
+        FieldExcludeAddButton.Location = new Point(381, 278);
         FieldExcludeAddButton.Name = "FieldExcludeAddButton";
-        FieldExcludeAddButton.Size = new Size(78, 20);
+        FieldExcludeAddButton.Size = new Size(111, 33);
         FieldExcludeAddButton.TabIndex = 24;
         FieldExcludeAddButton.Text = "Add";
         FieldExcludeAddButton.UseVisualStyleBackColor = false;
@@ -1441,10 +958,9 @@ partial class ReCodeItForm
         // FieldIncludeRemoveButton
         // 
         FieldIncludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        FieldIncludeRemoveButton.Location = new Point(173, 167);
-        FieldIncludeRemoveButton.Margin = new Padding(2);
+        FieldIncludeRemoveButton.Location = new Point(247, 278);
         FieldIncludeRemoveButton.Name = "FieldIncludeRemoveButton";
-        FieldIncludeRemoveButton.Size = new Size(78, 20);
+        FieldIncludeRemoveButton.Size = new Size(111, 33);
         FieldIncludeRemoveButton.TabIndex = 23;
         FieldIncludeRemoveButton.Text = "Remove";
         FieldIncludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1453,10 +969,9 @@ partial class ReCodeItForm
         // FIeldIncludeAddButton
         // 
         FIeldIncludeAddButton.BackColor = SystemColors.ButtonShadow;
-        FIeldIncludeAddButton.Location = new Point(4, 167);
-        FIeldIncludeAddButton.Margin = new Padding(2);
+        FIeldIncludeAddButton.Location = new Point(6, 278);
         FIeldIncludeAddButton.Name = "FIeldIncludeAddButton";
-        FIeldIncludeAddButton.Size = new Size(78, 20);
+        FIeldIncludeAddButton.Size = new Size(111, 33);
         FIeldIncludeAddButton.TabIndex = 22;
         FIeldIncludeAddButton.Text = "Add";
         FIeldIncludeAddButton.UseVisualStyleBackColor = false;
@@ -1466,22 +981,20 @@ partial class ReCodeItForm
         // 
         FieldExcludeBox.BackColor = Color.Gray;
         FieldExcludeBox.FormattingEnabled = true;
-        FieldExcludeBox.ItemHeight = 15;
-        FieldExcludeBox.Location = new Point(267, 26);
-        FieldExcludeBox.Margin = new Padding(2);
+        FieldExcludeBox.ItemHeight = 25;
+        FieldExcludeBox.Location = new Point(381, 43);
         FieldExcludeBox.Name = "FieldExcludeBox";
-        FieldExcludeBox.Size = new Size(248, 139);
+        FieldExcludeBox.Size = new Size(353, 229);
         FieldExcludeBox.TabIndex = 17;
         // 
         // FieldIncludeBox
         // 
         FieldIncludeBox.BackColor = Color.Gray;
         FieldIncludeBox.FormattingEnabled = true;
-        FieldIncludeBox.ItemHeight = 15;
-        FieldIncludeBox.Location = new Point(4, 26);
-        FieldIncludeBox.Margin = new Padding(2);
+        FieldIncludeBox.ItemHeight = 25;
+        FieldIncludeBox.Location = new Point(6, 43);
         FieldIncludeBox.Name = "FieldIncludeBox";
-        FieldIncludeBox.Size = new Size(248, 139);
+        FieldIncludeBox.Size = new Size(353, 229);
         FieldIncludeBox.TabIndex = 16;
         // 
         // tabPage3
@@ -1495,41 +1008,37 @@ partial class ReCodeItForm
         tabPage3.Controls.Add(PropertiesIncludeAddButton);
         tabPage3.Controls.Add(PropertiesExcludeBox);
         tabPage3.Controls.Add(PropertiesIncludeBox);
-        tabPage3.Location = new Point(4, 24);
-        tabPage3.Margin = new Padding(2);
+        tabPage3.Location = new Point(4, 34);
         tabPage3.Name = "tabPage3";
-        tabPage3.Padding = new Padding(2);
-        tabPage3.Size = new Size(518, 190);
+        tabPage3.Padding = new Padding(3, 3, 3, 3);
+        tabPage3.Size = new Size(743, 325);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Properties";
         // 
         // PropertiesExcludeTextField
         // 
         PropertiesExcludeTextField.BackColor = SystemColors.ScrollBar;
-        PropertiesExcludeTextField.Location = new Point(267, 4);
-        PropertiesExcludeTextField.Margin = new Padding(2);
+        PropertiesExcludeTextField.Location = new Point(381, 7);
         PropertiesExcludeTextField.Name = "PropertiesExcludeTextField";
         PropertiesExcludeTextField.PlaceholderText = "Exclude Properties";
-        PropertiesExcludeTextField.Size = new Size(248, 23);
+        PropertiesExcludeTextField.Size = new Size(353, 31);
         PropertiesExcludeTextField.TabIndex = 27;
         // 
         // PropertiesIncludeTextField
         // 
         PropertiesIncludeTextField.BackColor = SystemColors.ScrollBar;
-        PropertiesIncludeTextField.Location = new Point(4, 4);
-        PropertiesIncludeTextField.Margin = new Padding(2);
+        PropertiesIncludeTextField.Location = new Point(6, 7);
         PropertiesIncludeTextField.Name = "PropertiesIncludeTextField";
         PropertiesIncludeTextField.PlaceholderText = "Include Properties";
-        PropertiesIncludeTextField.Size = new Size(248, 23);
+        PropertiesIncludeTextField.Size = new Size(353, 31);
         PropertiesIncludeTextField.TabIndex = 26;
         // 
         // PropertiesExcludeRemoveButton
         // 
         PropertiesExcludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        PropertiesExcludeRemoveButton.Location = new Point(435, 167);
-        PropertiesExcludeRemoveButton.Margin = new Padding(2);
+        PropertiesExcludeRemoveButton.Location = new Point(621, 278);
         PropertiesExcludeRemoveButton.Name = "PropertiesExcludeRemoveButton";
-        PropertiesExcludeRemoveButton.Size = new Size(78, 20);
+        PropertiesExcludeRemoveButton.Size = new Size(111, 33);
         PropertiesExcludeRemoveButton.TabIndex = 25;
         PropertiesExcludeRemoveButton.Text = "Remove";
         PropertiesExcludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1538,10 +1047,9 @@ partial class ReCodeItForm
         // PropertiesExcludeAddButton
         // 
         PropertiesExcludeAddButton.BackColor = SystemColors.ButtonShadow;
-        PropertiesExcludeAddButton.Location = new Point(267, 167);
-        PropertiesExcludeAddButton.Margin = new Padding(2);
+        PropertiesExcludeAddButton.Location = new Point(381, 278);
         PropertiesExcludeAddButton.Name = "PropertiesExcludeAddButton";
-        PropertiesExcludeAddButton.Size = new Size(78, 20);
+        PropertiesExcludeAddButton.Size = new Size(111, 33);
         PropertiesExcludeAddButton.TabIndex = 24;
         PropertiesExcludeAddButton.Text = "Add";
         PropertiesExcludeAddButton.UseVisualStyleBackColor = false;
@@ -1550,10 +1058,9 @@ partial class ReCodeItForm
         // PropertiesIncludeRemoveButton
         // 
         PropertiesIncludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        PropertiesIncludeRemoveButton.Location = new Point(173, 167);
-        PropertiesIncludeRemoveButton.Margin = new Padding(2);
+        PropertiesIncludeRemoveButton.Location = new Point(247, 278);
         PropertiesIncludeRemoveButton.Name = "PropertiesIncludeRemoveButton";
-        PropertiesIncludeRemoveButton.Size = new Size(78, 20);
+        PropertiesIncludeRemoveButton.Size = new Size(111, 33);
         PropertiesIncludeRemoveButton.TabIndex = 23;
         PropertiesIncludeRemoveButton.Text = "Remove";
         PropertiesIncludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1562,10 +1069,9 @@ partial class ReCodeItForm
         // PropertiesIncludeAddButton
         // 
         PropertiesIncludeAddButton.BackColor = SystemColors.ButtonShadow;
-        PropertiesIncludeAddButton.Location = new Point(4, 167);
-        PropertiesIncludeAddButton.Margin = new Padding(2);
+        PropertiesIncludeAddButton.Location = new Point(6, 278);
         PropertiesIncludeAddButton.Name = "PropertiesIncludeAddButton";
-        PropertiesIncludeAddButton.Size = new Size(78, 20);
+        PropertiesIncludeAddButton.Size = new Size(111, 33);
         PropertiesIncludeAddButton.TabIndex = 22;
         PropertiesIncludeAddButton.Text = "Add";
         PropertiesIncludeAddButton.UseVisualStyleBackColor = false;
@@ -1575,22 +1081,20 @@ partial class ReCodeItForm
         // 
         PropertiesExcludeBox.BackColor = Color.Gray;
         PropertiesExcludeBox.FormattingEnabled = true;
-        PropertiesExcludeBox.ItemHeight = 15;
-        PropertiesExcludeBox.Location = new Point(267, 26);
-        PropertiesExcludeBox.Margin = new Padding(2);
+        PropertiesExcludeBox.ItemHeight = 25;
+        PropertiesExcludeBox.Location = new Point(381, 43);
         PropertiesExcludeBox.Name = "PropertiesExcludeBox";
-        PropertiesExcludeBox.Size = new Size(248, 139);
+        PropertiesExcludeBox.Size = new Size(353, 229);
         PropertiesExcludeBox.TabIndex = 19;
         // 
         // PropertiesIncludeBox
         // 
         PropertiesIncludeBox.BackColor = Color.Gray;
         PropertiesIncludeBox.FormattingEnabled = true;
-        PropertiesIncludeBox.ItemHeight = 15;
-        PropertiesIncludeBox.Location = new Point(4, 26);
-        PropertiesIncludeBox.Margin = new Padding(2);
+        PropertiesIncludeBox.ItemHeight = 25;
+        PropertiesIncludeBox.Location = new Point(6, 43);
         PropertiesIncludeBox.Name = "PropertiesIncludeBox";
-        PropertiesIncludeBox.Size = new Size(248, 139);
+        PropertiesIncludeBox.Size = new Size(353, 229);
         PropertiesIncludeBox.TabIndex = 18;
         // 
         // tabPage4
@@ -1604,41 +1108,37 @@ partial class ReCodeItForm
         tabPage4.Controls.Add(NestedTypesAddButton);
         tabPage4.Controls.Add(NestedTypesExcludeBox);
         tabPage4.Controls.Add(NestedTypesIncludeBox);
-        tabPage4.Location = new Point(4, 24);
-        tabPage4.Margin = new Padding(2);
+        tabPage4.Location = new Point(4, 34);
         tabPage4.Name = "tabPage4";
-        tabPage4.Padding = new Padding(2);
-        tabPage4.Size = new Size(518, 190);
+        tabPage4.Padding = new Padding(3, 3, 3, 3);
+        tabPage4.Size = new Size(743, 325);
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Nested Types";
         // 
         // NestedTypesExcludeTextField
         // 
         NestedTypesExcludeTextField.BackColor = SystemColors.ScrollBar;
-        NestedTypesExcludeTextField.Location = new Point(267, 4);
-        NestedTypesExcludeTextField.Margin = new Padding(2);
+        NestedTypesExcludeTextField.Location = new Point(381, 7);
         NestedTypesExcludeTextField.Name = "NestedTypesExcludeTextField";
         NestedTypesExcludeTextField.PlaceholderText = "Exclude Nested Types";
-        NestedTypesExcludeTextField.Size = new Size(248, 23);
+        NestedTypesExcludeTextField.Size = new Size(353, 31);
         NestedTypesExcludeTextField.TabIndex = 27;
         // 
         // NestedTypesIncludeTextField
         // 
         NestedTypesIncludeTextField.BackColor = SystemColors.ScrollBar;
-        NestedTypesIncludeTextField.Location = new Point(4, 4);
-        NestedTypesIncludeTextField.Margin = new Padding(2);
+        NestedTypesIncludeTextField.Location = new Point(6, 7);
         NestedTypesIncludeTextField.Name = "NestedTypesIncludeTextField";
         NestedTypesIncludeTextField.PlaceholderText = "Include Nested Types";
-        NestedTypesIncludeTextField.Size = new Size(248, 23);
+        NestedTypesIncludeTextField.Size = new Size(353, 31);
         NestedTypesIncludeTextField.TabIndex = 26;
         // 
         // NestedTypesExcludeRemoveButton
         // 
         NestedTypesExcludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        NestedTypesExcludeRemoveButton.Location = new Point(435, 167);
-        NestedTypesExcludeRemoveButton.Margin = new Padding(2);
+        NestedTypesExcludeRemoveButton.Location = new Point(621, 278);
         NestedTypesExcludeRemoveButton.Name = "NestedTypesExcludeRemoveButton";
-        NestedTypesExcludeRemoveButton.Size = new Size(78, 20);
+        NestedTypesExcludeRemoveButton.Size = new Size(111, 33);
         NestedTypesExcludeRemoveButton.TabIndex = 25;
         NestedTypesExcludeRemoveButton.Text = "Remove";
         NestedTypesExcludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1647,10 +1147,9 @@ partial class ReCodeItForm
         // NestedTypesExlcudeAddButton
         // 
         NestedTypesExlcudeAddButton.BackColor = SystemColors.ButtonShadow;
-        NestedTypesExlcudeAddButton.Location = new Point(267, 167);
-        NestedTypesExlcudeAddButton.Margin = new Padding(2);
+        NestedTypesExlcudeAddButton.Location = new Point(381, 278);
         NestedTypesExlcudeAddButton.Name = "NestedTypesExlcudeAddButton";
-        NestedTypesExlcudeAddButton.Size = new Size(78, 20);
+        NestedTypesExlcudeAddButton.Size = new Size(111, 33);
         NestedTypesExlcudeAddButton.TabIndex = 24;
         NestedTypesExlcudeAddButton.Text = "Add";
         NestedTypesExlcudeAddButton.UseVisualStyleBackColor = false;
@@ -1659,10 +1158,9 @@ partial class ReCodeItForm
         // NestedTypesRemoveButton
         // 
         NestedTypesRemoveButton.BackColor = SystemColors.ButtonShadow;
-        NestedTypesRemoveButton.Location = new Point(173, 167);
-        NestedTypesRemoveButton.Margin = new Padding(2);
+        NestedTypesRemoveButton.Location = new Point(247, 278);
         NestedTypesRemoveButton.Name = "NestedTypesRemoveButton";
-        NestedTypesRemoveButton.Size = new Size(78, 20);
+        NestedTypesRemoveButton.Size = new Size(111, 33);
         NestedTypesRemoveButton.TabIndex = 23;
         NestedTypesRemoveButton.Text = "Remove";
         NestedTypesRemoveButton.UseVisualStyleBackColor = false;
@@ -1671,10 +1169,9 @@ partial class ReCodeItForm
         // NestedTypesAddButton
         // 
         NestedTypesAddButton.BackColor = SystemColors.ButtonShadow;
-        NestedTypesAddButton.Location = new Point(4, 167);
-        NestedTypesAddButton.Margin = new Padding(2);
+        NestedTypesAddButton.Location = new Point(6, 278);
         NestedTypesAddButton.Name = "NestedTypesAddButton";
-        NestedTypesAddButton.Size = new Size(78, 20);
+        NestedTypesAddButton.Size = new Size(111, 33);
         NestedTypesAddButton.TabIndex = 22;
         NestedTypesAddButton.Text = "Add";
         NestedTypesAddButton.UseVisualStyleBackColor = false;
@@ -1684,22 +1181,20 @@ partial class ReCodeItForm
         // 
         NestedTypesExcludeBox.BackColor = Color.Gray;
         NestedTypesExcludeBox.FormattingEnabled = true;
-        NestedTypesExcludeBox.ItemHeight = 15;
-        NestedTypesExcludeBox.Location = new Point(267, 26);
-        NestedTypesExcludeBox.Margin = new Padding(2);
+        NestedTypesExcludeBox.ItemHeight = 25;
+        NestedTypesExcludeBox.Location = new Point(381, 43);
         NestedTypesExcludeBox.Name = "NestedTypesExcludeBox";
-        NestedTypesExcludeBox.Size = new Size(248, 139);
+        NestedTypesExcludeBox.Size = new Size(353, 229);
         NestedTypesExcludeBox.TabIndex = 21;
         // 
         // NestedTypesIncludeBox
         // 
         NestedTypesIncludeBox.BackColor = Color.Gray;
         NestedTypesIncludeBox.FormattingEnabled = true;
-        NestedTypesIncludeBox.ItemHeight = 15;
-        NestedTypesIncludeBox.Location = new Point(4, 26);
-        NestedTypesIncludeBox.Margin = new Padding(2);
+        NestedTypesIncludeBox.ItemHeight = 25;
+        NestedTypesIncludeBox.Location = new Point(6, 43);
         NestedTypesIncludeBox.Name = "NestedTypesIncludeBox";
-        NestedTypesIncludeBox.Size = new Size(248, 139);
+        NestedTypesIncludeBox.Size = new Size(353, 229);
         NestedTypesIncludeBox.TabIndex = 20;
         // 
         // tabPage5
@@ -1713,9 +1208,10 @@ partial class ReCodeItForm
         tabPage5.Controls.Add(EventsAddButton);
         tabPage5.Controls.Add(EventsExcludeTextField);
         tabPage5.Controls.Add(EventsIncludeTextField);
-        tabPage5.Location = new Point(4, 24);
+        tabPage5.Location = new Point(4, 34);
+        tabPage5.Margin = new Padding(4, 5, 4, 5);
         tabPage5.Name = "tabPage5";
-        tabPage5.Size = new Size(518, 190);
+        tabPage5.Size = new Size(743, 325);
         tabPage5.TabIndex = 4;
         tabPage5.Text = "Events";
         // 
@@ -1723,31 +1219,28 @@ partial class ReCodeItForm
         // 
         EventsExcludeBox.BackColor = Color.Gray;
         EventsExcludeBox.FormattingEnabled = true;
-        EventsExcludeBox.ItemHeight = 15;
-        EventsExcludeBox.Location = new Point(267, 26);
-        EventsExcludeBox.Margin = new Padding(2);
+        EventsExcludeBox.ItemHeight = 25;
+        EventsExcludeBox.Location = new Point(381, 43);
         EventsExcludeBox.Name = "EventsExcludeBox";
-        EventsExcludeBox.Size = new Size(248, 139);
+        EventsExcludeBox.Size = new Size(353, 229);
         EventsExcludeBox.TabIndex = 34;
         // 
         // EventsIncludeBox
         // 
         EventsIncludeBox.BackColor = Color.Gray;
         EventsIncludeBox.FormattingEnabled = true;
-        EventsIncludeBox.ItemHeight = 15;
-        EventsIncludeBox.Location = new Point(4, 26);
-        EventsIncludeBox.Margin = new Padding(2);
+        EventsIncludeBox.ItemHeight = 25;
+        EventsIncludeBox.Location = new Point(6, 43);
         EventsIncludeBox.Name = "EventsIncludeBox";
-        EventsIncludeBox.Size = new Size(248, 139);
+        EventsIncludeBox.Size = new Size(353, 229);
         EventsIncludeBox.TabIndex = 33;
         // 
         // EventsExcludeRemoveButton
         // 
         EventsExcludeRemoveButton.BackColor = SystemColors.ButtonShadow;
-        EventsExcludeRemoveButton.Location = new Point(435, 167);
-        EventsExcludeRemoveButton.Margin = new Padding(2);
+        EventsExcludeRemoveButton.Location = new Point(621, 278);
         EventsExcludeRemoveButton.Name = "EventsExcludeRemoveButton";
-        EventsExcludeRemoveButton.Size = new Size(78, 20);
+        EventsExcludeRemoveButton.Size = new Size(111, 33);
         EventsExcludeRemoveButton.TabIndex = 32;
         EventsExcludeRemoveButton.Text = "Remove";
         EventsExcludeRemoveButton.UseVisualStyleBackColor = false;
@@ -1756,10 +1249,9 @@ partial class ReCodeItForm
         // EventsExcludeAddButton
         // 
         EventsExcludeAddButton.BackColor = SystemColors.ButtonShadow;
-        EventsExcludeAddButton.Location = new Point(267, 167);
-        EventsExcludeAddButton.Margin = new Padding(2);
+        EventsExcludeAddButton.Location = new Point(381, 278);
         EventsExcludeAddButton.Name = "EventsExcludeAddButton";
-        EventsExcludeAddButton.Size = new Size(78, 20);
+        EventsExcludeAddButton.Size = new Size(111, 33);
         EventsExcludeAddButton.TabIndex = 31;
         EventsExcludeAddButton.Text = "Add";
         EventsExcludeAddButton.UseVisualStyleBackColor = false;
@@ -1768,10 +1260,9 @@ partial class ReCodeItForm
         // EventsRemoveButton
         // 
         EventsRemoveButton.BackColor = SystemColors.ButtonShadow;
-        EventsRemoveButton.Location = new Point(173, 167);
-        EventsRemoveButton.Margin = new Padding(2);
+        EventsRemoveButton.Location = new Point(247, 278);
         EventsRemoveButton.Name = "EventsRemoveButton";
-        EventsRemoveButton.Size = new Size(78, 20);
+        EventsRemoveButton.Size = new Size(111, 33);
         EventsRemoveButton.TabIndex = 30;
         EventsRemoveButton.Text = "Remove";
         EventsRemoveButton.UseVisualStyleBackColor = false;
@@ -1780,10 +1271,9 @@ partial class ReCodeItForm
         // EventsAddButton
         // 
         EventsAddButton.BackColor = SystemColors.ButtonShadow;
-        EventsAddButton.Location = new Point(4, 167);
-        EventsAddButton.Margin = new Padding(2);
+        EventsAddButton.Location = new Point(6, 278);
         EventsAddButton.Name = "EventsAddButton";
-        EventsAddButton.Size = new Size(78, 20);
+        EventsAddButton.Size = new Size(111, 33);
         EventsAddButton.TabIndex = 29;
         EventsAddButton.Text = "Add";
         EventsAddButton.UseVisualStyleBackColor = false;
@@ -1792,40 +1282,36 @@ partial class ReCodeItForm
         // EventsExcludeTextField
         // 
         EventsExcludeTextField.BackColor = SystemColors.ScrollBar;
-        EventsExcludeTextField.Location = new Point(267, 4);
-        EventsExcludeTextField.Margin = new Padding(2);
+        EventsExcludeTextField.Location = new Point(381, 7);
         EventsExcludeTextField.Name = "EventsExcludeTextField";
         EventsExcludeTextField.PlaceholderText = "Exclude Events";
-        EventsExcludeTextField.Size = new Size(248, 23);
+        EventsExcludeTextField.Size = new Size(353, 31);
         EventsExcludeTextField.TabIndex = 28;
         // 
         // EventsIncludeTextField
         // 
         EventsIncludeTextField.BackColor = SystemColors.ScrollBar;
-        EventsIncludeTextField.Location = new Point(4, 4);
-        EventsIncludeTextField.Margin = new Padding(2);
+        EventsIncludeTextField.Location = new Point(6, 7);
         EventsIncludeTextField.Name = "EventsIncludeTextField";
         EventsIncludeTextField.PlaceholderText = "Include Events";
-        EventsIncludeTextField.Size = new Size(248, 23);
+        EventsIncludeTextField.Size = new Size(353, 31);
         EventsIncludeTextField.TabIndex = 27;
         // 
         // label11
         // 
         label11.AutoSize = true;
-        label11.Location = new Point(162, 145);
-        label11.Margin = new Padding(2, 0, 2, 0);
+        label11.Location = new Point(231, 242);
         label11.Name = "label11";
-        label11.Size = new Size(49, 15);
+        label11.Size = new Size(75, 25);
         label11.TabIndex = 53;
         label11.Text = "Is Struct";
         // 
         // MethodCountEnabled
         // 
         MethodCountEnabled.AutoSize = true;
-        MethodCountEnabled.Location = new Point(349, 31);
-        MethodCountEnabled.Margin = new Padding(2);
+        MethodCountEnabled.Location = new Point(499, 52);
         MethodCountEnabled.Name = "MethodCountEnabled";
-        MethodCountEnabled.Size = new Size(104, 19);
+        MethodCountEnabled.Size = new Size(154, 29);
         MethodCountEnabled.TabIndex = 14;
         MethodCountEnabled.Text = "Method Count";
         MethodCountEnabled.UseVisualStyleBackColor = true;
@@ -1833,50 +1319,45 @@ partial class ReCodeItForm
         // label10
         // 
         label10.AutoSize = true;
-        label10.Location = new Point(162, 214);
-        label10.Margin = new Padding(2, 0, 2, 0);
+        label10.Location = new Point(231, 357);
         label10.Name = "label10";
-        label10.Size = new Size(132, 15);
+        label10.Size = new Size(197, 25);
         label10.TabIndex = 51;
         label10.Text = "Has Generic Parameters";
         // 
         // label8
         // 
         label8.AutoSize = true;
-        label8.Location = new Point(162, 192);
-        label8.Margin = new Padding(2, 0, 2, 0);
+        label8.Location = new Point(231, 320);
         label8.Name = "label8";
-        label8.Size = new Size(77, 15);
+        label8.Size = new Size(117, 25);
         label8.TabIndex = 49;
         label8.Text = "Has Attribute";
         // 
         // label9
         // 
         label9.AutoSize = true;
-        label9.Location = new Point(162, 168);
-        label9.Margin = new Padding(2, 0, 2, 0);
+        label9.Location = new Point(231, 280);
         label9.Name = "label9";
-        label9.Size = new Size(49, 15);
+        label9.Size = new Size(75, 25);
         label9.TabIndex = 47;
         label9.Text = "Is Enum";
         // 
         // label2322
         // 
         label2322.AutoSize = true;
-        label2322.Location = new Point(162, 121);
-        label2322.Margin = new Padding(2, 0, 2, 0);
+        label2322.Location = new Point(231, 202);
         label2322.Name = "label2322";
-        label2322.Size = new Size(64, 15);
+        label2322.Size = new Size(98, 25);
         label2322.TabIndex = 45;
         label2322.Text = "Is Interface";
         // 
         // FieldCountEnabled
         // 
         FieldCountEnabled.AutoSize = true;
-        FieldCountEnabled.Location = new Point(349, 52);
-        FieldCountEnabled.Margin = new Padding(2);
+        FieldCountEnabled.Location = new Point(499, 87);
         FieldCountEnabled.Name = "FieldCountEnabled";
-        FieldCountEnabled.Size = new Size(87, 19);
+        FieldCountEnabled.Size = new Size(128, 29);
         FieldCountEnabled.TabIndex = 13;
         FieldCountEnabled.Text = "Field Count";
         FieldCountEnabled.UseVisualStyleBackColor = true;
@@ -1884,30 +1365,27 @@ partial class ReCodeItForm
         // label7
         // 
         label7.AutoSize = true;
-        label7.Location = new Point(162, 98);
-        label7.Margin = new Padding(2, 0, 2, 0);
+        label7.Location = new Point(231, 163);
         label7.Name = "label7";
-        label7.Size = new Size(52, 15);
+        label7.Size = new Size(82, 25);
         label7.TabIndex = 43;
         label7.Text = "Is Sealed";
         // 
         // label6
         // 
         label6.AutoSize = true;
-        label6.Location = new Point(162, 75);
-        label6.Margin = new Padding(2, 0, 2, 0);
+        label6.Location = new Point(231, 125);
         label6.Name = "label6";
-        label6.Size = new Size(62, 15);
+        label6.Size = new Size(96, 25);
         label6.TabIndex = 41;
         label6.Text = "Is Abstract";
         // 
         // NestedTypeCountEnabled
         // 
         NestedTypeCountEnabled.AutoSize = true;
-        NestedTypeCountEnabled.Location = new Point(349, 94);
-        NestedTypeCountEnabled.Margin = new Padding(2);
+        NestedTypeCountEnabled.Location = new Point(499, 157);
         NestedTypeCountEnabled.Name = "NestedTypeCountEnabled";
-        NestedTypeCountEnabled.Size = new Size(126, 19);
+        NestedTypeCountEnabled.Size = new Size(189, 29);
         NestedTypeCountEnabled.TabIndex = 12;
         NestedTypeCountEnabled.Text = "Nested Type Count";
         NestedTypeCountEnabled.UseVisualStyleBackColor = true;
@@ -1915,20 +1393,18 @@ partial class ReCodeItForm
         // label5
         // 
         label5.AutoSize = true;
-        label5.Location = new Point(162, 52);
-        label5.Margin = new Padding(2, 0, 2, 0);
+        label5.Location = new Point(231, 87);
         label5.Name = "label5";
-        label5.Size = new Size(51, 15);
+        label5.Size = new Size(77, 25);
         label5.TabIndex = 39;
         label5.Text = "Is Public";
         // 
         // PropertyCountEnabled
         // 
         PropertyCountEnabled.AutoSize = true;
-        PropertyCountEnabled.Location = new Point(349, 73);
-        PropertyCountEnabled.Margin = new Padding(2);
+        PropertyCountEnabled.Location = new Point(499, 122);
         PropertyCountEnabled.Name = "PropertyCountEnabled";
-        PropertyCountEnabled.Size = new Size(107, 19);
+        PropertyCountEnabled.Size = new Size(159, 29);
         PropertyCountEnabled.TabIndex = 11;
         PropertyCountEnabled.Text = "Property Count";
         PropertyCountEnabled.UseVisualStyleBackColor = true;
@@ -1936,10 +1412,9 @@ partial class ReCodeItForm
         // ConstructorCountEnabled
         // 
         ConstructorCountEnabled.AutoSize = true;
-        ConstructorCountEnabled.Location = new Point(349, 8);
-        ConstructorCountEnabled.Margin = new Padding(2);
+        ConstructorCountEnabled.Location = new Point(499, 13);
         ConstructorCountEnabled.Name = "ConstructorCountEnabled";
-        ConstructorCountEnabled.Size = new Size(162, 19);
+        ConstructorCountEnabled.Size = new Size(238, 29);
         ConstructorCountEnabled.TabIndex = 20;
         ConstructorCountEnabled.Text = "Constructor Param Count";
         ConstructorCountEnabled.UseVisualStyleBackColor = true;
@@ -1949,51 +1424,44 @@ partial class ReCodeItForm
         tabPage6.BackColor = SystemColors.ControlDarkDark;
         tabPage6.Controls.Add(groupBox7);
         tabPage6.Controls.Add(groupBox6);
-        tabPage6.Location = new Point(4, 24);
-        tabPage6.Margin = new Padding(2);
+        tabPage6.Location = new Point(4, 34);
         tabPage6.Name = "tabPage6";
-        tabPage6.Padding = new Padding(2);
-        tabPage6.Size = new Size(519, 500);
+        tabPage6.Padding = new Padding(3, 3, 3, 3);
+        tabPage6.Size = new Size(745, 842);
         tabPage6.TabIndex = 1;
         tabPage6.Text = "Advanced";
         // 
         // RMSearchTab
         // 
         RMSearchTab.BackColor = SystemColors.ControlDarkDark;
-        RMSearchTab.Location = new Point(4, 24);
-        RMSearchTab.Margin = new Padding(2);
+        RMSearchTab.Location = new Point(4, 34);
         RMSearchTab.Name = "RMSearchTab";
-        RMSearchTab.Padding = new Padding(2);
-        RMSearchTab.Size = new Size(519, 500);
+        RMSearchTab.Padding = new Padding(3, 3, 3, 3);
+        RMSearchTab.Size = new Size(745, 842);
         RMSearchTab.TabIndex = 2;
         RMSearchTab.Text = "Search";
         // 
         // TabControlMain
         // 
         TabControlMain.Controls.Add(RemapperTabPage);
-        TabControlMain.Controls.Add(AutoMapperTab);
         TabControlMain.Controls.Add(SettingsTab);
-        TabControlMain.Location = new Point(-4, 1);
-        TabControlMain.Margin = new Padding(2);
+        TabControlMain.Location = new Point(-6, 2);
         TabControlMain.Name = "TabControlMain";
         TabControlMain.SelectedIndex = 0;
-        TabControlMain.Size = new Size(955, 595);
+        TabControlMain.Size = new Size(1364, 992);
         TabControlMain.TabIndex = 6;
         // 
         // ReCodeItForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.ControlDarkDark;
-        ClientSize = new Size(962, 599);
+        ClientSize = new Size(1374, 998);
         Controls.Add(TabControlMain);
         FormBorderStyle = FormBorderStyle.FixedSingle;
-        Margin = new Padding(2);
         Name = "ReCodeItForm";
         Text = "ReCodeIt V0.3.0";
         groupBox6.ResumeLayout(false);
-        ((System.ComponentModel.ISupportInitialize)AutoMapperRequiredMatchesUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)AutoMapperMinLengthUpDown).EndInit();
         ((System.ComponentModel.ISupportInitialize)ConstuctorCountUpDown).EndInit();
         ((System.ComponentModel.ISupportInitialize)PropertyCountUpDown).EndInit();
         ((System.ComponentModel.ISupportInitialize)FieldCountUpDown).EndInit();
@@ -2002,8 +1470,6 @@ partial class ReCodeItForm
         SettingsTab.ResumeLayout(false);
         groupBox2.ResumeLayout(false);
         groupBox2.PerformLayout();
-        AutoMapperTab.ResumeLayout(false);
-        AutoMapperTab.PerformLayout();
         RemapperTabPage.ResumeLayout(false);
         RemapperTabPage.PerformLayout();
         groupBox1.ResumeLayout(false);
@@ -2042,37 +1508,6 @@ partial class ReCodeItForm
     private LinkLabel GithubLinkLabel;
     private CheckBox SilentModeCheckbox;
     private CheckBox DebugLoggingCheckbox;
-    private TabPage AutoMapperTab;
-    private CheckBox AutoMapperUnseal;
-    private CheckBox AutoMapperPublicize;
-    private CheckBox AutoMapperRenameProps;
-    private CheckBox AutoMapperRenameFields;
-    private TextBox AutoMapperOuputPath;
-    private TextBox AutoMapperTargetPath;
-    private TextBox AutoMapperMethodTextBox;
-    private TextBox AutoMapperFPTextField;
-    private TextBox AutoMapperTokensTextField;
-    private TextBox AutoMapperTypesToIgnoreTextField;
-    private Button AutoMapperChooseOutpathButton;
-    private Button AutoMapperChooseTargetPathButton;
-    private Button AutoMapperMethodRemoveButton;
-    private Button AutoMapperMethodAddButton;
-    private ListBox AutoMapperMethodBox;
-    private CheckBox AutoMapperSearchMethodsCheckBox;
-    private Button AutoMapperFPRemoveButton;
-    private Button AutoMapperFPAddButton;
-    private ListBox AutoMapperFPBox;
-    private Button AutoMapperTokensRemoveButton;
-    private Button AutoMapperTokensAddButton;
-    private ListBox AutoMapperTokensBox;
-    private Label label3;
-    private NumericUpDown AutoMapperMinLengthUpDown;
-    private Button RunAutoRemapButton;
-    private Label label2;
-    private NumericUpDown AutoMapperRequiredMatchesUpDown;
-    private Button AutoMapperExcludeTypesRemoveButton;
-    private Button AutoMapperExcludeTypesAddButton;
-    private ListBox AutoMapperTypesExcludeBox;
     private TabPage RemapperTabPage;
     private Button ValidateRemapButton;
     private Label label1;

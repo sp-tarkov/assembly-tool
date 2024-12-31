@@ -26,7 +26,6 @@ public partial class ReCodeItForm : Form
         SubscribeToEvents();
         PopulateDomainUpDowns();
         RefreshSettingsPage();
-        RefreshAutoMapperPage();
         LoadMappingFile();
 
         var remaps = DataProvider.Remaps;
@@ -127,42 +126,6 @@ public partial class ReCodeItForm : Form
         };
 
         #endregion MANUAL_REMAPPER
-
-        #region AUTOMAPPER
-
-        AutoMapperTypesToIgnoreTextField.KeyDown += (sender, e) =>
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AutoMapperExcludeAddButton_Click(sender, e);
-            }
-        };
-
-        AutoMapperTokensTextField.KeyDown += (sender, e) =>
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AutoMapperTokensAddButton_Click(sender, e);
-            }
-        };
-
-        AutoMapperFPTextField.KeyDown += (sender, e) =>
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AutoMapperFPAddButton_Click(sender, e);
-            }
-        };
-
-        AutoMapperMethodTextBox.KeyDown += (sender, e) =>
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AutoMapperMethodAddButton_Click(sender, e);
-            }
-        };
-
-        #endregion AUTOMAPPER
     }
 
     #region MANUAL_REMAPPER
@@ -748,93 +711,6 @@ public partial class ReCodeItForm : Form
     #endregion CHECKBOXES
     
     #endregion SETTINGS_TAB
-
-    #region AUTOMAPPER
-
-    public void RefreshAutoMapperPage()
-    {
-        AutoMapperTypesExcludeBox.Items.Clear();
-        AutoMapperTokensBox.Items.Clear();
-        AutoMapperFPBox.Items.Clear();
-    }
-
-    private void AutoMapperChooseTargetPathButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperChooseOutpathButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperRequiredMatchesUpDown_ValueChanged_1(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperMinLengthUpDown_ValueChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperTokensAddButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperTokensRemoveButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperFPAddButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperFPRemoveButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperMethodAddButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperMethodRemoveButton_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void SearchMethodsCheckBox_CheckedChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperRenameFields_CheckedChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperRenameProps_CheckedChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperPublicize_CheckedChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    private void AutoMapperUnseal_CheckedChanged(object sender, EventArgs e)
-    {
-        MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
-    }
-
-    #endregion AUTOMAPPER
-
 
     // Reset All UI elements to default
     private void ResetAllRemapFields()

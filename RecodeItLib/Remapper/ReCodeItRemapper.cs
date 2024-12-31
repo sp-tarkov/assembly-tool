@@ -55,7 +55,7 @@ public class ReCodeItRemapper
 
         IsRunning = true;
         Stopwatch.Start();
-
+        
         var types = Module.GetTypes();
         
         if (!types.Any(t => t.Name.Contains("GClass")))
@@ -110,7 +110,9 @@ public class ReCodeItRemapper
         // Don't go any further during a validation
         if (validate)
         {
-            DisplayEndBanner(validate: true);
+            new Statistics(_remaps, Stopwatch, OutPath)
+                .DisplayStatistics(true);
+            
             return;
         }
 
@@ -223,6 +225,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterAbstract(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -232,6 +235,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterSealed(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -241,6 +245,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterInterface(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -250,6 +255,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterStruct(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -259,6 +265,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -268,6 +275,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterAttributes(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -277,6 +285,7 @@ public class ReCodeItRemapper
         }
         
         types = GenericTypeFilters.FilterDerived(types, mapping.SearchParams);
+        if (types.Count() == 1) return true;
         
         if (!types.Any())
         {
@@ -607,13 +616,14 @@ public class ReCodeItRemapper
             throw;
         }
         
-        DisplayEndBanner(hollowedPath);
-
         if (DataProvider.Settings?.Remapper?.MappingPath != string.Empty)
         {
             DataProvider.UpdateMapping(DataProvider.Settings!.Remapper!.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
+        new Statistics(_remaps, Stopwatch, OutPath, hollowedPath)
+            .DisplayStatistics();
+        
         Stopwatch.Reset();
         Module = null;
 
@@ -637,80 +647,7 @@ public class ReCodeItRemapper
             }
         }
     }
-
-    private void DisplayEndBanner(string hollowedPath = "", bool validate = false)
-    {
-        var failures = 0;
-        var changes = 0;
-
-        Logger.Log("-----------------------------------------------", ConsoleColor.Green);
-        Logger.Log("-----------------------------------------------", ConsoleColor.Green);
-
-        foreach (var remap in _remaps)
-        {
-            if (remap.Succeeded is false) { continue; }
-
-            var original = remap.OriginalTypeName;
-            var proposed = remap.NewTypeName;
-
-            Logger.Log($"Renamed {original} to {proposed}", ConsoleColor.Green);
-
-            DisplayAlternativeMatches(remap);
-        }
-
-        foreach (var remap in _remaps)
-        {
-            if (remap.Succeeded is false && remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch))
-            {
-                Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
-                Logger.Log("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
-                Logger.Log($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
-                Logger.Log($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
-                Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
-            }
-            else if (remap.Succeeded is false)
-            {
-                Logger.Log("-----------------------------------------------", ConsoleColor.Red);
-                Logger.Log($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
-
-                foreach (var reason in remap.NoMatchReasons)
-                {
-                    Logger.Log($"Reason: {reason}", ConsoleColor.Red);
-                }
-
-                Logger.Log("-----------------------------------------------", ConsoleColor.Red);
-                failures++;
-                continue;
-            }
-
-            changes++;
-        }
-
-        Logger.Log("-----------------------------------------------", ConsoleColor.Green);
-        Logger.Log("-----------------------------------------------", ConsoleColor.Green);
-        Logger.Log($"Result renamed {changes} Types. Failed to rename {failures} Types", ConsoleColor.Green);
-
-        if (!validate)
-        {
-            Logger.Log($"Assembly written to `{OutPath}`", ConsoleColor.Green);
-            Logger.Log($"Hollowed written to `{hollowedPath}`", ConsoleColor.Green);
-            Logger.Log($"Remap took {Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
-        }
-    }
-
-    private void DisplayAlternativeMatches(RemapModel remap)
-    {
-        if (remap.TypeCandidates.Count() > 1)
-        {
-            Logger.Log($"Warning! There were {remap.TypeCandidates.Count()} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
-
-            foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
-            {
-                Logger.Log($"{type.Name}", ConsoleColor.Yellow);
-            }
-        }
-    }
-
+    
     /// <summary>
     /// This is used to log that all types for a given remap were filtered out.
     /// </summary>

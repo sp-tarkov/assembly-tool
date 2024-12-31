@@ -39,12 +39,13 @@ internal static class RenameHelper
                 types);
         }
 
+        FixMethods(types, remap);
         RenameType(types, remap);
 
         //Logger.Log($"{remap.TypePrimeCandidate.Name.String} Renamed.", ConsoleColor.Green);
     }
 
-    private static IEnumerable<TypeDef> FixMethods(
+    private static void FixMethods(
         IEnumerable<TypeDef> typesToCheck, 
         RemapModel remap)
     {
@@ -53,13 +54,12 @@ internal static class RenameHelper
             var methods = type.Methods
                 .Where(method => method.Name.StartsWith(remap.TypePrimeCandidate.Name.String));
 
-            if (methods.Any())
+            foreach (var method in methods)
             {
-                Logger.Log($"Found {methods.Count()} methods with mangled names", ConsoleColor.Red);
+                var name = method.Name.String.Split(".");
+                method.Name = name[1];
             }
         }
-        
-        return typesToCheck;
     }
     
     /// <summary>

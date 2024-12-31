@@ -1,4 +1,3 @@
-using ReCodeIt.AutoMapper;
 using ReCodeIt.Models;
 using ReCodeIt.ReMapper;
 using ReCodeIt.Utils;
@@ -9,8 +8,6 @@ namespace ReCodeIt.GUI;
 public partial class ReCodeItForm : Form
 {
     private static ReCodeItRemapper Remapper { get; set; } = new();
-    private static ReCodeItAutoMapper AutoMapper { get; set; } = new();
-
     private static Settings AppSettings => DataProvider.Settings;
 
     private bool _isSearched = false;
@@ -487,12 +484,7 @@ public partial class ReCodeItForm : Form
             RemapperOutputDirectoryPath.Text = result;
         }
     }
-
-    private void RunAutoMapButton_Click(object sender, EventArgs e)
-    {
-        AutoMapper.InitializeAutoMapping();
-    }
-
+    
     #endregion MAIN_BUTTONS
 
     #region LISTBOX_BUTTONS
@@ -717,11 +709,8 @@ public partial class ReCodeItForm : Form
     {
         if (string.IsNullOrEmpty(DataProvider.Settings.AutoMapper.AssemblyPath))
         {
-            MessageBox.Show("Please go to the settings tab and load an assembly and select and output location", "Assembly not loaded");
-            return;
+            MessageBox.Show("Feature has been removed from this build.", "Feature Removed");
         }
-
-        AutoMapper.InitializeAutoMapping();
     }
 
     #endregion LISTBOX_BUTTONS

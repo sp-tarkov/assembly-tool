@@ -14,7 +14,7 @@ internal static class RenameHelper
     /// <param name="module"></param>
     /// <param name="remap"></param>
     /// <param name="direct"></param>
-    public static void RenameAll(IEnumerable<TypeDef> types, RemapModel remap, bool direct = false)
+    public static void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
         // Rename all fields and properties first
         if (DataProvider.Settings.Remapper.MappingSettings.RenameFields)
@@ -39,12 +39,27 @@ internal static class RenameHelper
                 types);
         }
 
-        if (!direct)
-        {
-            RenameType(types, remap);
-        }
+        RenameType(types, remap);
 
-        Logger.Log($"{remap.TypePrimeCandidate.Name.String} Renamed.", ConsoleColor.Green);
+        //Logger.Log($"{remap.TypePrimeCandidate.Name.String} Renamed.", ConsoleColor.Green);
+    }
+
+    private static IEnumerable<TypeDef> FixMethods(
+        IEnumerable<TypeDef> typesToCheck, 
+        RemapModel remap)
+    {
+        foreach (var type in typesToCheck)
+        {
+            var methods = type.Methods
+                .Where(method => method.Name.StartsWith(remap.TypePrimeCandidate.Name.String));
+
+            if (methods.Any())
+            {
+                Logger.Log($"Found {methods.Count()} methods with mangled names", ConsoleColor.Red);
+            }
+        }
+        
+        return typesToCheck;
     }
     
     /// <summary>
@@ -58,8 +73,7 @@ internal static class RenameHelper
 
         string oldTypeName,
         string newTypeName,
-        IEnumerable<TypeDef> typesToCheck,
-        int overAllCount = 0)
+        IEnumerable<TypeDef> typesToCheck)
     {
         foreach (var type in typesToCheck)
         {
@@ -86,7 +100,6 @@ internal static class RenameHelper
                     UpdateAllTypeFieldMemberRefs(typesToCheck, field, oldName);
 
                     fieldCount++;
-                    overAllCount++;
                 }
             }
         }
@@ -126,12 +139,10 @@ internal static class RenameHelper
     /// <param name="oldTypeName"></param>
     /// <param name="newTypeName"></param>
     /// <param name="typesToCheck"></param>
-    /// <returns></returns>
-    public static int RenameAllProperties(
+    public static void RenameAllProperties(
         string oldTypeName,
         string newTypeName,
-        IEnumerable<TypeDef> typesToCheck,
-        int overAllCount = 0)
+        IEnumerable<TypeDef> typesToCheck)
     {
         foreach (var type in typesToCheck)
         {
@@ -153,22 +164,19 @@ internal static class RenameHelper
                     property.Name = new UTF8String(newPropertyName);
 
                     propertyCount++;
-                    overAllCount++;
                 }
             }
         }
-
-        return overAllCount;
     }
 
-    public static string GetNewFieldName(string NewName, int fieldCount = 0)
+    private static string GetNewFieldName(string NewName, int fieldCount = 0)
     {
         string newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
         return $"{char.ToLower(NewName[0])}{NewName[1..]}{newFieldCount}";
     }
 
-    public static string GetNewPropertyName(string newName, int propertyCount = 0)
+    private static string GetNewPropertyName(string newName, int propertyCount = 0)
     {
         return propertyCount > 0 ? $"{newName}_{propertyCount}" : newName;
     }

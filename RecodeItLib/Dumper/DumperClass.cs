@@ -158,14 +158,14 @@ public class DumperClass
     /// </summary>
     /// <param name="types">ICollection</param>
     /// <param name="name">string</param>
-    private void CheckNullOrMulti(ICollection types, string name = "")
+    private void CheckNullOrMulti(ICollection? types, string name = "")
     {
         if (types == null)
         {
             Logger.Log($"{name} was null");
         }
 
-        if (types.Count > 1)
+        if (types?.Count > 1)
         {
             Logger.Log($"{name} count was more than 1");
         }
@@ -186,24 +186,24 @@ public class DumperClass
 
         if (method == null || method.Body.Instructions.Count != 269)
         {
-            Logger.Log($"BackRequest Instructions count has changed from 269 to {method.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"BackRequest Instructions count has changed from 269 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
         }
 
         var startOfInstructions = 252;
-        var liList = DumpyILHelper.GetBackRequestInstructions(method, _gameImporter);
-        var index = method.Body.Instructions[startOfInstructions];
+        var liList = DumpyILHelper.GetBackRequestInstructions(method!, _gameImporter);
+        var index = method?.Body.Instructions[startOfInstructions];
 
         foreach (var li in liList)
         {
             // something along these lines, this needs to be tested
-            method.Body.Instructions.InsertBefore(index, li);
+            method?.Body.Instructions.InsertBefore(index!, li);
         }
 
         // create instruction
-        var ins = Instruction.Create(OpCodes.Brfalse_S, method.Body.Instructions[startOfInstructions]);
+        var ins = Instruction.Create(OpCodes.Brfalse_S, method?.Body.Instructions[startOfInstructions]);
 
         // replace instruction at 220 with this
-        method.Body.Instructions[220] = ins;
+        method!.Body.Instructions[220] = ins;
     }
 
     /// <summary>

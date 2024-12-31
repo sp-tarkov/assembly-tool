@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace ReCodeIt.Utils;
+namespace ReCodeItLib.Utils;
 
 public static class Logger
 {
@@ -112,7 +112,7 @@ public static class Logger
         _messages.Enqueue(new LogMessage {Message = message, Color = color, Silent = silent, ThreadId = Thread.CurrentThread.ManagedThreadId});
     }
 
-    public static void LogSync(string message, ConsoleColor color = ConsoleColor.White)
+    public static void LogSync(object message, ConsoleColor color = ConsoleColor.White)
     {
         Console.ForegroundColor = color;
         Console.WriteLine(message);

@@ -1,7 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeIt.Utils;
+using ReCodeItLib.Utils;
 using ReCodeItLib.Dumper;
 
 namespace ReCodeItCLI.Commands;

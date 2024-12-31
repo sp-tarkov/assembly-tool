@@ -1,6 +1,6 @@
-using ReCodeIt.Models;
-using ReCodeIt.ReMapper;
-using ReCodeIt.Utils;
+using ReCodeItLib.Models;
+using ReCodeItLib.ReMapper;
+using ReCodeItLib.Utils;
 using System.Diagnostics;
 
 namespace ReCodeIt.GUI;

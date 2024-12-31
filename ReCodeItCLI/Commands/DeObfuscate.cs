@@ -1,8 +1,8 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeIt.Utils;
-using ReCodeItLib.Remapper;
+using ReCodeItLib.Utils;
+using ReCodeItLib.ReMapper;
 
 namespace ReCodeItCLI.Commands;
 

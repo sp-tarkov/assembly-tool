@@ -1,4 +1,4 @@
-﻿namespace ReCodeIt.Enums;
+﻿namespace ReCodeItLib.Enums;
 
 internal enum EMatchResult
 {

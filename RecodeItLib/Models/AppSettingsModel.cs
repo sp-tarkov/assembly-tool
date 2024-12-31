@@ -1,6 +1,6 @@
-﻿using ReCodeIt.Utils;
+﻿using ReCodeItLib.Utils;
 
-namespace ReCodeIt.Models;
+namespace ReCodeItLib.Models;
 
 /// <summary>
 /// All settings container

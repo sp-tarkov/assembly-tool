@@ -1,8 +1,7 @@
 ﻿using dnlib.DotNet;
-using ReCodeIt.Models;
-using ReCodeIt.Utils;
+using ReCodeItLib.Models;
 
-namespace ReCodeItLib.Remapper.Search;
+namespace ReCodeItLib.ReMapper.Search;
 
 internal static class FieldTypeFilters
 {

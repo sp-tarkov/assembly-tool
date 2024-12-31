@@ -1,21 +1,16 @@
 ﻿using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeIt.Enums;
-using ReCodeIt.Models;
-using ReCodeIt.ReMapper.Search;
-using ReCodeIt.Utils;
-using ReCodeItLib.Remapper.Search;
+using ReCodeItLib.Enums;
+using ReCodeItLib.Models;
+using ReCodeItLib.ReMapper.Search;
+using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
-using ReCodeItLib.Remapper;
 
-namespace ReCodeIt.ReMapper;
+namespace ReCodeItLib.ReMapper;
 
 public class ReCodeItRemapper
 {
-    public ReCodeItRemapper()
-    { }
-
     private ModuleDefMD? Module { get; set; }
 
     public static bool IsRunning { get; private set; } = false;
@@ -515,22 +510,20 @@ public class ReCodeItRemapper
     {
         foreach (var type in table)
         {
-            if (DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template))
+            if (!DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template) ||
+                !type.Value.Name.StartsWith("GClass"))
             {
-                if (!type.Value.Name.StartsWith("GClass")) continue;
-                
-                var remap = new RemapModel
-                {
-                    OriginalTypeName = type.Value.Name,
-                    NewTypeName = $"{template._name}{extName}",
-                    UseForceRename = true
-                };
-                
-                _remaps.Add(remap);
                 continue;
             }
+            
+            var remap = new RemapModel
+            {
+                OriginalTypeName = type.Value.Name,
+                NewTypeName = $"{template._name}{extName}",
+                UseForceRename = true
+            };
                 
-            // Logger.Log($"Found no association for key: {type.Key} Type: {type.Value}", ConsoleColor.Yellow);
+            _remaps.Add(remap);
         }
     }
     
@@ -596,11 +589,11 @@ public class ReCodeItRemapper
         }
         catch (Exception e)
         {
-            Logger.Log(e);
+            Logger.LogSync(e);
             throw;
         }
 
-        Logger.Log("\nCreating Hollow...", ConsoleColor.Yellow);
+        Logger.LogSync("\nCreating Hollow...", ConsoleColor.Green);
         Hollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
@@ -612,7 +605,7 @@ public class ReCodeItRemapper
         }
         catch (Exception e)
         {
-            Logger.Log(e);
+            Logger.LogSync(e);
             throw;
         }
         

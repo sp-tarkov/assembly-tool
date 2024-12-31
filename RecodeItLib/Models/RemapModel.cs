@@ -1,8 +1,8 @@
 ﻿using dnlib.DotNet;
 using Newtonsoft.Json;
-using ReCodeIt.Enums;
+using ReCodeItLib.Enums;
 
-namespace ReCodeIt.Models;
+namespace ReCodeItLib.Models;
 
 /// <summary>
 /// Object to store linq statements in inside of json to search and remap classes

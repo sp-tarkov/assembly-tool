@@ -1,8 +1,7 @@
 ﻿using dnlib.DotNet;
-using System.Runtime.CompilerServices;
-using ReCodeIt.Utils;
+using ReCodeItLib.Utils;
 
-namespace ReCodeIt.ReMapper;
+namespace ReCodeItLib.ReMapper;
 
 internal static class SPTPublicizer
 {

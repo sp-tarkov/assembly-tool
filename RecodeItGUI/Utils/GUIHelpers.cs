@@ -1,5 +1,5 @@
-﻿using ReCodeIt.Models;
-using ReCodeIt.Utils;
+﻿using ReCodeItLib.Models;
+using ReCodeItLib.Utils;
 
 namespace ReCodeIt.GUI;
 

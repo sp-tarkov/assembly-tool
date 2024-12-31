@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
-using ReCodeIt.Enums;
-using ReCodeIt.Models;
-using ReCodeIt.Utils;
+using ReCodeItLib.Enums;
+using ReCodeItLib.Models;
+using ReCodeItLib.Utils;
 
-namespace ReCodeItLib.Remapper;
+namespace ReCodeItLib.ReMapper;
 
 public class Statistics(
 	List<RemapModel> remapModels, 

@@ -1,4 +1,4 @@
-﻿namespace ReCodeIt.Models;
+﻿namespace ReCodeItLib.Models;
 
 public class ItemTemplateModel
 {

@@ -1,7 +1,7 @@
 ﻿using dnlib.DotNet;
 using System.Text;
 
-namespace ReCodeIt.Utils;
+namespace ReCodeItLib.Utils;
 
 public static class SysTypeExtentions
 {

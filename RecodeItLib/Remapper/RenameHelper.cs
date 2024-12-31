@@ -1,8 +1,8 @@
 ﻿using dnlib.DotNet;
-using ReCodeIt.Models;
-using ReCodeIt.Utils;
+using ReCodeItLib.Models;
+using ReCodeItLib.Utils;
 
-namespace ReCodeIt.ReMapper;
+namespace ReCodeItLib.ReMapper;
 
 internal static class RenameHelper
 {

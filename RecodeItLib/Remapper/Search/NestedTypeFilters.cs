@@ -1,7 +1,7 @@
 ﻿using dnlib.DotNet;
-using ReCodeIt.Models;
+using ReCodeItLib.Models;
 
-namespace ReCodeIt.ReMapper.Search;
+namespace ReCodeItLib.ReMapper.Search;
 
 internal static class NestedTypeFilters
 {

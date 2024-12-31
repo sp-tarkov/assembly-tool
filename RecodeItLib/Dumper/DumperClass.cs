@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Runtime.CompilerServices;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeIt.Utils;
+using ReCodeItLib.Utils;
 using System.IO.Compression;
 
 namespace ReCodeItLib.Dumper;

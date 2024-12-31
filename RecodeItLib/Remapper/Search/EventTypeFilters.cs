@@ -1,7 +1,7 @@
 ﻿using dnlib.DotNet;
-using ReCodeIt.Models;
+using ReCodeItLib.Models;
 
-namespace ReCodeItLib.Remapper.Search;
+namespace ReCodeItLib.ReMapper.Search;
 
 internal static class EventTypeFilters
 {

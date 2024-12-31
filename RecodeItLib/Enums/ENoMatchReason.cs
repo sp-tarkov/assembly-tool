@@ -1,4 +1,4 @@
-﻿namespace ReCodeIt.Enums;
+﻿namespace ReCodeItLib.Enums;
 
 public enum ENoMatchReason
 {

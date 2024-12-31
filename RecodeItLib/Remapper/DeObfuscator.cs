@@ -1,10 +1,9 @@
 ﻿using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeIt.Utils;
+using ReCodeItLib.Utils;
 using System.Diagnostics;
-using ReCodeIt.ReMapper;
 
-namespace ReCodeItLib.Remapper;
+namespace ReCodeItLib.ReMapper;
 
 public static class Deobfuscator
 {

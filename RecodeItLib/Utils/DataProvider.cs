@@ -1,9 +1,9 @@
 ﻿using dnlib.DotNet;
 using Newtonsoft.Json;
-using ReCodeIt.Models;
+using ReCodeItLib.Models;
 using ReCodeItLib.Dumper;
 
-namespace ReCodeIt.Utils;
+namespace ReCodeItLib.Utils;
 
 public static class DataProvider
 {

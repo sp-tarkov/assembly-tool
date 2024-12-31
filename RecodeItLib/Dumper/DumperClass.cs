@@ -225,8 +225,8 @@ public class DumperClass
         // as of 01/11/24 firstMethod returns true, so its now only 2 instructions, was 55 (this may change, BSG have byppassed their own SSL checks atm)
         if (firstMethod?.Body.Instructions.Count != 2 || secondMethod?.Body.Instructions.Count != 14) 
         {
-            Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod.Body.Instructions.Count}, " +
-                       $"method with 'certificateData' as a param - before: 14, now: {secondMethod.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod?.Body.Instructions.Count}, " +
+                       $"method with 'certificateData' as a param - before: 14, now: {secondMethod?.Body.Instructions.Count}", ConsoleColor.Red);
         }
 
         if (methods.Count() != 2)
@@ -266,41 +266,41 @@ public class DumperClass
 
         if (method == null || method.Body.Instructions.Count != 23)
         {
-            Logger.Log($"RunValidation Instructions count has changed from 23 to {method.Body.Instructions.Count}");
+            Logger.Log($"RunValidation Instructions count has changed from 23 to {method?.Body.Instructions.Count}");
         }
 
         if (method2 == null || method2.Body.Instructions.Count != 171)
         {
-            Logger.Log($"RunValidation's MoveNext Instructions count has changed from 171 to {method2.Body.Instructions.Count}");
+            Logger.Log($"RunValidation's MoveNext Instructions count has changed from 171 to {method2?.Body.Instructions.Count}");
         }
 
         // Clear these from the body of each method respectively
-        method.Body.Instructions.Clear();
-        method2.Body.Instructions.Clear();
-        method2.Body.Variables.Clear();
-        method2.Body.ExceptionHandlers.Clear();
+        method?.Body.Instructions.Clear();
+        method2?.Body.Instructions.Clear();
+        method2?.Body.Variables.Clear();
+        method2?.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetRunValidationInstructions(method, _gameModule, _msModule, _gameImporter);
-        var liList2 = DumpyILHelper.GetRunValidationInstructionsMoveNext(method2, _gameModule, _msModule, _gameImporter);
+        var liList = DumpyILHelper.GetRunValidationInstructions(method!, _gameModule!, _msModule!, _gameImporter);
+        var liList2 = DumpyILHelper.GetRunValidationInstructionsMoveNext(method2!, _gameModule!, _msModule!, _gameImporter);
 
         foreach (var instruction in liList)
         {
-            method.Body.Instructions.Add(instruction);
+            method?.Body.Instructions.Add(instruction);
         }
         
         foreach (var instruction in liList2)
         {
-            method2.Body.Instructions.Add(instruction);
+            method2?.Body.Instructions.Add(instruction);
         }
 
-        var ins = Instruction.Create(OpCodes.Leave_S, method2.Body.Instructions[14]); // Create instruction to jump to index 14
-        var ins1 = Instruction.Create(OpCodes.Leave_S, method2.Body.Instructions.Last()); // Create instruction to jump to last index
+        var ins = Instruction.Create(OpCodes.Leave_S, method2?.Body.Instructions[14]); // Create instruction to jump to index 14
+        var ins1 = Instruction.Create(OpCodes.Leave_S, method2?.Body.Instructions.Last()); // Create instruction to jump to last index
 
-        method2.Body.Instructions.InsertAfter(method2.Body.Instructions[5], ins); // Instruction to jump from 5 to 14
-        method2.Body.Instructions.InsertAfter(method2.Body.Instructions[14], ins1); // Instruction to jump from 14 to last index
+        method2?.Body.Instructions.InsertAfter(method2.Body.Instructions[5], ins); // Instruction to jump from 5 to 14
+        method2?.Body.Instructions.InsertAfter(method2.Body.Instructions[14], ins1); // Instruction to jump from 14 to last index
 
         // Add exception handler to method body
-        method2.Body.ExceptionHandlers.Add(DumpyILHelper.GetExceptionHandler(method2, _gameImporter, _msModule));
+        method2?.Body.ExceptionHandlers.Add(DumpyILHelper.GetExceptionHandler(method2, _gameImporter, _msModule!));
     }
 
     private void SetDumpyTaskCode(TypeDef type)
@@ -312,13 +312,13 @@ public class DumperClass
             Logger.Log($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!", ConsoleColor.Red);
         }
 
-        var liList = DumpyILHelper.GetDumpyTaskInstructions(method,_dumpModule, _gameImporter);
+        var liList = DumpyILHelper.GetDumpyTaskInstructions(method!,_dumpModule!, _gameImporter);
 
-        var index = method.Body.Instructions.First(x => x.OpCode == OpCodes.Ret);
+        var index = method?.Body.Instructions.First(x => x.OpCode == OpCodes.Ret);
 
         foreach (var item in liList)
         {
-            method.Body.Instructions.InsertBefore(index, item);
+            method?.Body.Instructions.InsertBefore(index!, item);
         }
     }
 
@@ -335,19 +335,19 @@ public class DumperClass
 
         if (method == null || method.Body.Instructions.Count != 152)
         {
-            Logger.Log($"EnsureConsistency Instructions count has changed from 152 to {method.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"EnsureConsistency Instructions count has changed from 152 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
         }
 
         // clear these from the method body
-        method.Body.Instructions.Clear();
-        method.Body.Variables.Clear();
-        method.Body.ExceptionHandlers.Clear();
+        method?.Body.Instructions.Clear();
+        method?.Body.Variables.Clear();
+        method?.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method!, _checkerModule!, _msModule!, _checkImporter);
         
         foreach (var li in liList)
         {
-            method.Body.Instructions.Add(li);
+            method?.Body.Instructions.Add(li);
         }
     }
 
@@ -364,19 +364,19 @@ public class DumperClass
 
         if (method == null || method.Body.Instructions.Count != 101)
         {
-            Logger.Log($"EnsureConsistencySingle Instructions count has changed from 101 to {method.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"EnsureConsistencySingle Instructions count has changed from 101 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
         }
 
         // clear these from the method body
-        method.Body.Instructions.Clear();
-        method.Body.Variables.Clear();
-        method.Body.ExceptionHandlers.Clear();
+        method?.Body.Instructions.Clear();
+        method?.Body.Variables.Clear();
+        method?.Body.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method!, _checkerModule!, _msModule!, _checkImporter);
         
         foreach (var li in liList)
         {
-            method.Body.Instructions.Add(li);
+            method?.Body.Instructions.Add(li);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ReCodeIt.ReMapper;
 
 internal static class RenameHelper
 {
-    private static List<string> TokensToMatch => DataProvider.Settings.AutoMapper.TokensToMatch;
+    private static List<string>? TokensToMatch => DataProvider.Settings?.AutoMapper?.TokensToMatch;
 
     /// <summary>
     /// Only used by the manual remapper, should probably be removed
@@ -17,9 +17,9 @@ internal static class RenameHelper
     public static void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
         // Rename all fields and properties first
-        if (DataProvider.Settings.Remapper.MappingSettings.RenameFields)
+        if (DataProvider.Settings!.Remapper!.MappingSettings!.RenameFields)
         {
-            if (remap.TypePrimeCandidate == null)
+            if (remap.TypePrimeCandidate is null)
             {
                 Logger.Log($"Unable to rename {remap.NewTypeName} as TypePrimeCandidate value is null/empty, skipping", ConsoleColor.Red);
                 return;
@@ -34,7 +34,7 @@ internal static class RenameHelper
         if (DataProvider.Settings.Remapper.MappingSettings.RenameProperties)
         {
             RenameAllProperties(
-                remap.TypePrimeCandidate.Name.String,
+                remap!.TypePrimeCandidate!.Name.String,
                 remap.NewTypeName,
                 types);
         }
@@ -42,7 +42,7 @@ internal static class RenameHelper
         FixMethods(types, remap);
         RenameType(types, remap);
 
-        //Logger.Log($"{remap.TypePrimeCandidate.Name.String} Renamed.", ConsoleColor.Green);
+        Logger.Log($"{remap!.TypePrimeCandidate!.Name.String} Renamed.", ConsoleColor.Green);
     }
 
     private static void FixMethods(
@@ -52,7 +52,7 @@ internal static class RenameHelper
         foreach (var type in typesToCheck)
         {
             var methods = type.Methods
-                .Where(method => method.Name.StartsWith(remap.TypePrimeCandidate.Name.String));
+                .Where(method => method.Name.StartsWith(remap!.TypePrimeCandidate!.Name.String));
 
             foreach (var method in methods)
             {
@@ -68,8 +68,7 @@ internal static class RenameHelper
     /// <param name="oldTypeName"></param>
     /// <param name="newTypeName"></param>
     /// <param name="typesToCheck"></param>
-    /// <returns></returns>
-    public static IEnumerable<TypeDef> RenameAllFields(
+    private static void RenameAllFields(
 
         string oldTypeName,
         string newTypeName,
@@ -78,7 +77,7 @@ internal static class RenameHelper
         foreach (var type in typesToCheck)
         {
             var fields = type.Fields
-                .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch));
+                .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch!));
 
             if (!fields.Any()) { continue; }
 
@@ -103,8 +102,6 @@ internal static class RenameHelper
                 }
             }
         }
-
-        return typesToCheck;
     }
 
     private static void UpdateAllTypeFieldMemberRefs(IEnumerable<TypeDef> typesToCheck, FieldDef newDef, string oldName)
@@ -139,7 +136,7 @@ internal static class RenameHelper
     /// <param name="oldTypeName"></param>
     /// <param name="newTypeName"></param>
     /// <param name="typesToCheck"></param>
-    public static void RenameAllProperties(
+    private static void RenameAllProperties(
         string oldTypeName,
         string newTypeName,
         IEnumerable<TypeDef> typesToCheck)
@@ -147,7 +144,7 @@ internal static class RenameHelper
         foreach (var type in typesToCheck)
         {
             var properties = type.Properties
-                .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch));
+                .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch!));
 
             if (!properties.Any()) { continue; }
 
@@ -187,10 +184,10 @@ internal static class RenameHelper
         {
             if (type.HasNestedTypes)
             {
-                RenameType(type.NestedTypes, remap);
+                RenameType(type.NestedTypes, remap!);
             }
 
-            if (remap.TypePrimeCandidate.Name is null) { continue; }
+            if (remap?.TypePrimeCandidate?.Name is null) { continue; }
 
             if (remap.SearchParams.IsNested is true &&
                 type.IsNested && type.Name == remap.TypePrimeCandidate.Name)

@@ -5,12 +5,14 @@ namespace ReCodeIt.ReMapper;
 
 internal static class SPTPublicizer
 {
-    private static ModuleDefMD MainModule;
+    private static ModuleDefMD? MainModule;
 
     public static void PublicizeClasses(ModuleDefMD definition, bool isLauncher = false)
     {
         var types = definition.GetTypes();
 
+        MainModule = definition;
+        
         foreach (var type in types)
         {
             if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
@@ -124,7 +126,7 @@ internal static class SPTPublicizer
         if (type.BaseType != null && !type.BaseType.Name.Contains("Object"))
         {
             var baseTypeDefinition = MainModule?.Find(type.BaseType).ResolveTypeDef();
-            var baseTypeInterfaces = GetFlattenedInterfacesRecursive(baseTypeDefinition);
+            var baseTypeInterfaces = GetFlattenedInterfacesRecursive(baseTypeDefinition!);
 
             if (baseTypeInterfaces.Any())
             {

@@ -27,7 +27,7 @@ public class RemapModel
     /// This is the final chosen type we will use to remap
     /// </summary>
     [JsonIgnore]
-    public TypeDef TypePrimeCandidate { get; set; }
+    public TypeDef? TypePrimeCandidate { get; set; }
 
     public string NewTypeName { get; set; } = string.Empty;
 

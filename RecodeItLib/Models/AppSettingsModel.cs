@@ -7,9 +7,9 @@ namespace ReCodeIt.Models;
 /// </summary>
 public class Settings
 {
-    private AppSettings _appSettings;
+    private AppSettings? _appSettings;
 
-    public AppSettings AppSettings
+    public AppSettings? AppSettings
     {
         get { return _appSettings; }
         set
@@ -19,9 +19,9 @@ public class Settings
         }
     }
 
-    private RemapperSettings _remapper;
+    private RemapperSettings? _remapper;
 
-    public RemapperSettings Remapper
+    public RemapperSettings? Remapper
     {
         get { return _remapper; }
         set
@@ -31,9 +31,9 @@ public class Settings
         }
     }
 
-    private AutoMapperSettings _autoMapper;
+    private AutoMapperSettings? _autoMapper;
 
-    public AutoMapperSettings AutoMapper
+    public AutoMapperSettings? AutoMapper
     {
         get { return _autoMapper; }
         set
@@ -89,7 +89,7 @@ public class AppSettings
 /// </summary>
 public class RemapperSettings
 {
-    private string _assemblyPath;
+    private string _assemblyPath = string.Empty;
 
     /// <summary>
     /// Path to the assembly we want to remap
@@ -104,7 +104,7 @@ public class RemapperSettings
         }
     }
 
-    private string _outputPath;
+    private string _outputPath = string.Empty;
 
     /// <summary>
     /// Path including the filename and extension we want to write the changes to
@@ -119,7 +119,7 @@ public class RemapperSettings
         }
     }
 
-    private string _mappingPath;
+    private string _mappingPath = string.Empty;
 
     /// <summary>
     /// Path to the mapping file
@@ -149,9 +149,9 @@ public class RemapperSettings
         }
     }
 
-    private MappingSettings _mappingSettings;
+    private MappingSettings? _mappingSettings;
 
-    public MappingSettings MappingSettings
+    public MappingSettings? MappingSettings
     {
         get { return _mappingSettings; }
         set
@@ -172,7 +172,7 @@ public class RemapperSettings
 /// </summary>
 public class AutoMapperSettings
 {
-    private string _assemblyPath;
+    private string _assemblyPath = string.Empty;
 
     /// <summary>
     /// Path to the assembly we want to remap
@@ -187,7 +187,7 @@ public class AutoMapperSettings
         }
     }
 
-    private string _outputPath;
+    private string _outputPath = string.Empty;
 
     /// <summary>
     /// Path including the filename and extension we want to write the changes to
@@ -248,9 +248,9 @@ public class AutoMapperSettings
         }
     }
 
-    private MappingSettings _mappingSettings;
+    private MappingSettings? _mappingSettings;
 
-    public MappingSettings MappingSettings
+    public MappingSettings? MappingSettings
     {
         get { return _mappingSettings; }
         set
@@ -260,7 +260,7 @@ public class AutoMapperSettings
         }
     }
 
-    private List<string> _typesToIgnore;
+    private List<string> _typesToIgnore = [];
 
     /// <summary>
     /// Any member name you want to ignore while iterating through the assembly
@@ -275,7 +275,7 @@ public class AutoMapperSettings
         }
     }
 
-    private List<string> _tokensToMatch;
+    private List<string> _tokensToMatch = [];
 
     /// <summary>
     /// The auto mapper will look for these tokens in class names and prioritize those
@@ -290,7 +290,7 @@ public class AutoMapperSettings
         }
     }
 
-    private List<string> _propertyFieldBlacklist;
+    private List<string> _propertyFieldBlacklist = [];
 
     /// <summary>
     /// Property or fields names to ignore in the automap, these are case sanitized so case does not matter
@@ -305,17 +305,17 @@ public class AutoMapperSettings
         }
     }
 
-    private List<string> _methodParamaterBlackList;
+    private List<string> _methodParameterBlackList = [];
 
     /// <summary>
     /// method parameter names to ignore in the automap, these are case sanitized so case does not matter
     /// </summary>
-    public List<string> MethodParamaterBlackList
+    public List<string> MethodParameterBlackList
     {
-        get { return _methodParamaterBlackList; }
+        get { return _methodParameterBlackList; }
         set
         {
-            _methodParamaterBlackList = value;
+            _methodParameterBlackList = value;
             Save();
         }
     }

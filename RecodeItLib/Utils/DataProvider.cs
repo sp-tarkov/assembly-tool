@@ -22,7 +22,7 @@ public static class DataProvider
     public static List<RemapModel> Remaps { get; set; } = [];
     public static Dictionary<string, ItemTemplateModel>? ItemTemplates { get; private set; }
     
-    public static Settings Settings { get; private set; }
+    public static Settings? Settings { get; private set; }
 
     public static void LoadAppSettings()
     {
@@ -91,11 +91,11 @@ public static class DataProvider
             Formatting = Formatting.Indented
         };
 
-        var path = Settings.Remapper.MappingPath;
+        var path = Settings?.Remapper?.MappingPath;
 
         var jsonText = JsonConvert.SerializeObject(Remaps, settings);
 
-        File.WriteAllText(path, jsonText);
+        File.WriteAllText(path!, jsonText);
         Logger.Log($"Mapping File Saved To {path}");
     }
 

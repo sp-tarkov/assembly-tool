@@ -26,7 +26,7 @@ public class ReCodeItRemapper
 
     private static readonly Stopwatch Stopwatch = new();
 
-    private RemapperSettings Settings => DataProvider.Settings.Remapper;
+    private RemapperSettings? Settings => DataProvider.Settings?.Remapper;
 
     private string OutPath { get; set; } = string.Empty;
     
@@ -71,7 +71,7 @@ public class ReCodeItRemapper
             cleanedName = $"{cleanedName}-cleaned.dll";
             
             var newPath = Path.GetDirectoryName(assemblyPath);
-            newPath = Path.Combine(newPath, cleanedName);
+            newPath = Path.Combine(newPath!, cleanedName);
             
             Console.WriteLine($"Cleaning assembly: {newPath}");
             
@@ -119,7 +119,7 @@ public class ReCodeItRemapper
         Task.WaitAll(renameTasks.ToArray());
         
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
-        if (Settings.MappingSettings.Publicize)
+        if (Settings!.MappingSettings!.Publicize)
         {
             Logger.Log("Publicizing classes...", ConsoleColor.Yellow);
 
@@ -160,7 +160,7 @@ public class ReCodeItRemapper
     /// <param name="mapping">Mapping to score</param>
     private void ScoreMapping(RemapModel mapping, IEnumerable<TypeDef> types)
     {
-        var tokens = DataProvider.Settings.AutoMapper.TokensToMatch;
+        var tokens = DataProvider.Settings?.AutoMapper?.TokensToMatch;
 
         if (mapping.UseForceRename)
         {
@@ -171,7 +171,7 @@ public class ReCodeItRemapper
         // Filter down nested objects
         if (mapping.SearchParams.IsNested is false or null)
         {
-            types = types.Where(type => tokens.Any(token => type.Name.StartsWith(token)));
+            types = types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)));
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
@@ -477,13 +477,13 @@ public class ReCodeItRemapper
             .GetField("TypeTable")
             .GetValue(templateMappingClass);
         
-        BuildAssociationFromTable(typeTable, "ItemClass");
+        BuildAssociationFromTable(typeTable!, "ItemClass");
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
             .GetField("TemplateTypeTable")
             .GetValue(templateMappingClass);
         
-        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
+        BuildAssociationFromTable(templateTypeTable!, "TemplateClass");
     }
     
     private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
@@ -558,18 +558,18 @@ public class ReCodeItRemapper
     /// </summary>
     private void WriteAssembly()
     {
-        var moduleName = Module.Name;
+        var moduleName = Module?.Name;
 
         var dllName = "-cleaned-remapped.dll";
-        if (Settings.MappingSettings.Publicize)
+        if (Settings!.MappingSettings!.Publicize)
         {
             dllName = "-cleaned-remapped-publicized.dll";
         }
-        OutPath = Path.Combine(OutPath, moduleName.Replace(".dll", dllName));
+        OutPath = Path.Combine(OutPath, moduleName?.Replace(".dll", dllName));
 
         try
         {
-            Module.Write(OutPath);
+            Module!.Write(OutPath);
         }
         catch (Exception e)
         {
@@ -581,7 +581,7 @@ public class ReCodeItRemapper
         Hollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
-        var hollowedPath = Path.Combine(hollowedDir, "Assembly-CSharp-hollowed.dll");
+        var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
 
         try
         {
@@ -595,9 +595,9 @@ public class ReCodeItRemapper
         
         DisplayEndBanner(hollowedPath);
 
-        if (DataProvider.Settings.Remapper.MappingPath != string.Empty)
+        if (DataProvider.Settings?.Remapper?.MappingPath != string.Empty)
         {
-            DataProvider.UpdateMapping(DataProvider.Settings.Remapper.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
+            DataProvider.UpdateMapping(DataProvider.Settings!.Remapper!.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
         Stopwatch.Reset();
@@ -612,7 +612,7 @@ public class ReCodeItRemapper
     /// </summary>
     private void Hollow()
     {
-        foreach (var type in Module.GetTypes())
+        foreach (var type in Module!.GetTypes())
         {
             foreach (var method in type.Methods.Where(m => m.HasBody))
             {

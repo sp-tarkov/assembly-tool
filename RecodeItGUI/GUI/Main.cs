@@ -818,7 +818,7 @@ public partial class ReCodeItForm : Form
             AutoMapperFPBox.Items.Add(fp);
         }
 
-        foreach (var mp in settings.MethodParamaterBlackList)
+        foreach (var mp in settings.MethodParameterBlackList)
         {
             AutoMapperMethodBox.Items.Add(mp);
         }
@@ -908,7 +908,7 @@ public partial class ReCodeItForm : Form
         {
             AutoMapperMethodBox.Items.Add(AutoMapperMethodTextBox.Text);
 
-            AppSettings.AutoMapper.MethodParamaterBlackList.Add(AutoMapperMethodTextBox.Text);
+            AppSettings.AutoMapper.MethodParameterBlackList.Add(AutoMapperMethodTextBox.Text);
 
             DataProvider.SaveAppSettings();
             AutoMapperMethodTextBox.Clear();
@@ -919,7 +919,7 @@ public partial class ReCodeItForm : Form
     {
         if (AutoMapperMethodBox.SelectedItem != null)
         {
-            AppSettings.AutoMapper.MethodParamaterBlackList
+            AppSettings.AutoMapper.MethodParameterBlackList
                 .RemoveAt(AutoMapperMethodBox.SelectedIndex);
 
             AutoMapperMethodBox.Items

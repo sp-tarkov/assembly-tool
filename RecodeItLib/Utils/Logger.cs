@@ -128,7 +128,7 @@ public static class Logger
     }
     private class LogMessage
     {
-        public object Message { get; init; }
+        public object? Message { get; init; }
         public ConsoleColor Color { get; init; }
         public bool Silent { get; init; }
         public int ThreadId { get; init; }

@@ -36,8 +36,6 @@ public static class DataProvider
         };
 
         Settings = JsonConvert.DeserializeObject<Settings>(jsonText, settings);
-        
-        Logger.Log($"Settings loaded from '{settingsPath}'");
     }
 
     public static void SaveAppSettings()
@@ -75,12 +73,8 @@ public static class DataProvider
         var jsonText = File.ReadAllText(path);
 
         var remaps = JsonConvert.DeserializeObject<List<RemapModel>>(jsonText);
-
-        if (remaps == null) { return []; }
-
-        Logger.Log($"Mapping file loaded from '{path}' containing {remaps.Count} remaps");
-
-        return remaps;
+        
+        return remaps!;
     }
 
     public static void SaveMapping()

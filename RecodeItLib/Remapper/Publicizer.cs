@@ -1,5 +1,6 @@
 ﻿using dnlib.DotNet;
 using System.Runtime.CompilerServices;
+using ReCodeIt.Utils;
 
 namespace ReCodeIt.ReMapper;
 
@@ -12,12 +13,16 @@ internal static class SPTPublicizer
         var types = definition.GetTypes();
 
         MainModule = definition;
-        
+
+        var typeCount = types.Where(t => !t.IsNested).Count();
+        var count = 0;
         foreach (var type in types)
         {
             if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
-
+            
             PublicizeType(type, isLauncher);
+            Logger.DrawProgressBar(count, typeCount - 1, 50);
+            count++;
         }
     }
 

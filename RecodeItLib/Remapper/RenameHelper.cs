@@ -41,8 +41,6 @@ internal static class RenameHelper
 
         FixMethods(types, remap);
         RenameType(types, remap);
-
-        Logger.Log($"{remap!.TypePrimeCandidate!.Name.String} Renamed.", ConsoleColor.Green);
     }
 
     private static void FixMethods(

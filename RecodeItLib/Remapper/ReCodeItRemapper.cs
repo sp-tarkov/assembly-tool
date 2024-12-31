@@ -85,6 +85,8 @@ public class ReCodeItRemapper
             GenerateDynamicRemaps(assemblyPath, types);
         }
         
+        Logger.LogSync("Finding Best Matches...", ConsoleColor.Green);
+        
         var tasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)
         {
@@ -95,6 +97,12 @@ public class ReCodeItRemapper
                 })
             );
         }
+        
+        while (!tasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        {
+            Logger.DrawProgressBar(tasks.Where(t => t.IsCompleted)!.Count(), tasks.Count, 50);
+        }
+        
         Task.WaitAll(tasks.ToArray());
 
         ChooseBestMatches();
@@ -106,6 +114,8 @@ public class ReCodeItRemapper
             return;
         }
 
+        Logger.LogSync("\nRenaming...", ConsoleColor.Green);
+        
         var renameTasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)
         {
@@ -116,12 +126,18 @@ public class ReCodeItRemapper
                 })
             );
         }
+        
+        while (!renameTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        {
+            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count(), tasks.Count - 1, 50);
+        }
+        
         Task.WaitAll(renameTasks.ToArray());
         
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         if (Settings!.MappingSettings!.Publicize)
         {
-            Logger.Log("Publicizing classes...", ConsoleColor.Yellow);
+            Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
 
             SPTPublicizer.PublicizeClasses(Module);
         }
@@ -493,9 +509,7 @@ public class ReCodeItRemapper
             if (DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template))
             {
                 if (!type.Value.Name.StartsWith("GClass")) continue;
-                    
-                Logger.Log($"Key: {type.Key} Type: {type.Value.Name} Associated to {template._name}", ConsoleColor.Green);
-
+                
                 var remap = new RemapModel
                 {
                     OriginalTypeName = type.Value.Name,
@@ -507,7 +521,7 @@ public class ReCodeItRemapper
                 continue;
             }
                 
-            Logger.Log($"Found no association for key: {type.Key} Type: {type.Value}", ConsoleColor.Yellow);
+            // Logger.Log($"Found no association for key: {type.Key} Type: {type.Value}", ConsoleColor.Yellow);
         }
     }
     
@@ -577,7 +591,7 @@ public class ReCodeItRemapper
             throw;
         }
 
-        Logger.Log("Creating Hollow...", ConsoleColor.Yellow);
+        Logger.Log("\nCreating Hollow...", ConsoleColor.Yellow);
         Hollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);

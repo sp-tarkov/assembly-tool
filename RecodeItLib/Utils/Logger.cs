@@ -82,6 +82,20 @@ public static class Logger
         return !IsTerminated;
     }
 
+    public static void DrawProgressBar(int progress, int total, int width)
+    {
+        Console.CursorVisible = false;
+        Console.SetCursorPosition(0, Console.CursorTop);
+
+        double percentage = (double)progress / total;
+        int completed = (int)(percentage * width);
+
+        Console.Write("[");
+        Console.Write(new string('=', completed)); // Completed part
+        Console.Write(new string(' ', width - completed)); // Remaining part
+        Console.Write($"] {progress}/{total} ({percentage:P0})");
+    }
+    
     private const string _defaultFileName = "ReCodeIt.log";
     private static string _logPath => Path.Combine(AppContext.BaseDirectory, "Data", "ReCodeIt.log");
     public static void ClearLog()
@@ -96,6 +110,13 @@ public static class Logger
     public static void Log(object message, ConsoleColor color = ConsoleColor.Gray, bool silent = false)
     {
         _messages.Enqueue(new LogMessage {Message = message, Color = color, Silent = silent, ThreadId = Thread.CurrentThread.ManagedThreadId});
+    }
+
+    public static void LogSync(string message, ConsoleColor color = ConsoleColor.White)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(message);
+        Console.ResetColor();
     }
     
     private static void LogInternal(LogMessage message)

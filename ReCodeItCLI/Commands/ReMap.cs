@@ -6,7 +6,7 @@ using ReCodeItLib.ReMapper;
 
 namespace ReCodeItCLI.Commands;
 
-[Command("ReMap", Description = "Generates a re-mapped dll provided a mapping file and de-obfuscated dll")]
+[Command("ReMap", Description = "Generates a re-mapped dll provided a mapping file and dll. If the dll is obfuscated, it will automatically de-obfuscate.")]
 public class ReMap : ICommand
 {
     private ReMapper _remapper { get; set; } = new();
@@ -14,7 +14,7 @@ public class ReMap : ICommand
     [CommandParameter(0, IsRequired = true, Description = "The absolute path to your mapping.json file, supports .json and .jsonc")]
     public required string MappingJsonPath { get; init; }
 
-    [CommandParameter(1, IsRequired = true, Description = "The absolute path to your de-obfuscated dll, containing all references that it needs to resolve.")]
+    [CommandParameter(1, IsRequired = true, Description = "The absolute path to your dll, containing all references that it needs to resolve.")]
     public required string AssemblyPath { get; init; }
 
     [CommandParameter(2, IsRequired = true, Description = "If true, the re-mapper will publicize all types, methods, and properties")]

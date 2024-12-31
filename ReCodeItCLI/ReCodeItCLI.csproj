@@ -26,6 +26,10 @@
     <Output TaskParameter="OutputItems" ItemName="OutputPath" />
   </Target>
   
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <RemoveDir Directories="$(SolutionDir)Build\**\*.*" />
+  </Target>
+  
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
       <de4dot Include="$(SolutionDir)de4dot\$(Configuration)\net48\*.*" />
@@ -35,8 +39,6 @@
 
     <MSBuild Projects="$(AssemblyServerProj)" Properties="Configuration=$(Configuration)" />
     <MSBuild Projects="$(de4dot-x64Proj)" Properties="Configuration=$(Configuration)" />
-    
-    <RemoveDir Directories="$(SolutionDir)Build" />
     
     <Copy
             SourceFiles="@(Cli)"

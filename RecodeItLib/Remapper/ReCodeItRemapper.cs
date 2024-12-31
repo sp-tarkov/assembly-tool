@@ -7,6 +7,7 @@ using ReCodeIt.Utils;
 using ReCodeItLib.Remapper.Search;
 using System.Diagnostics;
 using System.Reflection;
+using ReCodeItLib.Remapper;
 
 namespace ReCodeIt.ReMapper;
 
@@ -59,11 +60,30 @@ public class ReCodeItRemapper
         
         if (!types.Any(t => t.Name.Contains("GClass")))
         {
-            Logger.Log("You must de-obfuscate the assembly before remapping it.\n", ConsoleColor.Red);
-            return;
+            Logger.Log("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
+            
+            Module.Dispose();
+            Module = null;
+            
+            Deobfuscator.Deobfuscate(assemblyPath);
+            
+            var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
+            cleanedName = $"{cleanedName}-cleaned.dll";
+            
+            var newPath = Path.GetDirectoryName(assemblyPath);
+            newPath = Path.Combine(newPath, cleanedName);
+            
+            Console.WriteLine($"Cleaning assembly: {newPath}");
+            
+            Module = DataProvider.LoadModule(newPath);
+            types = Module.GetTypes();
+            
+            GenerateDynamicRemaps(newPath, types);
         }
-        
-        GenerateDynamicRemaps(assemblyPath, types);
+        else
+        {
+            GenerateDynamicRemaps(assemblyPath, types);
+        }
         
         var tasks = new List<Task>(remapModels.Count);
         foreach (var remap in remapModels)

@@ -43,11 +43,16 @@ public class RemapModel
 /// </summary>
 public class SearchParams
 {
-    #region BOOL_PARAMS
+    public GenericParams GenericParams { get; set; } = new();
+    public MethodParams Methods { get; set; } = new();
+    public FieldParams Fields { get; set; } = new();
+    public PropertyParams Properties { get; set; } = new();
+    public NestedTypeParams NestedTypes { get; set; } = new();
+    public EventParams Events { get; set; } = new();
+}
 
-    /// <summary>
-    /// Default to true, most types are public
-    /// </summary>
+public class GenericParams
+{
     public bool IsPublic { get; set; } = true;
 
     public bool? IsAbstract { get; set; } = null;
@@ -55,20 +60,15 @@ public class SearchParams
     public bool? IsStruct { get; set; } = null;
     public bool? IsEnum { get; set; } = null;
     public bool? IsNested { get; set; } = null;
-    public bool? IsSealed { get; set; } = null;
-    public bool? HasAttribute { get; set; } = null;
-    public bool? IsDerived { get; set; } = null;
-    public bool? HasGenericParameters { get; set; } = null;
-
-    #endregion BOOL_PARAMS
-
-    #region STR_PARAMS
-
+    
     /// <summary>
     /// Name of the nested types parent
     /// </summary>
     public string? NTParentName { get; set; } = null;
-
+    public bool? IsSealed { get; set; } = null;
+    public bool? HasAttribute { get; set; } = null;
+    public bool? IsDerived { get; set; } = null;
+    
     /// <summary>
     /// Name of the derived classes declaring type
     /// </summary>
@@ -78,18 +78,7 @@ public class SearchParams
     /// Name of the derived classes declaring type we want to ignore
     /// </summary>
     public string? IgnoreBaseClass { get; set; } = null;
-
-    #endregion STR_PARAMS
-    
-    #region LISTS
-
-    public MethodParams Methods { get; set; } = new();
-    public FieldParams Fields { get; set; } = new();
-    public PropertyParams Properties { get; set; } = new();
-    public NestedTypeParams NestedTypes { get; set; } = new();
-    public EventParams Events { get; set; } = new();
-    
-    #endregion LISTS
+    public bool? HasGenericParameters { get; set; } = null;
 }
 
 public class MethodParams

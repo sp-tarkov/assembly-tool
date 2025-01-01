@@ -15,9 +15,9 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterPublic(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // REQUIRED PROPERTY
-        if (parms.IsPublic)
+        if (parms.GenericParams.IsPublic)
         {
-            if (parms.IsNested is true)
+            if (parms.GenericParams.IsNested is true)
             {
                 types = types.Where(t => t.IsNestedPublic);
 
@@ -30,7 +30,7 @@ internal static class GenericTypeFilters
         }
         else
         {
-            if (parms.IsNested is true)
+            if (parms.GenericParams.IsNested is true)
             {
                 types = types.Where(t => t.IsNestedPrivate
                                          || t.IsNestedFamily
@@ -50,9 +50,9 @@ internal static class GenericTypeFilters
 
     private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.NTParentName is not null)
+        if (parms.GenericParams.NTParentName is not null)
         {
-            types = types.Where(t => t.DeclaringType.Name.String == parms.NTParentName);
+            types = types.Where(t => t.DeclaringType.Name.String == parms.GenericParams.NTParentName);
         }
 
         return types;
@@ -67,11 +67,11 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterAbstract(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on abstract or not
-        if (parms.IsAbstract is true)
+        if (parms.GenericParams.IsAbstract is true)
         {
             types = types.Where(t => t.IsAbstract && !t.IsInterface);
         }
-        else if (parms.IsAbstract is false)
+        else if (parms.GenericParams.IsAbstract is false)
         {
             types = types.Where(t => !t.IsAbstract);
         }
@@ -88,11 +88,11 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterSealed(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on abstract or not
-        if (parms.IsSealed is true)
+        if (parms.GenericParams.IsSealed is true)
         {
             types = types.Where(t => t.IsSealed);
         }
-        else if (parms.IsSealed is false)
+        else if (parms.GenericParams.IsSealed is false)
         {
             types = types.Where(t => !t.IsSealed);
         }
@@ -109,11 +109,11 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterInterface(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on interface or not
-        if (parms.IsInterface is true)
+        if (parms.GenericParams.IsInterface is true)
         {
             types = types.Where(t => t.IsInterface);
         }
-        else if (parms.IsInterface is false)
+        else if (parms.GenericParams.IsInterface is false)
         {
             types = types.Where(t => !t.IsInterface);
         }
@@ -129,11 +129,11 @@ internal static class GenericTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterStruct(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IsStruct is true)
+        if (parms.GenericParams.IsStruct is true)
         {
             types = types.Where(t => t.IsValueType && !t.IsEnum);
         }
-        else if (parms.IsStruct is false)
+        else if (parms.GenericParams.IsStruct is false)
         {
             types = types.Where(t => !t.IsValueType);
         }
@@ -150,11 +150,11 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterEnum(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on enum or not
-        if (parms.IsEnum is true)
+        if (parms.GenericParams.IsEnum is true)
         {
             types = types.Where(t => t.IsEnum);
         }
-        else if (parms.IsEnum is false)
+        else if (parms.GenericParams.IsEnum is false)
         {
             types = types.Where(t => !t.IsEnum);
         }
@@ -171,11 +171,11 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterAttributes(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on HasAttribute or not
-        if (parms.HasAttribute is true)
+        if (parms.GenericParams.HasAttribute is true)
         {
             types = types.Where(t => t.HasCustomAttributes);
         }
-        else if (parms.HasAttribute is false)
+        else if (parms.GenericParams.HasAttribute is false)
         {
             types = types.Where(t => !t.HasCustomAttributes);
         }
@@ -192,21 +192,21 @@ internal static class GenericTypeFilters
     public static IEnumerable<TypeDef> FilterDerived(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on IsDerived or not
-        if (parms.IsDerived is true)
+        if (parms.GenericParams.IsDerived is true)
         {
             types = types.Where(t => t.GetBaseType()?.Name?.String != "Object");
 
-            if (parms.MatchBaseClass is not null and not "")
+            if (parms.GenericParams.MatchBaseClass is not null and not "")
             {
-                types = types.Where(t => t.GetBaseType()?.Name?.String == parms.MatchBaseClass);
+                types = types.Where(t => t.GetBaseType()?.Name?.String == parms.GenericParams.MatchBaseClass);
             }
 
-            if (parms.IgnoreBaseClass is not null and not "")
+            if (parms.GenericParams.IgnoreBaseClass is not null and not "")
             {
-                types = types.Where(t => t.GetBaseType()?.Name?.String != parms.IgnoreBaseClass);
+                types = types.Where(t => t.GetBaseType()?.Name?.String != parms.GenericParams.IgnoreBaseClass);
             }
         }
-        else if (parms.IsDerived is false)
+        else if (parms.GenericParams.IsDerived is false)
         {
             types = types.Where(t => t.GetBaseType()?.Name?.String is "Object");
         }
@@ -222,9 +222,9 @@ internal static class GenericTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByGenericParameters(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.HasGenericParameters is null) return types;
+        if (parms.GenericParams.HasGenericParameters is null) return types;
         
-        types = types.Where(t => t.HasGenericParameters == parms.HasGenericParameters);
+        types = types.Where(t => t.HasGenericParameters == parms.GenericParams.HasGenericParameters);
 
         return types;
     }

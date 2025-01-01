@@ -197,7 +197,7 @@ public class ReMapper
         }
 
         // Filter down nested objects
-        if (mapping.SearchParams.IsNested is false or null)
+        if (mapping.SearchParams.GenericParams.IsNested is false or null)
         {
             types = types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)));
         }

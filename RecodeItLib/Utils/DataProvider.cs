@@ -73,28 +73,8 @@ public static class DataProvider
         var jsonText = File.ReadAllText(path);
 
         var remaps = JsonConvert.DeserializeObject<List<RemapModel>>(jsonText);
-
-        if (remaps is null) return [];
         
-        MigrateMappings(remaps);
-        
-        return remaps;
-    }
-
-    private static void MigrateMappings(List<RemapModel> models)
-    {
-        foreach (var model in models)
-        {
-            MigrateMapping(model);
-        }
-        
-        UpdateMapping(Path.Combine(DataPath, "Mappings-migrated.jsonc"), models);
-    }
-
-    private static void MigrateMapping(RemapModel model)
-    {
-        var searchParams = model.SearchParams;
-        
+        return remaps ?? [];
     }
     
     public static void SaveMapping()
@@ -130,7 +110,7 @@ public static class DataProvider
 
         File.WriteAllText(path, jsonText);
 
-        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Yellow);
+        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
     }
 
     public static ModuleDefMD LoadModule(string path)

@@ -187,7 +187,7 @@ internal static class RenameHelper
 
             if (remap?.TypePrimeCandidate?.Name is null) { continue; }
 
-            if (remap.SearchParams.IsNested is true &&
+            if (remap.SearchParams.GenericParams.IsNested is true &&
                 type.IsNested && type.Name == remap.TypePrimeCandidate.Name)
             {
                 type.Name = remap.NewTypeName;

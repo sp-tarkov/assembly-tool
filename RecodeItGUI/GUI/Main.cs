@@ -195,50 +195,53 @@ public partial class ReCodeItForm : Form
             UseForceRename = RemapperUseForceRename.Checked,
             SearchParams = new SearchParams
             {
-                IsPublic = bool.Parse(IsPublicComboBox.GetSelectedItem<string>().AsSpan()),
+                GenericParams =
+                {
+                    IsPublic = bool.Parse(IsPublicComboBox.GetSelectedItem<string>().AsSpan()),
 
-                IsAbstract = IsAbstractComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(IsAbstractComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    IsAbstract = IsAbstractComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(IsAbstractComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                IsSealed = IsSealedComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(IsSealedComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    IsSealed = IsSealedComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(IsSealedComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                IsInterface = IsInterfaceComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(IsInterfaceComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    IsInterface = IsInterfaceComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(IsInterfaceComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                IsStruct = IsStructComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(IsStructComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    IsStruct = IsStructComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(IsStructComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                IsEnum = IsEnumComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(IsEnumComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    IsEnum = IsEnumComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(IsEnumComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                HasAttribute = HasAttributeComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(HasAttributeComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    HasAttribute = HasAttributeComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(HasAttributeComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                HasGenericParameters = HasGenericParamsComboBox.SelectedItem as string != "Disabled"
-                    ? bool.Parse(HasGenericParamsComboBox.GetSelectedItem<string>().AsSpan())
-                    : null,
+                    HasGenericParameters = HasGenericParamsComboBox.SelectedItem as string != "Disabled"
+                        ? bool.Parse(HasGenericParamsComboBox.GetSelectedItem<string>().AsSpan())
+                        : null,
 
-                IsNested = IsNestedUpDown.GetEnabled(),
-                IsDerived = IsDerivedUpDown.GetEnabled(),
+                    IsNested = IsNestedUpDown.GetEnabled(),
+                    IsDerived = IsDerivedUpDown.GetEnabled(),
+                    
+                    NTParentName = NestedTypeParentName.Text == string.Empty
+                        ? null
+                        : NestedTypeParentName.Text,
 
-                NTParentName = NestedTypeParentName.Text == string.Empty
-                ? null
-                : NestedTypeParentName.Text,
+                    MatchBaseClass = BaseClassIncludeTextFIeld.Text == string.Empty
+                        ? null
+                        : BaseClassIncludeTextFIeld.Text,
 
-                MatchBaseClass = BaseClassIncludeTextFIeld.Text == string.Empty
-                ? null
-                : BaseClassIncludeTextFIeld.Text,
-
-                IgnoreBaseClass = BaseClassExcludeTextField.Text == string.Empty
-                ? null
-                : BaseClassExcludeTextField.Text,
+                    IgnoreBaseClass = BaseClassExcludeTextField.Text == string.Empty
+                        ? null
+                        : BaseClassExcludeTextField.Text,
+                },
                 
                 Methods =
                 {
@@ -825,9 +828,9 @@ public partial class ReCodeItForm : Form
         OriginalTypeName.Text = remap.OriginalTypeName;
         RemapperUseForceRename.Checked = remap.UseForceRename;
 
-        BaseClassIncludeTextFIeld.Text = remap.SearchParams.MatchBaseClass;
-        BaseClassExcludeTextField.Text = remap.SearchParams.IgnoreBaseClass;
-        NestedTypeParentName.Text = remap.SearchParams.NTParentName;
+        BaseClassIncludeTextFIeld.Text = remap.SearchParams.GenericParams.MatchBaseClass;
+        BaseClassExcludeTextField.Text = remap.SearchParams.GenericParams.IgnoreBaseClass;
+        NestedTypeParentName.Text = remap.SearchParams.GenericParams.NTParentName;
 
         ConstructorCountEnabled.Checked = remap.SearchParams.Methods.ConstructorParameterCount >= 0;
 
@@ -849,38 +852,38 @@ public partial class ReCodeItForm : Form
 
         NestedTypeCountUpDown.Value = remap.SearchParams.NestedTypes.NestedTypeCount;
 
-        IsPublicComboBox.SelectedItem = remap.SearchParams.IsPublic.ToString();
+        IsPublicComboBox.SelectedItem = remap.SearchParams.GenericParams.IsPublic.ToString();
 
-        IsAbstractComboBox.SelectedItem = remap.SearchParams.IsAbstract is not null
-            ? remap.SearchParams.IsAbstract.ToString()
+        IsAbstractComboBox.SelectedItem = remap.SearchParams.GenericParams.IsAbstract is not null
+            ? remap.SearchParams.GenericParams.IsAbstract.ToString()
             : "Disabled";
 
-        IsSealedComboBox.SelectedItem = remap.SearchParams.IsSealed is not null
-            ? remap.SearchParams.IsSealed.ToString()
+        IsSealedComboBox.SelectedItem = remap.SearchParams.GenericParams.IsSealed is not null
+            ? remap.SearchParams.GenericParams.IsSealed.ToString()
             : "Disabled";
 
-        IsInterfaceComboBox.SelectedItem = remap.SearchParams.IsInterface is not null
-            ? remap.SearchParams.IsInterface.ToString()
+        IsInterfaceComboBox.SelectedItem = remap.SearchParams.GenericParams.IsInterface is not null
+            ? remap.SearchParams.GenericParams.IsInterface.ToString()
             : "Disabled";
 
-        IsStructComboBox.SelectedItem = remap.SearchParams.IsStruct is not null
-            ? remap.SearchParams.IsStruct.ToString()
+        IsStructComboBox.SelectedItem = remap.SearchParams.GenericParams.IsStruct is not null
+            ? remap.SearchParams.GenericParams.IsStruct.ToString()
             : "Disabled";
 
-        IsEnumComboBox.SelectedItem = remap.SearchParams.IsEnum is not null
-            ? remap.SearchParams.IsEnum.ToString()
+        IsEnumComboBox.SelectedItem = remap.SearchParams.GenericParams.IsEnum is not null
+            ? remap.SearchParams.GenericParams.IsEnum.ToString()
             : "Disabled";
 
-        HasAttributeComboBox.SelectedItem = remap.SearchParams.HasAttribute is not null
-            ? remap.SearchParams.HasAttribute.ToString()
+        HasAttributeComboBox.SelectedItem = remap.SearchParams.GenericParams.HasAttribute is not null
+            ? remap.SearchParams.GenericParams.HasAttribute.ToString()
             : "Disabled";
 
-        HasGenericParamsComboBox.SelectedItem = remap.SearchParams.HasGenericParameters is not null
-            ? remap.SearchParams.HasGenericParameters.ToString()
+        HasGenericParamsComboBox.SelectedItem = remap.SearchParams.GenericParams.HasGenericParameters is not null
+            ? remap.SearchParams.GenericParams.HasGenericParameters.ToString()
             : "Disabled";
 
-        IsNestedUpDown.BuildStringList("IsNested", false, remap.SearchParams.IsNested);
-        IsDerivedUpDown.BuildStringList("IsDerived", false, remap.SearchParams.IsDerived);
+        IsNestedUpDown.BuildStringList("IsNested", false, remap.SearchParams.GenericParams.IsNested);
+        IsDerivedUpDown.BuildStringList("IsDerived", false, remap.SearchParams.GenericParams.IsDerived);
 
         foreach (var method in remap.SearchParams.Methods.IncludeMethods)
         {

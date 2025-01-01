@@ -101,16 +101,16 @@ internal static class GUIHelpers
     /// <returns></returns>
     public static TreeNode GenerateTreeNode(RemapModel model, ReCodeItForm gui)
     {
-        var isPublic = model.SearchParams.IsPublic;
-        var isAbstract = model.SearchParams.IsAbstract == null ? null : model.SearchParams.IsAbstract;
-        var isInterface = model.SearchParams.IsInterface == null ? null : model.SearchParams.IsInterface;
-        var isStruct = model.SearchParams.IsStruct == null ? null : model.SearchParams.IsStruct;
-        var isEnum = model.SearchParams.IsEnum == null ? null : model.SearchParams.IsEnum;
-        var isNested = model.SearchParams.IsNested == null ? null : model.SearchParams.IsNested;
-        var isSealed = model.SearchParams.IsSealed == null ? null : model.SearchParams.IsSealed;
-        var HasAttribute = model.SearchParams.HasAttribute == null ? null : model.SearchParams.HasAttribute;
-        var IsDerived = model.SearchParams.IsDerived == null ? null : model.SearchParams.IsDerived;
-        var HasGenericParameters = model.SearchParams.HasGenericParameters == null ? null : model.SearchParams.HasGenericParameters;
+        var isPublic = model.SearchParams.GenericParams.IsPublic;
+        var isAbstract = model.SearchParams.GenericParams.IsAbstract == null ? null : model.SearchParams.GenericParams.IsAbstract;
+        var isInterface = model.SearchParams.GenericParams.IsInterface == null ? null : model.SearchParams.GenericParams.IsInterface;
+        var isStruct = model.SearchParams.GenericParams.IsStruct == null ? null : model.SearchParams.GenericParams.IsStruct;
+        var isEnum = model.SearchParams.GenericParams.IsEnum == null ? null : model.SearchParams.GenericParams.IsEnum;
+        var isNested = model.SearchParams.GenericParams.IsNested == null ? null : model.SearchParams.GenericParams.IsNested;
+        var isSealed = model.SearchParams.GenericParams.IsSealed == null ? null : model.SearchParams.GenericParams.IsSealed;
+        var HasAttribute = model.SearchParams.GenericParams.HasAttribute == null ? null : model.SearchParams.GenericParams.HasAttribute;
+        var IsDerived = model.SearchParams.GenericParams.IsDerived == null ? null : model.SearchParams.GenericParams.IsDerived;
+        var HasGenericParameters = model.SearchParams.GenericParams.HasGenericParameters == null ? null : model.SearchParams.GenericParams.HasGenericParameters;
 
         var remapTreeItem = new TreeNode($"{model.NewTypeName}");
 

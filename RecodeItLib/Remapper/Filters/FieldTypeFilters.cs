@@ -13,13 +13,13 @@ internal static class FieldTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IncludeFields.Count == 0) return types;
+        if (parms.Fields.IncludeFields.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.IncludeFields
+            if (parms.Fields.IncludeFields
                 .All(includeName => type.Fields
                     .Any(field => field.Name.String == includeName)))
             {
@@ -38,14 +38,14 @@ internal static class FieldTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ExcludeFields.Count == 0) return types;
+        if (parms.Fields.ExcludeFields.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Fields
-                .Where(field => parms.ExcludeFields.Contains(field.Name.String));
+                .Where(field => parms.Fields.ExcludeFields.Contains(field.Name.String));
 
             if (!match.Any())
             {
@@ -64,11 +64,11 @@ internal static class FieldTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.FieldCount is null) return types;
+        if (parms.Fields.FieldCount == -1) return types;
 
-        if (parms.FieldCount >= 0)
+        if (parms.Fields.FieldCount >= 0)
         {
-            types = types.Where(t => t.Fields.Count == parms.FieldCount);
+            types = types.Where(t => t.Fields.Count == parms.Fields.FieldCount);
         }
 
         return types;

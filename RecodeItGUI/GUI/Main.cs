@@ -239,23 +239,37 @@ public partial class ReCodeItForm : Form
                 IgnoreBaseClass = BaseClassExcludeTextField.Text == string.Empty
                 ? null
                 : BaseClassExcludeTextField.Text,
-
-                // Constructor - TODO
-                ConstructorParameterCount = ConstructorCountEnabled.GetCount(ConstuctorCountUpDown),
-                MethodCount = MethodCountEnabled.GetCount(MethodCountUpDown),
-                FieldCount = FieldCountEnabled.GetCount(FieldCountUpDown),
-                PropertyCount = PropertyCountEnabled.GetCount(PropertyCountUpDown),
-                NestedTypeCount = NestedTypeCountEnabled.GetCount(NestedTypeCountUpDown),
-                IncludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodIncludeBox),
-                ExcludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodExcludeBox),
-                IncludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldIncludeBox),
-                ExcludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldExcludeBox),
-                IncludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesIncludeBox),
-                ExcludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesExcludeBox),
-                IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox),
-                ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox),
-                IncludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsIncludeBox),
-                ExcludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsExcludeBox)
+                
+                Methods =
+                {
+                    ConstructorParameterCount = (int)ConstructorCountEnabled.GetCount(ConstuctorCountUpDown),
+                    MethodCount = (int)MethodCountEnabled.GetCount(MethodCountUpDown),
+                    IncludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodIncludeBox),
+                    ExcludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodExcludeBox),
+                },
+                Fields =
+                {
+                    FieldCount = (int)FieldCountEnabled.GetCount(FieldCountUpDown),
+                    IncludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldIncludeBox),
+                    ExcludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldExcludeBox),
+                },
+                Properties =
+                {
+                    PropertyCount = (int)PropertyCountEnabled.GetCount(PropertyCountUpDown),
+                    IncludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesIncludeBox),
+                    ExcludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesExcludeBox),
+                },
+                NestedTypes =
+                {
+                    NestedTypeCount = (int)NestedTypeCountEnabled.GetCount(NestedTypeCountUpDown),
+                    IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox),
+                    ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox),
+                },
+                Events =
+                {
+                    IncludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsIncludeBox),
+                    ExcludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsExcludeBox)
+                }
             }
         };
 
@@ -815,45 +829,25 @@ public partial class ReCodeItForm : Form
         BaseClassExcludeTextField.Text = remap.SearchParams.IgnoreBaseClass;
         NestedTypeParentName.Text = remap.SearchParams.NTParentName;
 
-        ConstructorCountEnabled.Checked = remap.SearchParams.ConstructorParameterCount is not null
-            ? remap.SearchParams.ConstructorParameterCount > 0
-            : false;
+        ConstructorCountEnabled.Checked = remap.SearchParams.Methods.ConstructorParameterCount >= 0;
 
-        MethodCountEnabled.Checked = remap.SearchParams.MethodCount is not null
-            ? remap.SearchParams.MethodCount >= 0
-            : false;
+        MethodCountEnabled.Checked = remap.SearchParams.Methods.MethodCount >= 0;
 
-        FieldCountEnabled.Checked = remap.SearchParams.FieldCount is not null
-            ? remap.SearchParams.FieldCount >= 0
-            : false;
+        FieldCountEnabled.Checked = remap.SearchParams.Fields.FieldCount >= 0;
 
-        PropertyCountEnabled.Checked = remap.SearchParams.PropertyCount is not null
-            ? remap.SearchParams.PropertyCount >= 0
-            : false;
+        PropertyCountEnabled.Checked = remap.SearchParams.Properties.PropertyCount >= 0;
 
-        NestedTypeCountEnabled.Checked = remap.SearchParams.NestedTypeCount is not null
-            ? remap.SearchParams.NestedTypeCount >= 0
-            : false;
+        NestedTypeCountEnabled.Checked = remap.SearchParams.NestedTypes.NestedTypeCount >= 0;
 
-        ConstuctorCountUpDown.Value = (decimal)((remap.SearchParams.ConstructorParameterCount != null
-            ? remap.SearchParams.ConstructorParameterCount
-            : 0));
+        ConstuctorCountUpDown.Value = remap.SearchParams.Methods.ConstructorParameterCount;
 
-        MethodCountUpDown.Value = (decimal)(remap.SearchParams.MethodCount != null
-            ? remap.SearchParams.MethodCount
-            : 0);
+        MethodCountUpDown.Value = remap.SearchParams.Methods.MethodCount;
 
-        FieldCountUpDown.Value = (decimal)(remap.SearchParams.FieldCount != null
-            ? remap.SearchParams.FieldCount
-            : 0);
+        FieldCountUpDown.Value = remap.SearchParams.Fields.FieldCount;
 
-        PropertyCountUpDown.Value = (decimal)(remap.SearchParams.PropertyCount != null
-            ? remap.SearchParams.PropertyCount
-            : 0);
+        PropertyCountUpDown.Value = remap.SearchParams.Properties.PropertyCount;
 
-        NestedTypeCountUpDown.Value = (decimal)(remap.SearchParams.NestedTypeCount != null
-            ? remap.SearchParams.NestedTypeCount
-            : 0);
+        NestedTypeCountUpDown.Value = remap.SearchParams.NestedTypes.NestedTypeCount;
 
         IsPublicComboBox.SelectedItem = remap.SearchParams.IsPublic.ToString();
 
@@ -888,52 +882,52 @@ public partial class ReCodeItForm : Form
         IsNestedUpDown.BuildStringList("IsNested", false, remap.SearchParams.IsNested);
         IsDerivedUpDown.BuildStringList("IsDerived", false, remap.SearchParams.IsDerived);
 
-        foreach (var method in remap.SearchParams.IncludeMethods)
+        foreach (var method in remap.SearchParams.Methods.IncludeMethods)
         {
             MethodIncludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.ExcludeMethods)
+        foreach (var method in remap.SearchParams.Methods.ExcludeMethods)
         {
             MethodExcludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.IncludeFields)
+        foreach (var method in remap.SearchParams.Fields.IncludeFields)
         {
             FieldIncludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.ExcludeFields)
+        foreach (var method in remap.SearchParams.Fields.ExcludeFields)
         {
             FieldExcludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.IncludeProperties)
+        foreach (var method in remap.SearchParams.Properties.IncludeProperties)
         {
             PropertiesIncludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.ExcludeProperties)
+        foreach (var method in remap.SearchParams.Properties.ExcludeProperties)
         {
             PropertiesExcludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.IncludeNestedTypes)
+        foreach (var method in remap.SearchParams.NestedTypes.IncludeNestedTypes)
         {
             NestedTypesIncludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.ExcludeNestedTypes)
+        foreach (var method in remap.SearchParams.NestedTypes.ExcludeNestedTypes)
         {
             NestedTypesExcludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.IncludeEvents)
+        foreach (var method in remap.SearchParams.Events.IncludeEvents)
         {
             EventsIncludeBox.Items.Add(method);
         }
 
-        foreach (var method in remap.SearchParams.ExcludeEvents)
+        foreach (var method in remap.SearchParams.Events.ExcludeEvents)
         {
             EventsExcludeBox.Items.Add(method);
         }

@@ -80,33 +80,49 @@ public class SearchParams
     public string? IgnoreBaseClass { get; set; } = null;
 
     #endregion STR_PARAMS
-
-    #region INT_PARAMS
-
-    public int? ConstructorParameterCount { get; set; } = null;
-    public int? MethodCount { get; set; } = null;
-    public int? FieldCount { get; set; } = null;
-    public int? PropertyCount { get; set; } = null;
-    public int? NestedTypeCount { get; set; } = null;
-
-    #endregion INT_PARAMS
-
+    
     #region LISTS
 
-    public List<string> IncludeMethods { get; init; } = [];
-    public List<string> ExcludeMethods { get; init; } = [];
-    public List<string> IncludeFields { get; init; } = [];
-    public List<string> ExcludeFields { get; init; } = [];
-    public List<string> IncludeProperties { get; init; } = [];
-    public List<string> ExcludeProperties { get; init; } = [];
-    public List<string> IncludeNestedTypes { get; init; } = [];
-    public List<string> ExcludeNestedTypes { get; init; } = [];
-    public List<string> IncludeEvents { get; init; } = [];
-    public List<string> ExcludeEvents { get; init; } = [];
-
+    public MethodParams Methods { get; set; } = new();
+    public FieldParams Fields { get; set; } = new();
+    public PropertyParams Properties { get; set; } = new();
+    public NestedTypeParams NestedTypes { get; set; } = new();
+    public EventParams Events { get; set; } = new();
+    
     #endregion LISTS
 }
 
-internal class AdvancedSearchParams
+public class MethodParams
 {
+    public int ConstructorParameterCount { get; set; } = -1;
+    public int MethodCount { get; set; } = -1;
+    public List<string> IncludeMethods { get; set; } = [];
+    public List<string> ExcludeMethods { get; set; } = [];
+}
+
+public class FieldParams
+{
+    public int FieldCount { get; set; } = -1;
+    public List<string> IncludeFields { get; set; } = [];
+    public List<string> ExcludeFields { get; set; } = [];
+}
+
+public class PropertyParams
+{
+    public int PropertyCount { get; set; } = -1;
+    public List<string> IncludeProperties { get; set; } = [];
+    public List<string> ExcludeProperties { get; set; } = [];
+}
+
+public class NestedTypeParams
+{
+    public int NestedTypeCount { get; set; } = -1;
+    public List<string> IncludeNestedTypes { get; set; } = [];
+    public List<string> ExcludeNestedTypes { get; set; } = [];
+}
+
+public class EventParams
+{
+    public List<string> IncludeEvents { get; set; } = [];
+    public List<string> ExcludeEvents { get; set; } = [];
 }

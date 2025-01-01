@@ -13,7 +13,7 @@ internal static class CtorTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByParameterCount(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ConstructorParameterCount is null) return types;
+        if (parms.Methods.ConstructorParameterCount == -1) return types;
 
         return types.Where(type =>
         {
@@ -23,7 +23,7 @@ internal static class CtorTypeFilters
                 // Ensure Parameters isn't null before checking Count
                 var parameters = ctor.Parameters;
                 // This +1 offset is needed for some reason, needs investigation
-                return parameters != null && parameters.Count == parms.ConstructorParameterCount + 1;
+                return parameters != null && parameters.Count == parms.Methods.ConstructorParameterCount + 1;
             });
         });
     }

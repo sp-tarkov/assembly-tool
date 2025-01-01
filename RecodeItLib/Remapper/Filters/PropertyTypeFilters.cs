@@ -13,13 +13,13 @@ internal static class PropertyTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IncludeProperties.Count == 0) return types;
+        if (parms.Properties.IncludeProperties.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.IncludeProperties
+            if (parms.Properties.IncludeProperties
                 .All(includeName => type.Properties
                     .Any(prop => prop.Name.String == includeName)))
             {
@@ -38,14 +38,14 @@ internal static class PropertyTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ExcludeProperties.Count == 0) return types;
+        if (parms.Properties.ExcludeProperties.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Properties
-                .Where(prop => parms.ExcludeProperties.Contains(prop.Name.String));
+                .Where(prop => parms.Properties.ExcludeProperties.Contains(prop.Name.String));
 
             if (!match.Any())
             {
@@ -64,11 +64,11 @@ internal static class PropertyTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.PropertyCount is null) return types;
+        if (parms.Properties.PropertyCount == -1) return types;
 
-        if (parms.PropertyCount >= 0)
+        if (parms.Properties.PropertyCount >= 0)
         {
-            types = types.Where(t => t.Properties.Count == parms.PropertyCount);
+            types = types.Where(t => t.Properties.Count == parms.Properties.PropertyCount);
         }
 
         return types;

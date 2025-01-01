@@ -13,13 +13,13 @@ internal static class EventTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.IncludeEvents.Count == 0) return types;
+        if (parms.Events.IncludeEvents.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.IncludeEvents
+            if (parms.Events.IncludeEvents
                 .All(includeName => type.Events
                     .Any(ev => ev.Name.String == includeName)))
             {
@@ -38,14 +38,14 @@ internal static class EventTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.ExcludeEvents.Count == 0) return types;
+        if (parms.Events.ExcludeEvents.Count == 0) return types;
 
         List<TypeDef> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Events
-                .Where(prop => parms.ExcludeEvents.Contains(prop.Name.String));
+                .Where(prop => parms.Events.ExcludeEvents.Contains(prop.Name.String));
 
             if (!match.Any())
             {

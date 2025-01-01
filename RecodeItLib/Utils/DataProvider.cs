@@ -37,7 +37,7 @@ public static class DataProvider
 
         Settings = JsonConvert.DeserializeObject<Settings>(jsonText, settings);
     }
-
+    
     public static void SaveAppSettings()
     {
         if (IsCli) { return; }
@@ -73,10 +73,30 @@ public static class DataProvider
         var jsonText = File.ReadAllText(path);
 
         var remaps = JsonConvert.DeserializeObject<List<RemapModel>>(jsonText);
+
+        if (remaps is null) return [];
         
-        return remaps!;
+        MigrateMappings(remaps);
+        
+        return remaps;
     }
 
+    private static void MigrateMappings(List<RemapModel> models)
+    {
+        foreach (var model in models)
+        {
+            MigrateMapping(model);
+        }
+        
+        UpdateMapping(Path.Combine(DataPath, "Mappings-migrated.jsonc"), models);
+    }
+
+    private static void MigrateMapping(RemapModel model)
+    {
+        var searchParams = model.SearchParams;
+        
+    }
+    
     public static void SaveMapping()
     {
         JsonSerializerSettings settings = new()

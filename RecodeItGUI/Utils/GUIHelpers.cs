@@ -170,107 +170,107 @@ internal static class GUIHelpers
             remapTreeItem.Nodes.Add(new TreeNode($"HasGenericParameters: {HasGenericParameters}"));
         }
 
-        if (model.SearchParams.ConstructorParameterCount > 0)
+        if (model.SearchParams.Methods.ConstructorParameterCount > 0)
         {
-            remapTreeItem.Nodes.Add(new TreeNode($"Constructor Parameter Count: {model.SearchParams.ConstructorParameterCount}"));
+            remapTreeItem.Nodes.Add(new TreeNode($"Constructor Parameter Count: {model.SearchParams.Methods.ConstructorParameterCount}"));
         }
 
-        if (model.SearchParams.MethodCount is not null)
+        if (model.SearchParams.Methods.MethodCount >= 0)
         {
-            remapTreeItem.Nodes.Add(new TreeNode($"Method Count: {model.SearchParams.MethodCount}"));
+            remapTreeItem.Nodes.Add(new TreeNode($"Method Count: {model.SearchParams.Methods.MethodCount}"));
         }
 
-        if (model.SearchParams.FieldCount is not null)
+        if (model.SearchParams.Fields.FieldCount >= 0)
         {
-            remapTreeItem.Nodes.Add(new TreeNode($"Field Count: {model.SearchParams.FieldCount}"));
+            remapTreeItem.Nodes.Add(new TreeNode($"Field Count: {model.SearchParams.Fields.FieldCount}"));
         }
 
-        if (model.SearchParams.PropertyCount is not null)
+        if (model.SearchParams.Properties.PropertyCount >= 0)
         {
-            remapTreeItem.Nodes.Add(new TreeNode($"Property Count: {model.SearchParams.PropertyCount}"));
+            remapTreeItem.Nodes.Add(new TreeNode($"Property Count: {model.SearchParams.Properties.PropertyCount}"));
         }
 
-        if (model.SearchParams.NestedTypeCount is not null)
+        if (model.SearchParams.NestedTypes.NestedTypeCount >= 0)
         {
-            remapTreeItem.Nodes.Add(new TreeNode($"Nested OriginalTypeRef Count: {model.SearchParams.NestedTypeCount}"));
+            remapTreeItem.Nodes.Add(new TreeNode($"Nested OriginalTypeRef Count: {model.SearchParams.NestedTypes.NestedTypeCount}"));
         }
 
-        if (model.SearchParams.IncludeMethods?.Count > 0)
+        if (model.SearchParams.Methods.IncludeMethods.Count > 0)
         {
             var includeMethodsNode =
-                GenerateNodeFromList(model.SearchParams.IncludeMethods, "Include Methods");
+                GenerateNodeFromList(model.SearchParams.Methods.IncludeMethods, "Include Methods");
 
             remapTreeItem.Nodes.Add(includeMethodsNode);
         }
 
-        if (model.SearchParams.ExcludeMethods?.Count > 0)
+        if (model.SearchParams.Methods.ExcludeMethods?.Count > 0)
         {
             var excludeMethodsNode =
-                GenerateNodeFromList(model.SearchParams.ExcludeMethods, "Exclude Methods");
+                GenerateNodeFromList(model.SearchParams.Methods.ExcludeMethods, "Exclude Methods");
 
             remapTreeItem.Nodes.Add(excludeMethodsNode);
         }
 
-        if (model.SearchParams.IncludeFields?.Count > 0)
+        if (model.SearchParams.Fields.IncludeFields?.Count > 0)
         {
             var includeFieldsNode =
-                GenerateNodeFromList(model.SearchParams.IncludeFields, "Include Fields");
+                GenerateNodeFromList(model.SearchParams.Fields.IncludeFields, "Include Fields");
 
             remapTreeItem.Nodes.Add(includeFieldsNode);
         }
 
-        if (model.SearchParams.ExcludeFields?.Count > 0)
+        if (model.SearchParams.Fields.ExcludeFields?.Count > 0)
         {
             var excludeFieldsNode =
-                GenerateNodeFromList(model.SearchParams.ExcludeFields, "Exclude Fields");
+                GenerateNodeFromList(model.SearchParams.Fields.ExcludeFields, "Exclude Fields");
 
             remapTreeItem.Nodes.Add(excludeFieldsNode);
         }
 
-        if (model.SearchParams.IncludeProperties?.Count > 0)
+        if (model.SearchParams.Properties.IncludeProperties?.Count > 0)
         {
             var includeProperties =
-                GenerateNodeFromList(model.SearchParams.IncludeProperties, "Include Properties");
+                GenerateNodeFromList(model.SearchParams.Properties.IncludeProperties, "Include Properties");
 
             remapTreeItem.Nodes.Add(includeProperties);
         }
 
-        if (model.SearchParams.ExcludeProperties?.Count > 0)
+        if (model.SearchParams.Properties.ExcludeProperties?.Count > 0)
         {
             var excludeProperties =
-                GenerateNodeFromList(model.SearchParams.ExcludeProperties, "Exclude Properties");
+                GenerateNodeFromList(model.SearchParams.Properties.ExcludeProperties, "Exclude Properties");
 
             remapTreeItem.Nodes.Add(excludeProperties);
         }
 
-        if (model.SearchParams.IncludeNestedTypes?.Count > 0)
+        if (model.SearchParams.NestedTypes.IncludeNestedTypes?.Count > 0)
         {
             var includeNestedTypes =
-                GenerateNodeFromList(model.SearchParams.IncludeNestedTypes, "Include Nested Types");
+                GenerateNodeFromList(model.SearchParams.NestedTypes.IncludeNestedTypes, "Include Nested Types");
 
             remapTreeItem.Nodes.Add(includeNestedTypes);
         }
 
-        if (model.SearchParams.ExcludeNestedTypes?.Count > 0)
+        if (model.SearchParams.NestedTypes.ExcludeNestedTypes?.Count > 0)
         {
             var excludeNestedTypes =
-                GenerateNodeFromList(model.SearchParams.ExcludeNestedTypes, "Exclude Nested Types");
+                GenerateNodeFromList(model.SearchParams.NestedTypes.ExcludeNestedTypes, "Exclude Nested Types");
 
             remapTreeItem.Nodes.Add(excludeNestedTypes);
         }
 
-        if (model.SearchParams.IncludeEvents?.Count > 0)
+        if (model.SearchParams.Events.IncludeEvents?.Count > 0)
         {
             var includeEvents =
-                GenerateNodeFromList(model.SearchParams.IncludeEvents, "Include Events");
+                GenerateNodeFromList(model.SearchParams.Events.IncludeEvents, "Include Events");
 
             remapTreeItem.Nodes.Add(includeEvents);
         }
 
-        if (model.SearchParams.ExcludeEvents?.Count > 0)
+        if (model.SearchParams.Events.ExcludeEvents?.Count > 0)
         {
             var excludeEvents =
-                GenerateNodeFromList(model.SearchParams.ExcludeEvents, "Exclude Events");
+                GenerateNodeFromList(model.SearchParams.Events.ExcludeEvents, "Exclude Events");
 
             remapTreeItem.Nodes.Add(excludeEvents);
         }

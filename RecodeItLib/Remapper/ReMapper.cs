@@ -107,6 +107,8 @@ public class ReMapper
     private void RenameMatches(IEnumerable<TypeDef> types)
     {
         Logger.LogSync("\nRenaming...", ConsoleColor.Green);
+
+        var renamer = new Renamer();
         
         var renameTasks = new List<Task>(_remaps.Count);
         foreach (var remap in _remaps)
@@ -114,7 +116,7 @@ public class ReMapper
             renameTasks.Add(
                 Task.Factory.StartNew(() =>
                 {
-                    RenameHelper.RenameAll(types, remap);
+                    renamer.RenameAll(types, remap);
                 })
             );
         }
@@ -132,7 +134,7 @@ public class ReMapper
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
 
-        SPTPublicizer.PublicizeClasses(Module);
+        new Publicizer().PublicizeClasses(Module);
     }
     
     private bool Validate(List<RemapModel> remaps)

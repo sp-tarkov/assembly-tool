@@ -4,7 +4,7 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal static class RenameHelper
+internal class Renamer
 {
     private static List<string>? TokensToMatch => DataProvider.Settings?.Remapper?.TokensToMatch;
 
@@ -14,7 +14,7 @@ internal static class RenameHelper
     /// <param name="module"></param>
     /// <param name="remap"></param>
     /// <param name="direct"></param>
-    public static void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
+    public void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
         if (remap.TypePrimeCandidate is null)
         {

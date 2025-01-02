@@ -3,9 +3,9 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal static class SPTPublicizer
+internal class Publicizer
 {
-    public static void PublicizeClasses(ModuleDefMD definition, bool isLauncher = false)
+    public void PublicizeClasses(ModuleDefMD definition, bool isLauncher = false)
     {
         var types = definition.GetTypes();
         
@@ -22,6 +22,7 @@ internal static class SPTPublicizer
             );
         }
         
+        // TODO: This is broken. No idea why.
         while (!publicizeTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
         {
             Logger.DrawProgressBar(publicizeTasks.Where(t => t.IsCompleted)!.Count() + 1, publicizeTasks.Count, 50);

@@ -32,6 +32,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -71,6 +72,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -112,6 +114,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -152,6 +155,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -196,6 +200,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -236,6 +241,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -274,6 +280,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -312,6 +319,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -349,6 +357,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -386,6 +395,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -423,6 +433,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -461,6 +472,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -500,6 +512,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -542,6 +555,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -594,6 +608,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -631,6 +646,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -668,6 +684,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -707,6 +724,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -744,6 +762,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -782,6 +801,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -820,6 +840,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -861,6 +882,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -899,6 +921,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -940,6 +963,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -978,6 +1002,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1015,6 +1040,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1053,6 +1079,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1091,6 +1118,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1138,6 +1166,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1176,6 +1205,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1215,6 +1245,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1253,6 +1284,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1291,6 +1323,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1329,6 +1362,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1342,8 +1376,8 @@
       "GenericParams": {
         "IsPublic": true,
         "IsAbstract": true,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -1369,6 +1403,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1407,6 +1442,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1445,6 +1481,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1483,6 +1520,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1495,8 +1533,8 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsDerived": true,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": true
       },
       "Methods": {
         "ConstructorParameterCount": 2,
@@ -1529,6 +1567,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1567,6 +1606,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1605,6 +1645,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1642,6 +1683,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1680,6 +1722,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1718,6 +1761,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1758,6 +1802,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1795,6 +1840,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1833,6 +1879,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1871,6 +1918,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1912,6 +1960,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1951,6 +2000,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -1989,6 +2039,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2028,6 +2079,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2066,6 +2118,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2105,6 +2158,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2144,6 +2198,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2181,6 +2236,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2218,6 +2274,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2257,6 +2314,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2296,6 +2354,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2339,6 +2398,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2378,6 +2438,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2415,6 +2476,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2452,6 +2514,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2489,6 +2552,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2528,6 +2592,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2565,6 +2630,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2603,6 +2669,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2641,6 +2708,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2678,6 +2746,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2716,6 +2785,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2754,6 +2824,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2792,6 +2863,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2830,6 +2902,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2867,6 +2940,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2904,6 +2978,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2942,6 +3017,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -2982,6 +3058,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3020,6 +3097,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3057,6 +3135,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3094,6 +3173,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3136,6 +3216,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3177,6 +3258,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3216,6 +3298,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3255,6 +3338,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3292,6 +3376,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3329,6 +3414,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3368,6 +3454,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3405,6 +3492,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3442,6 +3530,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3479,6 +3568,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3524,6 +3614,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3561,6 +3652,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3600,6 +3692,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3637,6 +3730,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3674,6 +3768,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3711,6 +3806,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3749,6 +3845,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3787,6 +3884,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3828,6 +3926,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3866,6 +3965,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3904,6 +4004,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3942,6 +4043,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -3980,6 +4082,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4018,6 +4121,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4056,6 +4160,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4094,6 +4199,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4132,6 +4238,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4170,6 +4277,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4208,6 +4316,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4247,6 +4356,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4285,6 +4395,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4324,6 +4435,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4362,6 +4474,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4399,6 +4512,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4437,6 +4551,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4475,6 +4590,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4513,6 +4629,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4552,6 +4669,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4591,6 +4709,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4628,6 +4747,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4666,6 +4786,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4704,6 +4825,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4744,6 +4866,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4783,6 +4906,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4821,6 +4945,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4861,6 +4986,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4900,6 +5026,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4937,6 +5064,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -4975,6 +5103,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5013,6 +5142,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5052,6 +5182,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5090,6 +5221,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5130,6 +5262,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5167,6 +5300,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5204,6 +5338,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5242,6 +5377,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5283,6 +5419,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5320,6 +5457,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5357,6 +5495,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5394,6 +5533,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5431,6 +5571,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5469,6 +5610,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5509,6 +5651,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5548,6 +5691,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5587,6 +5731,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5625,6 +5770,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5664,6 +5810,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5704,6 +5851,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5742,6 +5890,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5781,6 +5930,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5821,6 +5971,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5858,6 +6009,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5898,6 +6050,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5938,6 +6091,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -5980,6 +6134,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6018,6 +6173,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6057,6 +6213,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6095,6 +6252,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6139,6 +6297,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6177,6 +6336,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6214,6 +6374,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6252,6 +6413,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6290,6 +6452,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6328,6 +6491,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6366,6 +6530,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6404,6 +6569,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6443,6 +6609,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6482,6 +6649,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6521,6 +6689,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6560,6 +6729,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6599,6 +6769,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6636,6 +6807,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6675,6 +6847,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6716,6 +6889,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6754,6 +6928,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6792,6 +6967,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6832,6 +7008,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6870,6 +7047,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6908,6 +7086,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6948,6 +7127,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -6988,6 +7168,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7027,6 +7208,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7065,6 +7247,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7103,6 +7286,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7141,6 +7325,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7179,6 +7364,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7217,6 +7403,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7256,6 +7443,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7295,6 +7483,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7334,6 +7523,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7374,6 +7564,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7412,6 +7603,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7451,6 +7643,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7490,6 +7683,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7528,6 +7722,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7568,6 +7763,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7607,6 +7803,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7646,6 +7843,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7685,6 +7883,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7725,6 +7924,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7763,6 +7963,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7801,6 +8002,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7839,6 +8041,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7876,6 +8079,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7915,6 +8119,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7954,6 +8159,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -7994,6 +8200,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8031,6 +8238,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8071,6 +8279,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8112,6 +8321,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8150,6 +8360,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8189,6 +8400,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8231,6 +8443,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8274,6 +8487,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8312,6 +8526,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8352,6 +8567,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8390,6 +8606,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8429,6 +8646,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8468,6 +8686,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8508,6 +8727,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8546,6 +8766,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8585,6 +8806,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8625,6 +8847,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8663,6 +8886,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8702,6 +8926,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8741,6 +8966,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8779,6 +9005,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8817,6 +9044,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8855,6 +9083,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8893,6 +9122,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8931,6 +9161,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -8970,6 +9201,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9008,6 +9240,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9047,6 +9280,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9085,6 +9319,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9125,6 +9360,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9163,6 +9399,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9202,6 +9439,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9241,6 +9479,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9280,6 +9519,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9320,6 +9560,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9360,6 +9601,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9400,6 +9642,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9440,6 +9683,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9479,6 +9723,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9519,6 +9764,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9559,6 +9805,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9596,6 +9843,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9636,6 +9884,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9685,6 +9934,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9724,6 +9974,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9762,6 +10013,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9800,6 +10052,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9838,6 +10091,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9878,6 +10132,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9918,6 +10173,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9957,6 +10213,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -9996,6 +10253,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10035,6 +10293,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10073,6 +10332,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10112,6 +10372,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10152,6 +10413,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10191,6 +10453,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10229,6 +10492,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10269,6 +10533,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10309,6 +10574,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10348,6 +10614,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10388,6 +10655,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10437,6 +10705,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10482,6 +10751,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10526,6 +10796,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10538,8 +10809,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": false,
-        "IsNested": false
+        "IsAbstract": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10568,6 +10838,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10608,6 +10879,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10653,6 +10925,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10693,6 +10966,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10705,8 +10979,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": true
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10738,6 +11011,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10775,6 +11049,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10815,6 +11090,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10854,6 +11130,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10891,6 +11168,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10930,6 +11208,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -10967,6 +11246,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11006,6 +11286,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11052,6 +11333,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11064,7 +11346,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsSealed": true
       },
       "Methods": {
@@ -11091,6 +11372,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11104,7 +11386,6 @@
       "GenericParams": {
         "IsPublic": true,
         "IsAbstract": true,
-        "IsNested": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11138,6 +11419,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11150,7 +11432,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11187,6 +11468,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11229,6 +11511,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11272,6 +11555,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11284,8 +11568,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": true
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11319,6 +11602,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11331,8 +11615,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11359,6 +11642,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11372,7 +11656,6 @@
       "GenericParams": {
         "IsPublic": true,
         "IsInterface": true,
-        "IsNested": false,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11402,6 +11685,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11414,8 +11698,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11447,6 +11730,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11459,8 +11743,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11495,6 +11778,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11507,8 +11791,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11544,6 +11827,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11556,8 +11840,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11589,6 +11872,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11601,8 +11885,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11630,6 +11913,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11642,8 +11926,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11680,6 +11963,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11692,8 +11976,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": false
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11725,6 +12008,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11737,8 +12021,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": false
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11772,6 +12055,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11784,8 +12068,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": false,
-        "IsNested": false
+        "IsInterface": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11825,6 +12108,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11837,8 +12121,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": false,
-        "IsNested": false
+        "IsInterface": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11872,6 +12155,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11884,8 +12168,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": false
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11914,6 +12197,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11927,8 +12211,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsAbstract": false,
-        "IsInterface": false,
-        "IsNested": false
+        "IsInterface": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11958,6 +12241,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -11970,8 +12254,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": false,
-        "IsNested": false
+        "IsAbstract": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12006,6 +12289,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12018,8 +12302,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": false
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12053,6 +12336,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12066,7 +12350,6 @@
       "GenericParams": {
         "IsPublic": true,
         "IsAbstract": false,
-        "IsNested": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -12100,6 +12383,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12114,7 +12398,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsStruct": false,
-        "IsNested": false,
         "HasAttribute": true,
         "HasGenericParameters": true
       },
@@ -12145,6 +12428,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12160,7 +12444,6 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -12196,6 +12479,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12211,7 +12495,6 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -12240,6 +12523,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12255,7 +12539,6 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": true,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -12286,6 +12569,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12301,10 +12585,9 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
         "HasAttribute": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12333,6 +12616,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12348,10 +12632,9 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": true,
         "HasAttribute": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12387,6 +12670,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12402,7 +12686,6 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -12435,6 +12718,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12450,9 +12734,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12483,6 +12766,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12498,9 +12782,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": true,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12527,6 +12810,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12542,9 +12826,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": true,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12574,6 +12857,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12589,7 +12873,6 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": true,
-        "IsNested": false,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -12620,6 +12903,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12635,9 +12919,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12665,6 +12948,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12678,7 +12962,6 @@
       "GenericParams": {
         "IsPublic": true,
         "IsAbstract": false,
-        "IsNested": false,
         "IsSealed": true,
         "IsDerived": true
       },
@@ -12711,6 +12994,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12726,9 +13010,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12756,6 +13039,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12771,9 +13055,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12802,6 +13085,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12817,9 +13101,8 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12848,6 +13131,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12863,9 +13147,8 @@
         "IsAbstract": true,
         "IsInterface": false,
         "IsStruct": false,
-        "IsNested": false,
-        "IsDerived": false,
-        "HasGenericParameters": false
+        "HasGenericParameters": false,
+        "IsDerived": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12896,6 +13179,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12939,6 +13223,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -12977,6 +13262,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13024,6 +13310,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13064,6 +13351,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13106,6 +13394,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13147,6 +13436,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13184,6 +13474,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13221,6 +13512,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13259,6 +13551,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13299,6 +13592,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13343,6 +13637,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13381,6 +13676,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13419,6 +13715,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13459,6 +13756,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13498,6 +13796,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13538,6 +13837,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13576,6 +13876,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13616,6 +13917,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13657,6 +13959,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13696,6 +13999,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13735,6 +14039,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13777,6 +14082,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13814,6 +14120,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13853,6 +14160,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13895,6 +14203,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13936,6 +14245,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -13976,6 +14286,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14017,6 +14328,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14058,6 +14370,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14100,6 +14413,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14139,6 +14453,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14184,6 +14499,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14229,6 +14545,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14241,8 +14558,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": true
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -14274,6 +14590,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14286,7 +14603,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -14321,6 +14637,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14333,7 +14650,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -14369,6 +14685,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14381,7 +14698,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -14418,6 +14734,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14430,7 +14747,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -14464,6 +14780,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14506,6 +14823,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14548,6 +14866,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14589,6 +14908,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14639,6 +14959,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14682,6 +15003,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14735,6 +15057,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14780,6 +15103,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14826,6 +15150,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14870,6 +15195,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14910,6 +15236,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14954,6 +15281,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -14994,6 +15322,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15035,6 +15364,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15075,6 +15405,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15114,6 +15445,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15156,6 +15488,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15168,8 +15501,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsStruct": true,
-        "IsNested": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15203,6 +15535,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15215,8 +15548,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsStruct": true,
-        "IsNested": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15246,6 +15578,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15288,6 +15621,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15328,6 +15662,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15370,6 +15705,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15411,6 +15747,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15461,6 +15798,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15507,6 +15845,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15546,6 +15885,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15590,6 +15930,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15634,6 +15975,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15676,6 +16018,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15722,6 +16065,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15734,8 +16078,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsStruct": true,
-        "IsNested": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15763,6 +16106,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15806,6 +16150,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15818,7 +16163,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -15854,6 +16198,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15866,7 +16211,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -15899,6 +16243,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15911,7 +16256,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
         "IsDerived": true
       },
       "Methods": {
@@ -15945,6 +16289,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -15995,6 +16340,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [
           "OnItemFound",
           "OnItemSearched"
@@ -16050,6 +16396,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16110,6 +16457,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16121,8 +16469,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
-        "IsNested": true
+        "IsPublic": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -16160,6 +16507,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16208,6 +16556,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16248,6 +16597,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16286,6 +16636,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16334,6 +16685,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16372,6 +16724,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -16418,6 +16771,115 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
+        "EventCount": -1,
+        "IncludeEvents": [],
+        "ExcludeEvents": []
+      }
+    }
+  },
+  {
+    "NewTypeName": "IdleWeaponMountingState",
+    "OriginalTypeName": "GClass1906",
+    "UseForceRename": false,
+    "AutoGenerated": true,
+    "SearchParams": {
+      "GenericParams": {
+        "IsPublic": true,
+        "IsAbstract": false,
+        "IsInterface": false,
+        "IsStruct": false,
+        "IsEnum": false,
+        "IsSealed": true,
+        "HasAttribute": false,
+        "HasGenericParameters": false,
+        "IsDerived": true,
+        "MatchBaseClass": "MovementState"
+      },
+      "Methods": {
+        "ConstructorParameterCount": 2,
+        "MethodCount": 22,
+        "IncludeMethods": [
+          "Enter",
+          "StartExiting",
+          "Exit",
+          "ManualAnimatorMoveUpdate",
+          "method_3",
+          "method_4",
+          "Rotate",
+          "Move",
+          "SetTilt",
+          "EnableBreath",
+          "Jump",
+          "Prone",
+          "BlindFire",
+          "ChangePose",
+          "SetStep",
+          "Vaulting",
+          "EnableSprint",
+          "ChangeSpeed",
+          "SetBlindFireAnim",
+          "method_0",
+          "method_1",
+          "method_2"
+        ],
+        "ExcludeMethods": [
+          "CopyTo",
+          "GetCorners",
+          "GetPlanes",
+          "Update",
+          "UpdateEx",
+          "Contains",
+          "GetSphereIntersection",
+          "CullSpheres",
+          "IntersectsSphere",
+          "IntersectsBox",
+          "GetBoxIntersection",
+          "CullBoxes",
+          "IntersectsOrientedBox",
+          "GetOrientedBoxIntersection",
+          "GetNearHeight",
+          "SettingsGroupFactory",
+          "TryForceUpdate",
+          "CreateBindings",
+          "method_5",
+          "method_6",
+          "method_7",
+          "method_8",
+          "method_9",
+          "method_10",
+          "method_11",
+          "method_12",
+          "method_13",
+          "method_14",
+          "method_15",
+          "method_16",
+          "method_17",
+          "method_18",
+          "method_19",
+          "method_20",
+          "method_21",
+          "method_22",
+          "method_23"
+        ]
+      },
+      "Fields": {
+        "FieldCount": 24,
+        "IncludeFields": [],
+        "ExcludeFields": []
+      },
+      "Properties": {
+        "PropertyCount": 2,
+        "IncludeProperties": [],
+        "ExcludeProperties": []
+      },
+      "NestedTypes": {
+        "IsNested": false,
+        "NestedTypeCount": 0,
+        "IncludeNestedTypes": [],
+        "ExcludeNestedTypes": []
+      },
+      "Events": {
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }

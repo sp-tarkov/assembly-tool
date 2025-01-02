@@ -50,7 +50,7 @@ internal static class GenericTypeFilters
 
     private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.NestedTypes.NestedTypeParentName is not null)
+        if (parms.NestedTypes.NestedTypeParentName is not "")
         {
             types = types.Where(t => t.DeclaringType.Name.String == parms.NestedTypes.NestedTypeParentName);
         }

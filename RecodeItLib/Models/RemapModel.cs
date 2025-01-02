@@ -96,12 +96,12 @@ public class PropertyParams
 
 public class NestedTypeParams
 {
-    public bool? IsNested { get; set; } = null;
+    public bool IsNested { get; set; }
     
     /// <summary>
     /// Name of the nested types parent
     /// </summary>
-    public string? NestedTypeParentName { get; set; } = null;
+    public string NestedTypeParentName { get; set; } = string.Empty;
     public int NestedTypeCount { get; set; } = -1;
     public HashSet<string> IncludeNestedTypes { get; set; } = [];
     public HashSet<string> ExcludeNestedTypes { get; set; } = [];

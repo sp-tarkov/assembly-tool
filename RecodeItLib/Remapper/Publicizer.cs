@@ -9,16 +9,25 @@ internal static class SPTPublicizer
     {
         var types = definition.GetTypes();
         
-        var typeCount = types.Where(t => !t.IsNested).Count();
-        var count = 0;
+        var publicizeTasks = new List<Task>();
         foreach (var type in types)
         {
             if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
             
-            PublicizeType(type, isLauncher);
-            Logger.DrawProgressBar(count, typeCount - 1, 50);
-            count++;
+            publicizeTasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    PublicizeType(type, isLauncher);
+                })
+            );
         }
+        
+        while (!publicizeTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        {
+            Logger.DrawProgressBar(publicizeTasks.Where(t => t.IsCompleted)!.Count() + 1, publicizeTasks.Count, 50);
+        }
+        
+        Task.WaitAll(publicizeTasks.ToArray());
     }
 
     private static void PublicizeType(TypeDef type, bool isLauncher)

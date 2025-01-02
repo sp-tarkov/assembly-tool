@@ -89,8 +89,8 @@ public static class Logger
         Console.CursorVisible = false;
         Console.SetCursorPosition(0, Console.CursorTop);
 
-        double percentage = (double)progress / total;
-        int completed = (int)(percentage * width);
+        var percentage = (double)progress / total;
+        var completed = (int)(percentage * width);
 
         Console.Write("[");
         Console.Write(new string('=', completed)); // Completed part

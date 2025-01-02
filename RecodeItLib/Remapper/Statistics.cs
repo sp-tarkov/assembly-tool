@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Newtonsoft.Json;
 using ReCodeItLib.Enums;
 using ReCodeItLib.Models;
 using ReCodeItLib.Utils;
@@ -14,7 +15,7 @@ public class Statistics(
 	public void DisplayStatistics(bool validate = false)
 	{
 		DisplayAlternativeMatches();
-		DisplayFailuresAndChanges();
+		DisplayFailuresAndChanges(validate);
 		
 		if (!validate)
 		{
@@ -45,7 +46,7 @@ public class Statistics(
 		}
 	}
 
-	private void DisplayFailuresAndChanges()
+	private void DisplayFailuresAndChanges(bool validate)
 	{
 		var failures = 0;
 		var changes = 0;
@@ -73,6 +74,17 @@ public class Statistics(
 				Logger.Log("-----------------------------------------------", ConsoleColor.Red);
 				failures++;
 				continue;
+			}
+			
+			if (validate)
+			{
+				var str = JsonConvert.SerializeObject(remap, Formatting.Indented);
+				
+				Logger.Log("Generated Model: ", ConsoleColor.Blue);
+				Logger.Log(str, ConsoleColor.Blue);
+				
+				Logger.Log("Passed validation", ConsoleColor.Green);
+				return;
 			}
 			
 			changes++;

@@ -10282,7 +10282,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsNested": true,
-        "NTParentName": "SkillManager",
+        "NestedTypeParentName": "SkillManager",
         "IsDerived": false
       },
       "Methods": {
@@ -10322,7 +10322,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsNested": true,
-        "NTParentName": "SkillManager"
+        "NestedTypeParentName": "SkillManager"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10362,7 +10362,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsNested": true,
-        "NTParentName": "SkillManager"
+        "NestedTypeParentName": "SkillManager"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10450,7 +10450,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsNested": true,
-        "NTParentName": "TraderDialogScreen",
+        "NestedTypeParentName": "TraderDialogScreen",
         "IsSealed": true
       },
       "Methods": {
@@ -10496,7 +10496,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsNested": true,
-        "NTParentName": "MatchmakerOfflineRaidScreen"
+        "NestedTypeParentName": "MatchmakerOfflineRaidScreen"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10621,7 +10621,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsNested": true,
-        "NTParentName": "Profile"
+        "NestedTypeParentName": "Profile"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11019,7 +11019,7 @@
       "GenericParams": {
         "IsPublic": true,
         "IsNested": true,
-        "NTParentName": "MatchmakerTimeHasCome",
+        "NestedTypeParentName": "MatchmakerTimeHasCome",
         "IsSealed": false
       },
       "Methods": {
@@ -11201,7 +11201,7 @@
         "IsPublic": true,
         "IsInterface": true,
         "IsNested": true,
-        "NTParentName": "BetterAudio"
+        "NestedTypeParentName": "BetterAudio"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11243,7 +11243,7 @@
         "IsPublic": true,
         "IsInterface": true,
         "IsNested": true,
-        "NTParentName": "ClientPlayer"
+        "NestedTypeParentName": "ClientPlayer"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -13990,7 +13990,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsNested": true,
-        "NTParentName": "Player"
+        "NestedTypeParentName": "Player"
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15690,7 +15690,7 @@
         "IsPublic": true,
         "IsStruct": true,
         "IsNested": true,
-        "NTParentName": "WorldInteractiveObject"
+        "NestedTypeParentName": "WorldInteractiveObject"
       },
       "Methods": {
         "ConstructorParameterCount": -1,

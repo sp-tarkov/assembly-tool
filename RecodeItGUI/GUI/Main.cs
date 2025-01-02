@@ -227,20 +227,12 @@ public partial class ReCodeItForm : Form
                         ? bool.Parse(HasGenericParamsComboBox.GetSelectedItem<string>().AsSpan())
                         : null,
 
-                    IsNested = IsNestedUpDown.GetEnabled(),
+                    
                     IsDerived = IsDerivedUpDown.GetEnabled(),
                     
-                    NTParentName = NestedTypeParentName.Text == string.Empty
-                        ? null
-                        : NestedTypeParentName.Text,
-
                     MatchBaseClass = BaseClassIncludeTextFIeld.Text == string.Empty
                         ? null
                         : BaseClassIncludeTextFIeld.Text,
-
-                    IgnoreBaseClass = BaseClassExcludeTextField.Text == string.Empty
-                        ? null
-                        : BaseClassExcludeTextField.Text,
                 },
                 
                 Methods =
@@ -264,6 +256,10 @@ public partial class ReCodeItForm : Form
                 },
                 NestedTypes =
                 {
+                    IsNested = IsNestedUpDown.GetEnabled(),
+                    NestedTypeParentName = NestedTypeParentName.Text == string.Empty
+                        ? null
+                        : NestedTypeParentName.Text,
                     NestedTypeCount = (int)NestedTypeCountEnabled.GetCount(NestedTypeCountUpDown),
                     IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox).ToHashSet(),
                     ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox).ToHashSet(),
@@ -829,8 +825,7 @@ public partial class ReCodeItForm : Form
         RemapperUseForceRename.Checked = remap.UseForceRename;
 
         BaseClassIncludeTextFIeld.Text = remap.SearchParams.GenericParams.MatchBaseClass;
-        BaseClassExcludeTextField.Text = remap.SearchParams.GenericParams.IgnoreBaseClass;
-        NestedTypeParentName.Text = remap.SearchParams.GenericParams.NTParentName;
+        NestedTypeParentName.Text = remap.SearchParams.NestedTypes.NestedTypeParentName;
 
         ConstructorCountEnabled.Checked = remap.SearchParams.Methods.ConstructorParameterCount >= 0;
 
@@ -882,7 +877,7 @@ public partial class ReCodeItForm : Form
             ? remap.SearchParams.GenericParams.HasGenericParameters.ToString()
             : "Disabled";
 
-        IsNestedUpDown.BuildStringList("IsNested", false, remap.SearchParams.GenericParams.IsNested);
+        IsNestedUpDown.BuildStringList("IsNested", false, remap.SearchParams.NestedTypes.IsNested);
         IsDerivedUpDown.BuildStringList("IsDerived", false, remap.SearchParams.GenericParams.IsDerived);
 
         foreach (var method in remap.SearchParams.Methods.IncludeMethods)

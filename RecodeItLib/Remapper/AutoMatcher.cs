@@ -80,6 +80,12 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			if (!ContainsTargetNestedTypes(target, candidate, remapModel.SearchParams.NestedTypes))
 			{
 				CandidateTypes!.Remove(candidate);
+				continue;
+			}
+			
+			if (!ContainsTargetEvents(target, candidate, remapModel.SearchParams.Events))
+			{
+				CandidateTypes!.Remove(candidate);
 			}
 		}
 		
@@ -119,7 +125,6 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		parms.IsEnum = target.IsEnum;
 		parms.IsStruct = target.IsValueType && !target.IsEnum;
 		parms.HasGenericParameters = target.HasGenericParameters;
-		parms.IsNested = target.IsNested;
 		parms.IsSealed = target.IsSealed;
 		parms.HasAttribute = target.HasCustomAttributes;
 		parms.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
@@ -320,8 +325,56 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		}
 		
 		nt.NestedTypeCount = target.NestedTypes.Count;
+		nt.IsNested = target.IsNested;
+
+		if (target.DeclaringType is not null)
+		{
+			nt.NestedTypeParentName = target.DeclaringType.Name.String;
+		}
 		
 		return commonNts.Any() || !target.IsNested;
+	}
+	
+	private bool ContainsTargetEvents(TypeDef target, TypeDef candidate, EventParams events)
+	{
+		// Target has no events but type has events
+		if (!target.Events.Any() && candidate.Events.Any())
+		{
+			events.EventCount = 0;
+			return false;
+		}
+		
+		// Target has events but type has no events
+		if (target.Events.Any() && !candidate.Events.Any()) return false;
+		
+		// Target has a different number of events
+		if (target.Events.Count != candidate.Events.Count) return false;
+		
+		var commonEvents = target.Events
+			.Select(s => s.Name)
+			.Intersect(candidate.Events.Select(s => s.Name));
+		
+		var includeEvents = target.Events
+			.Select(s => s.Name.ToString())
+			.Except(candidate.Events.Select(s => s.Name.ToString()));
+		
+		var excludeEvents = candidate.Events
+			.Select(s => s.Name.ToString())
+			.Except(target.Events.Select(s => s.Name.ToString()));
+		
+		foreach (var include in includeEvents)
+		{
+			events.IncludeEvents.Add(include);
+		}
+		
+		foreach (var exclude in excludeEvents)
+		{
+			events.ExcludeEvents.Add(exclude);
+		}
+		
+		events.EventCount = target.NestedTypes.Count;
+		
+		return commonEvents.Any() || target.Events.Count == 0;
 	}
 	
 	private void ProcessEndQuestions(RemapModel remapModel, string assemblyPath)

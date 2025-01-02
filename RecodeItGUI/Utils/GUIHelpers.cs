@@ -106,7 +106,7 @@ internal static class GUIHelpers
         var isInterface = model.SearchParams.GenericParams.IsInterface == null ? null : model.SearchParams.GenericParams.IsInterface;
         var isStruct = model.SearchParams.GenericParams.IsStruct == null ? null : model.SearchParams.GenericParams.IsStruct;
         var isEnum = model.SearchParams.GenericParams.IsEnum == null ? null : model.SearchParams.GenericParams.IsEnum;
-        var isNested = model.SearchParams.GenericParams.IsNested == null ? null : model.SearchParams.GenericParams.IsNested;
+        var isNested = model.SearchParams.NestedTypes.IsNested == null ? null : model.SearchParams.NestedTypes.IsNested;
         var isSealed = model.SearchParams.GenericParams.IsSealed == null ? null : model.SearchParams.GenericParams.IsSealed;
         var HasAttribute = model.SearchParams.GenericParams.HasAttribute == null ? null : model.SearchParams.GenericParams.HasAttribute;
         var IsDerived = model.SearchParams.GenericParams.IsDerived == null ? null : model.SearchParams.GenericParams.IsDerived;

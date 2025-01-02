@@ -61,26 +61,15 @@ public class GenericParams
     public bool? IsInterface { get; set; } = null;
     public bool? IsStruct { get; set; } = null;
     public bool? IsEnum { get; set; } = null;
-    public bool? IsNested { get; set; } = null;
-    
-    /// <summary>
-    /// Name of the nested types parent
-    /// </summary>
-    public string? NTParentName { get; set; } = null;
     public bool? IsSealed { get; set; } = null;
     public bool? HasAttribute { get; set; } = null;
+    public bool? HasGenericParameters { get; set; } = null;
     public bool? IsDerived { get; set; } = null;
     
     /// <summary>
     /// Name of the derived classes declaring type
     /// </summary>
     public string? MatchBaseClass { get; set; } = null;
-
-    /// <summary>
-    /// Name of the derived classes declaring type we want to ignore
-    /// </summary>
-    public string? IgnoreBaseClass { get; set; } = null;
-    public bool? HasGenericParameters { get; set; } = null;
 }
 
 public class MethodParams
@@ -107,6 +96,12 @@ public class PropertyParams
 
 public class NestedTypeParams
 {
+    public bool? IsNested { get; set; } = null;
+    
+    /// <summary>
+    /// Name of the nested types parent
+    /// </summary>
+    public string? NestedTypeParentName { get; set; } = null;
     public int NestedTypeCount { get; set; } = -1;
     public HashSet<string> IncludeNestedTypes { get; set; } = [];
     public HashSet<string> ExcludeNestedTypes { get; set; } = [];
@@ -114,6 +109,7 @@ public class NestedTypeParams
 
 public class EventParams
 {
+    public int EventCount { get; set; } = -1;
     public HashSet<string> IncludeEvents { get; set; } = [];
     public HashSet<string> ExcludeEvents { get; set; } = [];
 }

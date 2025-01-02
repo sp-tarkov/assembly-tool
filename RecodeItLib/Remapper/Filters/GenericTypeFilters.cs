@@ -17,7 +17,7 @@ internal static class GenericTypeFilters
         // REQUIRED PROPERTY
         if (parms.GenericParams.IsPublic)
         {
-            if (parms.GenericParams.IsNested is true)
+            if (parms.NestedTypes.IsNested is true)
             {
                 types = types.Where(t => t.IsNestedPublic);
 
@@ -30,7 +30,7 @@ internal static class GenericTypeFilters
         }
         else
         {
-            if (parms.GenericParams.IsNested is true)
+            if (parms.NestedTypes.IsNested is true)
             {
                 types = types.Where(t => t.IsNestedPrivate
                                          || t.IsNestedFamily
@@ -50,9 +50,9 @@ internal static class GenericTypeFilters
 
     private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.GenericParams.NTParentName is not null)
+        if (parms.NestedTypes.NestedTypeParentName is not null)
         {
-            types = types.Where(t => t.DeclaringType.Name.String == parms.GenericParams.NTParentName);
+            types = types.Where(t => t.DeclaringType.Name.String == parms.NestedTypes.NestedTypeParentName);
         }
 
         return types;
@@ -199,11 +199,6 @@ internal static class GenericTypeFilters
             if (parms.GenericParams.MatchBaseClass is not null and not "")
             {
                 types = types.Where(t => t.GetBaseType()?.Name?.String == parms.GenericParams.MatchBaseClass);
-            }
-
-            if (parms.GenericParams.IgnoreBaseClass is not null and not "")
-            {
-                types = types.Where(t => t.GetBaseType()?.Name?.String != parms.GenericParams.IgnoreBaseClass);
             }
         }
         else if (parms.GenericParams.IsDerived is false)

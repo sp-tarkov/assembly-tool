@@ -10281,8 +10281,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
-        "NestedTypeParentName": "SkillManager",
         "IsDerived": false
       },
       "Methods": {
@@ -10304,6 +10302,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "SkillManager",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -10320,9 +10320,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
-        "IsNested": true,
-        "NestedTypeParentName": "SkillManager"
+        "IsPublic": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10343,6 +10341,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "SkillManager",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -10360,9 +10360,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": true,
-        "NestedTypeParentName": "SkillManager"
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10383,6 +10381,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "SkillManager",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -10449,8 +10449,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
-        "NestedTypeParentName": "TraderDialogScreen",
         "IsSealed": true
       },
       "Methods": {
@@ -10477,6 +10475,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "TraderDialogScreen",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -10494,9 +10494,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": false,
-        "IsNested": true,
-        "NestedTypeParentName": "MatchmakerOfflineRaidScreen"
+        "IsAbstract": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10521,6 +10519,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "MatchmakerOfflineRaidScreen",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -10619,9 +10619,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
-        "IsNested": true,
-        "NestedTypeParentName": "Profile"
+        "IsPublic": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10646,6 +10644,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "Profile",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [
           "ValueInfo"
@@ -11018,8 +11018,6 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsNested": true,
-        "NestedTypeParentName": "MatchmakerTimeHasCome",
         "IsSealed": false
       },
       "Methods": {
@@ -11047,6 +11045,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "MatchmakerTimeHasCome",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -11199,9 +11199,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": true,
-        "NestedTypeParentName": "BetterAudio"
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11224,6 +11222,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "BetterAudio",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -11241,9 +11241,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsInterface": true,
-        "IsNested": true,
-        "NestedTypeParentName": "ClientPlayer"
+        "IsInterface": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11267,6 +11265,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "ClientPlayer",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -13988,9 +13988,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsAbstract": true,
-        "IsNested": true,
-        "NestedTypeParentName": "Player"
+        "IsAbstract": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -14012,6 +14010,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "Player",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -15688,9 +15688,7 @@
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
-        "IsStruct": true,
-        "IsNested": true,
-        "NestedTypeParentName": "WorldInteractiveObject"
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15717,6 +15715,8 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
+        "NestedTypeParentName": "WorldInteractiveObject",
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []

@@ -76,12 +76,10 @@ public class Statistics(
 				continue;
 			}
 			
-			if (validate)
+			if (validate && remap.Succeeded)
 			{
-				var str = JsonConvert.SerializeObject(remap, Formatting.Indented);
-				
 				Logger.Log("Generated Model: ", ConsoleColor.Blue);
-				Logger.Log(str, ConsoleColor.Blue);
+				Logger.LogRemapModel(remap);
 				
 				Logger.Log("Passed validation", ConsoleColor.Green);
 				return;

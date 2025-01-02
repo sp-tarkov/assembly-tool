@@ -1,4 +1,6 @@
 ﻿using System.Collections.Concurrent;
+using Newtonsoft.Json;
+using ReCodeItLib.Models;
 
 namespace ReCodeItLib.Utils;
 
@@ -117,6 +119,12 @@ public static class Logger
         Console.ForegroundColor = color;
         Console.WriteLine(message);
         Console.ResetColor();
+    }
+    
+    public static void LogRemapModel(RemapModel remapModel)
+    {
+        var str = JsonConvert.SerializeObject(remapModel, Formatting.Indented);
+        LogSync(str, ConsoleColor.Blue);
     }
     
     private static void LogInternal(LogMessage message)

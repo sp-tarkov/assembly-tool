@@ -16,9 +16,9 @@ references needed to be resolved.
 
 - `automatch` - This command will Automatically try to generate a mapping object given old type and new type names.
   - `AssemblyPath` - The absolute path to your assembly, folder must contain all references to be resolved.
-  - `OldTypeName` - Full old type name including namespace
-  - `NewTypeName` - The name you want the type to be renamed to
-  - `MappingsPath` - Path to your mapping file so it can be updated if a match is found
+  - `MappingsPath` - Path to your mapping file so it can be updated if a match is found.
+  - `OldTypeName` - Full old type name including namespace.
+  - `NewTypeName` - The name you want the type to be renamed to.
 
 - This command will prompt you to append your created mapping to the mapping file. 
 - It will then prompt you to run the remap process.

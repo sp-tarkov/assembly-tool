@@ -286,7 +286,7 @@ internal static class GUIHelpers
     /// <param name="items"></param>
     /// <param name="name"></param>
     /// <returns>A new tree node, or null if the provided list is empty</returns>
-    private static TreeNode GenerateNodeFromList(List<string> items, string name)
+    private static TreeNode GenerateNodeFromList(HashSet<string> items, string name)
     {
         var node = new TreeNode(name);
 

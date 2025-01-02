@@ -26,12 +26,6 @@ public class AutoMatchCommand : ICommand
 	{
 		DataProvider.IsCli = true;
 		DataProvider.LoadAppSettings();
-
-		var remapperSettings = DataProvider.Settings!.Remapper!.MappingSettings;
-
-		remapperSettings!.RenameFields = true;
-		remapperSettings.RenameProperties = true;
-		remapperSettings.Publicize = true;
 		
 		Logger.LogSync("Finding match...");
 

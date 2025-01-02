@@ -85,33 +85,33 @@ public class MethodParams
 {
     public int ConstructorParameterCount { get; set; } = -1;
     public int MethodCount { get; set; } = -1;
-    public List<string> IncludeMethods { get; set; } = [];
-    public List<string> ExcludeMethods { get; set; } = [];
+    public HashSet<string> IncludeMethods { get; set; } = [];
+    public HashSet<string> ExcludeMethods { get; set; } = [];
 }
 
 public class FieldParams
 {
     public int FieldCount { get; set; } = -1;
-    public List<string> IncludeFields { get; set; } = [];
-    public List<string> ExcludeFields { get; set; } = [];
+    public HashSet<string> IncludeFields { get; set; } = [];
+    public HashSet<string> ExcludeFields { get; set; } = [];
 }
 
 public class PropertyParams
 {
     public int PropertyCount { get; set; } = -1;
-    public List<string> IncludeProperties { get; set; } = [];
-    public List<string> ExcludeProperties { get; set; } = [];
+    public HashSet<string> IncludeProperties { get; set; } = [];
+    public HashSet<string> ExcludeProperties { get; set; } = [];
 }
 
 public class NestedTypeParams
 {
     public int NestedTypeCount { get; set; } = -1;
-    public List<string> IncludeNestedTypes { get; set; } = [];
-    public List<string> ExcludeNestedTypes { get; set; } = [];
+    public HashSet<string> IncludeNestedTypes { get; set; } = [];
+    public HashSet<string> ExcludeNestedTypes { get; set; } = [];
 }
 
 public class EventParams
 {
-    public List<string> IncludeEvents { get; set; } = [];
-    public List<string> ExcludeEvents { get; set; } = [];
+    public HashSet<string> IncludeEvents { get; set; } = [];
+    public HashSet<string> ExcludeEvents { get; set; } = [];
 }

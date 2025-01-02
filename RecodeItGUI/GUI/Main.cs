@@ -247,31 +247,31 @@ public partial class ReCodeItForm : Form
                 {
                     ConstructorParameterCount = (int)ConstructorCountEnabled.GetCount(ConstuctorCountUpDown),
                     MethodCount = (int)MethodCountEnabled.GetCount(MethodCountUpDown),
-                    IncludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodIncludeBox),
-                    ExcludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodExcludeBox),
+                    IncludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodIncludeBox).ToHashSet(),
+                    ExcludeMethods = GUIHelpers.GetAllEntriesFromListBox(MethodExcludeBox).ToHashSet(),
                 },
                 Fields =
                 {
                     FieldCount = (int)FieldCountEnabled.GetCount(FieldCountUpDown),
-                    IncludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldIncludeBox),
-                    ExcludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldExcludeBox),
+                    IncludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldIncludeBox).ToHashSet(),
+                    ExcludeFields = GUIHelpers.GetAllEntriesFromListBox(FieldExcludeBox).ToHashSet(),
                 },
                 Properties =
                 {
                     PropertyCount = (int)PropertyCountEnabled.GetCount(PropertyCountUpDown),
-                    IncludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesIncludeBox),
-                    ExcludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesExcludeBox),
+                    IncludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesIncludeBox).ToHashSet(),
+                    ExcludeProperties = GUIHelpers.GetAllEntriesFromListBox(PropertiesExcludeBox).ToHashSet(),
                 },
                 NestedTypes =
                 {
                     NestedTypeCount = (int)NestedTypeCountEnabled.GetCount(NestedTypeCountUpDown),
-                    IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox),
-                    ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox),
+                    IncludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesIncludeBox).ToHashSet(),
+                    ExcludeNestedTypes = GUIHelpers.GetAllEntriesFromListBox(NestedTypesExcludeBox).ToHashSet(),
                 },
                 Events =
                 {
-                    IncludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsIncludeBox),
-                    ExcludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsExcludeBox)
+                    IncludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsIncludeBox).ToHashSet(),
+                    ExcludeEvents = GUIHelpers.GetAllEntriesFromListBox(EventsExcludeBox).ToHashSet()
                 }
             }
         };

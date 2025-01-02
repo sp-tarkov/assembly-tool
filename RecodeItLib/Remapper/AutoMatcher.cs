@@ -26,6 +26,12 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.ToList();
 		
 		var targetTypeDef = FindTargetType(oldTypeName);
+
+		if (targetTypeDef is null)
+		{
+			Logger.LogSync($"Could not target type: {oldTypeName}", ConsoleColor.Red);
+			return;
+		}
 		
 		Logger.LogSync($"Found target type: {targetTypeDef!.FullName}", ConsoleColor.Green);
 		
@@ -152,10 +158,15 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
 				.Select(s => s.Name.ToString()));
 		
-		methods.IncludeMethods.Clear();
-		methods.IncludeMethods.AddRange(includeMethods);
-		
-		methods.ExcludeMethods.AddRange(excludeMethods);
+		foreach (var include in includeMethods)
+		{
+			methods.IncludeMethods.Add(include);
+		}
+
+		foreach (var exclude in excludeMethods)
+		{
+			methods.ExcludeMethods.Add(exclude);
+		}
 		
 		methods.MethodCount = target.Methods
 			.Count(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter && !m.IsSpecialName);
@@ -200,10 +211,15 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.ToString())
 			.Except(target.Fields.Select(s => s.Name.ToString()));
 		
-		fields.IncludeFields.Clear();
-		fields.IncludeFields.AddRange(includeFields);
-		
-		fields.ExcludeFields.AddRange(excludeFields);
+		foreach (var include in includeFields)
+		{
+			fields.IncludeFields.Add(include);
+		}
+
+		foreach (var exclude in excludeFields)
+		{
+			fields.ExcludeFields.Add(exclude);
+		}
 		
 		fields.FieldCount = target.Fields.Count;
 		
@@ -242,10 +258,15 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.ToString())
 			.Except(target.Properties.Select(s => s.Name.ToString()));
 		
-		props.IncludeProperties.Clear();
-		props.IncludeProperties.AddRange(includeProps);
-		
-		props.ExcludeProperties.AddRange(excludeProps);
+		foreach (var include in includeProps)
+		{
+			props.IncludeProperties.Add(include);
+		}
+
+		foreach (var exclude in excludeProps)
+		{
+			props.ExcludeProperties.Add(exclude);
+		}
 		
 		props.PropertyCount = target.Properties.Count;
 		

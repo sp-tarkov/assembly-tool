@@ -33,10 +33,11 @@ public class AutoMatchCommand : ICommand
 		
 		if (!string.IsNullOrEmpty(MappingsPath))
 		{
+			Logger.LogSync("Loaded mapping file", ConsoleColor.Green);
 			remaps.AddRange(DataProvider.LoadMappingFile(MappingsPath));
 		}
 		
-		new AutoMatcher(remaps)
+		new AutoMatcher(remaps, MappingsPath)
 			.AutoMatch(AssemblyPath, OldTypeName, NewTypeName);
 		
 		// Wait for log termination

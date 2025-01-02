@@ -4,7 +4,7 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-public class AutoMatcher(List<RemapModel> mappings)
+public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 {
 	private ModuleDefMD? Module { get; set; }
 	
@@ -81,6 +81,8 @@ public class AutoMatcher(List<RemapModel> mappings)
 			};
 			
 			new ReMapper().InitializeRemap(tmpList, assemblyPath, validate: true);
+
+			ProcessEndQuestions(remapModel, assemblyPath);
 		}
 	}
 
@@ -155,6 +157,14 @@ public class AutoMatcher(List<RemapModel> mappings)
 		
 		methods.ExcludeMethods.AddRange(excludeMethods);
 		
+		methods.MethodCount = target.Methods
+			.Count(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter && !m.IsSpecialName);
+
+		if (target.Methods.Any(m => m.IsConstructor && m.Parameters.Count > 0))
+		{
+			methods.ConstructorParameterCount = target.Methods.First(m => m.IsConstructor && m.Parameters.Count > 0).Parameters.Count - 1;
+		}
+		
 		return commonMethods.Any();
 	}
 	
@@ -194,6 +204,8 @@ public class AutoMatcher(List<RemapModel> mappings)
 		fields.IncludeFields.AddRange(includeFields);
 		
 		fields.ExcludeFields.AddRange(excludeFields);
+		
+		fields.FieldCount = target.Fields.Count;
 		
 		return commonFields.Any();
 	}
@@ -235,37 +247,43 @@ public class AutoMatcher(List<RemapModel> mappings)
 		
 		props.ExcludeProperties.AddRange(excludeProps);
 		
+		props.PropertyCount = target.Properties.Count;
+		
 		return commonProps.Any();
 	}
-	
-	private void CompareMethods(MappingDiff diff)
-	{
-		var diffsByTarget = diff.Target.Methods
-			.Select(m => m.Name)
-			.Except(diff.Candidate.Methods.Select(m => m.Name))
-			.ToList();
 
-		if (diffsByTarget.Any())
+	private void ProcessEndQuestions(RemapModel remapModel, string assemblyPath)
+	{
+		Thread.Sleep(1000);
+		
+		Logger.LogSync("Add remap to existing list?.. (y/n)", ConsoleColor.Yellow);
+		var resp = Console.ReadLine();
+
+		if (resp == "y" || resp == "yes" || resp == "Y")
 		{
-			Logger.LogSync($"Methods in target not present in candidate:\n {string.Join(", ", diffsByTarget)}", ConsoleColor.Yellow);
+			if (mappings.Count == 0)
+			{
+				Logger.LogSync("No remaps loaded. Please restart with a provided mapping path.", ConsoleColor.Red);
+				return;
+			}
+
+			if (mappings.Any(m => m.NewTypeName == remapModel.NewTypeName))
+			{
+				Logger.LogSync($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
+				return;
+			}
+				
+			mappings.Add(remapModel);
+			DataProvider.UpdateMapping(mappingPath, mappings);
 		}
 		
-		var diffsByCandidate = diff.Candidate.Methods
-			.Select(m => m.Name)
-			.Except(diff.Target.Methods.Select(m => m.Name))
-			.ToList();
-
-		if (diffsByCandidate.Any())
-		{
-			Logger.LogSync($"Methods in candidate not present in target:\n {string.Join(", ", diffsByCandidate)}", ConsoleColor.Yellow);
-		}
-	}
-
-	private class MappingDiff
-	{
-		public required TypeDef Target;
-		public required TypeDef Candidate;
+		Logger.LogSync("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
+		var resp2 = Console.ReadLine();
 		
-		public RemapModel RemapModel = new();
+		if (resp2 == "y" || resp2 == "yes" || resp2 == "Y")
+		{
+			var outPath = Path.GetDirectoryName(assemblyPath);
+			new ReMapper().InitializeRemap(mappings, assemblyPath, outPath);
+		}
 	}
 }

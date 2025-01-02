@@ -34,14 +34,19 @@ public class ReMapper
     public void InitializeRemap(
         List<RemapModel> remapModels,
         string assemblyPath,
-        string outPath,
+        string outPath = "",
         bool validate = false)
     {
         _remaps = [];
         _remaps = remapModels;
         _alreadyGivenNames = [];
         
-        Module = DataProvider.LoadModule(assemblyPath);
+        assemblyPath = AssemblyUtils.TryDeObfuscate(
+            DataProvider.LoadModule(assemblyPath), 
+            assemblyPath, 
+            out var module);
+
+        Module = module;
         
         OutPath = outPath;
 
@@ -51,9 +56,13 @@ public class ReMapper
         Stopwatch.Start();
         
         var types = Module.GetTypes();
+
+        if (!validate)
+        {
+            GenerateDynamicRemaps(assemblyPath, types);
+        }
         
-        TryDeObfuscate(types, assemblyPath);
-        FindBestMatches(types);
+        FindBestMatches(types, validate);
         ChooseBestMatches();
 
         // Don't go any further during a validation
@@ -71,37 +80,8 @@ public class ReMapper
         // We are done, write the assembly
         WriteAssembly();
     }
-
-    private void TryDeObfuscate(IEnumerable<TypeDef> types, string assemblyPath)
-    {
-        if (!Module!.GetTypes().Any(t => t.Name.Contains("GClass")))
-        {
-            Logger.LogSync("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
-            
-            Module.Dispose();
-            Module = null;
-            
-            Deobfuscator.Deobfuscate(assemblyPath);
-            
-            var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
-            cleanedName = $"{cleanedName}-cleaned.dll";
-            
-            var newPath = Path.GetDirectoryName(assemblyPath);
-            newPath = Path.Combine(newPath!, cleanedName);
-            
-            Console.WriteLine($"Cleaning assembly: {newPath}");
-            
-            Module = DataProvider.LoadModule(newPath);
-            types = Module.GetTypes();
-            
-            GenerateDynamicRemaps(newPath, types);
-            return;
-        }
-        
-        GenerateDynamicRemaps(assemblyPath, types);
-    }
-
-    private void FindBestMatches(IEnumerable<TypeDef> types)
+    
+    private void FindBestMatches(IEnumerable<TypeDef> types, bool validate)
     {
         Logger.LogSync("Finding Best Matches...", ConsoleColor.Green);
         
@@ -115,10 +95,13 @@ public class ReMapper
                 })
             );
         }
-        
-        while (!tasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+
+        if (!validate)
         {
-            Logger.DrawProgressBar(tasks.Where(t => t.IsCompleted)!.Count(), tasks.Count, 50);
+            while (!tasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+            {
+                Logger.DrawProgressBar(tasks.Where(t => t.IsCompleted)!.Count(), tasks.Count, 50);
+            }
         }
         
         Task.WaitAll(tasks.ToArray());
@@ -197,9 +180,14 @@ public class ReMapper
         }
 
         // Filter down nested objects
-        if (mapping.SearchParams.GenericParams.IsNested is false or null)
+        if (mapping.SearchParams.NestedTypes.IsNested is false)
         {
             types = types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)));
+        }
+
+        if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
+        {
+            types = types.Where(t => t.DeclaringType != null && t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
         
         // Run through a series of filters and report an error if all types are filtered out.

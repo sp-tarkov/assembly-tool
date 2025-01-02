@@ -11006,6 +11006,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -11367,6 +11368,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -11597,6 +11599,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -12103,6 +12106,7 @@
         ]
       },
       "NestedTypes": {
+        "IsNested": false,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -12564,6 +12568,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -12665,6 +12670,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -14585,6 +14591,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -14632,6 +14639,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -14680,6 +14688,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -14729,6 +14738,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -14775,6 +14785,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -15528,6 +15539,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [
           "EExtraDataType"
@@ -15573,6 +15585,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -16101,6 +16114,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -16193,6 +16207,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -16238,6 +16253,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -16284,6 +16300,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
@@ -16502,6 +16519,7 @@
         "ExcludeProperties": []
       },
       "NestedTypes": {
+        "IsNested": true,
         "NestedTypeCount": -1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []

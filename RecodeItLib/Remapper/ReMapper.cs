@@ -13,11 +13,7 @@ public class ReMapper
     private ModuleDefMD? Module { get; set; }
 
     public static bool IsRunning { get; private set; } = false;
-
-    public delegate void OnCompleteHandler();
-
-    public event OnCompleteHandler? OnComplete;
-
+    
     private static readonly Stopwatch Stopwatch = new();
 
     private RemapperSettings? Settings => DataProvider.Settings?.Remapper;
@@ -368,7 +364,6 @@ public class ReMapper
         Module = null;
 
         IsRunning = false;
-        OnComplete?.Invoke();
     }
 
     /// <summary>

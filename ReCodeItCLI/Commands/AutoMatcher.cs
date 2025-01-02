@@ -7,10 +7,10 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItCLI.Commands;
 
-[Command("AutoMatch", Description = "Automatically tries to generate a mapping object with the provided arguments.")]
+[Command("AutoMatch", Description = "This command will automatically try to generate a mapping object given old type and new type names.")]
 public class AutoMatchCommand : ICommand
 {
-	[CommandParameter(0, IsRequired = true, Description = "The absolute path to your obfuscated assembly or exe file, folder must contain all references to be resolved.")]
+	[CommandParameter(0, IsRequired = true, Description = "The absolute path to your assembly, folder must contain all references to be resolved.")]
 	public required string AssemblyPath { get; init; }
 	
 	[CommandParameter(1, IsRequired = true, Description = "Full old type name including namespace")]

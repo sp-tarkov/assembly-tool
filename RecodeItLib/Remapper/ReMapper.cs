@@ -130,12 +130,9 @@ public class ReMapper
     private void Publicize()
     {
         // Don't publicize and unseal until after the remapping, so we can use those as search parameters
-        if (Settings!.MappingSettings!.Publicize)
-        {
-            Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
+        Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
 
-            SPTPublicizer.PublicizeClasses(Module);
-        }
+        SPTPublicizer.PublicizeClasses(Module);
     }
     
     private bool Validate(List<RemapModel> remaps)
@@ -319,11 +316,7 @@ public class ReMapper
     {
         var moduleName = Module?.Name;
 
-        var dllName = "-cleaned-remapped.dll";
-        if (Settings!.MappingSettings!.Publicize)
-        {
-            dllName = "-cleaned-remapped-publicized.dll";
-        }
+        var dllName = "-cleaned-remapped-publicized.dll";
         OutPath = Path.Combine(OutPath, moduleName?.Replace(".dll", dllName));
 
         try

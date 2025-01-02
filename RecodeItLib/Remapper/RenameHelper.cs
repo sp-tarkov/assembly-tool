@@ -16,28 +16,22 @@ internal static class RenameHelper
     /// <param name="direct"></param>
     public static void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
+        if (remap.TypePrimeCandidate is null)
+        {
+            Logger.Log($"Unable to rename {remap.NewTypeName} as TypePrimeCandidate value is null/empty, skipping", ConsoleColor.Red);
+            return;
+        }
+        
         // Rename all fields and properties first
-        if (DataProvider.Settings!.Remapper!.MappingSettings!.RenameFields)
-        {
-            if (remap.TypePrimeCandidate is null)
-            {
-                Logger.Log($"Unable to rename {remap.NewTypeName} as TypePrimeCandidate value is null/empty, skipping", ConsoleColor.Red);
-                return;
-            }
+        RenameAllFields(
+            remap.TypePrimeCandidate.Name.String,
+            remap.NewTypeName,
+            types);
 
-            RenameAllFields(
-                remap.TypePrimeCandidate.Name.String,
-                remap.NewTypeName,
-                types);
-        }
-
-        if (DataProvider.Settings.Remapper.MappingSettings.RenameProperties)
-        {
-            RenameAllProperties(
-                remap!.TypePrimeCandidate!.Name.String,
-                remap.NewTypeName,
-                types);
-        }
+        RenameAllProperties(
+            remap!.TypePrimeCandidate!.Name.String,
+            remap.NewTypeName,
+            types);
 
         FixMethods(types, remap);
         RenameType(types, remap);
@@ -92,8 +86,7 @@ internal static class RenameHelper
                     var oldName = field.Name.ToString();
 
                     field.Name = newFieldName;
-
-                    UpdateTypeFieldMemberRefs(type, field, oldName);
+                    
                     UpdateAllTypeFieldMemberRefs(typesToCheck, field, oldName);
 
                     fieldCount++;
@@ -120,8 +113,6 @@ internal static class RenameHelper
             {
                 if (instr.Operand is MemberRef memRef && memRef.Name == oldName)
                 {
-                    //if (!memRef.Name.IsFieldOrPropNameInList(TokensToMatch)) continue;
-                    
                     memRef.Name = newDef.Name;
                 }
             }

@@ -28,9 +28,6 @@ references needed to be resolved.
 - `remap` - Generates a re-mapped dll provided a mapping file and dll. If the dll is obfuscated, it will automatically de-obfuscate.
   - Param `MappingJsonPath` - The absolute path to the `mapping.json` file supports both `json` and `jsonc`.
   - Param `AssemblyPath` - The absolute path to the dll generated from the `deobfuscate` command.
-  - Param `Publicize` - if true, the re-mapper will publicize all types, methods, and properties in the assembly.
-  - Param `Rename` - If true, the re-mapper will rename all changed types associated variable names to be the same as 
-the declaring type
 
 ---
 

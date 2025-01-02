@@ -7,13 +7,6 @@
     "AssemblyPath": "",
     "OutputPath": "",
     "MappingPath": "",
-    "UseProjectMappings": false,
-    "MappingSettings": {
-      "RenameFields": true,
-      "RenameProperties": true,
-      "Publicize": true,
-      "Unseal": true
-    },
     "TokensToMatch": [
       "Class",
       "GClass",

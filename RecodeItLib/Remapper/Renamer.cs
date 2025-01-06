@@ -44,13 +44,14 @@ internal class Renamer
         foreach (var type in typesToCheck)
         {
             var methods = type.Methods
-                .Where(method => method.Name.StartsWith(remap!.TypePrimeCandidate!.Name.String));
+                .Where(method => method.Name.StartsWith(remap!.TypePrimeCandidate!.Name.String) 
+                && type.Methods.Count(m2 => m2.Name.String.EndsWith(method.Name.String.Split(".")[1])) < 2);
 
             foreach (var method in methods)
             {
                 var name = method.Name.String.Split(".");
                 
-                if (methods.Any(m => m.Name.String.Contains(name[1])))
+                if (methods.Count(m => m.Name.String.EndsWith(name[1])) > 1)
                     continue;
                 
                 method.Name = name[1];

@@ -3,6 +3,7 @@ using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using ReCodeItLib.Utils;
 using System.IO.Compression;
+using ReCodeItLib.ReMapper;
 
 namespace ReCodeItLib.Dumper;
 
@@ -25,7 +26,7 @@ public class DumperClass
     public DumperClass(string managedPath)
     {
         _managedPath = managedPath;
-        _assemblyPath = Path.Combine(managedPath, "Assembly-Csharp-cleaned.dll");
+        _assemblyPath = Path.Combine(managedPath, "Assembly-Csharp.dll");
         _fileCheckerPath = Path.Combine(managedPath, "FilesChecker.dll");
         _mscorlibPath = Path.Combine(managedPath, "mscorlib.dll");
         _dumpLibPath = "./DumpLib.dll";
@@ -50,7 +51,12 @@ public class DumperClass
             Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
         }
         
-        _gameModule = DataProvider.LoadModule(_assemblyPath);
+        _assemblyPath = AssemblyUtils.TryDeObfuscate(
+            DataProvider.LoadModule(_assemblyPath), 
+            _assemblyPath, 
+            out var gameModule);
+        
+        _gameModule = gameModule;
         _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
         _msModule = DataProvider.LoadModule(_mscorlibPath);
         _dumpModule = DataProvider.LoadModule(_dumpLibPath);

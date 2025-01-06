@@ -33,9 +33,9 @@ namespace DumpLib
                         Utils.LogError("[Dumpy] Exception occured in SetupBackend");
                         Utils.LogError(e);
 
-                        if (DataHelper.ErrorCounter >= 3)
+                        if (DataHelper.ErrorCounter >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit)
                         {
-                            Utils.LogError("[Dumpy] ErrorsCounter was 3, exiting app!");
+                            Utils.LogError($"[Dumpy] ErrorsCounter was {DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit}, exiting app!");
                             MethodHelper.GetApplicationQuitMethod().Invoke(null, null);
                         }
 
@@ -44,6 +44,7 @@ namespace DumpLib
                         Utils.LogError("[Dumpy] Resetting backend and trying again");
                         DataHelper.ClearVariables();
                         DataHelper.GotBackend = false;
+                        await Task.Delay(DataHelper.ConfigSettings.SptTimings.RetryDelayMs);
                     }
 
                     if (DataHelper.GotBackend)
@@ -69,7 +70,7 @@ namespace DumpLib
                                     .Invoke(DataHelper.Session, new[] { DataHelper.RaidSettings });
 
                                 // Artificial wait to hopefully keep BSG off our toes
-                                Utils.LogInfo("Waiting 10s");
+                                Utils.LogInfo("[Dumpy] Waiting 10s");
                                 await Task.Delay(10000);
 
                                 // "/client/match/local/start"
@@ -87,7 +88,7 @@ namespace DumpLib
                                 DataHelper.LocalRaidSettings.GetType().GetField("serverId").SetValue(DataHelper.LocalRaidSettings, result2);
 
                                 // Artificial wait to hopefully keep BSG off our toes
-                                Utils.LogInfo("Waiting 10s");
+                                Utils.LogInfo("[Dumpy] Waiting 10s");
                                 await Task.Delay(10000);
 
                                 // "/client/game/bot/generate"
@@ -97,7 +98,7 @@ namespace DumpLib
                                     .Invoke(DataHelper.Session, new[] { DataHelper.WaveSettings });
 
                                 // Artificial wait to hopefully keep BSG off our toes
-                                Utils.LogInfo("Waiting 10s");
+                                Utils.LogInfo("[Dumpy] Waiting 10s");
                                 await Task.Delay(10000);
 
                                 var emptyArray = ReflectionHelper.CreateGenericMethod(typeof(Array).GetMethod("Empty"), TypeHelper.GetJsonTokenCreateType())
@@ -133,9 +134,9 @@ namespace DumpLib
                             Utils.LogError("[Dumpy] Exception occured in StartDumpyTask::Iteration");
                             Utils.LogError(e);
 
-                            if (DataHelper.ErrorCounter >= 3)
+                            if (DataHelper.ErrorCounter >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit)
                             {
-                                Utils.LogError("[Dumpy] ErrorsCounter was 3, exiting app");
+                                Utils.LogError($"[Dumpy] ErrorsCounter was {DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit}, exiting app");
                                 MethodHelper.GetApplicationQuitMethod().Invoke(null, null);
                             }
 
@@ -143,6 +144,7 @@ namespace DumpLib
 
                             Utils.LogError("[Dumpy] Resetting backend and trying again");
                             DataHelper.ClearVariables();
+                            await Task.Delay(DataHelper.ConfigSettings.SptTimings.RetryDelayMs);
                         }
                     }
                 }

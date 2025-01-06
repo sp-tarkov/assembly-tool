@@ -5,6 +5,8 @@
 	"QuickDumpEnabled": false,
 	"SptTimings": {
 		"SingleIterationDelayMs": 10000,
-		"AllIterationDelayMs": 100000
+		"AllIterationDelayMs": 100000,
+		"RetriesBeforeQuit": 10,
+		"RetryDelayMs": 60000
 	}
 }

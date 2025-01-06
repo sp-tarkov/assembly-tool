@@ -17,6 +17,9 @@
         /// </summary>
         public string DateTimeFormat { get; set; }
 
+        /// <summary>
+        /// Default: False
+        /// </summary>
         public bool QuickDumpEnabled { get; set; }
         
         public SptTimings SptTimings { get; set; }
@@ -33,5 +36,15 @@
         /// Default: 5m * 60s * 1000ms = 300000ms
         /// </summary>
         public int AllIterationDelayMs { get; set; }
+        
+        /// <summary>
+        /// Default: 10 retries
+        /// </summary>
+        public int RetriesBeforeQuit { get; set; }
+        
+        /// <summary>
+        /// Default: 1m * 60s * 1000ms = 60000ms
+        /// </summary>
+        public int RetryDelayMs { get; set; }
     }
 }

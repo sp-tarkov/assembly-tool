@@ -49,6 +49,10 @@ internal class Renamer
             foreach (var method in methods)
             {
                 var name = method.Name.String.Split(".");
+                
+                if (methods.Any(m => m.Name.String.Contains(name[1])))
+                    continue;
+                
                 method.Name = name[1];
             }
         }

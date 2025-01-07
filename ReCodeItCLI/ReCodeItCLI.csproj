@@ -6,7 +6,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   
   <ItemGroup>
@@ -16,44 +15,4 @@
   <ItemGroup>
     <PackageReference Include="CliFx" Version="2.3.5" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <AssemblyServerProj>$(SolutionDir)de4dot\AssemblyServer-x64\AssemblyServer-x64.csproj</AssemblyServerProj>
-    <de4dot-x64Proj>$(SolutionDir)de4dot\de4dot-x64\de4dot-x64.csproj</de4dot-x64Proj>
-  </PropertyGroup>
-
-  <Target Name="GetOutputPath" Returns="@(OutputPath)">
-    <!-- Emit the OutputPath property -->
-    <Output TaskParameter="OutputItems" ItemName="OutputPath" />
-  </Target>
-  
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)' == '$(Configuration)'">
-    <RemoveDir Directories="$(SolutionDir)Build\**\*.*" />
-  </Target>
-  
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == '$(Configuration)'">
-    <ItemGroup>
-      <de4dot Include="$(SolutionDir)de4dot\$(Configuration)\net48\*.*" />
-      <templates Include="$(SolutionDir)Assets\Templates\**\*.*" />
-      <Cli Include="$(ProjectDir)$(OutDir)\*.*" />
-    </ItemGroup>
-
-    <MSBuild Projects="$(AssemblyServerProj)" Properties="Configuration=$(Configuration)" />
-    <MSBuild Projects="$(de4dot-x64Proj)" Properties="Configuration=$(Configuration)" />
-    
-    <Copy
-            SourceFiles="@(Cli)"
-            DestinationFolder="$(SolutionDir)Build\%(RecursiveDir)"
-    />
-    
-    <Copy
-            SourceFiles="@(de4dot);"
-            DestinationFolder="$(SolutionDir)Build\de4dot\%(RecursiveDir)"
-    />
-    <Copy
-            SourceFiles="@(templates);"
-            DestinationFolder="$(SolutionDir)Build\Data\%(RecursiveDir)"
-    />
-  </Target>
-  
 </Project>

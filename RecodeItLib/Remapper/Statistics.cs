@@ -78,10 +78,10 @@ public class Statistics(
 			
 			if (validate && remap.Succeeded)
 			{
-				Logger.Log("Generated Model: ", ConsoleColor.Blue);
+				Logger.LogSync("Generated Model: ", ConsoleColor.Blue);
 				Logger.LogRemapModel(remap);
 				
-				Logger.Log("Passed validation", ConsoleColor.Green);
+				Logger.LogSync("Passed validation", ConsoleColor.Green);
 				return;
 			}
 			

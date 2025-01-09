@@ -1,6 +1,6 @@
 {
   "MappingPath": "",
-  "TypeNamesToMatch": [
+  "TypeNamesToMatch": [ // These are the only types considered when looking for a match
     "Class",
     "GClass",
     "GStruct",
@@ -9,9 +9,26 @@
     "Interface",
     "GInterface"
   ],
-  "MethodsToIgnore": [
+  "MethodNamesToIgnore": [ // Don't try to match on these
     "method_",
     "smethod_",
     "vmethod_"
+  ],
+  "FieldNamesToIgnore": [ // Don't try to match on these
+    "action",
+    "bool",
+    "dictionary",
+    "list",
+    "vector",
+    "int",
+    "float",
+    "single",
+    "double",
+    "string",
+    "transform",
+    "ushort",
+    "byte",
+    "object",
+    "gameobject"
   ]
 }

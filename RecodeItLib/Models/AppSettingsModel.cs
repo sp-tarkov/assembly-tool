@@ -20,5 +20,10 @@ public class Settings
     /// <summary>
     /// List of method names to be ignored during the auto-match process.
     /// </summary>
-    public required List<string> MethodsToIgnore { get; set; }
+    public required List<string> MethodNamesToIgnore { get; set; }
+    
+    /// <summary>
+    /// List of method names to be ignored during the auto-match process.
+    /// </summary>
+    public required List<string> FieldNamesToIgnore { get; set; }
 }

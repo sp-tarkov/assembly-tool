@@ -123,7 +123,12 @@ public static class Logger
     
     public static void LogRemapModel(RemapModel remapModel)
     {
-        var str = JsonConvert.SerializeObject(remapModel, Formatting.Indented);
+        var settings = new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+        
+        var str = JsonConvert.SerializeObject(remapModel, Formatting.Indented, settings);
         LogSync(str, ConsoleColor.Blue);
     }
     

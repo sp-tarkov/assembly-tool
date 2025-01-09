@@ -1,7 +1,6 @@
 ﻿using dnlib.DotNet;
 using Newtonsoft.Json;
 using ReCodeItLib.Models;
-using ReCodeItLib.Dumper;
 
 namespace ReCodeItLib.Utils;
 
@@ -9,29 +8,15 @@ public static class DataProvider
 {
     static DataProvider()
     {
-        LoadItems();
+        Settings = LoadAppSettings();
+        ItemTemplates = LoadItems();
     }
     
-    public static string DataPath => Path.Combine(AppContext.BaseDirectory, "Data");
-
-    public static List<RemapModel> Remaps { get; set; } = [];
-    public static Dictionary<string, ItemTemplateModel>? ItemTemplates { get; private set; }
+    public static Settings Settings { get; }
     
-    public static Settings? Settings { get; private set; }
-
-    public static void LoadAppSettings()
-    {
-        var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
-
-        var jsonText = File.ReadAllText(settingsPath);
-
-        JsonSerializerSettings settings = new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        };
-
-        Settings = JsonConvert.DeserializeObject<Settings>(jsonText, settings);
-    }
+    public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
+    
+    private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
     
     public static List<RemapModel> LoadMappingFile(string path)
     {
@@ -83,11 +68,19 @@ public static class DataProvider
         return module;
     }
 
-    private static void LoadItems()
+    private static Settings LoadAppSettings()
+    {
+        var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
+        var jsonText = File.ReadAllText(settingsPath);
+        
+        return JsonConvert.DeserializeObject<Settings>(jsonText);
+    }
+    
+    private static Dictionary<string, ItemTemplateModel> LoadItems()
     {
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        ItemTemplates = JsonConvert.DeserializeObject<Dictionary<string, ItemTemplateModel>>(jsonText);
+        return JsonConvert.DeserializeObject<Dictionary<string, ItemTemplateModel>>(jsonText);
     }
 }

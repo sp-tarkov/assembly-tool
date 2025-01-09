@@ -17,8 +17,6 @@ public class DeObfuscate : ICommand
 
     public ValueTask ExecuteAsync(IConsole console)
     {
-        DataProvider.LoadAppSettings();
-
         Logger.Log("Deobfuscating assembly...");
 
         Deobfuscator.Deobfuscate(AssemblyPath, IsLauncher);

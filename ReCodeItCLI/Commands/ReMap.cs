@@ -19,7 +19,6 @@ public class ReMap : ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
-        DataProvider.LoadAppSettings();
         DataProvider.Settings.MappingPath = MappingJsonPath;
 
         var remaps = DataProvider.LoadMappingFile(MappingJsonPath);

@@ -164,7 +164,7 @@ public class ReMapper
     /// <param name="mapping">Mapping to score</param>
     private void ScoreMapping(RemapModel mapping, IEnumerable<TypeDef> types)
     {
-        var tokens = DataProvider.Settings?.TokensToMatch;
+        var tokens = DataProvider.Settings?.TypeNamesToMatch;
 
         if (mapping.UseForceRename)
         {

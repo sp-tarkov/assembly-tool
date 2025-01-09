@@ -10,7 +10,8 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 	
 	private List<TypeDef>? CandidateTypes { get; set; }
 
-	private static List<string> _tokens = DataProvider.Settings!.TokensToMatch;
+	private static List<string> _tokens = DataProvider.Settings.TypeNamesToMatch;
+	private static List<string> _methodsToIgnore = DataProvider.Settings.TypeNamesToMatch;
 	
 	public void AutoMatch(string assemblyPath, string oldTypeName, string newTypeName)
 	{

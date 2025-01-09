@@ -14,8 +14,6 @@ public class Dumper : ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
-        DataProvider.LoadAppSettings();
-        
         Logger.Log("Creating DumperClass...");
 
         var dumper = new DumperClass(ManagedDirectory);

@@ -25,8 +25,6 @@ public class AutoMatchCommand : ICommand
 
 	public ValueTask ExecuteAsync(IConsole console)
 	{
-		DataProvider.LoadAppSettings();
-		
 		Logger.LogSync("Finding match...");
 
 		var remaps = new List<RemapModel>();

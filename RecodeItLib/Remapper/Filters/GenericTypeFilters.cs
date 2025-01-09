@@ -1,5 +1,6 @@
 ﻿using dnlib.DotNet;
 using ReCodeItLib.Models;
+using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper.Filters;
 
@@ -14,50 +15,9 @@ internal static class GenericTypeFilters
     /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterPublic(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        // REQUIRED PROPERTY
-        if (parms.GenericParams.IsPublic)
-        {
-            if (parms.NestedTypes.IsNested is true)
-            {
-                types = types.Where(t => t.IsNestedPublic);
-
-                types = FilterNestedByName(types, parms);
-            }
-            else
-            {
-                types = types.Where(t => t.IsPublic);
-            }
-        }
-        else
-        {
-            if (parms.NestedTypes.IsNested is true)
-            {
-                types = types.Where(t => t.IsNestedPrivate
-                                         || t.IsNestedFamily
-                                         || t.IsNestedFamilyAndAssembly
-                                         || t.IsNestedAssembly);
-
-                types = FilterNestedByName(types, parms);
-            }
-            else
-            {
-                types = types.Where(t => t.IsNotPublic);
-            }
-        }
-
-        return types;
+        return types.Where(t => t.IsPublic == parms.GenericParams.IsPublic);
     }
-
-    private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
-    {
-        if (parms.NestedTypes.NestedTypeParentName is not "")
-        {
-            types = types.Where(t => t.DeclaringType.Name.String == parms.NestedTypes.NestedTypeParentName);
-        }
-
-        return types;
-    }
-
+    
     /// <summary>
     /// Filters based on IsAbstract
     /// </summary>

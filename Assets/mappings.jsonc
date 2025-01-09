@@ -11075,7 +11075,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": false
       },
       "Methods": {
@@ -11116,7 +11116,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true
+        "IsPublic": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11156,7 +11156,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsAbstract": true
       },
       "Methods": {
@@ -11249,7 +11249,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11295,7 +11295,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsAbstract": false
       },
       "Methods": {
@@ -11427,7 +11427,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true
+        "IsPublic": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11516,7 +11516,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsAbstract": true
       },
       "Methods": {
@@ -11852,7 +11852,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11899,7 +11899,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12040,7 +12040,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsInterface": true
       },
       "Methods": {
@@ -12083,7 +12083,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsInterface": true
       },
       "Methods": {
@@ -12127,7 +12127,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsInterface": true
       },
       "Methods": {
@@ -13234,7 +13234,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
         "IsStruct": false,
@@ -14982,7 +14982,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsAbstract": true
       },
       "Methods": {
@@ -15251,7 +15251,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsInterface": true
       },
       "Methods": {
@@ -15298,7 +15298,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -15347,7 +15347,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -15397,7 +15397,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -15448,7 +15448,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -16790,7 +16790,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsStruct": true
       },
       "Methods": {
@@ -16837,7 +16837,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsStruct": true
       },
       "Methods": {
@@ -16926,7 +16926,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -16976,7 +16976,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -17023,7 +17023,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true,
+        "IsPublic": false,
         "IsDerived": true
       },
       "Methods": {
@@ -17245,7 +17245,7 @@
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
-        "IsPublic": true
+        "IsPublic": false
       },
       "Methods": {
         "ConstructorParameterCount": -1,

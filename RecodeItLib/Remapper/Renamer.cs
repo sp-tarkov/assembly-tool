@@ -16,11 +16,7 @@ internal class Renamer
     /// <param name="direct"></param>
     public void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
-        if (remap.TypePrimeCandidate is null)
-        {
-            Logger.Log($"Unable to rename {remap.NewTypeName} as TypePrimeCandidate value is null/empty, skipping", ConsoleColor.Red);
-            return;
-        }
+        if (remap.TypePrimeCandidate is null) return;
         
         // Rename all fields and properties first
         RenameAllFields(

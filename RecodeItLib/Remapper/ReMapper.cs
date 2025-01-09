@@ -173,15 +173,9 @@ public class ReMapper
         }
 
         // Filter down nested objects
-        if (mapping.SearchParams.NestedTypes.IsNested is false)
-        {
-            types = types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)));
-        }
-
-        if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
-        {
-            types = types.Where(t => t.DeclaringType != null && t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
-        }
+        types = !mapping.SearchParams.NestedTypes.IsNested 
+            ? types.Where(type => tokens!.Any(token => type.Name.StartsWith(token))) 
+            : types.Where(t => t.DeclaringType != null && t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         
         // Run through a series of filters and report an error if all types are filtered out.
         var filters = new TypeFilters();

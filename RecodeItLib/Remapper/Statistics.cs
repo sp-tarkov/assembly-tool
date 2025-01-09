@@ -53,27 +53,31 @@ public class Statistics(
 		
 		foreach (var remap in remapModels)
 		{
-			if (remap.Succeeded is false && remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch))
+			switch (remap.Succeeded)
 			{
-				Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
-				Logger.Log("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
-				Logger.Log($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
-				Logger.Log($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
-				Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
-			}
-			else if (remap.Succeeded is false)
-			{
-				Logger.Log("-----------------------------------------------", ConsoleColor.Red);
-				Logger.Log($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
-
-				foreach (var reason in remap.NoMatchReasons)
+				case false when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
+					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
+					Logger.Log("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
+					Logger.Log($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
+					Logger.Log($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
+					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
+					
+					failures++;
+					break;
+				case false:
 				{
-					Logger.Log($"Reason: {reason}", ConsoleColor.Red);
-				}
+					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
+					Logger.Log($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
 
-				Logger.Log("-----------------------------------------------", ConsoleColor.Red);
-				failures++;
-				continue;
+					foreach (var reason in remap.NoMatchReasons)
+					{
+						Logger.Log($"Reason: {reason}", ConsoleColor.Red);
+					}
+
+					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
+					failures++;
+					continue;
+				}
 			}
 			
 			if (validate && remap.Succeeded)

@@ -71,4 +71,32 @@ internal static class NestedTypeFilters
 
         return types;
     }
+    
+    public static IEnumerable<TypeDef> FilterByNestedVisibility(IEnumerable<TypeDef> types, SearchParams parms)
+    {
+        types = FilterNestedByName(types, parms);
+
+        var ntp = parms.NestedTypes;
+        
+        types = types.Where(t => 
+            t.IsNestedAssembly == ntp.IsNestedAssembly
+            && t.IsNestedFamily == ntp.IsNestedFamily
+            && t.IsNestedPrivate == ntp.IsNestedPrivate
+            && t.IsNestedPublic == ntp.IsNestedPublic
+            && t.IsNestedFamilyAndAssembly == ntp.IsNestedFamilyAndAssembly
+            && t.IsNestedFamilyOrAssembly == ntp.IsNestedFamilyOrAssembly
+            );
+        
+        return types;
+    }
+    
+    private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
+    {
+        if (parms.NestedTypes.NestedTypeParentName is not "")
+        {
+            types = types.Where(t => t.DeclaringType.Name.String == parms.NestedTypes.NestedTypeParentName);
+        }
+
+        return types;
+    }
 }

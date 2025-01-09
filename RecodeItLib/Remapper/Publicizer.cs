@@ -9,7 +9,7 @@ internal class Publicizer
     {
         var types = definition.GetTypes();
         
-        var publicizeTasks = new List<Task>();
+        var publicizeTasks = new List<Task>(types.Count(t => !t.IsNested));
         foreach (var type in types)
         {
             if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
@@ -25,7 +25,7 @@ internal class Publicizer
         // TODO: This is broken. No idea why.
         while (!publicizeTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
         {
-            Logger.DrawProgressBar(publicizeTasks.Where(t => t.IsCompleted)!.Count() + 1, publicizeTasks.Count, 50);
+            Logger.DrawProgressBar(publicizeTasks.Count(t => t.IsCompleted), publicizeTasks.Count, 50);
         }
         
         Task.WaitAll(publicizeTasks.ToArray());

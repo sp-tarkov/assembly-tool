@@ -26,7 +26,7 @@ public class TypeFilters
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
+            AddNoMatchReason(mapping, ENoMatchReason.IsPublic);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -35,7 +35,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsPublic);
+            AddNoMatchReason(mapping, ENoMatchReason.IsAbstract);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -44,7 +44,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsSealed);
+            AddNoMatchReason(mapping, ENoMatchReason.IsSealed);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -53,7 +53,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsInterface);
+            AddNoMatchReason(mapping, ENoMatchReason.IsInterface);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -62,7 +62,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsStruct);
+            AddNoMatchReason(mapping, ENoMatchReason.IsStruct);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -71,7 +71,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsEnum);
+            AddNoMatchReason(mapping, ENoMatchReason.IsEnum);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -80,7 +80,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasAttribute);
+            AddNoMatchReason(mapping, ENoMatchReason.HasAttribute);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -89,7 +89,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.IsDerived);
+            AddNoMatchReason(mapping, ENoMatchReason.IsDerived);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -98,7 +98,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.HasGenericParameters);
+            AddNoMatchReason(mapping, ENoMatchReason.HasGenericParameters);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -112,7 +112,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsInclude);
+            AddNoMatchReason(mapping, ENoMatchReason.MethodsInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -121,7 +121,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsExclude);
+            AddNoMatchReason(mapping, ENoMatchReason.MethodsExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -130,7 +130,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.MethodsCount);
+            AddNoMatchReason(mapping, ENoMatchReason.MethodsCount);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -139,7 +139,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.ConstructorParameterCount);
+            AddNoMatchReason(mapping, ENoMatchReason.ConstructorParameterCount);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -153,7 +153,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsInclude);
+            AddNoMatchReason(mapping, ENoMatchReason.FieldsInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -162,7 +162,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsExclude);
+            AddNoMatchReason(mapping, ENoMatchReason.FieldsExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -171,7 +171,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.FieldsCount);
+            AddNoMatchReason(mapping, ENoMatchReason.FieldsCount);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -185,7 +185,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesInclude);
+            AddNoMatchReason(mapping, ENoMatchReason.PropertiesInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -194,7 +194,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesExclude);
+            AddNoMatchReason(mapping, ENoMatchReason.PropertiesExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -203,7 +203,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.PropertiesCount);
+            AddNoMatchReason(mapping, ENoMatchReason.PropertiesCount);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -217,7 +217,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeInclude);
+            AddNoMatchReason(mapping, ENoMatchReason.NestedTypeInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -226,7 +226,7 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeExclude);
+            AddNoMatchReason(mapping, ENoMatchReason.NestedTypeExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -235,7 +235,16 @@ public class TypeFilters
         
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.NestedTypeCount);
+            AddNoMatchReason(mapping, ENoMatchReason.NestedTypeCount);
+            mapping.TypeCandidates.UnionWith(types);
+            return false;
+        }
+        
+        types = NestedTypeFilters.FilterByNestedVisibility(types, mapping.SearchParams);
+
+        if (!types.Any())
+        {
+            AddNoMatchReason(mapping, ENoMatchReason.NestedVisibility);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -249,7 +258,7 @@ public class TypeFilters
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsInclude);
+            AddNoMatchReason(mapping, ENoMatchReason.EventsInclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -258,7 +267,7 @@ public class TypeFilters
 
         if (!types.Any())
         {
-            AllTypesFilteredOutFor(mapping, ENoMatchReason.EventsExclude);
+            AddNoMatchReason(mapping, ENoMatchReason.EventsExclude);
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
@@ -266,13 +275,8 @@ public class TypeFilters
         return true;
     }
     
-    /// <summary>
-    /// This is used to log that all types for a given remap were filtered out.
-    /// </summary>
-    /// <param name="remap">remap model that failed</param>
-    /// <param name="noMatchReason">Reason for filtering</param>
-    private static void AllTypesFilteredOutFor(RemapModel remap, ENoMatchReason noMatchReason)
+    private static void AddNoMatchReason(RemapModel remap, ENoMatchReason noMatchReason)
     {
-        Logger.Log($"All types filtered out after `{noMatchReason}` filter for: `{remap.NewTypeName}`", ConsoleColor.Red);
+        remap.NoMatchReasons.Add(noMatchReason);
     }
 }

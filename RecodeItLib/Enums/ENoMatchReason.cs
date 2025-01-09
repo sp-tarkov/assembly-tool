@@ -5,6 +5,7 @@ public enum ENoMatchReason
     AmbiguousWithPreviousMatch,
     AmbiguousNewTypeNames,
     IsPublic,
+    IsAbstract,
     IsEnum,
     IsNested,
     IsSealed,
@@ -26,6 +27,7 @@ public enum ENoMatchReason
     NestedTypeInclude,
     NestedTypeExclude,
     NestedTypeCount,
+    NestedVisibility,
     EventsInclude,
     EventsExclude
 }

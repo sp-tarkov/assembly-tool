@@ -56,7 +56,6 @@ public class SearchParams
 public class GenericParams
 {
     public bool IsPublic { get; set; } = true;
-
     public bool? IsAbstract { get; set; } = null;
     public bool? IsInterface { get; set; } = null;
     public bool? IsStruct { get; set; } = null;
@@ -97,6 +96,12 @@ public class PropertyParams
 public class NestedTypeParams
 {
     public bool IsNested { get; set; }
+    public bool IsNestedAssembly { get; set; }
+    public bool IsNestedFamily { get; set; }
+    public bool IsNestedPrivate { get; set; }
+    public bool IsNestedPublic { get; set; }
+    public bool IsNestedFamilyAndAssembly { get; set; }
+    public bool IsNestedFamilyOrAssembly { get; set; }
     
     /// <summary>
     /// Name of the nested types parent

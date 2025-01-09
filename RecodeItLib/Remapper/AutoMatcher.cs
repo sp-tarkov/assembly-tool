@@ -10,8 +10,8 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 	
 	private List<TypeDef>? CandidateTypes { get; set; }
 
-	private static List<string> _tokens = DataProvider.Settings.TypeNamesToMatch;
-	private static List<string> _methodsToIgnore = DataProvider.Settings.TypeNamesToMatch;
+	private static readonly List<string> TypesToMatch = DataProvider.Settings.TypeNamesToMatch;
+	private static readonly List<string> MethodsToIgnore = DataProvider.Settings.MethodsToIgnore;
 	
 	public void AutoMatch(string assemblyPath, string oldTypeName, string newTypeName)
 	{
@@ -22,8 +22,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 
 		Module = module;
 		CandidateTypes = Module.GetTypes()
-			.Where(t => _tokens.Any(token => t.Name.StartsWith(token)))
-			// .Where(t => t.Name != oldTypeName)
+			.Where(t => TypesToMatch.Any(token => t.Name.StartsWith(token)))
 			.ToList();
 		
 		var targetTypeDef = FindTargetType(oldTypeName);
@@ -166,17 +165,21 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		// Methods in target that are not in candidate
 		var includeMethods = target.Methods
 			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
 			.Select(s => s.Name.ToString())
 			.Except(candidate.Methods
 				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+				.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
 				.Select(s => s.Name.ToString()));
 		
 		// Methods in candidate that are not in target
 		var excludeMethods = candidate.Methods
 			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
 			.Select(s => s.Name.ToString())
 			.Except(target.Methods
 				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+				.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
 				.Select(s => s.Name.ToString()));
 		
 		foreach (var include in includeMethods)

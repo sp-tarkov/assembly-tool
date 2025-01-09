@@ -1,6 +1,6 @@
 {
   "MappingPath": "",
-  "TokensToMatch": [
+  "TypeNamesToMatch": [
     "Class",
     "GClass",
     "GStruct",
@@ -8,5 +8,10 @@
     "ValueStruct",
     "Interface",
     "GInterface"
+  ],
+  "MethodsToIgnore": [
+    "method_",
+    "smethod_",
+    "vmethod_"
   ]
 }

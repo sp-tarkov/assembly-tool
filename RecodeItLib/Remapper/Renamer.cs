@@ -6,7 +6,7 @@ namespace ReCodeItLib.ReMapper;
 
 internal class Renamer
 {
-    private static List<string>? TokensToMatch => DataProvider.Settings?.Remapper?.TokensToMatch;
+    private static List<string> TokensToMatch => DataProvider.Settings!.TokensToMatch;
 
     /// <summary>
     /// Only used by the manual remapper, should probably be removed

@@ -15,9 +15,6 @@ public class ReMapper
     public static bool IsRunning { get; private set; } = false;
     
     private static readonly Stopwatch Stopwatch = new();
-
-    private RemapperSettings? Settings => DataProvider.Settings?.Remapper;
-
     private string OutPath { get; set; } = string.Empty;
     
     private List<RemapModel> _remaps = [];
@@ -167,7 +164,7 @@ public class ReMapper
     /// <param name="mapping">Mapping to score</param>
     private void ScoreMapping(RemapModel mapping, IEnumerable<TypeDef> types)
     {
-        var tokens = DataProvider.Settings?.Remapper?.TokensToMatch;
+        var tokens = DataProvider.Settings?.TokensToMatch;
 
         if (mapping.UseForceRename)
         {
@@ -347,9 +344,9 @@ public class ReMapper
             throw;
         }
         
-        if (DataProvider.Settings?.Remapper?.MappingPath != string.Empty)
+        if (DataProvider.Settings?.MappingPath != string.Empty)
         {
-            DataProvider.UpdateMapping(DataProvider.Settings!.Remapper!.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
+            DataProvider.UpdateMapping(DataProvider.Settings!.MappingPath!.Replace("mappings.", "mappings-new."), _remaps);
         }
 
         new Statistics(_remaps, Stopwatch, OutPath, hollowedPath)

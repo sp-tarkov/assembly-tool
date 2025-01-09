@@ -12,11 +12,6 @@ public static class DataProvider
         LoadItems();
     }
     
-    /// <summary>
-    /// Is this running in the CLI?
-    /// </summary>
-    public static bool IsCli { get; set; } = false;
-
     public static string DataPath => Path.Combine(AppContext.BaseDirectory, "Data");
 
     public static List<RemapModel> Remaps { get; set; } = [];
@@ -38,30 +33,6 @@ public static class DataProvider
         Settings = JsonConvert.DeserializeObject<Settings>(jsonText, settings);
     }
     
-    public static void SaveAppSettings()
-    {
-        if (IsCli) { return; }
-
-        var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
-
-        if (!File.Exists(settingsPath))
-        {
-            Logger.Log($"path `{settingsPath}` does not exist. Could not save settings", ConsoleColor.Red);
-            return;
-        }
-
-        JsonSerializerSettings settings = new()
-        {
-            Formatting = Formatting.Indented
-        };
-
-        var jsonText = JsonConvert.SerializeObject(Settings, settings);
-
-        File.WriteAllText(settingsPath, jsonText);
-
-        //Logger.Log($"App settings saved to {settingsPath}");
-    }
-
     public static List<RemapModel> LoadMappingFile(string path)
     {
         if (!File.Exists(path))
@@ -77,22 +48,6 @@ public static class DataProvider
         return remaps ?? [];
     }
     
-    public static void SaveMapping()
-    {
-        JsonSerializerSettings settings = new()
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            Formatting = Formatting.Indented
-        };
-
-        var path = Settings?.Remapper?.MappingPath;
-
-        var jsonText = JsonConvert.SerializeObject(Remaps, settings);
-
-        File.WriteAllText(path!, jsonText);
-        Logger.Log($"Mapping File Saved To {path}");
-    }
-
     public static void UpdateMapping(string path, List<RemapModel> remaps)
     {
         if (!File.Exists(path))

@@ -25,7 +25,6 @@ public class AutoMatchCommand : ICommand
 
 	public ValueTask ExecuteAsync(IConsole console)
 	{
-		DataProvider.IsCli = true;
 		DataProvider.LoadAppSettings();
 		
 		Logger.LogSync("Finding match...");

@@ -1,20 +1,12 @@
 {
-  "AppSettings": {
-    "Debug": false,
-    "SilentMode": true
-  },
-  "Remapper": {
-    "AssemblyPath": "",
-    "OutputPath": "",
-    "MappingPath": "",
-    "TokensToMatch": [
-      "Class",
-      "GClass",
-      "GStruct",
-      "GControl",
-      "ValueStruct",
-      "Interface",
-      "GInterface"
-    ]
-  }
+  "MappingPath": "",
+  "TokensToMatch": [
+    "Class",
+    "GClass",
+    "GStruct",
+    "GControl",
+    "ValueStruct",
+    "Interface",
+    "GInterface"
+  ]
 }

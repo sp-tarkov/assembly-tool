@@ -60,13 +60,13 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
-			/*
+			
 			if (!ContainsTargetMethods(target, candidate, remapModel.SearchParams.Methods))
 			{
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
-			*/
+			
 			if (!ContainsTargetFields(target, candidate, remapModel.SearchParams.Fields))
 			{
 				CandidateTypes!.Remove(candidate);

@@ -163,34 +163,15 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 				.Select(s => s.Name));
 		
 		// Methods in target that are not in candidate
-		var includeMethods = target.Methods
-			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
-			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
-			.Select(s => s.Name.ToString())
-			.Except(candidate.Methods
-				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
-				.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
-				.Select(s => s.Name.ToString()));
+		var includeMethods = GetFilteredMethodNamesInType(target)
+			.Except(GetFilteredMethodNamesInType(candidate));
 		
 		// Methods in candidate that are not in target
-		var excludeMethods = candidate.Methods
-			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
-			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
-			.Select(s => s.Name.ToString())
-			.Except(target.Methods
-				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
-				.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
-				.Select(s => s.Name.ToString()));
+		var excludeMethods = GetFilteredMethodNamesInType(candidate)
+			.Except(GetFilteredMethodNamesInType(target));
 		
-		foreach (var include in includeMethods)
-		{
-			methods.IncludeMethods.Add(include);
-		}
-
-		foreach (var exclude in excludeMethods)
-		{
-			methods.ExcludeMethods.Add(exclude);
-		}
+		methods.IncludeMethods.UnionWith(includeMethods);
+		methods.IncludeMethods.UnionWith(excludeMethods);
 		
 		methods.MethodCount = target.Methods
 			.Count(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter && !m.IsSpecialName);
@@ -232,15 +213,8 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.ToString())
 			.Except(target.Fields.Select(s => s.Name.ToString()));
 		
-		foreach (var include in includeFields)
-		{
-			fields.IncludeFields.Add(include);
-		}
-
-		foreach (var exclude in excludeFields)
-		{
-			fields.ExcludeFields.Add(exclude);
-		}
+		fields.IncludeFields.UnionWith(includeFields);
+		fields.IncludeFields.UnionWith(excludeFields);
 		
 		fields.FieldCount = target.Fields.Count;
 		
@@ -276,15 +250,8 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.ToString())
 			.Except(target.Properties.Select(s => s.Name.ToString()));
 		
-		foreach (var include in includeProps)
-		{
-			props.IncludeProperties.Add(include);
-		}
-
-		foreach (var exclude in excludeProps)
-		{
-			props.ExcludeProperties.Add(exclude);
-		}
+		props.IncludeProperties.UnionWith(includeProps);
+		props.ExcludeProperties.UnionWith(excludeProps);
 		
 		props.PropertyCount = target.Properties.Count;
 		
@@ -318,15 +285,8 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.ToString())
 			.Except(target.NestedTypes.Select(s => s.Name.ToString()));
 		
-		foreach (var include in includeNts)
-		{
-			nt.IncludeNestedTypes.Add(include);
-		}
-		
-		foreach (var exclude in excludeNts)
-		{
-			nt.ExcludeNestedTypes.Add(exclude);
-		}
+		nt.IncludeNestedTypes.UnionWith(includeNts);
+		nt.ExcludeNestedTypes.UnionWith(excludeNts);
 		
 		nt.NestedTypeCount = target.NestedTypes.Count;
 		nt.IsNested = target.IsNested;
@@ -379,6 +339,15 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		events.EventCount = target.NestedTypes.Count;
 		
 		return commonEvents.Any() || target.Events.Count == 0;
+	}
+
+	private IEnumerable<string> GetFilteredMethodNamesInType(TypeDef type)
+	{
+		return type.Methods
+			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+			// Don't match de-obfuscator given method names
+			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
+			.Select(s => s.Name.ToString());
 	}
 	
 	private void ProcessEndQuestions(RemapModel remapModel, string assemblyPath)

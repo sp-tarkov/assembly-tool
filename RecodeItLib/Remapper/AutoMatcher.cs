@@ -129,7 +129,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		parms.HasAttribute = target.HasCustomAttributes;
 		parms.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
-		if ((bool)parms.IsDerived)
+		if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name.StartsWith(t)))
 		{
 			parms.MatchBaseClass = target.BaseType?.Name.String;
 		}
@@ -171,7 +171,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Except(GetFilteredMethodNamesInType(target));
 		
 		methods.IncludeMethods.UnionWith(includeMethods);
-		methods.IncludeMethods.UnionWith(excludeMethods);
+		methods.ExcludeMethods.UnionWith(excludeMethods);
 		
 		methods.MethodCount = target.Methods
 			.Count(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter && !m.IsSpecialName);
@@ -214,7 +214,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Except(target.Fields.Select(s => s.Name.ToString()));
 		
 		fields.IncludeFields.UnionWith(includeFields);
-		fields.IncludeFields.UnionWith(excludeFields);
+		fields.ExcludeFields.UnionWith(excludeFields);
 		
 		fields.FieldCount = target.Fields.Count;
 		

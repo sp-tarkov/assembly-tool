@@ -22,7 +22,9 @@ public class TypeFilters
     
 	private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDef> types)
     {
-        types = GenericTypeFilters.FilterPublic(types, mapping.SearchParams);
+        var parms = mapping.SearchParams;
+        
+        types = types.Where(t => t.IsPublic == parms.GenericParams.IsPublic);
 
         if (!types.Any())
         {
@@ -31,7 +33,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterAbstract(types, mapping.SearchParams);
+        types = types.Where(t => t.IsAbstract == parms.GenericParams.IsAbstract);
         
         if (!types.Any())
         {
@@ -40,7 +42,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterSealed(types, mapping.SearchParams);
+        types = types.Where(t => t.IsSealed == parms.GenericParams.IsSealed);
         
         if (!types.Any())
         {
@@ -48,8 +50,8 @@ public class TypeFilters
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
-        
-        types = GenericTypeFilters.FilterInterface(types, mapping.SearchParams);
+
+        types = types.Where(t => t.IsInterface == parms.GenericParams.IsInterface);
         
         if (!types.Any())
         {
@@ -58,7 +60,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
+        types = types.Where(t => t.IsEnum == parms.GenericParams.IsEnum);
         
         if (!types.Any())
         {
@@ -67,7 +69,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterAttributes(types, mapping.SearchParams);
+        types = FilterAttributes(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -76,7 +78,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterDerived(types, mapping.SearchParams);
+        types = FilterDerived(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -85,7 +87,7 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterByGenericParameters(types, mapping.SearchParams);
+        types = types.Where(t => t.HasGenericParameters == parms.GenericParams.HasGenericParameters);
         
         if (!types.Any())
         {
@@ -264,6 +266,41 @@ public class TypeFilters
         }
 
         return true;
+    }
+    
+    private static IEnumerable<TypeDef> FilterAttributes(IEnumerable<TypeDef> types, SearchParams parms)
+    {
+        // Filter based on HasAttribute or not
+        if (parms.GenericParams.HasAttribute is true)
+        {
+            types = types.Where(t => t.HasCustomAttributes);
+        }
+        else if (parms.GenericParams.HasAttribute is false)
+        {
+            types = types.Where(t => !t.HasCustomAttributes);
+        }
+
+        return types;
+    }
+    
+    private static IEnumerable<TypeDef> FilterDerived(IEnumerable<TypeDef> types, SearchParams parms)
+    {
+        // Filter based on IsDerived or not
+        if (parms.GenericParams.IsDerived is true)
+        {
+            types = types.Where(t => t.GetBaseType()?.Name?.String != "Object");
+
+            if (parms.GenericParams.MatchBaseClass is not null and not "")
+            {
+                types = types.Where(t => t.GetBaseType()?.Name?.String == parms.GenericParams.MatchBaseClass);
+            }
+        }
+        else if (parms.GenericParams.IsDerived is false)
+        {
+            types = types.Where(t => t.GetBaseType()?.Name?.String is "Object");
+        }
+
+        return types;
     }
     
     private static void AddNoMatchReason(RemapModel remap, ENoMatchReason noMatchReason)

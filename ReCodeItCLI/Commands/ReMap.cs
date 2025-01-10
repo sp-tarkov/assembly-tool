@@ -1,4 +1,8 @@
-﻿using CliFx;
+﻿// Uncomment this to have the application wait for a debugger to attach before running.
+//#define WAIT_FOR_DEBUGGER
+
+using System.Diagnostics;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using ReCodeItLib.Utils;
@@ -19,6 +23,14 @@ public class ReMap : ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
+#if WAIT_FOR_DEBUGGER
+		Logger.LogSync("Waiting for debugger...");
+		while (!Debugger.IsAttached)
+		{
+			Thread.Sleep(100);
+		}
+#endif
+        
         DataProvider.Settings.MappingPath = MappingJsonPath;
 
         var remaps = DataProvider.LoadMappingFile(MappingJsonPath);

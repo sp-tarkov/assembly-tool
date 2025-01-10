@@ -1,4 +1,8 @@
-﻿using CliFx;
+﻿// Uncomment this to have the application wait for a debugger to attach before running.
+#define WAIT_FOR_DEBUGGER
+
+using System.Diagnostics;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using ReCodeItLib.Models;
@@ -28,6 +32,14 @@ public class AutoMatchCommand : ICommand
 		Logger.LogSync("Finding match...");
 
 		var remaps = new List<RemapModel>();
+
+#if WAIT_FOR_DEBUGGER
+		Logger.LogSync("Waiting for debugger...");
+		while (!Debugger.IsAttached)
+		{
+			Thread.Sleep(100);
+		}
+#endif
 		
 		if (!string.IsNullOrEmpty(MappingsPath))
 		{

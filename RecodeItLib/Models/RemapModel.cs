@@ -61,7 +61,7 @@ public class GenericParams
     public bool IsEnum { get; set; }
     public bool IsSealed { get; set; }
     public bool? HasAttribute { get; set; } = null;
-    public bool? HasGenericParameters { get; set; } = null;
+    public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; } = null;
     
     /// <summary>

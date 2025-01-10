@@ -79,10 +79,6 @@ internal static class GenericTypeFilters
     
     public static IEnumerable<TypeDef> FilterByGenericParameters(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        if (parms.GenericParams.HasGenericParameters is null) return types;
-        
-        types = types.Where(t => t.HasGenericParameters == parms.GenericParams.HasGenericParameters);
-
-        return types;
+        return types.Where(t => t.HasGenericParameters == parms.GenericParams.HasGenericParameters);
     }
 }

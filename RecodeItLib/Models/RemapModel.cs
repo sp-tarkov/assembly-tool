@@ -58,7 +58,6 @@ public class GenericParams
     public bool IsPublic { get; set; } = true;
     public bool IsAbstract { get; set; }
     public bool IsInterface { get; set; }
-    public bool? IsStruct { get; set; } = null;
     public bool? IsEnum { get; set; } = null;
     public bool IsSealed { get; set; }
     public bool? HasAttribute { get; set; } = null;

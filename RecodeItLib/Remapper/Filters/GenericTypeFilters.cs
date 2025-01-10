@@ -37,20 +37,6 @@ internal static class GenericTypeFilters
         return types;
     }
     
-    public static IEnumerable<TypeDef> FilterStruct(IEnumerable<TypeDef> types, SearchParams parms)
-    {
-        if (parms.GenericParams.IsStruct is true)
-        {
-            types = types.Where(t => t.IsValueType && !t.IsEnum);
-        }
-        else if (parms.GenericParams.IsStruct is false)
-        {
-            types = types.Where(t => !t.IsValueType);
-        }
-
-        return types;
-    }
-    
     public static IEnumerable<TypeDef> FilterEnum(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on enum or not

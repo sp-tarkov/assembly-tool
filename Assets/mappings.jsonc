@@ -208,7 +208,6 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -410,7 +409,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -508,7 +507,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -710,7 +709,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": true,
         "HasAttribute": true
       },
@@ -1419,7 +1417,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "IsDerived": true
       },
       "Methods": {
@@ -2275,7 +2273,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -2774,7 +2772,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -2872,7 +2870,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -3080,7 +3078,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -3919,7 +3917,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 1,
@@ -3960,7 +3958,7 @@
     }
   },
   {
-    "NewTypeName": "JobPriority",
+    "NewTypeName": "JobPriorityClass",
     "OriginalTypeName": "GClass3628",
     "UseForceRename": false,
     "SearchParams": {
@@ -3968,7 +3966,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -4009,7 +4007,7 @@
     }
   },
   {
-    "NewTypeName": "BindableState",
+    "NewTypeName": "BindableStateClass",
     "OriginalTypeName": "GClass3651`1",
     "UseForceRename": false,
     "SearchParams": {
@@ -4017,7 +4015,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": true
       },
       "Methods": {
@@ -4575,7 +4573,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -4675,7 +4673,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -4773,7 +4771,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -5611,7 +5609,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -5661,7 +5659,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -6205,7 +6203,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 1,
@@ -6255,7 +6253,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": true
       },
       "Methods": {
@@ -6448,7 +6446,7 @@
     }
   },
   {
-    "NewTypeName": "BTRDataPacket",
+    "NewTypeName": "BTRDataPacketStruct",
     "OriginalTypeName": "GStruct382",
     "UseForceRename": false,
     "SearchParams": {
@@ -6456,7 +6454,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -6506,7 +6504,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -6557,7 +6555,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -6857,7 +6855,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -6906,7 +6904,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -7559,7 +7557,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -7710,7 +7708,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 4,
@@ -7914,7 +7912,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": true
       },
       "Methods": {
@@ -8018,7 +8016,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8517,7 +8515,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8568,7 +8566,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 2,
@@ -8617,7 +8615,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8668,7 +8666,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8721,7 +8719,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8873,7 +8871,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -8923,7 +8921,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9075,7 +9073,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9126,7 +9124,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9176,7 +9174,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9276,7 +9274,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9326,7 +9324,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -9579,7 +9577,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -9983,7 +9981,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10034,7 +10032,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10182,7 +10180,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10231,7 +10229,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10382,7 +10380,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10431,7 +10429,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10536,7 +10534,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10636,7 +10634,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -10690,16 +10688,14 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
         "MethodCount": -1,
         "IncludeMethods": [
           "Distance",
-          "ToString",
-          ""
+          "ToString"
         ],
         "ExcludeMethods": []
       },
@@ -10745,7 +10741,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -10845,7 +10841,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11048,7 +11044,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11149,7 +11145,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11201,7 +11197,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11548,7 +11544,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11598,7 +11594,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11698,7 +11694,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11749,7 +11745,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 5,
@@ -11799,7 +11795,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11851,7 +11847,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -11901,7 +11897,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 6,
@@ -11952,7 +11948,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12054,7 +12050,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12106,7 +12102,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12158,7 +12154,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12210,7 +12206,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12262,7 +12258,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12313,7 +12309,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12365,7 +12361,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12417,7 +12413,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12466,7 +12462,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12518,7 +12514,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasAttribute": false,
         "IsDerived": true
       },
@@ -12826,7 +12822,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -12878,7 +12874,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -13468,7 +13464,7 @@
     }
   },
   {
-    "NewTypeName": "BotSettingsRepoAbstractClass",
+    "NewTypeName": "BotSettingsRepoClass",
     "OriginalTypeName": "GClass732",
     "UseForceRename": false,
     "SearchParams": {
@@ -13476,7 +13472,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -13590,7 +13586,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -13643,7 +13639,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -13956,7 +13952,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -14058,7 +14054,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -14157,7 +14153,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15308,7 +15304,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -15584,8 +15580,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasAttribute": true,
         "HasGenericParameters": true
       },
@@ -15639,8 +15634,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -15699,8 +15693,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -15752,8 +15745,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
       },
@@ -15807,7 +15799,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false,
@@ -15863,7 +15854,6 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false,
@@ -15926,7 +15916,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -15983,7 +15972,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16040,7 +16028,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": true
@@ -16093,8 +16080,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": true
       },
@@ -16149,8 +16135,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -16204,8 +16189,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
       },
@@ -16313,7 +16297,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16367,8 +16350,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
       },
@@ -16422,8 +16404,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
       },
@@ -16477,8 +16458,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsStruct": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
       },
@@ -16638,7 +16618,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -18038,8 +18018,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -18142,8 +18121,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -18199,8 +18177,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19156,7 +19133,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19208,8 +19185,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19261,8 +19237,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19313,8 +19288,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19417,8 +19391,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19475,8 +19448,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19491,7 +19463,9 @@
           "RemoveEffect",
           "EffectNextState",
           "EffectStateTime",
-          "EffectStrength"
+          "EffectStrength",
+          "IsAlive",
+          "BodyHealth"
         ],
         "ExcludeFields": []
       },
@@ -19529,8 +19503,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19583,8 +19556,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19635,8 +19607,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19689,8 +19660,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19742,8 +19712,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19804,8 +19773,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19862,8 +19830,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 2,
@@ -19913,8 +19880,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -19969,8 +19935,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20025,8 +19990,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20079,8 +20043,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20135,8 +20098,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20187,8 +20149,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": true,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20414,7 +20375,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20615,7 +20576,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20676,7 +20637,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "IsDerived": true
       },
       "Methods": {
@@ -20736,7 +20697,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": 4,
@@ -20788,7 +20749,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20837,7 +20798,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -20896,7 +20857,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
-        "IsSealed": false
+        "IsSealed": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -21004,7 +20965,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
@@ -21133,7 +21093,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
@@ -21302,7 +21261,6 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
@@ -21371,7 +21329,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
@@ -21574,7 +21531,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
@@ -21735,7 +21691,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
@@ -21826,7 +21781,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
@@ -22066,7 +22020,6 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
-        "IsStruct": false,
         "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,

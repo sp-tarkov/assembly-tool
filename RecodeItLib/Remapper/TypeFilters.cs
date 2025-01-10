@@ -58,15 +58,6 @@ public class TypeFilters
             return false;
         }
         
-        types = GenericTypeFilters.FilterStruct(types, mapping.SearchParams);
-        
-        if (!types.Any())
-        {
-            AddNoMatchReason(mapping, ENoMatchReason.IsStruct);
-            mapping.TypeCandidates.UnionWith(types);
-            return false;
-        }
-        
         types = GenericTypeFilters.FilterEnum(types, mapping.SearchParams);
         
         if (!types.Any())

@@ -145,7 +145,6 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		parms.IsAbstract = target.IsAbstract;
 		parms.IsInterface = target.IsInterface;
 		parms.IsEnum = target.IsEnum;
-		parms.IsStruct = target.IsValueType && !target.IsEnum;
 		parms.HasGenericParameters = target.HasGenericParameters;
 		parms.IsSealed = target.IsSealed;
 		parms.HasAttribute = target.HasCustomAttributes;

@@ -29,10 +29,6 @@ public class AutoMatchCommand : ICommand
 
 	public ValueTask ExecuteAsync(IConsole console)
 	{
-		Logger.LogSync("Finding match...");
-
-		var remaps = new List<RemapModel>();
-
 #if WAIT_FOR_DEBUGGER
 		Logger.LogSync("Waiting for debugger...");
 		while (!Debugger.IsAttached)
@@ -40,6 +36,10 @@ public class AutoMatchCommand : ICommand
 			Thread.Sleep(100);
 		}
 #endif
+		
+		Logger.LogSync("Finding match...");
+
+		var remaps = new List<RemapModel>();
 		
 		if (!string.IsNullOrEmpty(MappingsPath))
 		{

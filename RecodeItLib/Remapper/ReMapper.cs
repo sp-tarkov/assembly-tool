@@ -69,7 +69,7 @@ public class ReMapper
         
         RenameMatches(types);
         
-        Publicize();
+        //Publicize();
         
         // We are done, write the assembly
         WriteAssembly();
@@ -118,9 +118,9 @@ public class ReMapper
             );
         }
         
-        while (!renameTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        while (!renameTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
-            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count() + 1, renameTasks.Count, 50);
+            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count(), renameTasks.Count, 50);
         }
         
         Task.WaitAll(renameTasks.ToArray());

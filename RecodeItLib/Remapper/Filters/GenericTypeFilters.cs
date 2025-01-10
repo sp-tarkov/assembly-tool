@@ -6,66 +6,22 @@ namespace ReCodeItLib.ReMapper.Filters;
 
 internal static class GenericTypeFilters
 {
-    /// <summary>
-    /// Filters based on public, or nested public or private if the nested flag is set. This is a
-    /// required property
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterPublic(IEnumerable<TypeDef> types, SearchParams parms)
     {
         return types.Where(t => t.IsPublic == parms.GenericParams.IsPublic);
     }
     
-    /// <summary>
-    /// Filters based on IsAbstract
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
     public static IEnumerable<TypeDef> FilterAbstract(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        // Filter based on abstract or not
-        if (parms.GenericParams.IsAbstract is true)
-        {
-            types = types.Where(t => t.IsAbstract && !t.IsInterface);
-        }
-        else if (parms.GenericParams.IsAbstract is false)
-        {
-            types = types.Where(t => !t.IsAbstract);
-        }
-
-        return types;
+        // NOTE: Interfaces are abstract
+        return types.Where(t => t.IsAbstract == parms.GenericParams.IsAbstract);
     }
-
-    /// <summary>
-    /// Filters based on IsAbstract
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterSealed(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        // Filter based on abstract or not
-        if (parms.GenericParams.IsSealed is true)
-        {
-            types = types.Where(t => t.IsSealed);
-        }
-        else if (parms.GenericParams.IsSealed is false)
-        {
-            types = types.Where(t => !t.IsSealed);
-        }
-
-        return types;
+        return types.Where(t => t.IsSealed == parms.GenericParams.IsSealed);
     }
-
-    /// <summary>
-    /// Filters based on IsInterface
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterInterface(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on interface or not
@@ -80,13 +36,7 @@ internal static class GenericTypeFilters
 
         return types;
     }
-
-    /// <summary>
-    /// Filters based on IsStruct
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterStruct(IEnumerable<TypeDef> types, SearchParams parms)
     {
         if (parms.GenericParams.IsStruct is true)
@@ -100,13 +50,7 @@ internal static class GenericTypeFilters
 
         return types;
     }
-
-    /// <summary>
-    /// Filters based on IsEnum
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterEnum(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on enum or not
@@ -121,13 +65,7 @@ internal static class GenericTypeFilters
 
         return types;
     }
-
-    /// <summary>
-    /// Filters based on HasAttribute
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterAttributes(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on HasAttribute or not
@@ -142,13 +80,7 @@ internal static class GenericTypeFilters
 
         return types;
     }
-
-    /// <summary>
-    /// Filters based on HasAttribute
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterDerived(IEnumerable<TypeDef> types, SearchParams parms)
     {
         // Filter based on IsDerived or not
@@ -168,13 +100,7 @@ internal static class GenericTypeFilters
 
         return types;
     }
-
-    /// <summary>
-    /// Filters based on method count
-    /// </summary>
-    /// <param name="types"></param>
-    /// <param name="parms"></param>
-    /// <returns>Filtered list</returns>
+    
     public static IEnumerable<TypeDef> FilterByGenericParameters(IEnumerable<TypeDef> types, SearchParams parms)
     {
         if (parms.GenericParams.HasGenericParameters is null) return types;

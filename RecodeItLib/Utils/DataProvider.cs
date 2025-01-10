@@ -33,7 +33,7 @@ public static class DataProvider
         return remaps ?? [];
     }
     
-    public static void UpdateMapping(string path, List<RemapModel> remaps)
+    public static void UpdateMapping(string path, List<RemapModel> remaps, bool ignoreNull = true)
     {
         if (!File.Exists(path))
         {
@@ -42,7 +42,7 @@ public static class DataProvider
 
         JsonSerializerSettings settings = new()
         {
-            NullValueHandling = NullValueHandling.Ignore,
+            NullValueHandling = ignoreNull ? NullValueHandling.Ignore : NullValueHandling.Include,
             Formatting = Formatting.Indented
         };
 

@@ -25,8 +25,7 @@ public class AutoMatchCommand : ICommand
 	
 	[CommandParameter(3, IsRequired = true, Description = "The name you want the type to be renamed to")]
 	public required string NewTypeName { get; init; }
-
-
+	
 	public ValueTask ExecuteAsync(IConsole console)
 	{
 #if WAIT_FOR_DEBUGGER

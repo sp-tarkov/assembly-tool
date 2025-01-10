@@ -8,6 +8,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -57,6 +58,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -107,6 +109,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -158,6 +161,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -208,6 +212,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -261,6 +266,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -311,6 +317,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -360,6 +367,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -409,6 +417,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -458,6 +467,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -507,6 +517,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -556,6 +567,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -605,6 +617,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -656,6 +669,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": true
       },
@@ -709,6 +723,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": true
       },
@@ -771,6 +786,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -820,6 +836,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -869,6 +886,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -920,6 +938,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -969,6 +988,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1018,6 +1038,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1067,6 +1088,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -1120,6 +1142,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1169,6 +1192,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1221,6 +1245,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1270,6 +1295,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -1319,6 +1345,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1368,6 +1395,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1417,6 +1445,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "IsDerived": true
       },
@@ -1476,6 +1505,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1525,6 +1555,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1574,6 +1605,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1623,6 +1655,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1672,6 +1705,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1721,6 +1755,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -1772,6 +1807,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1821,6 +1857,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1870,6 +1907,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -1919,6 +1957,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": true
@@ -1977,6 +2016,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2026,6 +2066,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2075,6 +2116,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2124,6 +2166,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2173,6 +2216,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2222,6 +2266,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2273,6 +2318,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2322,6 +2368,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2371,6 +2418,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2420,6 +2468,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2473,6 +2522,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2524,6 +2574,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2573,6 +2624,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2622,6 +2674,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2671,6 +2724,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2722,6 +2776,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2772,6 +2827,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2821,6 +2877,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2870,6 +2927,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -2921,6 +2979,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -2972,6 +3031,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3027,6 +3087,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3078,6 +3139,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3127,6 +3189,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3176,6 +3239,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3225,6 +3289,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3276,6 +3341,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3325,6 +3391,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3375,6 +3442,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -3425,6 +3493,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3474,6 +3543,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3523,6 +3593,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3572,6 +3643,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3621,6 +3693,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3670,6 +3743,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3719,6 +3793,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3768,6 +3843,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3817,6 +3893,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3868,6 +3945,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -3917,6 +3995,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -3966,6 +4045,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4015,6 +4095,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": true
       },
@@ -4069,6 +4150,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4121,6 +4203,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": true
       },
@@ -4171,6 +4254,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4222,6 +4306,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4271,6 +4356,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4320,6 +4406,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4371,6 +4458,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4420,6 +4508,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4469,6 +4558,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4518,6 +4608,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4573,6 +4664,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4622,6 +4714,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4673,6 +4766,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4722,6 +4816,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4771,6 +4866,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4820,6 +4916,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -4869,6 +4966,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4918,6 +5016,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -4970,6 +5069,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5019,6 +5119,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5068,6 +5169,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5117,6 +5219,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5166,6 +5269,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5215,6 +5319,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5264,6 +5369,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5313,6 +5419,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5362,6 +5469,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5411,6 +5519,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5460,6 +5569,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -5510,6 +5620,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5559,6 +5670,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -5609,6 +5721,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -5659,6 +5772,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -5708,6 +5822,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5757,6 +5872,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5806,6 +5922,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -5855,6 +5972,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -5904,6 +6022,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -5953,6 +6072,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6002,6 +6122,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -6052,6 +6173,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6101,6 +6223,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -6153,6 +6276,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -6203,6 +6327,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6253,6 +6378,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": true
       },
@@ -6356,6 +6482,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6405,6 +6532,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6454,6 +6582,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6504,6 +6633,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6555,6 +6685,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6605,6 +6736,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -6656,6 +6788,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6705,6 +6838,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6754,6 +6888,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -6803,6 +6938,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -6855,6 +6991,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6904,6 +7041,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -6953,6 +7091,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7002,6 +7141,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7051,6 +7191,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7101,6 +7242,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7152,6 +7294,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7203,6 +7346,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7253,6 +7397,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7302,6 +7447,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7353,6 +7499,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7404,6 +7551,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7454,6 +7602,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7505,6 +7654,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7557,6 +7707,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -7606,6 +7757,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7657,6 +7809,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7708,6 +7861,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -7762,6 +7916,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7812,6 +7967,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -7862,6 +8018,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -7912,6 +8069,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": true
       },
@@ -7967,6 +8125,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8016,6 +8175,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8065,6 +8225,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8114,6 +8275,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8164,6 +8326,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8214,6 +8377,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8263,6 +8427,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8312,6 +8477,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8363,6 +8529,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8414,6 +8581,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8465,6 +8633,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -8515,6 +8684,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8566,6 +8736,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8615,6 +8786,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8666,6 +8838,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8719,6 +8892,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8769,6 +8943,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8819,6 +8994,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -8871,6 +9047,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8921,6 +9098,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -8971,6 +9149,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9022,6 +9201,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9073,6 +9253,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -9124,6 +9305,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -9174,6 +9356,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -9224,6 +9407,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9274,6 +9458,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -9324,6 +9509,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -9374,6 +9560,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9425,6 +9612,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9476,6 +9664,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -9526,6 +9715,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -9577,6 +9767,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -9626,6 +9817,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9677,6 +9869,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9728,6 +9921,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -9778,6 +9972,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9830,6 +10025,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9881,6 +10077,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9931,6 +10128,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -9981,6 +10179,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10032,6 +10231,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10082,6 +10282,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10131,6 +10332,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -10180,6 +10382,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10229,6 +10432,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10279,6 +10483,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -10329,6 +10534,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -10380,6 +10586,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10429,6 +10636,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10481,6 +10689,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -10534,6 +10743,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10583,6 +10793,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -10634,6 +10845,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -10688,6 +10900,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10741,6 +10954,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10791,6 +11005,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -10841,6 +11056,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -10891,6 +11107,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -10942,6 +11159,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": true
       },
@@ -10993,6 +11211,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11044,6 +11263,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11094,6 +11314,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11145,6 +11366,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11197,6 +11419,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11247,6 +11470,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11297,6 +11521,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11347,6 +11572,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11396,6 +11622,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11445,6 +11672,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11494,6 +11722,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11544,6 +11773,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11594,6 +11824,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11645,6 +11876,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -11694,6 +11926,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11745,6 +11978,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11795,6 +12029,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11847,6 +12082,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11897,6 +12133,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11948,6 +12185,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -11999,6 +12237,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12050,6 +12289,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12102,6 +12342,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12154,6 +12395,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12206,6 +12448,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12258,6 +12501,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12309,6 +12553,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12361,6 +12606,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12413,6 +12659,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12462,6 +12709,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12514,6 +12762,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
         "IsDerived": true
@@ -12574,6 +12823,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12624,6 +12874,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12673,6 +12924,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12722,6 +12974,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12771,6 +13024,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12822,6 +13076,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12874,6 +13129,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -12925,6 +13181,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -12975,6 +13232,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13025,6 +13283,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13074,6 +13333,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13124,6 +13384,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13175,6 +13436,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13224,6 +13486,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13273,6 +13536,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13324,6 +13588,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": false
       },
@@ -13374,6 +13639,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13423,6 +13689,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13472,6 +13739,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -13532,6 +13800,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -13586,6 +13855,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -13639,6 +13909,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -13691,6 +13962,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13742,6 +14014,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13797,6 +14070,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13848,6 +14122,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13903,6 +14178,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -13952,6 +14228,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14004,6 +14281,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14054,6 +14332,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14103,6 +14382,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14153,6 +14433,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14202,6 +14483,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -14252,6 +14534,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14307,6 +14590,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14356,6 +14640,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14412,6 +14697,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -14471,6 +14757,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14522,6 +14809,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14574,6 +14862,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14631,6 +14920,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14681,6 +14971,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false
       },
@@ -14734,6 +15025,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14789,6 +15081,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14847,6 +15140,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14906,6 +15200,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -14961,6 +15256,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15012,6 +15308,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15072,6 +15369,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15127,6 +15425,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15184,6 +15483,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15247,6 +15547,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15304,6 +15605,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -15356,6 +15658,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15409,6 +15712,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15467,6 +15771,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -15524,6 +15829,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -15580,6 +15886,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": true,
         "HasGenericParameters": true
@@ -15634,6 +15941,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -15693,6 +16001,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -15745,6 +16054,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -15799,6 +16109,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false,
@@ -15854,6 +16165,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false,
@@ -15916,6 +16228,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasAttribute": false,
         "HasGenericParameters": false
@@ -15972,6 +16285,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16028,6 +16342,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": true
@@ -16080,6 +16395,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": true
@@ -16135,6 +16451,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false
       },
@@ -16189,6 +16506,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16242,6 +16560,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "IsDerived": true
       },
@@ -16297,6 +16616,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16350,6 +16670,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16404,6 +16725,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16458,6 +16780,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "HasGenericParameters": false,
         "IsDerived": false
@@ -16514,6 +16837,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16569,6 +16893,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16618,6 +16943,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -16676,6 +17002,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -16728,6 +17055,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -16782,6 +17110,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16835,6 +17164,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16884,6 +17214,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16933,6 +17264,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -16983,6 +17315,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17035,6 +17368,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17091,6 +17425,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17141,6 +17476,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17191,6 +17527,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17243,6 +17580,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17294,6 +17632,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17346,6 +17685,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17396,6 +17736,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17448,6 +17789,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17501,6 +17843,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17552,6 +17895,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17603,6 +17947,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17657,6 +18002,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17706,6 +18052,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17757,6 +18104,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17811,6 +18159,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17864,6 +18213,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17916,6 +18266,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -17966,6 +18317,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": false
       },
@@ -18018,6 +18370,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18071,6 +18424,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18121,6 +18475,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18177,6 +18532,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18233,6 +18589,7 @@
         "IsPublic": false,
         "IsAbstract": true,
         "IsInterface": true,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -18288,6 +18645,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -18346,6 +18704,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -18405,6 +18764,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -18465,6 +18825,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -18522,6 +18883,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -18575,6 +18937,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -18628,6 +18991,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18680,6 +19044,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18741,6 +19106,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18795,6 +19161,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18859,6 +19226,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18915,6 +19283,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -18972,6 +19341,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19027,6 +19397,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19078,6 +19449,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19133,6 +19505,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19185,6 +19558,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19237,6 +19611,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19288,6 +19663,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19338,6 +19714,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -19391,6 +19768,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19448,6 +19826,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19503,6 +19882,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19556,6 +19936,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19607,6 +19988,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19660,6 +20042,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19712,6 +20095,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19773,6 +20157,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19830,6 +20215,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19880,6 +20266,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19935,6 +20322,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -19990,6 +20378,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20043,6 +20432,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20098,6 +20488,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20149,6 +20540,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20203,6 +20595,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -20262,6 +20655,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -20318,6 +20712,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": true
       },
@@ -20375,6 +20770,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20440,6 +20836,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {
@@ -20504,6 +20901,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false,
         "IsDerived": false
       },
@@ -20576,6 +20974,7 @@
         "IsPublic": false,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20637,6 +21036,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true,
         "IsDerived": true
       },
@@ -20697,6 +21097,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20749,6 +21150,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20798,6 +21200,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20857,6 +21260,7 @@
         "IsPublic": true,
         "IsAbstract": true,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": true
       },
       "Methods": {
@@ -20906,6 +21310,7 @@
         "IsPublic": true,
         "IsAbstract": false,
         "IsInterface": false,
+        "IsEnum": false,
         "IsSealed": false
       },
       "Methods": {

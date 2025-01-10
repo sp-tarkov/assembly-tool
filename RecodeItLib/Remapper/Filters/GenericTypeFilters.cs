@@ -39,17 +39,7 @@ internal static class GenericTypeFilters
     
     public static IEnumerable<TypeDef> FilterEnum(IEnumerable<TypeDef> types, SearchParams parms)
     {
-        // Filter based on enum or not
-        if (parms.GenericParams.IsEnum is true)
-        {
-            types = types.Where(t => t.IsEnum);
-        }
-        else if (parms.GenericParams.IsEnum is false)
-        {
-            types = types.Where(t => !t.IsEnum);
-        }
-
-        return types;
+        return types.Where(t => t.IsEnum == parms.GenericParams.IsEnum);
     }
     
     public static IEnumerable<TypeDef> FilterAttributes(IEnumerable<TypeDef> types, SearchParams parms)

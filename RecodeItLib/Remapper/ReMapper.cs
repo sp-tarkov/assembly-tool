@@ -69,7 +69,7 @@ public class ReMapper
         
         RenameMatches(types);
         
-        //Publicize();
+        Publicize();
         
         // We are done, write the assembly
         WriteAssembly();

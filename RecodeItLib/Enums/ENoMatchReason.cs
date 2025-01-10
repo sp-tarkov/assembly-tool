@@ -10,7 +10,6 @@ public enum ENoMatchReason
     IsNested,
     IsSealed,
     IsInterface,
-    IsStruct,
     IsDerived,
     HasGenericParameters,
     HasAttribute,

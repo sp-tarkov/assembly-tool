@@ -312,7 +312,7 @@
     }
   },
   {
-    "NewTypeName": "DataHandler",
+    "NewTypeName": "DataHandlerClass",
     "OriginalTypeName": "Class290",
     "UseForceRename": false,
     "SearchParams": {
@@ -1097,7 +1097,7 @@
     }
   },
   {
-    "NewTypeName": "WaveInfo",
+    "NewTypeName": "WaveInfoClass",
     "OriginalTypeName": "GClass1568",
     "UseForceRename": false,
     "SearchParams": {
@@ -1359,7 +1359,7 @@
     }
   },
   {
-    "NewTypeName": "PoolManager",
+    "NewTypeName": "PoolManagerClass",
     "OriginalTypeName": "GClass1910",
     "UseForceRename": false,
     "SearchParams": {
@@ -1410,7 +1410,7 @@
     }
   },
   {
-    "NewTypeName": "MainMenuController",
+    "NewTypeName": "MainMenuControllerClass",
     "OriginalTypeName": "GClass1935",
     "UseForceRename": false,
     "SearchParams": {
@@ -2194,7 +2194,7 @@
     }
   },
   {
-    "NewTypeName": "ClientMetrics",
+    "NewTypeName": "ClientMetricsClass",
     "OriginalTypeName": "GClass2282",
     "UseForceRename": false,
     "SearchParams": {
@@ -3023,7 +3023,7 @@
     }
   },
   {
-    "NewTypeName": "Equipment",
+    "NewTypeName": "EquipmentClass",
     "OriginalTypeName": "GClass273",
     "UseForceRename": false,
     "SearchParams": {
@@ -4215,7 +4215,7 @@
     }
   },
   {
-    "NewTypeName": "BundleLock",
+    "NewTypeName": "BundleLockClass",
     "OriginalTypeName": "GClass3665",
     "UseForceRename": false,
     "SearchParams": {
@@ -4269,7 +4269,7 @@
     }
   },
   {
-    "NewTypeName": "DependencyGraph",
+    "NewTypeName": "DependencyGraphClass",
     "OriginalTypeName": "GClass3666`1",
     "UseForceRename": false,
     "SearchParams": {
@@ -14731,7 +14731,7 @@
     }
   },
   {
-    "NewTypeName": "CurrentScreenSingleton",
+    "NewTypeName": "CurrentScreenSingletonClass",
     "OriginalTypeName": "GClass3376",
     "UseForceRename": false,
     "SearchParams": {
@@ -16271,7 +16271,7 @@
     }
   },
   {
-    "NewTypeName": "AddViewList",
+    "NewTypeName": "AddViewListClass",
     "OriginalTypeName": "GClass805",
     "UseForceRename": false,
     "SearchParams": {
@@ -17492,7 +17492,7 @@
     }
   },
   {
-    "NewTypeName": "JumpState",
+    "NewTypeName": "JumpStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17543,7 +17543,7 @@
     }
   },
   {
-    "NewTypeName": "JumpLandingState",
+    "NewTypeName": "JumpLandingStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17595,7 +17595,7 @@
     }
   },
   {
-    "NewTypeName": "Transit2ProneState",
+    "NewTypeName": "Transit2ProneStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17649,7 +17649,7 @@
     }
   },
   {
-    "NewTypeName": "Prone2StandState",
+    "NewTypeName": "Prone2StandStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17707,7 +17707,7 @@
     }
   },
   {
-    "NewTypeName": "IdleState",
+    "NewTypeName": "IdleStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17759,7 +17759,7 @@
     }
   },
   {
-    "NewTypeName": "SideStepState",
+    "NewTypeName": "SideStepStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17811,7 +17811,7 @@
     }
   },
   {
-    "NewTypeName": "BlindFireState",
+    "NewTypeName": "BlindFireStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17865,7 +17865,7 @@
     }
   },
   {
-    "NewTypeName": "ProneIdleState",
+    "NewTypeName": "ProneIdleStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17918,7 +17918,7 @@
     }
   },
   {
-    "NewTypeName": "ProneMoveState",
+    "NewTypeName": "ProneMoveStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -17972,7 +17972,7 @@
     }
   },
   {
-    "NewTypeName": "RollState",
+    "NewTypeName": "RollStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18024,7 +18024,7 @@
     }
   },
   {
-    "NewTypeName": "TransitionState",
+    "NewTypeName": "TransitionStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18078,7 +18078,7 @@
     }
   },
   {
-    "NewTypeName": "SprintState",
+    "NewTypeName": "SprintStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18133,7 +18133,7 @@
     }
   },
   {
-    "NewTypeName": "RunState",
+    "NewTypeName": "RunStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18186,7 +18186,7 @@
     }
   },
   {
-    "NewTypeName": "BreachDoorState",
+    "NewTypeName": "BreachDoorStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18239,7 +18239,7 @@
     }
   },
   {
-    "NewTypeName": "ApproachState",
+    "NewTypeName": "ApproachStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18295,7 +18295,7 @@
     }
   },
   {
-    "NewTypeName": "LootState",
+    "NewTypeName": "LootStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18346,7 +18346,7 @@
     }
   },
   {
-    "NewTypeName": "DoorInteractionState",
+    "NewTypeName": "DoorInteractionStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18399,7 +18399,7 @@
     }
   },
   {
-    "NewTypeName": "StationaryState",
+    "NewTypeName": "StationaryStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18455,7 +18455,7 @@
     }
   },
   {
-    "NewTypeName": "ClimbOverState",
+    "NewTypeName": "ClimbOverStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18510,7 +18510,7 @@
     }
   },
   {
-    "NewTypeName": "ClimbUpState",
+    "NewTypeName": "ClimbUpStateClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -18564,7 +18564,7 @@
     }
   },
   {
-    "NewTypeName": "BaseAnimationOperation",
+    "NewTypeName": "BaseAnimationOperationClass",
     "OriginalTypeName": "",
     "UseForceRename": false,
     "SearchParams": {
@@ -21722,7 +21722,7 @@
     }
   },
   {
-    "NewTypeName": "ProneAIIdleState",
+    "NewTypeName": "ProneAIIdleStateClass",
     "OriginalTypeName": "GClass1883",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -21850,7 +21850,7 @@
     }
   },
   {
-    "NewTypeName": "ProneAIMoveState",
+    "NewTypeName": "ProneAIMoveStateClass",
     "OriginalTypeName": "GClass1892",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22018,7 +22018,7 @@
     }
   },
   {
-    "NewTypeName": "LootingState",
+    "NewTypeName": "LootingStateClass",
     "OriginalTypeName": "Class1282",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22086,7 +22086,7 @@
     }
   },
   {
-    "NewTypeName": "PickupState",
+    "NewTypeName": "PickupStateClass",
     "OriginalTypeName": "GClass1894",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22288,7 +22288,7 @@
     }
   },
   {
-    "NewTypeName": "PlantState",
+    "NewTypeName": "PlantStateClass",
     "OriginalTypeName": "GClass1895",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22448,7 +22448,7 @@
     }
   },
   {
-    "NewTypeName": "IdleWeaponMountingState",
+    "NewTypeName": "IdleWeaponMountingStateClass",
     "OriginalTypeName": "GClass1906",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22538,7 +22538,7 @@
     }
   },
   {
-    "NewTypeName": "IdleZombieState",
+    "NewTypeName": "IdleZombieStateClass",
     "OriginalTypeName": "GClass1901",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -22777,7 +22777,7 @@
     }
   },
   {
-    "NewTypeName": "MoveZombieState",
+    "NewTypeName": "MoveZombieStateClass",
     "OriginalTypeName": "GClass1903",
     "UseForceRename": false,
     "AutoGenerated": true,

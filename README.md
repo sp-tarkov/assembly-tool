@@ -1,7 +1,6 @@
-# RecodeIt Command Line
+# Assembly Tool Command Line
 
-This is the command line interface for ReCodeIt. It offers a streamlined way to operate the application without the
-use of the graphical user interface (GUI). It can be used to de-obfuscate, re-map, and other smaller utilities.
+This is the command line interface for assembly tool. It can be used to de-obfuscate, re-map, and other smaller utilities.
 It can be placed on the system path and accessed from anywhere. 
 
 ## Commands

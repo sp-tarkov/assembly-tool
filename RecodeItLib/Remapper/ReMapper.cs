@@ -125,10 +125,31 @@ public class ReMapper
 
     private void Publicize()
     {
-        // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
+        
+        var publicizer = new Publicizer();
+        
+        var publicizeTasks = new List<Task>(Module!.Types.Count(t => !t.IsNested));
+        foreach (var type in Module!.Types)
+        {
+            if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
+            
+            publicizeTasks.Add(
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        publicizer.PublicizeType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
+                })
+            );
+        }
 
-        new Publicizer().PublicizeClasses(Module);
+        Task.WaitAll(publicizeTasks.ToArray());
     }
     
     private bool Validate(List<RemapModel> remaps)
@@ -355,7 +376,7 @@ public class ReMapper
     /// </summary>
     private void StartHollow()
     {
-        Logger.LogSync("\nCreating Hollow...", ConsoleColor.Green);
+        Logger.LogSync("Creating Hollow...", ConsoleColor.Green);
         
         var tasks = new List<Task>(Module!.GetTypes().Count());
         foreach (var type in Module.GetTypes())

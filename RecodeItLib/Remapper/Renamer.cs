@@ -25,12 +25,13 @@ internal class Renamer
             types);
 
         RenameAllProperties(
-            remap!.TypePrimeCandidate!.Name.String,
+            remap.TypePrimeCandidate!.Name.String,
             remap.NewTypeName,
             types);
 
         FixMethods(types, remap);
-        RenameType(types, remap);
+        
+        remap.TypePrimeCandidate.Name = remap.NewTypeName;
     }
 
     private static void FixMethods(
@@ -69,7 +70,8 @@ internal class Renamer
         string newTypeName,
         IEnumerable<TypeDef> typesToCheck)
     {
-        foreach (var type in typesToCheck)
+        var typeDefs = typesToCheck as TypeDef[] ?? typesToCheck.ToArray();
+        foreach (var type in typeDefs)
         {
             var fields = type.Fields
                 .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch!));
@@ -90,7 +92,7 @@ internal class Renamer
 
                     field.Name = newFieldName;
                     
-                    UpdateAllTypeFieldMemberRefs(typesToCheck, field, oldName);
+                    UpdateAllTypeFieldMemberRefs(typeDefs, field, oldName);
 
                     fieldCount++;
                 }
@@ -168,29 +170,5 @@ internal class Renamer
     private static string GetNewPropertyName(string newName, int propertyCount = 0)
     {
         return propertyCount > 0 ? $"{newName}_{propertyCount}" : newName;
-    }
-
-    private static void RenameType(IEnumerable<TypeDef> typesToCheck, RemapModel remap)
-    {
-        foreach (var type in typesToCheck)
-        {
-            if (type.HasNestedTypes)
-            {
-                RenameType(type.NestedTypes, remap!);
-            }
-
-            if (remap?.TypePrimeCandidate?.Name is null) { continue; }
-
-            if (remap.SearchParams.NestedTypes.IsNested is true &&
-                type.IsNested && type.Name == remap.TypePrimeCandidate.Name)
-            {
-                type.Name = remap.NewTypeName;
-            }
-
-            if (type.FullName == remap.TypePrimeCandidate.Name)
-            {
-                type.Name = remap.NewTypeName;
-            }
-        }
     }
 }

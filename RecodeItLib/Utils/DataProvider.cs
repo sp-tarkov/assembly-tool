@@ -1,7 +1,9 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using dnlib.DotNet;
+using Newtonsoft.Json;
 using ReCodeItLib.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ReCodeItLib.Utils;
 
@@ -92,6 +94,12 @@ public static class DataProvider
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText)!;
+        JsonSerializerOptions settings = new()
+        {
+            RespectNullableAnnotations = true,
+            PropertyNameCaseInsensitive = true
+        };
+        
+        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
     }
 }

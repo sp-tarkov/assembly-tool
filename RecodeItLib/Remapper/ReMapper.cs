@@ -274,10 +274,12 @@ public class ReMapper
             var remap = new RemapModel
             {
                 OriginalTypeName = type.Value.Name,
-                NewTypeName = $"{template._name}{extName}",
+                NewTypeName = $"{template.Name}{extName}",
                 UseForceRename = true
             };
                 
+            Logger.LogSync($"{type.Value.Name} -> {template.Name}{extName}");
+            
             _remaps.Add(remap);
         }
     }

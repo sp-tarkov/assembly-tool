@@ -322,9 +322,8 @@ public class ReMapper
             Logger.LogSync(e);
             throw;
         }
-
-        Logger.LogSync("\nCreating Hollow...", ConsoleColor.Green);
-        Hollow();
+        
+        StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
@@ -354,17 +353,37 @@ public class ReMapper
     /// <summary>
     /// Hollows out all logic from the dll
     /// </summary>
-    private void Hollow()
+    private void StartHollow()
     {
-        foreach (var type in Module!.GetTypes())
+        Logger.LogSync("\nCreating Hollow...", ConsoleColor.Green);
+        
+        var tasks = new List<Task>(Module!.GetTypes().Count());
+        foreach (var type in Module.GetTypes())
         {
-            foreach (var method in type.Methods.Where(m => m.HasBody))
+            tasks.Add(Task.Run(() =>
             {
-                if (!method.HasBody) continue;
+                try
+                {
+                    HollowType(type);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                }
+            }));
+        }
+        
+        Task.WaitAll(tasks.ToArray());
+    }
 
-                method.Body = new CilBody();
-                method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
-            }
+    private void HollowType(TypeDef type)
+    {
+        foreach (var method in type.Methods.Where(m => m.HasBody))
+        {
+            if (!method.HasBody) continue;
+
+            method.Body = new CilBody();
+            method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
         }
     }
 }

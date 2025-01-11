@@ -23,7 +23,7 @@ internal class Publicizer
         }
         
         // TODO: This is broken. No idea why.
-        while (!publicizeTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        while (!publicizeTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
             Logger.DrawProgressBar(publicizeTasks.Count(t => t.IsCompleted), publicizeTasks.Count, 50);
         }

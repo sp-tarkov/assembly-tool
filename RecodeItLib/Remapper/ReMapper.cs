@@ -11,8 +11,6 @@ namespace ReCodeItLib.ReMapper;
 public class ReMapper
 {
     private ModuleDefMD? Module { get; set; }
-
-    public static bool IsRunning { get; private set; } = false;
     
     private static readonly Stopwatch Stopwatch = new();
     private string OutPath { get; set; } = string.Empty;
@@ -44,8 +42,7 @@ public class ReMapper
         OutPath = outPath;
 
         if (!Validate(_remaps)) return;
-
-        IsRunning = true;
+        
         Stopwatch.Start();
         
         var types = Module.GetTypes();
@@ -92,9 +89,9 @@ public class ReMapper
 
         if (!validate)
         {
-            while (!tasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+            while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
             {
-                Logger.DrawProgressBar(tasks.Where(t => t.IsCompleted)!.Count() + 1, tasks.Count, 50);
+                Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
             }
         }
         
@@ -120,7 +117,7 @@ public class ReMapper
         
         while (!renameTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
-            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count(), renameTasks.Count, 50);
+            Logger.DrawProgressBar(renameTasks.Count(t => t.IsCompleted), renameTasks.Count, 50);
         }
         
         Task.WaitAll(renameTasks.ToArray());
@@ -141,7 +138,7 @@ public class ReMapper
             .Where(g => g.Count() > 1)
             .ToList();
 
-        if (duplicateGroups.Count() > 1)
+        if (duplicateGroups.Count > 1)
         {
             Logger.Log($"There were {duplicateGroups.Count()} duplicated sets of remaps.", ConsoleColor.Yellow);
 
@@ -194,16 +191,15 @@ public class ReMapper
     {
         foreach (var type in types)
         {
-            if (type.Name == mapping.OriginalTypeName)
-            {
-                mapping.TypePrimeCandidate = type;
-                mapping.OriginalTypeName = type.Name.String;
-                mapping.Succeeded = true;
+            if (type.Name != mapping.OriginalTypeName) continue;
+            
+            mapping.TypePrimeCandidate = type;
+            mapping.OriginalTypeName = type.Name.String;
+            mapping.Succeeded = true;
 
-                _alreadyGivenNames.Add(mapping.OriginalTypeName);
+            _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-                return;
-            }
+            return;
         }
     }
 
@@ -353,8 +349,6 @@ public class ReMapper
         
         Stopwatch.Reset();
         Module = null;
-
-        IsRunning = false;
     }
 
     /// <summary>

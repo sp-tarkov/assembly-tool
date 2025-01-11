@@ -17,7 +17,7 @@ public class ReMapper
     
     private List<RemapModel> _remaps = [];
 
-    private List<string> _alreadyGivenNames = [];
+    private readonly List<string> _alreadyGivenNames = [];
 
     /// <summary>
     /// Start the remapping process
@@ -28,9 +28,7 @@ public class ReMapper
         string outPath = "",
         bool validate = false)
     {
-        _remaps = [];
         _remaps = remapModels;
-        _alreadyGivenNames = [];
         
         assemblyPath = AssemblyUtils.TryDeObfuscate(
             DataProvider.LoadModule(assemblyPath), 
@@ -47,12 +45,13 @@ public class ReMapper
         
         var types = Module.GetTypes();
 
+        var typeDefs = types as TypeDef[] ?? types.ToArray();
         if (!validate)
         {
-            GenerateDynamicRemaps(assemblyPath, types);
+            GenerateDynamicRemaps(assemblyPath, typeDefs);
         }
         
-        FindBestMatches(types, validate);
+        FindBestMatches(typeDefs, validate);
         ChooseBestMatches();
 
         // Don't go any further during a validation
@@ -64,11 +63,8 @@ public class ReMapper
             return;
         }
         
-        RenameMatches(types);
-        
+        RenameMatches(typeDefs);
         Publicize();
-        
-        // We are done, write the assembly
         WriteAssembly();
     }
     
@@ -152,27 +148,24 @@ public class ReMapper
         Task.WaitAll(publicizeTasks.ToArray());
     }
     
-    private bool Validate(List<RemapModel> remaps)
+    private static bool Validate(List<RemapModel> remaps)
     {
         var duplicateGroups = remaps
             .GroupBy(m => m.NewTypeName)
             .Where(g => g.Count() > 1)
             .ToList();
 
-        if (duplicateGroups.Count > 1)
+        if (duplicateGroups.Count <= 1) return true;
+        
+        Logger.Log($"There were {duplicateGroups.Count} duplicated sets of remaps.", ConsoleColor.Yellow);
+
+        foreach (var duplicate in duplicateGroups)
         {
-            Logger.Log($"There were {duplicateGroups.Count()} duplicated sets of remaps.", ConsoleColor.Yellow);
-
-            foreach (var duplicate in duplicateGroups)
-            {
-                var duplicateNewTypeName = duplicate.Key;
-                Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
-            }
-
-            return false;
+            var duplicateNewTypeName = duplicate.Key;
+            Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
         }
 
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -180,9 +173,10 @@ public class ReMapper
     /// where null is a third disabled state. Then we score the types based on the search parameters
     /// </summary>
     /// <param name="mapping">Mapping to score</param>
+    /// <param name="types">Types to filter</param>
     private void ScoreMapping(RemapModel mapping, IEnumerable<TypeDef> types)
     {
-        var tokens = DataProvider.Settings?.TypeNamesToMatch;
+        var tokens = DataProvider.Settings.TypeNamesToMatch;
 
         if (mapping.UseForceRename)
         {
@@ -192,7 +186,7 @@ public class ReMapper
 
         // Filter down nested objects
         types = !mapping.SearchParams.NestedTypes.IsNested
-            ? types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)))
+            ? types.Where(type => tokens.Any(token => type.Name.StartsWith(token)))
             : types.Where(t => t.DeclaringType != null);
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
@@ -249,23 +243,23 @@ public class ReMapper
         }
         
         var typeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TypeTable")
-            .GetValue(templateMappingClass);
+            .GetField("TypeTable")!
+            .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(typeTable!, "ItemClass");
+        BuildAssociationFromTable(typeTable, "ItemClass");
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TemplateTypeTable")
-            .GetValue(templateMappingClass);
+            .GetField("TemplateTypeTable")!
+            .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(templateTypeTable!, "TemplateClass");
+        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
     }
     
     private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
     {
         foreach (var type in table)
         {
-            if (!DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template) ||
+            if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))
             {
                 continue;
@@ -331,7 +325,7 @@ public class ReMapper
     {
         var moduleName = Module?.Name;
 
-        var dllName = "-cleaned-remapped-publicized.dll";
+        const string dllName = "-cleaned-remapped-publicized.dll";
         OutPath = Path.Combine(OutPath, moduleName?.Replace(".dll", dllName));
 
         try
@@ -359,9 +353,9 @@ public class ReMapper
             throw;
         }
         
-        if (DataProvider.Settings?.MappingPath != string.Empty)
+        if (DataProvider.Settings.MappingPath != string.Empty)
         {
-            DataProvider.UpdateMapping(DataProvider.Settings!.MappingPath!.Replace("mappings.", "mappings-new."), _remaps);
+            DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
         new Statistics(_remaps, Stopwatch, OutPath, hollowedPath)

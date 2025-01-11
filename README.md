@@ -1,19 +1,41 @@
-# ReCodeIt
+# RecodeIt Command Line
 
-![image](https://github.com/CJ-SPT/ReCodeIt/assets/161484149/3bdec51c-ca48-4678-a492-5cfd0595f980)
+This is the command line interface for ReCodeIt. It offers a streamlined way to operate the application without the
+use of the graphical user interface (GUI). It can be used to de-obfuscate, re-map, and other smaller utilities.
+It can be placed on the system path and accessed from anywhere. 
 
+## Commands
 
-ReCodeIt is a .net assembly tool for working with obfuscated assemblies. It allows you to deobfuscate using de4dot, create remaps for types and generated a re-mapped reference for your project. It has two main components. The GUI pictured above and a CLI companion that can be placed on the system path for access anywhere on your machine at any given time.
+- `deobfuscate` - This command will run the de4dot de-obfuscater over the assembly provided. It supports both the
+primary game assembly and the launcher assembly.
+  - Param `AssemblyPath` - The absolute path to your obfuscated assembly or exe file, the folder must contain all 
+references needed to be resolved.
+  - Param `IsLauncher` - Is the target the EFT launcher?
 
-# Building
-- fork or clone the project to a local directory
-- Make sure you have  [.net 8 sdk](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) installed or install it through the visual studio installer.
-- Open the solution in visual studio and build
-- Run the project from visual studio or the build folder.
+---
 
-# Using
-See the [wiki](https://github.com/CJ-SPT/ReCodeIt/wiki)
+- `automatch` - This command will Automatically try to generate a mapping object given old type and new type names.
+  - `AssemblyPath` - The absolute path to your assembly, folder must contain all references to be resolved.
+  - `MappingsPath` - Path to your mapping file so it can be updated if a match is found.
+  - `OldTypeName` - Full old type name including namespace.
+  - `NewTypeName` - The name you want the type to be renamed to.
 
-# Support me
+- This command will prompt you to append your created mapping to the mapping file. 
+- It will then prompt you to run the remap process.
 
-If you want to support the project you [buy me a coffee!](https://ko-fi.com/dirtbikercj)
+---
+
+- `remap` - Generates a re-mapped dll provided a mapping file and dll. If the dll is obfuscated, it will automatically de-obfuscate.
+  - Param `MappingJsonPath` - The absolute path to the `mapping.json` file supports both `json` and `jsonc`.
+  - Param `AssemblyPath` - The absolute path to the dll generated from the `deobfuscate` command.
+
+---
+
+- `GenRefCountList` - Generates a print out of the most used classes. Useful to prioritize remap targets.
+  - Param `AssemblyPath` - The absolute path to your de-obfuscated and remapped dll.
+
+---
+
+- `Dumper` - Generates a dumper zip.
+  - Param `ManagedDirectory` - The absolute path to your Managed folder for EFT, folder must contain all references to 
+be resolved. Assembly-CSharp-cleaned.dll, mscorlib.dll, FilesChecker.dll

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using dnlib.DotNet;
 using ReCodeItLib.Models;
 
@@ -28,7 +29,12 @@ public static class DataProvider
 
         var jsonText = File.ReadAllText(path);
         
-        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText);
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+        };
+        
+        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
         
         return remaps ?? [];
     }
@@ -43,7 +49,7 @@ public static class DataProvider
         JsonSerializerOptions settings = new()
         {
             WriteIndented = true,
-            RespectNullableAnnotations = ignoreNull
+            RespectNullableAnnotations = ignoreNull,
         };
 
         var jsonText = JsonSerializer.Serialize(remaps, settings);
@@ -73,7 +79,12 @@ public static class DataProvider
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
         
-        return JsonSerializer.Deserialize<Settings>(jsonText)!;
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+        };
+        
+        return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
     
     private static Dictionary<string, ItemTemplateModel> LoadItems()

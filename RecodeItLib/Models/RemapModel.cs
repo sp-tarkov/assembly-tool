@@ -1,5 +1,5 @@
-﻿using dnlib.DotNet;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using dnlib.DotNet;
 using ReCodeItLib.Enums;
 
 namespace ReCodeItLib.Models;
@@ -15,7 +15,8 @@ public class RemapModel
     [JsonIgnore]
     public List<ENoMatchReason> NoMatchReasons { get; set; } = [];
 
-    [JsonIgnore] public string AmbiguousTypeMatch { get; set; } = string.Empty;
+    [JsonIgnore] 
+    public string AmbiguousTypeMatch { get; set; } = string.Empty;
 
     /// <summary>
     /// This is a list of type candidates that made it through the filter

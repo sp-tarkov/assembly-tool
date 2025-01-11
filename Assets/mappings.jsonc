@@ -227,7 +227,6 @@
           "Validate"
         ],
         "ExcludeMethods": [
-          ""
         ]
       },
       "Fields": {
@@ -14262,7 +14261,7 @@
         "IsAbstract": false,
         "IsInterface": false,
         "IsEnum": false,
-        "IsSealed": false,
+        "IsSealed": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -14645,7 +14644,6 @@
         "MethodCount": -1,
         "IncludeMethods": [
           "CreateFromScene",
-          ""
         ],
         "ExcludeMethods": []
       },
@@ -16126,8 +16124,7 @@
           "ItemsToPay"
         ],
         "ExcludeFields": [
-          "QuestSuccessMessageKey",
-          ""
+          "QuestSuccessMessageKey"
         ]
       },
       "Properties": {
@@ -16353,8 +16350,7 @@
       "Properties": {
         "PropertyCount": -1,
         "IncludeProperties": [
-          "ValueType",
-          ""
+          "ValueType"
         ],
         "ExcludeProperties": []
       },

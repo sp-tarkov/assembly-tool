@@ -7,29 +7,24 @@ namespace ReCodeItLib.ReMapper;
 internal class Renamer
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
-
-    /// <summary>
-    /// Only used by the manual remapper, should probably be removed
-    /// </summary>
-    /// <param name="module"></param>
-    /// <param name="remap"></param>
-    /// <param name="direct"></param>
+    
     public void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
     {
         if (remap.TypePrimeCandidate is null) return;
         
         // Rename all fields and properties first
+        var typesToCheck = types as TypeDef[] ?? types.ToArray();
         RenameAllFields(
             remap.TypePrimeCandidate.Name.String,
             remap.NewTypeName,
-            types);
+            typesToCheck);
 
         RenameAllProperties(
             remap.TypePrimeCandidate!.Name.String,
             remap.NewTypeName,
-            types);
+            typesToCheck);
 
-        FixMethods(types, remap);
+        FixMethods(typesToCheck, remap);
         
         remap.TypePrimeCandidate.Name = remap.NewTypeName;
     }
@@ -58,12 +53,6 @@ internal class Renamer
         }
     }
     
-    /// <summary>
-    /// Rename all fields recursively, returns number of fields changed
-    /// </summary>
-    /// <param name="oldTypeName"></param>
-    /// <param name="newTypeName"></param>
-    /// <param name="typesToCheck"></param>
     private static void RenameAllFields(
 
         string oldTypeName,
@@ -74,28 +63,25 @@ internal class Renamer
         foreach (var type in typeDefs)
         {
             var fields = type.Fields
-                .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch!));
-
-            if (!fields.Any()) { continue; }
-
-            int fieldCount = 0;
+                .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch));
+            
+            var fieldCount = 0;
             foreach (var field in fields)
             {
-                if (field.FieldType.TypeName == oldTypeName)
-                {
-                    var newFieldName = GetNewFieldName(newTypeName, fieldCount);
+                if (field.FieldType.TypeName != oldTypeName) continue;
+                
+                var newFieldName = GetNewFieldName(newTypeName, fieldCount);
 
-                    // Dont need to do extra work
-                    if (field.Name == newFieldName) { continue; }
+                // Dont need to do extra work
+                if (field.Name == newFieldName) { continue; }
                     
-                    var oldName = field.Name.ToString();
+                var oldName = field.Name.ToString();
 
-                    field.Name = newFieldName;
+                field.Name = newFieldName;
                     
-                    UpdateAllTypeFieldMemberRefs(typeDefs, field, oldName);
+                UpdateAllTypeFieldMemberRefs(typeDefs, field, oldName);
 
-                    fieldCount++;
-                }
+                fieldCount++;
             }
         }
     }
@@ -124,12 +110,6 @@ internal class Renamer
         }
     }
     
-    /// <summary>
-    /// Rename all properties recursively, returns number of fields changed
-    /// </summary>
-    /// <param name="oldTypeName"></param>
-    /// <param name="newTypeName"></param>
-    /// <param name="typesToCheck"></param>
     private static void RenameAllProperties(
         string oldTypeName,
         string newTypeName,
@@ -138,33 +118,30 @@ internal class Renamer
         foreach (var type in typesToCheck)
         {
             var properties = type.Properties
-                .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch!));
-
-            if (!properties.Any()) { continue; }
-
-            int propertyCount = 0;
+                .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch));
+            
+            var propertyCount = 0;
             foreach (var property in properties)
             {
-                if (property.PropertySig.RetType.TypeName == oldTypeName)
-                {
-                    var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
+                if (property.PropertySig.RetType.TypeName != oldTypeName) continue;
+                
+                var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
 
-                    // Dont need to do extra work
-                    if (property.Name == newPropertyName) { continue; }
+                // Dont need to do extra work
+                if (property.Name == newPropertyName) continue; 
                     
-                    property.Name = new UTF8String(newPropertyName);
+                property.Name = newPropertyName;
 
-                    propertyCount++;
-                }
+                propertyCount++;
             }
         }
     }
 
-    private static string GetNewFieldName(string NewName, int fieldCount = 0)
+    private static string GetNewFieldName(string newName, int fieldCount = 0)
     {
-        string newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
+        var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
-        return $"{char.ToLower(NewName[0])}{NewName[1..]}{newFieldCount}";
+        return $"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}";
     }
 
     private static string GetNewPropertyName(string newName, int propertyCount = 0)

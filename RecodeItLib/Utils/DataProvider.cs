@@ -1,5 +1,5 @@
-﻿using dnlib.DotNet;
-using Newtonsoft.Json;
+﻿using System.Text.Json;
+using dnlib.DotNet;
 using ReCodeItLib.Models;
 
 namespace ReCodeItLib.Utils;
@@ -27,8 +27,8 @@ public static class DataProvider
         }
 
         var jsonText = File.ReadAllText(path);
-
-        var remaps = JsonConvert.DeserializeObject<List<RemapModel>>(jsonText);
+        
+        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText);
         
         return remaps ?? [];
     }
@@ -40,13 +40,13 @@ public static class DataProvider
             File.Create(path).Close();
         }
 
-        JsonSerializerSettings settings = new()
+        JsonSerializerOptions settings = new()
         {
-            NullValueHandling = ignoreNull ? NullValueHandling.Ignore : NullValueHandling.Include,
-            Formatting = Formatting.Indented
+            WriteIndented = true,
+            RespectNullableAnnotations = ignoreNull
         };
 
-        var jsonText = JsonConvert.SerializeObject(remaps, settings);
+        var jsonText = JsonSerializer.Serialize(remaps, settings);
 
         File.WriteAllText(path, jsonText);
 
@@ -73,7 +73,7 @@ public static class DataProvider
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
         
-        return JsonConvert.DeserializeObject<Settings>(jsonText);
+        return JsonSerializer.Deserialize<Settings>(jsonText)!;
     }
     
     private static Dictionary<string, ItemTemplateModel> LoadItems()
@@ -81,6 +81,6 @@ public static class DataProvider
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        return JsonConvert.DeserializeObject<Dictionary<string, ItemTemplateModel>>(jsonText);
+        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText)!;
     }
 }

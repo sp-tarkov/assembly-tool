@@ -277,8 +277,6 @@ public class ReMapper
                 NewTypeName = $"{template.Name}{extName}",
                 UseForceRename = true
             };
-                
-            Logger.LogSync($"{type.Value.Name} -> {template.Name}{extName}");
             
             _remaps.Add(remap);
         }

@@ -1,6 +1,6 @@
 {
   "MappingPath": "",
-  "TypeNamesToMatch": [ // These are the only types considered when looking for a match
+  "TypeNamesToMatch": [
     "Class",
     "GClass",
     "GStruct",
@@ -9,12 +9,12 @@
     "Interface",
     "GInterface"
   ],
-  "MethodNamesToIgnore": [ // Don't try to match on these
+  "MethodNamesToIgnore": [
     "method_",
     "smethod_",
     "vmethod_"
   ],
-  "FieldNamesToIgnore": [ // Don't try to match on these
+  "FieldNamesToIgnore": [
     "action",
     "bool",
     "dictionary",

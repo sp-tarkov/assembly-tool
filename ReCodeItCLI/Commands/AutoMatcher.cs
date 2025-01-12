@@ -17,7 +17,7 @@ public class AutoMatchCommand : ICommand
 	[CommandParameter(1, IsRequired = true, Description = "Path to your mapping file so it can be updated if a match is found")]
 	public string MappingsPath { get; init; }
 	
-	[CommandParameter(2, IsRequired = true, Description = "Full old type name including namespace")]
+	[CommandParameter(2, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
 	public required string OldTypeName { get; init; }
 	
 	[CommandParameter(3, IsRequired = true, Description = "The name you want the type to be renamed to")]

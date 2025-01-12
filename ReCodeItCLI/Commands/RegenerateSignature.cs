@@ -1,0 +1,45 @@
+﻿using CliFx.Attributes;
+using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
+using ReCodeItLib.ReMapper;
+using ReCodeItLib.Utils;
+
+namespace ReCodeItCLI.Commands;
+
+[Command("regensig", Description = "regenerates the signature of a mapping if it is failing")]
+public class RegenerateSignature : CliFx.ICommand
+{
+	[CommandParameter(0, IsRequired = true, Description = "The absolute path to the assembly you want to regenerate the signature for")]
+	public required string AssemblyPath { get; init; }
+	
+	[CommandParameter(1, IsRequired = true, Description = "The absolute path to mapping.json")]
+	public required string MappingPath { get; init; }
+	
+	[CommandParameter(2, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
+	public required string OldTypeName { get; init; }
+	
+	[CommandParameter(3, IsRequired = true, Description = "The new type name as listed in the mapping file")]
+	public required string NewTypeName { get; init; }
+	
+	
+    public ValueTask ExecuteAsync(IConsole console)
+    {
+	    Debugger.TryWaitForDebuggerAttach();
+	    
+	    DataProvider.Settings.MappingPath = MappingPath;
+	    var remaps = DataProvider.LoadMappingFile(MappingPath);
+	    
+	    var target = remaps.SingleOrDefault(r => r.NewTypeName == NewTypeName);
+
+	    if (target is null)
+	    {
+		    Logger.LogSync("Could not find signature to regenerate", ConsoleColor.Red);
+		    return default;
+	    }
+	    
+	    new AutoMatcher(remaps, MappingPath)
+		    .AutoMatch(AssemblyPath, OldTypeName, NewTypeName);
+	    
+        return default;
+    }
+}

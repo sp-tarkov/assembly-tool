@@ -4,6 +4,8 @@
     <Configuration>Debug</Configuration>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+    <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,9 +17,6 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="Build">
-    <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass .\PostBuild.ps1"
-          WorkingDirectory="$(ProjectDir)"
-          StandardOutputImportance="High"
-          StandardErrorImportance="High" />
+    <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass .\PostBuild.ps1 $(ConfigurationName)" />
   </Target>
 </Project>

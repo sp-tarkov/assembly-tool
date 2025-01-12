@@ -123,6 +123,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			if (remapModel.Succeeded)
 			{
 				ProcessEndQuestions(remapModel, assemblyPath);
+				return;
 			}
 		}
 		
@@ -402,7 +403,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			}
 			
 			mappings.Add(remapModel);
-			DataProvider.UpdateMapping(mappingPath, mappings);
+			DataProvider.UpdateMapping(mappingPath, mappings, false);
 		}
 		
 		Logger.LogSync("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);

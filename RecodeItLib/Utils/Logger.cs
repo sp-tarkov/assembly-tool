@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ReCodeItLib.Models;
 
 namespace ReCodeItLib.Utils;
@@ -123,12 +124,13 @@ public static class Logger
     
     public static void LogRemapModel(RemapModel remapModel)
     {
-        var settings = new JsonSerializerSettings()
+        JsonSerializerOptions settings = new()
         {
-            NullValueHandling = NullValueHandling.Ignore
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         };
         
-        var str = JsonConvert.SerializeObject(remapModel, Formatting.Indented, settings);
+        var str = JsonSerializer.Serialize(remapModel, settings);
         LogSync(str, ConsoleColor.Blue);
     }
     

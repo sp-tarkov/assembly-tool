@@ -41,7 +41,7 @@ public static class DataProvider
         return remaps ?? [];
     }
     
-    public static void UpdateMapping(string path, List<RemapModel> remaps, bool ignoreNull = true)
+    public static void UpdateMapping(string path, List<RemapModel> remaps, bool respectNullableAnnotations = true)
     {
         if (!File.Exists(path))
         {
@@ -51,7 +51,9 @@ public static class DataProvider
         JsonSerializerOptions settings = new()
         {
             WriteIndented = true,
-            RespectNullableAnnotations = ignoreNull,
+            RespectNullableAnnotations = !respectNullableAnnotations,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
         var jsonText = JsonSerializer.Serialize(remaps, settings);

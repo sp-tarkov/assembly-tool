@@ -1,5 +1,5 @@
 ﻿// Uncomment this to have the application wait for a debugger to attach before running.
-#define WAIT_FOR_DEBUGGER
+//#define WAIT_FOR_DEBUGGER
 
 using System.Diagnostics;
 using CliFx;

@@ -1,6 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItCLI.Commands;
@@ -13,6 +14,8 @@ public class AddMissingProperties : ICommand
 	
 	public ValueTask ExecuteAsync(IConsole console)
 	{
+		Debugger.TryWaitForDebuggerAttach();
+		
 		var remaps = DataProvider.LoadMappingFile(MappingsPath);
 		DataProvider.UpdateMapping(MappingsPath, remaps);
 		

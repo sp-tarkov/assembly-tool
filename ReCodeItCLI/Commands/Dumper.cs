@@ -1,6 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
 using ReCodeItLib.Utils;
 using ReCodeItLib.Dumper;
 
@@ -14,6 +15,8 @@ public class Dumper : ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
+        Debugger.TryWaitForDebuggerAttach();
+        
         Logger.Log("Creating DumperClass...");
 
         var dumper = new DumperClass(ManagedDirectory);

@@ -1,6 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItCLI.Commands;
@@ -13,6 +14,8 @@ public class GetRuntimeVersion : ICommand
 	
 	public ValueTask ExecuteAsync(IConsole console)
 	{
+		Debugger.TryWaitForDebuggerAttach();
+		
 		var module = DataProvider.LoadModule(AssemblyPath);
 		
 		Logger.LogSync($"Target Runtime Version: {module.RuntimeVersion}");

@@ -2,6 +2,7 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using dnlib.DotNet;
+using ReCodeItCLI.Utils;
 
 namespace ReCodeItCLI.Commands;
 
@@ -23,6 +24,8 @@ public class GenRefList : ICommand
 
     public ValueTask ExecuteAsync(IConsole console)
     {
+        Debugger.TryWaitForDebuggerAttach();
+        
         var references = CountTypeReferences(AssemblyPath);
 
         // Sort and display the top 10 most referenced types

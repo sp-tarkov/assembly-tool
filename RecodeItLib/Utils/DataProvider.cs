@@ -1,6 +1,9 @@
-﻿using dnlib.DotNet;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using dnlib.DotNet;
 using Newtonsoft.Json;
 using ReCodeItLib.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace ReCodeItLib.Utils;
 
@@ -27,26 +30,33 @@ public static class DataProvider
         }
 
         var jsonText = File.ReadAllText(path);
-
-        var remaps = JsonConvert.DeserializeObject<List<RemapModel>>(jsonText);
+        
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+        };
+        
+        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
         
         return remaps ?? [];
     }
     
-    public static void UpdateMapping(string path, List<RemapModel> remaps)
+    public static void UpdateMapping(string path, List<RemapModel> remaps, bool respectNullableAnnotations = true)
     {
         if (!File.Exists(path))
         {
             File.Create(path).Close();
         }
 
-        JsonSerializerSettings settings = new()
+        JsonSerializerOptions settings = new()
         {
-            NullValueHandling = NullValueHandling.Ignore,
-            Formatting = Formatting.Indented
+            WriteIndented = true,
+            RespectNullableAnnotations = !respectNullableAnnotations,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
-        var jsonText = JsonConvert.SerializeObject(remaps, settings);
+        var jsonText = JsonSerializer.Serialize(remaps, settings);
 
         File.WriteAllText(path, jsonText);
 
@@ -73,7 +83,12 @@ public static class DataProvider
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
         
-        return JsonConvert.DeserializeObject<Settings>(jsonText);
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+        };
+        
+        return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
     
     private static Dictionary<string, ItemTemplateModel> LoadItems()
@@ -81,6 +96,12 @@ public static class DataProvider
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        return JsonConvert.DeserializeObject<Dictionary<string, ItemTemplateModel>>(jsonText);
+        JsonSerializerOptions settings = new()
+        {
+            RespectNullableAnnotations = true,
+            PropertyNameCaseInsensitive = true
+        };
+        
+        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
     }
 }

@@ -13,7 +13,7 @@ if (Test-Path $buildPath) {
 }
 
 Write-Host "Copying ReCodeItCLI output..."
-$cliOutputDir = Join-Path (Join-Path $solutionDir "ReCodeItCLI") "bin\$Configuration\net8.0"
+$cliOutputDir = Join-Path (Join-Path $solutionDir "ReCodeItCLI") "bin\$Configuration\net9.0"
 if (Test-Path $cliOutputDir) {
     New-Item -Path $buildPath -ItemType Directory -ErrorAction SilentlyContinue
     Copy-Item -Path (Join-Path $cliOutputDir "*.*") -Destination $buildPath -Recurse

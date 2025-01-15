@@ -11,15 +11,13 @@ namespace ReCodeItLib.ReMapper;
 public class ReMapper
 {
     private ModuleDefMD? Module { get; set; }
-
-    public static bool IsRunning { get; private set; } = false;
     
     private static readonly Stopwatch Stopwatch = new();
     private string OutPath { get; set; } = string.Empty;
     
     private List<RemapModel> _remaps = [];
 
-    private List<string> _alreadyGivenNames = [];
+    private readonly List<string> _alreadyGivenNames = [];
 
     /// <summary>
     /// Start the remapping process
@@ -30,9 +28,7 @@ public class ReMapper
         string outPath = "",
         bool validate = false)
     {
-        _remaps = [];
         _remaps = remapModels;
-        _alreadyGivenNames = [];
         
         assemblyPath = AssemblyUtils.TryDeObfuscate(
             DataProvider.LoadModule(assemblyPath), 
@@ -44,18 +40,18 @@ public class ReMapper
         OutPath = outPath;
 
         if (!Validate(_remaps)) return;
-
-        IsRunning = true;
+        
         Stopwatch.Start();
         
         var types = Module.GetTypes();
 
+        var typeDefs = types as TypeDef[] ?? types.ToArray();
         if (!validate)
         {
-            GenerateDynamicRemaps(assemblyPath, types);
+            GenerateDynamicRemaps(assemblyPath, typeDefs);
         }
         
-        FindBestMatches(types, validate);
+        FindBestMatches(typeDefs, validate);
         ChooseBestMatches();
 
         // Don't go any further during a validation
@@ -67,11 +63,8 @@ public class ReMapper
             return;
         }
         
-        RenameMatches(types);
-        
+        RenameMatches(typeDefs);
         Publicize();
-        
-        // We are done, write the assembly
         WriteAssembly();
     }
     
@@ -92,9 +85,9 @@ public class ReMapper
 
         if (!validate)
         {
-            while (!tasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+            while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
             {
-                Logger.DrawProgressBar(tasks.Where(t => t.IsCompleted)!.Count() + 1, tasks.Count, 50);
+                Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
             }
         }
         
@@ -118,9 +111,9 @@ public class ReMapper
             );
         }
         
-        while (!renameTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
+        while (!renameTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
-            Logger.DrawProgressBar(renameTasks.Where(t => t.IsCompleted)!.Count() + 1, renameTasks.Count, 50);
+            Logger.DrawProgressBar(renameTasks.Count(t => t.IsCompleted), renameTasks.Count, 50);
         }
         
         Task.WaitAll(renameTasks.ToArray());
@@ -128,33 +121,51 @@ public class ReMapper
 
     private void Publicize()
     {
-        // Don't publicize and unseal until after the remapping, so we can use those as search parameters
         Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
+        
+        var publicizer = new Publicizer();
+        
+        var publicizeTasks = new List<Task>(Module!.Types.Count(t => !t.IsNested));
+        foreach (var type in Module!.Types)
+        {
+            if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
+            
+            publicizeTasks.Add(
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        publicizer.PublicizeType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
+                })
+            );
+        }
 
-        new Publicizer().PublicizeClasses(Module);
+        Task.WaitAll(publicizeTasks.ToArray());
     }
     
-    private bool Validate(List<RemapModel> remaps)
+    private static bool Validate(List<RemapModel> remaps)
     {
         var duplicateGroups = remaps
             .GroupBy(m => m.NewTypeName)
             .Where(g => g.Count() > 1)
             .ToList();
 
-        if (duplicateGroups.Count() > 1)
+        if (duplicateGroups.Count <= 1) return true;
+        
+        Logger.Log($"There were {duplicateGroups.Count} duplicated sets of remaps.", ConsoleColor.Yellow);
+
+        foreach (var duplicate in duplicateGroups)
         {
-            Logger.Log($"There were {duplicateGroups.Count()} duplicated sets of remaps.", ConsoleColor.Yellow);
-
-            foreach (var duplicate in duplicateGroups)
-            {
-                var duplicateNewTypeName = duplicate.Key;
-                Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
-            }
-
-            return false;
+            var duplicateNewTypeName = duplicate.Key;
+            Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
         }
 
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -162,9 +173,10 @@ public class ReMapper
     /// where null is a third disabled state. Then we score the types based on the search parameters
     /// </summary>
     /// <param name="mapping">Mapping to score</param>
+    /// <param name="types">Types to filter</param>
     private void ScoreMapping(RemapModel mapping, IEnumerable<TypeDef> types)
     {
-        var tokens = DataProvider.Settings?.TypeNamesToMatch;
+        var tokens = DataProvider.Settings.TypeNamesToMatch;
 
         if (mapping.UseForceRename)
         {
@@ -173,14 +185,13 @@ public class ReMapper
         }
 
         // Filter down nested objects
-        if (mapping.SearchParams.NestedTypes.IsNested is false)
-        {
-            types = types.Where(type => tokens!.Any(token => type.Name.StartsWith(token)));
-        }
+        types = !mapping.SearchParams.NestedTypes.IsNested
+            ? types.Where(type => tokens.Any(token => type.Name.StartsWith(token)))
+            : types.Where(t => t.DeclaringType != null);
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
         {
-            types = types.Where(t => t.DeclaringType != null && t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
+            types = types.Where(t => t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
@@ -195,16 +206,15 @@ public class ReMapper
     {
         foreach (var type in types)
         {
-            if (type.Name == mapping.OriginalTypeName)
-            {
-                mapping.TypePrimeCandidate = type;
-                mapping.OriginalTypeName = type.Name.String;
-                mapping.Succeeded = true;
+            if (type.Name != mapping.OriginalTypeName) continue;
+            
+            mapping.TypePrimeCandidate = type;
+            mapping.OriginalTypeName = type.Name.String;
+            mapping.Succeeded = true;
 
-                _alreadyGivenNames.Add(mapping.OriginalTypeName);
+            _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-                return;
-            }
+            return;
         }
     }
 
@@ -233,23 +243,23 @@ public class ReMapper
         }
         
         var typeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TypeTable")
-            .GetValue(templateMappingClass);
+            .GetField("TypeTable")!
+            .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(typeTable!, "ItemClass");
+        BuildAssociationFromTable(typeTable, "ItemClass");
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TemplateTypeTable")
-            .GetValue(templateMappingClass);
+            .GetField("TemplateTypeTable")!
+            .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(templateTypeTable!, "TemplateClass");
+        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
     }
     
     private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
     {
         foreach (var type in table)
         {
-            if (!DataProvider.ItemTemplates!.TryGetValue(type.Key, out var template) ||
+            if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))
             {
                 continue;
@@ -258,10 +268,10 @@ public class ReMapper
             var remap = new RemapModel
             {
                 OriginalTypeName = type.Value.Name,
-                NewTypeName = $"{template._name}{extName}",
+                NewTypeName = $"{template.Name}{extName}",
                 UseForceRename = true
             };
-                
+            
             _remaps.Add(remap);
         }
     }
@@ -315,7 +325,7 @@ public class ReMapper
     {
         var moduleName = Module?.Name;
 
-        var dllName = "-cleaned-remapped-publicized.dll";
+        const string dllName = "-cleaned-remapped-publicized.dll";
         OutPath = Path.Combine(OutPath, moduleName?.Replace(".dll", dllName));
 
         try
@@ -327,9 +337,8 @@ public class ReMapper
             Logger.LogSync(e);
             throw;
         }
-
-        Logger.LogSync("\nCreating Hollow...", ConsoleColor.Green);
-        Hollow();
+        
+        StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
@@ -344,9 +353,9 @@ public class ReMapper
             throw;
         }
         
-        if (DataProvider.Settings?.MappingPath != string.Empty)
+        if (DataProvider.Settings.MappingPath != string.Empty)
         {
-            DataProvider.UpdateMapping(DataProvider.Settings!.MappingPath!.Replace("mappings.", "mappings-new."), _remaps);
+            DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
         new Statistics(_remaps, Stopwatch, OutPath, hollowedPath)
@@ -354,24 +363,42 @@ public class ReMapper
         
         Stopwatch.Reset();
         Module = null;
-
-        IsRunning = false;
     }
 
     /// <summary>
     /// Hollows out all logic from the dll
     /// </summary>
-    private void Hollow()
+    private void StartHollow()
     {
-        foreach (var type in Module!.GetTypes())
+        Logger.LogSync("Creating Hollow...", ConsoleColor.Green);
+        
+        var tasks = new List<Task>(Module!.GetTypes().Count());
+        foreach (var type in Module.GetTypes())
         {
-            foreach (var method in type.Methods.Where(m => m.HasBody))
+            tasks.Add(Task.Run(() =>
             {
-                if (!method.HasBody) continue;
+                try
+                {
+                    HollowType(type);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                }
+            }));
+        }
+        
+        Task.WaitAll(tasks.ToArray());
+    }
 
-                method.Body = new CilBody();
-                method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
-            }
+    private void HollowType(TypeDef type)
+    {
+        foreach (var method in type.Methods.Where(m => m.HasBody))
+        {
+            if (!method.HasBody) continue;
+
+            method.Body = new CilBody();
+            method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿namespace ReCodeItLib.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace ReCodeItLib.Models;
 
 public class ItemTemplateModel
 {
-    public string? _id;
-    public string? _name;
-    public string? _parent;
-    public string? _type;
+    [JsonPropertyName("_id")]
+    public string? Id { get; set; }
+    
+    [JsonPropertyName("_name")]
+    public string? Name { get; set; }
 }

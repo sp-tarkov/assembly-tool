@@ -1,5 +1,5 @@
-﻿using dnlib.DotNet;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using dnlib.DotNet;
 using ReCodeItLib.Enums;
 
 namespace ReCodeItLib.Models;
@@ -15,7 +15,8 @@ public class RemapModel
     [JsonIgnore]
     public List<ENoMatchReason> NoMatchReasons { get; set; } = [];
 
-    [JsonIgnore] public string AmbiguousTypeMatch { get; set; } = string.Empty;
+    [JsonIgnore] 
+    public string AmbiguousTypeMatch { get; set; } = string.Empty;
 
     /// <summary>
     /// This is a list of type candidates that made it through the filter
@@ -56,14 +57,12 @@ public class SearchParams
 public class GenericParams
 {
     public bool IsPublic { get; set; } = true;
-
-    public bool? IsAbstract { get; set; } = null;
-    public bool? IsInterface { get; set; } = null;
-    public bool? IsStruct { get; set; } = null;
-    public bool? IsEnum { get; set; } = null;
-    public bool? IsSealed { get; set; } = null;
+    public bool IsAbstract { get; set; }
+    public bool IsInterface { get; set; }
+    public bool IsEnum { get; set; }
+    public bool IsSealed { get; set; }
     public bool? HasAttribute { get; set; } = null;
-    public bool? HasGenericParameters { get; set; } = null;
+    public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; } = null;
     
     /// <summary>
@@ -97,6 +96,12 @@ public class PropertyParams
 public class NestedTypeParams
 {
     public bool IsNested { get; set; }
+    public bool IsNestedAssembly { get; set; }
+    public bool IsNestedFamily { get; set; }
+    public bool IsNestedPrivate { get; set; }
+    public bool IsNestedPublic { get; set; }
+    public bool IsNestedFamilyAndAssembly { get; set; }
+    public bool IsNestedFamilyOrAssembly { get; set; }
     
     /// <summary>
     /// Name of the nested types parent

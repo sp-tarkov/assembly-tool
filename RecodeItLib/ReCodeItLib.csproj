@@ -3,14 +3,16 @@
   <PropertyGroup>
 	<Version>0.1.0</Version>
     <OutputType>Library</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="dnlib" Version="4.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>

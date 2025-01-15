@@ -5,6 +5,8 @@
   <PropertyGroup>
     <PlatformTarget>x64</PlatformTarget>
     <OutputType>Exe</OutputType>
+    <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

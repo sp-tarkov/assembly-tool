@@ -1,6 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
 using ReCodeItLib.Utils;
 using ReCodeItLib.ReMapper;
 
@@ -17,6 +18,8 @@ public class DeObfuscate : ICommand
 
     public ValueTask ExecuteAsync(IConsole console)
     {
+        Debugger.TryWaitForDebuggerAttach();
+        
         Logger.Log("Deobfuscating assembly...");
 
         Deobfuscator.Deobfuscate(AssemblyPath, IsLauncher);

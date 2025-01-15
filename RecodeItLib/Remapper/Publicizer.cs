@@ -5,33 +5,7 @@ namespace ReCodeItLib.ReMapper;
 
 internal class Publicizer
 {
-    public void PublicizeClasses(ModuleDefMD definition, bool isLauncher = false)
-    {
-        var types = definition.GetTypes();
-        
-        var publicizeTasks = new List<Task>();
-        foreach (var type in types)
-        {
-            if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
-            
-            publicizeTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    PublicizeType(type, isLauncher);
-                })
-            );
-        }
-        
-        // TODO: This is broken. No idea why.
-        while (!publicizeTasks.TrueForAll(t => t.Status == TaskStatus.RanToCompletion))
-        {
-            Logger.DrawProgressBar(publicizeTasks.Where(t => t.IsCompleted)!.Count() + 1, publicizeTasks.Count, 50);
-        }
-        
-        Task.WaitAll(publicizeTasks.ToArray());
-    }
-
-    private static void PublicizeType(TypeDef type, bool isLauncher)
+    public void PublicizeType(TypeDef type)
     {
         // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
         // nameof(CompilerGeneratedAttribute))) { return; }
@@ -45,7 +19,7 @@ internal class Publicizer
             }
         }
         
-        if (type.IsSealed && !isLauncher)
+        if (type.IsSealed)
         {
             type.Attributes &= ~TypeAttributes.Sealed; // Remove the Sealed attribute if it exists
         }
@@ -63,7 +37,7 @@ internal class Publicizer
         
         foreach (var nestedType in type.NestedTypes)
         {
-            PublicizeType(nestedType, isLauncher);
+            PublicizeType(nestedType);
         }
     }
 

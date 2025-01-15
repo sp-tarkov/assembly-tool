@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
   <Import Project="..\De4DotCommon.props" />
   
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using ReCodeItCLI.Utils;
 using ReCodeItLib.Utils;
 using ReCodeItLib.ReMapper;
 
@@ -19,6 +20,8 @@ public class ReMap : ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
+	    Debugger.TryWaitForDebuggerAttach();
+        
         DataProvider.Settings.MappingPath = MappingJsonPath;
 
         var remaps = DataProvider.LoadMappingFile(MappingJsonPath);

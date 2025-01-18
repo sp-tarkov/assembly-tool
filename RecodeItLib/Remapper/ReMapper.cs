@@ -106,7 +106,14 @@ public class ReMapper
             renameTasks.Add(
                 Task.Factory.StartNew(() =>
                 {
-                    renamer.RenameAll(types, remap);
+                    try
+                    {
+                        renamer.RenameAll(types, remap);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
                 })
             );
         }

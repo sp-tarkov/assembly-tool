@@ -9,7 +9,7 @@ $buildPath = Join-Path $solutionDir "Build"
 
 if (Test-Path $buildPath) {
     Write-Host "Removing existing Build folder: $buildPath"
-    Remove-Item -Path $buildPath -Recurse -Force
+    Get-ChildItem -Path $buildPath -Recurse -Force | Remove-Item -Recurse -Force
 }
 
 Write-Host "Copying ReCodeItCLI output..."

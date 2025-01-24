@@ -17700,8 +17700,9 @@
   },
   {
     "NewTypeName": "SideStepStateClass",
-    "OriginalTypeName": "",
+    "OriginalTypeName": "GClass1879",
     "UseForceRename": false,
+	"IsDerived": true,
     "SearchParams": {
       "GenericParams": {
         "IsPublic": true,
@@ -17713,10 +17714,14 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 6,
+        "MethodCount": 7,
         "IncludeMethods": [
           "Enter",
-          "Exit"
+		  "ReEnter",
+          "Exit",
+		  "ManualAnimatorMoveUpdate",
+		  "SetStep",
+		  "Jump"
         ],
         "ExcludeMethods": []
       },

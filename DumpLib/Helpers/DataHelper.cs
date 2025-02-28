@@ -17,11 +17,11 @@ public static class DataHelper
 
     public static Assembly _comfortAssembly =
         Assembly.LoadFrom((Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Comfort.dll").Replace("\\\\", "\\"));
-    
+
     public static string DumpDataPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\").Replace("\\\\", "\\");
 
     public static SptConfigClass ConfigSettings = GetSptConfig();
-    
+
     public static bool GotBackend = false;
     public static object WaveSettings = null;
     public static object LocalRaidSettings = null;
@@ -58,8 +58,11 @@ public static class DataHelper
     {
         try
         {
-            return ReflectionHelper.CreateDeserializerMethod(TypeHelper.GetRaidConfigType()).Invoke(null,
+            var objectToReturn = ReflectionHelper.CreateDeserializerMethod(TypeHelper.GetRaidConfigType()).Invoke(null,
                 new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "raidConfig.json")) });
+
+            // we now need to attach LocationSettingsClass to _locationSettings in this object - DataHelper.LocationValues should be inited by this point
+            return ReflectionHelper.SetLocationSettingsOnRaidSettings(objectToReturn);
         }
         catch (Exception e)
         {
@@ -83,7 +86,7 @@ public static class DataHelper
             throw;
         }
     }
-    
+
     public static object GetLocalRaidSettings()
     {
         try
@@ -98,7 +101,7 @@ public static class DataHelper
             throw;
         }
     }
-    
+
     public static void ClearVariables()
     {
         GotBackend = false;

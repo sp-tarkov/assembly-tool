@@ -3,5 +3,6 @@
   "location": "Interchange",
   "timeVariant": "CURR",
   "mode": "TRAINING",
-  "playerSide": "Pmc"
+  "playerSide": "Pmc",
+  "onlinePveRaidStates": {}
 }

@@ -119,7 +119,7 @@ namespace DumpLib
 
                                 await Task.Delay(DataHelper.ConfigSettings.SptTimings.SingleIterationDelayMs);
                             }
-                            
+
                             var controller = DataHelper.MainMenuController.GetValue(DataHelper.TarkovApp);
                             if (controller != null)
                             {
@@ -163,10 +163,10 @@ namespace DumpLib
                 DataHelper.WaveSettings = ReflectionHelper.GetWaveSettings();
                 // get Raid Settings from json
                 DataHelper.LocalRaidSettings = DataHelper.GetLocalRaidSettings();
-                // get Raid Config from json
-                DataHelper.RaidSettings = DataHelper.GetRaidConfigSettings();
                 // get locationDetails
                 DataHelper.LocationValues = ReflectionHelper.GetLocationValuesFromSession();
+                // get Raid Config from json
+                DataHelper.RaidSettings = DataHelper.GetRaidConfigSettings();
                 // get End raid class from json
                 DataHelper.EndRaidClass = DataHelper.GetEndRaidClass();
                 // get player profile

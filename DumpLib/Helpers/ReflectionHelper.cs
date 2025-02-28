@@ -205,6 +205,20 @@ namespace DumpLib.Helpers
             }
         }
 
+        public static object GetLocationsFromSession()
+        {
+            try
+            {
+                return DataHelper.Session.GetType().GetProperty("LocationSettings").GetValue(DataHelper.Session);
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("GetLocationsFromSession");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
         public static object CheckLocationID(string map)
         {
             try
@@ -241,7 +255,7 @@ namespace DumpLib.Helpers
 
         /// <summary>
         /// TODO: Rename as its not an actual shim
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static object GetProfileShim()
@@ -276,6 +290,24 @@ namespace DumpLib.Helpers
             catch (Exception e)
             {
                 Utils.LogError("GetProfileCompleteData");
+                Utils.LogError(e);
+                throw;
+            }
+        }
+
+        public static object SetLocationSettingsOnRaidSettings(object raidsettings)
+        {
+            try
+            {
+                raidsettings.GetType()
+                    .GetField("_locationSettings", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .SetValue(raidsettings, GetLocationsFromSession());
+
+                return raidsettings;
+            }
+            catch (Exception e)
+            {
+                Utils.LogError("SetLocationSettingsOnRaidSettings");
                 Utils.LogError(e);
                 throw;
             }

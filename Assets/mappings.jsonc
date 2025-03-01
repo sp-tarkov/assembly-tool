@@ -669,7 +669,7 @@
     }
   },
   {
-    "NewTypeName": "EnemyInfoClass",
+    "NewTypeName": "GenericParsedJsonResponseClass",
     "OriginalTypeName": "GClass588`1",
     "UseForceRename": false,
     "SearchParams": {

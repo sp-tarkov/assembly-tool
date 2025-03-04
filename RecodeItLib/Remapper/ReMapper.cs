@@ -70,7 +70,7 @@ public class ReMapper
         
         RenameMatches(typeDefs);
         Publicize();
-        ApplyAttributeToRenamedClasses();
+        ApplyAttributeToRenamedClasses(oldAssemblyPath);
         WriteAssembly();
     }
     
@@ -340,7 +340,7 @@ public class ReMapper
         remap.OriginalTypeName = winner.Name.String;
     }
 
-    private void ApplyAttributeToRenamedClasses()
+    private void ApplyAttributeToRenamedClasses(string oldAssemblyPath)
     {
         // Create the attribute
         var annotationType = new TypeDefUser(
@@ -397,11 +397,13 @@ public class ReMapper
         
         var attributeCtor = annotationType.FindMethod(".ctor");
         
+        var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
+        
         foreach (var type in _remaps)
         {
             var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
             customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.String, type.OriginalTypeName));
-            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, true)); // TODO: calculate hashes
+            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, diff.IsSame(type.TypePrimeCandidate!)));
             type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
         }
     }

@@ -36,7 +36,7 @@ public class ReMap : ICommand
             throw new DirectoryNotFoundException("OutPath could not be resolved.");
         }
         
-        _remapper.InitializeRemap(remaps, TargetAssemblyPath, outPath);
+        _remapper.InitializeRemap(remaps, TargetAssemblyPath, OldAssemblyPath, outPath);
 
         // Wait for log termination
         Logger.Terminate();

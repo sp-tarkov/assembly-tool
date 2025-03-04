@@ -5,7 +5,7 @@ using ReCodeItLib.Models;
 using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
-
+using FieldAttributes = dnlib.DotNet.FieldAttributes;
 using MethodAttributes = dnlib.DotNet.MethodAttributes;
 using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
 using TypeAttributes = dnlib.DotNet.TypeAttributes;
@@ -341,6 +341,7 @@ public class ReMapper
 
     private void ApplyAttributeToRenamedClasses()
     {
+        // Create the attribute
         var annotationType = new TypeDefUser(
             "SPT", 
             "SPTRenamedClassAttribute",
@@ -352,24 +353,54 @@ public class ReMapper
             BaseType = Module.Import(typeof(Attribute)),
         };
         
+        // Add fields
+        annotationType.Fields.Add(new FieldDefUser(
+            "RenamedFrom", 
+            new FieldSig(Module.CorLibTypes.String),
+            FieldAttributes.Public | FieldAttributes.InitOnly));
+        
+        annotationType.Fields.Add(new FieldDefUser(
+            "HasChangesFromPreviousVersion", 
+            new FieldSig(Module.CorLibTypes.Boolean),
+            FieldAttributes.Public | FieldAttributes.InitOnly));
+        
         // Create the constructor
-        var ctor = new MethodDefUser(".ctor", MethodSig.CreateInstance(Module.CorLibTypes.Void),
+        var ctor = new MethodDefUser(".ctor", MethodSig.CreateInstance(Module.CorLibTypes.Void, Module.CorLibTypes.String, Module.CorLibTypes.Boolean),
             MethodImplAttributes.IL | MethodImplAttributes.Managed,
             MethodAttributes.Public |
             MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
         
+        // Add the ctor method
         annotationType.Methods.Add(ctor);
-
+        
+        // Name the ctor parameters
+        ctor.Parameters[1].CreateParamDef();
+        ctor.Parameters[1].ParamDef.Name = "renamedFrom";
+        ctor.Parameters[2].CreateParamDef();
+        ctor.Parameters[2].ParamDef.Name = "hasChangesFromPreviousVersion";
+        
+        // Create the body
         ctor.Body = new CilBody();
+        
+        ctor.Body.Instructions.Add(OpCodes.Ldarg_0.ToInstruction());
+        ctor.Body.Instructions.Add(OpCodes.Ldarg_1.ToInstruction());
+        ctor.Body.Instructions.Add(OpCodes.Stfld.ToInstruction(annotationType.Fields[0]));
+
+        ctor.Body.Instructions.Add(OpCodes.Ldarg_0.ToInstruction());
+        ctor.Body.Instructions.Add(OpCodes.Ldarg_2.ToInstruction());
+        ctor.Body.Instructions.Add(OpCodes.Stfld.ToInstruction(annotationType.Fields[1])); 
         ctor.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
         
+        // Add the attribute to the assembly
         Module.Types.Add(annotationType);
         
         var attributeCtor = annotationType.FindMethod(".ctor");
-        var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
         
         foreach (var type in _remaps)
         {
+            var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
+            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.String, type.OriginalTypeName));
+            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, true)); // TODO: calculate hashes
             type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
         }
     }

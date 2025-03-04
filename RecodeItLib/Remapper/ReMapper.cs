@@ -6,6 +6,10 @@ using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
 
+using MethodAttributes = dnlib.DotNet.MethodAttributes;
+using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
+using TypeAttributes = dnlib.DotNet.TypeAttributes;
+
 namespace ReCodeItLib.ReMapper;
 
 public class ReMapper
@@ -65,6 +69,7 @@ public class ReMapper
         
         RenameMatches(typeDefs);
         Publicize();
+        ApplyAttributeToRenamedClasses();
         WriteAssembly();
     }
     
@@ -334,6 +339,41 @@ public class ReMapper
         remap.OriginalTypeName = winner.Name.String;
     }
 
+    private void ApplyAttributeToRenamedClasses()
+    {
+        var annotationType = new TypeDefUser(
+            "SPT", 
+            "SPTRenamedClassAttribute",
+            Module!.CorLibTypes.Object.TypeDefOrRef)
+        {
+            Attributes = TypeAttributes.Public | TypeAttributes.AutoLayout | 
+                         TypeAttributes.Class | TypeAttributes.AnsiClass,
+            
+            BaseType = Module.Import(typeof(Attribute)),
+        };
+        
+        // Create the constructor
+        var ctor = new MethodDefUser(".ctor", MethodSig.CreateInstance(Module.CorLibTypes.Void),
+            MethodImplAttributes.IL | MethodImplAttributes.Managed,
+            MethodAttributes.Public |
+            MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
+        
+        annotationType.Methods.Add(ctor);
+
+        ctor.Body = new CilBody();
+        ctor.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
+        
+        Module.Types.Add(annotationType);
+        
+        var attributeCtor = annotationType.FindMethod(".ctor");
+        var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
+        
+        foreach (var type in _remaps)
+        {
+            type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
+        }
+    }
+    
     /// <summary>
     /// Write the assembly back to disk and update the mapping file on disk
     /// </summary>

@@ -28,15 +28,16 @@ public class ReMapper
     /// </summary>
     public void InitializeRemap(
         List<RemapModel> remapModels,
-        string assemblyPath,
+        string targetAssemblyPath,
+        string oldAssemblyPath,
         string outPath = "",
         bool validate = false)
     {
         _remaps = remapModels;
         
-        assemblyPath = AssemblyUtils.TryDeObfuscate(
-            DataProvider.LoadModule(assemblyPath), 
-            assemblyPath, 
+        targetAssemblyPath = AssemblyUtils.TryDeObfuscate(
+            DataProvider.LoadModule(targetAssemblyPath), 
+            targetAssemblyPath, 
             out var module);
 
         Module = module;
@@ -52,7 +53,7 @@ public class ReMapper
         var typeDefs = types as TypeDef[] ?? types.ToArray();
         if (!validate)
         {
-            GenerateDynamicRemaps(assemblyPath, typeDefs);
+            GenerateDynamicRemaps(targetAssemblyPath, typeDefs);
         }
         
         FindBestMatches(typeDefs, validate);

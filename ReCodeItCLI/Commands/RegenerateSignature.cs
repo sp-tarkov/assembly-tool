@@ -12,13 +12,16 @@ public class RegenerateSignature : CliFx.ICommand
 	[CommandParameter(0, IsRequired = true, Description = "The absolute path to the assembly you want to regenerate the signature for")]
 	public required string AssemblyPath { get; init; }
 	
-	[CommandParameter(1, IsRequired = true, Description = "The absolute path to mapping.json")]
+	[CommandParameter(1, IsRequired = true, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
+	public required string OldAssemblyPath { get; init; }
+	
+	[CommandParameter(2, IsRequired = true, Description = "The absolute path to mapping.json")]
 	public required string MappingPath { get; init; }
 	
-	[CommandParameter(2, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
+	[CommandParameter(3, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
 	public required string OldTypeName { get; init; }
 	
-	[CommandParameter(3, IsRequired = true, Description = "The new type name as listed in the mapping file")]
+	[CommandParameter(4, IsRequired = true, Description = "The new type name as listed in the mapping file")]
 	public required string NewTypeName { get; init; }
 	
 	
@@ -38,7 +41,7 @@ public class RegenerateSignature : CliFx.ICommand
 	    }
 	    
 	    new AutoMatcher(remaps, MappingPath)
-		    .AutoMatch(AssemblyPath, OldTypeName, NewTypeName);
+		    .AutoMatch(AssemblyPath, OldAssemblyPath, OldTypeName, NewTypeName);
 	    
         return default;
     }

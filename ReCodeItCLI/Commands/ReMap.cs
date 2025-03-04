@@ -16,7 +16,10 @@ public class ReMap : ICommand
     public required string MappingJsonPath { get; init; }
 
     [CommandParameter(1, IsRequired = true, Description = "The absolute path to your dll, containing all references that it needs to resolve.")]
-    public required string AssemblyPath { get; init; }
+    public required string TargetAssemblyPath { get; init; }
+    
+    [CommandParameter(2, IsRequired = true, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
+    public required string OldAssemblyPath { get; init; }
     
     public ValueTask ExecuteAsync(IConsole console)
     {
@@ -26,14 +29,14 @@ public class ReMap : ICommand
 
         var remaps = DataProvider.LoadMappingFile(MappingJsonPath);
 
-        var outPath = Path.GetDirectoryName(AssemblyPath);
+        var outPath = Path.GetDirectoryName(TargetAssemblyPath);
 
         if (outPath is null)
         {
             throw new DirectoryNotFoundException("OutPath could not be resolved.");
         }
         
-        _remapper.InitializeRemap(remaps, AssemblyPath, outPath);
+        _remapper.InitializeRemap(remaps, TargetAssemblyPath, outPath);
 
         // Wait for log termination
         Logger.Terminate();

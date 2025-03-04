@@ -253,19 +253,23 @@ public class ReMapper
             .GetField("TypeTable")!
             .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(typeTable, "ItemClass");
+        BuildAssociationFromTable(typeTable, "ItemClass", true);
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
             .GetField("TemplateTypeTable")!
             .GetValue(templateMappingClass)!;
         
-        BuildAssociationFromTable(templateTypeTable, "TemplateClass");
+        BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
     
-    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName)
+    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
     {
         foreach (var type in table)
         {
+            var overrideTable = isItemClass
+                ? DataProvider.Settings.ItemObjectIdOverrides
+                : DataProvider.Settings.TemplateObjectIdOverrides;
+            
             if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))
             {
@@ -278,6 +282,11 @@ public class ReMapper
                 NewTypeName = $"{template.Name}{extName}",
                 UseForceRename = true
             };
+
+            if (overrideTable.TryGetValue(type.Key, out var overriddenTypeName))
+            {
+                remap.NewTypeName = overriddenTypeName;
+            }
             
             _remaps.Add(remap);
         }

@@ -25,7 +25,7 @@ public static class DataProvider
     {
         if (!File.Exists(path))
         {
-            Logger.Log($"Error loading mapping.json from `{path}`, First time running? Please select a mapping path in the gui", ConsoleColor.Red);
+            Logger.Log($"Cannot find mapping.json at `{path}`", ConsoleColor.Red);
             return [];
         }
 

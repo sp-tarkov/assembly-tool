@@ -30,5 +30,11 @@
     "byte",
     "object",
     "gameobject"
-  ]
+  ],
+  "ItemObjectIdOverrides": {
+    
+  },
+  "TemplateObjectIdOverrides": {
+    "543be5e94bdc2df1348b4568": "KeyTemplateClass"
+  }
 }

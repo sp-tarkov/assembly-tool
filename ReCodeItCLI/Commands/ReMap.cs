@@ -18,8 +18,8 @@ public class ReMap : ICommand
     [CommandParameter(1, IsRequired = true, Description = "The absolute path to your dll, containing all references that it needs to resolve.")]
     public required string TargetAssemblyPath { get; init; }
     
-    [CommandParameter(2, IsRequired = true, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
-    public required string OldAssemblyPath { get; init; }
+    [CommandParameter(2, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
+    public string? OldAssemblyPath { get; init; }
     
     public ValueTask ExecuteAsync(IConsole console)
     {

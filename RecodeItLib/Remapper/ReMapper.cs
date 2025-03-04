@@ -70,7 +70,12 @@ public class ReMapper
         
         RenameMatches(typeDefs);
         Publicize();
-        ApplyAttributeToRenamedClasses(oldAssemblyPath);
+
+        if (!string.IsNullOrEmpty(oldAssemblyPath))
+        {
+            ApplyAttributeToRenamedClasses(oldAssemblyPath);
+        }
+        
         WriteAssembly();
     }
     

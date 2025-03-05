@@ -71,10 +71,12 @@ public class ReMapper
         RenameMatches(typeDefs);
         Publicize();
 
+        /*
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
             ApplyAttributeToRenamedClasses(oldAssemblyPath);
         }
+        */
         
         WriteAssembly();
     }

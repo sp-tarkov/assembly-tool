@@ -9,6 +9,7 @@
     <ServerGarbageCollection>true</ServerGarbageCollection>
     <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
     <Platforms>AnyCPU</Platforms>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   
   <ItemGroup>

@@ -70,13 +70,11 @@ public class ReMapper
         
         RenameMatches(typeDefs);
         Publicize();
-
-        /*
+        
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
             ApplyAttributeToRenamedClasses(oldAssemblyPath);
         }
-        */
         
         WriteAssembly();
     }
@@ -349,6 +347,8 @@ public class ReMapper
 
     private void ApplyAttributeToRenamedClasses(string oldAssemblyPath)
     {
+        var corlibRef = new AssemblyRefUser(GetCorlibAssembly());
+        
         // Create the attribute
         var annotationType = new TypeDefUser(
             "SPT", 
@@ -358,7 +358,7 @@ public class ReMapper
             Attributes = TypeAttributes.Public | TypeAttributes.AutoLayout | 
                          TypeAttributes.Class | TypeAttributes.AnsiClass,
             
-            BaseType = Module.Import(typeof(Attribute)),
+            BaseType = new TypeRefUser(Module, "System", "Attribute", corlibRef),
         };
         
         // Add fields
@@ -403,16 +403,33 @@ public class ReMapper
         Module.Types.Add(annotationType);
         
         var attributeCtor = annotationType.FindMethod(".ctor");
-        
-        var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
+
+        DiffCompare? diff = null;
+        if (!string.IsNullOrEmpty(oldAssemblyPath))
+        {
+            diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
+        }
         
         foreach (var type in _remaps)
         {
             var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
             customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.String, type.OriginalTypeName));
-            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, diff.IsSame(type.TypePrimeCandidate!)));
+
+            if (diff is not null)
+            {
+                customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, diff.IsSame(type.TypePrimeCandidate!)));
+            }
+            
             type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
         }
+    }
+
+    private AssemblyRef? GetCorlibAssembly()
+    {
+        return Module!.GetAssemblyRefs()
+            .FirstOrDefault(
+                assembly => assembly.Name == "mscorlib" || 
+                            assembly.Name == "System.Private.CoreLib");
     }
     
     /// <summary>

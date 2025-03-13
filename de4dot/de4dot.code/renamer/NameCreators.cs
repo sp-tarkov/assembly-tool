@@ -145,6 +145,7 @@ namespace de4dot.code.renamer {
 				"Attribute",
 				"Form",
 				"Dialog",
+				"Control",
 				"Stream",
 			};
 			foreach (var name in names)

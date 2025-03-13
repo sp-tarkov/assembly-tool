@@ -15,7 +15,7 @@ public class CleanTask : FrostingTask<Context>
     {
         CleanBuildFolders(context);
         CleanDe4dotFolders(context);
-        CleanObjFolders(context);
+        //CleanObjFolders(context);
         CleanBinFolders(context);
     }
 

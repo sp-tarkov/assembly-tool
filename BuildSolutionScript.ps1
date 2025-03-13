@@ -21,7 +21,7 @@ if (Test-Path $de4dotOutputDir) {
 Write-Host "Building de4dot output..."
 $de4dot = Join-Path $solutionDir "de4dot\de4dot-x64\de4dot-x64.csproj"
 $absolutePath = Resolve-Path -Path $de4dot
-dotnet build $absolutePath
+dotnet build $absolutePath --configuration $Configuration
 #------------------------------------------------------------------------------Done
 
 #------------------------------------------------------------------------------Clean all other project folders
@@ -58,7 +58,7 @@ Write-Host "Cleaning Process Completed"
 Write-Host "Building output..."
 $builder = Join-Path $solutionDir "Builder\Builder.csproj"
 $absolutePath = Resolve-Path -Path $builder
-dotnet build $absolutePath --verbosity detailed
+dotnet build $absolutePath --configuration $Configuration --verbosity detailed
 
 Write-Host "Solution build complete - see Build folder at solution dir"
 

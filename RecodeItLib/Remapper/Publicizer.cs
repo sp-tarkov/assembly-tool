@@ -1,9 +1,11 @@
 ﻿using dnlib.DotNet;
+using ReCodeItLib.Application;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal class Publicizer(Statistics stats)
+internal sealed class Publicizer(Statistics stats) 
+    : IComponent
 {
     public void PublicizeType(TypeDef type)
     {

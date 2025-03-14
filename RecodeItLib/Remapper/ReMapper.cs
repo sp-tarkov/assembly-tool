@@ -5,6 +5,7 @@ using ReCodeItLib.Models;
 using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
+using ReCodeItLib.Application;
 using FieldAttributes = dnlib.DotNet.FieldAttributes;
 using MethodAttributes = dnlib.DotNet.MethodAttributes;
 using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
@@ -20,8 +21,6 @@ public class ReMapper
     private List<RemapModel> _remaps = [];
 
     private readonly List<string> _alreadyGivenNames = [];
-
-    private Statistics? _stats;
     
     /// <summary>
     /// Start the remapping process
@@ -33,6 +32,8 @@ public class ReMapper
         string outPath = "",
         bool validate = false)
     {
+        InitializeComponents(oldAssemblyPath);
+        
         _remaps = remapModels;
         Logger.Stopwatch.Start();
         
@@ -46,8 +47,6 @@ public class ReMapper
         OutPath = outPath;
 
         if (!Validate(_remaps)) return;
-
-        _stats = new Statistics(_remaps);
         
         var types = Module.GetTypes();
 
@@ -63,7 +62,8 @@ public class ReMapper
         // Don't go any further during a validation
         if (validate)
         {
-            _stats.DisplayStatistics(true);
+            Context.Instance.Get<Statistics>()
+                .DisplayStatistics(true);
             
             return;
         }
@@ -77,6 +77,25 @@ public class ReMapper
         }
         
         WriteAssembly();
+    }
+
+    private void InitializeComponents(string oldAssemblyPath)
+    {
+        var ctx = Context.Instance;
+
+        var stats = new Statistics(_remaps);
+        var renamer = new Renamer(stats);
+        var publicizer = new Publicizer(stats);
+        
+        ctx.RegisterComponent<Statistics>(stats);
+        ctx.RegisterComponent<Renamer>(renamer);
+        ctx.RegisterComponent<Publicizer>(publicizer);
+        
+        if (!string.IsNullOrEmpty(oldAssemblyPath))
+        {
+            var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
+            ctx.RegisterComponent<DiffCompare>(diff);
+        }
     }
     
     private void FindBestMatches(IEnumerable<TypeDef> types, bool validate)
@@ -106,8 +125,6 @@ public class ReMapper
 
     private void RenameMatches(IEnumerable<TypeDef> types)
     {
-        var renamer = new Renamer(_stats!);
-        
         var renameTasks = new List<Task>(_remaps.Count);
         foreach (var remap in _remaps)
         {
@@ -116,7 +133,8 @@ public class ReMapper
                 {
                     try
                     {
-                        renamer.RenameAll(types, remap);
+                        Context.Instance.Get<Renamer>()
+                            .RenameAll(types, remap);
                     }
                     catch (Exception ex)
                     {
@@ -137,8 +155,6 @@ public class ReMapper
 
     private void Publicize()
     {
-        var publicizer = new Publicizer(_stats!);
-
         var types = Module!.GetTypes();
 
         var typeDefs = types as TypeDef[] ?? types.ToArray();
@@ -151,7 +167,8 @@ public class ReMapper
                 {
                     try
                     {
-                        publicizer.PublicizeType(type);
+                        Context.Instance.Get<Publicizer>()
+                            .PublicizeType(type);
                     }
                     catch (Exception ex)
                     {
@@ -410,13 +427,9 @@ public class ReMapper
         
         var attributeCtor = annotationType.FindMethod(".ctor");
 
-        DiffCompare? diff = null;
-        if (!string.IsNullOrEmpty(oldAssemblyPath))
-        {
-            diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
-        }
-        
         var attrTasks = new List<Task>(_remaps.Count);
+
+        var diff = Context.Instance.Get<DiffCompare>();
         
         foreach (var mapping in _remaps)
         {
@@ -490,7 +503,8 @@ public class ReMapper
             throw;
         }
         
-        _stats!.DisplayStatistics(false, hollowedPath, OutPath);
+        Context.Instance.Get<Statistics>()!
+            .DisplayStatistics(false, hollowedPath, OutPath);
     }
 
     /// <summary>

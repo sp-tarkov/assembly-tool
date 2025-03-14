@@ -1,10 +1,12 @@
 ﻿using dnlib.DotNet;
+using ReCodeItLib.Application;
 using ReCodeItLib.Models;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal class Renamer(Statistics stats)
+internal sealed class Renamer(Statistics stats) 
+    : IComponent
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
     

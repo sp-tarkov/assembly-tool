@@ -42,4 +42,9 @@ public static class Logger
         var str = JsonSerializer.Serialize(remapModel, settings);
         Log(str, ConsoleColor.Blue);
     }
+
+    public static void Debug(object message, ConsoleColor color = ConsoleColor.White)
+    {
+        
+    }
 }

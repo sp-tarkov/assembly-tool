@@ -1,12 +1,14 @@
 ﻿using System.Diagnostics;
 using Newtonsoft.Json;
+using ReCodeItLib.Application;
 using ReCodeItLib.Enums;
 using ReCodeItLib.Models;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-public class Statistics(List<RemapModel> remapModels)
+internal sealed class Statistics(List<RemapModel> remapModels) 
+	: IComponent
 {
 	public int TypePublicizedCount;
 	public int FieldPublicizedCount;
@@ -54,7 +56,7 @@ public class Statistics(List<RemapModel> remapModels)
 
 	private void DisplayAlternativeMatches()
 	{
-		Logger.Log("--------------------------------------------------");
+		Logger.Log("\n--------------------------------------------------");
 		
 		foreach (var remap in remapModels)
 		{

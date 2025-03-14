@@ -1,9 +1,11 @@
 ﻿using dnlib.DotNet;
+using ReCodeItLib.Application;
 using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-public class DiffCompare(ModuleDefMD oldModule)
+internal sealed class DiffCompare(ModuleDefMD oldModule) 
+	: IComponent
 {
 	public bool IsSame(TypeDef newType)
 	{

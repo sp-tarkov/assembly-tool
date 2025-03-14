@@ -347,7 +347,7 @@ public class ReMapper
 
     private void ApplyAttributeToRenamedClasses(string oldAssemblyPath)
     {
-        var corlibRef = new AssemblyRefUser(GetCorlibAssembly());
+        var corlibRef = new AssemblyRefUser(Module!.GetCorlibAssembly());
         
         // Create the attribute
         var annotationType = new TypeDefUser(
@@ -422,14 +422,6 @@ public class ReMapper
             
             type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
         }
-    }
-
-    private AssemblyRef? GetCorlibAssembly()
-    {
-        return Module!.GetAssemblyRefs()
-            .FirstOrDefault(
-                assembly => assembly.Name == "mscorlib" || 
-                            assembly.Name == "System.Private.CoreLib");
     }
     
     /// <summary>

@@ -21,7 +21,7 @@ public class DiffCompare(ModuleDefMD oldModule)
 		// Do counts of members match?
 		if (!IsSameCounts(newType, oldType))
 		{
-			Logger.LogSync($"{newType.Name} has differences - member count differ", ConsoleColor.Yellow);
+			//Logger.LogSync($"{newType.Name} has differences - member count differ", ConsoleColor.Yellow);
 			return false;
 		}
 
@@ -32,18 +32,18 @@ public class DiffCompare(ModuleDefMD oldModule)
 			// Method does not exist in old assembly
 			if (oldMethod is null)
 			{
-				Logger.LogSync($"{newType.Name} has differences - new method(s)", ConsoleColor.Yellow);
+				//Logger.LogSync($"{newType.Name} has differences - new method(s)", ConsoleColor.Yellow);
 				return false;
 			}
 			
 			if (!IsMethodSame(newMethod, oldMethod))
 			{
-				Logger.LogSync($"{newType.Name} has differences - method signature change(s)", ConsoleColor.Yellow);
+				//Logger.LogSync($"{newType.Name} has differences - method signature change(s)", ConsoleColor.Yellow);
 				return false;
 			}
 		}
 
-		Logger.LogSync($"{newType.Name} is same", ConsoleColor.Green);
+		//Logger.LogSync($"{newType.Name} is same", ConsoleColor.Green);
 		return true;
 	}
 

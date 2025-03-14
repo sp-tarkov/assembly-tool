@@ -35,6 +35,8 @@ internal class Publicizer
             if (property.SetMethod != null) PublicizeMethod(property.SetMethod);
         }
         
+        PublicizeFields(type);
+        
         foreach (var nestedType in type.NestedTypes)
         {
             PublicizeType(nestedType);
@@ -57,5 +59,42 @@ internal class Publicizer
 
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
+    }
+
+    private static void PublicizeFields(TypeDef type)
+    {
+        ITypeDefOrRef declType = type.IsNested ? type : type.DeclaringType;
+        while (declType is { FullName: 
+                   not null 
+                   and not "UnityEngine.Object" 
+                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour" }) 
+        { declType = declType.GetBaseType(); }
+        
+        if (declType is not null)
+        {
+            Logger.LogSync($"Skipping {type.FullName} - object type {declType.FullName}");
+            return;
+        }
+        
+        foreach (var field in type.Fields)
+        {
+            if (field.IsPublic) continue;
+            
+            field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
+            field.Attributes |= FieldAttributes.Public; // Apply a public visibility attribute
+            
+            // Ensure the field is NOT readonly
+            field.Attributes &= ~FieldAttributes.InitOnly;
+
+            if (field.CustomAttributes.Any(ca => ca.AttributeType.FullName 
+                    is "UnityEngine.SerializeField" 
+                    or "Newtonsoft.Json.JsonPropertyAttribute")) 
+                continue;
+            
+            // Make sure we don't serialize this field.
+            field.Attributes |= FieldAttributes.NotSerialized;
+                
+            Logger.LogSync($"Skipping {field.FullName} serialization");
+        }
     }
 }

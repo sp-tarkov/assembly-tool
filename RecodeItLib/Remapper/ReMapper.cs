@@ -23,6 +23,8 @@ public class ReMapper
 
     private readonly List<string> _alreadyGivenNames = [];
 
+    private Statistics? _stats;
+    
     /// <summary>
     /// Start the remapping process
     /// </summary>
@@ -45,6 +47,8 @@ public class ReMapper
         OutPath = outPath;
 
         if (!Validate(_remaps)) return;
+
+        _stats = new Statistics(_remaps, Stopwatch, OutPath);
         
         Stopwatch.Start();
         
@@ -62,8 +66,7 @@ public class ReMapper
         // Don't go any further during a validation
         if (validate)
         {
-            new Statistics(_remaps, Stopwatch, OutPath)
-                .DisplayStatistics(true);
+            _stats.DisplayStatistics(true);
             
             return;
         }
@@ -109,7 +112,7 @@ public class ReMapper
     {
         Logger.LogSync("\nRenaming...", ConsoleColor.Green);
 
-        var renamer = new Renamer();
+        var renamer = new Renamer(_stats!);
         
         var renameTasks = new List<Task>(_remaps.Count);
         foreach (var remap in _remaps)
@@ -141,13 +144,15 @@ public class ReMapper
     {
         Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
         
-        var publicizer = new Publicizer();
+        var publicizer = new Publicizer(_stats!);
+
+        var types = Module!.GetTypes();
+
+        var typeDefs = types as TypeDef[] ?? types.ToArray();
+        var publicizeTasks = new List<Task>(typeDefs.Length);
         
-        var publicizeTasks = new List<Task>(Module!.Types.Count(t => !t.IsNested));
-        foreach (var type in Module!.Types)
+        foreach (var type in typeDefs)
         {
-            if (type.IsNested) continue; // Nested types are handled when publicizing the parent type
-            
             publicizeTasks.Add(
                 Task.Run(() =>
                 {
@@ -161,6 +166,11 @@ public class ReMapper
                     }
                 })
             );
+        }
+        
+        while (!publicizeTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
+        {
+            Logger.DrawProgressBar(publicizeTasks.Count(t => t.IsCompleted), publicizeTasks.Count, 50);
         }
 
         Task.WaitAll(publicizeTasks.ToArray());
@@ -347,6 +357,8 @@ public class ReMapper
 
     private void ApplyAttributeToRenamedClasses(string oldAssemblyPath)
     {
+        Logger.LogSync("\nApplying custom attribute to renamed classes...", ConsoleColor.Green);
+        
         var corlibRef = new AssemblyRefUser(Module!.GetCorlibAssembly());
         
         // Create the attribute
@@ -464,8 +476,7 @@ public class ReMapper
             DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
         }
 
-        new Statistics(_remaps, Stopwatch, OutPath, hollowedPath)
-            .DisplayStatistics();
+        _stats!.DisplayStatistics(hollowedPath: hollowedPath);
         
         Stopwatch.Reset();
         Module = null;

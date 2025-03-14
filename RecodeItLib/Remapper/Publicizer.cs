@@ -3,19 +3,20 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal class Publicizer
+internal class Publicizer(Statistics stats)
 {
     public void PublicizeType(TypeDef type)
     {
         // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
         // nameof(CompilerGeneratedAttribute))) { return; }
         
-        if (!type.IsNested && !type.IsPublic || type.IsNested && !type.IsNestedPublic)
+        if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false })
         {
-            if (!type.Interfaces.Any(i => i.Interface.Name == "IEffect"))
+            if (type.Interfaces.All(i => i.Interface.Name != "IEffect"))
             {
                 type.Attributes &= ~TypeAttributes.VisibilityMask; // Remove all visibility mask attributes
                 type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
+                stats.TypePublicizedCount++;
             }
         }
         
@@ -31,37 +32,36 @@ internal class Publicizer
         
         foreach (var property in type.Properties)
         {
-            if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
-            if (property.SetMethod != null) PublicizeMethod(property.SetMethod);
+            if (property.GetMethod != null) PublicizeMethod(property.GetMethod, true);
+            if (property.SetMethod != null) PublicizeMethod(property.SetMethod, true);
+
+            stats.PropertyPublicizedCount++;
         }
         
         PublicizeFields(type);
-        
-        foreach (var nestedType in type.NestedTypes)
-        {
-            PublicizeType(nestedType);
-        }
     }
 
-    private static void PublicizeMethod(MethodDef method)
+    private void PublicizeMethod(MethodDef method, bool isProperty = false)
     {
-        if (method.IsCompilerControlled /*|| method.CustomAttributes.Any(a => a.AttributeType.Name == nameof(CompilerGeneratedAttribute))*/)
+        if (method.IsCompilerControlled)
         {
             return;
         }
 
         if (method.IsPublic) return;
-
-        // if (!CanPublicizeMethod(method)) return;
-
+        
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
 
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
+
+        if (isProperty) return;
+
+        stats.MethodPublicizedCount++;
     }
 
-    private static void PublicizeFields(TypeDef type)
+    private void PublicizeFields(TypeDef type)
     {
         ITypeDefOrRef declType = type.IsNested ? type : type.DeclaringType;
         while (declType is { FullName: 
@@ -72,7 +72,7 @@ internal class Publicizer
         
         if (declType is not null)
         {
-            Logger.LogSync($"Skipping {type.FullName} - object type {declType.FullName}");
+            //Logger.LogSync($"Skipping {type.FullName} - object type {declType.FullName}");
             return;
         }
         
@@ -80,6 +80,7 @@ internal class Publicizer
         {
             if (field.IsPublic) continue;
             
+            stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
             field.Attributes |= FieldAttributes.Public; // Apply a public visibility attribute
             
@@ -94,7 +95,7 @@ internal class Publicizer
             // Make sure we don't serialize this field.
             field.Attributes |= FieldAttributes.NotSerialized;
                 
-            Logger.LogSync($"Skipping {field.FullName} serialization");
+            //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
     }
 }

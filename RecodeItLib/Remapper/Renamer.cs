@@ -4,7 +4,7 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal class Renamer
+internal class Renamer(Statistics stats)
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
     
@@ -57,7 +57,7 @@ internal class Renamer
         }
     }
     
-    private static void RenameAllFields(
+    private void RenameAllFields(
 
         string oldTypeName,
         string newTypeName,
@@ -114,7 +114,7 @@ internal class Renamer
         }
     }
     
-    private static void RenameAllProperties(
+    private void RenameAllProperties(
         string oldTypeName,
         string newTypeName,
         IEnumerable<TypeDef> typesToCheck)
@@ -141,15 +141,18 @@ internal class Renamer
         }
     }
 
-    private static string GetNewFieldName(string newName, int fieldCount = 0)
+    private UTF8String GetNewFieldName(string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
-        return $"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}";
+        stats.FieldRenamedCount++;
+        return new UTF8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
     }
 
-    private static string GetNewPropertyName(string newName, int propertyCount = 0)
+    private UTF8String GetNewPropertyName(string newName, int propertyCount = 0)
     {
-        return propertyCount > 0 ? $"{newName}_{propertyCount}" : newName;
+        stats.PropertyRenamedCount++;
+        
+        return new UTF8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);;
     }
 }

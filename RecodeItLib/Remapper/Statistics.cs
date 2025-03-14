@@ -9,25 +9,38 @@ namespace ReCodeItLib.ReMapper;
 public class Statistics(
 	List<RemapModel> remapModels, 
 	Stopwatch stopwatch,
-	string outPath,
-	string hollowedPath = "")
+	string outPath)
 {
-	public void DisplayStatistics(bool validate = false)
+	public int TypePublicizedCount;
+	public int FieldPublicizedCount;
+	public int PropertyPublicizedCount;
+	public int MethodPublicizedCount;
+
+	public int FieldRenamedCount;
+	public int PropertyRenamedCount;
+	public int MethodRenamedCount;
+	
+	private string _hollowedPath = string.Empty;
+	
+	public void DisplayStatistics(bool validate = false, string hollowedPath = "")
 	{
+		_hollowedPath = hollowedPath;
+		
 		DisplayAlternativeMatches();
 		DisplayFailuresAndChanges(validate);
+
+		if (validate) return;
 		
-		if (!validate)
-		{
-			DisplayWriteAssembly();
+		DisplayWriteAssembly();
 			
-			// In-case a thread is handing 
-			Environment.Exit(0);
-		}
+		// In-case a thread is hanging 
+		Environment.Exit(0);
 	}
 
 	private void DisplayAlternativeMatches()
 	{
+		Logger.LogSync("--------------------------------------------------");
+		
 		foreach (var remap in remapModels)
 		{
 			if (remap.Succeeded is false) { continue; }
@@ -95,19 +108,29 @@ public class Statistics(
 			changes++;
 		}
 		
-		var renamedColor = changes > 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
+		Logger.LogSync("--------------------------------------------------");
+		Logger.LogSync($"Types publicized: {TypePublicizedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Types renamed: {changes}", ConsoleColor.Green);
 		
-		Logger.LogSync($"Renamed {changes} types", renamedColor);
+		if (failures > 0)
+		{
+			Logger.LogSync($"Types that failed: {failures}", ConsoleColor.Red);
+		}
 		
-		var failColor = failures > 0 ? ConsoleColor.Red : ConsoleColor.Green;
-		
-		Logger.LogSync($"Failed to rename {failures} types", failColor);
+		Logger.LogSync($"Methods publicized: {MethodPublicizedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Methods renamed: {MethodRenamedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Fields publicized: {FieldPublicizedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Fields renamed: {FieldRenamedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Properties publicized: {PropertyPublicizedCount}", ConsoleColor.Green);
+		Logger.LogSync($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
 	}
 
 	private void DisplayWriteAssembly()
 	{
+		Logger.LogSync("--------------------------------------------------");
+		
 		Logger.LogSync($"Assembly written to `{outPath}`", ConsoleColor.Green);
-		Logger.LogSync($"Hollowed written to `{hollowedPath}`", ConsoleColor.Green);
+		Logger.LogSync($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
 		Logger.LogSync($"Remap took {stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
 	}
 }

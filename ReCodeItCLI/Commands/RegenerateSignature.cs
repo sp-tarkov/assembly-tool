@@ -35,7 +35,7 @@ public class RegenerateSignature : CliFx.ICommand
 
 	    if (target is null)
 	    {
-		    Logger.LogSync("Could not find signature to regenerate", ConsoleColor.Red);
+		    Logger.Log("Could not find signature to regenerate", ConsoleColor.Red);
 		    return default;
 	    }
 	    

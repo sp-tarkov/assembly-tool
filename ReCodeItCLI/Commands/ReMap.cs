@@ -37,10 +37,6 @@ public class ReMap : ICommand
         }
         
         _remapper.InitializeRemap(remaps, TargetAssemblyPath, OldAssemblyPath, outPath);
-
-        // Wait for log termination
-        Logger.Terminate();
-        while(Logger.IsRunning()) {}
         
         return default;
     }

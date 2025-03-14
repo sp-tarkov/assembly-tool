@@ -1,5 +1,9 @@
 {
   "MappingPath": "",
+  "GamePath": "",
+  "CopyToGame": true,
+  "ModulesProjectPath": "",
+  "CopyToModules": true,
   "TypeNamesToMatch": [
     "Class",
     "GClass",

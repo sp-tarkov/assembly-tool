@@ -1,22 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Configuration>Debug</Configuration>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
-    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
-    <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
-    <Platforms>AnyCPU</Platforms>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ReCodeItLib\ReCodeItLib.csproj" />
-    <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
-    <ProjectReference Include="..\ReCodeItCLI\ReCodeItCLI.csproj" />
-    <ProjectReference Include="..\de4dot\AssemblyServer-x64\AssemblyServer-x64.csproj" />
-    <ProjectReference Include="..\de4dot\de4dot-x64\de4dot-x64.csproj" />
-  </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="Build">
-    <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass .\PostBuild.ps1 $(ConfigurationName)" />
-  </Target>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Cake.Frosting" Version="5.0.0"/>
+    </ItemGroup>
 </Project>

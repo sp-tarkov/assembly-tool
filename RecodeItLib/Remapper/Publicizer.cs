@@ -78,7 +78,7 @@ internal class Publicizer(Statistics stats)
         
         foreach (var field in type.Fields)
         {
-            if (field.IsPublic) continue;
+            if (field.IsPublic || IsEventField(type, field)) continue;
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -97,5 +97,46 @@ internal class Publicizer(Statistics stats)
                 
             //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
+    }
+
+    private static bool IsEventField(TypeDef type, FieldDef field)
+    {
+        foreach (var evt in type.Events)
+        {
+            if (evt.AddMethod != null && evt.AddMethod.Body != null)
+            {
+                foreach (var instr in evt.AddMethod.Body.Instructions)
+                {
+                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    {
+                        return true;
+                    }
+                }
+            }
+                
+            if (evt.RemoveMethod != null && evt.RemoveMethod.Body != null)
+            {
+                foreach (var instr in evt.RemoveMethod.Body.Instructions)
+                {
+                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    {
+                        return true;
+                    }
+                }
+            }
+                
+            if (evt.InvokeMethod != null && evt.InvokeMethod.Body != null)
+            {
+                foreach (var instr in evt.InvokeMethod.Body.Instructions)
+                {
+                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
 }

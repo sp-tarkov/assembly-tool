@@ -27,11 +27,11 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		
 		if (targetTypeDef is null)
 		{
-			Logger.LogSync($"Could not target type: {oldTypeName}", ConsoleColor.Red);
+			Logger.Log($"Could not target type: {oldTypeName}", ConsoleColor.Red);
 			return;
 		}
 		
-		Logger.LogSync($"Found target type: {targetTypeDef!.FullName}", ConsoleColor.Green);
+		Logger.Log($"Found target type: {targetTypeDef!.FullName}", ConsoleColor.Green);
 		
 		if (targetTypeDef.IsNested)
 		{
@@ -62,56 +62,56 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 	
 	private void StartFilter(TypeDef target, RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
 	{
-		Logger.LogSync($"Starting Candidates: {CandidateTypes!.Count}", ConsoleColor.Yellow);
+		Logger.Log($"Starting Candidates: {CandidateTypes!.Count}", ConsoleColor.Yellow);
 		
 		// Purpose of this pass is to eliminate any types that have no matching parameters
 		foreach (var candidate in CandidateTypes!.ToList())
 		{
 			if (!PassesGeneralChecks(target, candidate, remapModel.SearchParams.GenericParams))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after general checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after general checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetMethods(target, candidate, remapModel.SearchParams.Methods))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after method checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after method checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetFields(target, candidate, remapModel.SearchParams.Fields))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after field checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after field checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetProperties(target, candidate, remapModel.SearchParams.Properties))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after property checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after property checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 
 			if (!ContainsTargetNestedTypes(target, candidate, remapModel.SearchParams.NestedTypes))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after nested checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after nested checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetEvents(target, candidate, remapModel.SearchParams.Events))
 			{
-				Logger.LogSync($"Candidate: {candidate.Name} filtered out after event checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after event checks", ConsoleColor.Yellow);
 				CandidateTypes!.Remove(candidate);
 			}
 		}
 		
 		if (CandidateTypes!.Count == 1)
 		{
-			Logger.LogSync("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green);
+			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green);
 
 			var tmpList = new List<RemapModel>()
 			{
@@ -127,7 +127,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			}
 		}
 		
-		Logger.LogSync("Could not find a match... :(", ConsoleColor.Red);
+		Logger.Log("Could not find a match... :(", ConsoleColor.Red);
 	}
 
 	private bool PassesGeneralChecks(TypeDef target, TypeDef candidate, GenericParams parms)
@@ -236,7 +236,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			.Select(s => s.Name.String)
 			.Except(target.Fields.Select(s => s.Name.String));
 		
-		Logger.LogSync(string.Join(", ", includeFields));
+		Logger.Log(string.Join(", ", includeFields));
 		
 		fields.IncludeFields.UnionWith(includeFields);
 		fields.ExcludeFields.UnionWith(excludeFields);
@@ -385,20 +385,20 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 	{
 		Thread.Sleep(1000);
 		
-		Logger.LogSync("Add remap to existing list?.. (y/n)", ConsoleColor.Yellow);
+		Logger.Log("Add remap to existing list?.. (y/n)", ConsoleColor.Yellow);
 		var resp = Console.ReadLine();
 
 		if (resp == "y" || resp == "yes" || resp == "Y")
 		{
 			if (mappings.Count == 0)
 			{
-				Logger.LogSync("No remaps loaded. Please restart with a provided mapping path.", ConsoleColor.Red);
+				Logger.Log("No remaps loaded. Please restart with a provided mapping path.", ConsoleColor.Red);
 				return;
 			}
 
 			if (mappings.Any(m => m.NewTypeName == remapModel.NewTypeName))
 			{
-				Logger.LogSync($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
+				Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
 				return;
 			}
 			
@@ -406,7 +406,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 			DataProvider.UpdateMapping(mappingPath, mappings, false);
 		}
 		
-		Logger.LogSync("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
+		Logger.Log("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
 		var resp2 = Console.ReadLine();
 		
 		if (resp2 == "y" || resp2 == "yes" || resp2 == "Y")

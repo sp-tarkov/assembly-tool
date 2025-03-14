@@ -19,7 +19,7 @@ public class AddMissingProperties : ICommand
 		var remaps = DataProvider.LoadMappingFile(MappingsPath);
 		DataProvider.UpdateMapping(MappingsPath, remaps);
 		
-		Logger.LogSync("Successfully updated mapping file");
+		Logger.Log("Successfully updated mapping file");
         
 		return default;
 	}

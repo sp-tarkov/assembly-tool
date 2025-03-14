@@ -7,8 +7,7 @@ using ReCodeItLib.Utils;
 namespace ReCodeItLib.ReMapper;
 
 public class Statistics(
-	List<RemapModel> remapModels, 
-	Stopwatch stopwatch,
+	List<RemapModel> remapModels,
 	string outPath)
 {
 	public int TypePublicizedCount;
@@ -39,7 +38,7 @@ public class Statistics(
 
 	private void DisplayAlternativeMatches()
 	{
-		Logger.LogSync("--------------------------------------------------");
+		Logger.Log("--------------------------------------------------");
 		
 		foreach (var remap in remapModels)
 		{
@@ -54,11 +53,11 @@ public class Statistics(
 	
 	private void DisplayAlternativeMatches(RemapModel remap)
 	{
-		Logger.LogSync($"Warning! There were {remap.TypeCandidates.Count()} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
+		Logger.Log($"Warning! There were {remap.TypeCandidates.Count()} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
 
 		foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
 		{
-			Logger.LogSync($"{type.Name}", ConsoleColor.Yellow);
+			Logger.Log($"{type.Name}", ConsoleColor.Yellow);
 		}
 	}
 
@@ -72,25 +71,25 @@ public class Statistics(
 			switch (remap.Succeeded)
 			{
 				case false when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
-					Logger.LogSync("----------------------------------------------------------------------", ConsoleColor.Red);
-					Logger.LogSync("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
-					Logger.LogSync($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
-					Logger.LogSync($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
-					Logger.LogSync("----------------------------------------------------------------------", ConsoleColor.Red);
+					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
+					Logger.Log("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
+					Logger.Log($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
+					Logger.Log($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
+					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
 					
 					failures++;
 					break;
 				case false:
 				{
-					Logger.LogSync("-----------------------------------------------", ConsoleColor.Red);
-					Logger.LogSync($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
+					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
+					Logger.Log($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
 
 					foreach (var reason in remap.NoMatchReasons)
 					{
-						Logger.LogSync($"Reason: {reason}", ConsoleColor.Red);
+						Logger.Log($"Reason: {reason}", ConsoleColor.Red);
 					}
 
-					Logger.LogSync("-----------------------------------------------", ConsoleColor.Red);
+					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
 					failures++;
 					continue;
 				}
@@ -98,39 +97,45 @@ public class Statistics(
 			
 			if (validate && remap.Succeeded)
 			{
-				Logger.LogSync("Generated Model: ", ConsoleColor.Blue);
+				Logger.Log("Generated Model: ", ConsoleColor.Blue);
 				Logger.LogRemapModel(remap);
 				
-				Logger.LogSync("Passed validation", ConsoleColor.Green);
+				Logger.Log("Passed validation", ConsoleColor.Green);
 				return;
 			}
 			
 			changes++;
 		}
 		
-		Logger.LogSync("--------------------------------------------------");
-		Logger.LogSync($"Types publicized: {TypePublicizedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Types renamed: {changes}", ConsoleColor.Green);
+		Logger.Log("--------------------------------------------------");
+		Logger.Log($"Types publicized: {TypePublicizedCount}", ConsoleColor.Green);
+		Logger.Log($"Types renamed: {changes}", ConsoleColor.Green);
 		
 		if (failures > 0)
 		{
-			Logger.LogSync($"Types that failed: {failures}", ConsoleColor.Red);
+			Logger.Log($"Types that failed: {failures}", ConsoleColor.Red);
 		}
 		
-		Logger.LogSync($"Methods publicized: {MethodPublicizedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Methods renamed: {MethodRenamedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Fields publicized: {FieldPublicizedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Fields renamed: {FieldRenamedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Properties publicized: {PropertyPublicizedCount}", ConsoleColor.Green);
-		Logger.LogSync($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
+		Logger.Log($"Methods publicized: {MethodPublicizedCount}", ConsoleColor.Green);
+		Logger.Log($"Methods renamed: {MethodRenamedCount}", ConsoleColor.Green);
+		Logger.Log($"Fields publicized: {FieldPublicizedCount}", ConsoleColor.Green);
+		Logger.Log($"Fields renamed: {FieldRenamedCount}", ConsoleColor.Green);
+		Logger.Log($"Properties publicized: {PropertyPublicizedCount}", ConsoleColor.Green);
+		Logger.Log($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
 	}
 
 	private void DisplayWriteAssembly()
 	{
-		Logger.LogSync("--------------------------------------------------");
+		Logger.Log("--------------------------------------------------");
 		
-		Logger.LogSync($"Assembly written to `{outPath}`", ConsoleColor.Green);
-		Logger.LogSync($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
-		Logger.LogSync($"Remap took {stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
+		Logger.Log($"Assembly written to `{outPath}`", ConsoleColor.Green);
+		Logger.Log($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
+		
+		if (DataProvider.Settings.MappingPath != string.Empty)
+		{
+			DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), remapModels);
+		}
+		
+		Logger.Log($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
 	}
 }

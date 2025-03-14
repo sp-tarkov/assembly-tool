@@ -18,7 +18,7 @@ public class GetRuntimeVersion : ICommand
 		
 		var module = DataProvider.LoadModule(AssemblyPath);
 		
-		Logger.LogSync($"Target Runtime Version: {module.RuntimeVersion}");
+		Logger.Log($"Target Runtime Version: {module.RuntimeVersion}");
 
 		return default;
 	}

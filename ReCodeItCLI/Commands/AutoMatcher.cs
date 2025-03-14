@@ -30,23 +30,19 @@ public class AutoMatchCommand : ICommand
 	{
 		Debugger.TryWaitForDebuggerAttach();
 		
-		Logger.LogSync("Finding match...");
+		Logger.Log("Finding match...");
 
 		var remaps = new List<RemapModel>();
 		
 		if (!string.IsNullOrEmpty(MappingsPath))
 		{
-			Logger.LogSync("Loaded mapping file", ConsoleColor.Green);
+			Logger.Log("Loaded mapping file", ConsoleColor.Green);
 			remaps.AddRange(DataProvider.LoadMappingFile(MappingsPath));
 		}
 		
 		new AutoMatcher(remaps, MappingsPath)
 			.AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
 		
-		// Wait for log termination
-		Logger.Terminate();
-		while(Logger.IsRunning()) {}
-        
 		return default;
 	}
 }

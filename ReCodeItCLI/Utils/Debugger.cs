@@ -16,7 +16,7 @@ public static class Debugger
 			var dots = new string('.', dotCount);
 			
 			Console.Clear();
-			Logger.LogSync($"Waiting for debugger{dots}");
+			Logger.Log($"Waiting for debugger{dots}");
 			
 			dotCount = (dotCount + 1) % (maxDots + 1);
 			Thread.Sleep(500);

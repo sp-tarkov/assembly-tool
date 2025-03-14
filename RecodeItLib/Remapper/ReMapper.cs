@@ -15,8 +15,6 @@ namespace ReCodeItLib.ReMapper;
 public class ReMapper
 {
     private ModuleDefMD? Module { get; set; }
-    
-    private static readonly Stopwatch Stopwatch = new();
     private string OutPath { get; set; } = string.Empty;
     
     private List<RemapModel> _remaps = [];
@@ -36,6 +34,7 @@ public class ReMapper
         bool validate = false)
     {
         _remaps = remapModels;
+        Logger.Stopwatch.Start();
         
         targetAssemblyPath = AssemblyUtils.TryDeObfuscate(
             DataProvider.LoadModule(targetAssemblyPath), 
@@ -48,9 +47,7 @@ public class ReMapper
 
         if (!Validate(_remaps)) return;
 
-        _stats = new Statistics(_remaps, Stopwatch, OutPath);
-        
-        Stopwatch.Start();
+        _stats = new Statistics(_remaps, OutPath);
         
         var types = Module.GetTypes();
 
@@ -76,7 +73,7 @@ public class ReMapper
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
-            ApplyAttributeToRenamedClasses(oldAssemblyPath);
+            CreateCustomTypeAttribute(oldAssemblyPath);
         }
         
         WriteAssembly();
@@ -84,8 +81,6 @@ public class ReMapper
     
     private void FindBestMatches(IEnumerable<TypeDef> types, bool validate)
     {
-        Logger.LogSync("Finding Best Matches...", ConsoleColor.Green);
-        
         var tasks = new List<Task>(_remaps.Count);
         foreach (var remap in _remaps)
         {
@@ -99,6 +94,7 @@ public class ReMapper
 
         if (!validate)
         {
+            Logger.Log("Finding Best Matches...", ConsoleColor.Green);
             while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
             {
                 Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
@@ -110,8 +106,6 @@ public class ReMapper
 
     private void RenameMatches(IEnumerable<TypeDef> types)
     {
-        Logger.LogSync("\nRenaming...", ConsoleColor.Green);
-
         var renamer = new Renamer(_stats!);
         
         var renameTasks = new List<Task>(_remaps.Count);
@@ -126,12 +120,13 @@ public class ReMapper
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
                     }
                 })
             );
         }
         
+        Logger.Log("\nRenaming Types and Members...", ConsoleColor.Green);
         while (!renameTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
             Logger.DrawProgressBar(renameTasks.Count(t => t.IsCompleted), renameTasks.Count, 50);
@@ -142,8 +137,6 @@ public class ReMapper
 
     private void Publicize()
     {
-        Logger.LogSync("\nPublicizing classes...", ConsoleColor.Green);
-        
         var publicizer = new Publicizer(_stats!);
 
         var types = Module!.GetTypes();
@@ -154,7 +147,7 @@ public class ReMapper
         foreach (var type in typeDefs)
         {
             publicizeTasks.Add(
-                Task.Run(() =>
+                Task.Factory.StartNew(() =>
                 {
                     try
                     {
@@ -162,12 +155,13 @@ public class ReMapper
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
                     }
                 })
             );
         }
         
+        Logger.Log("\nPublicizing Types...", ConsoleColor.Green);
         while (!publicizeTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
         {
             Logger.DrawProgressBar(publicizeTasks.Count(t => t.IsCompleted), publicizeTasks.Count, 50);
@@ -355,9 +349,9 @@ public class ReMapper
         remap.OriginalTypeName = winner.Name.String;
     }
 
-    private void ApplyAttributeToRenamedClasses(string oldAssemblyPath)
+    private void CreateCustomTypeAttribute(string oldAssemblyPath)
     {
-        Logger.LogSync("\nApplying custom attribute to renamed classes...", ConsoleColor.Green);
+        Logger.Log("\nCreating custom attribute...", ConsoleColor.Green);
         
         var corlibRef = new AssemblyRefUser(Module!.GetCorlibAssembly());
         
@@ -422,18 +416,45 @@ public class ReMapper
             diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
         }
         
-        foreach (var type in _remaps)
+        var attrTasks = new List<Task>(_remaps.Count);
+        
+        foreach (var mapping in _remaps)
         {
-            var customAttribute = new CustomAttribute(Module.Import(attributeCtor));
-            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.String, type.OriginalTypeName));
-
-            if (diff is not null)
-            {
-                customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, diff.IsSame(type.TypePrimeCandidate!)));
-            }
-            
-            type.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
+            attrTasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        AddAttrToType(mapping, attributeCtor, diff);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
+                })
+            );
         }
+        
+        Logger.Log("Applying Custom attribute to types...", ConsoleColor.Green);
+        while (!attrTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
+        {
+            Logger.DrawProgressBar(attrTasks.Count(t => t.IsCompleted), attrTasks.Count, 50);
+        }
+        
+        Task.WaitAll(attrTasks.ToArray());
+    }
+
+    private void AddAttrToType(RemapModel remap, MethodDef attrCtor, DiffCompare? diff) 
+    {
+        var customAttribute = new CustomAttribute(Module!.Import(attrCtor));
+        customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.String, remap.OriginalTypeName));
+
+        if (diff is not null)
+        {
+            customAttribute.ConstructorArguments.Add(new CAArgument(Module.CorLibTypes.Boolean, diff.IsSame(remap.TypePrimeCandidate!)));
+        }
+            
+        remap.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
     }
     
     /// <summary>
@@ -452,7 +473,7 @@ public class ReMapper
         }
         catch (Exception e)
         {
-            Logger.LogSync(e);
+            Logger.Log(e);
             throw;
         }
         
@@ -467,19 +488,11 @@ public class ReMapper
         }
         catch (Exception e)
         {
-            Logger.LogSync(e);
+            Logger.Log(e);
             throw;
         }
         
-        if (DataProvider.Settings.MappingPath != string.Empty)
-        {
-            DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), _remaps);
-        }
-
         _stats!.DisplayStatistics(hollowedPath: hollowedPath);
-        
-        Stopwatch.Reset();
-        Module = null;
     }
 
     /// <summary>
@@ -487,12 +500,11 @@ public class ReMapper
     /// </summary>
     private void StartHollow()
     {
-        Logger.LogSync("Creating Hollow...", ConsoleColor.Green);
-        
         var tasks = new List<Task>(Module!.GetTypes().Count());
         foreach (var type in Module.GetTypes())
         {
-            tasks.Add(Task.Run(() =>
+            tasks.Add(
+                Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -500,20 +512,24 @@ public class ReMapper
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogSync($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
                 }
             }));
+        }
+        
+        Logger.Log("\nHollowing Types...", ConsoleColor.Green);
+        while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
+        {
+            Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
         }
         
         Task.WaitAll(tasks.ToArray());
     }
 
-    private void HollowType(TypeDef type)
+    private static void HollowType(TypeDef type)
     {
         foreach (var method in type.Methods.Where(m => m.HasBody))
         {
-            if (!method.HasBody) continue;
-
             method.Body = new CilBody();
             method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
         }

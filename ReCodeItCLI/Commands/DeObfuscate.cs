@@ -25,10 +25,6 @@ public class DeObfuscate : ICommand
         Deobfuscator.Deobfuscate(AssemblyPath, IsLauncher);
 
         Logger.Log("Complete", ConsoleColor.Green);
-
-        // Wait for log termination
-        Logger.Terminate();
-        while(Logger.IsRunning()) {}
         
         return default;
     }

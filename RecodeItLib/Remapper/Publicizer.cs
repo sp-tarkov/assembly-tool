@@ -63,7 +63,7 @@ internal class Publicizer(Statistics stats)
 
     private void PublicizeFields(TypeDef type)
     {
-        ITypeDefOrRef declType = type.IsNested ? type : type.DeclaringType;
+        ITypeDefOrRef declType = type.IsNested ? type.DeclaringType : type;
         while (declType is { FullName: 
                    not null 
                    and not "UnityEngine.Object" 
@@ -78,17 +78,14 @@ internal class Publicizer(Statistics stats)
         
         foreach (var field in type.Fields)
         {
-            if (field.IsInitOnly)
-            {
-                // Ensure the field is NOT readonly
-                field.Attributes &= ~FieldAttributes.InitOnly;
-            }
-            
             if (field.IsPublic) continue;
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
             field.Attributes |= FieldAttributes.Public; // Apply a public visibility attribute
+            
+            // Ensure the field is NOT readonly
+            field.Attributes &= ~FieldAttributes.InitOnly;
             
             if (field.CustomAttributes.Any(ca => ca.AttributeType.FullName 
                     is "UnityEngine.SerializeField" 

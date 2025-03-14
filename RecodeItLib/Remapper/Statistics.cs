@@ -6,9 +6,7 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-public class Statistics(
-	List<RemapModel> remapModels,
-	string outPath)
+public class Statistics(List<RemapModel> remapModels)
 {
 	public int TypePublicizedCount;
 	public int FieldPublicizedCount;
@@ -32,6 +30,24 @@ public class Statistics(
 		
 		DisplayWriteAssembly(outPath);
 			
+		if (DataProvider.Settings.CopyToGame && !string.IsNullOrEmpty(DataProvider.Settings.GamePath) && File.Exists(outPath))
+		{
+			var gameDest = Path.Combine(DataProvider.Settings.GamePath, "EscapeFromTarkov_Data", "Managed", "Assembly-CSharp.dll");
+                
+			File.Copy(outPath, gameDest, true);
+                
+			Logger.Log($"Assembly has been installed to the game: {gameDest}", ConsoleColor.Yellow);
+		}
+		
+		if (DataProvider.Settings.CopyToModules && !string.IsNullOrEmpty(DataProvider.Settings.ModulesProjectPath) && File.Exists(hollowedPath))
+		{
+			var hollowedDest = Path.Combine(DataProvider.Settings.ModulesProjectPath, "project", "Shared", "Hollowed", "hollowed.dll");
+                
+			File.Copy(hollowedPath, hollowedDest, true);
+                
+			Logger.Log($"Hollowed has been copied to the modules project: {hollowedDest}", ConsoleColor.Yellow);
+		}
+		
 		// In-case a thread is hanging 
 		Environment.Exit(0);
 	}

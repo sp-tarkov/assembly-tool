@@ -47,7 +47,7 @@ public class ReMapper
 
         if (!Validate(_remaps)) return;
 
-        _stats = new Statistics(_remaps, OutPath);
+        _stats = new Statistics(_remaps);
         
         var types = Module.GetTypes();
 

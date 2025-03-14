@@ -103,7 +103,7 @@ internal class Publicizer(Statistics stats)
     {
         foreach (var evt in type.Events)
         {
-            if (evt.AddMethod != null && evt.AddMethod.Body != null)
+            if (evt.AddMethod is { Body: not null })
             {
                 foreach (var instr in evt.AddMethod.Body.Instructions)
                 {
@@ -114,7 +114,7 @@ internal class Publicizer(Statistics stats)
                 }
             }
                 
-            if (evt.RemoveMethod != null && evt.RemoveMethod.Body != null)
+            if (evt.RemoveMethod is { Body: not null })
             {
                 foreach (var instr in evt.RemoveMethod.Body.Instructions)
                 {
@@ -125,7 +125,7 @@ internal class Publicizer(Statistics stats)
                 }
             }
                 
-            if (evt.InvokeMethod != null && evt.InvokeMethod.Body != null)
+            if (evt.InvokeMethod is { Body: not null })
             {
                 foreach (var instr in evt.InvokeMethod.Body.Instructions)
                 {

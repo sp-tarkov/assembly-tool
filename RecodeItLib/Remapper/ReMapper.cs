@@ -462,10 +462,8 @@ public class ReMapper
     /// </summary>
     private void WriteAssembly()
     {
-        var moduleName = Module?.Name;
-
         const string dllName = "-cleaned-remapped-publicized.dll";
-        OutPath = Path.Combine(OutPath, moduleName?.Replace(".dll", dllName));
+        OutPath = Path.Combine(OutPath,  Module?.Name?.Replace(".dll", dllName));
 
         try
         {
@@ -492,7 +490,7 @@ public class ReMapper
             throw;
         }
         
-        _stats!.DisplayStatistics(hollowedPath: hollowedPath);
+        _stats!.DisplayStatistics(false, hollowedPath, OutPath);
     }
 
     /// <summary>

@@ -26,6 +26,13 @@ public class BuildTask : FrostingTask<Context>
                 Configuration = context.MsBuildConfiguration,
             }
         );
+        
+        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "de4dot\\AssemblyServer-x64\\AssemblyServer-x64.csproj"),
+            new DotNetBuildSettings
+            {
+                Configuration = context.MsBuildConfiguration,
+            }
+        );
         context.Log.Information("Finished Building De4dot");
     }
 

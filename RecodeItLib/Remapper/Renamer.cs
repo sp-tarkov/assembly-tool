@@ -35,8 +35,6 @@ internal class Renamer(Statistics stats)
     {
         foreach (var type in typesToCheck)
         {
-            List<MethodDef> methodsToFix = [];
-            
             var allMethodNames = type.Methods
                 .Select(s => s.Name).ToList();
 

@@ -21,7 +21,7 @@ public class Statistics(
 	
 	private string _hollowedPath = string.Empty;
 	
-	public void DisplayStatistics(bool validate = false, string hollowedPath = "")
+	public void DisplayStatistics(bool validate = false, string hollowedPath = "", string outPath = "")
 	{
 		_hollowedPath = hollowedPath;
 		
@@ -30,7 +30,7 @@ public class Statistics(
 
 		if (validate) return;
 		
-		DisplayWriteAssembly();
+		DisplayWriteAssembly(outPath);
 			
 		// In-case a thread is hanging 
 		Environment.Exit(0);
@@ -124,7 +124,7 @@ public class Statistics(
 		Logger.Log($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
 	}
 
-	private void DisplayWriteAssembly()
+	private void DisplayWriteAssembly(string outPath)
 	{
 		Logger.Log("--------------------------------------------------");
 		

@@ -153,6 +153,6 @@ internal sealed class Renamer(Statistics stats)
     {
         stats.PropertyRenamedCount++;
         
-        return new UTF8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);;
+        return new UTF8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
     }
 }

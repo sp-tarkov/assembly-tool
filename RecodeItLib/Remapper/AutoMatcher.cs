@@ -178,10 +178,10 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		if (target.Methods.Count != candidate.Methods.Count) return false;
 		
 		var commonMethods = target.Methods
-			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+			.Where(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false })
 			.Select(s => s.Name)
 			.Intersect(candidate.Methods
-				.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+				.Where(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false })
 				.Select(s => s.Name));
 		
 		// Methods in target that are not in candidate
@@ -196,7 +196,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		methods.ExcludeMethods.UnionWith(excludeMethods);
 		
 		methods.MethodCount = target.Methods
-			.Count(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter && !m.IsSpecialName);
+			.Count(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false, IsSpecialName: false });
 
 		if (target.Methods.Any(m => m.IsConstructor && m.Parameters.Count > 0))
 		{

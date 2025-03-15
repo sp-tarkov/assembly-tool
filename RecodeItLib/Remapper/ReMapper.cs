@@ -73,7 +73,7 @@ public class ReMapper
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
-            CreateCustomTypeAttribute(oldAssemblyPath);
+            CreateCustomTypeAttribute();
         }
         
         WriteAssembly();
@@ -366,7 +366,7 @@ public class ReMapper
         remap.OriginalTypeName = winner.Name.String;
     }
 
-    private void CreateCustomTypeAttribute(string oldAssemblyPath)
+    private void CreateCustomTypeAttribute()
     {
         Logger.Log("\nCreating custom attribute...", ConsoleColor.Green);
         

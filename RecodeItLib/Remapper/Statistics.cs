@@ -71,7 +71,7 @@ internal sealed class Statistics(List<RemapModel> remapModels)
 	
 	private void DisplayAlternativeMatches(RemapModel remap)
 	{
-		Logger.Log($"Warning! There were {remap.TypeCandidates.Count()} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
+		Logger.Log($"Warning! There were {remap.TypeCandidates.Count} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
 
 		foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
 		{

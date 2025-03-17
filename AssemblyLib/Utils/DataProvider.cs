@@ -13,6 +13,7 @@ public static class DataProvider
     {
         Settings = LoadAppSettings();
         ItemTemplates = LoadItems();
+        
         LoadMappingFile();
     }
     
@@ -42,6 +43,8 @@ public static class DataProvider
         
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
         Remaps.AddRange(remaps!);
+
+        ValidateMappings();
     }
     
     public static void UpdateMapping(bool respectNullableAnnotations = true)
@@ -66,6 +69,24 @@ public static class DataProvider
         Logger.Log($"Mapping file updated with new type names and saved to {MappingNewPath}", ConsoleColor.Green);
     }
 
+    private static void ValidateMappings()
+    {
+        var duplicateGroups = Remaps
+            .GroupBy(m => m.NewTypeName)
+            .Where(g => g.Count() > 1)
+            .ToList();
+
+        if (duplicateGroups.Count <= 1) return;
+        
+        foreach (var duplicate in duplicateGroups)
+        {
+            var duplicateNewTypeName = duplicate.Key;
+            Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
+        }
+        
+        throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
+    }
+    
     public static ModuleDefMD LoadModule(string path)
     {
         var mcOptions = new ModuleCreationOptions(ModuleDef.CreateModuleContext());

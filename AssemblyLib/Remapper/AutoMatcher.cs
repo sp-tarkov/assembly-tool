@@ -114,7 +114,7 @@ public class AutoMatcher()
 			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green);
 			
 			DataProvider.Remaps.Add(remapModel);
-			new ReMapper().InitializeRemap(assemblyPath, string.Empty, validate: true);
+			new ReMapper(assemblyPath).InitializeRemap(string.Empty, validate: true);
 
 			if (remapModel.Succeeded)
 			{
@@ -419,7 +419,7 @@ public class AutoMatcher()
 				throw new FileNotFoundException($"Could not locale old assembly at path ``{oldAssemblyPath}`");
 			}
 			
-			new ReMapper().InitializeRemap(assemblyPath, oldAssemblyPath, outPath);
+			new ReMapper(assemblyPath).InitializeRemap(oldAssemblyPath, outPath);
 		}
 	}
 }

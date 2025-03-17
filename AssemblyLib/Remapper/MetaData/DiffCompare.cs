@@ -2,7 +2,7 @@
 using dnlib.DotNet;
 using AssemblyLib.Utils;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.ReMapper.MetaData;
 
 internal sealed class DiffCompare(ModuleDefMD oldModule) 
 	: IComponent

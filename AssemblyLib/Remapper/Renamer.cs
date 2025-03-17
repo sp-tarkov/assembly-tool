@@ -5,7 +5,7 @@ using dnlib.DotNet;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Renamer(TypeDef[] types, Statistics stats) 
+internal sealed class Renamer(List<TypeDef> types, Statistics stats) 
     : IComponent
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;

@@ -5,37 +5,37 @@ using ReCodeItLib.Utils;
 
 namespace ReCodeItLib.ReMapper;
 
-internal sealed class Renamer(Statistics stats) 
+internal sealed class Renamer(TypeDef[] types, Statistics stats) 
     : IComponent
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
+
+    public void StartRenameProcess()
+    {
+        
+    }
     
-    public void RenameAll(IEnumerable<TypeDef> types, RemapModel remap)
+    public void RenameRemap(RemapModel remap)
     {
         if (remap.TypePrimeCandidate is null) return;
         
         // Rename all fields and properties first
-        var typesToCheck = types as TypeDef[] ?? types.ToArray();
         RenameAllFields(
             remap.TypePrimeCandidate.Name.String,
-            remap.NewTypeName,
-            typesToCheck);
+            remap.NewTypeName);
 
         RenameAllProperties(
             remap.TypePrimeCandidate!.Name.String,
-            remap.NewTypeName,
-            typesToCheck);
+            remap.NewTypeName);
 
-        FixMethods(typesToCheck, remap);
+        FixMethods(remap);
         
         remap.TypePrimeCandidate.Name = remap.NewTypeName;
     }
 
-    private static void FixMethods(
-        IEnumerable<TypeDef> typesToCheck, 
-        RemapModel remap)
+    private void FixMethods(RemapModel remap)
     {
-        foreach (var type in typesToCheck)
+        foreach (var type in types)
         {
             var allMethodNames = type.Methods
                 .Select(s => s.Name).ToList();
@@ -57,14 +57,9 @@ internal sealed class Renamer(Statistics stats)
         }
     }
     
-    private void RenameAllFields(
-
-        string oldTypeName,
-        string newTypeName,
-        IEnumerable<TypeDef> typesToCheck)
+    private void RenameAllFields(string oldTypeName, string newTypeName)
     {
-        var typeDefs = typesToCheck as TypeDef[] ?? typesToCheck.ToArray();
-        foreach (var type in typeDefs)
+        foreach (var type in types)
         {
             var fields = type.Fields
                 .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch));
@@ -89,7 +84,7 @@ internal sealed class Renamer(Statistics stats)
                 }
                 else
                 {
-                    RenameFieldMemberRefsGlobal(typeDefs, field, oldName);
+                    RenameFieldMemberRefsGlobal(field, oldName);
                 }
                 
 
@@ -98,9 +93,9 @@ internal sealed class Renamer(Statistics stats)
         }
     }
 
-    private static void RenameFieldMemberRefsGlobal(IEnumerable<TypeDef> typesToCheck, FieldDef newDef, string oldName)
+    private void RenameFieldMemberRefsGlobal(FieldDef newDef, string oldName)
     {
-        foreach (var type in typesToCheck)
+        foreach (var type in types)
         {
             RenameFieldMemberRefsLocal(type, newDef, oldName);
         }
@@ -122,12 +117,9 @@ internal sealed class Renamer(Statistics stats)
         }
     }
     
-    private void RenameAllProperties(
-        string oldTypeName,
-        string newTypeName,
-        IEnumerable<TypeDef> typesToCheck)
+    private void RenameAllProperties(string oldTypeName, string newTypeName)
     {
-        foreach (var type in typesToCheck)
+        foreach (var type in types)
         {
             var properties = type.Properties
                 .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch));

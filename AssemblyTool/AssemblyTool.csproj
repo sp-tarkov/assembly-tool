@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<Version>0.1.0</Version>
-    <OutputType>Library</OutputType>
+	<Version>1.0.0</Version>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -10,13 +10,15 @@
     <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
     <Platforms>AnyCPU</Platforms>
     <LangVersion>latest</LangVersion>
+    <RootNamespace>ReCodeItCLI</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="dnlib" Version="4.4.0" />
+    <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
+    <ProjectReference Include="..\RecodeItLib\AssemblyLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
+    <PackageReference Include="CliFx" Version="2.3.5" />
   </ItemGroup>
 </Project>

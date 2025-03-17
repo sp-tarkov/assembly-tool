@@ -32,8 +32,6 @@ public class ReMapper
         string outPath = "",
         bool validate = false)
     {
-        InitializeComponents(oldAssemblyPath);
-        
         _remaps = remapModels;
         Logger.Stopwatch.Start();
         
@@ -51,6 +49,8 @@ public class ReMapper
         var types = Module.GetTypes();
 
         var typeDefs = types as TypeDef[] ?? types.ToArray();
+        
+        InitializeComponents(typeDefs, oldAssemblyPath);
         if (!validate)
         {
             GenerateDynamicRemaps(targetAssemblyPath, typeDefs);
@@ -79,12 +79,12 @@ public class ReMapper
         WriteAssembly();
     }
 
-    private void InitializeComponents(string oldAssemblyPath)
+    private void InitializeComponents(TypeDef[] types, string oldAssemblyPath)
     {
         var ctx = Context.Instance;
 
         var stats = new Statistics(_remaps);
-        var renamer = new Renamer(stats);
+        var renamer = new Renamer(types, stats);
         var publicizer = new Publicizer(stats);
         
         ctx.RegisterComponent<Statistics>(stats);
@@ -134,7 +134,7 @@ public class ReMapper
                     try
                     {
                         Context.Instance.Get<Renamer>()
-                            .RenameAll(types, remap);
+                            !.RenameRemap(remap);
                     }
                     catch (Exception ex)
                     {

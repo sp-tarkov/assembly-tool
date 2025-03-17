@@ -18,21 +18,17 @@ public class ReMapper
     private ModuleDefMD? Module { get; set; }
     private string OutPath { get; set; } = string.Empty;
     
-    private List<RemapModel> _remaps = [];
-
     private readonly List<string> _alreadyGivenNames = [];
     
     /// <summary>
     /// Start the remapping process
     /// </summary>
     public void InitializeRemap(
-        List<RemapModel> remapModels,
         string targetAssemblyPath,
         string oldAssemblyPath,
         string outPath = "",
         bool validate = false)
     {
-        _remaps = remapModels;
         Logger.Stopwatch.Start();
         
         targetAssemblyPath = AssemblyUtils.TryDeObfuscate(
@@ -44,7 +40,7 @@ public class ReMapper
         
         OutPath = outPath;
 
-        if (!Validate(_remaps)) return;
+        if (!Validate(DataProvider.Remaps)) return;
         
         var types = Module.GetTypes();
 
@@ -83,7 +79,7 @@ public class ReMapper
     {
         var ctx = Context.Instance;
 
-        var stats = new Statistics(_remaps);
+        var stats = new Statistics();
         var renamer = new Renamer(types, stats);
         var publicizer = new Publicizer(stats);
         
@@ -100,8 +96,8 @@ public class ReMapper
     
     private void FindBestMatches(IEnumerable<TypeDef> types, bool validate)
     {
-        var tasks = new List<Task>(_remaps.Count);
-        foreach (var remap in _remaps)
+        var tasks = new List<Task>(DataProvider.Remaps.Count);
+        foreach (var remap in DataProvider.Remaps)
         {
             tasks.Add(
                 Task.Factory.StartNew(() =>
@@ -125,8 +121,8 @@ public class ReMapper
 
     private void RenameMatches(IEnumerable<TypeDef> types)
     {
-        var renameTasks = new List<Task>(_remaps.Count);
-        foreach (var remap in _remaps)
+        var renameTasks = new List<Task>(DataProvider.Remaps.Count);
+        foreach (var remap in DataProvider.Remaps)
         {
             renameTasks.Add(
                 Task.Factory.StartNew(() =>
@@ -320,7 +316,7 @@ public class ReMapper
                 remap.NewTypeName = overriddenTypeName;
             }
             
-            _remaps.Add(remap);
+            DataProvider.Remaps.Add(remap);
         }
     }
     
@@ -329,7 +325,7 @@ public class ReMapper
     /// </summary>
     private void ChooseBestMatches()
     {
-        foreach (var remap in _remaps)
+        foreach (var remap in DataProvider.Remaps)
         {
             ChooseBestMatch(remap);
         }
@@ -427,11 +423,11 @@ public class ReMapper
         
         var attributeCtor = annotationType.FindMethod(".ctor");
 
-        var attrTasks = new List<Task>(_remaps.Count);
+        var attrTasks = new List<Task>(DataProvider.Remaps.Count);
 
         var diff = Context.Instance.Get<DiffCompare>();
         
-        foreach (var mapping in _remaps)
+        foreach (var mapping in DataProvider.Remaps)
         {
             attrTasks.Add(
                 Task.Factory.StartNew(() =>

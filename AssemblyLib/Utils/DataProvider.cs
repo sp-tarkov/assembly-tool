@@ -13,23 +13,27 @@ public static class DataProvider
     {
         Settings = LoadAppSettings();
         ItemTemplates = LoadItems();
+        LoadMappingFile();
     }
     
     public static Settings Settings { get; }
     
+    public static List<RemapModel> Remaps { get; } = [];
     public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
     
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
+    private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
+    private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
     
-    public static List<RemapModel> LoadMappingFile(string path)
+    public static void LoadMappingFile()
     {
-        if (!File.Exists(path))
+        if (!File.Exists(MappingPath))
         {
-            Logger.Log($"Cannot find mapping.json at `{path}`", ConsoleColor.Red);
-            return [];
+            Logger.Log($"Cannot find mapping.json at `{MappingPath}`", ConsoleColor.Red);
+            return;
         }
 
-        var jsonText = File.ReadAllText(path);
+        var jsonText = File.ReadAllText(MappingPath);
         
         JsonSerializerOptions settings = new()
         {
@@ -37,15 +41,14 @@ public static class DataProvider
         };
         
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
-        
-        return remaps ?? [];
+        Remaps.AddRange(remaps!);
     }
     
-    public static void UpdateMapping(string path, List<RemapModel> remaps, bool respectNullableAnnotations = true)
+    public static void UpdateMapping(bool respectNullableAnnotations = true)
     {
-        if (!File.Exists(path))
+        if (!File.Exists(MappingNewPath))
         {
-            File.Create(path).Close();
+            File.Create(MappingNewPath).Close();
         }
 
         JsonSerializerOptions settings = new()
@@ -56,11 +59,11 @@ public static class DataProvider
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
-        var jsonText = JsonSerializer.Serialize(remaps, settings);
+        var jsonText = JsonSerializer.Serialize(Remaps, settings);
 
-        File.WriteAllText(path, jsonText);
+        File.WriteAllText(MappingNewPath, jsonText);
 
-        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
+        Logger.Log($"Mapping file updated with new type names and saved to {MappingNewPath}", ConsoleColor.Green);
     }
 
     public static ModuleDefMD LoadModule(string path)

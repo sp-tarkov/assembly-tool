@@ -16,8 +16,7 @@ public class AddMissingProperties : ICommand
 	{
 		Debugger.TryWaitForDebuggerAttach();
 		
-		var remaps = DataProvider.LoadMappingFile(MappingsPath);
-		DataProvider.UpdateMapping(MappingsPath, remaps);
+		DataProvider.UpdateMapping();
 		
 		Logger.Log("Successfully updated mapping file");
         

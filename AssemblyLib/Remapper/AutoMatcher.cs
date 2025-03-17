@@ -4,7 +4,7 @@ using dnlib.DotNet;
 
 namespace AssemblyLib.ReMapper;
 
-public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
+public class AutoMatcher()
 {
 	private ModuleDefMD? Module { get; set; }
 	
@@ -112,13 +112,9 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 		if (CandidateTypes!.Count == 1)
 		{
 			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green);
-
-			var tmpList = new List<RemapModel>()
-			{
-				remapModel
-			};
 			
-			new ReMapper().InitializeRemap(tmpList, assemblyPath, string.Empty, validate: true);
+			DataProvider.Remaps.Add(remapModel);
+			new ReMapper().InitializeRemap(assemblyPath, string.Empty, validate: true);
 
 			if (remapModel.Succeeded)
 			{
@@ -390,20 +386,20 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 
 		if (resp == "y" || resp == "yes" || resp == "Y")
 		{
-			if (mappings.Count == 0)
+			if (DataProvider.Remaps.Count == 0)
 			{
 				Logger.Log("No remaps loaded. Please restart with a provided mapping path.", ConsoleColor.Red);
 				return;
 			}
 
-			if (mappings.Any(m => m.NewTypeName == remapModel.NewTypeName))
+			if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
 			{
 				Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
 				return;
 			}
 			
-			mappings.Add(remapModel);
-			DataProvider.UpdateMapping(mappingPath, mappings, false);
+			DataProvider.Remaps.Add(remapModel);
+			DataProvider.UpdateMapping(false);
 		}
 		
 		Logger.Log("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
@@ -423,7 +419,7 @@ public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 				throw new FileNotFoundException($"Could not locale old assembly at path ``{oldAssemblyPath}`");
 			}
 			
-			new ReMapper().InitializeRemap(mappings, assemblyPath, oldAssemblyPath, outPath);
+			new ReMapper().InitializeRemap(assemblyPath, oldAssemblyPath, outPath);
 		}
 	}
 }

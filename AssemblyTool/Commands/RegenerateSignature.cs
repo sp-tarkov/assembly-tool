@@ -12,26 +12,22 @@ public class RegenerateSignature : CliFx.ICommand
 	[CommandParameter(0, IsRequired = true, Description = "The absolute path to the assembly you want to regenerate the signature for")]
 	public required string AssemblyPath { get; init; }
 	
-	[CommandParameter(1, IsRequired = true, Description = "The absolute path to mapping.json")]
-	public required string MappingPath { get; init; }
-	
-	[CommandParameter(2, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
+	[CommandParameter(1, IsRequired = true, Description = "Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`")]
 	public required string OldTypeName { get; init; }
 	
-	[CommandParameter(3, IsRequired = true, Description = "The new type name as listed in the mapping file")]
+	[CommandParameter(2, IsRequired = true, Description = "The new type name as listed in the mapping file")]
 	public required string NewTypeName { get; init; }
 	
-	[CommandParameter(4, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
+	[CommandParameter(3, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
 	public string? OldAssemblyPath { get; init; }
 	
     public ValueTask ExecuteAsync(IConsole console)
     {
 	    Debugger.TryWaitForDebuggerAttach();
 	    
-	    DataProvider.Settings.MappingPath = MappingPath;
-	    var remaps = DataProvider.LoadMappingFile(MappingPath);
+	    DataProvider.LoadMappingFile();
 	    
-	    var target = remaps.SingleOrDefault(r => r.NewTypeName == NewTypeName);
+	    var target = DataProvider.Remaps.SingleOrDefault(r => r.NewTypeName == NewTypeName);
 
 	    if (target is null)
 	    {
@@ -39,8 +35,7 @@ public class RegenerateSignature : CliFx.ICommand
 		    return default;
 	    }
 	    
-	    new AutoMatcher(remaps, MappingPath)
-		    .AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
+	    new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
 	    
         return default;
     }

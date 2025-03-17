@@ -8,11 +8,6 @@ namespace AssemblyLib.Models;
 public class Settings
 {
     /// <summary>
-    /// Path to the mapping file
-    /// </summary>
-    public string MappingPath { get; set; } = string.Empty;
-    
-    /// <summary>
     /// Path to the games root directory
     /// </summary>
     public string GamePath { get; set; } = string.Empty;

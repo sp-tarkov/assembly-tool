@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Statistics(List<RemapModel> remapModels) 
+internal sealed class Statistics() 
 	: IComponent
 {
 	public int TypePublicizedCount;
@@ -58,7 +58,7 @@ internal sealed class Statistics(List<RemapModel> remapModels)
 	{
 		Logger.Log("\n--------------------------------------------------");
 		
-		foreach (var remap in remapModels)
+		foreach (var remap in DataProvider.Remaps)
 		{
 			if (remap.Succeeded is false) { continue; }
 			
@@ -84,7 +84,7 @@ internal sealed class Statistics(List<RemapModel> remapModels)
 		var failures = 0;
 		var changes = 0;
 		
-		foreach (var remap in remapModels)
+		foreach (var remap in DataProvider.Remaps)
 		{
 			switch (remap.Succeeded)
 			{
@@ -149,10 +149,7 @@ internal sealed class Statistics(List<RemapModel> remapModels)
 		Logger.Log($"Assembly written to `{outPath}`", ConsoleColor.Green);
 		Logger.Log($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
 		
-		if (DataProvider.Settings.MappingPath != string.Empty)
-		{
-			DataProvider.UpdateMapping(DataProvider.Settings.MappingPath.Replace("mappings.", "mappings-new."), remapModels);
-		}
+		DataProvider.UpdateMapping();
 		
 		Logger.Log($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
 	}

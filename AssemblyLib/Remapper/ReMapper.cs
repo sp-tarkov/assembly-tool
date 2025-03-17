@@ -70,7 +70,7 @@ public class ReMapper(string targetAssemblyPath)
                 !.CreateCustomTypeAttribute();
         }
         
-        StartWriteAssemblyTasks();
+        await StartWriteAssemblyTasks();
     }
 
     private void InitializeComponents(string oldAssemblyPath)
@@ -283,7 +283,7 @@ public class ReMapper(string targetAssemblyPath)
     /// <summary>
     /// Write the assembly back to disk and update the mapping file on disk
     /// </summary>
-    private void StartWriteAssemblyTasks()
+    private async Task StartWriteAssemblyTasks()
     {
         const string dllName = "-cleaned-remapped-publicized.dll";
         OutPath = Path.Combine(OutPath,  Module?.Name?.Replace(".dll", dllName));
@@ -298,7 +298,7 @@ public class ReMapper(string targetAssemblyPath)
             throw;
         }
         
-        StartHollow();
+        await StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");

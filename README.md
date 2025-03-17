@@ -22,7 +22,6 @@ This tool is used to deobfuscate and remap the tarkov assembly to be more user f
 # Commands
 
 - `addmissingproperties` - This command will add missing properties to the provided mapping.json.
-  - Param `MappingsPath` - Path to the mapping.json file to be fixed
   
 - Note: This is a development command and should not be used unless you know what you're doing. Always make backups when using this command.
 
@@ -30,7 +29,6 @@ This tool is used to deobfuscate and remap the tarkov assembly to be more user f
 
 - `automatch` - This command will Automatically try to generate a mapping object given old type and new type names.
   - Param `AssemblyPath` - The absolute path to your assembly, folder must contain all references to be resolved.
-  - Param `MappingsPath` - Path to your mapping file so it can be updated if a match is found.
   - Param `OldTypeName` - Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`
   - Param `NewTypeName` - The name you want the type to be renamed to.
   - This command will prompt you to append your created mapping to the mapping file.
@@ -58,7 +56,6 @@ references needed to be resolved.
 ---
 
 - `regensig` - regenerates the signature of a mapping if it is failing
-  - Param `MappingPath` - The absolute path to mapping.json.
   - Param `AssemblyPath` - The absolute path to the assembly you want to regenerate the signature for.
   - Param `NewTypeName` - The new type name as listed in the mapping file.
   - Param `OldTypeName` - Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`
@@ -66,6 +63,5 @@ references needed to be resolved.
 ---
 
 - `remap` - Generates a re-mapped dll provided a mapping file and dll. If the dll is obfuscated, it will automatically de-obfuscate.
-  - Param `MappingJsonPath` - The absolute path to the `mapping.json` file supports both `json` and `jsonc`.
   - Param `AssemblyPath` - The absolute path to the dll generated from the `deobfuscate` command.
   - Param `OldAssemblyPath` - The absolute path to the previous spt versions remapped assembly. Can be left empty.

@@ -15,10 +15,8 @@ public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
 {
     private MethodDef? _sptRenamedAttrCtorDef;
     
-    public void CreateCustomTypeAttribute()
+    public async Task CreateCustomTypeAttribute()
     {
-        Logger.Log("\nCreating custom attribute...", ConsoleColor.Green);
-
         var corlibRef = new AssemblyRefUser(module.GetCorlibAssembly());
 
         // Create the attribute
@@ -77,10 +75,10 @@ public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
 
         _sptRenamedAttrCtorDef = annotationType.FindMethod(".ctor");
         
-        AddAttributeToTypes();
+        await AddAttributeToTypes();
     }
 
-    private void AddAttributeToTypes()
+    private async Task AddAttributeToTypes()
     {
         var attrTasks = new List<Task>(DataProvider.Remaps.Count);
         var diff = Context.Instance.Get<DiffCompare>();
@@ -101,14 +99,10 @@ public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
                 })
             );
         }
+        
+        await Logger.DrawProgressBar(attrTasks, "Applying Custom Attribute");
 
-        Logger.Log("Applying Custom attribute to types...", ConsoleColor.Green);
-        while (!attrTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
-        {
-            Logger.DrawProgressBar(attrTasks.Count(t => t.IsCompleted), attrTasks.Count, 50);
-        }
-
-        Task.WaitAll(attrTasks.ToArray());
+        //Task.WaitAll(attrTasks.ToArray());
     }
     
     private void AddAttributeToType(RemapModel remap, DiffCompare? diff)

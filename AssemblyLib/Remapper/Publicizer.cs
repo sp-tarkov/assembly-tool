@@ -1,13 +1,42 @@
-﻿using AssemblyLib.Application;
+﻿using System.Collections.Concurrent;
+using AssemblyLib.Application;
 using dnlib.DotNet;
 using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Publicizer(Statistics stats) 
+internal sealed class Publicizer(List<TypeDef> types, Statistics stats) 
     : IComponent
 {
-    public void PublicizeType(TypeDef type)
+
+    public async Task StartPublicizeTypesTask()
+    {
+        var publicizeTasks = new List<Task>();
+        
+        foreach (var type in types)
+        {
+            publicizeTasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        Context.Instance.Get<Publicizer>()
+                            .PublicizeType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
+                })
+            );
+        }
+        
+        await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
+        
+        //await Task.WhenAll(publicizeTasks.ToArray());
+    }
+    
+    private void PublicizeType(TypeDef type)
     {
         // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
         // nameof(CompilerGeneratedAttribute))) { return; }

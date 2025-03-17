@@ -16,7 +16,7 @@ public class ReMap : ICommand
     [CommandParameter(1, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
     public string? OldAssemblyPath { get; init; }
     
-    public ValueTask ExecuteAsync(IConsole console)
+    public async ValueTask ExecuteAsync(IConsole console)
     {
 	    Debugger.TryWaitForDebuggerAttach();
         
@@ -27,8 +27,6 @@ public class ReMap : ICommand
             throw new DirectoryNotFoundException("OutPath could not be resolved.");
         }
         
-        new ReMapper(TargetAssemblyPath).InitializeRemap(OldAssemblyPath!, outPath);
-        
-        return default;
+        await new ReMapper(TargetAssemblyPath).InitializeRemap(OldAssemblyPath!, outPath);
     }
 }

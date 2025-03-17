@@ -27,7 +27,7 @@ public class ReMapper(string targetAssemblyPath)
     /// <summary>
     /// Start the remapping process
     /// </summary>
-    public void InitializeRemap(
+    public async Task InitializeRemap(
         string oldAssemblyPath,
         string outPath = "",
         bool validate = false)
@@ -50,7 +50,7 @@ public class ReMapper(string targetAssemblyPath)
             GenerateDynamicRemaps(_targetAssemblyPath);
         }
         
-        StartMatchingTasks(validate);
+        await StartMatchingTasks(validate);
 
         // Don't go any further during a validation
         if (validate)
@@ -61,12 +61,12 @@ public class ReMapper(string targetAssemblyPath)
             return;
         }
         
-        StartRenamingTasks();
-        StartPublicizeTasks();
+        await Context.Instance.Get<Renamer>()!.StartRenameProcess();
+        await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
-            Context.Instance.Get<AttributeFactory>()
+            await Context.Instance.Get<AttributeFactory>()
                 !.CreateCustomTypeAttribute();
         }
         
@@ -79,7 +79,7 @@ public class ReMapper(string targetAssemblyPath)
 
         var stats = new Statistics();
         var renamer = new Renamer(Types, stats);
-        var publicizer = new Publicizer(stats);
+        var publicizer = new Publicizer(Types, stats);
         var attrFactory = new AttributeFactory(Module, Types);
         
         ctx.RegisterComponent<Statistics>(stats);
@@ -96,7 +96,7 @@ public class ReMapper(string targetAssemblyPath)
     
     #region Matching
     
-    private void StartMatchingTasks(bool validate)
+    private async Task StartMatchingTasks(bool validate)
     {
         var tasks = new List<Task>(DataProvider.Remaps.Count);
         foreach (var remap in DataProvider.Remaps)
@@ -111,11 +111,7 @@ public class ReMapper(string targetAssemblyPath)
 
         if (!validate)
         {
-            Logger.Log("Finding Best Matches...", ConsoleColor.Green);
-            while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
-            {
-                Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
-            }
+            await Logger.DrawProgressBar(tasks, "Finding Best Matches");
         }
         
         Task.WaitAll(tasks.ToArray());
@@ -216,76 +212,6 @@ public class ReMapper(string targetAssemblyPath)
     }
     
     #endregion
-
-    #region DeObfuscationTasks
-
-    private static void StartRenamingTasks()
-    {
-        var renameTasks = new List<Task>(DataProvider.Remaps.Count);
-        foreach (var remap in DataProvider.Remaps)
-        {
-            renameTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        Context.Instance.Get<Renamer>()
-                            !.RenameRemap(remap);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
-                    }
-                })
-            );
-        }
-        
-        Logger.Log("\nRenaming Types and Members...", ConsoleColor.Green);
-        while (!renameTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
-        {
-            Logger.DrawProgressBar(renameTasks.Count(t => t.IsCompleted), renameTasks.Count, 50);
-        }
-        
-        Task.WaitAll(renameTasks.ToArray());
-    }
-
-    private void StartPublicizeTasks()
-    {
-        var types = Module!.GetTypes();
-
-        var typeDefs = types as TypeDef[] ?? types.ToArray();
-        var publicizeTasks = new List<Task>(typeDefs.Length);
-        
-        foreach (var type in typeDefs)
-        {
-            publicizeTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        Context.Instance.Get<Publicizer>()
-                            .PublicizeType(type);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
-                    }
-                })
-            );
-        }
-        
-        Logger.Log("\nPublicizing Types...", ConsoleColor.Green);
-        while (!publicizeTasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
-        {
-            Logger.DrawProgressBar(publicizeTasks.Count(t => t.IsCompleted), publicizeTasks.Count, 50);
-        }
-
-        Task.WaitAll(publicizeTasks.ToArray());
-    }
-
-    #endregion
-    
-    
     
     private void GenerateDynamicRemaps(string path)
     {
@@ -394,7 +320,7 @@ public class ReMapper(string targetAssemblyPath)
     /// <summary>
     /// Hollows out all logic from the dll
     /// </summary>
-    private void StartHollow()
+    private async Task StartHollow()
     {
         var tasks = new List<Task>(Module!.GetTypes().Count());
         foreach (var type in Types)
@@ -413,13 +339,9 @@ public class ReMapper(string targetAssemblyPath)
             }));
         }
         
-        Logger.Log("\nHollowing Types...", ConsoleColor.Green);
-        while (!tasks.TrueForAll(t => t.Status is TaskStatus.RanToCompletion or TaskStatus.Faulted))
-        {
-            Logger.DrawProgressBar(tasks.Count(t => t.IsCompleted), tasks.Count, 50);
-        }
+        await Logger.DrawProgressBar(tasks, "Hollowing Types");
         
-        Task.WaitAll(tasks.ToArray());
+        //Task.WaitAll(tasks.ToArray());
     }
 
     private static void HollowType(TypeDef type)

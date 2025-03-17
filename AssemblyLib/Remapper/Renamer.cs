@@ -10,18 +10,41 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
 
-    public void StartRenameProcess()
+    public async Task StartRenameProcess()
     {
-        
+        await StartRemapTask();
     }
     
-    public void RenameRemap(RemapModel remap)
+    private async Task StartRemapTask()
     {
-        if (remap.TypePrimeCandidate is null) return;
+        var renameTasks = new List<Task>(DataProvider.Remaps.Count);
+        foreach (var remap in DataProvider.Remaps)
+        {
+            renameTasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        RenameFromRemap(remap);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    }
+                })
+            );
+        }
         
+        await Logger.DrawProgressBar(renameTasks, "Renaming");
+        
+        //Task.WaitAll(renameTasks.ToArray());
+    }
+
+    private void RenameFromRemap(RemapModel remap)
+    {
         // Rename all fields and properties first
         RenameAllFields(
-            remap.TypePrimeCandidate.Name.String,
+            remap.TypePrimeCandidate!.Name.String,
             remap.NewTypeName);
 
         RenameAllProperties(

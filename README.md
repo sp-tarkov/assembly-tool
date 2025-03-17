@@ -1,3 +1,24 @@
+# Building
+
+- Install [.net9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- Clone the project to a local folder
+- Open the project in rider or viual studio and run the builder project
+  - The project uses [Cake Build](https://cakebuild.net/) to manage the build process
+- The application will build the assembly tool and output it to `solutionDir\Build`
+
+---
+
+# Usage
+
+This tool is used to deobfuscate and remap the tarkov assembly to be more user friendly to interact with. The primary command is the `remap` command. It will take the entire process from start to finish.
+
+- Make a copy of live tarkovs managed folder, found at `gameRoot\EscapeFromTarkov_Data\Managed\`
+- The mapping file can be found in the `Assets` directory of the repository.
+- It will not mutate the original input files, instead it will output new copys in the `Managed` folder it resides in.
+- If you provide the previous spt versions assembly, metadata in the form of attributes will be applied to remapped classes. This contains data such as the original class name, and if the class has changed since the previous version. This is optional.
+
+---
+
 # Commands
 
 - `addmissingproperties` - This command will add missing properties to the provided mapping.json.
@@ -12,15 +33,14 @@
   - Param `MappingsPath` - Path to your mapping file so it can be updated if a match is found.
   - Param `OldTypeName` - Full old type name including namespace `Foo.Bar` for nested classes `Foo.Bar/FooBar`
   - Param `NewTypeName` - The name you want the type to be renamed to.
-
-- This command will prompt you to append your created mapping to the mapping file.
-- It will then prompt you to run the remap process.
+  - This command will prompt you to append your created mapping to the mapping file.
+  - It will then prompt you to run the remap process.
 
 ---
 
 - `deobfuscate` - This command will run the de4dot de-obfuscater over the assembly provided. It supports both the
 primary game assembly and the launcher assembly.
-  - Param `AssemblyPath` - The absolute path to your obfuscated assembly or exe file, the folder must contain all 
+  - Param `AssemblyPath` - The absolute path to your obfuscated assembly or exe file, the folder must contain all
 references needed to be resolved.
   - Param `IsLauncher` - Is the target the EFT launcher?
 
@@ -48,4 +68,4 @@ references needed to be resolved.
 - `remap` - Generates a re-mapped dll provided a mapping file and dll. If the dll is obfuscated, it will automatically de-obfuscate.
   - Param `MappingJsonPath` - The absolute path to the `mapping.json` file supports both `json` and `jsonc`.
   - Param `AssemblyPath` - The absolute path to the dll generated from the `deobfuscate` command.
-
+  - Param `OldAssemblyPath` - The absolute path to the previous spt versions remapped assembly. Can be left empty.

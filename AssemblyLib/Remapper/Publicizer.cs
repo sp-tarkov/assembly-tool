@@ -21,11 +21,11 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
                     try
                     {
                         Context.Instance.Get<Publicizer>()
-                            .PublicizeType(type);
+                            !.PublicizeType(type);
                     }
                     catch (Exception ex)
                     {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
                     }
                 })
             );

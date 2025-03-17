@@ -9,6 +9,8 @@ namespace AssemblyLib.Utils;
 public static class Logger
 {
     public static Stopwatch Stopwatch { get; } = new();
+
+    private static List<string> _taskExceptions = [];
     
     public static async Task DrawProgressBar(List<Task> tasks, string stageText)
     {
@@ -22,6 +24,20 @@ public static class Logger
             completedTasks++;
             UpdateProgressBar(completedTasks, totalTasks, initialTop + 1, stageText);
         }
+
+        if (_taskExceptions.Count == 0) return;
+        
+        foreach (var ex in _taskExceptions)
+        {
+            Log(ex);
+        }
+        
+        _taskExceptions.Clear();
+    }
+
+    public static void QueueTaskException(string exception)
+    {
+        _taskExceptions.Add(exception);
     }
     
     private static void UpdateProgressBar(int progress, int total, int progressBarLine, string stageText)

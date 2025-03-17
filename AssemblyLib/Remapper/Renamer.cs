@@ -29,15 +29,13 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
                     }
                     catch (Exception ex)
                     {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
                     }
                 })
             );
         }
         
         await Logger.DrawProgressBar(renameTasks, "Renaming");
-        
-        //Task.WaitAll(renameTasks.ToArray());
     }
 
     private void RenameFromRemap(RemapModel remap)

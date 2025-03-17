@@ -104,7 +104,14 @@ public class ReMapper(string targetAssemblyPath)
             tasks.Add(
                 Task.Factory.StartNew(() =>
                 {
-                    MatchRemap(remap);
+                    try
+                    {
+                        MatchRemap(remap);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
+                    }
                 })
             );
         }
@@ -113,8 +120,10 @@ public class ReMapper(string targetAssemblyPath)
         {
             await Logger.DrawProgressBar(tasks, "Finding Best Matches");
         }
-        
-        Task.WaitAll(tasks.ToArray());
+        else
+        {
+            await Task.WhenAll(tasks.ToArray());
+        }
         
         ChooseBestMatches();
     }
@@ -323,6 +332,9 @@ public class ReMapper(string targetAssemblyPath)
     private async Task StartHollow()
     {
         var tasks = new List<Task>(Module!.GetTypes().Count());
+        
+        var body = new CilBody();
+        body.Instructions.Add(OpCodes.Ret.ToInstruction());
         foreach (var type in Types)
         {
             tasks.Add(
@@ -330,26 +342,23 @@ public class ReMapper(string targetAssemblyPath)
             {
                 try
                 {
-                    HollowType(type);
+                    HollowType(type, body);
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                    Logger.QueueTaskException($"Exception in task: {ex.Message}");
                 }
             }));
         }
         
         await Logger.DrawProgressBar(tasks, "Hollowing Types");
-        
-        //Task.WaitAll(tasks.ToArray());
     }
 
-    private static void HollowType(TypeDef type)
+    private static void HollowType(TypeDef type, CilBody body)
     {
         foreach (var method in type.Methods.Where(m => m.HasBody))
         {
-            method.Body = new CilBody();
-            method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
+            method.Body = body;
         }
     }
 }

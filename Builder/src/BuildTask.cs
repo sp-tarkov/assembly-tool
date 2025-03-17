@@ -14,7 +14,7 @@ public class BuildTask : FrostingTask<Context>
     public override void Run(Context context)
     {
         BuildDe4dot(context);
-        BuildReCodeIt(context);
+        BuildAssemblyTool(context);
     }
 
     private void BuildDe4dot(Context context)
@@ -36,15 +36,15 @@ public class BuildTask : FrostingTask<Context>
         context.Log.Information("Finished Building De4dot");
     }
 
-    private void BuildReCodeIt(Context context)
+    private void BuildAssemblyTool(Context context)
     {
-        context.Log.Information("Building ReCodeIt");
-        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "ReCodeItCli\\ReCodeItCli.csproj"),
+        context.Log.Information("Building Assembly Tool");
+        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "AssemblyTool\\AssemblyTool.csproj"),
             new DotNetBuildSettings
             {
                 Configuration = context.MsBuildConfiguration,
             }
         );
-        context.Log.Information("Finished Building ReCodeIt");
+        context.Log.Information("Finished Building Assembly Tool");
     }
 }

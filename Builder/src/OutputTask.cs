@@ -33,7 +33,11 @@ public class OutputTask : FrostingTask<Context>
         var listOfFiles = Directory.GetFiles(Path.Combine(
             context.Environment.WorkingDirectory.FullPath,
             "Assets/Templates")
-        );
+        ).ToList();
+        
+        listOfFiles.Add(Path.Combine(
+            context.Environment.WorkingDirectory.FullPath,
+            "Assets/mappings.jsonc"));
 
         context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "Data"));
     }
@@ -69,9 +73,9 @@ public class OutputTask : FrostingTask<Context>
     {
         var listOfFiles = Directory.GetFiles(Path.Combine(
             context.Environment.WorkingDirectory.FullPath,
-            "ReCodeItCli\\bin", context.MsBuildConfiguration, "net9.0")
+            "AssemblyTool\\bin", context.MsBuildConfiguration, "net9.0")
         ).ToList();
-
+        
         if (context.MsBuildConfiguration == "Release")
         {
             listOfFiles.RemoveAll(m => m.Contains(".pdb"));

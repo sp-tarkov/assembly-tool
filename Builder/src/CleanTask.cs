@@ -31,14 +31,14 @@ public class CleanTask : FrostingTask<Context>
         // we do these per project folder to not try to delete the builder bin/obj
         context.CleanDirectories(new GlobPattern("de4dot/**/obj"));
         context.CleanDirectories(new GlobPattern("DumpLib/**/obj"));
-        context.CleanDirectories(new GlobPattern("ReCode*/**/obj"));
+        context.CleanDirectories(new GlobPattern("Assembly*/**/obj"));
     }
 
     private void CleanBinFolders(Context context)
     {
         context.Log.Information("Cleaning bin Folders");
         context.CleanDirectories(new GlobPattern("DumpLib/**/bin"));
-        context.CleanDirectories(new GlobPattern("ReCode*/**/bin"));
+        context.CleanDirectories(new GlobPattern("Assembly*/**/bin"));
     }
 
     private void CleanDe4dotFolders(Context context)

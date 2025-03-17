@@ -143,9 +143,6 @@ namespace de4dot.code.renamer {
 				"Exception",
 				"EventArgs",
 				"Attribute",
-				"Form",
-				"Dialog",
-				"Control",
 				"Stream",
 			};
 			foreach (var name in names)

@@ -82,23 +82,31 @@ internal sealed class Renamer(Statistics stats)
                 var oldName = field.Name.ToString();
 
                 field.Name = newFieldName;
-                    
-                UpdateAllTypeFieldMemberRefs(typeDefs, field, oldName);
+
+                if (field.IsPrivate)
+                {
+                    RenameFieldMemberRefsLocal(type, field, oldName);
+                }
+                else
+                {
+                    RenameFieldMemberRefsGlobal(typeDefs, field, oldName);
+                }
+                
 
                 fieldCount++;
             }
         }
     }
 
-    private static void UpdateAllTypeFieldMemberRefs(IEnumerable<TypeDef> typesToCheck, FieldDef newDef, string oldName)
+    private static void RenameFieldMemberRefsGlobal(IEnumerable<TypeDef> typesToCheck, FieldDef newDef, string oldName)
     {
         foreach (var type in typesToCheck)
         {
-            UpdateTypeFieldMemberRefs(type, newDef, oldName);
+            RenameFieldMemberRefsLocal(type, newDef, oldName);
         }
     }
 
-    private static void UpdateTypeFieldMemberRefs(TypeDef type, FieldDef newDef, string oldName)
+    private static void RenameFieldMemberRefsLocal(TypeDef type, FieldDef newDef, string oldName)
     {
         foreach (var method in type.Methods)
         {

@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace ReCodeItLib.Utils;
+namespace AssemblyLib.Utils;
 
 internal static class HashUtil
 {

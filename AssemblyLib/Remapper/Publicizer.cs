@@ -1,8 +1,8 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Application;
-using ReCodeItLib.Utils;
+﻿using AssemblyLib.Application;
+using dnlib.DotNet;
+using AssemblyLib.Utils;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 internal sealed class Publicizer(Statistics stats) 
     : IComponent

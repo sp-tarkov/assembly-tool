@@ -1,8 +1,8 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Models;
-using ReCodeItLib.Utils;
+﻿using AssemblyLib.Models;
+using AssemblyLib.Utils;
+using dnlib.DotNet;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 public class AutoMatcher(List<RemapModel> mappings, string mappingPath)
 {

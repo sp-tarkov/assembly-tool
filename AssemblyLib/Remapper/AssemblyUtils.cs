@@ -1,7 +1,7 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Utils;
+﻿using AssemblyLib.Utils;
+using dnlib.DotNet;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 internal static class AssemblyUtils
 {

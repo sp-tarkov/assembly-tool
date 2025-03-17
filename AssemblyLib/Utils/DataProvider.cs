@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using AssemblyLib.Models;
 using dnlib.DotNet;
 using Newtonsoft.Json;
-using ReCodeItLib.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace ReCodeItLib.Utils;
+namespace AssemblyLib.Utils;
 
 public static class DataProvider
 {

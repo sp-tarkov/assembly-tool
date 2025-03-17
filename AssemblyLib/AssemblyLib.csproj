@@ -10,7 +10,7 @@
     <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
     <Platforms>AnyCPU</Platforms>
     <LangVersion>latest</LangVersion>
-    <RootNamespace>ReCodeItLib</RootNamespace>
+    <RootNamespace>AssemblyLib</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace ReCodeItLib.Application;
+namespace AssemblyLib.Application;
 
 internal sealed class Context
 {

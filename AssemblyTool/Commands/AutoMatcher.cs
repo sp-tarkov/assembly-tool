@@ -1,12 +1,12 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.Models;
-using ReCodeItLib.ReMapper;
-using ReCodeItLib.Utils;
+using AssemblyLib.Models;
+using AssemblyLib.ReMapper;
+using AssemblyLib.Utils;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("AutoMatch", Description = "This command will automatically try to generate a mapping object given old type and new type names.")]
 public class AutoMatchCommand : ICommand

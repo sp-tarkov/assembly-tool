@@ -1,17 +1,17 @@
 ﻿using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeItLib.Enums;
-using ReCodeItLib.Models;
-using ReCodeItLib.Utils;
 using System.Diagnostics;
 using System.Reflection;
-using ReCodeItLib.Application;
+using AssemblyLib.Application;
+using AssemblyLib.Enums;
+using AssemblyLib.Models;
+using AssemblyLib.Utils;
 using FieldAttributes = dnlib.DotNet.FieldAttributes;
 using MethodAttributes = dnlib.DotNet.MethodAttributes;
 using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
 using TypeAttributes = dnlib.DotNet.TypeAttributes;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 public class ReMapper
 {

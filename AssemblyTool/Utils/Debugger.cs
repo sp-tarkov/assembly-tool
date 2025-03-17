@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using ReCodeItLib.Utils;
+using AssemblyLib.Utils;
 
-namespace ReCodeItCLI.Utils;
+namespace AssemblyTool.Utils;
 
 public static class Debugger
 {

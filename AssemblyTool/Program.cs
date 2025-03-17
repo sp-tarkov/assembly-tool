@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CliFx;
 
-namespace ReCodeItCLI;
+namespace AssemblyTool;
 
 public static class Program
 {
@@ -9,7 +9,7 @@ public static class Program
         await new CliApplicationBuilder()
             .AddCommandsFromThisAssembly()
             .AllowDebugMode() 
-            .SetExecutableName("ReCodeIt")
+            .SetExecutableName("AssemblyTool")
             .Build()
             .RunAsync();
 }

@@ -1,11 +1,11 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.Utils;
-using ReCodeItLib.ReMapper;
+using AssemblyLib.Utils;
+using AssemblyLib.ReMapper;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("DeObfuscate", Description = "Generates a de-obfuscated -cleaned dll in the folder your assembly is in")]
 public class DeObfuscate : ICommand

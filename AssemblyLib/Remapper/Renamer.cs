@@ -1,9 +1,9 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Application;
-using ReCodeItLib.Models;
-using ReCodeItLib.Utils;
+﻿using AssemblyLib.Application;
+using AssemblyLib.Models;
+using AssemblyLib.Utils;
+using dnlib.DotNet;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 internal sealed class Renamer(TypeDef[] types, Statistics stats) 
     : IComponent

@@ -1,10 +1,10 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.Utils;
+using AssemblyLib.Utils;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("GetRuntimeVersion", Description = "Prints out the .net runtime version this assembly targets")]
 public class GetRuntimeVersion : ICommand

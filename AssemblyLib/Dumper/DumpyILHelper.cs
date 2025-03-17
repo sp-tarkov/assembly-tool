@@ -1,7 +1,7 @@
 ﻿using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 
-namespace ReCodeItLib.Dumper;
+namespace AssemblyLib.Dumper;
 
 public static class DumpyILHelper
 {

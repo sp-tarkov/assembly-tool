@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ReCodeItLib.Models;
+using AssemblyLib.Models;
 
-namespace ReCodeItLib.Utils;
+namespace AssemblyLib.Utils;
 
 public static class Logger
 {

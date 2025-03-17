@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
+using AssemblyLib.Application;
+using AssemblyLib.Enums;
+using AssemblyLib.Models;
+using AssemblyLib.Utils;
 using Newtonsoft.Json;
-using ReCodeItLib.Application;
-using ReCodeItLib.Enums;
-using ReCodeItLib.Models;
-using ReCodeItLib.Utils;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 internal sealed class Statistics(List<RemapModel> remapModels) 
 	: IComponent

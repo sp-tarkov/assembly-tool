@@ -1,6 +1,6 @@
 ﻿using dnlib.DotNet;
 
-namespace ReCodeItLib.Utils;
+namespace AssemblyLib.Utils;
 
 public static class TypeResolveUtil
 {

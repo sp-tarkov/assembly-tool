@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
-using ReCodeItLib.Utils;
 using System.IO.Compression;
-using ReCodeItLib.ReMapper;
+using AssemblyLib.ReMapper;
+using AssemblyLib.Utils;
 
-namespace ReCodeItLib.Dumper;
+namespace AssemblyLib.Dumper;
 
 public class DumperClass
 {

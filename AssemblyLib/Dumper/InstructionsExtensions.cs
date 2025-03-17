@@ -1,6 +1,6 @@
 ﻿using dnlib.DotNet.Emit;
 
-namespace ReCodeItLib.Dumper;
+namespace AssemblyLib.Dumper;
 
 public static class InstructionsExtensions
 {

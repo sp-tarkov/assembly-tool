@@ -1,10 +1,10 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Enums;
-using ReCodeItLib.Models;
-using ReCodeItLib.ReMapper.Filters;
-using ReCodeItLib.Utils;
+﻿using AssemblyLib.Enums;
+using AssemblyLib.Models;
+using AssemblyLib.ReMapper.Filters;
+using dnlib.DotNet;
+using AssemblyLib.Utils;
 
-namespace ReCodeItLib.ReMapper;
+namespace AssemblyLib.ReMapper;
 
 public class TypeFilters
 {

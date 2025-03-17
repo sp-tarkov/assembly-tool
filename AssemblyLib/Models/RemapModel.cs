@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
+using AssemblyLib.Enums;
 using dnlib.DotNet;
-using ReCodeItLib.Enums;
 
-namespace ReCodeItLib.Models;
+namespace AssemblyLib.Models;
 
 /// <summary>
 /// Object to store linq statements in inside of json to search and remap classes

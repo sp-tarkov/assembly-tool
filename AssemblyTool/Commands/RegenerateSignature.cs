@@ -1,10 +1,10 @@
 ﻿using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.ReMapper;
-using ReCodeItLib.Utils;
+using AssemblyLib.ReMapper;
+using AssemblyLib.Utils;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("regensig", Description = "regenerates the signature of a mapping if it is failing")]
 public class RegenerateSignature : CliFx.ICommand

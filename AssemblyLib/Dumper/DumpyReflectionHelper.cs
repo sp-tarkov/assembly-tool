@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using dnlib.DotNet;
 
-namespace ReCodeItLib.Dumper;
+namespace AssemblyLib.Dumper;
 
 public static class DumpyReflectionHelper
 {

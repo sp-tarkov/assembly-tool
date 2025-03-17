@@ -1,7 +1,7 @@
-﻿using dnlib.DotNet;
-using ReCodeItLib.Models;
+﻿using AssemblyLib.Models;
+using dnlib.DotNet;
 
-namespace ReCodeItLib.ReMapper.Filters;
+namespace AssemblyLib.ReMapper.Filters;
 
 internal static class PropertyTypeFilters
 {

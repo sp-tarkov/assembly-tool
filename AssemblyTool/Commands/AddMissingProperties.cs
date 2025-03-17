@@ -1,10 +1,10 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.Utils;
+using AssemblyLib.Utils;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("AddMissingProperties", Description = "[DEVELOPMENT COMMAND] This command will add missing properties to the provided mapping.json.")]
 public class AddMissingProperties : ICommand

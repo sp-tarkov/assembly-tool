@@ -1,4 +1,4 @@
-﻿namespace ReCodeItLib.Application;
+﻿namespace AssemblyLib.Application;
 
 internal interface IComponent
 { }

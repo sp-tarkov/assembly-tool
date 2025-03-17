@@ -1,11 +1,11 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using ReCodeItCLI.Utils;
-using ReCodeItLib.Utils;
-using ReCodeItLib.Dumper;
+using AssemblyLib.Utils;
+using AssemblyLib.Dumper;
+using AssemblyTool.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("Dumper", Description = "Generates a dumper zip")]
 public class Dumper : ICommand

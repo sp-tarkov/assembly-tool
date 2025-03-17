@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ReCodeItLib.Models;
+namespace AssemblyLib.Models;
 
 public class ItemTemplateModel
 {

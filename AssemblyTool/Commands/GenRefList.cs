@@ -1,10 +1,10 @@
-﻿using CliFx;
+﻿using AssemblyTool.Utils;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using dnlib.DotNet;
-using ReCodeItCLI.Utils;
 
-namespace ReCodeItCLI.Commands;
+namespace AssemblyTool.Commands;
 
 [Command("GenRefCountList", Description = "Generates a print out of the most used classes. Useful to prioritize remap targets")]
 public class GenRefList : ICommand

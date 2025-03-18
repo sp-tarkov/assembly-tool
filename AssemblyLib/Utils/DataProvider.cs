@@ -26,25 +26,19 @@ public static class DataProvider
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
     
-    public static void LoadMappingFile()
+    public static ModuleDefMD LoadModule(string path)
     {
-        if (!File.Exists(MappingPath))
+        var mcOptions = new ModuleCreationOptions(ModuleDef.CreateModuleContext());
+        var module = ModuleDefMD.Load(path, mcOptions);
+
+        module.Context = mcOptions.Context;
+
+        if (module is null)
         {
-            Logger.Log($"Cannot find mapping.json at `{MappingPath}`", ConsoleColor.Red);
-            return;
+            throw new NullReferenceException("Module is null...");
         }
 
-        var jsonText = File.ReadAllText(MappingPath);
-        
-        JsonSerializerOptions settings = new()
-        {
-            AllowTrailingCommas = true,
-        };
-        
-        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
-        Remaps.AddRange(remaps!);
-
-        ValidateMappings();
+        return module;
     }
     
     public static void UpdateMapping(bool respectNullableAnnotations = true)
@@ -69,6 +63,27 @@ public static class DataProvider
         Logger.Log($"Mapping file updated with new type names and saved to {MappingNewPath}", ConsoleColor.Green);
     }
 
+    public static void LoadMappingFile()
+    {
+        if (!File.Exists(MappingPath))
+        {
+            Logger.Log($"Cannot find mapping.json at `{MappingPath}`", ConsoleColor.Red);
+            return;
+        }
+
+        var jsonText = File.ReadAllText(MappingPath);
+        
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+        };
+        
+        var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
+        Remaps.AddRange(remaps!);
+
+        ValidateMappings();
+    }
+    
     private static void ValidateMappings()
     {
         var duplicateGroups = Remaps
@@ -87,21 +102,6 @@ public static class DataProvider
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
     
-    public static ModuleDefMD LoadModule(string path)
-    {
-        var mcOptions = new ModuleCreationOptions(ModuleDef.CreateModuleContext());
-        var module = ModuleDefMD.Load(path, mcOptions);
-
-        module.Context = mcOptions.Context;
-
-        if (module is null)
-        {
-            throw new NullReferenceException("Module is null...");
-        }
-
-        return module;
-    }
-
     private static Settings LoadAppSettings()
     {
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");

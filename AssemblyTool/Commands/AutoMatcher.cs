@@ -23,17 +23,9 @@ public class AutoMatchCommand : ICommand
 	[CommandParameter(3, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
 	public string? OldAssemblyPath { get; init; }
 	
-	public ValueTask ExecuteAsync(IConsole console)
+	public async ValueTask ExecuteAsync(IConsole console)
 	{
 		Debugger.TryWaitForDebuggerAttach();
-		
-		Logger.Log("Finding match...");
-		
-		DataProvider.LoadMappingFile();
-		Logger.Log("Loaded mapping file", ConsoleColor.Green);
-		
-		new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
-		
-		return default;
+		await new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
 	}
 }

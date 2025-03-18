@@ -21,22 +21,18 @@ public class RegenerateSignature : CliFx.ICommand
 	[CommandParameter(3, IsRequired = false, Description = "The absolute path to the previous assembly. This is used for generating meta data for custom attributes.")]
 	public string? OldAssemblyPath { get; init; }
 	
-    public ValueTask ExecuteAsync(IConsole console)
+    public async ValueTask ExecuteAsync(IConsole console)
     {
 	    Debugger.TryWaitForDebuggerAttach();
-	    
-	    DataProvider.LoadMappingFile();
 	    
 	    var target = DataProvider.Remaps.SingleOrDefault(r => r.NewTypeName == NewTypeName);
 
 	    if (target is null)
 	    {
 		    Logger.Log("Could not find signature to regenerate", ConsoleColor.Red);
-		    return default;
+		    return;
 	    }
 	    
-	    new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
-	    
-        return default;
+	    await new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
     }
 }

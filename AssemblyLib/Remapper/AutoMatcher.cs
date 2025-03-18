@@ -397,7 +397,7 @@ public class AutoMatcher()
 			}
 			
 			DataProvider.Remaps.Add(remapModel);
-			DataProvider.UpdateMapping(false);
+			DataProvider.UpdateMapping(false, true);
 		}
 		
 		Logger.Log("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);

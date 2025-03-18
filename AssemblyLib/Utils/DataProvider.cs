@@ -41,7 +41,7 @@ public static class DataProvider
         return module;
     }
     
-    public static void UpdateMapping(bool respectNullableAnnotations = true)
+    public static void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(MappingNewPath))
         {
@@ -58,9 +58,13 @@ public static class DataProvider
 
         var jsonText = JsonSerializer.Serialize(Remaps, settings);
 
-        File.WriteAllText(MappingNewPath, jsonText);
+        var path = isAutoMatch
+            ? MappingPath
+            : MappingNewPath;
+        
+        File.WriteAllText(path, jsonText);
 
-        Logger.Log($"Mapping file updated with new type names and saved to {MappingNewPath}", ConsoleColor.Green);
+        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
     }
 
     public static void LoadMappingFile()

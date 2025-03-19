@@ -119,13 +119,13 @@ public class ReMapper(string targetAssemblyPath)
             );
         }
 
-        if (!validate)
+        if (DataProvider.Settings.DebugLogging || validate)
         {
-            await Logger.DrawProgressBar(tasks, "Finding Best Matches");
+            await Task.WhenAll(tasks.ToArray());
         }
         else
         {
-            await Task.WhenAll(tasks.ToArray());
+            await Logger.DrawProgressBar(tasks, "Publicizing Types");
         }
         
         ChooseBestMatches();
@@ -353,7 +353,12 @@ public class ReMapper(string targetAssemblyPath)
                 }
             }));
         }
-        
+
+        if (DataProvider.Settings.DebugLogging)
+        {
+            await Task.WhenAll(tasks.ToArray());
+            return;
+        }
         await Logger.DrawProgressBar(tasks, "Hollowing Types");
     }
 

@@ -30,10 +30,14 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
                 })
             );
         }
+
+        if (DataProvider.Settings.DebugLogging)
+        {
+            await Task.WhenAll(publicizeTasks.ToArray());
+            return;
+        }
         
         await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
-        
-        //await Task.WhenAll(publicizeTasks.ToArray());
     }
     
     private void PublicizeType(TypeDef type)

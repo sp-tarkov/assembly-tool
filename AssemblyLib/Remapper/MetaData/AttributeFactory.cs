@@ -99,6 +99,12 @@ public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
                 })
             );
         }
+
+        if (DataProvider.Settings.DebugLogging)
+        {
+            await Task.WhenAll(attrTasks);
+            return;
+        }
         
         await Logger.DrawProgressBar(attrTasks, "Applying Custom Attribute");
     }

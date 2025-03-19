@@ -34,6 +34,12 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
                 })
             );
         }
+
+        if (DataProvider.Settings.DebugLogging)
+        {
+            await Task.WhenAll(renameTasks.ToArray());
+            return;
+        }
         
         await Logger.DrawProgressBar(renameTasks, "Renaming");
     }

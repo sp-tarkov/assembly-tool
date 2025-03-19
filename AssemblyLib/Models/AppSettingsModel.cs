@@ -8,6 +8,11 @@ namespace AssemblyLib.Models;
 public class Settings
 {
     /// <summary>
+    /// Enables or disables debug logging
+    /// </summary>
+    public bool DebugLogging { get; set; }
+    
+    /// <summary>
     /// Path to the games root directory
     /// </summary>
     public string GamePath { get; set; } = string.Empty;

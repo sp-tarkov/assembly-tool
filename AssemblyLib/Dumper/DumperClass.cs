@@ -1,8 +1,8 @@
-﻿/*
-using System.Collections;
-using dnlib.DotNet;
-using dnlib.DotNet.Emit;
+﻿using System.Collections;
 using System.IO.Compression;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
 
@@ -10,19 +10,19 @@ namespace AssemblyLib.Dumper;
 
 public class DumperClass
 {
-    private ModuleDefMD? _gameModule { get; set; }
-    private ModuleDefMD? _checkerModule { get; set; }
-    private ModuleDefMD? _msModule { get; set; }
-    private ModuleDefMD? _dumpModule { get; set; }
+    private ModuleDefinition? _gameModule { get; set; }
+    private ModuleDefinition? _checkerModule { get; set; }
+    private ModuleDefinition? _msModule { get; set; }
+    private ModuleDefinition? _dumpModule { get; set; }
     private string _assemblyPath { get; set; }
     private string _fileCheckerPath { get; set; }
     private string _mscorlibPath { get; set; }
     private string _dumpLibPath { get; set; }
     private string _managedPath { get; set; }
-    private List<TypeDef>? _gameTypes { get; set; }
-    private List<TypeDef>? _checkerTypes { get; set; }
-    private Importer? _gameImporter { get; set; }
-    private Importer? _checkImporter { get; set; }
+    private List<TypeDefinition>? _gameTypes { get; set; }
+    private List<TypeDefinition>? _checkerTypes { get; set; }
+    private ReferenceImporter? _gameImporter { get; set; }
+    private ReferenceImporter? _checkImporter { get; set; }
 
     public DumperClass(string managedPath)
     {
@@ -41,32 +41,29 @@ public class DumperClass
         {
             Logger.Log($"File FilesChecker.dll does not exist at {_fileCheckerPath}", ConsoleColor.Red);
         }
-        
+
         if (!File.Exists(_mscorlibPath))
         {
             Logger.Log($"File FilesChecker.dll does not exist at {_mscorlibPath}", ConsoleColor.Red);
         }
-        
+
         if (!File.Exists(_dumpLibPath))
         {
             Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
         }
-        
-        _assemblyPath = AssemblyUtils.TryDeObfuscate(
-            DataProvider.LoadModule(_assemblyPath), 
-            _assemblyPath, 
-            out var gameModule);
-        
-        _gameModule = gameModule;
+
+        var kvp = AssemblyUtils.TryDeObfuscate(DataProvider.LoadModule(_assemblyPath), _assemblyPath);
+        _assemblyPath = kvp.Item1;
+        _gameModule = kvp.Item2;
         _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
         _msModule = DataProvider.LoadModule(_mscorlibPath);
         _dumpModule = DataProvider.LoadModule(_dumpLibPath);
-        _gameTypes = _gameModule.GetTypes().ToList();
-        _checkerTypes = _checkerModule.GetTypes().ToList();
-        _gameImporter = new Importer(_gameModule);
-        _checkImporter = new Importer(_checkerModule);
+        _gameTypes = _gameModule.GetAllTypes().ToList();
+        _checkerTypes = _checkerModule.GetAllTypes().ToList();
+        _gameImporter = new ReferenceImporter(_gameModule);
+        _checkImporter = new ReferenceImporter(_checkerModule);
     }
-    
+
     public void CreateDumper()
     {
         if (_gameModule == null || _gameTypes == null)
@@ -80,61 +77,61 @@ public class DumperClass
             Logger.Log($"_checkerModule or _checkerTypes in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
-        
+
         if (_msModule == null)
         {
             Logger.Log($"_msModule in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
-        
+
         if (_dumpModule == null)
         {
             Logger.Log($"_dumpModule in CreateDumper() was null", ConsoleColor.Red);
             return;
         }
-        
+
         // get types
         var backRequestType = _gameTypes.Where(DumpyReflectionHelper.GetBackRequestType).ToList();
         var validateCertType = _gameTypes.Where(DumpyReflectionHelper.GetValidateCertType).ToList();
         var runValidationType = _gameTypes.Where(DumpyReflectionHelper.GetRunValidationType).ToList();
         var dumpyTaskType = _gameTypes.Where(DumpyReflectionHelper.GetMenuscreenType).ToList();
-        
+
         // check types
         CheckNullOrMulti(backRequestType, "BackRequest");
         CheckNullOrMulti(validateCertType, "ValidateCertificate");
         CheckNullOrMulti(runValidationType, "RunValidation");
         CheckNullOrMulti(dumpyTaskType, "DumpyTask");
-        
+
         // apply code changes
-        SetBackRequestCode(backRequestType.First());
-        SetValidateCertCode(validateCertType.First());
-        SetRunValidationCode(runValidationType.First());
-        SetDumpyTaskCode(dumpyTaskType.First());
+        SetBackRequestCode(backRequestType.FirstOrDefault());
+        SetValidateCertCode(validateCertType.FirstOrDefault());
+        SetRunValidationCode(runValidationType.FirstOrDefault());
+        SetDumpyTaskCode(dumpyTaskType.FirstOrDefault());
 
         // write assembly to disk
         _gameModule.Write(Path.Combine(_managedPath, "Assembly-CSharp-dumper.dll"));
-        
+
         // get types
         var ensureConsistencyTypes = _checkerTypes.Where(DumpyReflectionHelper.GetEnsureConsistencyType).ToList();
-        
+
         // check types
         CheckNullOrMulti(ensureConsistencyTypes, "EnsureConsistency");
-        
+
         // apply code changes
-        SetEnsureConsistencyCode(ensureConsistencyTypes.First());
-        SetEnsureConsistencySingleCode(ensureConsistencyTypes.First());
-        
+        SetEnsureConsistencyCode(ensureConsistencyTypes.FirstOrDefault());
+        SetEnsureConsistencySingleCode(ensureConsistencyTypes.FirstOrDefault());
+
         // write assembly to disk
         _checkerModule.Write(Path.Combine(_managedPath, "FilesChecker-dumper.dll"));
     }
-    
+
     public void CreateDumpFolders()
     {
         Directory.CreateDirectory(Path.Combine(_managedPath, "DumperZip"));
         Directory.CreateDirectory(Path.Combine(_managedPath, "Dumper/DUMPDATA"));
         Directory.CreateDirectory(Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/backup"));
     }
-    
+
     public void CopyFiles()
     {
         File.Copy(Path.Combine(_managedPath, "Assembly-CSharp.dll"), Path.Combine(_managedPath, "Dumper/EscapeFromTarkov_Data/Managed/backup/Assembly-CSharp.dll"), true);
@@ -155,7 +152,7 @@ public class DumperClass
         {
             File.Delete(Path.Combine(_managedPath, "DumperZip/Dumper.zip"));
         }
-        
+
         ZipFile.CreateFromDirectory(Path.Combine(_managedPath, "Dumper"), Path.Combine(_managedPath, "DumperZip/Dumper.zip"), CompressionLevel.Optimal, false);
     }
 
@@ -185,31 +182,32 @@ public class DumperClass
     /// </summary>
     /// <param name="oldAssembly"></param>
     /// <param name="type"></param>
-    private void SetBackRequestCode(TypeDef type)
+    private void SetBackRequestCode(TypeDefinition type)
     {
         // find method
         var method = type.Methods.First(DumpyReflectionHelper.GetBackRequestMethod);
+        var methodBody = new CilMethodBody(method);
 
-        if (method == null || method.Body.Instructions.Count != 269)
+        if (method == null || methodBody.Instructions.Count != 269)
         {
-            Logger.Log($"BackRequest Instructions count has changed from 269 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"BackRequest Instructions count has changed from 269 to {methodBody?.Instructions.Count}", ConsoleColor.Red);
         }
 
         var startOfInstructions = 252;
-        var liList = DumpyILHelper.GetBackRequestInstructions(method!, _gameImporter);
-        var index = method?.Body.Instructions[startOfInstructions];
+        var liList = DumpyILHelper.GetBackRequestInstructions(method, _gameImporter);
+        var index = methodBody.Instructions[startOfInstructions];
 
         foreach (var li in liList)
         {
             // something along these lines, this needs to be tested
-            method?.Body.Instructions.InsertBefore(index!, li);
+            methodBody.Instructions.InsertBefore(index, li);
         }
 
         // create instruction
-        var ins = Instruction.Create(OpCodes.Brfalse_S, method?.Body.Instructions[startOfInstructions]);
+        var ins = new CilInstruction(CilOpCodes.Brfalse_S, methodBody.Instructions[startOfInstructions]);
 
         // replace instruction at 220 with this
-        method!.Body.Instructions[220] = ins;
+        methodBody.Instructions[220] = ins;
     }
 
     /// <summary>
@@ -220,19 +218,21 @@ public class DumperClass
     /// </summary>
     /// <param name="oldAssembly"></param>
     /// <param name="type"></param>
-    private void SetValidateCertCode(TypeDef type)
+    private void SetValidateCertCode(TypeDefinition type)
     {
         var methods = type.Methods.Where(DumpyReflectionHelper.GetValidateCertMethods); // should be 2
 
         // check make sure nothing has changed
         var firstMethod = methods.FirstOrDefault(m => m.Parameters.Any(p => p.Name == "certificate"));
+        var firstMethodBody = new CilMethodBody(firstMethod);
         var secondMethod = methods.FirstOrDefault(m => m.Parameters.Any(p => p.Name == "certificateData"));
+        var secondMethodBody = new CilMethodBody(secondMethod);
 
         // as of 01/11/24 firstMethod returns true, so its now only 2 instructions, was 55 (this may change, BSG have byppassed their own SSL checks atm)
-        if (firstMethod?.Body.Instructions.Count != 2 || secondMethod?.Body.Instructions.Count != 14) 
+        if (firstMethodBody.Instructions.Count != 2 || secondMethodBody.Instructions.Count != 14)
         {
-            Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod?.Body.Instructions.Count}, " +
-                       $"method with 'certificateData' as a param - before: 14, now: {secondMethod?.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethodBody.Instructions.Count}, " +
+                       $"method with 'certificateData' as a param - before: 14, now: {secondMethodBody.Instructions.Count}", ConsoleColor.Red);
         }
 
         if (methods.Count() != 2)
@@ -240,21 +240,30 @@ public class DumperClass
             Logger.Log($"ValidateCertificate should be found twice, count was: {methods.Count()}", ConsoleColor.Red);
         }
 
-        foreach (var method in methods)
-        {
-            // clear these from the body.
-            method.Body.Instructions.Clear();
-            method.Body.Variables.Clear();
-            method.Body.ExceptionHandlers.Clear();
+        // TODO: redo to be a foreach
+        firstMethodBody.Instructions.Clear();
+        firstMethodBody.LocalVariables.Clear();
+        firstMethodBody.ExceptionHandlers.Clear();
 
-            // return true;
-            var ins = Instruction.Create(OpCodes.Ldc_I4_1);
-            var ins1 = Instruction.Create(OpCodes.Ret);
+        // return true;
+        var ins = new CilInstruction(CilOpCodes.Ldc_I4_1);
+        var ins1 = new CilInstruction(CilOpCodes.Ret);
 
-            // add instructions
-            method.Body.Instructions.Add(ins);
-            method.Body.Instructions.Add(ins1);
-        }
+        // add instructions
+        firstMethodBody.Instructions.Add(ins);
+        firstMethodBody.Instructions.Add(ins1);
+
+        secondMethodBody.Instructions.Clear();
+        secondMethodBody.LocalVariables.Clear();
+        secondMethodBody.ExceptionHandlers.Clear();
+
+        // return true;
+        var ins2 = new CilInstruction(CilOpCodes.Ldc_I4_1);
+        var ins3 = new CilInstruction(CilOpCodes.Ret);
+
+        // add instructions
+        secondMethodBody.Instructions.Add(ins2);
+        secondMethodBody.Instructions.Add(ins3);
     }
 
     /// <summary>
@@ -265,66 +274,69 @@ public class DumperClass
     /// </summary>
     /// <param name="oldAssembly"></param>
     /// <param name="type"></param>
-    private void SetRunValidationCode(TypeDef type)
+    private void SetRunValidationCode(TypeDefinition type)
     {
         var method = type.Methods.First(DumpyReflectionHelper.GetRunValidationMethod);
+        var methodBody = new CilMethodBody(method);
         var method2 = type.NestedTypes[0].Methods.First(DumpyReflectionHelper.GetRunValidationNextMethod);
+        var methodBody2 = new CilMethodBody(method2);
 
-        if (method == null || method.Body.Instructions.Count != 23)
+        if (method == null || methodBody.Instructions.Count != 23)
         {
-            Logger.Log($"RunValidation Instructions count has changed from 23 to {method?.Body.Instructions.Count}");
+            Logger.Log($"RunValidation Instructions count has changed from 23 to {methodBody.Instructions.Count}");
         }
 
-        if (method2 == null || method2.Body.Instructions.Count != 171)
+        if (method2 == null || methodBody2.Instructions.Count != 171)
         {
-            Logger.Log($"RunValidation's MoveNext Instructions count has changed from 171 to {method2?.Body.Instructions.Count}");
+            Logger.Log($"RunValidation's MoveNext Instructions count has changed from 171 to {methodBody2.Instructions.Count}");
         }
 
         // Clear these from the body of each method respectively
-        method?.Body.Instructions.Clear();
-        method2?.Body.Instructions.Clear();
-        method2?.Body.Variables.Clear();
-        method2?.Body.ExceptionHandlers.Clear();
+        methodBody.Instructions.Clear();
+        methodBody2.Instructions.Clear();
+        methodBody2.LocalVariables.Clear();
+        methodBody2.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetRunValidationInstructions(method!, _gameModule!, _msModule!, _gameImporter);
-        var liList2 = DumpyILHelper.GetRunValidationInstructionsMoveNext(method2!, _gameModule!, _msModule!, _gameImporter);
+        var liList = DumpyILHelper.GetRunValidationInstructions(method, _gameModule, _msModule, _gameImporter);
+        var liList2 = DumpyILHelper.GetRunValidationInstructionsMoveNext(method2, _gameModule, _msModule, _gameImporter);
 
         foreach (var instruction in liList)
         {
-            method?.Body.Instructions.Add(instruction);
+            methodBody.Instructions.Add(instruction);
         }
-        
+
         foreach (var instruction in liList2)
         {
-            method2?.Body.Instructions.Add(instruction);
+            methodBody2.Instructions.Add(instruction);
         }
 
-        var ins = Instruction.Create(OpCodes.Leave_S, method2?.Body.Instructions[14]); // Create instruction to jump to index 14
-        var ins1 = Instruction.Create(OpCodes.Leave_S, method2?.Body.Instructions.Last()); // Create instruction to jump to last index
+        var ins = new CilInstruction(CilOpCodes.Leave_S, methodBody2.Instructions[14]); // Create instruction to jump to index 14
+        var ins1 = new CilInstruction(CilOpCodes.Leave_S, methodBody2.Instructions.Last()); // Create instruction to jump to last index
 
-        method2?.Body.Instructions.InsertAfter(method2.Body.Instructions[5], ins); // Instruction to jump from 5 to 14
-        method2?.Body.Instructions.InsertAfter(method2.Body.Instructions[14], ins1); // Instruction to jump from 14 to last index
+        methodBody2.Instructions.InsertAfter(methodBody2.Instructions[5], ins); // Instruction to jump from 5 to 14
+        methodBody2.Instructions.InsertAfter(methodBody2.Instructions[14], ins1); // Instruction to jump from 14 to last index
 
         // Add exception handler to method body
-        method2?.Body.ExceptionHandlers.Add(DumpyILHelper.GetExceptionHandler(method2, _gameImporter, _msModule!));
+        methodBody2.ExceptionHandlers.Add(DumpyILHelper.GetExceptionHandler(method2, _gameImporter, _msModule));
     }
 
-    private void SetDumpyTaskCode(TypeDef type)
+    private void SetDumpyTaskCode(TypeDefinition type)
     {
         var method = type.Methods.First(DumpyReflectionHelper.GetMenuscreenMethod);
+        var methodBody = new CilMethodBody(method);
 
-        if (method == null || method.Body.Instructions.Count != 62)
+        if (method == null || methodBody.Instructions.Count != 62)
         {
             Logger.Log($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!", ConsoleColor.Red);
         }
 
-        var liList = DumpyILHelper.GetDumpyTaskInstructions(method!,_dumpModule!, _gameImporter);
+        var liList = DumpyILHelper.GetDumpyTaskInstructions(method,_dumpModule, _gameImporter);
 
-        var index = method?.Body.Instructions.First(x => x.OpCode == OpCodes.Ret);
+        var index = methodBody.Instructions.First(x => x.OpCode == CilOpCodes.Ret);
 
         foreach (var item in liList)
         {
-            method?.Body.Instructions.InsertBefore(index!, item);
+            methodBody.Instructions.InsertBefore(index, item);
         }
     }
 
@@ -335,25 +347,26 @@ public class DumperClass
     /// </summary>
     /// <param name="oldFileChecker"></param>
     /// <param name="type"></param>
-    private void SetEnsureConsistencyCode(TypeDef type)
+    private void SetEnsureConsistencyCode(TypeDefinition type)
     {
         var method = type.Methods.First(DumpyReflectionHelper.GetEnsureConMethod);
+        var methodBody = new CilMethodBody(method);
 
-        if (method == null || method.Body.Instructions.Count != 152)
+        if (method == null || methodBody.Instructions.Count != 152)
         {
-            Logger.Log($"EnsureConsistency Instructions count has changed from 152 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"EnsureConsistency Instructions count has changed from 152 to {methodBody.Instructions.Count}", ConsoleColor.Red);
         }
 
         // clear these from the method body
-        method?.Body.Instructions.Clear();
-        method?.Body.Variables.Clear();
-        method?.Body.ExceptionHandlers.Clear();
+        methodBody.Instructions.Clear();
+        methodBody.LocalVariables.Clear();
+        methodBody.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method!, _checkerModule!, _msModule!, _checkImporter);
-        
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
+
         foreach (var li in liList)
         {
-            method?.Body.Instructions.Add(li);
+            methodBody.Instructions.Add(li);
         }
     }
 
@@ -364,26 +377,26 @@ public class DumperClass
     /// </summary>
     /// <param name="oldFileChecker"></param>
     /// <param name="type"></param>
-    private void SetEnsureConsistencySingleCode(TypeDef type)
+    private void SetEnsureConsistencySingleCode(TypeDefinition type)
     {
         var method = type.Methods.First(DumpyReflectionHelper.GetEnsureConSingleMethod);
+        var methodBody = new CilMethodBody(method);
 
-        if (method == null || method.Body.Instructions.Count != 101)
+        if (method == null || methodBody.Instructions.Count != 101)
         {
-            Logger.Log($"EnsureConsistencySingle Instructions count has changed from 101 to {method?.Body.Instructions.Count}", ConsoleColor.Red);
+            Logger.Log($"EnsureConsistencySingle Instructions count has changed from 101 to {methodBody.Instructions.Count}", ConsoleColor.Red);
         }
 
         // clear these from the method body
-        method?.Body.Instructions.Clear();
-        method?.Body.Variables.Clear();
-        method?.Body.ExceptionHandlers.Clear();
+        methodBody.Instructions.Clear();
+        methodBody.LocalVariables.Clear();
+        methodBody.ExceptionHandlers.Clear();
 
-        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method!, _checkerModule!, _msModule!, _checkImporter);
-        
+        var liList = DumpyILHelper.GetEnsureConsistencyInstructions(method, _checkerModule, _msModule, _checkImporter);
+
         foreach (var li in liList)
         {
-            method?.Body.Instructions.Add(li);
+            methodBody.Instructions.Add(li);
         }
     }
 }
-*/

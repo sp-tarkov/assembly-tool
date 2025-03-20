@@ -8,7 +8,6 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-
     public async Task StartPublicizeTypesTask()
     {
         var publicizeTasks = new List<Task>();
@@ -42,9 +41,6 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     
     private void PublicizeType(TypeDefinition type)
     {
-        // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
-        // nameof(CompilerGeneratedAttribute))) { return; }
-        
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface.Name != "IEffect"))
         {
@@ -97,21 +93,23 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     private void PublicizeFields(TypeDefinition type)
     {
         var declType = type.IsNested ? type.DeclaringType : type;
-        while (declType is { FullName: 
-                   not null 
-                   and not "UnityEngine.Object" 
-                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour" }) 
-        { declType = declType.BaseType!.Resolve(); }
+        while (declType is
+               {
+                   FullName:
+                   not null
+                   and not "UnityEngine.Object"
+                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour"
+               })
+        { declType = declType.BaseType?.Resolve(); }
         
-        if (declType is not null)
+        if (declType?.FullName is "UnityEngine.Object" or "Sirenix.OdinInspector.SerializedMonoBehaviour")
         {
-            //Logger.LogSync($"Skipping {type.FullName} - object type {declType.FullName}");
             return;
         }
-        
+            
         foreach (var field in type.Fields)
         {
-            if (field.IsPublic || IsEventField(type, field)) continue;
+            if (field.IsPublic /*|| IsEventField(type, field)*/) continue;
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -119,16 +117,13 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
-           
-            /*
-            if (field.CustomAttributes.Any(ca => ca.FullName 
-                    is "UnityEngine.SerializeField" 
-                    or "Newtonsoft.Json.JsonPropertyAttribute")) 
+                
+            if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
+                field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
                 continue;
-            */
-            
+                
             // Make sure we don't serialize this field.
-            //field.Attributes |= FieldAttributes.NotSerialized;
+            field.Attributes |= FieldAttributes.NotSerialized;
                 
             //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
@@ -142,7 +137,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             {
                 foreach (var instr in evt.AddMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
+                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
                     {
                         return true;
                     }
@@ -153,7 +148,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             {
                 foreach (var instr in evt.RemoveMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
+                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
                     {
                         return true;
                     }
@@ -164,7 +159,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             {
                 foreach (var instr in evt.FireMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
+                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
                     {
                         return true;
                     }

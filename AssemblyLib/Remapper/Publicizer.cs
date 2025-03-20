@@ -1,4 +1,6 @@
-﻿using AsmResolver.DotNet;
+﻿using AsmResolver;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
 using AssemblyLib.Utils;
@@ -92,24 +94,11 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
 
     private void PublicizeFields(TypeDefinition type)
     {
-        var declType = type.IsNested ? type.DeclaringType : type;
-        while (declType is
-               {
-                   FullName:
-                   not null
-                   and not "UnityEngine.Object"
-                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour"
-               })
-        { declType = declType.BaseType?.Resolve(); }
-        
-        if (declType?.FullName is "UnityEngine.Object" or "Sirenix.OdinInspector.SerializedMonoBehaviour")
-        {
-            return;
-        }
+        if (!ShouldPublicizeFields(type)) return;
             
         foreach (var field in type.Fields)
         {
-            if (field.IsPublic /*|| IsEventField(type, field)*/) continue;
+            if (field.IsPublic || IsEventField(type, field)) continue;
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -129,41 +118,60 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         }
     }
 
+    private static bool ShouldPublicizeFields(TypeDefinition type)
+    {
+        var declType = type.IsNested ? type.DeclaringType : type;
+        while (declType is
+               {
+                   FullName:
+                   not null
+                   and not "UnityEngine.Object"
+                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour"
+               })
+        { declType = declType.BaseType?.Resolve(); }
+        
+        return declType?.FullName is not ("UnityEngine.Object" or "Sirenix.OdinInspector.SerializedMonoBehaviour");
+    }
+    
     private static bool IsEventField(TypeDefinition type, FieldDefinition field)
     {
         foreach (var evt in type.Events)
         {
             if (evt.AddMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.AddMethod.CilMethodBody.Instructions)
+                if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
                 
             if (evt.RemoveMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.RemoveMethod.CilMethodBody.Instructions)
+                if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
                 
             if (evt.FireMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.FireMethod.CilMethodBody.Instructions)
+                if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is MemberReference memberRef && memberRef.Name == field.Name)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+            }
+        }
+        
+        return false;
+    }
+
+    private static bool IsMemberReferenceNameMatch(CilInstructionCollection instructions, Utf8String? memberName)
+    {
+        foreach (var instr in instructions)
+        {
+            if (instr.Operand is MemberReference memberRef && memberRef.Name == memberName)
+            {
+                return true;
             }
         }
         

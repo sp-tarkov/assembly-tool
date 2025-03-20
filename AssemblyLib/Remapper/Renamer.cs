@@ -4,6 +4,7 @@ using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
+using MemberReference = AsmResolver.DotNet.MemberReference;
 using TypeDefinition = AsmResolver.DotNet.TypeDefinition;
 
 namespace AssemblyLib.ReMapper;
@@ -107,7 +108,6 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
                 var oldName = field.Name;
 
                 field.Name = newFieldName;
-
                 
                 if (field.IsPrivate)
                 {
@@ -140,9 +140,13 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
 
             foreach (var instr in method.CilMethodBody!.Instructions)
             {
-                if (instr.Operand is FieldDefinition memRef && memRef.Name == oldName)
+                if (instr.Operand is MemberReference memRef && memRef.Name == oldName)
                 {
                     memRef.Name = fieldDef.Name;
+                    
+                    if (!DataProvider.Settings.DebugLogging) continue;
+                    
+                    Logger.Log($"Renaming reference: {oldName} to {fieldDef.Name}");
                 }
             }
         }

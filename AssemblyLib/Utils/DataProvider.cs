@@ -1,8 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using dnlib.DotNet;
-using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace AssemblyLib.Utils;
@@ -26,13 +25,10 @@ public static class DataProvider
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
     
-    public static ModuleDefMD LoadModule(string path)
+    public static ModuleDefinition LoadModule(string path)
     {
-        var mcOptions = new ModuleCreationOptions(ModuleDef.CreateModuleContext());
-        var module = ModuleDefMD.Load(path, mcOptions);
-
-        module.Context = mcOptions.Context;
-
+        var module = ModuleDefinition.FromFile(path);
+        
         if (module is null)
         {
             throw new NullReferenceException("Module is null...");

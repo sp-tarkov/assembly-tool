@@ -1,4 +1,6 @@
-﻿using dnlib.DotNet.Emit;
+﻿/*
+
+using dnlib.DotNet.Emit;
 
 namespace AssemblyLib.Dumper;
 
@@ -47,3 +49,5 @@ public static class InstructionsExtensions
         instructions.Insert(index + 1, instruction);
     }
 }
+
+*/

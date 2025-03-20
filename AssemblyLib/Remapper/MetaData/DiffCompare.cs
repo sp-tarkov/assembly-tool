@@ -1,16 +1,15 @@
-﻿using AssemblyLib.Application;
-using dnlib.DotNet;
-using AssemblyLib.Utils;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Application;
 
 namespace AssemblyLib.ReMapper.MetaData;
 
-internal sealed class DiffCompare(ModuleDefMD oldModule) 
+internal sealed class DiffCompare(ModuleDefinition oldModule) 
 	: IComponent
 {
-	public bool IsSame(TypeDef newType)
+	public bool IsSame(TypeDefinition newType)
 	{
-		var oldTypes = oldModule.GetTypes();
-		var typeDefs = oldTypes as TypeDef[] ?? oldTypes.ToArray();
+		var oldTypes = oldModule.GetAllTypes();
+		var typeDefs = oldTypes as TypeDefinition[] ?? oldTypes.ToArray();
 		
 		var oldType = typeDefs.FirstOrDefault(t => t.FullName == newType.FullName);
 		
@@ -49,7 +48,7 @@ internal sealed class DiffCompare(ModuleDefMD oldModule)
 		return true;
 	}
 
-	private static bool IsSameCounts(TypeDef newType, TypeDef oldType)
+	private static bool IsSameCounts(TypeDefinition newType, TypeDefinition oldType)
 	{
 		// Field count differs
 		if (newType.Fields.Count != oldType.Fields.Count)
@@ -84,14 +83,14 @@ internal sealed class DiffCompare(ModuleDefMD oldModule)
 		return true;
 	}
 
-	private static bool IsMethodSame(MethodDef newMethod, MethodDef oldMethod)
+	private static bool IsMethodSame(MethodDefinition newMethod, MethodDefinition oldMethod)
 	{
 		if (newMethod.Parameters.Count != oldMethod.Parameters.Count)
 		{
 			return false;
 		}
 
-		if (newMethod.ReturnType != oldMethod.ReturnType)
+		if (newMethod.Signature!.ReturnType != oldMethod.Signature!.ReturnType)
 		{
 			return false;
 		}
@@ -101,7 +100,7 @@ internal sealed class DiffCompare(ModuleDefMD oldModule)
 			return false;
 		}
 
-		if (newMethod.Body.Instructions.Count != oldMethod.Body.Instructions.Count)
+		if (newMethod.CilMethodBody!.Instructions.Count != oldMethod.CilMethodBody!.Instructions.Count)
 		{
 			return false;
 		}

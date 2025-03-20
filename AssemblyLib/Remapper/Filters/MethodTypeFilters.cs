@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Models;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 
 namespace AssemblyLib.ReMapper.Filters;
 
@@ -11,17 +11,17 @@ internal static class MethodTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.IncludeMethods.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             if (parms.Methods.IncludeMethods
                 .All(includeName => type.Methods
-                    .Any(method => method.Name.String == includeName)))
+                    .Any(method => method.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -36,16 +36,16 @@ internal static class MethodTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.ExcludeMethods.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Methods
-                .Where(method => parms.Methods.ExcludeMethods.Contains(method.Name.String));
+                .Where(method => parms.Methods.ExcludeMethods.Contains(method.Name!));
 
             if (!match.Any())
             {
@@ -62,7 +62,7 @@ internal static class MethodTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.MethodCount == -1) return types;
 
@@ -79,12 +79,12 @@ internal static class MethodTypeFilters
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    private static int GetMethodCountExcludingConstructors(TypeDef type)
+    private static int GetMethodCountExcludingConstructors(TypeDefinition type)
     {
         int count = 0;
         foreach (var method in type.Methods)
         {
-            if (!method.IsConstructor && !method.IsSpecialName && !method.IsGetter && !method.IsSetter)
+            if (method is { IsConstructor: false, IsSpecialName: false, IsGetMethod: false, IsSetMethod: false })
             {
                 count++;
             }

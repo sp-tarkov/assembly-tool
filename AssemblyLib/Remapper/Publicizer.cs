@@ -1,11 +1,11 @@
-﻿using System.Collections.Concurrent;
+﻿using AsmResolver.DotNet;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
-using dnlib.DotNet;
 using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Publicizer(List<TypeDef> types, Statistics stats) 
+internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
 
@@ -40,7 +40,7 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
     }
     
-    private void PublicizeType(TypeDef type)
+    private void PublicizeType(TypeDefinition type)
     {
         // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
         // nameof(CompilerGeneratedAttribute))) { return; }
@@ -74,7 +74,7 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         PublicizeFields(type);
     }
 
-    private void PublicizeMethod(MethodDef method, bool isProperty = false)
+    private void PublicizeMethod(MethodDefinition method, bool isProperty = false)
     {
         if (method.IsCompilerControlled)
         {
@@ -94,14 +94,14 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         stats.MethodPublicizedCount++;
     }
 
-    private void PublicizeFields(TypeDef type)
+    private void PublicizeFields(TypeDefinition type)
     {
-        ITypeDefOrRef declType = type.IsNested ? type.DeclaringType : type;
+        var declType = type.IsNested ? type.DeclaringType : type;
         while (declType is { FullName: 
                    not null 
                    and not "UnityEngine.Object" 
                    and not "Sirenix.OdinInspector.SerializedMonoBehaviour" }) 
-        { declType = declType.GetBaseType(); }
+        { declType = declType.BaseType!.Resolve(); }
         
         if (declType is not null)
         {
@@ -119,50 +119,52 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
             
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
-            
-            if (field.CustomAttributes.Any(ca => ca.AttributeType.FullName 
+           
+            /*
+            if (field.CustomAttributes.Any(ca => ca.FullName 
                     is "UnityEngine.SerializeField" 
                     or "Newtonsoft.Json.JsonPropertyAttribute")) 
                 continue;
+            */
             
             // Make sure we don't serialize this field.
-            field.Attributes |= FieldAttributes.NotSerialized;
+            //field.Attributes |= FieldAttributes.NotSerialized;
                 
             //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
     }
 
-    private static bool IsEventField(TypeDef type, FieldDef field)
+    private static bool IsEventField(TypeDefinition type, FieldDefinition field)
     {
         foreach (var evt in type.Events)
         {
-            if (evt.AddMethod is { Body: not null })
+            if (evt.AddMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.AddMethod.Body.Instructions)
+                foreach (var instr in evt.AddMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
                     {
                         return true;
                     }
                 }
             }
                 
-            if (evt.RemoveMethod is { Body: not null })
+            if (evt.RemoveMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.RemoveMethod.Body.Instructions)
+                foreach (var instr in evt.RemoveMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
                     {
                         return true;
                     }
                 }
             }
                 
-            if (evt.InvokeMethod is { Body: not null })
+            if (evt.FireMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.InvokeMethod.Body.Instructions)
+                foreach (var instr in evt.FireMethod.CilMethodBody.Instructions)
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
+                    if (instr.Operand is FieldDefinition fieldDef && fieldDef == field)
                     {
                         return true;
                     }

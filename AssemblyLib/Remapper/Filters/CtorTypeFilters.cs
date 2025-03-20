@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Models;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 
 namespace AssemblyLib.ReMapper.Filters;
 
@@ -11,19 +11,19 @@ internal static class CtorTypeFilters
     /// <param name="parms"></param>
     /// <param name="score"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByParameterCount(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByParameterCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.ConstructorParameterCount == -1) return types;
 
         return types.Where(type =>
         {
-            var constructors = type.FindConstructors();
-            return constructors != null && constructors.Any(ctor =>
+            var constructors = type.Methods.Where(m => m.IsConstructor);
+            return constructors.Any(ctor =>
             {
                 // Ensure Parameters isn't null before checking Count
                 var parameters = ctor.Parameters;
                 // This +1 offset is needed for some reason, needs investigation
-                return parameters != null && parameters.Count == parms.Methods.ConstructorParameterCount + 1;
+                return parameters.Count == parms.Methods.ConstructorParameterCount;
             });
         });
     }

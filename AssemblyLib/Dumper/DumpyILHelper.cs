@@ -1,4 +1,6 @@
-﻿using dnlib.DotNet;
+﻿/*
+
+using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 
 namespace AssemblyLib.Dumper;
@@ -173,3 +175,5 @@ public static class DumpyILHelper
         };
     }
 }
+
+*/

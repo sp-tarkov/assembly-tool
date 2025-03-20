@@ -2,7 +2,7 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using AssemblyLib.Utils;
-using AssemblyLib.Dumper;
+//using AssemblyLib.Dumper;
 using AssemblyTool.Utils;
 
 namespace AssemblyTool.Commands;
@@ -19,11 +19,13 @@ public class Dumper : ICommand
         
         Logger.Log("Creating DumperClass...");
 
+        /*
         var dumper = new DumperClass(ManagedDirectory);
         dumper.CreateDumpFolders();
         dumper.CreateDumper();
         dumper.CopyFiles();
         dumper.ZipFiles();
+        */
         
         Logger.Log("Complete", ConsoleColor.Green);
         

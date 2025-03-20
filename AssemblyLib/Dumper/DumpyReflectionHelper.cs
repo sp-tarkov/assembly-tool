@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿/*
+
+using System.Linq;
 using dnlib.DotNet;
 
 namespace AssemblyLib.Dumper;
@@ -87,3 +89,5 @@ public static class DumpyReflectionHelper
         return method.Name == "EnsureConsistencySingle";
     }
 }
+
+*/

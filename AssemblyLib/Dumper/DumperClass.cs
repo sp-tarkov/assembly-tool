@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using System.IO.Compression;
@@ -385,3 +386,4 @@ public class DumperClass
         }
     }
 }
+*/

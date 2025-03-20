@@ -1,6 +1,6 @@
-﻿using dnlib.DotNet;
-using dnlib.DotNet.Emit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using AsmResolver.DotNet;
+using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
@@ -10,28 +10,27 @@ public static class Deobfuscator
     public static void Deobfuscate(string assemblyPath, bool isLauncher = false)
     { 
         string token;
+        
+        var module = ModuleDefinition.FromFile(assemblyPath);
 
-        ModuleContext modCtx = ModuleDef.CreateModuleContext();
-        ModuleDefMD module = ModuleDefMD.Load(assemblyPath, modCtx);
+        var potentialStringDelegates = new List<MethodDefinition>();
 
-        var potentialStringDelegates = new List<MethodDef>();
-
-        foreach (var type in module.GetTypes())
+        foreach (var type in module.GetAllTypes())
         {
             foreach (var method in type.Methods)
             {
-                if (method.ReturnType.FullName != "System.String"
+                if (method.Signature!.ReturnType.FullName != "System.String"
                     || method.Parameters.Count != 1
-                    || method.Parameters[0].Type.FullName != "System.Int32"
-                    || method.Body == null
+                    || method.Parameters[0].ParameterType.FullName != "System.Int32"
+                    || method.CilMethodBody is null
                     || !method.IsStatic)
                 {
                     continue;
                 }
 
-                if (!method.Body.Instructions.Any(x =>
-                        x.OpCode.Code == Code.Callvirt &&
-                        ((IMethodDefOrRef)x.Operand).FullName ==
+                if (!method.CilMethodBody.Instructions.Any(x =>
+                        x.OpCode.Code == CilCode.Callvirt &&
+                        ((IMethodDefOrRef)x.Operand!).FullName ==
                         "System.Object System.AppDomain::GetData(System.String)"))
                 {
                     continue;
@@ -48,10 +47,11 @@ public static class Deobfuscator
         }
 
         var methodDef = potentialStringDelegates[0];
-        MDToken deobfRid = methodDef.MDToken;
+        var deobfRid = methodDef.MetadataToken;
 
         // Construct the token string (similar to Mono.Cecil's format)
-        token = $"0x{(deobfRid.Raw | deobfRid.Rid):x4}";
+        // Shift table index to the upper 8 bits
+        token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
         Console.WriteLine($"Deobfuscation token: {token}");
 
         var cmd = isLauncher

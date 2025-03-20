@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Models;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 
 namespace AssemblyLib.ReMapper.Filters;
 
@@ -11,17 +11,17 @@ internal static class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.IncludeEvents.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             if (parms.Events.IncludeEvents
                 .All(includeName => type.Events
-                    .Any(ev => ev.Name.String == includeName)))
+                    .Any(ev => ev.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -36,16 +36,16 @@ internal static class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.ExcludeEvents.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Events
-                .Where(prop => parms.Events.ExcludeEvents.Contains(prop.Name.String));
+                .Where(prop => parms.Events.ExcludeEvents.Contains(prop.Name!));
 
             if (!match.Any())
             {

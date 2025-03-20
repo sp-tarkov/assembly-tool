@@ -1,33 +1,27 @@
-﻿using AssemblyLib.Application;
+﻿/*
+using AsmResolver.DotNet;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
-using dnlib.DotNet;
-using dnlib.DotNet.Emit;
-using FieldAttributes = dnlib.DotNet.FieldAttributes;
-using MethodAttributes = dnlib.DotNet.MethodAttributes;
-using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
-using TypeAttributes = dnlib.DotNet.TypeAttributes;
 
 namespace AssemblyLib.ReMapper.MetaData;
 
-public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
+public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> types)
     : IComponent
 {
-    private MethodDef? _sptRenamedAttrCtorDef;
+    private MethodDefinition? _sptRenamedAttrCtorDef;
     
     public async Task CreateCustomTypeAttribute()
     {
         var corlibRef = new AssemblyRefUser(module.GetCorlibAssembly());
 
         // Create the attribute
-        var annotationType = new TypeDefUser(
+        var annotationType = new TypeDefinition(
             "SPT",
             "SPTRenamedClassAttribute",
-            module.CorLibTypes.Object.TypeDefOrRef)
+            TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass)
         {
-            Attributes = TypeAttributes.Public | TypeAttributes.AutoLayout |
-                         TypeAttributes.Class | TypeAttributes.AnsiClass,
-
             BaseType = new TypeRefUser(module, "System", "Attribute", corlibRef),
         };
 
@@ -208,3 +202,4 @@ public class AttributeFactory(ModuleDefMD module, List<TypeDef> types)
         return customAttribute;
     }
 }
+*/

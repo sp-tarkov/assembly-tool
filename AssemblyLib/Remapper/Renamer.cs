@@ -143,10 +143,6 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
                 if (instr.Operand is MemberReference memRef && memRef.Name == oldName)
                 {
                     memRef.Name = fieldDef.Name;
-                    
-                    if (!DataProvider.Settings.DebugLogging) continue;
-                    
-                    Logger.Log($"Renaming reference: {oldName} to {fieldDef.Name}");
                 }
             }
         }

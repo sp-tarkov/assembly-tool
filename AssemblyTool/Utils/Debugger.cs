@@ -1,13 +1,14 @@
-﻿using System.Diagnostics;
+﻿//#define WAIT_FOR_DEBUGGER
+
 using AssemblyLib.Utils;
 
 namespace AssemblyTool.Utils;
 
 public static class Debugger
 {
-	[Conditional("WAIT_FOR_DEBUGGER")]
 	public static void TryWaitForDebuggerAttach()
 	{
+#if WAIT_FOR_DEBUGGER
 		const int maxDots = 3;
 		var dotCount = 0;
 		
@@ -21,5 +22,6 @@ public static class Debugger
 			dotCount = (dotCount + 1) % (maxDots + 1);
 			Thread.Sleep(500);
 		}
+#endif
 	}
 }

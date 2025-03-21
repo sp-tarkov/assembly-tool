@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Models;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 
 namespace AssemblyLib.ReMapper.Filters;
 
@@ -11,17 +11,17 @@ internal static class NestedTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.IncludeNestedTypes.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             if (parms.NestedTypes.IncludeNestedTypes
                 .All(includeName => type.NestedTypes
-                    .Any(nestedType => nestedType.Name.String == includeName)))
+                    .Any(nestedType => nestedType.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -36,16 +36,16 @@ internal static class NestedTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.ExcludeNestedTypes.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Fields
-                .Where(field => parms.NestedTypes.ExcludeNestedTypes.Contains(field.Name.String));
+                .Where(field => parms.NestedTypes.ExcludeNestedTypes.Contains(field.Name!));
 
             if (!match.Any())
             {
@@ -53,7 +53,7 @@ internal static class NestedTypeFilters
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ internal static class NestedTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.NestedTypeCount >= 0)
         {
@@ -72,7 +72,7 @@ internal static class NestedTypeFilters
         return types;
     }
     
-    public static IEnumerable<TypeDef> FilterByNestedVisibility(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByNestedVisibility(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         types = FilterNestedByName(types, parms);
 
@@ -90,11 +90,11 @@ internal static class NestedTypeFilters
         return types;
     }
     
-    private static IEnumerable<TypeDef> FilterNestedByName(IEnumerable<TypeDef> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterNestedByName(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.NestedTypeParentName is not "")
         {
-            types = types.Where(t => t.DeclaringType.Name.String == parms.NestedTypes.NestedTypeParentName);
+            types = types.Where(t => t.DeclaringType!.Name == parms.NestedTypes.NestedTypeParentName);
         }
 
         return types;

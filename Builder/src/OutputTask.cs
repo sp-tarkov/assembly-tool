@@ -78,7 +78,7 @@ public class OutputTask : FrostingTask<Context>
         
         if (context.MsBuildConfiguration == "Release")
         {
-            listOfFiles.RemoveAll(m => m.Contains(".pdb"));
+            //listOfFiles.RemoveAll(m => m.Contains(".pdb"));
         }
 
         context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build"));

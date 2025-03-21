@@ -1,23 +1,19 @@
-﻿using dnlib.DotNet;
-using dnlib.DotNet.Emit;
-using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Application;
 using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
-using FieldAttributes = dnlib.DotNet.FieldAttributes;
-using MethodAttributes = dnlib.DotNet.MethodAttributes;
-using MethodImplAttributes = dnlib.DotNet.MethodImplAttributes;
-using TypeAttributes = dnlib.DotNet.TypeAttributes;
 
 namespace AssemblyLib.ReMapper;
 
 public class ReMapper(string targetAssemblyPath)
 {
-    private ModuleDefMD Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
-    private List<TypeDef> Types { get; set; } = [];
+    private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
+    private List<TypeDefinition> Types { get; set; } = [];
     
     private string OutPath { get; set; } = string.Empty;
     
@@ -34,15 +30,15 @@ public class ReMapper(string targetAssemblyPath)
     {
         Logger.Stopwatch.Start();
         
-        _targetAssemblyPath = AssemblyUtils.TryDeObfuscate(
-            Module, 
-            _targetAssemblyPath, 
-            out var module);
+        var result = AssemblyUtils.TryDeObfuscate(
+            Module, _targetAssemblyPath);
 
-        Module = module;
         OutPath = outPath;
+        _targetAssemblyPath = result.Item1;
+        Module = result.Item2;
         
-        Types.AddRange(Module.GetTypes());
+        
+        Types.AddRange(Module.GetAllTypes());
         
         InitializeComponents(oldAssemblyPath);
         if (!validate)
@@ -64,14 +60,14 @@ public class ReMapper(string targetAssemblyPath)
         await Context.Instance.Get<Renamer>()!.StartRenameProcess();
         await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
         
-        Context.Instance.Get<AttributeFactory>()
-            !.UpdateAsyncAttributes();
-        
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
             await Context.Instance.Get<AttributeFactory>()
                 !.CreateCustomTypeAttribute();
         }
+        
+        Context.Instance.Get<AttributeFactory>()
+            !.UpdateAsyncAttributes();
         
         await StartWriteAssemblyTasks();
     }
@@ -125,7 +121,7 @@ public class ReMapper(string targetAssemblyPath)
         }
         else
         {
-            await Logger.DrawProgressBar(tasks, "Publicizing Types");
+            await Logger.DrawProgressBar(tasks, "Finding Best Matches");
         }
         
         ChooseBestMatches();
@@ -149,12 +145,12 @@ public class ReMapper(string targetAssemblyPath)
 
         // Filter down nested objects
         var types = !mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(type => tokens.Any(token => type.Name.StartsWith(token)))
+            ? Types.Where(type => tokens.Any(token => type.Name!.ToString().StartsWith(token)))
             : Types.Where(t => t.DeclaringType != null);
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
         {
-            types = types.Where(t => t.DeclaringType.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
+            types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
@@ -172,7 +168,7 @@ public class ReMapper(string targetAssemblyPath)
             if (type.Name != mapping.OriginalTypeName) continue;
             
             mapping.TypePrimeCandidate = type;
-            mapping.OriginalTypeName = type.Name.String;
+            mapping.OriginalTypeName = type.Name;
             mapping.Succeeded = true;
 
             _alreadyGivenNames.Add(mapping.OriginalTypeName);
@@ -205,7 +201,7 @@ public class ReMapper(string targetAssemblyPath)
         if (winner is null) { return; }
         
         remap.TypePrimeCandidate = winner;
-        remap.OriginalTypeName = winner.Name.String;
+        remap.OriginalTypeName = winner.Name!;
         
         if (_alreadyGivenNames.Contains(winner.FullName))
         {
@@ -220,7 +216,7 @@ public class ReMapper(string targetAssemblyPath)
 
         remap.Succeeded = true;
 
-        remap.OriginalTypeName = winner.Name.String;
+        remap.OriginalTypeName = winner.Name!;
     }
     
     #endregion
@@ -230,7 +226,10 @@ public class ReMapper(string targetAssemblyPath)
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
-        var templateMappingTypeDef = Types.SingleOrDefault(t => t.FindField("TypeTable") != null);
+        var templateMappingTypeDef = Types.SingleOrDefault(t => 
+            t.Fields.Select(f => f.Name)
+                .ToList()
+                .Contains("TypeTable"));
         
         if (templateMappingTypeDef is null)
         {
@@ -298,7 +297,7 @@ public class ReMapper(string targetAssemblyPath)
     private async Task StartWriteAssemblyTasks()
     {
         const string dllName = "-cleaned-remapped-publicized.dll";
-        OutPath = Path.Combine(OutPath,  Module?.Name?.Replace(".dll", dllName));
+        OutPath = Path.Combine(OutPath,  Module.Name!.ToString().Replace(".dll", dllName));
 
         try
         {
@@ -310,14 +309,14 @@ public class ReMapper(string targetAssemblyPath)
             throw;
         }
         
-        await StartHollow();
+        //await StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
 
         try
         {
-            Module.Write(hollowedPath);
+            //Module.Write(hollowedPath);
         }
         catch (Exception e)
         {
@@ -334,10 +333,9 @@ public class ReMapper(string targetAssemblyPath)
     /// </summary>
     private async Task StartHollow()
     {
-        var tasks = new List<Task>(Module!.GetTypes().Count());
+        var tasks = new List<Task>(Types.Count());
         
-        var body = new CilBody();
-        body.Instructions.Add(OpCodes.Ret.ToInstruction());
+        var instruction = new CilInstruction(CilOpCodes.Ret);
         foreach (var type in Types)
         {
             tasks.Add(
@@ -345,7 +343,7 @@ public class ReMapper(string targetAssemblyPath)
             {
                 try
                 {
-                    HollowType(type, body);
+                    HollowType(type, instruction);
                 }
                 catch (Exception ex)
                 {
@@ -362,11 +360,12 @@ public class ReMapper(string targetAssemblyPath)
         await Logger.DrawProgressBar(tasks, "Hollowing Types");
     }
 
-    private static void HollowType(TypeDef type, CilBody body)
+    private static void HollowType(TypeDefinition type, CilInstruction retInstruction)
     {
-        foreach (var method in type.Methods.Where(m => m.HasBody))
+        foreach (var method in type.Methods.Where(m => m.HasMethodBody))
         {
-            method.Body = body;
+            method.CilMethodBody!.Instructions.Clear();
+            method.CilMethodBody!.Instructions.Add(retInstruction);
         }
     }
 }

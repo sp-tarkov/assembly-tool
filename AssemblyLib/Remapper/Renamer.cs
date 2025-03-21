@@ -1,11 +1,15 @@
-﻿using AssemblyLib.Application;
+﻿using System.Reflection.Metadata;
+using AsmResolver;
+using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
-using dnlib.DotNet;
+using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
+using MemberReference = AsmResolver.DotNet.MemberReference;
+using TypeDefinition = AsmResolver.DotNet.TypeDefinition;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Renamer(List<TypeDef> types, Statistics stats) 
+internal sealed class Renamer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
@@ -48,11 +52,11 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
     {
         // Rename all fields and properties first
         RenameAllFields(
-            remap.TypePrimeCandidate!.Name.String,
+            remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
 
         RenameAllProperties(
-            remap.TypePrimeCandidate!.Name.String,
+            remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
 
         FixMethods(remap);
@@ -69,42 +73,42 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
 
             var methodsWithInterfaces = 
                 (from method in type.Methods
-                where method.Name.StartsWith(remap.TypePrimeCandidate!.Name.String)
+                where method.Name.ToString().StartsWith(remap.TypePrimeCandidate!.Name)
                 select method).ToList();
 
             foreach (var method in methodsWithInterfaces.ToArray())
             {
-                var name = method.Name.String.Split(".");
+                var name = method.Name!.ToString().Split(".");
                 
-                if (allMethodNames.Count(n => n.EndsWith(name[1])) > 1)
+                if (allMethodNames.Count(n => n is not null && n.ToString().EndsWith(name[1])) > 1)
                     continue;
                 
-                method.Name =  method.Name.String.Split(".")[1];
+                method.Name =  method.Name.ToString().Split(".")[1];
             }
         }
     }
     
-    private void RenameAllFields(string oldTypeName, string newTypeName)
+    private void RenameAllFields(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
             var fields = type.Fields
-                .Where(field => field.Name.IsFieldOrPropNameInList(TokensToMatch));
+                .Where(field => field.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
             
             var fieldCount = 0;
             foreach (var field in fields)
             {
-                if (field.FieldType.TypeName != oldTypeName) continue;
+                if (field.Signature?.FieldType.Name != oldTypeName) continue;
                 
                 var newFieldName = GetNewFieldName(newTypeName, fieldCount);
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName) { continue; }
                     
-                var oldName = field.Name.ToString();
+                var oldName = field.Name;
 
                 field.Name = newFieldName;
-
+                
                 if (field.IsPrivate)
                 {
                     RenameFieldMemberRefsLocal(type, field, oldName);
@@ -119,42 +123,42 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
             }
         }
     }
-
-    private void RenameFieldMemberRefsGlobal(FieldDef newDef, string oldName)
+    
+    private void RenameFieldMemberRefsGlobal(FieldDefinition fieldDef, Utf8String oldName)
     {
         foreach (var type in types)
         {
-            RenameFieldMemberRefsLocal(type, newDef, oldName);
+            RenameFieldMemberRefsLocal(type, fieldDef, oldName);
         }
     }
 
-    private static void RenameFieldMemberRefsLocal(TypeDef type, FieldDef newDef, string oldName)
+    private static void RenameFieldMemberRefsLocal(TypeDefinition type, FieldDefinition fieldDef, string oldName)
     {
         foreach (var method in type.Methods)
         {
-            if (!method.HasBody) continue;
+            if (!method.HasMethodBody) continue;
 
-            foreach (var instr in method.Body.Instructions)
+            foreach (var instr in method.CilMethodBody!.Instructions)
             {
-                if (instr.Operand is MemberRef memRef && memRef.Name == oldName)
+                if (instr.Operand is MemberReference memRef && memRef.Name == oldName)
                 {
-                    memRef.Name = newDef.Name;
+                    memRef.Name = fieldDef.Name;
                 }
             }
         }
     }
     
-    private void RenameAllProperties(string oldTypeName, string newTypeName)
+    private void RenameAllProperties(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
             var properties = type.Properties
-                .Where(prop => prop.Name.IsFieldOrPropNameInList(TokensToMatch));
+                .Where(prop => prop.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
             
             var propertyCount = 0;
             foreach (var property in properties)
             {
-                if (property.PropertySig.RetType.TypeName != oldTypeName) continue;
+                if (property.Signature!.ReturnType.Name != oldTypeName) continue;
                 
                 var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
 
@@ -168,18 +172,18 @@ internal sealed class Renamer(List<TypeDef> types, Statistics stats)
         }
     }
 
-    private UTF8String GetNewFieldName(string newName, int fieldCount = 0)
+    private Utf8String GetNewFieldName(string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
         stats.FieldRenamedCount++;
-        return new UTF8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
+        return new Utf8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
     }
 
-    private UTF8String GetNewPropertyName(string newName, int propertyCount = 0)
+    private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
     {
         stats.PropertyRenamedCount++;
         
-        return new UTF8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
+        return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
     }
 }

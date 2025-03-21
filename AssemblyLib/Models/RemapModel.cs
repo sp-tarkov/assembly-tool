@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using AsmResolver.DotNet;
 using AssemblyLib.Enums;
-using dnlib.DotNet;
 
 namespace AssemblyLib.Models;
 
@@ -22,13 +22,13 @@ public class RemapModel
     /// This is a list of type candidates that made it through the filter
     /// </summary>
     [JsonIgnore]
-    public HashSet<TypeDef> TypeCandidates { get; set; } = [];
+    public HashSet<TypeDefinition> TypeCandidates { get; set; } = [];
 
     /// <summary>
     /// This is the final chosen type we will use to remap
     /// </summary>
     [JsonIgnore]
-    public TypeDef? TypePrimeCandidate { get; set; }
+    public TypeDefinition? TypePrimeCandidate { get; set; }
 
     public string NewTypeName { get; set; } = string.Empty;
 

@@ -1,5 +1,5 @@
-﻿using dnlib.DotNet;
-using System.Text;
+﻿using System.Text;
+using AsmResolver;
 
 namespace AssemblyLib.Utils;
 
@@ -10,7 +10,7 @@ public static class SysTypeExtentions
     /// </summary>
     /// <param name="str"></param>
     /// <returns>Trimmed string if special character found, or the original string</returns>
-    public static string TrimAfterSpecialChar(this UTF8String str)
+    public static string TrimAfterSpecialChar(this Utf8String str)
     {
         var sb = new StringBuilder();
 
@@ -81,14 +81,16 @@ public static class SysTypeExtentions
     /// <param name="str"></param>
     /// <param name="list"></param>
     /// <returns>True if it in the list</returns>
-    public static bool IsFieldOrPropNameInList(this UTF8String str, List<string> list)
+    public static bool IsFieldOrPropNameInList(this Utf8String str, List<string> list)
     {
-        if (str.Trim().StartsWith("_"))
+        var realString = str.ToString();
+        
+        if (realString.Trim().StartsWith("_"))
         {
-            str = str.Replace("_", "");
+            realString = realString.Replace("_", "");
         }
 
-        var result = list.Any(item => str.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+        var result = list.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
 
         return result;
     }

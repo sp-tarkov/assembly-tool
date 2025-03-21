@@ -1,8 +1,9 @@
-﻿using AssemblyTool.Utils;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Utils;
+using AssemblyTool.Utils;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using dnlib.DotNet;
 
 namespace AssemblyTool.Commands;
 
@@ -41,9 +42,9 @@ public class GenRefList : ICommand
     {
         var typeReferenceCounts = new Dictionary<string, int>();
 
-        using var module = ModuleDefMD.Load(assemblyPath);
+        var module = DataProvider.LoadModule(assemblyPath);
         
-        foreach (var type in module.GetTypes())
+        foreach (var type in module.GetAllTypes())
         {
             CountReferencesInType(type, typeReferenceCounts);
         }
@@ -51,55 +52,55 @@ public class GenRefList : ICommand
         return typeReferenceCounts;
     }
 
-    private static void CountReferencesInType(TypeDef type, Dictionary<string, int> counts)
+    private static void CountReferencesInType(TypeDefinition type, Dictionary<string, int> counts)
     {
         foreach (var method in type.Methods)
         {
-            if (Match.Any(item => method.ReturnType.TypeName.StartsWith(item))) IncrementCount(method.ReturnType.TypeName, counts);
+            if (Match.Any(item => method.Signature.ReturnType.Name.StartsWith(item))) IncrementCount(method.Signature.ReturnType.Name, counts);
 
             CountReferencesInMethod(method, counts);
         }
 
         foreach (var field in type.Fields)
         {
-            if (field.FieldType.IsValueType || field.FieldType.IsPrimitive) continue;
+            if (field.Signature.FieldType.IsValueType) continue;
 
-            if (!Match.Any(item => field.FieldType.TypeName.StartsWith(item))) continue;
+            if (!Match.Any(item => field.Signature.FieldType.Name!.StartsWith(item))) continue;
 
-            IncrementCount(field.FieldType.FullName, counts);
+            IncrementCount(field.Signature.FieldType.FullName, counts);
         }
 
         foreach (var property in type.Properties)
         {
-            if (property.PropertySig.RetType.IsValueType || property.PropertySig.RetType.IsPrimitive) continue;
+            if (property.Signature.ReturnType.IsValueType) continue;
 
-            if (!Match.Any(item => property.PropertySig.RetType.TypeName.StartsWith(item))) continue;
+            if (!Match.Any(item => property.Signature.ReturnType.Name.StartsWith(item))) continue;
 
-            IncrementCount(property.PropertySig.RetType.FullName, counts);
+            IncrementCount(property.Signature.ReturnType.FullName, counts);
         }
     }
 
-    private static void CountReferencesInMethod(MethodDef method, Dictionary<string, int> counts)
+    private static void CountReferencesInMethod(MethodDefinition method, Dictionary<string, int> counts)
     {
-        if (!method.HasBody) return;
+        if (!method.HasMethodBody) return;
 
-        foreach (var instr in method.Body.Instructions)
+        foreach (var instr in method.CilMethodBody!.Instructions)
         {
-            if (instr.Operand is FieldDef fieldDef && Match.Any(item => fieldDef.FieldType.TypeName.StartsWith(item)))
+            if (instr.Operand is FieldDefinition fieldDef && Match.Any(item => fieldDef.Signature!.FieldType.Name!.StartsWith(item)))
             {
-                IncrementCount(fieldDef.FieldType.FullName, counts);
+                IncrementCount(fieldDef.Signature!.FieldType.FullName!, counts);
             }
 
-            if (instr.Operand is PropertyDef propDef && Match.Any(item => propDef.PropertySig.RetType.FullName.StartsWith(item)))
+            if (instr.Operand is PropertyDefinition propDef && Match.Any(item => propDef.Signature!.ReturnType!.FullName.StartsWith(item)))
             {
-                IncrementCount(propDef.PropertySig.RetType.FullName, counts);
+                IncrementCount(propDef.Signature!.ReturnType!.FullName, counts);
             }
 
-            if (instr.Operand is MethodDef methodDef && Match.Any(item => methodDef.DeclaringType.FullName.StartsWith(item)))
+            if (instr.Operand is MethodDefinition methodDef && Match.Any(item => methodDef.DeclaringType.FullName.StartsWith(item)))
             {
-                if (methodDef.ReturnType.IsValueType || methodDef.ReturnType.IsPrimitive || methodDef.ReturnType.IsCorLibType) continue;
+                if (methodDef.Signature!.ReturnType.IsValueType) continue;
 
-                IncrementCount(methodDef.ReturnType.FullName, counts);
+                IncrementCount(methodDef.Signature.ReturnType.FullName, counts);
             }
         }
     }

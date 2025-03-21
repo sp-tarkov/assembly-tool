@@ -1,14 +1,14 @@
-﻿using AssemblyLib.Models;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 using AssemblyLib.Utils;
-using dnlib.DotNet;
 
 namespace AssemblyLib.ReMapper;
 
 public class AutoMatcher()
 {
-	private ModuleDefMD? Module { get; set; }
+	private ModuleDefinition? Module { get; set; }
 	
-	private List<TypeDef>? CandidateTypes { get; set; }
+	private List<TypeDefinition>? CandidateTypes { get; set; }
 
 	private static readonly List<string> TypesToMatch = DataProvider.Settings.TypeNamesToMatch;
 	private static readonly List<string> MethodsToIgnore = DataProvider.Settings.MethodNamesToIgnore;
@@ -16,12 +16,11 @@ public class AutoMatcher()
 	
 	public async Task AutoMatch(string assemblyPath, string oldAssemblyPath, string oldTypeName, string newTypeName)
 	{
-		assemblyPath = AssemblyUtils.TryDeObfuscate(
-			DataProvider.LoadModule(assemblyPath), 
-			assemblyPath, 
-			out var module);
+		var result = AssemblyUtils.TryDeObfuscate(
+			DataProvider.LoadModule(assemblyPath), assemblyPath);
 
-		Module = module;
+		assemblyPath = result.Item1;
+		Module = result.Item2;
 		
 		var targetTypeDef = FindTargetType(oldTypeName);
 		
@@ -36,13 +35,13 @@ public class AutoMatcher()
 		if (targetTypeDef.IsNested)
 		{
 			CandidateTypes = targetTypeDef.DeclaringType.NestedTypes
-				.Where(t => TypesToMatch.Any(token => t.Name.StartsWith(token)))
+				.Where(t => TypesToMatch.Any(token => t.Name!.ToString().StartsWith(token)))
 				.ToList();
 		}
 		else
 		{
-			CandidateTypes = Module.Types
-				.Where(t => TypesToMatch.Any(token => t.Name.StartsWith(token)))
+			CandidateTypes = Module.GetAllTypes()
+				.Where(t => TypesToMatch.Any(token => t.Name!.ToString().StartsWith(token)))
 				.ToList();
 		}
 		
@@ -55,12 +54,12 @@ public class AutoMatcher()
 		await StartFilter(targetTypeDef, remapModel, assemblyPath, oldAssemblyPath);
 	}
 
-	private TypeDef? FindTargetType(string oldTypeName)
+	private TypeDefinition? FindTargetType(string oldTypeName)
 	{
-		return Module!.GetTypes().FirstOrDefault(t => t.FullName == oldTypeName);
+		return Module!.GetAllTypes().FirstOrDefault(t => t.FullName == oldTypeName);
 	}
 	
-	private async Task StartFilter(TypeDef target, RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
+	private async Task StartFilter(TypeDefinition target, RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
 	{
 		Logger.Log($"Starting Candidates: {CandidateTypes!.Count}", ConsoleColor.Yellow);
 		
@@ -127,36 +126,36 @@ public class AutoMatcher()
 		Logger.Log("Could not find a match... :(", ConsoleColor.Red);
 	}
 
-	private bool PassesGeneralChecks(TypeDef target, TypeDef candidate, GenericParams parms)
+	private bool PassesGeneralChecks(TypeDefinition target, TypeDefinition candidate, GenericParams parms)
 	{
 		if (target.IsPublic != candidate.IsPublic) return false;
 		if (target.IsAbstract != candidate.IsAbstract) return false;
 		if (target.IsInterface != candidate.IsInterface) return false;
 		if (target.IsEnum != candidate.IsEnum) return false;
 		if (target.IsValueType != candidate.IsValueType) return false;
-		if (target.HasGenericParameters != candidate.HasGenericParameters) return false;
+		if (target.GenericParameters.Count != candidate.GenericParameters.Count) return false;
 		if (target.IsNested != candidate.IsNested) return false;
 		if (target.IsSealed != candidate.IsSealed) return false;
-		if (target.HasCustomAttributes != candidate.HasCustomAttributes) return false;
+		if (target.GenericParameters.Count != candidate.GenericParameters.Count) return false;
 		
 		parms.IsPublic = target.IsPublic;
 		parms.IsAbstract = target.IsAbstract;
 		parms.IsInterface = target.IsInterface;
 		parms.IsEnum = target.IsEnum;
-		parms.HasGenericParameters = target.HasGenericParameters;
+		parms.HasGenericParameters = target.GenericParameters.Any();
 		parms.IsSealed = target.IsSealed;
-		parms.HasAttribute = target.HasCustomAttributes;
+		parms.HasAttribute = target.CustomAttributes.Any();
 		parms.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
-		if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name.StartsWith(t)))
+		if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name!.ToString().StartsWith(t)))
 		{
-			parms.MatchBaseClass = target.BaseType?.Name.String;
+			parms.MatchBaseClass = target.BaseType?.Name;
 		}
 		
 		return true;
 	}
 	
-	private bool ContainsTargetMethods(TypeDef target, TypeDef candidate, MethodParams methods)
+	private bool ContainsTargetMethods(TypeDefinition target, TypeDefinition candidate, MethodParams methods)
 	{
 		// Target has no methods and type has no methods
 		if (!target.Methods.Any() && !candidate.Methods.Any())
@@ -175,10 +174,10 @@ public class AutoMatcher()
 		if (target.Methods.Count != candidate.Methods.Count) return false;
 		
 		var commonMethods = target.Methods
-			.Where(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false })
+			.Where(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false })
 			.Select(s => s.Name)
 			.Intersect(candidate.Methods
-				.Where(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false })
+				.Where(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false })
 				.Select(s => s.Name));
 		
 		// Methods in target that are not in candidate
@@ -193,7 +192,7 @@ public class AutoMatcher()
 		methods.ExcludeMethods.UnionWith(excludeMethods);
 		
 		methods.MethodCount = target.Methods
-			.Count(m => !m.IsConstructor && m is { IsGetter: false, IsSetter: false, IsSpecialName: false });
+			.Count(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
 
 		if (target.Methods.Any(m => m.IsConstructor && m.Parameters.Count > 0))
 		{
@@ -204,7 +203,7 @@ public class AutoMatcher()
 		return commonMethods.Any() || target.Methods.All(m => m.IsConstructor);
 	}
 	
-	private bool ContainsTargetFields(TypeDef target, TypeDef candidate, FieldParams fields)
+	private bool ContainsTargetFields(TypeDefinition target, TypeDefinition candidate, FieldParams fields)
 	{
 		// Target has no fields and type has no fields
 		if (!target.Fields.Any() && !candidate.Fields.Any())
@@ -220,18 +219,18 @@ public class AutoMatcher()
 		if (target.Fields.Count != candidate.Fields.Count) return false;
 
 		var commonFields = target.Fields
-			.Select(s => s.Name.String)
-			.Intersect(candidate.Fields.Select(s => s.Name.String));
+			.Select(s => s.Name)
+			.Intersect(candidate.Fields.Select(s => s.Name));
 		
 		// Fields in target that are not in candidate
 		var includeFields = target.Fields
-			.Select(s => s.Name.String)
-			.Except(candidate.Fields.Select(s => s.Name.String));
+			.Select(s => s.Name!.ToString())
+			.Except(candidate.Fields.Select(s => s.Name!.ToString()));
 		
 		// Fields in candidate that are not in target
 		var excludeFields = candidate.Fields
-			.Select(s => s.Name.String)
-			.Except(target.Fields.Select(s => s.Name.String));
+			.Select(s => s.Name!.ToString())
+			.Except(target.Fields.Select(s => s.Name!.ToString()));
 		
 		Logger.Log(string.Join(", ", includeFields));
 		
@@ -243,7 +242,7 @@ public class AutoMatcher()
 		return commonFields.Any();
 	}
 	
-	private bool ContainsTargetProperties(TypeDef target, TypeDef candidate, PropertyParams props)
+	private bool ContainsTargetProperties(TypeDefinition target, TypeDefinition candidate, PropertyParams props)
 	{
 		// Both target and candidate don't have properties
 		if (!target.Properties.Any() && !candidate.Properties.Any())
@@ -280,7 +279,7 @@ public class AutoMatcher()
 		return commonProps.Any();
 	}
 
-	private bool ContainsTargetNestedTypes(TypeDef target, TypeDef candidate, NestedTypeParams nt)
+	private bool ContainsTargetNestedTypes(TypeDefinition target, TypeDefinition candidate, NestedTypeParams nt)
 	{
 		// Target has no nt's but type has nt's
 		if (!target.NestedTypes.Any() && candidate.NestedTypes.Any())
@@ -321,13 +320,13 @@ public class AutoMatcher()
 		
 		if (target.DeclaringType is not null)
 		{
-			nt.NestedTypeParentName = target.DeclaringType.Name.String;
+			nt.NestedTypeParentName = target.DeclaringType.Name!;
 		}
 		
 		return commonNts.Any() || target.NestedTypes.Count == 0;
 	}
 	
-	private bool ContainsTargetEvents(TypeDef target, TypeDef candidate, EventParams events)
+	private bool ContainsTargetEvents(TypeDefinition target, TypeDefinition candidate, EventParams events)
 	{
 		// Target has no events but type has events
 		if (!target.Events.Any() && candidate.Events.Any())
@@ -369,13 +368,13 @@ public class AutoMatcher()
 		return commonEvents.Any() || target.Events.Count == 0;
 	}
 
-	private IEnumerable<string> GetFilteredMethodNamesInType(TypeDef type)
+	private IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
 	{
 		return type.Methods
-			.Where(m => !m.IsConstructor && !m.IsGetter && !m.IsSetter)
+			.Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
 			// Don't match de-obfuscator given method names
-			.Where(m => !MethodsToIgnore.Any(mi => m.Name.String.StartsWith(mi)))
-			.Select(s => s.Name.ToString());
+			.Where(m => !MethodsToIgnore.Any(mi => m.Name!.ToString().StartsWith(mi)))
+			.Select(s => s.Name!.ToString());
 	}
 	
 	private async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)

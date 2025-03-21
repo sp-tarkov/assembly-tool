@@ -1,17 +1,16 @@
-﻿using AssemblyLib.Utils;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
 internal static class AssemblyUtils
 {
-	public static string TryDeObfuscate(ModuleDefMD module, string assemblyPath, out ModuleDefMD cleanedModule)
+	public static (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
 	{
-		if (!module!.GetTypes().Any(t => t.Name.Contains("GClass")))
+		if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
 		{
 			Logger.Log("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
-            
-			module.Dispose();
+			
 			module = null;
             
 			Deobfuscator.Deobfuscate(assemblyPath);
@@ -21,14 +20,10 @@ internal static class AssemblyUtils
             
 			var newPath = Path.GetDirectoryName(assemblyPath);
 			newPath = Path.Combine(newPath!, cleanedName);
-            
-			Logger.Log($"Cleaning assembly: {newPath}", ConsoleColor.Green);
-            
-			cleanedModule = DataProvider.LoadModule(newPath);
-			return newPath;
+			
+			module = DataProvider.LoadModule(newPath);
 		}
-
-		cleanedModule = module;
-		return assemblyPath;
+		
+		return (assemblyPath, module);
 	}
 }

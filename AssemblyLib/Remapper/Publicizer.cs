@@ -1,14 +1,15 @@
-﻿using System.Collections.Concurrent;
+﻿using AsmResolver;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
-using dnlib.DotNet;
 using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Publicizer(List<TypeDef> types, Statistics stats) 
+internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-
     public async Task StartPublicizeTypesTask()
     {
         var publicizeTasks = new List<Task>();
@@ -40,11 +41,8 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
     }
     
-    private void PublicizeType(TypeDef type)
+    private void PublicizeType(TypeDefinition type)
     {
-        // if (type.CustomAttributes.Any(a => a.AttributeType.Name ==
-        // nameof(CompilerGeneratedAttribute))) { return; }
-        
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface.Name != "IEffect"))
         {
@@ -74,7 +72,7 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         PublicizeFields(type);
     }
 
-    private void PublicizeMethod(MethodDef method, bool isProperty = false)
+    private void PublicizeMethod(MethodDefinition method, bool isProperty = false)
     {
         if (method.IsCompilerControlled)
         {
@@ -94,21 +92,10 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         stats.MethodPublicizedCount++;
     }
 
-    private void PublicizeFields(TypeDef type)
+    private void PublicizeFields(TypeDefinition type)
     {
-        ITypeDefOrRef declType = type.IsNested ? type.DeclaringType : type;
-        while (declType is { FullName: 
-                   not null 
-                   and not "UnityEngine.Object" 
-                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour" }) 
-        { declType = declType.GetBaseType(); }
-        
-        if (declType is not null)
-        {
-            //Logger.LogSync($"Skipping {type.FullName} - object type {declType.FullName}");
-            return;
-        }
-        
+        if (!ShouldPublicizeFields(type)) return;
+            
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
@@ -119,12 +106,11 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
             
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
-            
-            if (field.CustomAttributes.Any(ca => ca.AttributeType.FullName 
-                    is "UnityEngine.SerializeField" 
-                    or "Newtonsoft.Json.JsonPropertyAttribute")) 
+                
+            if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
+                field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
                 continue;
-            
+                
             // Make sure we don't serialize this field.
             field.Attributes |= FieldAttributes.NotSerialized;
                 
@@ -132,41 +118,60 @@ internal sealed class Publicizer(List<TypeDef> types, Statistics stats)
         }
     }
 
-    private static bool IsEventField(TypeDef type, FieldDef field)
+    private static bool ShouldPublicizeFields(TypeDefinition type)
+    {
+        var declType = type.IsNested ? type.DeclaringType : type;
+        while (declType is
+               {
+                   FullName:
+                   not null
+                   and not "UnityEngine.Object"
+                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour"
+               })
+        { declType = declType.BaseType?.Resolve(); }
+        
+        return declType?.FullName is not ("UnityEngine.Object" or "Sirenix.OdinInspector.SerializedMonoBehaviour");
+    }
+    
+    private static bool IsEventField(TypeDefinition type, FieldDefinition field)
     {
         foreach (var evt in type.Events)
         {
-            if (evt.AddMethod is { Body: not null })
+            if (evt.AddMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.AddMethod.Body.Instructions)
+                if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
                 
-            if (evt.RemoveMethod is { Body: not null })
+            if (evt.RemoveMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.RemoveMethod.Body.Instructions)
+                if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
                 
-            if (evt.InvokeMethod is { Body: not null })
+            if (evt.FireMethod is { CilMethodBody: not null })
             {
-                foreach (var instr in evt.InvokeMethod.Body.Instructions)
+                if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
                 {
-                    if (instr.Operand is FieldDef fieldDef && fieldDef == field)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+            }
+        }
+        
+        return false;
+    }
+
+    private static bool IsMemberReferenceNameMatch(CilInstructionCollection instructions, Utf8String? memberName)
+    {
+        foreach (var instr in instructions)
+        {
+            if (instr.Operand is MemberReference memberRef && memberRef.Name == memberName)
+            {
+                return true;
             }
         }
         

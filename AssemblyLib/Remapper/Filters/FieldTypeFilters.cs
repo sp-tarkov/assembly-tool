@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Models;
-using dnlib.DotNet;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 
 namespace AssemblyLib.ReMapper.Filters;
 
@@ -11,17 +11,17 @@ internal static class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByInclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.IncludeFields.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             if (parms.Fields.IncludeFields
                 .All(includeName => type.Fields
-                    .Any(field => field.Name.String == includeName)))
+                    .Any(field => field.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
@@ -36,16 +36,16 @@ internal static class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByExclude(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.ExcludeFields.Count == 0) return types;
 
-        List<TypeDef> filteredTypes = [];
+        List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
             var match = type.Fields
-                .Where(field => parms.Fields.ExcludeFields.Contains(field.Name.String));
+                .Where(field => parms.Fields.ExcludeFields.Contains(field.Name!));
 
             if (!match.Any())
             {
@@ -62,7 +62,7 @@ internal static class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDef> FilterByCount(IEnumerable<TypeDef> types, SearchParams parms)
+    public static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.FieldCount == -1) return types;
 

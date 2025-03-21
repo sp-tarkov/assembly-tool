@@ -1,14 +1,13 @@
-﻿using AssemblyLib.Enums;
+﻿using AsmResolver.DotNet;
+using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.Filters;
-using dnlib.DotNet;
-using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
 public class TypeFilters
 {
-    public bool DoesTypePassFilters(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    public bool DoesTypePassFilters(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         if (!FilterTypesByGeneric(mapping, ref types)) return false;
         if (!FilterTypesByMethods(mapping, ref types)) return false;
@@ -20,7 +19,7 @@ public class TypeFilters
         return true;
     }
     
-	private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDef> types)
+	private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         var parms = mapping.SearchParams;
         
@@ -86,8 +85,8 @@ public class TypeFilters
             mapping.TypeCandidates.UnionWith(types);
             return false;
         }
-        
-        types = types.Where(t => t.HasGenericParameters == parms.GenericParams.HasGenericParameters);
+
+        types = types.Where(t => t.GenericParameters.Any() == parms.GenericParams.HasGenericParameters);
         
         if (!types.Any())
         {
@@ -99,7 +98,7 @@ public class TypeFilters
         return true;
     }
     
-    private static bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    private static bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         types = MethodTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
@@ -140,7 +139,7 @@ public class TypeFilters
         return true;
     }
 
-    private static bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    private static bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         types = FieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
@@ -172,7 +171,7 @@ public class TypeFilters
         return true;
     }
 
-    private static bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    private static bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         types = PropertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
@@ -204,7 +203,7 @@ public class TypeFilters
         return true;
     }
 
-    private static bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    private static bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         types = NestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
@@ -245,7 +244,7 @@ public class TypeFilters
         return true;
     }
 
-    private static bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDef> types)
+    private static bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         types = EventTypeFilters.FilterByInclude(types, mapping.SearchParams);
 
@@ -268,36 +267,28 @@ public class TypeFilters
         return true;
     }
     
-    private static IEnumerable<TypeDef> FilterAttributes(IEnumerable<TypeDef> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterAttributes(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
-        // Filter based on HasAttribute or not
-        if (parms.GenericParams.HasAttribute is true)
-        {
-            types = types.Where(t => t.HasCustomAttributes);
-        }
-        else if (parms.GenericParams.HasAttribute is false)
-        {
-            types = types.Where(t => !t.HasCustomAttributes);
-        }
-
-        return types;
+        return parms.GenericParams.HasAttribute is not null 
+            ? types.Where(t => t.CustomAttributes.Any() == parms.GenericParams.HasAttribute) 
+            : types;
     }
     
-    private static IEnumerable<TypeDef> FilterDerived(IEnumerable<TypeDef> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterDerived(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         // Filter based on IsDerived or not
         if (parms.GenericParams.IsDerived is true)
         {
-            types = types.Where(t => t.GetBaseType()?.Name?.String != "Object");
+            types = types.Where(t => t.BaseType?.Name != "Object");
 
             if (parms.GenericParams.MatchBaseClass is not null and not "")
             {
-                types = types.Where(t => t.GetBaseType()?.Name?.String == parms.GenericParams.MatchBaseClass);
+                types = types.Where(t => t.BaseType?.Name == parms.GenericParams.MatchBaseClass);
             }
         }
         else if (parms.GenericParams.IsDerived is false)
         {
-            types = types.Where(t => t.GetBaseType()?.Name?.String is "Object");
+            types = types.Where(t => t.BaseType?.Name == "Object");
         }
 
         return types;

@@ -1,5 +1,7 @@
-﻿using dnlib.DotNet;
-using dnlib.DotNet.Emit;
+﻿using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.DotNet.Signatures;
+using AsmResolver.PE.DotNet.Cil;
 
 namespace AssemblyLib.Dumper;
 
@@ -10,13 +12,13 @@ public static class DumpyILHelper
     /// </summary>
     /// <param name="gameImporter">Importer</param>
     /// <param name="method">MethodDef</param>
-    public static List<Instruction> GetBackRequestInstructions(MethodDef method, Importer? gameImporter)
+    public static List<CilInstruction> GetBackRequestInstructions(MethodDefinition? method, ReferenceImporter? gameImporter)
     {
-        return new List<Instruction>
+        return new List<CilInstruction>
         {
-            Instruction.Create(OpCodes.Ldarg_1),
-            Instruction.Create(OpCodes.Ldloc_S, method.Body.Variables[6]),
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(typeof(DumpLib.DumpyTool).GetMethod("LogRequestResponse", new[] { typeof(object), typeof(object) })))
+            new CilInstruction(CilOpCodes.Ldarg_1),
+            new CilInstruction(CilOpCodes.Ldloc_S, method.CilMethodBody.LocalVariables[6]),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.BackRequestLogRequestResponseMethod(gameImporter))
         };
     }
 
@@ -26,52 +28,51 @@ public static class DumpyILHelper
     /// </summary>
     /// <param name="gameModule">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
-    public static List<Instruction> GetRunValidationInstructionsMoveNext(MethodDef method, ModuleDefMD gameModule, ModuleDefMD msModule, Importer? gameImporter)
+    public static List<CilInstruction> GetRunValidationInstructionsMoveNext(MethodDefinition? method, ModuleDefinition? gameModule, ModuleDefinition? msModule, ReferenceImporter? gameImporter)
     {
         // Add our own local variables
         // var1 index0 class1159Type
-        var sptClassType = gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType);
-        var sptClass = new Local(sptClassType.ToTypeSig());
-        method.Body.Variables.Add(sptClass);
+        var sptClassType = gameModule.GetAllTypes().First(DumpyReflectionHelper.GetRunValidationType);
+        var sptClass = new CilLocalVariable(sptClassType.ToTypeSignature());
+        method.CilMethodBody.LocalVariables.Add(sptClass);
 
         // var2 index1 ExceptionType
-        var typer = msModule.GetTypes().First(x => x.Name.ToLower() == "exception");
-        var sptExceptionType = gameImporter?.Import(typer);
-        var sptException = new Local(sptExceptionType.ToTypeSig());
-        method.Body.Variables.Add(sptException);
+        var typer = msModule.GetAllTypes().First(x => x.Name == "Exception");
+        var sptExceptionType = gameImporter?.ImportType(typer);
+        var sptException = new CilLocalVariable(sptExceptionType.ToTypeSignature());
+        method.CilMethodBody.LocalVariables.Add(sptException);
 
-        return new List<Instruction>
+        return new List<CilInstruction>
         {
             // most of this is to keep the Async happy
 
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
-            Instruction.Create(OpCodes.Stloc_0),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Ldfld, DumperCilHelper.MoveNextValidationFieldTwo(gameModule)),
+            new CilInstruction(CilOpCodes.Stloc_0),
 
             // this.Succeed = true;
-            Instruction.Create(OpCodes.Ldloc_0),
-            Instruction.Create(OpCodes.Ldc_I4_1),
-            Instruction.Create(OpCodes.Call, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).Methods.First(x => x.Name == "set_Succeed")),
+            new CilInstruction(CilOpCodes.Ldloc_0),
+            new CilInstruction(CilOpCodes.Ldc_I4_1),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.MoveNextValidationSetSucceedMethod(gameModule)),
 
-            Instruction.Create(OpCodes.Stloc_1),
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldc_I4_S, (sbyte)-2),
-            Instruction.Create(OpCodes.Stfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldflda, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Ldloc_1),
-            Instruction.Create(OpCodes.Call,
-                gameImporter?.Import(gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "SetException"))),
+            new CilInstruction(CilOpCodes.Stloc_1),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Ldc_I4_S, (sbyte)-2),
+            new CilInstruction(CilOpCodes.Stfld, DumperCilHelper.MoveNextValidationFieldZero(gameModule)),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Ldflda, DumperCilHelper.MoveNextValidationFieldOne(gameModule)),
+            new CilInstruction(CilOpCodes.Ldloc_1),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.MoveNextValidationSetExceptionMethod(gameImporter, gameModule)),
 
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldc_I4_S, (sbyte)-2),
-            Instruction.Create(OpCodes.Stfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Ldc_I4_S, (sbyte)-2),
+            new CilInstruction(CilOpCodes.Stfld, DumperCilHelper.MoveNextValidationFieldZero(gameModule)),
 
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Ldflda, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "SetResult"))),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Ldflda, DumperCilHelper.MoveNextValidationFieldOne(gameModule)),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.MoveNextValidationSetResultMethod(gameImporter, gameModule)),
 
-            Instruction.Create(OpCodes.Ret),
+            new CilInstruction(CilOpCodes.Ret),
         };
     }
 
@@ -82,28 +83,28 @@ public static class DumpyILHelper
     /// <param name="gameModule">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetEnsureConsistencyInstructions(MethodDef method, ModuleDefMD checkModule, ModuleDefMD msModule, Importer? checkImporter)
+    public static List<CilInstruction> GetEnsureConsistencyInstructions(MethodDefinition? method, ModuleDefinition? checkModule, ModuleDefinition? msModule, ReferenceImporter? checkImporter)
     {
         // init local vars
         // var1 index0 TimeSpan type
-        var sptTimeSpanType = checkImporter?.Import(msModule.GetTypes().First(x => x.Name == "TimeSpan"));
-        var sptClass = new Local(sptTimeSpanType.ToTypeSig());
-        method.Body.Variables.Add(sptClass);
+        var sptTimeSpanType = checkImporter?.ImportType(msModule.GetAllTypes().First(x => x.Name == "TimeSpan"));
+        var sptClass = new CilLocalVariable(sptTimeSpanType.ToTypeSignature());
+        method.CilMethodBody.LocalVariables.Add(sptClass);
 
         // Create genericInstance of a method
-        var type = checkModule.GetTypes().First(DumpyReflectionHelper.GetEnsureConsistencyType).NestedTypes[0].Interfaces[0].Interface;
-        var typeMethod = checkImporter?.Import(msModule.GetTypes().First(x => x.Name == "Task").Methods.First(x => x.Name == "FromResult"));
-        var generac = new MethodSpecUser(typeMethod as IMethodDefOrRef, new GenericInstMethodSig(type.ToTypeSig()));
+        var type = checkModule.GetAllTypes().First(DumpyReflectionHelper.GetEnsureConsistencyType).NestedTypes[0].Interfaces[0].Interface;
+        var typeMethod = checkImporter?.ImportMethod(msModule.GetAllTypes().First(x => x.Name == "Task").Methods.First(x => x.Name == "FromResult"));
+        var generac = new MethodSpecification(typeMethod as IMethodDefOrRef, new GenericInstanceMethodSignature(type.ToTypeSignature()));
 
-        return new List<Instruction>
+        return new List<CilInstruction>
         {
             // return Task.FromResult<ICheckResult>(ConsistencyController.CheckResult.Succeed(default(TimeSpan)));
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Initobj, sptTimeSpanType),
-            Instruction.Create(OpCodes.Ldloc_0),
-            Instruction.Create(OpCodes.Call, checkModule.GetTypes().First(DumpyReflectionHelper.GetEnsureConsistencyType).NestedTypes[0].Methods.First(x => x.Name == "Succeed")),
-            Instruction.Create(OpCodes.Call, generac),
-            Instruction.Create(OpCodes.Ret)
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Initobj, sptTimeSpanType),
+            new CilInstruction(CilOpCodes.Ldloc_0),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.EnsureConsistencySucceedMethod(checkModule)),
+            new CilInstruction(CilOpCodes.Call, generac),
+            new CilInstruction(CilOpCodes.Ret)
         };
     }
 
@@ -114,62 +115,68 @@ public static class DumpyILHelper
     /// <param name="gameModule">AssemblyDefinition</param>
     /// <param name="method">MethodDefinition</param>
     /// <returns>List<Instruction></returns>
-    public static List<Instruction> GetRunValidationInstructions(MethodDef method, ModuleDefMD gameModule, ModuleDefMD msModule, Importer? gameImporter)
+    public static List<CilInstruction> GetRunValidationInstructions(MethodDefinition? method, ModuleDefinition? gameModule, ModuleDefinition? msModule, ReferenceImporter? gameImporter)
     {
         // Create genericInstance of a method
-        var type = gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0];
-        var typeMethod = gameImporter?.Import(msModule.GetTypes().First(x => x.Name == "AsyncTaskMethodBuilder").Methods.First(x => x.Name == "Start"));
-        var generac = new MethodSpecUser(typeMethod as IMethodDefOrRef, new GenericInstMethodSig(type.ToTypeSig()));
+        var type = gameModule.GetAllTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0];
+        var typeMethod = gameImporter?.ImportMethod(msModule.GetAllTypes().First(x => x.Name == "AsyncTaskMethodBuilder").Methods.First(x => x.Name == "Start"));
+        var generac = new MethodSpecification(typeMethod as IMethodDefOrRef, new GenericInstanceMethodSignature(type.ToTypeSignature()));
 
-        return new List<Instruction>
+        return new List<CilInstruction>
         {
             // <RunValidation>d__.<>t__builder = AsyncTaskMethodBuilder.Create();
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "Create"))),
-            Instruction.Create(OpCodes.Stfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.RunValidationCreateMethod(gameImporter, gameModule)),
+            new CilInstruction(CilOpCodes.Stfld, DumperCilHelper.RunValidationFieldOne(gameModule)),
 
-            // <RunValidation>d__.<>4__this = this;
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldarg_0),
-            Instruction.Create(OpCodes.Stfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[2]),
+            // <RunValidation>dCil__.<>4__this = this;
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Ldarg_0),
+            new CilInstruction(CilOpCodes.Stfld, DumperCilHelper.RunValidationFieldTwo(gameModule)),
 
-            // <RunValidation>d__.<>1__state = -1;
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldc_I4_M1),
-            Instruction.Create(OpCodes.Stfld, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[0]),
+            // <RunValidation>dCil__.<>1__state = -1;
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Ldc_I4_M1),
+            new CilInstruction(CilOpCodes.Stfld, DumperCilHelper.RunValidationFieldZero(gameModule)),
 
-            // <RunValidation>d__.<>t__builder.Start<Class1159.<RunValidation>d__0>(ref <RunValidation>d__);
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldflda, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Call, generac),
+            // <RunValidation>dCil__.<>t__builder.Start<Class1159.<RunValidation>d__0>(ref <RunValidation>d__);
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Ldflda, DumperCilHelper.RunValidationFieldOne(gameModule)),
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Call, generac),
 
-            // return <RunValidation>d__.<>t__builder.Task;
-            Instruction.Create(OpCodes.Ldloca_S, method.Body.Variables[0]),
-            Instruction.Create(OpCodes.Ldflda, gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1]),
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(gameModule.GetTypes().First(DumpyReflectionHelper.GetRunValidationType).NestedTypes[0].Fields[1].FieldType.ScopeType.ResolveTypeDef().Methods.First(x => x.Name == "get_Task"))),
-            Instruction.Create(OpCodes.Ret),
+            // return <RunValidCilation>d__.<>t__builder.Task;
+            new CilInstruction(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
+            new CilInstruction(CilOpCodes.Ldflda, DumperCilHelper.RunValidationFieldOne(gameModule)),
+            new CilInstruction(CilOpCodes.Call, DumperCilHelper.RunValidationGetTaskMethod(gameImporter, gameModule)),
+            new CilInstruction(CilOpCodes.Ret),
         };
     }
 
-    public static List<Instruction> GetDumpyTaskInstructions(MethodDef method, ModuleDefMD dumpModule, Importer? gameImporter)
+    public static List<CilInstruction> GetDumpyTaskInstructions(MethodDefinition? method, ModuleDefinition? dumpModule, ReferenceImporter? gameImporter)
     {
-        return new List<Instruction>
+        return new List<CilInstruction>
         {
-            Instruction.Create(OpCodes.Call, gameImporter?.Import(dumpModule.GetTypes().First(x => x.Name == "DumpyTool").Methods.First(m => m.Name == "StartDumpyTask"))),
-            Instruction.Create(OpCodes.Pop)
+            new CilInstruction(CilOpCodes.Call, gameImporter?.ImportMethod(dumpModule.GetAllTypes().First(x => x.Name == "DumpyTool").Methods.First(m => m.Name == "StartDumpyTask"))),
+            new CilInstruction(CilOpCodes.Pop)
         };
     }
 
-    public static ExceptionHandler GetExceptionHandler(MethodDef method, Importer? importer, ModuleDefMD msModule)
+    public static CilExceptionHandler GetExceptionHandler(MethodDefinition? method, ReferenceImporter? importer, ModuleDefinition? msModule)
     {
-        return new ExceptionHandler()
+        return new CilExceptionHandler
         {
-            TryStart = method.Body.Instructions[3],
-            TryEnd = method.Body.Instructions[7],
-            HandlerStart = method.Body.Instructions[7],
-            HandlerEnd = method.Body.Instructions[16],
-            CatchType = importer?.Import(msModule.GetTypes().First(x => x.Name == "Exception"))
+            HandlerType = CilExceptionHandlerType.Exception,
+            TryStart = method.CilMethodBody.Instructions[3]
+                .CreateLabel(),
+            TryEnd = method.CilMethodBody.Instructions[7]
+                .CreateLabel(),
+            HandlerStart = method.CilMethodBody.Instructions[7]
+                .CreateLabel(),
+            HandlerEnd = method.CilMethodBody.Instructions[16]
+                .CreateLabel(),
+            ExceptionType = importer.ImportType(msModule.GetAllTypes().First(x => x.Name == "Exception")),
+
         };
     }
 }

@@ -12,28 +12,32 @@ public static class DataProvider
     {
         Settings = LoadAppSettings();
         ItemTemplates = LoadItems();
-        
+
         LoadMappingFile();
     }
-    
+
     public static Settings Settings { get; }
-    
+
     public static List<RemapModel> Remaps { get; } = [];
     public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
-    
+
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
-    
+
     public static ModuleDefinition Mscorlib { get; private set; }
-    
-    public static ModuleDefinition LoadModule(string path)
+
+    public static ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
         var directory = Path.GetDirectoryName(path)!;
-        
+
         var module = ModuleDefinition.FromFile(path);
-        Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
-        
+
+        if (loadMscorlib)
+        {
+            Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
+        }
+
         if (module is null)
         {
             throw new NullReferenceException("Module is null...");
@@ -41,7 +45,7 @@ public static class DataProvider
 
         return module;
     }
-    
+
     public static void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(MappingNewPath))
@@ -62,7 +66,7 @@ public static class DataProvider
         var path = isAutoMatch
             ? MappingPath
             : MappingNewPath;
-        
+
         File.WriteAllText(path, jsonText);
 
         Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
@@ -77,18 +81,18 @@ public static class DataProvider
         }
 
         var jsonText = File.ReadAllText(MappingPath);
-        
+
         JsonSerializerOptions settings = new()
         {
             AllowTrailingCommas = true,
         };
-        
+
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
         Remaps.AddRange(remaps!);
 
         ValidateMappings();
     }
-    
+
     private static void ValidateMappings()
     {
         var duplicateGroups = Remaps
@@ -97,29 +101,29 @@ public static class DataProvider
             .ToList();
 
         if (duplicateGroups.Count <= 1) return;
-        
+
         foreach (var duplicate in duplicateGroups)
         {
             var duplicateNewTypeName = duplicate.Key;
             Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
         }
-        
+
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
-    
+
     private static Settings LoadAppSettings()
     {
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
-        
+
         JsonSerializerOptions settings = new()
         {
             AllowTrailingCommas = true,
         };
-        
+
         return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
-    
+
     private static Dictionary<string, ItemTemplateModel> LoadItems()
     {
         var itemsPath = Path.Combine(DataPath, "items.json");
@@ -130,7 +134,7 @@ public static class DataProvider
             RespectNullableAnnotations = true,
             PropertyNameCaseInsensitive = true
         };
-        
+
         return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
     }
 }

@@ -25,9 +25,14 @@ public static class DataProvider
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
     
+    public static ModuleDefinition Mscorlib { get; private set; }
+    
     public static ModuleDefinition LoadModule(string path)
     {
+        var directory = Path.GetDirectoryName(path)!;
+        
         var module = ModuleDefinition.FromFile(path);
+        Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
         
         if (module is null)
         {

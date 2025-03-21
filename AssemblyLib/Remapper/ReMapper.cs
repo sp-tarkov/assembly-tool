@@ -60,7 +60,7 @@ public class ReMapper(string targetAssemblyPath)
         await Context.Instance.Get<Renamer>()!.StartRenameProcess();
         await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
         
-        /*
+        
         Context.Instance.Get<AttributeFactory>()
             !.UpdateAsyncAttributes();
         
@@ -69,7 +69,6 @@ public class ReMapper(string targetAssemblyPath)
             await Context.Instance.Get<AttributeFactory>()
                 !.CreateCustomTypeAttribute();
         }
-        */
         
         await StartWriteAssemblyTasks();
     }
@@ -81,12 +80,12 @@ public class ReMapper(string targetAssemblyPath)
         var stats = new Statistics();
         var renamer = new Renamer(Types, stats);
         var publicizer = new Publicizer(Types, stats);
-        //var attrFactory = new AttributeFactory(Module, Types);
+        var attrFactory = new AttributeFactory(Module, Types);
         
         ctx.RegisterComponent<Statistics>(stats);
         ctx.RegisterComponent<Renamer>(renamer);
         ctx.RegisterComponent<Publicizer>(publicizer);
-        //ctx.RegisterComponent<AttributeFactory>(attrFactory);
+        ctx.RegisterComponent<AttributeFactory>(attrFactory);
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {

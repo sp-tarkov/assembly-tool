@@ -24,6 +24,7 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
             "SPTRenamedClassAttribute",
             TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass,
             DataProvider.Mscorlib.GetAllTypes().FirstOrDefault(t => t.FullName == "System.Attribute")
+                .ImportWith(module.DefaultImporter)
         );
         
         // Add fields
@@ -51,18 +52,18 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         customAttribute.Methods.Add(ctor);
         
         // Name the ctor parameters
+        ctor.Parameters[0].GetOrCreateDefinition();
+        ctor.Parameters[0].Definition!.Name = new Utf8String("renamedFrom");
         ctor.Parameters[1].GetOrCreateDefinition();
-        ctor.Parameters[1].Definition!.Name = new Utf8String("renamedFrom");
-        ctor.Parameters[2].GetOrCreateDefinition();
-        ctor.Parameters[2].Definition!.Name = new Utf8String("hasChangesFromPreviousVersion");
+        ctor.Parameters[1].Definition!.Name = new Utf8String("hasChangesFromPreviousVersion");
 
         ctor.CilMethodBody = new CilMethodBody(ctor);
 
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_0));
-        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_1));
+        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg, (ushort)0));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[0]));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_0));
-        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_2));
+        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg, (ushort)1));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[1]));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ret));
         
@@ -105,7 +106,9 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
     
     private void AddMetaDataAttributeToTypes(RemapModel remap, DiffCompare? diff)
     {
-        var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute");
+        var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute")
+            .ImportWith(module.DefaultImporter);
+        
         var ctor = typeRef.Resolve()?.GetConstructor(SignatureComparer.Default, [ module.CorLibTypeFactory.String, module.CorLibTypeFactory.Boolean ]);
         
         var customAttribute = new CustomAttribute(ctor);
@@ -130,6 +133,8 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
     
     public void UpdateAsyncAttributes()
     {
+        Logger.Log("\nUpdating Async Attributes...");
+        
         foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
         {
             if (type.NestedTypes.Count == 0) continue;

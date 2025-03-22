@@ -1,7 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
 using AssemblyLib.Enums;
 using AssemblyLib.Models;
@@ -309,20 +311,22 @@ public class ReMapper(string targetAssemblyPath)
             throw;
         }
         
-        //await StartHollow();
+        await StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
 
         try
         {
-            //Module.Write(hollowedPath);
+            Module.Write(hollowedPath);
         }
         catch (Exception e)
         {
             Logger.Log(e);
             throw;
         }
+        
+        StartHDiffz();
         
         Context.Instance.Get<Statistics>()!
             .DisplayStatistics(false, hollowedPath, OutPath);
@@ -335,7 +339,6 @@ public class ReMapper(string targetAssemblyPath)
     {
         var tasks = new List<Task>(Types.Count());
         
-        var instruction = new CilInstruction(CilOpCodes.Ret);
         foreach (var type in Types)
         {
             tasks.Add(
@@ -343,7 +346,7 @@ public class ReMapper(string targetAssemblyPath)
             {
                 try
                 {
-                    HollowType(type, instruction);
+                    HollowType(type);
                 }
                 catch (Exception ex)
                 {
@@ -360,12 +363,66 @@ public class ReMapper(string targetAssemblyPath)
         await Logger.DrawProgressBar(tasks, "Hollowing Types");
     }
 
-    private static void HollowType(TypeDefinition type, CilInstruction retInstruction)
+    private static void HollowType(TypeDefinition type)
     {
         foreach (var method in type.Methods.Where(m => m.HasMethodBody))
         {
-            method.CilMethodBody!.Instructions.Clear();
-            method.CilMethodBody!.Instructions.Add(retInstruction);
+            // Create a new empty CIL body
+            var newBody = new CilMethodBody(method);
+
+            // If the method returns something, return default value
+            if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)
+            {
+                // Push default value onto the stack
+                newBody.Instructions.Add(CilOpCodes.Ldnull);
+            }
+
+            // Just return (for void methods)
+            newBody.Instructions.Add(CilOpCodes.Ret);
+
+            // Assign the new method body
+            method.CilMethodBody = newBody;
         }
+    }
+    
+    private void StartHDiffz()
+    {
+        Logger.Log("\nStarting HDiffz\n");
+        
+        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
+
+        var outDir = Path.GetDirectoryName(OutPath);
+        
+        var originalFile = Path.Combine(outDir!, "Assembly-CSharp.dll");
+        var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-remapped-publicized.dll");
+        var deltaFile = Path.Combine(outDir!, "Assembly-CSharp.dll.delta");
+
+        if (File.Exists(deltaFile))
+        {
+            File.Delete(deltaFile);
+        }
+        
+        var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
+        
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = hdiffPath,
+            WorkingDirectory = Path.GetDirectoryName(hdiffPath),
+            Arguments = arguments,
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+
+        using var process = new Process();
+        process.StartInfo = startInfo;
+
+        process.Start();
+        var output = process.StandardOutput.ReadToEnd();
+        var error = process.StandardError.ReadToEnd();
+        process.WaitForExit();
+        Console.WriteLine("\nOutput: " + output);
+        Console.WriteLine("\nError: " + error);
     }
 }

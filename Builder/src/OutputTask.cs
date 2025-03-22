@@ -38,7 +38,11 @@ public class OutputTask : FrostingTask<Context>
         listOfFiles.Add(Path.Combine(
             context.Environment.WorkingDirectory.FullPath,
             "Assets/mappings.jsonc"));
-
+        
+        listOfFiles.Add(Path.Combine(
+            context.Environment.WorkingDirectory.FullPath,
+            "Assets/hdiffz.exe"));
+        
         context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "Data"));
     }
 

@@ -238,6 +238,11 @@ public class ReMapper(string targetAssemblyPath)
             Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
             return;
         }
+
+        if (!path.EndsWith("cleaned.dll"))
+        {
+            path = path.Replace(".dll", "-cleaned.dll");
+        }
         
         var assembly = Assembly.LoadFrom(path);
         var templateMappingClass = assembly.Modules

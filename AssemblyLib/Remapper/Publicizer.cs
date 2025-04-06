@@ -101,6 +101,8 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
+
+            var isProtected = IsFieldProtected(field);
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -109,7 +111,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
                 
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
             
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
@@ -180,5 +182,12 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         }
         
         return false;
+    }
+    
+    private static bool IsFieldProtected(FieldDefinition field)
+    {
+        return field.Attributes.HasFlag(FieldAttributes.Family) ||
+               field.Attributes.HasFlag(FieldAttributes.FamilyAndAssembly) ||
+               field.Attributes.HasFlag(FieldAttributes.FamilyOrAssembly);
     }
 }

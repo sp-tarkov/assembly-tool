@@ -19,7 +19,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         await StartRemapTask();
     }
 
-    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef)
+    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
         var origName = fieldDef.Name?.ToString();
         var newName = string.Empty;
@@ -42,8 +42,15 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         //Logger.Log($"Changing field {origName} to {newName}");
         
         fieldDef.Name = new Utf8String(newName);
-        
-        RenameFieldMemberRefsGlobal(fieldDef, origName);
+
+        if (isProtected)
+        {
+            RenameFieldMemberRefsGlobal(fieldDef, origName);
+        }
+        else
+        {
+            RenameFieldMemberRefsLocal(fieldDef.DeclaringType!, fieldDef, origName);
+        }
     }
     
     private async Task StartRemapTask()

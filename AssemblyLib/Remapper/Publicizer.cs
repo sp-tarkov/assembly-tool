@@ -95,7 +95,9 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     private void PublicizeFields(TypeDefinition type)
     {
         if (!ShouldPublicizeFields(type)) return;
-            
+
+        var renamer = Context.Instance.Get<Renamer>()!;
+        
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
@@ -107,6 +109,8 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
                 
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
+            
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
                 continue;

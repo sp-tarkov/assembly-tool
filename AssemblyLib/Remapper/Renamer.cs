@@ -18,6 +18,33 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         await StartRemapTask();
     }
+
+    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef)
+    {
+        var origName = fieldDef.Name?.ToString();
+        var newName = string.Empty;
+        
+        if (origName is null || origName.Length == 0) return;
+
+        // Handle underscores
+        if (origName[0] == '_')
+        {
+            newName = char.ToUpper(origName[1]) + origName[2..];
+        }
+
+        if (char.IsLower(origName[0]))
+        {
+            newName = char.ToUpper(origName[0]) + origName[1..];
+        }
+
+        if (newName == string.Empty) return;
+        
+        //Logger.Log($"Changing field {origName} to {newName}");
+        
+        fieldDef.Name = new Utf8String(newName);
+        
+        RenameFieldMemberRefsGlobal(fieldDef, origName);
+    }
     
     private async Task StartRemapTask()
     {

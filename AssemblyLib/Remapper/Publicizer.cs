@@ -175,7 +175,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     {
         foreach (var instr in instructions)
         {
-            if (instr.Operand is MemberReference memberRef && memberRef.Name == memberName)
+            if (instr.Operand is FieldDefinition fieldDefinition && fieldDefinition.Name == memberName)
             {
                 return true;
             }

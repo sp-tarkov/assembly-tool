@@ -39,6 +39,15 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
 
         if (newName == string.Empty) return;
         
+        var fields = fieldDef.DeclaringType?.Fields;
+        var props = fieldDef.DeclaringType?.Properties;
+        
+        if ((fields is not null && fields.Any(f => f.Name == newName)) || 
+            (props is not null && props.Any(p => p.Name == newName)))
+        {
+            newName += "_1";
+        }
+        
         //Logger.Log($"Changing field {origName} to {newName}");
         
         fieldDef.Name = new Utf8String(newName);

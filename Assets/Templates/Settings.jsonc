@@ -1,9 +1,9 @@
 {
-  "DebugLogging": false,
+  "DebugLogging": true,
   "MappingPath": "",
-  "GamePath": "",
+  "GamePath": "G:\\4.0.0 - Dev",
   "CopyToGame": true,
-  "ModulesProjectPath": "",
+  "ModulesProjectPath": "G:\\Development\\SPT\\modules",
   "CopyToModules": true,
   "TypeNamesToMatch": [
     "Class",
@@ -37,7 +37,7 @@
     "gameobject"
   ],
   "ItemObjectIdOverrides": {
-
+    
   },
   "TemplateObjectIdOverrides": {
     "543be5e94bdc2df1348b4568": "KeyTemplateClass"

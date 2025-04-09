@@ -16,7 +16,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
 
     public async Task StartRenameProcess()
     {
-        await StartRemapTask();
+        await StartRenameTask();
     }
 
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
@@ -62,7 +62,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         }
     }
     
-    private async Task StartRemapTask()
+    private async Task StartRenameTask()
     {
         var renameTasks = new List<Task>(DataProvider.Remaps.Count);
         foreach (var remap in DataProvider.Remaps)
@@ -94,28 +94,34 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     private void RenameFromRemap(RemapModel remap)
     {
         // Rename all fields and properties first
+        
+        // TODO: Passing strings as Utf8String, fix the model
         RenameAllFields(
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
-
+        
         RenameAllProperties(
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
 
         FixMethods(remap);
         
-        remap.TypePrimeCandidate.Name = remap.NewTypeName;
+        remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }
 
     private void FixMethods(RemapModel remap)
     {
+        // TODO: This shit is broken, Have I ever worked?
+        // The purpose of this is to demangle interface appended method names
         foreach (var type in types)
         {
             var allMethodNames = type.Methods
                 .Select(s => s.Name).ToList();
 
+            // TODO: This is stupid. Past me is an asshole.
             var methodsWithInterfaces = 
-                (from method in type.Methods
+                (from method in type.Methods 
+                    // TODO: Get rid of ToString(), Extend linq to work with Utf8Strings where applicable
                 where method.Name.ToString().StartsWith(remap.TypePrimeCandidate!.Name)
                 select method).ToList();
 
@@ -123,9 +129,11 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
             {
                 var name = method.Name!.ToString().Split(".");
                 
+                // TODO: Again with the .ToString() ...
                 if (allMethodNames.Count(n => n is not null && n.ToString().EndsWith(name[1])) > 1)
                     continue;
                 
+                // TODO: Implicit conversion
                 method.Name =  method.Name.ToString().Split(".")[1];
             }
         }
@@ -135,6 +143,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         foreach (var type in types)
         {
+            // TODO: This is just confusing. Fix me
             var fields = type.Fields
                 .Where(field => field.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
             
@@ -175,7 +184,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         }
     }
 
-    private static void RenameFieldMemberRefsLocal(TypeDefinition type, FieldDefinition fieldDef, string oldName)
+    private static void RenameFieldMemberRefsLocal(TypeDefinition type, FieldDefinition fieldDef, Utf8String oldName)
     {
         foreach (var method in type.Methods)
         {
@@ -195,6 +204,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         foreach (var type in types)
         {
+            // TODO: This is just confusing. Fix me
             var properties = type.Properties
                 .Where(prop => prop.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
             
@@ -219,6 +229,8 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
+        // TODO: This needs to take visibility flags into account
+        
         stats.FieldRenamedCount++;
         return new Utf8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
     }

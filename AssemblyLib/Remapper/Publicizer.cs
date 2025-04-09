@@ -102,6 +102,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
 
+            // TODO: We need to save original vis flags somewhere.
             var isProtected = IsFieldProtected(field);
             
             stats.FieldPublicizedCount++;
@@ -111,7 +112,8 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
                 
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
+            // TODO: We can't do this here.
+            //renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
             
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
@@ -141,6 +143,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     
     private static bool IsEventField(TypeDefinition type, FieldDefinition field)
     {
+        // TODO: This can be cleaned up, redundant code.
         foreach (var evt in type.Events)
         {
             if (evt.AddMethod is { CilMethodBody: not null })

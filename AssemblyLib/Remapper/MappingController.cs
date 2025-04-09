@@ -12,7 +12,7 @@ using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-public class ReMapper(string targetAssemblyPath)
+public class MappingController(string targetAssemblyPath)
 {
     private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
     private List<TypeDefinition> Types { get; set; } = [];
@@ -25,7 +25,7 @@ public class ReMapper(string targetAssemblyPath)
     /// <summary>
     /// Start the remapping process
     /// </summary>
-    public async Task InitializeRemap(
+    public async Task Run(
         string oldAssemblyPath,
         string outPath = "",
         bool validate = false)
@@ -59,6 +59,7 @@ public class ReMapper(string targetAssemblyPath)
             return;
         }
         
+        // TODO: both Renamer and Publicizer need rewritten
         await Context.Instance.Get<Renamer>()!.StartRenameProcess();
         await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
         

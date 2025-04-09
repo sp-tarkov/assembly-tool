@@ -114,7 +114,7 @@ public class AutoMatcher()
 			
 			DataProvider.Remaps.Clear();
 			DataProvider.Remaps.Add(remapModel);
-			await new ReMapper(assemblyPath).InitializeRemap(string.Empty, validate: true);
+			await new MappingController(assemblyPath).Run(string.Empty, validate: true);
 
 			if (remapModel.Succeeded)
 			{
@@ -411,7 +411,7 @@ public class AutoMatcher()
 				throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
 			}
 			
-			await new ReMapper(assemblyPath).InitializeRemap(oldAssemblyPath, outPath);
+			await new MappingController(assemblyPath).Run(oldAssemblyPath, outPath);
 		}
 	}
 }

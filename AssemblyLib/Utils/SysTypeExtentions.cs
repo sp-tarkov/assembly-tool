@@ -81,7 +81,7 @@ public static class SysTypeExtentions
     /// <param name="str"></param>
     /// <param name="list"></param>
     /// <returns>True if it in the list</returns>
-    public static bool IsFieldOrPropNameInList(this Utf8String str)
+    public static bool IsObfuscatedName(this Utf8String str)
     {
         var realString = str.ToString();
         

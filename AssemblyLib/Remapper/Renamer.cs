@@ -107,9 +107,8 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         foreach (var type in types)
         {
-            // TODO: This is just confusing. Fix me
             var fields = type.Fields
-                .Where(field => field.Name!.IsFieldOrPropNameInList());
+                .Where(field => field.Name!.IsObfuscatedName());
             
             var fieldCount = 0;
             foreach (var field in fields)
@@ -127,11 +126,11 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
                 
                 if (field.IsPrivate)
                 {
-                    RenameFieldMemberRefsLocal(type, field, oldName);
+                    RenameFieldMemberRefsLocal(type, field, oldName!);
                 }
                 else
                 {
-                    RenameFieldMemberRefsGlobal(field, oldName);
+                    RenameFieldMemberRefsGlobal(field, oldName!);
                 }
                 
 
@@ -168,9 +167,8 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     {
         foreach (var type in types)
         {
-            // TODO: This is just confusing. Fix me
             var properties = type.Properties
-                .Where(prop => prop.Name!.IsFieldOrPropNameInList());
+                .Where(prop => prop.Name!.IsObfuscatedName());
             
             var propertyCount = 0;
             foreach (var property in properties)

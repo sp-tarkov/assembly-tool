@@ -133,7 +133,7 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
     
     public void UpdateAsyncAttributes()
     {
-        Logger.Log("\nUpdating Async Attributes...");
+        Logger.Log("Updating Async Attributes...");
         
         foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
         {

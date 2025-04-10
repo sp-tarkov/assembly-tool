@@ -10,6 +10,7 @@ using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
+using FieldAttributes = AsmResolver.PE.DotNet.Metadata.Tables.Rows.FieldAttributes;
 
 namespace AssemblyLib.ReMapper;
 
@@ -51,7 +52,7 @@ public class MappingController(string targetAssemblyPath)
             GenerateDynamicRemaps(_targetAssemblyPath);
         }
         
-        await StartMatchingTasks(validate);
+        await StartMatchingTasks();
 
         // Don't go any further during a validation
         if (validate)
@@ -105,8 +106,10 @@ public class MappingController(string targetAssemblyPath)
     /// Queues the workload for finding best matches for a given remap.
     /// </summary>
     /// <param name="validate">Are we only validating, used for the automatcher</param>
-    private async Task StartMatchingTasks(bool validate)
+    private async Task StartMatchingTasks()
     {
+        Logger.Log("Creating Mapping Table...");
+        
         var tasks = new List<Task>(DataProvider.Remaps.Count);
         foreach (var remap in DataProvider.Remaps)
         {
@@ -124,16 +127,8 @@ public class MappingController(string targetAssemblyPath)
                 })
             );
         }
-
-        if (DataProvider.Settings.DebugLogging || validate)
-        {
-            await Task.WhenAll(tasks.ToArray());
-        }
-        else
-        {
-            await Logger.DrawProgressBar(tasks, "Finding Best Matches");
-        }
         
+        await Task.WhenAll(tasks.ToArray());
         ChooseBestMatches();
     }
     
@@ -201,7 +196,7 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private void ChooseBestMatches()
     {
-        Logger.Log("Renaming from remaps...");
+        Logger.Log("Renaming and Publicizing Remaps...");
         
         foreach (var remap in DataProvider.Remaps)
         {
@@ -222,7 +217,7 @@ public class MappingController(string targetAssemblyPath)
 
                 return;
             }
-
+            
             _alreadyGivenNames.Add(remap.OriginalTypeName);
 
             remap.Succeeded = true;
@@ -255,6 +250,8 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="path">Path to the cleaned assembly</param>
     private void GenerateDynamicRemaps(string path)
     {
+        Logger.Log("Generating Dynamic Remaps...");
+        
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
@@ -378,6 +375,8 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private async Task StartHollow()
     {
+        Logger.Log("Creating Hollow...");
+        
         var tasks = new List<Task>(Types.Count());
         
         foreach (var type in Types)
@@ -395,13 +394,8 @@ public class MappingController(string targetAssemblyPath)
                 }
             }));
         }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(tasks.ToArray());
-            return;
-        }
-        await Logger.DrawProgressBar(tasks, "Hollowing Types");
+        
+        await Task.WhenAll(tasks.ToArray());
     }
 
     private static void HollowType(TypeDefinition type)
@@ -428,7 +422,7 @@ public class MappingController(string targetAssemblyPath)
     
     private void StartHDiffz()
     {
-        Logger.Log("\nStarting HDiffz\n");
+        Logger.Log("Creating Delta...");
         
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
 
@@ -460,10 +454,13 @@ public class MappingController(string targetAssemblyPath)
         process.StartInfo = startInfo;
 
         process.Start();
-        var output = process.StandardOutput.ReadToEnd();
+        //var output = process.StandardOutput.ReadToEnd();
         var error = process.StandardError.ReadToEnd();
         process.WaitForExit();
-        Console.WriteLine("\nOutput: " + output);
-        Console.WriteLine("\nError: " + error);
+
+        if (error.Length > 0)
+        {
+            Logger.Log("Error: " + error, ConsoleColor.Red);
+        }
     }
 }

@@ -86,8 +86,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
             // TODO: This is stupid. Past me is an asshole.
             var methodsWithInterfaces = 
                 (from method in type.Methods 
-                    // TODO: Get rid of ToString(), Extend linq to work with Utf8Strings where applicable
-                where method.Name.ToString().StartsWith(remap.TypePrimeCandidate!.Name)
+                where method.Name.StartsWith(remap.TypePrimeCandidate!.Name)
                 select method).ToList();
 
             foreach (var method in methodsWithInterfaces.ToArray())
@@ -110,7 +109,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         {
             // TODO: This is just confusing. Fix me
             var fields = type.Fields
-                .Where(field => field.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
+                .Where(field => field.Name!.IsFieldOrPropNameInList());
             
             var fieldCount = 0;
             foreach (var field in fields)
@@ -171,7 +170,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         {
             // TODO: This is just confusing. Fix me
             var properties = type.Properties
-                .Where(prop => prop.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
+                .Where(prop => prop.Name!.IsFieldOrPropNameInList());
             
             var propertyCount = 0;
             foreach (var property in properties)

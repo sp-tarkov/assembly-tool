@@ -43,7 +43,6 @@ public class MappingController(string targetAssemblyPath)
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
         
-        
         Types.AddRange(Module.GetAllTypes());
         
         InitializeComponents(oldAssemblyPath);

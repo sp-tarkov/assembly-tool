@@ -12,7 +12,6 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Renamer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
         var origName = fieldDef.Name?.ToString();

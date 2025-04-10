@@ -84,7 +84,7 @@ public class MappingController(string targetAssemblyPath)
 
         var stats = new Statistics();
         var renamer = new Renamer(Types, stats);
-        var publicizer = new Publicizer(Types, stats);
+        var publicizer = new Publicizer(stats);
         var attrFactory = new AttributeFactory(Module, Types);
         
         ctx.RegisterComponent<Statistics>(stats);
@@ -139,8 +139,6 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="types">Types to filter</param>
     private void MatchRemap(RemapModel mapping)
     {
-        var tokens = DataProvider.Settings.TypeNamesToMatch;
-
         if (mapping.UseForceRename)
         {
             HandleForceRename(mapping);
@@ -148,9 +146,10 @@ public class MappingController(string targetAssemblyPath)
         }
 
         // Filter down nested objects
-        var types = !mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(type => tokens.Any(token => type.Name!.ToString().StartsWith(token)))
-            : Types.Where(t => t.DeclaringType != null);
+        var types = mapping.SearchParams.NestedTypes.IsNested
+            ? Types.Where(t => t.IsNested && (bool)t.Name?.IsObfuscatedName())
+            : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
+            
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
         {

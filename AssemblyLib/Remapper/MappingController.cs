@@ -74,6 +74,10 @@ public class MappingController(string targetAssemblyPath)
         await StartWriteAssemblyTasks();
     }
 
+    /// <summary>
+    /// Register Mapping dependencies with the app context
+    /// </summary>
+    /// <param name="oldAssemblyPath">Path to previous clients assembly</param>
     private void InitializeComponents(string oldAssemblyPath)
     {
         var ctx = Context.Instance;
@@ -97,6 +101,10 @@ public class MappingController(string targetAssemblyPath)
     
     #region Matching
     
+    /// <summary>
+    /// Queues the workload for finding best matches for a given remap.
+    /// </summary>
+    /// <param name="validate">Are we only validating, used for the automatcher</param>
     private async Task StartMatchingTasks(bool validate)
     {
         var tasks = new List<Task>(DataProvider.Remaps.Count);
@@ -141,7 +149,7 @@ public class MappingController(string targetAssemblyPath)
 
         if (mapping.UseForceRename)
         {
-            HandleDirectRename(mapping);
+            HandleForceRename(mapping);
             return;
         }
 
@@ -163,21 +171,29 @@ public class MappingController(string targetAssemblyPath)
         mapping.TypeCandidates.UnionWith(types);
     }
     
-    // TODO: Move to new renamer implementation when written
-    private void HandleDirectRename(RemapModel mapping)
+    /// <summary>
+    /// Directly renames a type instead of passing the remap through filters
+    /// used for remaps generated from items.json (Dynamic remaps)
+    /// </summary>
+    /// <param name="mapping">Mapping to force rename</param>
+    private void HandleForceRename(RemapModel mapping)
     {
-        foreach (var type in Types)
+        var type = Types
+            .FirstOrDefault(t => t.Name == mapping.OriginalTypeName);
+
+        if (type is null)
         {
-            if (type.Name != mapping.OriginalTypeName) continue;
-            
-            mapping.TypePrimeCandidate = type;
-            mapping.OriginalTypeName = type.Name;
-            mapping.Succeeded = true;
-
-            _alreadyGivenNames.Add(mapping.OriginalTypeName);
-
+            Logger.Log($"Could not find type {mapping.OriginalTypeName}", ConsoleColor.Red);
             return;
         }
+        
+        mapping.TypePrimeCandidate = type;
+        mapping.OriginalTypeName = type.Name;
+        mapping.Succeeded = true;
+
+        _alreadyGivenNames.Add(mapping.OriginalTypeName);
+
+        RenameAndPublicizeRemap(mapping);
     }
     
     /// <summary>
@@ -185,9 +201,6 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private void ChooseBestMatches()
     {
-        var renamer = Context.Instance.Get<Renamer>()!;
-        var publicizer = Context.Instance.Get<Publicizer>()!;
-        
         Logger.Log("Renaming from remaps...");
         
         foreach (var remap in DataProvider.Remaps)
@@ -216,15 +229,30 @@ public class MappingController(string targetAssemblyPath)
 
             remap.OriginalTypeName = winner.Name!;
             
-            renamer.RenameRemap(remap);
-            publicizer.PublicizeType(remap.TypePrimeCandidate);
-            _typesProcessed.Add(remap.TypePrimeCandidate);
+            RenameAndPublicizeRemap(remap);
         }
+    }
+
+    /// <summary>
+    /// Process the renaming and publication of a specific remap
+    /// </summary>
+    /// <param name="remap">Mapping to process</param>
+    private void RenameAndPublicizeRemap(RemapModel remap)
+    {
+        var renamer = Context.Instance.Get<Renamer>()!;
+        var publicizer = Context.Instance.Get<Publicizer>()!;
+        
+        renamer.RenameRemap(remap);
+        publicizer.PublicizeType(remap.TypePrimeCandidate);
+        _typesProcessed.Add(remap.TypePrimeCandidate);
     }
     
     #endregion
     
-    // TODO: This makes no sense being a member of this class, find a better place for it
+    /// <summary>
+    /// Finds GClass associations from items.json based on parent types and mongoId
+    /// </summary>
+    /// <param name="path">Path to the cleaned assembly</param>
     private void GenerateDynamicRemaps(string path)
     {
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
@@ -270,7 +298,13 @@ public class MappingController(string targetAssemblyPath)
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
     
-    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="table">Type or Template table</param>
+    /// <param name="extName">ItemClass or TemplateClass</param>
+    /// <param name="isItemClass">Is this table for items or templates?</param>
+    private static void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
     {
         foreach (var type in table)
         {

@@ -147,7 +147,7 @@ public class MappingController(string targetAssemblyPath)
 
         // Filter down nested objects
         var types = mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(t => t.IsNested && (bool)t.Name?.IsObfuscatedName())
+            ? Types.Where(t => t.IsNested)
             : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
             
 

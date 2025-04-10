@@ -13,12 +13,6 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
     : IComponent
 {
     private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
-
-    public async Task StartRenameProcess()
-    {
-        await StartRenameTask();
-    }
-
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
         var origName = fieldDef.Name?.ToString();
@@ -62,36 +56,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         }
     }
     
-    private async Task StartRenameTask()
-    {
-        var renameTasks = new List<Task>(DataProvider.Remaps.Count);
-        foreach (var remap in DataProvider.Remaps)
-        {
-            renameTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        RenameFromRemap(remap);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
-        }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(renameTasks.ToArray());
-            return;
-        }
-        
-        await Logger.DrawProgressBar(renameTasks, "Renaming");
-    }
-
-    private void RenameFromRemap(RemapModel remap)
+    public void RenameRemap(RemapModel remap)
     {
         // Rename all fields and properties first
         
@@ -104,7 +69,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
 
-        FixMethods(remap);
+        //FixMethods(remap);
         
         remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }

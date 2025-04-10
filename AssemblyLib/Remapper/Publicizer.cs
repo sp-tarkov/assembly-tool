@@ -10,38 +10,7 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    public async Task StartPublicizeTypesTask()
-    {
-        var publicizeTasks = new List<Task>();
-        
-        foreach (var type in types)
-        {
-            publicizeTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        Context.Instance.Get<Publicizer>()
-                            !.PublicizeType(type);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
-        }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(publicizeTasks.ToArray());
-            return;
-        }
-        
-        await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
-    }
-    
-    private void PublicizeType(TypeDefinition type)
+    public void PublicizeType(TypeDefinition type)
     {
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface.Name != "IEffect"))

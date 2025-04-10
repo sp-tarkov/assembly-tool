@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
@@ -16,6 +17,8 @@ public class MappingController(string targetAssemblyPath)
 {
     private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
     private List<TypeDefinition> Types { get; set; } = [];
+
+    private List<TypeDefinition> _typesProcessed = [];
     
     private string OutPath { get; set; } = string.Empty;
     
@@ -58,10 +61,6 @@ public class MappingController(string targetAssemblyPath)
             
             return;
         }
-        
-        // TODO: both Renamer and Publicizer need rewritten
-        await Context.Instance.Get<Renamer>()!.StartRenameProcess();
-        await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
@@ -164,6 +163,7 @@ public class MappingController(string targetAssemblyPath)
         mapping.TypeCandidates.UnionWith(types);
     }
     
+    // TODO: Move to new renamer implementation when written
     private void HandleDirectRename(RemapModel mapping)
     {
         foreach (var type in Types)
@@ -185,45 +185,46 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private void ChooseBestMatches()
     {
+        var renamer = Context.Instance.Get<Renamer>()!;
+        var publicizer = Context.Instance.Get<Publicizer>()!;
+        
+        Logger.Log("Renaming from remaps...");
+        
         foreach (var remap in DataProvider.Remaps)
         {
-            ChooseBestMatch(remap);
+            if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
+
+            var winner = remap.TypeCandidates.FirstOrDefault();
+        
+            if (winner is null) { return; }
+        
+            remap.TypePrimeCandidate = winner;
+            remap.OriginalTypeName = winner.Name!;
+        
+            if (_alreadyGivenNames.Contains(winner.FullName))
+            {
+                remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
+                remap.AmbiguousTypeMatch = winner.FullName;
+                remap.Succeeded = false;
+
+                return;
+            }
+
+            _alreadyGivenNames.Add(remap.OriginalTypeName);
+
+            remap.Succeeded = true;
+
+            remap.OriginalTypeName = winner.Name!;
+            
+            renamer.RenameRemap(remap);
+            publicizer.PublicizeType(remap.TypePrimeCandidate);
+            _typesProcessed.Add(remap.TypePrimeCandidate);
         }
-    }
-
-    /// <summary>
-    /// Choose best match from a collection of types on a remap
-    /// </summary>
-    /// <param name="remap"></param>
-    private void ChooseBestMatch(RemapModel remap)
-    {
-        if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
-
-        var winner = remap.TypeCandidates.FirstOrDefault();
-        
-        if (winner is null) { return; }
-        
-        remap.TypePrimeCandidate = winner;
-        remap.OriginalTypeName = winner.Name!;
-        
-        if (_alreadyGivenNames.Contains(winner.FullName))
-        {
-            remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
-            remap.AmbiguousTypeMatch = winner.FullName;
-            remap.Succeeded = false;
-
-            return;
-        }
-
-        _alreadyGivenNames.Add(remap.OriginalTypeName);
-
-        remap.Succeeded = true;
-
-        remap.OriginalTypeName = winner.Name!;
     }
     
     #endregion
     
+    // TODO: This makes no sense being a member of this class, find a better place for it
     private void GenerateDynamicRemaps(string path)
     {
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of

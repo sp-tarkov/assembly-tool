@@ -94,14 +94,8 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
                 })
             );
         }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(attrTasks);
-            return;
-        }
         
-        await Logger.DrawProgressBar(attrTasks, "Applying Custom Attribute");
+        await Task.WhenAll(attrTasks);
     }
     
     private void AddMetaDataAttributeToTypes(RemapModel remap, DiffCompare? diff)

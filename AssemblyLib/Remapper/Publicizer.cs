@@ -10,8 +10,15 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Publicizer(Statistics stats) 
     : IComponent
 {
-    public void PublicizeType(TypeDefinition type)
+    /// <summary>
+    /// Publicize the provided type
+    /// </summary>
+    /// <param name="type">Type to publicize</param>
+    /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
+    public Dictionary<FieldDefinition, bool> PublicizeType(TypeDefinition type)
     {
+        Logger.Log($"Publicizing Type `{type.Name}`");
+        
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface?.Name != "IEffect"))
         {
@@ -32,23 +39,21 @@ internal sealed class Publicizer(Statistics stats)
         
         foreach (var property in type.Properties)
         {
-            if (property.GetMethod != null) PublicizeMethod(property.GetMethod, true);
-            if (property.SetMethod != null) PublicizeMethod(property.SetMethod, true);
+            Logger.Log($"Publicizing Property `{property.DeclaringType}::{property.Name}`", 
+                diskOnly: true);
+            
+            if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
+            if (property.SetMethod != null) PublicizeMethod(property.SetMethod);
 
             stats.PropertyPublicizedCount++;
         }
         
-        PublicizeFields(type);
+        return PublicizeFields(type);
     }
 
-    private void PublicizeMethod(MethodDefinition method, bool isProperty = false)
+    private void PublicizeMethod(MethodDefinition method)
     {
-        if (method.IsCompilerControlled)
-        {
-            return;
-        }
-
-        if (method.IsPublic) return;
+        if (method.IsCompilerControlled || method.IsPublic) return;
         
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
@@ -56,23 +61,31 @@ internal sealed class Publicizer(Statistics stats)
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
 
-        if (isProperty) return;
+        if (method.IsGetMethod || method.IsSetMethod) return;
 
+        Logger.Log($"Publicizing Method `{method.DeclaringType}::{method.Name}`", 
+            diskOnly: true);
+        
         stats.MethodPublicizedCount++;
     }
 
-    private void PublicizeFields(TypeDefinition type)
+    private Dictionary<FieldDefinition, bool> PublicizeFields(TypeDefinition type)
     {
-        if (!ShouldPublicizeFields(type)) return;
-
-        var renamer = Context.Instance.Get<Renamer>()!;
+        if (!ShouldPublicizeFields(type))
+        {
+            Logger.Log($"Skipping field publication on `{type.Name}`", ConsoleColor.Yellow);
+            return [];
+        }
         
+        var result = new Dictionary<FieldDefinition, bool>();
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
 
-            // TODO: We need to save original vis flags somewhere.
             var isProtected = IsFieldProtected(field);
+            
+            Logger.Log($"Publicizing Field `{field.DeclaringType}::{field.Name}` :: IsProtected {isProtected}", 
+                diskOnly: true);
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -80,24 +93,24 @@ internal sealed class Publicizer(Statistics stats)
             
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
-                
-            // TODO: We can't do this here.
-            //renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
+            
+            result.Add(field, isProtected);
             
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
                 continue;
                 
             // Make sure we don't serialize this field.
+            // TODO: Do we need this?
             field.Attributes |= FieldAttributes.NotSerialized;
-                
-            //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
+
+        return result;
     }
 
     private static bool ShouldPublicizeFields(TypeDefinition type)
     {
-        var declType = type.IsNested ? type.DeclaringType : type;
+        var declType = type;
         while (declType is
                {
                    FullName:
@@ -156,7 +169,7 @@ internal sealed class Publicizer(Statistics stats)
         return false;
     }
     
-    private static bool IsFieldProtected(FieldDefinition field)
+    public static bool IsFieldProtected(FieldDefinition field)
     {
         return field.Attributes.HasFlag(FieldAttributes.Family) ||
                field.Attributes.HasFlag(FieldAttributes.FamilyAndAssembly) ||

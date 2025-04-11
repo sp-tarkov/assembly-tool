@@ -12,61 +12,43 @@ public static class Logger
 
     private static List<string> _taskExceptions = [];
     
-    public static async Task DrawProgressBar(List<Task> tasks, string stageText)
+    private static string _logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", "log.log");
+
+    static Logger()
     {
-        var totalTasks = tasks.Count;
-        var completedTasks = 0;
+        var dir = Path.GetDirectoryName(_logPath);
         
-        var initialTop = Console.CursorTop; // Store initial cursor position
-        await foreach (var taskResult in tasks.ToAsyncEnumerable())
+        if (!Directory.Exists(dir))
         {
-            await taskResult;
-            completedTasks++;
-            UpdateProgressBar(completedTasks, totalTasks, initialTop + 1, stageText);
+            Directory.CreateDirectory(dir!);
         }
 
-        if (_taskExceptions.Count == 0) return;
-        
-        foreach (var ex in _taskExceptions)
+        if (!File.Exists(_logPath))
         {
-            Log(ex);
+            File.Create(_logPath).Close();
+            return;
         }
-        
-        _taskExceptions.Clear();
+
+        File.Delete(_logPath);
     }
-
+    
     public static void QueueTaskException(string exception)
     {
         _taskExceptions.Add(exception);
     }
     
-    private static void UpdateProgressBar(int progress, int total, int progressBarLine, string stageText)
+    public static void Log(object message, ConsoleColor color = ConsoleColor.White, bool diskOnly = false)
     {
-        Console.CursorVisible = false;
-        Console.SetCursorPosition(0, progressBarLine); //set the line to draw the bar on.
+        using var writer = new StreamWriter(_logPath, true);
+        writer.WriteLine(message);
         
-        const int width = 50;
-        const int stageTextWidth = 30; // Adjust as needed
-        const int timeWidth = 20; // Adjust as needed
+        if (diskOnly) return;
         
-        var percentage = (double)progress / total;
-        var completed = (int)(percentage * width);
-        
-        var paddedStageText = $"{stageText,-stageTextWidth}";
-        var paddedProgress = $"{progress}/{total} ({percentage:P0})".PadRight(timeWidth);
-        var paddedTime = $"{Stopwatch.Elapsed.TotalSeconds:F1} seconds";
-        
-        Console.Write($"{paddedStageText} [");
-        Console.Write(new string('=', completed)); // Completed part
-        Console.Write(new string(' ', width - completed)); // Remaining part
-        Console.Write($"] {paddedProgress} {paddedTime}");
-    }
-    
-    public static void Log(object message, ConsoleColor color = ConsoleColor.White)
-    {
         Console.ForegroundColor = color;
         Console.WriteLine(message);
         Console.ResetColor();
+        
+        
     }
     
     public static void LogRemapModel(RemapModel remapModel)
@@ -79,10 +61,5 @@ public static class Logger
         
         var str = JsonSerializer.Serialize(remapModel, settings);
         Log(str, ConsoleColor.Blue);
-    }
-
-    public static void Debug(object message, ConsoleColor color = ConsoleColor.White)
-    {
-        
     }
 }

@@ -2,7 +2,9 @@
 using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Builder;
 using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Builder;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
@@ -51,8 +53,10 @@ public class MappingController(string targetAssemblyPath)
             GenerateDynamicRemaps(_targetAssemblyPath);
         }
         
-        await StartMatchingTasks();
-
+        StartMatchingTasks();
+        ChooseBestMatches();
+        PublicizeObfuscatedTypes();
+        
         // Don't go any further during a validation
         if (validate)
         {
@@ -68,8 +72,7 @@ public class MappingController(string targetAssemblyPath)
                 !.CreateCustomTypeAttribute();
         }
         
-        Context.Instance.Get<AttributeFactory>()
-            !.UpdateAsyncAttributes();
+        //Context.Instance.Get<AttributeFactory>()!.UpdateAsyncAttributes();
         
         await StartWriteAssemblyTasks();
     }
@@ -83,7 +86,7 @@ public class MappingController(string targetAssemblyPath)
         var ctx = Context.Instance;
 
         var stats = new Statistics();
-        var renamer = new Renamer(Types, stats);
+        var renamer = new Renamer(Module, Types, stats);
         var publicizer = new Publicizer(stats);
         var attrFactory = new AttributeFactory(Module, Types);
         
@@ -105,30 +108,14 @@ public class MappingController(string targetAssemblyPath)
     /// Queues the workload for finding best matches for a given remap.
     /// </summary>
     /// <param name="validate">Are we only validating, used for the automatcher</param>
-    private async Task StartMatchingTasks()
+    private void StartMatchingTasks()
     {
         Logger.Log("Creating Mapping Table...");
         
-        var tasks = new List<Task>(DataProvider.Remaps.Count);
         foreach (var remap in DataProvider.Remaps)
         {
-            tasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        MatchRemap(remap);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
+            MatchRemap(remap);
         }
-        
-        await Task.WhenAll(tasks.ToArray());
-        ChooseBestMatches();
     }
     
     /// <summary>
@@ -139,11 +126,7 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="types">Types to filter</param>
     private void MatchRemap(RemapModel mapping)
     {
-        if (mapping.UseForceRename)
-        {
-            HandleForceRename(mapping);
-            return;
-        }
+        if (mapping.UseForceRename) return;
 
         // Filter down nested objects
         var types = mapping.SearchParams.NestedTypes.IsNested
@@ -186,6 +169,7 @@ public class MappingController(string targetAssemblyPath)
 
         _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
+        Logger.Log($"Forcing `{mapping.OriginalTypeName}` to `{mapping.NewTypeName}`", ConsoleColor.Yellow);
         RenameAndPublicizeRemap(mapping);
     }
     
@@ -198,8 +182,14 @@ public class MappingController(string targetAssemblyPath)
         
         foreach (var remap in DataProvider.Remaps)
         {
+            if (remap.UseForceRename)
+            {
+                HandleForceRename(remap);
+                continue;
+            }
+            
             if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
-
+            
             var winner = remap.TypeCandidates.FirstOrDefault();
         
             if (winner is null) { return; }
@@ -213,6 +203,7 @@ public class MappingController(string targetAssemblyPath)
                 remap.AmbiguousTypeMatch = winner.FullName;
                 remap.Succeeded = false;
 
+                Logger.Log($"Failure During Matching: `{remap.NewTypeName}` is ambiguous with previous match", ConsoleColor.Red);
                 return;
             }
             
@@ -222,10 +213,13 @@ public class MappingController(string targetAssemblyPath)
 
             remap.OriginalTypeName = winner.Name!;
             
+            Logger.Log($"Match `{remap.NewTypeName}` -> `{remap.OriginalTypeName}`", ConsoleColor.Green);
             RenameAndPublicizeRemap(remap);
         }
     }
 
+    #endregion
+    
     /// <summary>
     /// Process the renaming and publication of a specific remap
     /// </summary>
@@ -236,11 +230,39 @@ public class MappingController(string targetAssemblyPath)
         var publicizer = Context.Instance.Get<Publicizer>()!;
         
         renamer.RenameRemap(remap);
-        publicizer.PublicizeType(remap.TypePrimeCandidate);
-        _typesProcessed.Add(remap.TypePrimeCandidate);
+        FixPublicizedFieldNamesOnType(publicizer.PublicizeType(remap.TypePrimeCandidate!));
+        
+        _typesProcessed.Add(remap.TypePrimeCandidate!);
     }
-    
-    #endregion
+
+    private void PublicizeObfuscatedTypes()
+    {
+        Logger.Log("Publicizing Obfuscated Types...");
+        
+        // Filter down remaining types to ones that we have not remapped.
+        // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
+        var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!));
+        var publicizer = Context.Instance.Get<Publicizer>()!;
+        
+        foreach (var type in obfuscatedTypes)
+        {
+            var fieldsToFix = publicizer.PublicizeType(type);
+            
+            if (fieldsToFix.Count == 0) continue;
+            
+            FixPublicizedFieldNamesOnType(fieldsToFix);
+        }
+    }
+
+    private static void FixPublicizedFieldNamesOnType(Dictionary<FieldDefinition, bool> publicizedFields)
+    {
+        var renamer = Context.Instance.Get<Renamer>()!;
+        
+        foreach (var (field, isProtected) in publicizedFields)
+        {
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
+        }
+    }
     
     /// <summary>
     /// Finds GClass associations from items.json based on parent types and mongoId
@@ -284,11 +306,15 @@ public class MappingController(string targetAssemblyPath)
             .GetField("TypeTable")!
             .GetValue(templateMappingClass)!;
         
+        Logger.Log("Overriding Item Classes...");
+        
         BuildAssociationFromTable(typeTable, "ItemClass", true);
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
             .GetField("TemplateTypeTable")!
             .GetValue(templateMappingClass)!;
+        
+        Logger.Log("Overriding Template Classes...");
         
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
@@ -312,18 +338,29 @@ public class MappingController(string targetAssemblyPath)
             {
                 continue;
             }
-            
+
+            switch (template.Name)
+            {
+                // Solves a duplication assign of key types to the same GClass (Wtf bsg)
+                case "KeyMechanical" when extName == "TemplateClass":
+                case "BuiltInInserts" when extName == "TemplateClass":
+                    continue;
+            }
+
             var remap = new RemapModel
             {
                 OriginalTypeName = type.Value.Name,
                 NewTypeName = $"{template.Name}{extName}",
-                UseForceRename = true
+                UseForceRename = true,
+                Succeeded = true
             };
 
             if (overrideTable.TryGetValue(type.Key, out var overriddenTypeName))
             {
                 remap.NewTypeName = overriddenTypeName;
             }
+            
+            Logger.Log($"Overriding type {type.Value.Name} to {remap.NewTypeName}", ConsoleColor.Green);
             
             DataProvider.Remaps.Add(remap);
         }
@@ -339,7 +376,9 @@ public class MappingController(string targetAssemblyPath)
 
         try
         {
-            Module!.Write(OutPath);
+            Module.Assembly?.Write(OutPath);
+            
+            //Module!.Write(OutPath);
         }
         catch (Exception e)
         {

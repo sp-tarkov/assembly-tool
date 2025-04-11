@@ -1,23 +1,31 @@
-﻿using System.Reflection.Metadata;
+﻿using System.Reflection;
 using AsmResolver;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
 using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MemberReference = AsmResolver.DotNet.MemberReference;
+using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 using TypeDefinition = AsmResolver.DotNet.TypeDefinition;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Renamer(List<TypeDefinition> types, Statistics stats) 
+internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
+    private Dictionary<IMemberDefinition, List<MemberReference>> _memberReferenceMapping = [];
+    
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
+        if (fieldDef.IsPrivate) return;
+        
         var origName = fieldDef.Name?.ToString();
+        
         var newName = string.Empty;
         
-        if (origName is null || origName.Length == 0) return;
+        if (origName is null || origName.Length < 3) return;
 
         // Handle underscores
         if (origName[0] == '_')
@@ -41,18 +49,15 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
             newName += "_1";
         }
         
-        //Logger.Log($"Changing field {origName} to {newName}");
-        
-        fieldDef.Name = new Utf8String(newName);
+        Logger.Log($"Renaming field {fieldDef.DeclaringType}::{origName} to {fieldDef.DeclaringType}::{newName}", 
+            ConsoleColor.Green,
+            true);
 
-        if (isProtected)
-        {
-            RenameFieldMemberRefsGlobal(fieldDef, origName);
-        }
-        else
-        {
-            RenameFieldMemberRefsLocal(fieldDef.DeclaringType!, fieldDef, origName);
-        }
+        var newUtf8Name = new Utf8String(newName);
+        
+        fieldDef.Name = newUtf8Name;
+        
+        UpdateMemberReferences(fieldDef, origName, newUtf8Name);
     }
     
     public void RenameRemap(RemapModel remap)
@@ -60,11 +65,11 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         // Rename all fields and properties first
         
         // TODO: Passing strings as Utf8String, fix the model
-        RenameAllFields(
+        RenameObfuscatedFields(
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
         
-        RenameAllProperties(
+        RenameObfuscatedProperties(
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
 
@@ -102,7 +107,7 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         }
     }
     
-    private void RenameAllFields(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedFields(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
@@ -118,51 +123,21 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName) { continue; }
-                    
+                
                 var oldName = field.Name;
 
+                Logger.Log($"Renaming field {field.DeclaringType}::{oldName} to {field.DeclaringType}::{newFieldName}", 
+                    diskOnly: true);
+                
                 field.Name = newFieldName;
-                
-                if (field.IsPrivate)
-                {
-                    RenameFieldMemberRefsLocal(type, field, oldName!);
-                }
-                else
-                {
-                    RenameFieldMemberRefsGlobal(field, oldName!);
-                }
-                
-
                 fieldCount++;
+                
+                UpdateMemberReferences(field, oldName, newTypeName);
             }
         }
     }
     
-    private void RenameFieldMemberRefsGlobal(FieldDefinition fieldDef, Utf8String oldName)
-    {
-        foreach (var type in types)
-        {
-            RenameFieldMemberRefsLocal(type, fieldDef, oldName);
-        }
-    }
-
-    private static void RenameFieldMemberRefsLocal(TypeDefinition type, FieldDefinition fieldDef, Utf8String oldName)
-    {
-        foreach (var method in type.Methods)
-        {
-            if (!method.HasMethodBody) continue;
-
-            foreach (var instr in method.CilMethodBody!.Instructions)
-            {
-                if (instr.Operand is MemberReference memRef && memRef.Name == oldName)
-                {
-                    memRef.Name = fieldDef.Name;
-                }
-            }
-        }
-    }
-    
-    private void RenameAllProperties(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedProperties(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
@@ -179,6 +154,9 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
                 // Dont need to do extra work
                 if (property.Name == newPropertyName) continue; 
                     
+                Logger.Log($"Renaming property {property.DeclaringType}::{property.Name} to {property.DeclaringType}::{newPropertyName}", 
+                    diskOnly: true);
+                
                 property.Name = newPropertyName;
 
                 propertyCount++;
@@ -201,5 +179,31 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         stats.PropertyRenamedCount++;
         
         return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
+    }
+
+    private void UpdateMemberReferences(
+        FieldDefinition target, 
+        Utf8String oldName, 
+        Utf8String newName)
+    {
+        var memberMdToken = module.LookupMember(target.MetadataToken);
+
+        if (memberMdToken is null) return;
+        
+        var imports = module.GetImportedMemberReferences();
+        var comparer = new SignatureComparer();
+        
+        foreach (var import in imports)
+        {
+            if (import.Name == oldName &&
+                import.Resolve() is FieldDefinition memberFieldDef
+               )
+            {
+                Logger.Log($"Import Name {import.Name}");
+                Logger.Log($"Import ParentName {import.Parent?.Name}");
+                
+                import.Name = newName;
+            }
+        }
     }
 }

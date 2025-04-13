@@ -159,7 +159,7 @@ public class MappingController(string targetAssemblyPath)
 
         if (type is null)
         {
-            Logger.Log($"Could not find type {mapping.OriginalTypeName}", ConsoleColor.Red);
+            Logger.Log($"Could not find type [{mapping.OriginalTypeName}]", ConsoleColor.Red);
             return;
         }
         
@@ -203,7 +203,7 @@ public class MappingController(string targetAssemblyPath)
                 remap.AmbiguousTypeMatch = winner.FullName;
                 remap.Succeeded = false;
 
-                Logger.Log($"Failure During Matching: `{remap.NewTypeName}` is ambiguous with previous match", ConsoleColor.Red);
+                Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
                 return;
             }
             
@@ -213,7 +213,7 @@ public class MappingController(string targetAssemblyPath)
 
             remap.OriginalTypeName = winner.Name!;
             
-            Logger.Log($"Match `{remap.NewTypeName}` -> `{remap.OriginalTypeName}`", ConsoleColor.Green);
+            Logger.Log($"Match [{remap.NewTypeName}] -> [{remap.OriginalTypeName}]", ConsoleColor.Green);
             RenameAndPublicizeRemap(remap);
         }
     }
@@ -230,7 +230,12 @@ public class MappingController(string targetAssemblyPath)
         var publicizer = Context.Instance.Get<Publicizer>()!;
         
         renamer.RenameRemap(remap);
-        FixPublicizedFieldNamesOnType(publicizer.PublicizeType(remap.TypePrimeCandidate!));
+        
+        var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
+            
+        if (fieldsToFix.Count == 0) return;
+        
+        FixPublicizedFieldNamesOnType(fieldsToFix);
         
         _typesProcessed.Add(remap.TypePrimeCandidate!);
     }

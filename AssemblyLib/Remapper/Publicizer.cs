@@ -17,7 +17,7 @@ internal sealed class Publicizer(Statistics stats)
     /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
     public Dictionary<FieldDefinition, bool> PublicizeType(TypeDefinition type)
     {
-        Logger.Log($"Publicizing Type `{type.Name}`");
+        Logger.Log($"Publicizing Type [{type.Name}]");
         
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface?.Name != "IEffect"))
@@ -39,7 +39,7 @@ internal sealed class Publicizer(Statistics stats)
         
         foreach (var property in type.Properties)
         {
-            Logger.Log($"Publicizing Property `{property.DeclaringType}::{property.Name}`", 
+            Logger.Log($"Publicizing Property [{property.DeclaringType}::{property.Name}]", 
                 diskOnly: true);
             
             if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
@@ -63,7 +63,7 @@ internal sealed class Publicizer(Statistics stats)
 
         if (method.IsGetMethod || method.IsSetMethod) return;
 
-        Logger.Log($"Publicizing Method `{method.DeclaringType}::{method.Name}`", 
+        Logger.Log($"Publicizing Method [{method.DeclaringType}::{method.Name}]", 
             diskOnly: true);
         
         stats.MethodPublicizedCount++;
@@ -73,7 +73,7 @@ internal sealed class Publicizer(Statistics stats)
     {
         if (!ShouldPublicizeFields(type))
         {
-            Logger.Log($"Skipping field publication on `{type.Name}`", ConsoleColor.Yellow);
+            Logger.Log($"Skipping field publication on [{type.Name}]", ConsoleColor.Yellow);
             return [];
         }
         
@@ -84,7 +84,7 @@ internal sealed class Publicizer(Statistics stats)
 
             var isProtected = IsFieldProtected(field);
             
-            Logger.Log($"Publicizing Field `{field.DeclaringType}::{field.Name}` :: IsProtected {isProtected}", 
+            Logger.Log($"Publicizing Field [{field.DeclaringType}::{field.Name}] :: IsProtected {isProtected}", 
                 diskOnly: true);
             
             stats.FieldPublicizedCount++;

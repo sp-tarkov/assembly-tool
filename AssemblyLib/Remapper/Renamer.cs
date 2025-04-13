@@ -15,12 +15,12 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    private Dictionary<IMemberDefinition, List<MemberReference>> _memberReferenceMapping = [];
+    private readonly IEnumerable<MethodDefinition> _allMethods = types
+        .Select(type => type.Methods)
+        .SelectMany(methods => methods);
     
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
-        if (fieldDef.IsPrivate) return;
-        
         var origName = fieldDef.Name?.ToString();
         
         var newName = string.Empty;
@@ -49,15 +49,18 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
             newName += "_1";
         }
         
-        Logger.Log($"Renaming field {fieldDef.DeclaringType}::{origName} to {fieldDef.DeclaringType}::{newName}", 
+        Logger.Log($"Renaming Publicized field [{fieldDef.DeclaringType}::{origName}] to [{fieldDef.DeclaringType}::{newName}]", 
             ConsoleColor.Green,
             true);
 
         var newUtf8Name = new Utf8String(newName);
+
+        var methodsToCheck = isProtected
+            ? _allMethods
+            : fieldDef.DeclaringType?.Methods;
         
+        UpdateMemberReferences(fieldDef, newUtf8Name, origName, methodsToCheck!);
         fieldDef.Name = newUtf8Name;
-        
-        UpdateMemberReferences(fieldDef, origName, newUtf8Name);
     }
     
     public void RenameRemap(RemapModel remap)
@@ -119,20 +122,24 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
             {
                 if (field.Signature?.FieldType.Name != oldTypeName) continue;
                 
-                var newFieldName = GetNewFieldName(newTypeName, fieldCount);
+                var newFieldName = GetNewFieldName(field, newTypeName, fieldCount);
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName) { continue; }
                 
                 var oldName = field.Name;
 
-                Logger.Log($"Renaming field {field.DeclaringType}::{oldName} to {field.DeclaringType}::{newFieldName}", 
+                Logger.Log($"Renaming field [{field.DeclaringType}::{oldName}] to [{field.DeclaringType}::{newFieldName}]", 
                     diskOnly: true);
                 
-                field.Name = newFieldName;
                 fieldCount++;
                 
-                UpdateMemberReferences(field, oldName, newTypeName);
+                var methodsToCheck = field.IsPrivate
+                    ? field.DeclaringType?.Methods
+                    : _allMethods;
+                
+                UpdateMemberReferences(field, newTypeName, oldName!, methodsToCheck!);
+                field.Name = newFieldName;
             }
         }
     }
@@ -154,7 +161,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
                 // Dont need to do extra work
                 if (property.Name == newPropertyName) continue; 
                     
-                Logger.Log($"Renaming property {property.DeclaringType}::{property.Name} to {property.DeclaringType}::{newPropertyName}", 
+                Logger.Log($"Renaming property [{property.DeclaringType}::{property.Name}] to [{property.DeclaringType}::{newPropertyName}]", 
                     diskOnly: true);
                 
                 property.Name = newPropertyName;
@@ -164,14 +171,16 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         }
     }
 
-    private Utf8String GetNewFieldName(string newName, int fieldCount = 0)
+    private Utf8String GetNewFieldName(FieldDefinition field, string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
-        // TODO: This needs to take visibility flags into account
+        var firstChar = field.IsPublic
+            ? char.ToUpper(newName[0])
+            : char.ToLower(newName[0]);
         
         stats.FieldRenamedCount++;
-        return new Utf8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
+        return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
     private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
@@ -182,27 +191,26 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
     }
 
     private void UpdateMemberReferences(
-        FieldDefinition target, 
-        Utf8String oldName, 
-        Utf8String newName)
+        FieldDefinition target,
+        Utf8String newName,
+        Utf8String oldName,
+        IEnumerable<MethodDefinition> methods)
     {
-        var memberMdToken = module.LookupMember(target.MetadataToken);
-
-        if (memberMdToken is null) return;
+        // TODO: THIS IS FUCKING SKIPPING VALUE TYPES, WHY. JUST WHY
         
-        var imports = module.GetImportedMemberReferences();
-        var comparer = new SignatureComparer();
-        
-        foreach (var import in imports)
+        foreach (var method in methods)
         {
-            if (import.Name == oldName &&
-                import.Resolve() is FieldDefinition memberFieldDef
-               )
-            {
-                Logger.Log($"Import Name {import.Name}");
-                Logger.Log($"Import ParentName {import.Parent?.Name}");
+            if (method.CilMethodBody is null) continue;
                 
-                import.Name = newName;
+            foreach (var instruction in method.CilMethodBody.Instructions)
+            {
+                if (instruction.Operand is not MemberReference memberFieldRef ||
+                    memberFieldRef.Resolve() != target) continue;
+                
+                Logger.Log($"Updating Field Reference to [{target.DeclaringType}::{target.Name}] in Method [{method.DeclaringType}::{method.Name}]" +
+                           $" to [{method.DeclaringType}::{newName}]", diskOnly: true);
+                
+                memberFieldRef.Name = newName;
             }
         }
     }

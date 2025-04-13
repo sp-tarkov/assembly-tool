@@ -2,6 +2,7 @@
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
+using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
@@ -15,10 +16,6 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    private readonly IEnumerable<MethodDefinition> _allMethods = types
-        .Select(type => type.Methods)
-        .SelectMany(methods => methods);
-    
     public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
     {
         var origName = fieldDef.Name?.ToString();
@@ -54,12 +51,8 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
             true);
 
         var newUtf8Name = new Utf8String(newName);
-
-        var methodsToCheck = isProtected
-            ? _allMethods
-            : fieldDef.DeclaringType?.Methods;
         
-        UpdateMemberReferences(fieldDef, newUtf8Name, origName, methodsToCheck!);
+        UpdateMemberReferences(fieldDef, newUtf8Name);
         fieldDef.Name = newUtf8Name;
     }
     
@@ -134,11 +127,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
                 
                 fieldCount++;
                 
-                var methodsToCheck = field.IsPrivate
-                    ? field.DeclaringType?.Methods
-                    : _allMethods;
-                
-                UpdateMemberReferences(field, newTypeName, oldName!, methodsToCheck!);
+                UpdateMemberReferences(field, newFieldName);
                 field.Name = newFieldName;
             }
         }
@@ -192,25 +181,14 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
 
     private void UpdateMemberReferences(
         FieldDefinition target,
-        Utf8String newName,
-        Utf8String oldName,
-        IEnumerable<MethodDefinition> methods)
+        Utf8String newName)
     {
-        // TODO: THIS IS FUCKING SKIPPING VALUE TYPES, WHY. JUST WHY
-        
-        foreach (var method in methods)
+        foreach (var reference in module.GetImportedMemberReferences())
         {
-            if (method.CilMethodBody is null) continue;
-                
-            foreach (var instruction in method.CilMethodBody.Instructions)
+            if (reference.Resolve() == target)
             {
-                if (instruction.Operand is not MemberReference memberFieldRef ||
-                    memberFieldRef.Resolve() != target) continue;
-                
-                Logger.Log($"Updating Field Reference to [{target.DeclaringType}::{target.Name}] in Method [{method.DeclaringType}::{method.Name}]" +
-                           $" to [{method.DeclaringType}::{newName}]", diskOnly: true);
-                
-                memberFieldRef.Name = newName;
+                Logger.Log($"Updating Field Reference to [{target.DeclaringType}::{target.Name}] to [{target.DeclaringType}::{newName}]", diskOnly: true);
+                reference.Name = newName;
             }
         }
     }

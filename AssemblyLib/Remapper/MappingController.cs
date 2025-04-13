@@ -72,7 +72,7 @@ public class MappingController(string targetAssemblyPath)
                 !.CreateCustomTypeAttribute();
         }
         
-        //Context.Instance.Get<AttributeFactory>()!.UpdateAsyncAttributes();
+        Context.Instance.Get<AttributeFactory>()!.UpdateAsyncAttributes();
         
         await StartWriteAssemblyTasks();
     }

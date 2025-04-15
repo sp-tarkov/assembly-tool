@@ -259,13 +259,13 @@ public class MappingController(string targetAssemblyPath)
         }
     }
 
-    private static void FixPublicizedFieldNamesOnType(Dictionary<FieldDefinition, bool> publicizedFields)
+    private static void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
     {
         var renamer = Context.Instance.Get<Renamer>()!;
         
-        foreach (var (field, isProtected) in publicizedFields)
+        foreach (var field in publicizedFields)
         {
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
         }
     }
     

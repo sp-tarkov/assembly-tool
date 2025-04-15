@@ -15,7 +15,7 @@ internal sealed class Publicizer(Statistics stats)
     /// </summary>
     /// <param name="type">Type to publicize</param>
     /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
-    public Dictionary<FieldDefinition, bool> PublicizeType(TypeDefinition type)
+    public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
         Logger.Log($"Publicizing Type [{type.Name}]");
         
@@ -69,7 +69,7 @@ internal sealed class Publicizer(Statistics stats)
         stats.MethodPublicizedCount++;
     }
 
-    private Dictionary<FieldDefinition, bool> PublicizeFields(TypeDefinition type)
+    private List<FieldDefinition> PublicizeFields(TypeDefinition type)
     {
         if (!ShouldPublicizeFields(type))
         {
@@ -77,14 +77,12 @@ internal sealed class Publicizer(Statistics stats)
             return [];
         }
         
-        var result = new Dictionary<FieldDefinition, bool>();
+        var result = new List<FieldDefinition>();
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
-
-            var isProtected = IsFieldProtected(field);
             
-            Logger.Log($"Publicizing Field [{field.DeclaringType}::{field.Name}] :: IsProtected {isProtected}", 
+            Logger.Log($"Publicizing Field [{field.DeclaringType}::{field.Name}]", 
                 diskOnly: true);
             
             stats.FieldPublicizedCount++;
@@ -94,7 +92,7 @@ internal sealed class Publicizer(Statistics stats)
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
             
-            result.Add(field, isProtected);
+            result.Add(field);
             
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
@@ -167,12 +165,5 @@ internal sealed class Publicizer(Statistics stats)
         }
         
         return false;
-    }
-    
-    public static bool IsFieldProtected(FieldDefinition field)
-    {
-        return field.Attributes.HasFlag(FieldAttributes.Family) ||
-               field.Attributes.HasFlag(FieldAttributes.FamilyAndAssembly) ||
-               field.Attributes.HasFlag(FieldAttributes.FamilyOrAssembly);
     }
 }

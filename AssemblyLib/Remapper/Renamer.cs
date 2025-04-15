@@ -16,13 +16,13 @@ namespace AssemblyLib.ReMapper;
 internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
+    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef)
     {
         var origName = fieldDef.Name?.ToString();
         
         var newName = string.Empty;
         
-        if (origName is null || origName.Length < 3) return;
+        if (origName is null || origName.Length < 3 || IsSerializedField(fieldDef)) return;
 
         // Handle underscores
         if (origName[0] == '_')
@@ -191,5 +191,12 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
                 reference.Name = newName;
             }
         }
+    }
+
+    private static bool IsSerializedField(FieldDefinition field)
+    {
+        // DO NOT RENAME SERIALIZED FIELDS, IT BREAKS UNITY
+        return field.CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
+            .Contains("UnityEngine.SerializeField");
     }
 }

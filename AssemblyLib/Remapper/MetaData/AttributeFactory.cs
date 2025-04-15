@@ -23,7 +23,7 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
             "SPT",
             "SPTRenamedClassAttribute",
             TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass,
-            DataProvider.Mscorlib.GetAllTypes().FirstOrDefault(t => t.FullName == "System.Attribute")
+            DataProvider.Mscorlib.GetAllTypes().First(t => t.FullName == "System.Attribute")
                 .ImportWith(module.DefaultImporter)
         );
         

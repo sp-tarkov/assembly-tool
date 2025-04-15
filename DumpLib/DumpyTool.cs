@@ -51,6 +51,10 @@ namespace DumpLib
                     {
                         try
                         {
+                            Utils.LogInfo($"[Dumpy] Requesting weather (once per loop)");
+                            await (Task)DataHelper.Session.GetType().GetMethod("WeatherRequest")
+                                .Invoke(DataHelper.Session, null);
+
                             foreach (var map in DataHelper.ConfigSettings.MapNames)
                             {
                                 // Set location in the RaidSettings object

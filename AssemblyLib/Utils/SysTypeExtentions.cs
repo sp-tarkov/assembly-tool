@@ -81,7 +81,7 @@ public static class SysTypeExtentions
     /// <param name="str"></param>
     /// <param name="list"></param>
     /// <returns>True if it in the list</returns>
-    public static bool IsFieldOrPropNameInList(this Utf8String str, List<string> list)
+    public static bool IsObfuscatedName(this Utf8String str)
     {
         var realString = str.ToString();
         
@@ -90,25 +90,8 @@ public static class SysTypeExtentions
             realString = realString.Replace("_", "");
         }
 
+        var list = DataProvider.Settings!.TypeNamesToMatch;
         var result = list.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
-
-        return result;
-    }
-
-    /// <summary>
-    /// Does the property or field name exist in a given list, this applies prefixes and handles capitalization.
-    /// </summary>
-    /// <param name="str"></param>
-    /// <param name="list"></param>
-    /// <returns>True if it in the list</returns>
-    public static bool IsFieldOrPropNameInList(this string str, List<string> list)
-    {
-        if (str.Trim().StartsWith("_"))
-        {
-            str = str.Replace("_", "");
-        }
-
-        var result = list.Any(item => str.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
 
         return result;
     }

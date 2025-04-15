@@ -27,6 +27,6 @@ public class ReMap : ICommand
             throw new DirectoryNotFoundException("OutPath could not be resolved.");
         }
         
-        await new ReMapper(TargetAssemblyPath).InitializeRemap(OldAssemblyPath!, outPath);
+        await new MappingController(TargetAssemblyPath).Run(OldAssemblyPath!, outPath);
     }
 }

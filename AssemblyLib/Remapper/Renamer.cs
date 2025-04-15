@@ -1,30 +1,28 @@
-﻿using System.Reflection.Metadata;
+﻿using System.Reflection;
 using AsmResolver;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
+using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MemberReference = AsmResolver.DotNet.MemberReference;
+using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 using TypeDefinition = AsmResolver.DotNet.TypeDefinition;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Renamer(List<TypeDefinition> types, Statistics stats) 
+internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
     : IComponent
 {
-    private static List<string> TokensToMatch => DataProvider.Settings!.TypeNamesToMatch;
-
-    public async Task StartRenameProcess()
-    {
-        await StartRemapTask();
-    }
-
-    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef, bool isProtected)
+    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef)
     {
         var origName = fieldDef.Name?.ToString();
+        
         var newName = string.Empty;
         
-        if (origName is null || origName.Length == 0) return;
+        if (origName is null || origName.Length < 3 || IsSerializedField(fieldDef)) return;
 
         // Handle underscores
         if (origName[0] == '_')
@@ -48,155 +46,99 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
             newName += "_1";
         }
         
-        //Logger.Log($"Changing field {origName} to {newName}");
-        
-        fieldDef.Name = new Utf8String(newName);
+        Logger.Log($"Renaming Publicized field [{fieldDef.DeclaringType}::{origName}] to [{fieldDef.DeclaringType}::{newName}]", 
+            ConsoleColor.Green,
+            true);
 
-        if (isProtected)
-        {
-            RenameFieldMemberRefsGlobal(fieldDef, origName);
-        }
-        else
-        {
-            RenameFieldMemberRefsLocal(fieldDef.DeclaringType!, fieldDef, origName);
-        }
+        var newUtf8Name = new Utf8String(newName);
+        
+        UpdateMemberReferences(fieldDef, newUtf8Name);
+        fieldDef.Name = newUtf8Name;
     }
     
-    private async Task StartRemapTask()
-    {
-        var renameTasks = new List<Task>(DataProvider.Remaps.Count);
-        foreach (var remap in DataProvider.Remaps)
-        {
-            renameTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        RenameFromRemap(remap);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
-        }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(renameTasks.ToArray());
-            return;
-        }
-        
-        await Logger.DrawProgressBar(renameTasks, "Renaming");
-    }
-
-    private void RenameFromRemap(RemapModel remap)
+    public void RenameRemap(RemapModel remap)
     {
         // Rename all fields and properties first
-        RenameAllFields(
-            remap.TypePrimeCandidate!.Name!,
-            remap.NewTypeName);
-
-        RenameAllProperties(
-            remap.TypePrimeCandidate!.Name!,
-            remap.NewTypeName);
-
-        FixMethods(remap);
         
-        remap.TypePrimeCandidate.Name = remap.NewTypeName;
+        // TODO: Passing strings as Utf8String, fix the model
+        RenameObfuscatedFields(
+            remap.TypePrimeCandidate!.Name!,
+            remap.NewTypeName);
+        
+        RenameObfuscatedProperties(
+            remap.TypePrimeCandidate!.Name!,
+            remap.NewTypeName);
+
+        //FixMethods(remap);
+        
+        remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }
 
     private void FixMethods(RemapModel remap)
     {
+        // TODO: This shit is broken, Have I ever worked?
+        // The purpose of this is to demangle interface appended method names
         foreach (var type in types)
         {
             var allMethodNames = type.Methods
                 .Select(s => s.Name).ToList();
 
+            // TODO: This is stupid. Past me is an asshole.
             var methodsWithInterfaces = 
-                (from method in type.Methods
-                where method.Name.ToString().StartsWith(remap.TypePrimeCandidate!.Name)
+                (from method in type.Methods 
+                where method.Name.StartsWith(remap.TypePrimeCandidate!.Name)
                 select method).ToList();
 
             foreach (var method in methodsWithInterfaces.ToArray())
             {
                 var name = method.Name!.ToString().Split(".");
                 
+                // TODO: Again with the .ToString() ...
                 if (allMethodNames.Count(n => n is not null && n.ToString().EndsWith(name[1])) > 1)
                     continue;
                 
+                // TODO: Implicit conversion
                 method.Name =  method.Name.ToString().Split(".")[1];
             }
         }
     }
     
-    private void RenameAllFields(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedFields(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
             var fields = type.Fields
-                .Where(field => field.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
+                .Where(field => field.Name!.IsObfuscatedName());
             
             var fieldCount = 0;
             foreach (var field in fields)
             {
                 if (field.Signature?.FieldType.Name != oldTypeName) continue;
                 
-                var newFieldName = GetNewFieldName(newTypeName, fieldCount);
+                var newFieldName = GetNewFieldName(field, newTypeName, fieldCount);
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName) { continue; }
-                    
+                
                 var oldName = field.Name;
 
-                field.Name = newFieldName;
+                Logger.Log($"Renaming field [{field.DeclaringType}::{oldName}] to [{field.DeclaringType}::{newFieldName}]", 
+                    diskOnly: true);
                 
-                if (field.IsPrivate)
-                {
-                    RenameFieldMemberRefsLocal(type, field, oldName);
-                }
-                else
-                {
-                    RenameFieldMemberRefsGlobal(field, oldName);
-                }
-                
-
                 fieldCount++;
+                
+                UpdateMemberReferences(field, newFieldName);
+                field.Name = newFieldName;
             }
         }
     }
     
-    private void RenameFieldMemberRefsGlobal(FieldDefinition fieldDef, Utf8String oldName)
-    {
-        foreach (var type in types)
-        {
-            RenameFieldMemberRefsLocal(type, fieldDef, oldName);
-        }
-    }
-
-    private static void RenameFieldMemberRefsLocal(TypeDefinition type, FieldDefinition fieldDef, string oldName)
-    {
-        foreach (var method in type.Methods)
-        {
-            if (!method.HasMethodBody) continue;
-
-            foreach (var instr in method.CilMethodBody!.Instructions)
-            {
-                if (instr.Operand is MemberReference memRef && memRef.Name == oldName)
-                {
-                    memRef.Name = fieldDef.Name;
-                }
-            }
-        }
-    }
-    
-    private void RenameAllProperties(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedProperties(Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in types)
         {
             var properties = type.Properties
-                .Where(prop => prop.Name!.ToString().IsFieldOrPropNameInList(TokensToMatch));
+                .Where(prop => prop.Name!.IsObfuscatedName());
             
             var propertyCount = 0;
             foreach (var property in properties)
@@ -208,6 +150,9 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
                 // Dont need to do extra work
                 if (property.Name == newPropertyName) continue; 
                     
+                Logger.Log($"Renaming property [{property.DeclaringType}::{property.Name}] to [{property.DeclaringType}::{newPropertyName}]", 
+                    diskOnly: true);
+                
                 property.Name = newPropertyName;
 
                 propertyCount++;
@@ -215,12 +160,16 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         }
     }
 
-    private Utf8String GetNewFieldName(string newName, int fieldCount = 0)
+    private Utf8String GetNewFieldName(FieldDefinition field, string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
+        var firstChar = field.IsPublic
+            ? char.ToUpper(newName[0])
+            : char.ToLower(newName[0]);
+        
         stats.FieldRenamedCount++;
-        return new Utf8String($"{char.ToLower(newName[0])}{newName[1..]}{newFieldCount}");
+        return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
     private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
@@ -228,5 +177,26 @@ internal sealed class Renamer(List<TypeDefinition> types, Statistics stats)
         stats.PropertyRenamedCount++;
         
         return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
+    }
+
+    private void UpdateMemberReferences(
+        FieldDefinition target,
+        Utf8String newName)
+    {
+        foreach (var reference in module.GetImportedMemberReferences())
+        {
+            if (reference.Resolve() == target)
+            {
+                Logger.Log($"Updating Field Reference to [{target.DeclaringType}::{target.Name}] to [{target.DeclaringType}::{newName}]", diskOnly: true);
+                reference.Name = newName;
+            }
+        }
+    }
+
+    private static bool IsSerializedField(FieldDefinition field)
+    {
+        // DO NOT RENAME SERIALIZED FIELDS, IT BREAKS UNITY
+        return field.CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
+            .Contains("UnityEngine.SerializeField");
     }
 }

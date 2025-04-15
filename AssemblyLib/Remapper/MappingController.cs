@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Builder;
 using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Builder;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
@@ -9,13 +12,16 @@ using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
+using FieldAttributes = AsmResolver.PE.DotNet.Metadata.Tables.Rows.FieldAttributes;
 
 namespace AssemblyLib.ReMapper;
 
-public class ReMapper(string targetAssemblyPath)
+public class MappingController(string targetAssemblyPath)
 {
     private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
     private List<TypeDefinition> Types { get; set; } = [];
+
+    private List<TypeDefinition> _typesProcessed = [];
     
     private string OutPath { get; set; } = string.Empty;
     
@@ -25,7 +31,7 @@ public class ReMapper(string targetAssemblyPath)
     /// <summary>
     /// Start the remapping process
     /// </summary>
-    public async Task InitializeRemap(
+    public async Task Run(
         string oldAssemblyPath,
         string outPath = "",
         bool validate = false)
@@ -39,7 +45,6 @@ public class ReMapper(string targetAssemblyPath)
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
         
-        
         Types.AddRange(Module.GetAllTypes());
         
         InitializeComponents(oldAssemblyPath);
@@ -48,8 +53,10 @@ public class ReMapper(string targetAssemblyPath)
             GenerateDynamicRemaps(_targetAssemblyPath);
         }
         
-        await StartMatchingTasks(validate);
-
+        StartMatchingTasks();
+        ChooseBestMatches();
+        PublicizeObfuscatedTypes();
+        
         // Don't go any further during a validation
         if (validate)
         {
@@ -59,28 +66,28 @@ public class ReMapper(string targetAssemblyPath)
             return;
         }
         
-        await Context.Instance.Get<Renamer>()!.StartRenameProcess();
-        await Context.Instance.Get<Publicizer>()!.StartPublicizeTypesTask();
-        
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
             await Context.Instance.Get<AttributeFactory>()
                 !.CreateCustomTypeAttribute();
         }
         
-        Context.Instance.Get<AttributeFactory>()
-            !.UpdateAsyncAttributes();
+        Context.Instance.Get<AttributeFactory>()!.UpdateAsyncAttributes();
         
         await StartWriteAssemblyTasks();
     }
 
+    /// <summary>
+    /// Register Mapping dependencies with the app context
+    /// </summary>
+    /// <param name="oldAssemblyPath">Path to previous clients assembly</param>
     private void InitializeComponents(string oldAssemblyPath)
     {
         var ctx = Context.Instance;
 
         var stats = new Statistics();
-        var renamer = new Renamer(Types, stats);
-        var publicizer = new Publicizer(Types, stats);
+        var renamer = new Renamer(Module, Types, stats);
+        var publicizer = new Publicizer(stats);
         var attrFactory = new AttributeFactory(Module, Types);
         
         ctx.RegisterComponent<Statistics>(stats);
@@ -97,36 +104,18 @@ public class ReMapper(string targetAssemblyPath)
     
     #region Matching
     
-    private async Task StartMatchingTasks(bool validate)
+    /// <summary>
+    /// Queues the workload for finding best matches for a given remap.
+    /// </summary>
+    /// <param name="validate">Are we only validating, used for the automatcher</param>
+    private void StartMatchingTasks()
     {
-        var tasks = new List<Task>(DataProvider.Remaps.Count);
+        Logger.Log("Creating Mapping Table...");
+        
         foreach (var remap in DataProvider.Remaps)
         {
-            tasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        MatchRemap(remap);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
+            MatchRemap(remap);
         }
-
-        if (DataProvider.Settings.DebugLogging || validate)
-        {
-            await Task.WhenAll(tasks.ToArray());
-        }
-        else
-        {
-            await Logger.DrawProgressBar(tasks, "Finding Best Matches");
-        }
-        
-        ChooseBestMatches();
     }
     
     /// <summary>
@@ -137,18 +126,13 @@ public class ReMapper(string targetAssemblyPath)
     /// <param name="types">Types to filter</param>
     private void MatchRemap(RemapModel mapping)
     {
-        var tokens = DataProvider.Settings.TypeNamesToMatch;
-
-        if (mapping.UseForceRename)
-        {
-            HandleDirectRename(mapping);
-            return;
-        }
+        if (mapping.UseForceRename) return;
 
         // Filter down nested objects
-        var types = !mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(type => tokens.Any(token => type.Name!.ToString().StartsWith(token)))
-            : Types.Where(t => t.DeclaringType != null);
+        var types = mapping.SearchParams.NestedTypes.IsNested
+            ? Types.Where(t => t.IsNested)
+            : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
+            
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
         {
@@ -163,20 +147,30 @@ public class ReMapper(string targetAssemblyPath)
         mapping.TypeCandidates.UnionWith(types);
     }
     
-    private void HandleDirectRename(RemapModel mapping)
+    /// <summary>
+    /// Directly renames a type instead of passing the remap through filters
+    /// used for remaps generated from items.json (Dynamic remaps)
+    /// </summary>
+    /// <param name="mapping">Mapping to force rename</param>
+    private void HandleForceRename(RemapModel mapping)
     {
-        foreach (var type in Types)
+        var type = Types
+            .FirstOrDefault(t => t.Name == mapping.OriginalTypeName);
+
+        if (type is null)
         {
-            if (type.Name != mapping.OriginalTypeName) continue;
-            
-            mapping.TypePrimeCandidate = type;
-            mapping.OriginalTypeName = type.Name;
-            mapping.Succeeded = true;
-
-            _alreadyGivenNames.Add(mapping.OriginalTypeName);
-
+            Logger.Log($"Could not find type [{mapping.OriginalTypeName}]", ConsoleColor.Red);
             return;
         }
+        
+        mapping.TypePrimeCandidate = type;
+        mapping.OriginalTypeName = type.Name;
+        mapping.Succeeded = true;
+
+        _alreadyGivenNames.Add(mapping.OriginalTypeName);
+
+        Logger.Log($"Forcing `{mapping.OriginalTypeName}` to `{mapping.NewTypeName}`", ConsoleColor.Yellow);
+        RenameAndPublicizeRemap(mapping);
     }
     
     /// <summary>
@@ -184,47 +178,105 @@ public class ReMapper(string targetAssemblyPath)
     /// </summary>
     private void ChooseBestMatches()
     {
+        Logger.Log("Renaming and Publicizing Remaps...");
+        
         foreach (var remap in DataProvider.Remaps)
         {
-            ChooseBestMatch(remap);
+            if (remap.UseForceRename)
+            {
+                HandleForceRename(remap);
+                continue;
+            }
+            
+            if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
+            
+            var winner = remap.TypeCandidates.FirstOrDefault();
+        
+            if (winner is null) { return; }
+        
+            remap.TypePrimeCandidate = winner;
+            remap.OriginalTypeName = winner.Name!;
+        
+            if (_alreadyGivenNames.Contains(winner.FullName))
+            {
+                remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
+                remap.AmbiguousTypeMatch = winner.FullName;
+                remap.Succeeded = false;
+
+                Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
+                return;
+            }
+            
+            _alreadyGivenNames.Add(remap.OriginalTypeName);
+
+            remap.Succeeded = true;
+
+            remap.OriginalTypeName = winner.Name!;
+            
+            Logger.Log($"Match [{remap.NewTypeName}] -> [{remap.OriginalTypeName}]", ConsoleColor.Green);
+            RenameAndPublicizeRemap(remap);
         }
     }
 
-    /// <summary>
-    /// Choose best match from a collection of types on a remap
-    /// </summary>
-    /// <param name="remap"></param>
-    private void ChooseBestMatch(RemapModel remap)
-    {
-        if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
-
-        var winner = remap.TypeCandidates.FirstOrDefault();
-        
-        if (winner is null) { return; }
-        
-        remap.TypePrimeCandidate = winner;
-        remap.OriginalTypeName = winner.Name!;
-        
-        if (_alreadyGivenNames.Contains(winner.FullName))
-        {
-            remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
-            remap.AmbiguousTypeMatch = winner.FullName;
-            remap.Succeeded = false;
-
-            return;
-        }
-
-        _alreadyGivenNames.Add(remap.OriginalTypeName);
-
-        remap.Succeeded = true;
-
-        remap.OriginalTypeName = winner.Name!;
-    }
-    
     #endregion
     
+    /// <summary>
+    /// Process the renaming and publication of a specific remap
+    /// </summary>
+    /// <param name="remap">Mapping to process</param>
+    private void RenameAndPublicizeRemap(RemapModel remap)
+    {
+        var renamer = Context.Instance.Get<Renamer>()!;
+        var publicizer = Context.Instance.Get<Publicizer>()!;
+        
+        renamer.RenameRemap(remap);
+        
+        var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
+            
+        if (fieldsToFix.Count == 0) return;
+        
+        FixPublicizedFieldNamesOnType(fieldsToFix);
+        
+        _typesProcessed.Add(remap.TypePrimeCandidate!);
+    }
+
+    private void PublicizeObfuscatedTypes()
+    {
+        Logger.Log("Publicizing Obfuscated Types...");
+        
+        // Filter down remaining types to ones that we have not remapped.
+        // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
+        var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!));
+        var publicizer = Context.Instance.Get<Publicizer>()!;
+        
+        foreach (var type in obfuscatedTypes)
+        {
+            var fieldsToFix = publicizer.PublicizeType(type);
+            
+            if (fieldsToFix.Count == 0) continue;
+            
+            FixPublicizedFieldNamesOnType(fieldsToFix);
+        }
+    }
+
+    private static void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
+    {
+        var renamer = Context.Instance.Get<Renamer>()!;
+        
+        foreach (var field in publicizedFields)
+        {
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
+        }
+    }
+    
+    /// <summary>
+    /// Finds GClass associations from items.json based on parent types and mongoId
+    /// </summary>
+    /// <param name="path">Path to the cleaned assembly</param>
     private void GenerateDynamicRemaps(string path)
     {
+        Logger.Log("Generating Dynamic Remaps...");
+        
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
@@ -259,16 +311,26 @@ public class ReMapper(string targetAssemblyPath)
             .GetField("TypeTable")!
             .GetValue(templateMappingClass)!;
         
+        Logger.Log("Overriding Item Classes...");
+        
         BuildAssociationFromTable(typeTable, "ItemClass", true);
         
         var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
             .GetField("TemplateTypeTable")!
             .GetValue(templateMappingClass)!;
         
+        Logger.Log("Overriding Template Classes...");
+        
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
     
-    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="table">Type or Template table</param>
+    /// <param name="extName">ItemClass or TemplateClass</param>
+    /// <param name="isItemClass">Is this table for items or templates?</param>
+    private static void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
     {
         foreach (var type in table)
         {
@@ -281,18 +343,29 @@ public class ReMapper(string targetAssemblyPath)
             {
                 continue;
             }
-            
+
+            switch (template.Name)
+            {
+                // Solves a duplication assign of key types to the same GClass (Wtf bsg)
+                case "KeyMechanical" when extName == "TemplateClass":
+                case "BuiltInInserts" when extName == "TemplateClass":
+                    continue;
+            }
+
             var remap = new RemapModel
             {
                 OriginalTypeName = type.Value.Name,
                 NewTypeName = $"{template.Name}{extName}",
-                UseForceRename = true
+                UseForceRename = true,
+                Succeeded = true
             };
 
             if (overrideTable.TryGetValue(type.Key, out var overriddenTypeName))
             {
                 remap.NewTypeName = overriddenTypeName;
             }
+            
+            Logger.Log($"Overriding type {type.Value.Name} to {remap.NewTypeName}", ConsoleColor.Green);
             
             DataProvider.Remaps.Add(remap);
         }
@@ -308,7 +381,9 @@ public class ReMapper(string targetAssemblyPath)
 
         try
         {
-            Module!.Write(OutPath);
+            Module.Assembly?.Write(OutPath);
+            
+            //Module!.Write(OutPath);
         }
         catch (Exception e)
         {
@@ -342,6 +417,8 @@ public class ReMapper(string targetAssemblyPath)
     /// </summary>
     private async Task StartHollow()
     {
+        Logger.Log("Creating Hollow...");
+        
         var tasks = new List<Task>(Types.Count());
         
         foreach (var type in Types)
@@ -359,13 +436,8 @@ public class ReMapper(string targetAssemblyPath)
                 }
             }));
         }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(tasks.ToArray());
-            return;
-        }
-        await Logger.DrawProgressBar(tasks, "Hollowing Types");
+        
+        await Task.WhenAll(tasks.ToArray());
     }
 
     private static void HollowType(TypeDefinition type)
@@ -392,7 +464,7 @@ public class ReMapper(string targetAssemblyPath)
     
     private void StartHDiffz()
     {
-        Logger.Log("\nStarting HDiffz\n");
+        Logger.Log("Creating Delta...");
         
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
 
@@ -424,10 +496,13 @@ public class ReMapper(string targetAssemblyPath)
         process.StartInfo = startInfo;
 
         process.Start();
-        var output = process.StandardOutput.ReadToEnd();
+        //var output = process.StandardOutput.ReadToEnd();
         var error = process.StandardError.ReadToEnd();
         process.WaitForExit();
-        Console.WriteLine("\nOutput: " + output);
-        Console.WriteLine("\nError: " + error);
+
+        if (error.Length > 0)
+        {
+            Logger.Log("Error: " + error, ConsoleColor.Red);
+        }
     }
 }

@@ -7,44 +7,20 @@ using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats) 
+internal sealed class Publicizer(Statistics stats) 
     : IComponent
 {
-    public async Task StartPublicizeTypesTask()
+    /// <summary>
+    /// Publicize the provided type
+    /// </summary>
+    /// <param name="type">Type to publicize</param>
+    /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
+    public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
-        var publicizeTasks = new List<Task>();
+        Logger.Log($"Publicizing Type [{type.Name}]");
         
-        foreach (var type in types)
-        {
-            publicizeTasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        Context.Instance.Get<Publicizer>()
-                            !.PublicizeType(type);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.QueueTaskException($"Exception in task: {ex.Message}");
-                    }
-                })
-            );
-        }
-
-        if (DataProvider.Settings.DebugLogging)
-        {
-            await Task.WhenAll(publicizeTasks.ToArray());
-            return;
-        }
-        
-        await Logger.DrawProgressBar(publicizeTasks, "Publicizing Types");
-    }
-    
-    private void PublicizeType(TypeDefinition type)
-    {
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
-            && type.Interfaces.All(i => i.Interface.Name != "IEffect"))
+            && type.Interfaces.All(i => i.Interface?.Name != "IEffect"))
         {
             type.Attributes &= ~TypeAttributes.VisibilityMask; // Remove all visibility mask attributes
             type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
@@ -63,23 +39,21 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         
         foreach (var property in type.Properties)
         {
-            if (property.GetMethod != null) PublicizeMethod(property.GetMethod, true);
-            if (property.SetMethod != null) PublicizeMethod(property.SetMethod, true);
+            Logger.Log($"Publicizing Property [{property.DeclaringType}::{property.Name}]", 
+                diskOnly: true);
+            
+            if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
+            if (property.SetMethod != null) PublicizeMethod(property.SetMethod);
 
             stats.PropertyPublicizedCount++;
         }
         
-        PublicizeFields(type);
+        return PublicizeFields(type);
     }
 
-    private void PublicizeMethod(MethodDefinition method, bool isProperty = false)
+    private void PublicizeMethod(MethodDefinition method)
     {
-        if (method.IsCompilerControlled)
-        {
-            return;
-        }
-
-        if (method.IsPublic) return;
+        if (method.IsCompilerControlled || method.IsPublic) return;
         
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
@@ -87,22 +61,29 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
 
-        if (isProperty) return;
+        if (method.IsGetMethod || method.IsSetMethod) return;
 
+        Logger.Log($"Publicizing Method [{method.DeclaringType}::{method.Name}]", 
+            diskOnly: true);
+        
         stats.MethodPublicizedCount++;
     }
 
-    private void PublicizeFields(TypeDefinition type)
+    private List<FieldDefinition> PublicizeFields(TypeDefinition type)
     {
-        if (!ShouldPublicizeFields(type)) return;
-
-        var renamer = Context.Instance.Get<Renamer>()!;
+        if (!ShouldPublicizeFields(type))
+        {
+            Logger.Log($"Skipping field publication on [{type.Name}]", ConsoleColor.Yellow);
+            return [];
+        }
         
+        var result = new List<FieldDefinition>();
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
-
-            var isProtected = IsFieldProtected(field);
+            
+            Logger.Log($"Publicizing Field [{field.DeclaringType}::{field.Name}]", 
+                diskOnly: true);
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
@@ -110,23 +91,24 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
             
             // Ensure the field is NOT readonly
             field.Attributes &= ~FieldAttributes.InitOnly;
-                
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field, isProtected);
+            
+            result.Add(field);
             
             if (field.HasCustomAttribute("UnityEngine", "SerializeField") ||
                 field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute"))
                 continue;
                 
             // Make sure we don't serialize this field.
+            // TODO: Do we need this?
             field.Attributes |= FieldAttributes.NotSerialized;
-                
-            //Logger.LogSync($"Skipping {field.FullName} serialization");
         }
+
+        return result;
     }
 
     private static bool ShouldPublicizeFields(TypeDefinition type)
     {
-        var declType = type.IsNested ? type.DeclaringType : type;
+        var declType = type;
         while (declType is
                {
                    FullName:
@@ -141,6 +123,7 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
     
     private static bool IsEventField(TypeDefinition type, FieldDefinition field)
     {
+        // TODO: This can be cleaned up, redundant code.
         foreach (var evt in type.Events)
         {
             if (evt.AddMethod is { CilMethodBody: not null })
@@ -182,12 +165,5 @@ internal sealed class Publicizer(List<TypeDefinition> types, Statistics stats)
         }
         
         return false;
-    }
-    
-    private static bool IsFieldProtected(FieldDefinition field)
-    {
-        return field.Attributes.HasFlag(FieldAttributes.Family) ||
-               field.Attributes.HasFlag(FieldAttributes.FamilyAndAssembly) ||
-               field.Attributes.HasFlag(FieldAttributes.FamilyOrAssembly);
     }
 }

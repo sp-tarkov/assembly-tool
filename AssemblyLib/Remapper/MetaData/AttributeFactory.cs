@@ -135,36 +135,42 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
             
             foreach (var method in type.Methods)
             {
-                if (method.CustomAttributes.Count > 0)
+                if (IsAsyncMethod(method))
                 {
-                    UpdateAttributeCollection(method.CustomAttributes, type.NestedTypes);
+                    UpdateAttributeCollection(method, type.NestedTypes);
                 }
             }
         }
     }
     
-    private void UpdateAttributeCollection(IList<CustomAttribute> customAttributes, IList<TypeDefinition> nestedTypes)
+    private void UpdateAttributeCollection(MethodDefinition method, IList<TypeDefinition> nestedTypes)
     {
         // Key - Old :: Val - New
         Dictionary<CustomAttribute, CustomAttribute> attrReplacements = [];
         
-        foreach (var attr in customAttributes.ToArray())
+        foreach (var attr in method.CustomAttributes.ToArray())
         {
-            if (attr.Constructor?.DeclaringType?.FullName != "System.Runtime.CompilerServices.AsyncStateMachineAttribute") continue;
+            if (!IsAsyncStateMachineAttribute(attr)) continue;
 
             // Find the argument target in the nested types
             var typeDefTarget = nestedTypes
                 .FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element).Name);
-            
-            //Logger.Log($"Updating {originalRef.FullName} to {typeDefTarget!.FullName}");
+
+            if (typeDefTarget is null)
+            {
+                Logger.Log($"Failed to locate AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}", ConsoleColor.Red);
+                continue;
+            }
             
             attrReplacements.Add(attr, CreateNewAsyncAttribute(typeDefTarget!));
         }
         
         foreach (var replacement in attrReplacements)
         {
-            customAttributes.Remove(replacement.Key);
-            customAttributes.Add(replacement.Value);
+            Logger.Log($"Updating AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}");
+            
+            method.CustomAttributes.Remove(replacement.Key);
+            method.CustomAttributes.Add(replacement.Value);
         }
     }
     
@@ -192,5 +198,17 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         );
         
         return customAttribute;
+    }
+
+    private static bool IsAsyncMethod(MethodDefinition method)
+    {
+        return method.CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
+            .Contains("System.Runtime.CompilerServices.AsyncStateMachineAttribute");
+    }
+
+    private static bool IsAsyncStateMachineAttribute(CustomAttribute attr)
+    {
+        return attr.Constructor?.DeclaringType?.FullName ==
+               "System.Runtime.CompilerServices.AsyncStateMachineAttribute";
     }
 }

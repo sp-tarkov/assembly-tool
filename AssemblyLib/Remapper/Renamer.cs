@@ -91,7 +91,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         }
     }
     
-    private static Utf8String FixInterfaceMangledMethod(MethodDefinition method, List<Utf8String> renamedMethodsOnType)
+    private Utf8String FixInterfaceMangledMethod(MethodDefinition method, List<Utf8String> renamedMethodsOnType)
     {
         var splitName = method.Name?.Split('.');
         
@@ -113,6 +113,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         
         Logger.Log($"Renaming method [{method.DeclaringType}::{method.Name}] to [{method.DeclaringType}::{newName}]");
         
+        UpdateMemberReferences(method, newName);
         method.Name = newName;
         
         return newName;
@@ -196,6 +197,20 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
 
     private void UpdateMemberReferences(
         FieldDefinition target,
+        Utf8String newName)
+    {
+        foreach (var reference in module.GetImportedMemberReferences())
+        {
+            if (reference.Resolve() == target)
+            {
+                Logger.Log($"Updating Field Reference to [{target.DeclaringType}::{target.Name}] to [{target.DeclaringType}::{newName}]", diskOnly: true);
+                reference.Name = newName;
+            }
+        }
+    }
+    
+    private void UpdateMemberReferences(
+        MethodDefinition target,
         Utf8String newName)
     {
         foreach (var reference in module.GetImportedMemberReferences())

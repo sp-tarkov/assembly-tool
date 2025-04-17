@@ -57,6 +57,9 @@ public class MappingController(string targetAssemblyPath)
         ChooseBestMatches();
         PublicizeObfuscatedTypes();
         
+        Context.Instance.Get<Renamer>()!
+            .FixInterfaceMangledMethodNames();
+        
         // Don't go any further during a validation
         if (validate)
         {
@@ -72,7 +75,8 @@ public class MappingController(string targetAssemblyPath)
                 !.CreateCustomTypeAttribute();
         }
         
-        Context.Instance.Get<AttributeFactory>()!.UpdateAsyncAttributes();
+        Context.Instance.Get<AttributeFactory>()!
+            .UpdateAsyncAttributes();
         
         await StartWriteAssemblyTasks();
     }

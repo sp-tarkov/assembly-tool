@@ -68,39 +68,54 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         RenameObfuscatedProperties(
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
-
-        //FixMethods(remap);
         
         remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }
 
-    private void FixMethods(RemapModel remap)
+    public void FixInterfaceMangledMethodNames()
     {
-        // TODO: This shit is broken, Have I ever worked?
-        // The purpose of this is to demangle interface appended method names
-        foreach (var type in types)
+        // We're only looking for implementations
+        foreach (var type in types.Where(t => !t.IsInterface))
         {
-            var allMethodNames = type.Methods
-                .Select(s => s.Name).ToList();
-
-            // TODO: This is stupid. Past me is an asshole.
-            var methodsWithInterfaces = 
-                (from method in type.Methods 
-                where method.Name.StartsWith(remap.TypePrimeCandidate!.Name)
-                select method).ToList();
-
-            foreach (var method in methodsWithInterfaces.ToArray())
+            var renamedMethodNames = new List<Utf8String>();
+            foreach (var method in type.Methods)
             {
-                var name = method.Name!.ToString().Split(".");
+                if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod) continue;
                 
-                // TODO: Again with the .ToString() ...
-                if (allMethodNames.Count(n => n is not null && n.ToString().EndsWith(name[1])) > 1)
-                    continue;
+                var newMethodName = FixInterfaceMangledMethod(method, renamedMethodNames);
                 
-                // TODO: Implicit conversion
-                method.Name =  method.Name.ToString().Split(".")[1];
+                if (newMethodName == Utf8String.Empty) continue;
+                
+                renamedMethodNames.Add(newMethodName);
             }
         }
+    }
+    
+    private static Utf8String FixInterfaceMangledMethod(MethodDefinition method, List<Utf8String> renamedMethodsOnType)
+    {
+        var splitName = method.Name?.Split('.');
+        
+        if (splitName is null || splitName.Length < 2) return Utf8String.Empty;
+
+        var realMethodNameString = splitName.Last();
+        var newName = new Utf8String(realMethodNameString);
+        var sameNameCount = renamedMethodsOnType.Count(c => c == newName);
+        
+        if (sameNameCount > 0)
+        {
+            newName = new Utf8String($"{realMethodNameString}_{sameNameCount}");
+        }
+
+        if (method.DeclaringType!.Methods.Any(m => m.Name == realMethodNameString))
+        {
+            newName = new Utf8String($"{realMethodNameString}_1");
+        }
+        
+        Logger.Log($"Renaming method [{method.DeclaringType}::{method.Name}] to [{method.DeclaringType}::{newName}]");
+        
+        method.Name = newName;
+        
+        return newName;
     }
     
     private void RenameObfuscatedFields(Utf8String oldTypeName, Utf8String newTypeName)

@@ -108,17 +108,8 @@ internal sealed class Publicizer(Statistics stats)
 
     private static bool ShouldPublicizeFields(TypeDefinition type)
     {
-        var declType = type;
-        while (declType is
-               {
-                   FullName:
-                   not null
-                   and not "UnityEngine.Object"
-                   and not "Sirenix.OdinInspector.SerializedMonoBehaviour"
-               })
-        { declType = declType.BaseType?.Resolve(); }
-        
-        return declType?.FullName is not ("UnityEngine.Object" or "Sirenix.OdinInspector.SerializedMonoBehaviour");
+        return !type.InheritsFrom("UnityEngine", "Object") && 
+               !type.InheritsFrom("Sirenix.OdinInspector", "SerializedMonoBehaviour");
     }
     
     private static bool IsEventField(TypeDefinition type, FieldDefinition field)

@@ -4703,14 +4703,15 @@
       "Fields": {
         "FieldCount": 3,
         "IncludeFields": [
-          "botSpawnParams_0"
+          "botSpawnParams_0",
+		  "bool_0"
         ],
         "ExcludeFields": [
           "debugBotProfileChooser_0"
         ]
       },
       "Properties": {
-        "PropertyCount": 2,
+        "PropertyCount": -1,
         "IncludeProperties": [
           "SpawnParams"
         ],

@@ -4680,7 +4680,7 @@
   },
   {
     "NewTypeName": "ProfileDataClass",
-    "OriginalTypeName": "GClass628",
+    "OriginalTypeName": "GClass680",
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
@@ -4695,12 +4695,13 @@
         "ConstructorParameterCount": -1,
         "MethodCount": -1,
         "IncludeMethods": [
-          "CanSpawnByHour"
+          "CanSpawnByHour",
+		  "IsBossOrFollowerByTime"
         ],
         "ExcludeMethods": []
       },
       "Fields": {
-        "FieldCount": 2,
+        "FieldCount": 3,
         "IncludeFields": [
           "botSpawnParams_0"
         ],

@@ -17252,7 +17252,7 @@
   },
   {
     "NewTypeName": "LocalQuestControllerClass",
-    "OriginalTypeName": "GClass3694",
+    "OriginalTypeName": "GClass3764",
     "UseForceRename": false,
     "SearchParams": {
       "GenericParams": {
@@ -17293,7 +17293,7 @@
         "IsNestedFamilyAndAssembly": false,
         "IsNestedFamilyOrAssembly": false,
         "NestedTypeParentName": "",
-        "NestedTypeCount": 5,
+        "NestedTypeCount": 6,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
       },

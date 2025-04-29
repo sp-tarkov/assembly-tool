@@ -79,7 +79,7 @@ internal sealed class Statistics()
 		}
 	}
 
-	private void DisplayFailuresAndChanges(bool validate)
+	public bool DisplayFailuresAndChanges(bool validate, bool isRemapProcess = false)
 	{
 		var failures = 0;
 		var changes = 0;
@@ -119,11 +119,13 @@ internal sealed class Statistics()
 				Logger.LogRemapModel(remap);
 				
 				Logger.Log("Passed validation", ConsoleColor.Green);
-				return;
+				return failures == 0;
 			}
 			
 			changes++;
 		}
+		
+		var succeeded = failures == 0;
 		
 		Logger.Log("--------------------------------------------------");
 		Logger.Log($"Types publicized: {TypePublicizedCount}", ConsoleColor.Green);
@@ -132,7 +134,10 @@ internal sealed class Statistics()
 		if (failures > 0)
 		{
 			Logger.Log($"Types that failed: {failures}", ConsoleColor.Red);
+			return succeeded;
 		}
+		
+		if (isRemapProcess) return succeeded;
 		
 		Logger.Log($"Methods publicized: {MethodPublicizedCount}", ConsoleColor.Green);
 		Logger.Log($"Methods renamed: {MethodRenamedCount}", ConsoleColor.Green);
@@ -140,6 +145,8 @@ internal sealed class Statistics()
 		Logger.Log($"Fields renamed: {FieldRenamedCount}", ConsoleColor.Green);
 		Logger.Log($"Properties publicized: {PropertyPublicizedCount}", ConsoleColor.Green);
 		Logger.Log($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
+
+		return succeeded;
 	}
 
 	private void DisplayWriteAssembly(string outPath)

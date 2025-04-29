@@ -27,8 +27,7 @@ public class MappingController(string targetAssemblyPath)
     
     private readonly List<string> _alreadyGivenNames = [];
     private string _targetAssemblyPath = targetAssemblyPath;
-
-    // git push test comment
+    
     
     /// <summary>
     /// Start the remapping process
@@ -57,6 +56,12 @@ public class MappingController(string targetAssemblyPath)
         
         StartMatchingTasks();
         ChooseBestMatches();
+        
+        var succeeded = Context.Instance.Get<Statistics>()
+            !.DisplayFailuresAndChanges(false, true);
+        
+        if (!succeeded) return;
+        
         PublicizeObfuscatedTypes();
         
         Context.Instance.Get<Renamer>()!

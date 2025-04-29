@@ -28,6 +28,8 @@ public class MappingController(string targetAssemblyPath)
     private readonly List<string> _alreadyGivenNames = [];
     private string _targetAssemblyPath = targetAssemblyPath;
 
+    // git push test comment
+    
     /// <summary>
     /// Start the remapping process
     /// </summary>

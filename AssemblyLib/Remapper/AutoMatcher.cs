@@ -192,11 +192,14 @@ public class AutoMatcher()
 		methods.ExcludeMethods.UnionWith(excludeMethods);
 		
 		methods.MethodCount = target.Methods
-			.Count(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
+			.Count(m => 
+				m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
 
-		if (target.Methods.Any(m => m.IsConstructor && m.Parameters.Count > 0))
+		if (target.Methods.Any(m => m is { IsConstructor: true, Parameters.Count: > 0 }))
 		{
-			methods.ConstructorParameterCount = target.Methods.First(m => m.IsConstructor && m.Parameters.Count > 0).Parameters.Count - 1;
+			methods.ConstructorParameterCount = target.Methods.First(m => 
+				m is { IsConstructor: true, Parameters.Count: > 0 })
+				.Parameters.Count;
 		}
 		
 		// True if we have common methods, or all methods are constructors
@@ -218,19 +221,22 @@ public class AutoMatcher()
 		// Target has a different number of fields
 		if (target.Fields.Count != candidate.Fields.Count) return false;
 
-		var commonFields = target.Fields
-			.Select(s => s.Name)
-			.Intersect(candidate.Fields.Select(s => s.Name));
+		var targetFields = GetFilteredFieldNamesInType(target)
+			.ToArray();
+		
+		var candidateFields = GetFilteredFieldNamesInType(candidate)
+			.ToArray();
+		
+		var commonFields = targetFields
+			.Intersect(candidateFields);
 		
 		// Fields in target that are not in candidate
-		var includeFields = target.Fields
-			.Select(s => s.Name!.ToString())
-			.Except(candidate.Fields.Select(s => s.Name!.ToString()));
+		var includeFields = targetFields
+			.Except(candidateFields);
 		
 		// Fields in candidate that are not in target
-		var excludeFields = candidate.Fields
-			.Select(s => s.Name!.ToString())
-			.Except(target.Fields.Select(s => s.Name!.ToString()));
+		var excludeFields = candidateFields
+			.Except(targetFields);
 		
 		fields.IncludeFields.UnionWith(includeFields);
 		fields.ExcludeFields.UnionWith(excludeFields);
@@ -372,7 +378,17 @@ public class AutoMatcher()
 			.Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
 			// Don't match de-obfuscator given method names
 			.Where(m => !MethodsToIgnore.Any(mi => 
-				m.Name!.ToString().StartsWith(mi) || m.Name.ToString().Contains('.')))
+				m.Name!.ToString().StartsWith(mi, StringComparison.OrdinalIgnoreCase) || 
+				m.Name.ToString().Contains('.')))
+			.Select(s => s.Name!.ToString());
+	}
+	
+	private IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
+	{
+		return type.Fields
+			// Don't match de-obfuscator given method names
+			.Where(m => !FieldsToIgnore.Any(mi => 
+				m.Name!.ToString().StartsWith(mi, StringComparison.OrdinalIgnoreCase)))
 			.Select(s => s.Name!.ToString());
 	}
 	

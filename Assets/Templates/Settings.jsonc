@@ -36,7 +36,9 @@
     "ushort",
     "byte",
     "object",
-    "gameobject"
+    "gameobject",
+    "Interface",
+    "Ginterface"
   ],
   "ItemObjectIdOverrides": {
     

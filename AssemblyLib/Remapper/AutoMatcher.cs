@@ -68,49 +68,49 @@ public class AutoMatcher()
 		{
 			if (!PassesGeneralChecks(target, candidate, remapModel.SearchParams.GenericParams))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after general checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after general checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetMethods(target, candidate, remapModel.SearchParams.Methods))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after method checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after method checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetFields(target, candidate, remapModel.SearchParams.Fields))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after field checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after field checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetProperties(target, candidate, remapModel.SearchParams.Properties))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after property checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after property checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 
 			if (!ContainsTargetNestedTypes(target, candidate, remapModel.SearchParams.NestedTypes))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after nested checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after nested checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 				continue;
 			}
 			
 			if (!ContainsTargetEvents(target, candidate, remapModel.SearchParams.Events))
 			{
-				Logger.Log($"Candidate: {candidate.Name} filtered out after event checks", ConsoleColor.Yellow);
+				Logger.Log($"Candidate: {candidate.Name} filtered out after event checks", ConsoleColor.Yellow, true);
 				CandidateTypes!.Remove(candidate);
 			}
 		}
 		
 		if (CandidateTypes!.Count == 1)
 		{
-			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green);
+			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green, true);
 			
 			DataProvider.Remaps.Clear();
 			DataProvider.Remaps.Add(remapModel);
@@ -231,8 +231,6 @@ public class AutoMatcher()
 		var excludeFields = candidate.Fields
 			.Select(s => s.Name!.ToString())
 			.Except(target.Fields.Select(s => s.Name!.ToString()));
-		
-		Logger.Log(string.Join(", ", includeFields));
 		
 		fields.IncludeFields.UnionWith(includeFields);
 		fields.ExcludeFields.UnionWith(excludeFields);
@@ -373,7 +371,8 @@ public class AutoMatcher()
 		return type.Methods
 			.Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
 			// Don't match de-obfuscator given method names
-			.Where(m => !MethodsToIgnore.Any(mi => m.Name!.ToString().StartsWith(mi)))
+			.Where(m => !MethodsToIgnore.Any(mi => 
+				m.Name!.ToString().StartsWith(mi) || m.Name.ToString().Contains('.')))
 			.Select(s => s.Name!.ToString());
 	}
 	

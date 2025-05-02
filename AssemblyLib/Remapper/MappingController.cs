@@ -60,21 +60,19 @@ public class MappingController(string targetAssemblyPath)
         var succeeded = Context.Instance.Get<Statistics>()
             !.DisplayFailuresAndChanges(false, true);
         
-        if (!succeeded) return;
-        
-        PublicizeObfuscatedTypes();
-        
-        Context.Instance.Get<Renamer>()!
-            .FixInterfaceMangledMethodNames();
-        
         // Don't go any further during a validation
-        if (validate)
+        if (validate || !succeeded)
         {
             Context.Instance.Get<Statistics>()
                 !.DisplayStatistics(true);
             
             return;
         }
+        
+        PublicizeObfuscatedTypes();
+        
+        Context.Instance.Get<Renamer>()!
+            .FixInterfaceMangledMethodNames();
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {

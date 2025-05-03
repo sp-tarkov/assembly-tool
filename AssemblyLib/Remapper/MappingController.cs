@@ -1,10 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using AsmResolver;
 using AsmResolver.DotNet;
-using AsmResolver.DotNet.Builder;
 using AsmResolver.DotNet.Code.Cil;
-using AsmResolver.PE.DotNet.Builder;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Application;
@@ -12,7 +9,6 @@ using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
-using FieldAttributes = AsmResolver.PE.DotNet.Metadata.Tables.Rows.FieldAttributes;
 
 namespace AssemblyLib.ReMapper;
 
@@ -20,8 +16,6 @@ public class MappingController(string targetAssemblyPath)
 {
     private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
     private List<TypeDefinition> Types { get; set; } = [];
-
-    private List<TypeDefinition> _typesProcessed = [];
     
     private string OutPath { get; set; } = string.Empty;
     
@@ -103,12 +97,11 @@ public class MappingController(string targetAssemblyPath)
         ctx.RegisterComponent<Renamer>(renamer);
         ctx.RegisterComponent<Publicizer>(publicizer);
         ctx.RegisterComponent<AttributeFactory>(attrFactory);
+
+        if (string.IsNullOrEmpty(oldAssemblyPath)) return;
         
-        if (!string.IsNullOrEmpty(oldAssemblyPath))
-        {
-            var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
-            ctx.RegisterComponent<DiffCompare>(diff);
-        }
+        var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
+        ctx.RegisterComponent<DiffCompare>(diff);
     }
     
     #region Matching
@@ -116,7 +109,6 @@ public class MappingController(string targetAssemblyPath)
     /// <summary>
     /// Queues the workload for finding best matches for a given remap.
     /// </summary>
-    /// <param name="validate">Are we only validating, used for the automatcher</param>
     private void StartMatchingTasks()
     {
         Logger.Log("Creating Mapping Table...");
@@ -132,7 +124,6 @@ public class MappingController(string targetAssemblyPath)
     /// where null is a third disabled state. Then we score the types based on the search parameters
     /// </summary>
     /// <param name="mapping">Mapping to score</param>
-    /// <param name="types">Types to filter</param>
     private void MatchRemap(RemapModel mapping)
     {
         if (mapping.UseForceRename) return;
@@ -173,7 +164,7 @@ public class MappingController(string targetAssemblyPath)
         }
         
         mapping.TypePrimeCandidate = type;
-        mapping.OriginalTypeName = type.Name;
+        mapping.OriginalTypeName = type.Name!;
         mapping.Succeeded = true;
 
         _alreadyGivenNames.Add(mapping.OriginalTypeName);
@@ -245,8 +236,6 @@ public class MappingController(string targetAssemblyPath)
         if (fieldsToFix.Count == 0) return;
         
         FixPublicizedFieldNamesOnType(fieldsToFix);
-        
-        _typesProcessed.Add(remap.TypePrimeCandidate!);
     }
 
     private void PublicizeObfuscatedTypes()
@@ -308,7 +297,7 @@ public class MappingController(string targetAssemblyPath)
         var assembly = Assembly.LoadFrom(path);
         var templateMappingClass = assembly.Modules
             .First()
-            .GetType(templateMappingTypeDef.Name);
+            .GetType(templateMappingTypeDef.Name!);
         
         if (templateMappingClass is null)
         {
@@ -386,7 +375,7 @@ public class MappingController(string targetAssemblyPath)
     private async Task StartWriteAssemblyTasks()
     {
         const string dllName = "-cleaned-remapped-publicized.dll";
-        OutPath = Path.Combine(OutPath,  Module.Name!.ToString().Replace(".dll", dllName));
+        OutPath = Path.Combine(OutPath,  Module.Name!.Replace(".dll", dllName));
 
         try
         {

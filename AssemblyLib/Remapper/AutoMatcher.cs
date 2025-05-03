@@ -4,7 +4,7 @@ using AssemblyLib.Utils;
 
 namespace AssemblyLib.ReMapper;
 
-public class AutoMatcher()
+public class AutoMatcher
 {
 	private ModuleDefinition? Module { get; set; }
 	
@@ -30,18 +30,18 @@ public class AutoMatcher()
 			return;
 		}
 		
-		Logger.Log($"Found target type: {targetTypeDef!.FullName}", ConsoleColor.Green);
+		Logger.Log($"Found target type: {targetTypeDef.FullName}", ConsoleColor.Green);
 		
 		if (targetTypeDef.IsNested)
 		{
-			CandidateTypes = targetTypeDef.DeclaringType.NestedTypes
-				.Where(t => TypesToMatch.Any(token => t.Name!.ToString().StartsWith(token)))
+			CandidateTypes = targetTypeDef.DeclaringType?.NestedTypes
+				.Where(t => TypesToMatch.Any(token => t.Name!.StartsWith(token)))
 				.ToList();
 		}
 		else
 		{
 			CandidateTypes = Module.GetAllTypes()
-				.Where(t => TypesToMatch.Any(token => t.Name!.ToString().StartsWith(token)))
+				.Where(t => TypesToMatch.Any(token => t.Name!.StartsWith(token)))
 				.ToList();
 		}
 		
@@ -147,7 +147,7 @@ public class AutoMatcher()
 		parms.HasAttribute = target.CustomAttributes.Any();
 		parms.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
-		if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name!.ToString().StartsWith(t)))
+		if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name!.StartsWith(t)))
 		{
 			parms.MatchBaseClass = target.BaseType?.Name;
 		}
@@ -267,13 +267,13 @@ public class AutoMatcher()
 		
 		// Props in target that are not in candidate
 		var includeProps = target.Properties
-			.Select(s => s.Name.ToString())
-			.Except(candidate.Properties.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(candidate.Properties.Select(s => s.Name!.ToString()));
 		
 		// Props in candidate that are not in target
 		var excludeProps = candidate.Properties
-			.Select(s => s.Name.ToString())
-			.Except(target.Properties.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(target.Properties.Select(s => s.Name!.ToString()));
 		
 		props.IncludeProperties.UnionWith(includeProps);
 		props.ExcludeProperties.UnionWith(excludeProps);
@@ -303,12 +303,12 @@ public class AutoMatcher()
 			.Intersect(candidate.NestedTypes.Select(s => s.Name));
 		
 		var includeNts = target.NestedTypes
-			.Select(s => s.Name.ToString())
-			.Except(candidate.NestedTypes.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(candidate.NestedTypes.Select(s => s.Name!.ToString()));
 		
 		var excludeNts = candidate.NestedTypes
-			.Select(s => s.Name.ToString())
-			.Except(target.NestedTypes.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(target.NestedTypes.Select(s => s.Name!.ToString()));
 		
 		nt.IncludeNestedTypes.UnionWith(includeNts);
 		nt.ExcludeNestedTypes.UnionWith(excludeNts);
@@ -350,12 +350,12 @@ public class AutoMatcher()
 			.Intersect(candidate.Events.Select(s => s.Name));
 		
 		var includeEvents = target.Events
-			.Select(s => s.Name.ToString())
-			.Except(candidate.Events.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(candidate.Events.Select(s => s.Name!.ToString()));
 		
 		var excludeEvents = candidate.Events
-			.Select(s => s.Name.ToString())
-			.Except(target.Events.Select(s => s.Name.ToString()));
+			.Select(s => s.Name!.ToString())
+			.Except(target.Events.Select(s => s.Name!.ToString()));
 		
 		foreach (var include in includeEvents)
 		{
@@ -364,7 +364,7 @@ public class AutoMatcher()
 		
 		foreach (var exclude in excludeEvents)
 		{
-			events.ExcludeEvents.Add(exclude);
+			events.ExcludeEvents.Add(exclude!);
 		}
 		
 		events.EventCount = target.NestedTypes.Count;
@@ -372,27 +372,25 @@ public class AutoMatcher()
 		return commonEvents.Any() || target.Events.Count == 0;
 	}
 
-	private IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
+	private static IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
 	{
 		return type.Methods
 			.Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
 			// Don't match de-obfuscator given method names
 			.Where(m => !MethodsToIgnore.Any(mi => 
-				m.Name!.ToString().StartsWith(mi, StringComparison.OrdinalIgnoreCase) || 
-				m.Name.ToString().Contains('.')))
+				m.Name!.StartsWith(mi) || m.Name!.Contains('.')))
 			.Select(s => s.Name!.ToString());
 	}
 	
-	private IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
+	private static IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
 	{
 		return type.Fields
 			// Don't match de-obfuscator given method names
-			.Where(m => !FieldsToIgnore.Any(mi => 
-				m.Name!.ToString().StartsWith(mi, StringComparison.OrdinalIgnoreCase)))
+			.Where(m => !FieldsToIgnore.Any(mi => m.Name!.StartsWith(mi)))
 			.Select(s => s.Name!.ToString());
 	}
 	
-	private async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
+	private static async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
 	{
 		Thread.Sleep(1000);
 		

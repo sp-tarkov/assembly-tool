@@ -32,17 +32,45 @@ public class MappingController(string targetAssemblyPath)
         bool validate = false)
     {
         Logger.Stopwatch.Start();
+        OutPath = outPath;
         
+        LoadOrDeobfuscateAssembly();
+        InitializeComponents(oldAssemblyPath);
+
+        if (!RunRemapProcess(validate))
+        {
+            Context.Instance.Get<Statistics>()
+                !.DisplayStatistics(true);
+        }
+        
+        // Don't go any further during a validation
+        if (validate) return;
+
+        await PublicizeAndFixAssembly(oldAssemblyPath);
+        await StartWriteAssemblyTasks();
+    }
+
+    /// <summary>
+    /// Load or Deobfuscate the assembly
+    /// </summary>
+    private void LoadOrDeobfuscateAssembly()
+    {
         var result = AssemblyUtils.TryDeObfuscate(
             Module, _targetAssemblyPath);
-
-        OutPath = outPath;
+        
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
         
         Types.AddRange(Module.GetAllTypes());
-        
-        InitializeComponents(oldAssemblyPath);
+    }
+    
+    /// <summary>
+    /// Runs the matching process for remaps
+    /// </summary>
+    /// <param name="validate">Generates dynamic item.json remaps if false</param>
+    /// <returns>Returns true if succeeded or false if not</returns>
+    private bool RunRemapProcess(bool validate)
+    {
         if (!validate)
         {
             GenerateDynamicRemaps(_targetAssemblyPath);
@@ -53,16 +81,16 @@ public class MappingController(string targetAssemblyPath)
         
         var succeeded = Context.Instance.Get<Statistics>()
             !.DisplayFailuresAndChanges(false, true);
-        
-        // Don't go any further during a validation
-        if (validate || !succeeded)
-        {
-            Context.Instance.Get<Statistics>()
-                !.DisplayStatistics(true);
-            
-            return;
-        }
-        
+
+        return succeeded;
+    }
+
+    /// <summary>
+    /// Publicize, fix name mangled method names, create custom spt attr, and fix async attributes
+    /// </summary>
+    /// <param name="oldAssemblyPath">Old assembly path for use with spt attr</param>
+    private async Task PublicizeAndFixAssembly(string oldAssemblyPath)
+    {
         PublicizeObfuscatedTypes();
         
         Context.Instance.Get<Renamer>()!
@@ -76,8 +104,6 @@ public class MappingController(string targetAssemblyPath)
         
         Context.Instance.Get<AttributeFactory>()!
             .UpdateAsyncAttributes();
-        
-        await StartWriteAssemblyTasks();
     }
 
     /// <summary>

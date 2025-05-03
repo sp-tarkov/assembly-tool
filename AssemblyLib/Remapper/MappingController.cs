@@ -309,34 +309,12 @@ public class MappingController(string targetAssemblyPath)
     private void GenerateDynamicRemaps(string path)
     {
         Logger.Log("Generating Dynamic Remaps...");
-        
-        // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
-        // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
-        // This is also necessary because we can't access non-compile time constants with dnlib.
-        var templateMappingTypeDef = Types.SingleOrDefault(t => 
-            t.Fields.Select(f => f.Name)
-                .ToList()
-                .Contains("TypeTable"));
-        
-        if (templateMappingTypeDef is null)
-        {
-            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
-            return;
-        }
 
-        if (!path.EndsWith("cleaned.dll"))
-        {
-            path = path.Replace(".dll", "-cleaned.dll");
-        }
-        
-        var assembly = Assembly.LoadFrom(path);
-        var templateMappingClass = assembly.Modules
-            .First()
-            .GetType(templateMappingTypeDef.Name!);
-        
+        var templateMappingClass = GetTemplateMappingClass(path);
+
         if (templateMappingClass is null)
         {
-            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
+            Logger.Log("templateMappingClass is null...", ConsoleColor.Red);
             return;
         }
         
@@ -355,6 +333,46 @@ public class MappingController(string targetAssemblyPath)
         Logger.Log("Overriding Template Classes...");
         
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
+    }
+
+    /// <summary>
+    /// Gets the Template ID mapping class from the assembly as a type for reflection usage
+    /// </summary>
+    /// <param name="path">Path to load the assembly from</param>
+    /// <returns>Template mapping class type or null</returns>
+    private Type? GetTemplateMappingClass(string path)
+    {
+        // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
+        // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
+        // This is also necessary because we can't access non-compile time constants with dnlib.
+        var templateMappingTypeDef = Types.SingleOrDefault(t => 
+            t.Fields.Select(f => f.Name)
+                .ToList()
+                .Contains("TypeTable"));
+        
+        if (templateMappingTypeDef is null)
+        {
+            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
+            return null;
+        }
+
+        if (!path.EndsWith("cleaned.dll"))
+        {
+            path = path.Replace(".dll", "-cleaned.dll");
+        }
+        
+        var assembly = Assembly.LoadFrom(path);
+        var templateMappingClass = assembly.Modules
+            .First()
+            .GetType(templateMappingTypeDef.Name!);
+        
+        if (templateMappingClass is null)
+        {
+            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
+            return null;
+        }
+        
+        return templateMappingClass;
     }
     
     /// <summary>

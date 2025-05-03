@@ -217,31 +217,40 @@ public class MappingController(string targetAssemblyPath)
             if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
             
             var winner = remap.TypeCandidates.FirstOrDefault();
-        
-            if (winner is null) { return; }
-        
-            remap.TypePrimeCandidate = winner;
-            remap.OriginalTypeName = winner.Name!;
-        
-            if (_alreadyGivenNames.Contains(winner.FullName))
-            {
-                remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
-                remap.AmbiguousTypeMatch = winner.FullName;
-                remap.Succeeded = false;
-
-                Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
-                return;
-            }
             
-            _alreadyGivenNames.Add(remap.OriginalTypeName);
-
+            if (winner is null || IsAmbiguousMatch(remap, winner)) continue;
+            
             remap.Succeeded = true;
-
             remap.OriginalTypeName = winner.Name!;
             
             Logger.Log($"Match [{remap.NewTypeName}] -> [{remap.OriginalTypeName}]", ConsoleColor.Green);
             RenameAndPublicizeRemap(remap);
         }
+    }
+
+    /// <summary>
+    /// Is this match ambiguous with a previous match?
+    /// </summary>
+    /// <param name="remap">Remap to check</param>
+    /// <param name="match">Type definition to check</param>
+    /// <returns>True if ambiguous match</returns>
+    private bool IsAmbiguousMatch(RemapModel remap, TypeDefinition match)
+    {
+        remap.TypePrimeCandidate = match;
+        remap.OriginalTypeName = match.Name!;
+        
+        if (_alreadyGivenNames.Contains(match.FullName))
+        {
+            remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
+            remap.AmbiguousTypeMatch = match.FullName;
+            remap.Succeeded = false;
+
+            Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
+            return true;
+        }
+
+        _alreadyGivenNames.Add(remap.OriginalTypeName);
+        return false;
     }
 
     #endregion

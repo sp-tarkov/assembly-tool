@@ -57,7 +57,7 @@ public class AutoMatcher
 			return;
 		}
 		
-		CandidateTypes = Module.GetAllTypes()
+		CandidateTypes = Module?.GetAllTypes()
 			.Where(t => TypesToMatch.Any(token => t.Name!.StartsWith(token)))
 			.ToList();
 	}
@@ -76,20 +76,24 @@ public class AutoMatcher
 		
 		if (CandidateTypes!.Count == 1)
 		{
-			Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green, true);
-			
-			DataProvider.Remaps.Clear();
-			DataProvider.Remaps.Add(remapModel);
-			await new MappingController(assemblyPath).Run(string.Empty, validate: true);
-
-			if (remapModel.Succeeded)
-			{
-				await ProcessEndQuestions(remapModel, assemblyPath, oldAssemblyPath);
-				return;
-			}
+			await RunTest(remapModel, assemblyPath, oldAssemblyPath);
 		}
 		
 		Logger.Log("Could not find a match... :(", ConsoleColor.Red);
+	}
+
+	private static async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
+	{
+		Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green, true);
+			
+		DataProvider.Remaps.Clear();
+		DataProvider.Remaps.Add(remapModel);
+		await new MappingController(assemblyPath).Run(string.Empty, validate: true);
+
+		if (remapModel.Succeeded)
+		{
+			await ProcessEndQuestions(remapModel, assemblyPath, oldAssemblyPath);
+		}
 	}
 	
 	private static async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
@@ -97,36 +101,48 @@ public class AutoMatcher
 		Thread.Sleep(1000);
 		
 		Logger.Log("Add remap to existing list?.. (y/n)", ConsoleColor.Yellow);
-		var resp = Console.ReadLine();
+		var resp = Console.ReadLine()?.ToLower();
 
-		if (resp == "y" || resp == "yes" || resp == "Y")
-		{
-			DataProvider.Remaps.Clear();
-			DataProvider.LoadMappingFile();
-			
-			if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
-			{
-				Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
-				return;
-			}
-			
-			DataProvider.Remaps.Add(remapModel);
-			DataProvider.UpdateMapping(false, true);
-		}
+		if (string.IsNullOrEmpty(resp)) return;
+		
+		AddNewMappingToList(resp, remapModel);
 		
 		Logger.Log("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
-		var resp2 = Console.ReadLine();
+		var resp2 = Console.ReadLine()?.ToLower();
 		
-		if (resp2 == "y" || resp2 == "yes" || resp2 == "Y")
-		{
-			var outPath = Path.GetDirectoryName(assemblyPath);
+		if (string.IsNullOrEmpty(resp2)) return;
+		
+		await RunMappingProcess(resp2, assemblyPath, oldAssemblyPath);
+	}
 
-			if (outPath is null)
-			{
-				throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
-			}
+	private static void AddNewMappingToList(string response, RemapModel remapModel)
+	{
+		if (response != "y" && response != "yes") return;
+		
+		DataProvider.Remaps.Clear();
+		DataProvider.LoadMappingFile();
 			
-			await new MappingController(assemblyPath).Run(oldAssemblyPath, outPath);
+		if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
+		{
+			Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
+			return;
 		}
+			
+		DataProvider.Remaps.Add(remapModel);
+		DataProvider.UpdateMapping(false, true);
+	}
+
+	private static async Task RunMappingProcess(string response, string assemblyPath, string oldAssemblyPath)
+	{
+		if (response != "y" && response != "yes") return;
+		
+		var outPath = Path.GetDirectoryName(assemblyPath);
+
+		if (outPath is null)
+		{
+			throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
+		}
+			
+		await new MappingController(assemblyPath).Run(oldAssemblyPath, outPath);
 	}
 }

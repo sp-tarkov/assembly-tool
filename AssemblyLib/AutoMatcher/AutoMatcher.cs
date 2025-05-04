@@ -77,6 +77,7 @@ public class AutoMatcher
 		if (CandidateTypes!.Count == 1)
 		{
 			await RunTest(remapModel, assemblyPath, oldAssemblyPath);
+			return;
 		}
 		
 		Logger.Log("Could not find a match... :(", ConsoleColor.Red);

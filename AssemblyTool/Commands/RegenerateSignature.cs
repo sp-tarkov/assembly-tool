@@ -1,6 +1,6 @@
-﻿using CliFx.Attributes;
+﻿using AssemblyLib.AutoMatcher;
+using CliFx.Attributes;
 using CliFx.Infrastructure;
-using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
 using AssemblyTool.Utils;
 

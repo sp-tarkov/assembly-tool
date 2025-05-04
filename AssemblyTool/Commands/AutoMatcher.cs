@@ -1,9 +1,7 @@
-﻿using CliFx;
+﻿using AssemblyLib.AutoMatcher;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using AssemblyLib.Models;
-using AssemblyLib.ReMapper;
-using AssemblyLib.Utils;
 using AssemblyTool.Utils;
 
 namespace AssemblyTool.Commands;

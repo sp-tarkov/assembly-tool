@@ -15,11 +15,6 @@ internal sealed class Context
 	}
 	private static Context? _instance;
 	
-	private Context()
-	{
-		_instance = this;
-	}
-
 	public bool RegisterComponent<T>(object instance) where T : IComponent
 	{
 		return _contexts.TryAdd(typeof(T), instance);

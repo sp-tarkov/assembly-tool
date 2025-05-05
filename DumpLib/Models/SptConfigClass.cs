@@ -23,6 +23,10 @@
         public bool QuickDumpEnabled { get; set; }
         
         public SptTimings SptTimings { get; set; }
+        
+        public bool EnableCustomDumpPath { get; set; }
+        
+        public string CustomDumpPath { get; set; }
     }
 
     public class SptTimings

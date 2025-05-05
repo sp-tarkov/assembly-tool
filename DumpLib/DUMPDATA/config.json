@@ -22,5 +22,7 @@
 		"AllIterationDelayMs": 100000,
 		"RetriesBeforeQuit": 0,
 		"RetryDelayMs": 30000
-	}
+	},
+	"EnableCustomDumpPath": false,
+	"CustomDumpPath": "C:\\Example\\Path\\"
 }

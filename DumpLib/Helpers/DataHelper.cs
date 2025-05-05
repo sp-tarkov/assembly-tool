@@ -22,6 +22,7 @@ public static class DataHelper
 
     public static SptConfigClass ConfigSettings = GetSptConfig();
 
+    public static string DumpingPath = GetDumpPath();
     public static bool GotBackend = false;
     public static object WaveSettings = null;
     public static object LocalRaidSettings = null;
@@ -35,9 +36,9 @@ public static class DataHelper
     public static int ErrorCounter = 0;
 
     /// <summary>
-    ///
+    /// Reads and deserializes the SPT configuration from config.json file
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Deserialized SPT configuration object</returns>
     public static SptConfigClass GetSptConfig()
     {
         try
@@ -53,7 +54,36 @@ public static class DataHelper
             throw;
         }
     }
+    
+    
+    /// <summary>
+    /// Gets the path where dump files should be stored
+    /// </summary>
+    /// <returns>Path to dump directory, either custom or default</returns>
+    public static string GetDumpPath()
+    {
+        try
+        {
+            if (ConfigSettings == null || !ConfigSettings.EnableCustomDumpPath || string.IsNullOrEmpty(ConfigSettings.CustomDumpPath))
+            {
+                Utils.LogError("CustomDumpPath is empty defaulting to normal pathing");
+                return (Directory.GetCurrentDirectory() + "\\HTTP_DATA\\").Replace("\\\\", "\\");
+            }
+            
+            return ConfigSettings.CustomDumpPath;
+        }
+        catch (Exception e)
+        {
+            Utils.LogError("GetCustomDumpPath");
+            Utils.LogError(e);
+            throw;
+        }
+    }
 
+    /// <summary>
+    /// Loads and deserializes raid configuration settings from raidConfig.json
+    /// </summary>
+    /// <returns>Deserialized raid configuration object with location settings</returns>
     public static object GetRaidConfigSettings()
     {
         try
@@ -72,6 +102,10 @@ public static class DataHelper
         }
     }
 
+    /// <summary>
+    /// Loads and deserializes end raid settings from endRaid.json
+    /// </summary>
+    /// <returns>Deserialized end raid configuration object</returns>
     public static object GetEndRaidClass()
     {
         try
@@ -87,6 +121,10 @@ public static class DataHelper
         }
     }
 
+    /// <summary>
+    /// Loads and deserializes local raid settings from raidSettings.json
+    /// </summary>
+    /// <returns>Deserialized local raid settings object</returns>
     public static object GetLocalRaidSettings()
     {
         try
@@ -102,6 +140,9 @@ public static class DataHelper
         }
     }
 
+    /// <summary>
+    /// Resets all static variables to their default values
+    /// </summary>
     public static void ClearVariables()
     {
         GotBackend = false;

@@ -1,7 +1,5 @@
-﻿using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using DumpLib.Helpers;
-using DumpLib.Models;
 
 namespace DumpLib
 {
@@ -159,6 +157,8 @@ namespace DumpLib
         {
             if (!DataHelper.GotBackend)
             {
+                // get dumping path
+                DataHelper.DumpingPath = DataHelper.GetDumpPath();
                 // get client backend session
                 DataHelper.Session = ReflectionHelper.CreateBackendSessionAndTarkovApp(out DataHelper.TarkovApp);
                 // get field for MainMenuController
@@ -181,8 +181,7 @@ namespace DumpLib
                 DataHelper.GotBackend = true;
             }
         }
-
-
+        
         /// <summary>
         /// Method to log Requests and Responses
         /// </summary>
@@ -193,14 +192,14 @@ namespace DumpLib
             try
             {
                 var uri = new Uri((string)requestType.GetType().GetMethod("get_MainURLFull").Invoke(requestType, null));
-                var path = (Directory.GetCurrentDirectory() + "\\HTTP_DATA\\").Replace("\\\\", "\\");
+                var path = DataHelper.DumpingPath;
                 var file = uri.LocalPath.Replace("/", ".").Remove(0, 1);
                 var time = DateTime.Now.ToString(DataHelper.ConfigSettings.DateTimeFormat);
 
                 if (Directory.CreateDirectory(path).Exists)
                 {
                     var reqParams = requestType.GetType().GetField("Params").GetValue(requestType);
-                    if (Directory.CreateDirectory($@"{path}req.{file}").Exists)
+                    if (Directory.CreateDirectory($"{path}req.{file}").Exists)
                     {
                         if (reqParams != null)
                         {

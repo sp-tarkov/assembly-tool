@@ -1,4 +1,5 @@
-﻿using AsmResolver.DotNet;
+﻿using AsmResolver;
+using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 
@@ -25,14 +26,7 @@ public class MethodFilters
 		
         // Target has a different number of methods
         if (target.Methods.Count != candidate.Methods.Count) return false;
-		
-        var commonMethods = target.Methods
-            .Where(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false })
-            .Select(s => s.Name)
-            .Intersect(candidate.Methods
-                .Where(m => !m.IsConstructor && m is { IsGetMethod: false, IsSetMethod: false })
-                .Select(s => s.Name));
-		
+        
         // Methods in target that are not in candidate
         var includeMethods = GetFilteredMethodNamesInType(target)
             .Except(GetFilteredMethodNamesInType(candidate));
@@ -56,9 +50,15 @@ public class MethodFilters
         }
 		
         // True if we have common methods, or all methods are constructors
-        return commonMethods.Any() || target.Methods.All(m => m.IsConstructor);
+        return HasCommonMethods(target, candidate) || target.Methods.All(m => m.IsConstructor);
     }
     
+    /// <summary>
+    /// Filter method names to those we can use for matching, do not include interface pre-appended method names,
+    /// or any that are de-obfuscator given 
+    /// </summary>
+    /// <param name="type">Type to clean methods on</param>
+    /// <returns>A collection of cleaned method names</returns>
     private static IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
     {
         return type.Methods
@@ -67,5 +67,26 @@ public class MethodFilters
             .Where(m => !MethodsToIgnore.Any(mi => 
                 m.Name!.StartsWith(mi) || m.Name!.Contains('.')))
             .Select(s => s.Name!.ToString());
+    }
+
+    /// <summary>
+    /// Produce an intersecting set of methods by name and return if any are common
+    /// </summary>
+    /// <param name="target">Target type</param>
+    /// <param name="candidate">Candidate type</param>
+    /// <returns>True if there are common methods</returns>
+    private static bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
+    {
+        return target.Methods
+                // Get target methods that are not a constructor a get, or set method
+            .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
+            .Select(s => s.Name)
+                // Produce a set of method names that exist in both the target and the candidate
+            .Intersect(candidate.Methods
+                // Get candidate methods that are not a constructor a get, or set method
+                .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
+                .Select(s => s.Name))
+                // Is there any common methods?
+            .Any();
     }
 }

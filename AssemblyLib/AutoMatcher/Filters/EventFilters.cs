@@ -26,22 +26,16 @@ public class EventFilters
 		
         var includeEvents = target.Events
             .Select(s => s.Name!.ToString())
-            .Except(candidate.Events.Select(s => s.Name!.ToString()));
+            .Except(candidate.Events.Select(s => s.Name!.ToString()))
+            .ToHashSet();
 		
         var excludeEvents = candidate.Events
             .Select(s => s.Name!.ToString())
-            .Except(target.Events.Select(s => s.Name!.ToString()));
-		
-        foreach (var include in includeEvents)
-        {
-            events.IncludeEvents.Add(include);
-        }
-		
-        foreach (var exclude in excludeEvents)
-        {
-            events.ExcludeEvents.Add(exclude!);
-        }
-		
+            .Except(target.Events.Select(s => s.Name!.ToString()))
+            .ToHashSet();
+        
+        events.IncludeEvents.UnionWith(includeEvents);
+        events.ExcludeEvents.UnionWith(excludeEvents);
         events.EventCount = target.NestedTypes.Count;
 		
         return commonEvents.Any() || target.Events.Count == 0;

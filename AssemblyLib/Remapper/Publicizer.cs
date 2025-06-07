@@ -41,6 +41,13 @@ internal sealed class Publicizer(Statistics stats)
         {
             Logger.Log($"Publicizing Property [{property.DeclaringType}::{property.Name}]", 
                 diskOnly: true);
+
+            // TODO: This is hacky but works for now, find a better solution. Need to check MD tokens to build associations,
+            // this is a problem for later me.
+            
+            // NOTE: Ignore properties that are interface impls that are private.
+            // This causes issues with json deserialization in the server.
+            if (property.Name?.Contains(".") ?? false) continue;
             
             if (property.GetMethod != null) PublicizeMethod(property.GetMethod);
             if (property.SetMethod != null) PublicizeMethod(property.SetMethod);
@@ -57,7 +64,7 @@ internal sealed class Publicizer(Statistics stats)
         
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
-
+        
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
 

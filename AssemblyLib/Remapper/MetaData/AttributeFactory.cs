@@ -131,6 +131,13 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         
         foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
         {
+            if (type is null)
+            {
+                Logger.Log("Type was null, skipping ...");
+
+                continue;
+            }
+
             if (type.NestedTypes.Count == 0) continue;
             
             foreach (var method in type.Methods)

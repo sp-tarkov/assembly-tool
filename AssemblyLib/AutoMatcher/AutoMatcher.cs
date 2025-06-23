@@ -5,18 +5,22 @@ using AssemblyLib.Utils;
 
 namespace AssemblyLib.AutoMatcher;
 
-public class AutoMatcher
+public class AutoMatcher(bool isRegen)
 {
 	private ModuleDefinition? Module { get; set; }
 	private List<TypeDefinition>? CandidateTypes { get; set; }
 	
 	private static readonly List<string> TypesToMatch = DataProvider.Settings.TypeNamesToMatch;
 	
+	private string? _newTypeName;
+	
 	public async Task AutoMatch(string assemblyPath, string oldAssemblyPath, string oldTypeName, string newTypeName)
 	{
 		var result = AssemblyUtils.TryDeObfuscate(
 			DataProvider.LoadModule(assemblyPath), assemblyPath);
 
+		_newTypeName = newTypeName;
+		
 		assemblyPath = result.Item1;
 		Module = result.Item2;
 		
@@ -83,7 +87,7 @@ public class AutoMatcher
 		Logger.Log("Could not find a match... :(", ConsoleColor.Red);
 	}
 
-	private static async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
+	private async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
 	{
 		Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green, true);
 			
@@ -97,7 +101,7 @@ public class AutoMatcher
 		}
 	}
 	
-	private static async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
+	private async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath)
 	{
 		Thread.Sleep(1000);
 		
@@ -116,13 +120,20 @@ public class AutoMatcher
 		await RunMappingProcess(resp2, assemblyPath, oldAssemblyPath);
 	}
 
-	private static void AddNewMappingToList(string response, RemapModel remapModel)
+	private void AddNewMappingToList(string response, RemapModel remapModel)
 	{
 		if (response != "y" && response != "yes") return;
 		
 		DataProvider.Remaps.Clear();
 		DataProvider.LoadMappingFile();
-			
+
+		// Remove the remap so we can re-add it
+		if (isRegen && _newTypeName is not null)
+		{
+			var remap = DataProvider.Remaps.First(r => r.NewTypeName == _newTypeName);
+			DataProvider.Remaps.Remove(remap);
+		}
+		
 		if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
 		{
 			Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);

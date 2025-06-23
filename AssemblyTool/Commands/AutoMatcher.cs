@@ -24,6 +24,6 @@ public class AutoMatchCommand : ICommand
 	public async ValueTask ExecuteAsync(IConsole console)
 	{
 		Debugger.TryWaitForDebuggerAttach();
-		await new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
+		await new AutoMatcher(false).AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
 	}
 }

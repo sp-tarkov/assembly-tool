@@ -33,6 +33,6 @@ public class RegenerateSignature : CliFx.ICommand
 		    return;
 	    }
 	    
-	    await new AutoMatcher().AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
+	    await new AutoMatcher(true).AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
     }
 }

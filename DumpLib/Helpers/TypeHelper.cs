@@ -294,7 +294,7 @@ public static class TypeHelper
                 var fields = x.GetFields();
                 var methods = x.GetMethods();
 
-                return fields.Length == 1 && methods.Length == 17 &&
+                return fields.Length == 2 && methods.Length == 23 &&
                        !x.IsInterface && methods.Any(m => m.Name == "IsItemKnown") &&
                        methods.Any(m => m.Name == "TryFindChangedContainer") &&
                        methods.Any(m => m.Name == "GetObserverItemState");

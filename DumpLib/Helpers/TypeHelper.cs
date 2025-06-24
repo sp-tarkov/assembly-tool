@@ -3,7 +3,7 @@
 public static class TypeHelper
 {
     /// <summary>
-    /// Method to get Singleton<> type from Comfort.dll
+    /// Method to get Singleton type from Comfort.dll
     /// </summary>
     /// <returns>Type</returns>
     public static Type GetSingletonType()
@@ -21,7 +21,7 @@ public static class TypeHelper
     }
 
     /// <summary>
-    /// Method to get ClientApplication<> type from EFT's assembly
+    /// Method to get ClientApplication type from EFT's assembly
     /// </summary>
     /// <returns>Type</returns>
     public static Type GetClientApplicationType()
@@ -264,15 +264,15 @@ public static class TypeHelper
                 var constructors = x.GetConstructors();
                 var properties = x.GetProperties();
                 var methods = x.GetMethods();
-            
-                return fields.Length == 26 
-                       && constructors.Length == 2 
-                       && properties.Length == 0 
+
+                return fields.Length == 26
+                       && constructors.Length == 2
+                       && properties.Length == 0
                        && methods.Length == 4
-                       && fields.Any(f => f.Name == "Id") 
-                       && fields.Any(f => f.Name == "AccountId") 
-                       && fields.Any(f => f.Name == "PetId") 
-                       && fields.Any(f => f.Name == "KarmaValue") 
+                       && fields.Any(f => f.Name == "Id")
+                       && fields.Any(f => f.Name == "AccountId")
+                       && fields.Any(f => f.Name == "PetId")
+                       && fields.Any(f => f.Name == "KarmaValue")
                        && fields.Any(f => f.Name == "Customization")
                        && fields.Any(f => f.Name == "Encyclopedia");
             });
@@ -293,9 +293,11 @@ public static class TypeHelper
             {
                 var fields = x.GetFields();
                 var methods = x.GetMethods();
-
-                return fields.Length == 2 && methods.Length == 23 &&
-                       !x.IsInterface && methods.Any(m => m.Name == "IsItemKnown") &&
+            
+                return fields.Length == 1 &&
+                       methods.Length == 20 &&
+                       !x.IsInterface &&
+                       methods.Any(m => m.Name == "IsItemKnown") &&
                        methods.Any(m => m.Name == "TryFindChangedContainer") &&
                        methods.Any(m => m.Name == "GetObserverItemState");
             });

@@ -34,6 +34,17 @@ public class AutoMatcher(
 			dataProvider.LoadModule(assemblyPath), assemblyPath);
 
 		TypesToMatch = dataProvider.Settings.TypeNamesToMatch;
+
+		if (isRegen)
+		{
+			var target = dataProvider.GetRemaps().SingleOrDefault(r => r.NewTypeName == newTypeName);
+
+			if (target is null)
+			{
+				Log.Error("Could not find new type name {name}", newTypeName);
+				return;
+			}
+		}
 		
 		_newTypeName = newTypeName;
 		
@@ -124,8 +135,9 @@ public class AutoMatcher(
 	{
 		Log.Information("Narrowed candidates down to one. Testing generated model...");
 			
-		DataProvider.Remaps.Clear();
-		DataProvider.Remaps.Add(remapModel);
+		dataProvider.ClearMappings();
+		dataProvider.AddMapping(remapModel);
+		
 		await mappingController.Run(assemblyPath, string.Empty, validate: true);
 
 		if (remapModel.Succeeded)
@@ -166,17 +178,19 @@ public class AutoMatcher(
 	{
 		if (response != "y" && response != "yes") return;
 		
-		DataProvider.Remaps.Clear();
+		dataProvider.ClearMappings();
 		dataProvider.LoadMappingFile();
 
+		var remaps = dataProvider.GetRemaps();
+		
 		// Remove the remap so we can re-add it
 		if (isRegen && _newTypeName is not null)
 		{
-			var remap = DataProvider.Remaps.First(r => r.NewTypeName == _newTypeName);
-			DataProvider.Remaps.Remove(remap);
+			var remap = remaps.First(r => r.NewTypeName == _newTypeName);
+			remaps.Remove(remap);
 		}
 		
-		if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
+		if (remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
 		{
 			Log.Information(
 				"Ambiguous new type names found for {RemapModelNewTypeName}. Please pick a different name.", 
@@ -185,8 +199,8 @@ public class AutoMatcher(
 			return;
 		}
 			
-		DataProvider.Remaps.Add(remapModel);
-		dataProvider.UpdateMapping(false, true);
+		remaps.Add(remapModel);
+		dataProvider.UpdateMappingFile(false, true);
 	}
 
 	private async Task RunMappingProcess(

@@ -15,7 +15,10 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper.MetaData;
 
 [Injectable]
-public class AttributeFactory(DiffCompare diffCompare)
+public class AttributeFactory(
+    DataProvider dataProvider,
+    DiffCompare diffCompare
+    )
 {
     private ICustomAttributeType? _sptRenamedDef;
     
@@ -77,9 +80,9 @@ public class AttributeFactory(DiffCompare diffCompare)
 
     private async Task AddMetaDataAttributeToTypes(ModuleDefinition module)
     {
-        var attrTasks = new List<Task>(DataProvider.Remaps.Count);
+        var attrTasks = new List<Task>(dataProvider.RemapCount());
         
-        foreach (var mapping in DataProvider.Remaps)
+        foreach (var mapping in dataProvider.GetRemaps())
         {
             attrTasks.Add(
                 Task.Factory.StartNew(() =>
@@ -122,7 +125,7 @@ public class AttributeFactory(DiffCompare diffCompare)
     
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
+        foreach (var type in dataProvider.GetRemaps().Select(r => r.TypePrimeCandidate))
         {
             if (type is null)
             {

@@ -26,14 +26,6 @@ public class RegenerateSignature : CliFx.ICommand
     {
 	    Debugger.TryWaitForDebuggerAttach();
 	    
-	    var target = DataProvider.Remaps.SingleOrDefault(r => r.NewTypeName == NewTypeName);
-
-	    if (target is null)
-	    {
-		    await console.Output.WriteLineAsync("Could not find signature to regenerate");
-		    return;
-	    }
-
 	    var app = new App();
 	    await app.RunAutoMatcher(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName, true);
     }

@@ -127,7 +127,7 @@ public class MappingController(
     {
         Log.Information("Creating Mapping Table...");
         
-        foreach (var remap in DataProvider.Remaps)
+        foreach (var remap in dataProvider.GetRemaps())
         {
             MatchRemap(remap);
         }
@@ -199,8 +199,8 @@ public class MappingController(
     {
         Log.Information("Renaming and Publicizing Remaps...");
         
-        var tasks = new List<Task>(DataProvider.Remaps.Count);
-        foreach (var remap in DataProvider.Remaps)
+        var tasks = new List<Task>(dataProvider.RemapCount());
+        foreach (var remap in dataProvider.GetRemaps())
         {
             tasks.Add(Task.Factory.StartNew(() =>
             {
@@ -446,7 +446,7 @@ public class MappingController(
                 );
             }
             
-            DataProvider.Remaps.Add(remap);
+            dataProvider.AddMapping(remap);
         }
     }
     

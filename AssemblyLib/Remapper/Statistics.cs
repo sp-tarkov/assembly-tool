@@ -62,7 +62,7 @@ public sealed class Statistics(
 	{
 		Log.Information("\n--------------------------------------------------");
 		
-		foreach (var remap in DataProvider.Remaps)
+		foreach (var remap in dataProvider.GetRemaps())
 		{
 			if (remap.Succeeded is false) { continue; }
 			
@@ -91,7 +91,7 @@ public sealed class Statistics(
 		var failures = 0;
 		var changes = 0;
 		
-		foreach (var remap in DataProvider.Remaps)
+		foreach (var remap in dataProvider.GetRemaps())
 		{
 			switch (remap.Succeeded)
 			{
@@ -164,7 +164,7 @@ public sealed class Statistics(
 		Log.Information("Assembly written to `{OutPath}`", outPath);
 		Log.Information("Hollowed written to `{HollowedPath}`", _hollowedPath);
 		
-		dataProvider.UpdateMapping();
+		dataProvider.UpdateMappingFile();
 		
 		Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
 	}

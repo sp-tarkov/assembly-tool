@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Concurrent;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
@@ -21,7 +22,9 @@ public class DataProvider
 
     public Settings Settings { get; }
 
-    public static List<RemapModel> Remaps { get; } = [];
+    private readonly List<RemapModel> _remaps = [];
+    private readonly Lock _remapLock = new ();
+    
     public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
@@ -49,7 +52,40 @@ public class DataProvider
         return module;
     }
 
-    public void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
+    public List<RemapModel> GetRemaps()
+    {
+        return _remaps;
+    }
+    
+    public int RemapCount() => _remaps.Count;
+    
+    public void AddMapping(RemapModel remap)
+    {
+        lock (_remapLock)
+        {
+            _remaps.Add(remap);
+        }
+    }
+
+    public bool RemoveMapping(RemapModel remap)
+    {
+        lock (_remapLock)
+        {
+            return _remaps.Remove(remap);
+        }
+    }
+    
+    public void ClearMappings()
+    {
+        lock (_remapLock)
+        {
+            _remaps.Clear();
+        }
+    }
+    
+    
+
+    public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(MappingNewPath))
         {
@@ -64,7 +100,7 @@ public class DataProvider
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
-        var jsonText = JsonSerializer.Serialize(Remaps, settings);
+        var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
         var path = isAutoMatch
             ? MappingPath
@@ -91,14 +127,14 @@ public class DataProvider
         };
 
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
-        Remaps.AddRange(remaps!);
+        _remaps.AddRange(remaps!);
 
         ValidateMappings();
     }
 
     private void ValidateMappings()
     {
-        var duplicateGroups = Remaps
+        var duplicateGroups = _remaps
             .GroupBy(m => m.NewTypeName)
             .Where(g => g.Count() > 1)
             .ToList();

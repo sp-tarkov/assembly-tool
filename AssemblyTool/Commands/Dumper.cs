@@ -1,4 +1,5 @@
-﻿using CliFx;
+﻿using AssemblyLib;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using AssemblyLib.Utils;
@@ -18,14 +19,10 @@ public class Dumper : ICommand
         Debugger.TryWaitForDebuggerAttach();
 
         Logger.Log("Creating DumperClass...");
-
-
-        var dumper = new DumperClass(ManagedDirectory);
-        dumper.CreateDumpFolders();
-        dumper.CreateDumper();
-        dumper.CopyFiles();
-        dumper.ZipFiles();
-
+        
+        var app = new App();
+        app.CreateDumper(ManagedDirectory);
+        
         Logger.Log("Complete", ConsoleColor.Green);
 
         return default;

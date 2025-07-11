@@ -2,9 +2,11 @@
 using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.Filters;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
+[Injectable]
 public class TypeFilters
 {
     public bool DoesTypePassFilters(RemapModel mapping, ref IEnumerable<TypeDefinition> types)

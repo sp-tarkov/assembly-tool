@@ -1,4 +1,5 @@
-﻿using AssemblyLib.AutoMatcher;
+﻿using AssemblyLib;
+using AssemblyLib.AutoMatcher;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
@@ -24,6 +25,8 @@ public class AutoMatchCommand : ICommand
 	public async ValueTask ExecuteAsync(IConsole console)
 	{
 		Debugger.TryWaitForDebuggerAttach();
-		await new AutoMatcher(false).AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
+		
+		var app = new App();
+		await app.RunAutoMatcher(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName, false);
 	}
 }

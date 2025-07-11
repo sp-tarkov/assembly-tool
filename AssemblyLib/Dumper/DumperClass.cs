@@ -5,10 +5,14 @@ using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Dumper;
 
-public class DumperClass
+[Injectable(InjectionType.Singleton)]
+public class DumperClass(
+    AssemblyUtils assemblyUtils
+    )
 {
     private ModuleDefinition? _gameModule { get; set; }
     private ModuleDefinition? _checkerModule { get; set; }
@@ -23,8 +27,10 @@ public class DumperClass
     private List<TypeDefinition>? _checkerTypes { get; set; }
     private ReferenceImporter? _gameImporter { get; set; }
     private ReferenceImporter? _checkImporter { get; set; }
-
-    public DumperClass(string managedPath)
+    
+    public void LoadModule(
+        string managedPath
+        )
     {
         _managedPath = managedPath;
         _assemblyPath = Path.Combine(managedPath, "Assembly-CSharp.dll");
@@ -51,8 +57,8 @@ public class DumperClass
         {
             Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
         }
-
-        var kvp = AssemblyUtils.TryDeObfuscate(DataProvider.LoadModule(_assemblyPath), _assemblyPath);
+        
+        var kvp = assemblyUtils.TryDeObfuscate(DataProvider.LoadModule(_assemblyPath), _assemblyPath);
         _assemblyPath = kvp.Item1;
         _gameModule = kvp.Item2;
         _checkerModule = DataProvider.LoadModule(_fileCheckerPath);

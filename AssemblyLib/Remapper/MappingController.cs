@@ -17,6 +17,8 @@ public class MappingController(
     Statistics statistics, 
     Renamer renamer,
     Publicizer publicizer,
+    TypeFilters typeFilters,
+    AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory
     )
 {
@@ -63,7 +65,7 @@ public class MappingController(
     /// </summary>
     private void LoadOrDeobfuscateAssembly()
     {
-        var result = AssemblyUtils.TryDeObfuscate(
+        var result = assemblyUtils.TryDeObfuscate(
             Module, _targetAssemblyPath);
         
         _targetAssemblyPath = result.Item1;
@@ -146,9 +148,7 @@ public class MappingController(
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
-        var filters = new TypeFilters();
-        
-        if (!filters.DoesTypePassFilters(mapping, ref types)) return;
+        if (!typeFilters.DoesTypePassFilters(mapping, ref types)) return;
         
         mapping.TypeCandidates.UnionWith(types);
     }

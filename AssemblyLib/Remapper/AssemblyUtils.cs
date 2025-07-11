@@ -1,11 +1,13 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
-internal static class AssemblyUtils
+[Injectable]
+public class AssemblyUtils
 {
-	public static (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
+	public (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
 	{
 		if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
 		{

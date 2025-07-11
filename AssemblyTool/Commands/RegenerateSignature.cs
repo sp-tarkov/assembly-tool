@@ -1,4 +1,5 @@
-﻿using AssemblyLib.AutoMatcher;
+﻿using AssemblyLib;
+using AssemblyLib.AutoMatcher;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using AssemblyLib.Utils;
@@ -32,7 +33,8 @@ public class RegenerateSignature : CliFx.ICommand
 		    Logger.Log("Could not find signature to regenerate", ConsoleColor.Red);
 		    return;
 	    }
-	    
-	    await new AutoMatcher(true).AutoMatch(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName);
+
+	    var app = new App();
+	    await app.RunAutoMatcher(AssemblyPath, OldAssemblyPath!, OldTypeName, NewTypeName, true);
     }
 }

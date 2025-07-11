@@ -42,7 +42,7 @@ public class MappingController(
         string outPath = "",
         bool validate = false)
     {
-        //Logger.Stopwatch.Start();
+        statistics.Stopwatch.Start();
         OutPath = outPath;
         _targetAssemblyPath = targetAssemblyPath;
         
@@ -102,7 +102,7 @@ public class MappingController(
     /// <param name="oldAssemblyPath">Old assembly path for use with spt attr</param>
     private async Task PublicizeAndFixAssembly(string? oldAssemblyPath)
     {
-        PublicizeObfuscatedTypes();
+        await PublicizeObfuscatedTypes();
         
         renamer.FixInterfaceMangledMethodNames(Module!);
         
@@ -263,22 +263,30 @@ public class MappingController(
         FixPublicizedFieldNamesOnType(fieldsToFix);
     }
 
-    private void PublicizeObfuscatedTypes()
+    private async Task PublicizeObfuscatedTypes()
     {
         Log.Information("Publicizing Obfuscated Types...");
         
         // Filter down remaining types to ones that we have not remapped.
         // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
-        var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!));
+        var obfuscatedTypes = Types
+            .Where(t => !_alreadyGivenNames.Contains(t.Name!))
+            .ToList();
         
+        var tasks = new List<Task>(obfuscatedTypes.Count);
         foreach (var type in obfuscatedTypes)
         {
-            var fieldsToFix = publicizer.PublicizeType(type);
+            tasks.Add(Task.Factory.StartNew(() =>
+            {
+                var fieldsToFix = publicizer.PublicizeType(type);
             
-            if (fieldsToFix.Count == 0) continue;
+                if (fieldsToFix.Count == 0) return;
             
-            FixPublicizedFieldNamesOnType(fieldsToFix);
+                FixPublicizedFieldNamesOnType(fieldsToFix);
+            }));
         }
+        
+        await Task.WhenAll(tasks);
     }
 
     private void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)

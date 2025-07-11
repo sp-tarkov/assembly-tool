@@ -1,4 +1,5 @@
-﻿using AssemblyLib.Enums;
+﻿using System.Diagnostics;
+using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using Serilog;
@@ -21,6 +22,8 @@ public sealed class Statistics(
 	public int MethodRenamedCount;
 	
 	private string _hollowedPath = string.Empty;
+	
+	public readonly Stopwatch Stopwatch = new();
 	
 	public void DisplayStatistics(bool validate = false, string hollowedPath = "", string outPath = "")
 	{
@@ -79,7 +82,7 @@ public sealed class Statistics(
 
 		foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
 		{
-			Log.Warning("{Utf8String}", type.Name);
+			Log.Warning("{Utf8String}", type.Name?.ToString());
 		}
 	}
 
@@ -162,6 +165,6 @@ public sealed class Statistics(
 		
 		dataProvider.UpdateMapping();
 		
-		//Log.Information($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
+		Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
 	}
 }

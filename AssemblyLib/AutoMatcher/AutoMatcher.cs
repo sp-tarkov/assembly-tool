@@ -3,6 +3,7 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher;
@@ -43,13 +44,17 @@ public class AutoMatcher(
 		
 		if (targetTypeDef is null)
 		{
-			Logger.Log($"Could not target type: {oldTypeName}", ConsoleColor.Red);
+			Log.Error("Could not target type: {OldTypeName}", oldTypeName);
 			return;
 		}
-		Logger.Log($"Found target type: {targetTypeDef.FullName}", ConsoleColor.Green);
+		Log.Information("Found target type: {FullName}", targetTypeDef.FullName);
 		
 		GetCandidateTypes(targetTypeDef);
-		Logger.Log($"Found {CandidateTypes?.Count ?? 0} potential candidates: {targetTypeDef.FullName}", ConsoleColor.Green);
+		Log.Information(
+			"Found {CandidateTypesCount} potential candidates: {FullName}", 
+			CandidateTypes?.Count ?? 0, 
+			targetTypeDef.FullName
+			);
 		
 		var remapModel = new RemapModel()
 		{
@@ -93,7 +98,7 @@ public class AutoMatcher(
 		bool isRegen
 		)
 	{
-		Logger.Log($"Starting Candidates: {CandidateTypes!.Count}", ConsoleColor.Yellow);
+		Log.Information("Starting Candidates: {Count}", CandidateTypes!.Count);
 		
 		// Purpose of this pass is to eliminate any types that have no matching parameters
 		foreach (var candidate in CandidateTypes!.ToList())
@@ -107,7 +112,7 @@ public class AutoMatcher(
 			return;
 		}
 		
-		Logger.Log("Could not find a match... :(", ConsoleColor.Red);
+		Log.Error("Could not find a match... :(");
 	}
 
 	private async Task RunTest(
@@ -117,7 +122,7 @@ public class AutoMatcher(
 		bool isRegen
 		)
 	{
-		Logger.Log("Narrowed candidates down to one. Testing generated model...", ConsoleColor.Green, true);
+		Log.Information("Narrowed candidates down to one. Testing generated model...");
 			
 		DataProvider.Remaps.Clear();
 		DataProvider.Remaps.Add(remapModel);
@@ -138,14 +143,14 @@ public class AutoMatcher(
 	{
 		Thread.Sleep(1000);
 		
-		Logger.Log("Add remap to existing list?.. (y/n)", ConsoleColor.Yellow);
+		Log.Information("Add remap to existing list?.. (y/n)");
 		var resp = Console.ReadLine()?.ToLower();
 
 		if (string.IsNullOrEmpty(resp)) return;
 		
 		AddNewMappingToList(resp, remapModel, isRegen);
 		
-		Logger.Log("Would you like to run the remap process?... (y/n)", ConsoleColor.Yellow);
+		Log.Information("Would you like to run the remap process?... (y/n)");
 		var resp2 = Console.ReadLine()?.ToLower();
 		
 		if (string.IsNullOrEmpty(resp2)) return;
@@ -173,7 +178,10 @@ public class AutoMatcher(
 		
 		if (DataProvider.Remaps.Any(m => m.NewTypeName == remapModel.NewTypeName))
 		{
-			Logger.Log($"Ambiguous new type names found for {remapModel.NewTypeName}. Please pick a different name.", ConsoleColor.Red);
+			Log.Information(
+				"Ambiguous new type names found for {RemapModelNewTypeName}. Please pick a different name.", 
+				remapModel.NewTypeName
+				);
 			return;
 		}
 			

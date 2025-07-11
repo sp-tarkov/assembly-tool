@@ -30,7 +30,7 @@ public class RegenerateSignature : CliFx.ICommand
 
 	    if (target is null)
 	    {
-		    Logger.Log("Could not find signature to regenerate", ConsoleColor.Red);
+		    await console.Output.WriteLineAsync("Could not find signature to regenerate");
 		    return;
 	    }
 

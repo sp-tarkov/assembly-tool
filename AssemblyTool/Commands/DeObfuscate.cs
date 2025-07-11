@@ -21,12 +21,8 @@ public class DeObfuscate : ICommand
     {
         Debugger.TryWaitForDebuggerAttach();
         
-        Logger.Log("Deobfuscating assembly...");
-
         var app = new App();
         app.DeObfuscate(AssemblyPath, IsLauncher);
-            
-        Logger.Log("Complete", ConsoleColor.Green);
         
         return default;
     }

@@ -2,6 +2,7 @@
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
@@ -15,7 +16,7 @@ public class AssemblyUtils(
 	{
 		if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
 		{
-			Logger.Log("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
+			Log.Information("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
 			
 			module = null;
             
@@ -68,8 +69,11 @@ public class AssemblyUtils(
 
         if (potentialStringDelegates.Count != 1)
         {
-            Logger.Log(
-                $"Expected to find 1 potential string delegate method; found {potentialStringDelegates.Count}. Candidates: {string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))}");
+	        Log.Error(
+                "Expected to find 1 potential string delegate method; found {Count}. Candidates: {Join}", 
+                potentialStringDelegates.Count, 
+                string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))
+                );
         }
 
         var methodDef = potentialStringDelegates[0];

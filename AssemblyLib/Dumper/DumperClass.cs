@@ -5,6 +5,7 @@ using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Dumper;
@@ -43,22 +44,22 @@ public class DumperClass(
 
         if (!File.Exists(_assemblyPath))
         {
-            Logger.Log($"File Assembly-CSharp-cleaned.dll does not exist at {_assemblyPath}", ConsoleColor.Red);
+            Log.Error("File Assembly-CSharp-cleaned.dll does not exist at {AssemblyPath}", _assemblyPath);
         }
 
         if (!File.Exists(_fileCheckerPath))
         {
-            Logger.Log($"File FilesChecker.dll does not exist at {_fileCheckerPath}", ConsoleColor.Red);
+            Log.Error("File FilesChecker.dll does not exist at {FileCheckerPath}", _fileCheckerPath);
         }
 
         if (!File.Exists(_mscorlibPath))
         {
-            Logger.Log($"File FilesChecker.dll does not exist at {_mscorlibPath}", ConsoleColor.Red);
+            Log.Error("File FilesChecker.dll does not exist at {MscorlibPath}", _mscorlibPath);
         }
 
         if (!File.Exists(_dumpLibPath))
         {
-            Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
+            Log.Error("File DumpLib.dll does not exist at {DumpLibPath}", _dumpLibPath);
         }
         
         var kvp = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
@@ -77,25 +78,25 @@ public class DumperClass(
     {
         if (_gameModule == null || _gameTypes == null)
         {
-            Logger.Log($"_gameModule or _gameTypes in CreateDumper() was null", ConsoleColor.Red);
+            Log.Error("_gameModule or _gameTypes in CreateDumper() was null");
             return;
         }
 
         if (_checkerModule == null || _checkerTypes == null)
         {
-            Logger.Log($"_checkerModule or _checkerTypes in CreateDumper() was null", ConsoleColor.Red);
+            Log.Error("_checkerModule or _checkerTypes in CreateDumper() was null");
             return;
         }
 
         if (_msModule == null)
         {
-            Logger.Log($"_msModule in CreateDumper() was null", ConsoleColor.Red);
+            Log.Error("_msModule in CreateDumper() was null");
             return;
         }
 
         if (_dumpModule == null)
         {
-            Logger.Log($"_dumpModule in CreateDumper() was null", ConsoleColor.Red);
+            Log.Error("_dumpModule in CreateDumper() was null");
             return;
         }
 
@@ -174,12 +175,12 @@ public class DumperClass(
     {
         if (types == null)
         {
-            Logger.Log($"{name} was null");
+            Log.Error("{Name} was null", name);
         }
 
         if (types?.Count > 1)
         {
-            Logger.Log($"{name} count was more than 1");
+            Log.Error("{Name} count was more than 1", name);
         }
     }
 
@@ -198,7 +199,10 @@ public class DumperClass(
 
         if (method == null || method.CilMethodBody.Instructions.Count != 269)
         {
-            Logger.Log($"BackRequest Instructions count has changed from 269 to {method.CilMethodBody?.Instructions.Count}", ConsoleColor.Red);
+            Log.Error(
+                "BackRequest Instructions count has changed from 269 to {InstructionsCount}", 
+                method.CilMethodBody?.Instructions.Count
+                );
         }
 
         var startOfInstructions = 252;
@@ -238,13 +242,13 @@ public class DumperClass(
         // as of 01/11/24 firstMethod returns true, so its now only 2 instructions, was 55 (this may change, BSG have byppassed their own SSL checks atm)
         if (firstMethod.CilMethodBody.Instructions.Count != 2 || secondMethod.CilMethodBody.Instructions.Count != 14)
         {
-            Logger.Log($"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod.CilMethodBody.Instructions.Count}, " +
-                       $"method with 'certificateData' as a param - before: 14, now: {secondMethod.CilMethodBody.Instructions.Count}", ConsoleColor.Red);
+            Log.Error($@"Instruction count has changed, method with 'certificate' as a param - before: 51, now: {firstMethod.CilMethodBody.Instructions.Count}, " +
+                      $"method with 'certificateData' as a param - before: 14, now: {secondMethod.CilMethodBody.Instructions.Count}");
         }
 
         if (methods.Count() != 2)
         {
-            Logger.Log($"ValidateCertificate should be found twice, count was: {methods.Count()}", ConsoleColor.Red);
+            Log.Error($"ValidateCertificate should be found twice, count was: {methods.Count()}");
         }
 
         // TODO: redo to be a foreach
@@ -290,12 +294,12 @@ public class DumperClass(
 
         if (method == null || method.CilMethodBody.Instructions.Count != 23)
         {
-            Logger.Log($"RunValidation Instructions count has changed from 23 to {method.CilMethodBody.Instructions.Count}");
+            Log.Error("RunValidation Instructions count has changed from 23 to {InstructionsCount}", method.CilMethodBody.Instructions.Count);
         }
 
         if (method2 == null || method2.CilMethodBody.Instructions.Count != 171)
         {
-            Logger.Log($"RunValidation's MoveNext Instructions count has changed from 171 to {method2.CilMethodBody.Instructions.Count}");
+            Log.Error("RunValidation's MoveNext Instructions count has changed from 171 to {InstructionsCount}", method2.CilMethodBody.Instructions.Count);
         }
 
         // Clear these from the body of each method respectively
@@ -335,7 +339,7 @@ public class DumperClass(
 
         if (method == null || method.CilMethodBody.Instructions.Count != 62)
         {
-            Logger.Log($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!", ConsoleColor.Red);
+            Log.Error($"MainMenu is null or isnt 62 instructions, SOMETHING HAD CHANGED!");
         }
 
         var liList = dumpyIlHelper.GetDumpyTaskInstructions(method,_dumpModule, _gameImporter);
@@ -362,7 +366,10 @@ public class DumperClass(
 
         if (method == null || method.CilMethodBody.Instructions.Count != 152)
         {
-            Logger.Log($"EnsureConsistency Instructions count has changed from 152 to {method.CilMethodBody.Instructions.Count}", ConsoleColor.Red);
+            Log.Error(
+                "EnsureConsistency Instructions count has changed from 152 to {InstructionsCount}", 
+                method.CilMethodBody.Instructions.Count
+                );
         }
 
         // clear these from the method body
@@ -392,7 +399,10 @@ public class DumperClass(
 
         if (method == null || method.CilMethodBody.Instructions.Count != 101)
         {
-            Logger.Log($"EnsureConsistencySingle Instructions count has changed from 101 to {method.CilMethodBody.Instructions.Count}", ConsoleColor.Red);
+            Log.Error(
+                "EnsureConsistencySingle Instructions count has changed from 101 to {InstructionsCount}", 
+                method.CilMethodBody.Instructions.Count
+                );
         }
 
         // clear these from the method body

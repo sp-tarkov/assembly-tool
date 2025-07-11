@@ -17,14 +17,10 @@ public class Dumper : ICommand
     public ValueTask ExecuteAsync(IConsole console)
     {
         Debugger.TryWaitForDebuggerAttach();
-
-        Logger.Log("Creating DumperClass...");
         
         var app = new App();
         app.CreateDumper(ManagedDirectory);
         
-        Logger.Log("Complete", ConsoleColor.Green);
-
         return default;
     }
 }

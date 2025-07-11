@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using Serilog;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -71,14 +72,14 @@ public class DataProvider
 
         File.WriteAllText(path, jsonText);
 
-        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
+        Log.Information("Mapping file updated with new type names and saved to {Path}", path);
     }
 
     public void LoadMappingFile()
     {
         if (!File.Exists(MappingPath))
         {
-            Logger.Log($"Cannot find mapping.json at `{MappingPath}`", ConsoleColor.Red);
+            Log.Information("Cannot find mapping.json at: {Path}", MappingPath);
             return;
         }
 
@@ -107,7 +108,7 @@ public class DataProvider
         foreach (var duplicate in duplicateGroups)
         {
             var duplicateNewTypeName = duplicate.Key;
-            Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
+            Log.Error("Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.", duplicateNewTypeName);
         }
 
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");

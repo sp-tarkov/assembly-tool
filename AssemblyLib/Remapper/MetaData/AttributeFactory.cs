@@ -8,6 +8,7 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.MetaData;
@@ -88,7 +89,7 @@ public class AttributeFactory(DiffCompare diffCompare)
                     }
                     catch (Exception ex)
                     {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Log.Error("Exception in task: {ExMessage}", ex.Message);
                     }
                 })
             );
@@ -120,13 +121,13 @@ public class AttributeFactory(DiffCompare diffCompare)
     
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        Logger.Log("Updating Async Attributes...");
+        Log.Information("Updating Async Attributes...");
         
         foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
         {
             if (type is null)
             {
-                Logger.Log("Type was null, skipping ...");
+                Log.Error("Type was null, skipping ...");
 
                 continue;
             }
@@ -162,7 +163,9 @@ public class AttributeFactory(DiffCompare diffCompare)
 
             if (typeDefTarget is null)
             {
-                Logger.Log($"Failed to locate AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}", ConsoleColor.Red);
+                Log.Error("Failed to locate AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
+                    method.DeclaringType?.Name?.ToString(), 
+                    method.Name?.ToString());
                 continue;
             }
             
@@ -171,7 +174,10 @@ public class AttributeFactory(DiffCompare diffCompare)
         
         foreach (var replacement in attrReplacements)
         {
-            Logger.Log($"Updating AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}");
+            Log.Information("Updating AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
+                method.DeclaringType?.Name?.ToString(), 
+                method.Name?.ToString()
+                );
             
             method.CustomAttributes.Remove(replacement.Key);
             method.CustomAttributes.Add(replacement.Value);

@@ -1,6 +1,7 @@
 ﻿using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
@@ -38,7 +39,7 @@ public sealed class Statistics(
                 
 			File.Copy(outPath, gameDest, true);
                 
-			Logger.Log($"Assembly has been installed to the game: {gameDest}", ConsoleColor.Yellow);
+			Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
 		}
 		
 		if (dataProvider.Settings.CopyToModules && !string.IsNullOrEmpty(dataProvider.Settings.ModulesProjectPath) && File.Exists(hollowedPath))
@@ -47,7 +48,7 @@ public sealed class Statistics(
                 
 			File.Copy(hollowedPath, hollowedDest, true);
                 
-			Logger.Log($"Hollowed has been copied to the modules project: {hollowedDest}", ConsoleColor.Yellow);
+			Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
 		}
 		
 		// In-case a thread is hanging 
@@ -56,7 +57,7 @@ public sealed class Statistics(
 
 	private void DisplayAlternativeMatches()
 	{
-		Logger.Log("\n--------------------------------------------------");
+		Log.Information("\n--------------------------------------------------");
 		
 		foreach (var remap in DataProvider.Remaps)
 		{
@@ -71,11 +72,14 @@ public sealed class Statistics(
 	
 	private void DisplayAlternativeMatches(RemapModel remap)
 	{
-		Logger.Log($"Warning! There were {remap.TypeCandidates.Count} possible matches for {remap.NewTypeName}. Consider adding more search parameters, Only showing the first 5.", ConsoleColor.Yellow);
+		Log.Information("Warning! There were {TypeCandidatesCount} possible matches for {RemapNewTypeName}. Consider adding more search parameters, Only showing the first 5.", 
+			remap.TypeCandidates.Count, 
+			remap.NewTypeName
+			);
 
 		foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
 		{
-			Logger.Log($"{type.Name}", ConsoleColor.Yellow);
+			Log.Warning("{Utf8String}", type.Name);
 		}
 	}
 
@@ -89,25 +93,25 @@ public sealed class Statistics(
 			switch (remap.Succeeded)
 			{
 				case false when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
-					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
-					Logger.Log("Ambiguous match with a previous match during matching. Skipping remap.", ConsoleColor.Red);
-					Logger.Log($"New Type Name: {remap.NewTypeName}", ConsoleColor.Red);
-					Logger.Log($"{remap.AmbiguousTypeMatch} already assigned to a previous match.", ConsoleColor.Red);
-					Logger.Log("----------------------------------------------------------------------", ConsoleColor.Red);
+					Log.Error("----------------------------------------------------------------------");
+					Log.Error("Ambiguous match with a previous match during matching. Skipping remap.");
+					Log.Error($"New Type Name: {remap.NewTypeName}");
+					Log.Error($"{remap.AmbiguousTypeMatch} already assigned to a previous match.");
+					Log.Error("----------------------------------------------------------------------");
 					
 					failures++;
 					break;
 				case false:
 				{
-					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
-					Logger.Log($"Renaming {remap.NewTypeName} failed with reason(s)", ConsoleColor.Red);
+					Log.Error("-----------------------------------------------");
+					Log.Error($"Renaming {remap.NewTypeName} failed with reason(s)");
 
 					foreach (var reason in remap.NoMatchReasons)
 					{
-						Logger.Log($"Reason: {reason}", ConsoleColor.Red);
+						Log.Error($"Reason: {reason}", ConsoleColor.Red);
 					}
 
-					Logger.Log("-----------------------------------------------", ConsoleColor.Red);
+					Log.Error("-----------------------------------------------", ConsoleColor.Red);
 					failures++;
 					continue;
 				}
@@ -115,10 +119,10 @@ public sealed class Statistics(
 			
 			if (validate && remap.Succeeded)
 			{
-				Logger.Log("Generated Model: ", ConsoleColor.Blue);
-				Logger.LogRemapModel(remap);
+				//Log.Error("Generated Model: ");
+				//Log.Error(remap);
 				
-				Logger.Log("Passed validation", ConsoleColor.Green);
+				Log.Information("Passed validation");
 				return failures == 0;
 			}
 			
@@ -127,37 +131,37 @@ public sealed class Statistics(
 		
 		var succeeded = failures == 0;
 		
-		Logger.Log("--------------------------------------------------");
-		Logger.Log($"Types publicized: {TypePublicizedCount}", ConsoleColor.Green);
-		Logger.Log($"Types renamed: {changes}", ConsoleColor.Green);
+		Log.Information("--------------------------------------------------");
+		Log.Information("Types publicized: {S}", TypePublicizedCount);
+		Log.Information("Types renamed: {Changes}", changes);
 		
 		if (failures > 0)
 		{
-			Logger.Log($"Types that failed: {failures}", ConsoleColor.Red);
+			Log.Error("Types that failed: {Failures}", failures);
 			return succeeded;
 		}
 		
 		if (isRemapProcess) return succeeded;
 		
-		Logger.Log($"Methods publicized: {MethodPublicizedCount}", ConsoleColor.Green);
-		Logger.Log($"Methods renamed: {MethodRenamedCount}", ConsoleColor.Green);
-		Logger.Log($"Fields publicized: {FieldPublicizedCount}", ConsoleColor.Green);
-		Logger.Log($"Fields renamed: {FieldRenamedCount}", ConsoleColor.Green);
-		Logger.Log($"Properties publicized: {PropertyPublicizedCount}", ConsoleColor.Green);
-		Logger.Log($"Properties renamed: {PropertyRenamedCount}", ConsoleColor.Green);
+		Log.Information("Methods publicized: {S}", MethodPublicizedCount);
+		Log.Information("Methods renamed: {S}", MethodRenamedCount);
+		Log.Information("Fields publicized: {S}", FieldPublicizedCount);
+		Log.Information("Fields renamed: {S}", FieldRenamedCount);
+		Log.Information("Properties publicized: {S}", PropertyPublicizedCount);
+		Log.Information("Properties renamed: {S}", PropertyRenamedCount);
 
 		return succeeded;
 	}
 
 	private void DisplayWriteAssembly(string outPath)
 	{
-		Logger.Log("--------------------------------------------------");
+		Log.Information("--------------------------------------------------");
 		
-		Logger.Log($"Assembly written to `{outPath}`", ConsoleColor.Green);
-		Logger.Log($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
+		Log.Information("Assembly written to `{OutPath}`", outPath);
+		Log.Information("Hollowed written to `{HollowedPath}`", _hollowedPath);
 		
 		dataProvider.UpdateMapping();
 		
-		Logger.Log($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
+		//Log.Information($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
 	}
 }

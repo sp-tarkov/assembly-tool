@@ -44,11 +44,15 @@ public class App
     {
         var controller = _provider?.GetService<DumperClass>();
         
+        Log.Information("Creating dumper...");
+        
         controller?.LoadModule(managedPath);
         controller?.CreateDumpFolders();
         controller?.CreateDumper();
         controller?.CopyFiles();
         controller?.ZipFiles();
+        
+        Log.Information("Complete...");
         
         return Task.CompletedTask;
     }
@@ -57,7 +61,11 @@ public class App
     {
         var controller = _provider?.GetService<AssemblyUtils>();
         
+        Log.Information("Deobfuscating assembly...");
+        
         controller?.Deobfuscate(assemblyPath, isLauncher);
+        
+        Log.Information("Complete...");
         
         return Task.CompletedTask;
     }

@@ -8,6 +8,7 @@ using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
@@ -41,7 +42,7 @@ public class MappingController(
         string outPath = "",
         bool validate = false)
     {
-        Logger.Stopwatch.Start();
+        //Logger.Stopwatch.Start();
         OutPath = outPath;
         _targetAssemblyPath = targetAssemblyPath;
         
@@ -120,7 +121,7 @@ public class MappingController(
     /// </summary>
     private void StartMatchingTasks()
     {
-        Logger.Log("Creating Mapping Table...");
+        Log.Information("Creating Mapping Table...");
         
         foreach (var remap in DataProvider.Remaps)
         {
@@ -166,7 +167,7 @@ public class MappingController(
 
         if (type is null)
         {
-            Logger.Log($"Could not find type [{mapping.OriginalTypeName}]", ConsoleColor.Red);
+            Log.Error("Could not find type [{MappingOriginalTypeName}]", mapping.OriginalTypeName);
             return;
         }
         
@@ -176,7 +177,11 @@ public class MappingController(
 
         _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-        Logger.Log($"Forcing `{mapping.OriginalTypeName}` to `{mapping.NewTypeName}`", ConsoleColor.Yellow);
+        Log.Warning("Forcing `{MappingOriginalTypeName}` to `{MappingNewTypeName}`", 
+            mapping.OriginalTypeName, 
+            mapping.NewTypeName
+            );
+        
         RenameAndPublicizeRemap(mapping);
     }
     
@@ -185,7 +190,7 @@ public class MappingController(
     /// </summary>
     private void ChooseBestMatches()
     {
-        Logger.Log("Renaming and Publicizing Remaps...");
+        Log.Information("Renaming and Publicizing Remaps...");
         
         foreach (var remap in DataProvider.Remaps)
         {
@@ -204,7 +209,11 @@ public class MappingController(
             remap.Succeeded = true;
             remap.OriginalTypeName = winner.Name!;
             
-            Logger.Log($"Match [{remap.NewTypeName}] -> [{remap.OriginalTypeName}]", ConsoleColor.Green);
+            Log.Information("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", 
+                remap.NewTypeName, 
+                remap.OriginalTypeName
+                );
+            
             RenameAndPublicizeRemap(remap);
         }
     }
@@ -226,7 +235,10 @@ public class MappingController(
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
-            Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
+            Log.Error("Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match", 
+                remap.NewTypeName
+                );
+            
             return true;
         }
 
@@ -253,7 +265,7 @@ public class MappingController(
 
     private void PublicizeObfuscatedTypes()
     {
-        Logger.Log("Publicizing Obfuscated Types...");
+        Log.Information("Publicizing Obfuscated Types...");
         
         // Filter down remaining types to ones that we have not remapped.
         // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
@@ -283,13 +295,13 @@ public class MappingController(
     /// <param name="path">Path to the cleaned assembly</param>
     private void GenerateDynamicRemaps(string path)
     {
-        Logger.Log("Generating Dynamic Remaps...");
+        Log.Information("Generating Dynamic Remaps...");
 
         var templateMappingClass = GetTemplateMappingClass(path);
 
         if (templateMappingClass is null)
         {
-            Logger.Log("templateMappingClass is null...", ConsoleColor.Red);
+            Log.Error("templateMappingClass is null...");
             return;
         }
         
@@ -297,7 +309,7 @@ public class MappingController(
             .GetField("TypeTable")!
             .GetValue(templateMappingClass)!;
         
-        Logger.Log("Overriding Item Classes...");
+        Log.Information("Overriding Item Classes...");
         
         BuildAssociationFromTable(typeTable, "ItemClass", true);
         
@@ -305,7 +317,7 @@ public class MappingController(
             .GetField("TemplateTypeTable")!
             .GetValue(templateMappingClass)!;
         
-        Logger.Log("Overriding Template Classes...");
+        Log.Information("Overriding Template Classes...");
         
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
@@ -327,7 +339,7 @@ public class MappingController(
         
         if (templateMappingTypeDef is null)
         {
-            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
+            Log.Error("Could not find type for field TypeTable");
             return null;
         }
 
@@ -343,7 +355,7 @@ public class MappingController(
         
         if (templateMappingClass is null)
         {
-            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
+            Log.Error("Could not resolve type for {Utf8String}", templateMappingTypeDef.Name);
             return null;
         }
         
@@ -391,7 +403,10 @@ public class MappingController(
                 remap.NewTypeName = overriddenTypeName;
             }
             
-            Logger.Log($"Overriding type {type.Value.Name} to {remap.NewTypeName}", ConsoleColor.Green);
+            Log.Information("Overriding type {ValueName} to {RemapNewTypeName}", 
+                type.Value.Name, 
+                remap.NewTypeName
+                );
             
             DataProvider.Remaps.Add(remap);
         }
@@ -413,8 +428,8 @@ public class MappingController(
         }
         catch (Exception e)
         {
-            Logger.Log(e);
-            throw;
+            Log.Error("Exception during write assembly task:\n{Exception}",e.Message);
+            return;
         }
         
         await StartHollow();
@@ -428,8 +443,8 @@ public class MappingController(
         }
         catch (Exception e)
         {
-            Logger.Log(e);
-            throw;
+            Log.Error("Exception during write hollow task:\n{Exception}",e.Message);
+            return;
         }
         
         StartHDiffz();
@@ -442,7 +457,7 @@ public class MappingController(
     /// </summary>
     private async Task StartHollow()
     {
-        Logger.Log("Creating Hollow...");
+        Log.Information("Creating Hollow...");
         
         var tasks = new List<Task>(Types.Count());
         
@@ -457,7 +472,7 @@ public class MappingController(
                 }
                 catch (Exception ex)
                 {
-                    Logger.QueueTaskException($"Exception in task: {ex.Message}");
+                    Log.Error("Exception in task:\n{ExMessage}", ex.Message);
                 }
             }));
         }
@@ -489,7 +504,7 @@ public class MappingController(
     
     private void StartHDiffz()
     {
-        Logger.Log("Creating Delta...");
+        Log.Information("Creating Delta...");
         
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
 
@@ -527,7 +542,7 @@ public class MappingController(
 
         if (error.Length > 0)
         {
-            Logger.Log("Error: " + error, ConsoleColor.Red);
+            Log.Error("Error: {Error}",error);
         }
     }
 }

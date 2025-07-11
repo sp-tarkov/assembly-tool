@@ -3,6 +3,7 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
@@ -46,14 +47,17 @@ public sealed class Renamer(
         {
             newName += "_1";
         }
-        
-        Log.Information("Renaming Publicized field [{FieldDefDeclaringType}::{OrigName}] to [{TypeDefinition}::{NewName}]", 
-            fieldDef.DeclaringType, 
-            origName, 
-            fieldDef.DeclaringType, 
-            newName
-            );
 
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Renaming Publicized field [{FieldDefDeclaringType}::{OrigName}] to [{TypeDefinition}::{NewName}]", 
+                fieldDef.DeclaringType, 
+                origName, 
+                fieldDef.DeclaringType, 
+                newName
+            );
+        }
+        
         var newUtf8Name = new Utf8String(newName);
         
         UpdateMemberReferences(module, fieldDef, newUtf8Name);
@@ -124,12 +128,15 @@ public sealed class Renamer(
             newName = new Utf8String($"{realMethodNameString}_1");
         }
         
-        Log.Information("Renaming method [{MethodDeclaringType}::{MethodName}] to [{TypeDefinition}::{Utf8String}]", 
-            method.DeclaringType, 
-            method.Name?.ToString(), 
-            method.DeclaringType, 
-            newName.ToString()
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Renaming method [{MethodDeclaringType}::{MethodName}] to [{TypeDefinition}::{Utf8String}]", 
+                method.DeclaringType, 
+                method.Name?.ToString(), 
+                method.DeclaringType, 
+                newName.ToString()
             );
+        }
         
         UpdateMemberReferences(module, method, newName);
         method.Name = newName;
@@ -159,13 +166,18 @@ public sealed class Renamer(
                 if (field.Name == newFieldName) { continue; }
                 
                 var oldName = field.Name;
-
-                Log.Information("Renaming field [{FieldDeclaringType}::{Utf8String}] to [{TypeDefinition}::{NewFieldName}]", 
-                    field.DeclaringType, 
-                    oldName?.ToString(), 
-                    field.DeclaringType, 
-                    newFieldName.ToString()
+                
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Renaming field [{FieldDeclaringType}::{Utf8String}] to [{TypeDefinition}::{NewFieldName}]", 
+                        field.DeclaringType, 
+                        oldName?.ToString(), 
+                        field.DeclaringType, 
+                        newFieldName.ToString()
                     );
+                }
+
+                
                 
                 fieldCount++;
                 
@@ -194,14 +206,17 @@ public sealed class Renamer(
                 var newPropertyName = GetNewPropertyName(module, newTypeName, propertyCount);
 
                 // Dont need to do extra work
-                if (property.Name == newPropertyName) continue; 
-                    
-                Log.Information("Renaming property [{PropertyDeclaringType}::{PropertyName}] to [{TypeDefinition}::{NewPropertyName}]", 
-                    property.DeclaringType, 
-                    property.Name?.ToString(), 
-                    property.DeclaringType, 
-                    newPropertyName.ToString()
+                if (property.Name == newPropertyName) continue;
+
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Renaming property [{PropertyDeclaringType}::{PropertyName}] to [{TypeDefinition}::{NewPropertyName}]", 
+                        property.DeclaringType, 
+                        property.Name?.ToString(), 
+                        property.DeclaringType, 
+                        newPropertyName.ToString()
                     );
+                }
                 
                 property.Name = newPropertyName;
 
@@ -240,17 +255,19 @@ public sealed class Renamer(
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {
-            if (reference.Resolve() == target)
+            if (reference.Resolve() != target) continue;
+            
+            if (Log.IsEnabled(LogEventLevel.Debug))
             {
-                Log.Information("Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]", 
+                Log.Debug("Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]", 
                     target.DeclaringType, 
                     target.Name?.ToString(), 
                     target.DeclaringType,
                     newName.ToString()
-                    );
-                
-                reference.Name = newName;
+                );
             }
+                
+            reference.Name = newName;
         }
     }
     
@@ -261,17 +278,19 @@ public sealed class Renamer(
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {
-            if (reference.Resolve() == target)
+            if (reference.Resolve() != target) continue;
+            
+            if (Log.IsEnabled(LogEventLevel.Debug))
             {
-                Log.Information("Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]", 
+                Log.Debug("Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]", 
                     target.DeclaringType,
                     target.Name?.ToString(), 
                     target.DeclaringType,
                     newName.ToString()
-                    );
-                
-                reference.Name = newName;
+                );
             }
+                
+            reference.Name = newName;
         }
     }
 

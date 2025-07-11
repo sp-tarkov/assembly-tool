@@ -137,6 +137,7 @@ public sealed class Statistics(
 		Log.Information("--------------------------------------------------");
 		Log.Information("Types publicized: {S}", TypePublicizedCount);
 		Log.Information("Types renamed: {Changes}", changes);
+		Log.Information("--------------------------------------------------");
 		
 		if (failures > 0)
 		{

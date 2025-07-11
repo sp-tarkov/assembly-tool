@@ -9,6 +9,7 @@ using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
@@ -50,7 +51,7 @@ public class MappingController(
         
         LoadOrDeobfuscateAssembly();
 
-        if (!RunRemapProcess(validate))
+        if (!await RunRemapProcess(validate))
         {
             statistics.DisplayStatistics(true);
         }
@@ -81,7 +82,7 @@ public class MappingController(
     /// </summary>
     /// <param name="validate">Generates dynamic item.json remaps if false</param>
     /// <returns>Returns true if succeeded or false if not</returns>
-    private bool RunRemapProcess(bool validate)
+    private async Task<bool> RunRemapProcess(bool validate)
     {
         if (!validate)
         {
@@ -89,7 +90,7 @@ public class MappingController(
         }
         
         StartMatchingTasks();
-        ChooseBestMatches();
+        await ChooseBestMatches();
         
         var succeeded = statistics.DisplayFailuresAndChanges(false, true);
 
@@ -104,13 +105,16 @@ public class MappingController(
     {
         await PublicizeObfuscatedTypes();
         
+        Log.Information("Fixing method names...");
         renamer.FixInterfaceMangledMethodNames(Module!);
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
+            Log.Information("Creating custom attributes...");
             await attributeFactory.CreateCustomTypeAttribute(Module!);
         }
         
+        Log.Information("Updating Async Attributes...");
         attributeFactory.UpdateAsyncAttributes(Module!);
     }
     
@@ -177,10 +181,13 @@ public class MappingController(
 
         _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-        Log.Warning("Forcing `{MappingOriginalTypeName}` to `{MappingNewTypeName}`", 
-            mapping.OriginalTypeName, 
-            mapping.NewTypeName
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]", 
+                mapping.OriginalTypeName, 
+                mapping.NewTypeName
             );
+        }
         
         RenameAndPublicizeRemap(mapping);
     }
@@ -188,34 +195,54 @@ public class MappingController(
     /// <summary>
     /// Choose the best possible match from all remaps
     /// </summary>
-    private void ChooseBestMatches()
+    private async Task ChooseBestMatches()
     {
         Log.Information("Renaming and Publicizing Remaps...");
         
+        var tasks = new List<Task>(DataProvider.Remaps.Count);
         foreach (var remap in DataProvider.Remaps)
         {
-            if (remap.UseForceRename)
+            tasks.Add(Task.Factory.StartNew(() =>
             {
-                HandleForceRename(remap);
-                continue;
-            }
+                ChooseBestMatch(remap);
+            }));
+        }
+        
+        await Task.WhenAll(tasks.ToArray());
+    }
+
+    private void ChooseBestMatch(RemapModel remap)
+    {
+        if (remap.UseForceRename)
+        {
+            HandleForceRename(remap);
+            return;
+        }
+
+        if (remap.TypeCandidates.Count == 0 || remap.Succeeded)
+        {
+            return;
+        }
             
-            if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
+        var winner = remap.TypeCandidates.FirstOrDefault();
+
+        if (winner is null || IsAmbiguousMatch(remap, winner))
+        {
+            return;
+        }
             
-            var winner = remap.TypeCandidates.FirstOrDefault();
-            
-            if (winner is null || IsAmbiguousMatch(remap, winner)) continue;
-            
-            remap.Succeeded = true;
-            remap.OriginalTypeName = winner.Name!;
-            
-            Log.Information("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", 
+        remap.Succeeded = true;
+        remap.OriginalTypeName = winner.Name!;
+
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", 
                 remap.NewTypeName, 
                 remap.OriginalTypeName
-                );
-            
-            RenameAndPublicizeRemap(remap);
+            );
         }
+            
+        RenameAndPublicizeRemap(remap);
     }
 
     /// <summary>
@@ -410,11 +437,14 @@ public class MappingController(
             {
                 remap.NewTypeName = overriddenTypeName;
             }
-            
-            Log.Information("Overriding type {ValueName} to {RemapNewTypeName}", 
-                type.Value.Name, 
-                remap.NewTypeName
+
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Overriding type {ValueName} to {RemapNewTypeName}", 
+                    type.Value.Name, 
+                    remap.NewTypeName
                 );
+            }
             
             DataProvider.Remaps.Add(remap);
         }

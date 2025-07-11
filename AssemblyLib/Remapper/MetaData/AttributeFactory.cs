@@ -9,6 +9,7 @@ using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.MetaData;
@@ -121,8 +122,6 @@ public class AttributeFactory(DiffCompare diffCompare)
     
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        Log.Information("Updating Async Attributes...");
-        
         foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
         {
             if (type is null)
@@ -174,10 +173,13 @@ public class AttributeFactory(DiffCompare diffCompare)
         
         foreach (var replacement in attrReplacements)
         {
-            Log.Information("Updating AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
-                method.DeclaringType?.Name?.ToString(), 
-                method.Name?.ToString()
+            if (Log.IsEnabled(LogEventLevel.Error))
+            {
+                Log.Debug("Updating AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
+                    method.DeclaringType?.Name?.ToString(), 
+                    method.Name?.ToString()
                 );
+            }
             
             method.CustomAttributes.Remove(replacement.Key);
             method.CustomAttributes.Add(replacement.Value);

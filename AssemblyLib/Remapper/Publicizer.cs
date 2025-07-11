@@ -4,6 +4,7 @@ using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Utils;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
@@ -18,7 +19,10 @@ public sealed class Publicizer(Statistics stats)
     /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
     public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
-        Log.Information("Publicizing Type [{Utf8String}]", type.Name?.ToString());
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Publicizing Type [{Utf8String}]", type.Name?.ToString());
+        }
         
         if (type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface?.Name != "IEffect"))
@@ -40,11 +44,14 @@ public sealed class Publicizer(Statistics stats)
         
         foreach (var property in type.Properties)
         {
-            Log.Information("Publicizing Property [{PropertyDeclaringType}::{PropertyName}]", 
-                property.DeclaringType,
-                property.Name?.ToString()
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Publicizing Property [{PropertyDeclaringType}::{PropertyName}]", 
+                    property.DeclaringType,
+                    property.Name?.ToString()
                 );
-
+            }
+            
             // TODO: This is hacky but works for now, find a better solution. Need to check MD tokens to build associations,
             // this is a problem for later me.
             
@@ -73,10 +80,13 @@ public sealed class Publicizer(Statistics stats)
 
         if (method.IsGetMethod || method.IsSetMethod) return;
 
-        Log.Information("Publicizing Method [{MethodDeclaringType}::{MethodName}]", 
-            method.DeclaringType,
-            method.Name?.ToString()
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Publicizing Method [{MethodDeclaringType}::{MethodName}]", 
+                method.DeclaringType,
+                method.Name?.ToString()
             );
+        }
         
         stats.MethodPublicizedCount++;
     }
@@ -85,7 +95,11 @@ public sealed class Publicizer(Statistics stats)
     {
         if (!ShouldPublicizeFields(type))
         {
-            Log.Information("Skipping field publication on [{Utf8String}]", type.Name?.ToString());
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Skipping field publication on [{Utf8String}]", type.Name?.ToString());
+            }
+            
             return [];
         }
         
@@ -93,11 +107,14 @@ public sealed class Publicizer(Statistics stats)
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field)) continue;
-            
-            Log.Information("Publicizing Field [{FieldDeclaringType}::{Utf8String}]", 
-                field.DeclaringType, 
-                field.Name?.ToString()
+
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Publicizing Field [{FieldDeclaringType}::{Utf8String}]", 
+                    field.DeclaringType, 
+                    field.Name?.ToString()
                 );
+            }
             
             stats.FieldPublicizedCount++;
             field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes

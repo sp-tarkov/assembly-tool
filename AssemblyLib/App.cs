@@ -53,6 +53,15 @@ public class App
         return Task.CompletedTask;
     }
 
+    public Task DeObfuscate(string assemblyPath, bool isLauncher)
+    {
+        var controller = _provider?.GetService<AssemblyUtils>();
+        
+        controller?.Deobfuscate(assemblyPath, isLauncher);
+        
+        return Task.CompletedTask;
+    }
+
     private void ConfigureApplication()
     {
         var services = new ServiceCollection();

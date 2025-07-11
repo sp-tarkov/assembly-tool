@@ -1,4 +1,5 @@
-﻿using CliFx;
+﻿using AssemblyLib;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using AssemblyLib.Utils;
@@ -22,8 +23,9 @@ public class DeObfuscate : ICommand
         
         Logger.Log("Deobfuscating assembly...");
 
-        Deobfuscator.Deobfuscate(AssemblyPath, IsLauncher);
-
+        var app = new App();
+        app.DeObfuscate(AssemblyPath, IsLauncher);
+            
         Logger.Log("Complete", ConsoleColor.Green);
         
         return default;

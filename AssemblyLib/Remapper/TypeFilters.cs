@@ -7,7 +7,14 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable]
-public class TypeFilters(NestedTypeFilters nestedTypeFilters)
+public class TypeFilters(
+    CtorTypeFilters ctorTypeFilters,
+    EventTypeFilters eventTypeFilters,
+    FieldTypeFilters fieldTypeFilters,
+    MethodTypeFilters methodTypeFilters,
+    NestedTypeFilters nestedTypeFilters,
+    PropertyTypeFilters propertyTypeFilters
+    )
 {
     public bool DoesTypePassFilters(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
@@ -100,9 +107,9 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
         return true;
     }
     
-    private static bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
+    private bool FilterTypesByMethods(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
-        types = MethodTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        types = methodTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -111,7 +118,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = MethodTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        types = methodTypeFilters.FilterByExclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -120,7 +127,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = MethodTypeFilters.FilterByCount(types, mapping.SearchParams);
+        types = methodTypeFilters.FilterByCount(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -129,7 +136,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
 
-        types = CtorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
+        types = ctorTypeFilters.FilterByParameterCount(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -141,9 +148,9 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
         return true;
     }
 
-    private static bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
+    private bool FilterTypesByFields(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
-        types = FieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        types = fieldTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -152,7 +159,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = FieldTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        types = fieldTypeFilters.FilterByExclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -161,7 +168,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = FieldTypeFilters.FilterByCount(types, mapping.SearchParams);
+        types = fieldTypeFilters.FilterByCount(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -173,9 +180,9 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
         return true;
     }
 
-    private static bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
+    private bool FilterTypesByProps(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
-        types = PropertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        types = propertyTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -184,7 +191,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = PropertyTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        types = propertyTypeFilters.FilterByExclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -193,7 +200,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
         
-        types = PropertyTypeFilters.FilterByCount(types, mapping.SearchParams);
+        types = propertyTypeFilters.FilterByCount(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -246,9 +253,9 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
         return true;
     }
 
-    private static bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
+    private bool FilterTypesByEvents(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
-        types = EventTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        types = eventTypeFilters.FilterByInclude(types, mapping.SearchParams);
 
         if (!types.Any())
         {
@@ -257,7 +264,7 @@ public class TypeFilters(NestedTypeFilters nestedTypeFilters)
             return false;
         }
 
-        types = EventTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        types = eventTypeFilters.FilterByExclude(types, mapping.SearchParams);
 
         if (!types.Any())
         {

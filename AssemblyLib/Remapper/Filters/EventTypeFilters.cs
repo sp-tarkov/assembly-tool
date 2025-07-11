@@ -1,9 +1,11 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-internal static class EventTypeFilters
+[Injectable]
+public class EventTypeFilters
 {
     /// <summary>
     /// Filters based on events name
@@ -11,7 +13,7 @@ internal static class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.IncludeEvents.Count == 0) return types;
 
@@ -36,7 +38,7 @@ internal static class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.ExcludeEvents.Count == 0) return types;
 

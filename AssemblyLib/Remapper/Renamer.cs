@@ -1,22 +1,22 @@
-﻿using System.Reflection;
-using AsmResolver;
+﻿using AsmResolver;
 using AsmResolver.DotNet;
-using AsmResolver.DotNet.Signatures;
-using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
-using MemberReference = AsmResolver.DotNet.MemberReference;
 using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
-using TypeDefinition = AsmResolver.DotNet.TypeDefinition;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> types, Statistics stats) 
-    : IComponent
+[Injectable]
+public sealed class Renamer(
+    Statistics stats
+    ) 
 {
-    public void RenamePublicizedFieldAndUpdateMemberRefs(FieldDefinition fieldDef)
+    public void RenamePublicizedFieldAndUpdateMemberRefs(
+        ModuleDefinition module, 
+        FieldDefinition fieldDef
+        )
     {
         var origName = fieldDef.Name?.ToString();
         
@@ -52,37 +52,42 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
 
         var newUtf8Name = new Utf8String(newName);
         
-        UpdateMemberReferences(fieldDef, newUtf8Name);
+        UpdateMemberReferences(module, fieldDef, newUtf8Name);
         fieldDef.Name = newUtf8Name;
     }
     
-    public void RenameRemap(RemapModel remap)
+    public void RenameRemap(
+        ModuleDefinition module, 
+        RemapModel remap
+        )
     {
         // Rename all fields and properties first
         
         // TODO: Passing strings as Utf8String, fix the model
         RenameObfuscatedFields(
+            module,
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
         
         RenameObfuscatedProperties(
+            module,
             remap.TypePrimeCandidate!.Name!,
             remap.NewTypeName);
         
         remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }
 
-    public void FixInterfaceMangledMethodNames()
+    public void FixInterfaceMangledMethodNames(ModuleDefinition module)
     {
         // We're only looking for implementations
-        foreach (var type in types.Where(t => !t.IsInterface))
+        foreach (var type in module.GetAllTypes().Where(t => !t.IsInterface))
         {
             var renamedMethodNames = new List<Utf8String>();
             foreach (var method in type.Methods)
             {
                 if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod) continue;
                 
-                var newMethodName = FixInterfaceMangledMethod(method, renamedMethodNames);
+                var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
                 
                 if (newMethodName == Utf8String.Empty) continue;
                 
@@ -91,7 +96,11 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         }
     }
     
-    private Utf8String FixInterfaceMangledMethod(MethodDefinition method, List<Utf8String> renamedMethodsOnType)
+    private Utf8String FixInterfaceMangledMethod(
+        ModuleDefinition module, 
+        MethodDefinition method, 
+        List<Utf8String> renamedMethodsOnType
+        )
     {
         var splitName = method.Name?.Split('.');
         
@@ -113,15 +122,19 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         
         Logger.Log($"Renaming method [{method.DeclaringType}::{method.Name}] to [{method.DeclaringType}::{newName}]");
         
-        UpdateMemberReferences(method, newName);
+        UpdateMemberReferences(module, method, newName);
         method.Name = newName;
         
         return newName;
     }
     
-    private void RenameObfuscatedFields(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedFields(
+        ModuleDefinition module, 
+        Utf8String oldTypeName, 
+        Utf8String newTypeName
+        )
     {
-        foreach (var type in types)
+        foreach (var type in module.GetAllTypes())
         {
             var fields = type.Fields
                 .Where(field => field.Name!.IsObfuscatedName());
@@ -143,15 +156,19 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
                 
                 fieldCount++;
                 
-                UpdateMemberReferences(field, newFieldName);
+                UpdateMemberReferences(module, field, newFieldName);
                 field.Name = newFieldName;
             }
         }
     }
     
-    private void RenameObfuscatedProperties(Utf8String oldTypeName, Utf8String newTypeName)
+    private void RenameObfuscatedProperties(
+        ModuleDefinition module, 
+        Utf8String oldTypeName, 
+        Utf8String newTypeName
+        )
     {
-        foreach (var type in types)
+        foreach (var type in module.GetAllTypes())
         {
             var properties = type.Properties
                 .Where(prop => prop.Name!.IsObfuscatedName());
@@ -161,7 +178,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
             {
                 if (property.Signature!.ReturnType.Name != oldTypeName) continue;
                 
-                var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
+                var newPropertyName = GetNewPropertyName(module, newTypeName, propertyCount);
 
                 // Dont need to do extra work
                 if (property.Name == newPropertyName) continue; 
@@ -188,7 +205,11 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
-    private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
+    private Utf8String GetNewPropertyName(
+        ModuleDefinition module, 
+        string newName, 
+        int propertyCount = 0
+        )
     {
         stats.PropertyRenamedCount++;
         
@@ -196,6 +217,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
     }
 
     private void UpdateMemberReferences(
+        ModuleDefinition module,
         FieldDefinition target,
         Utf8String newName)
     {
@@ -210,6 +232,7 @@ internal sealed class Renamer(ModuleDefinition module, List<TypeDefinition> type
     }
     
     private void UpdateMemberReferences(
+        ModuleDefinition module,
         MethodDefinition target,
         Utf8String newName)
     {

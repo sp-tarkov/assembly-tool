@@ -4,43 +4,51 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Application;
 using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
-public class MappingController(string targetAssemblyPath)
+[Injectable(InjectionType.Singleton)]
+public class MappingController(
+    Statistics statistics, 
+    Renamer renamer,
+    Publicizer publicizer,
+    AttributeFactory attributeFactory
+    )
 {
-    private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
+    private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition> Types { get; set; } = [];
     
     private string OutPath { get; set; } = string.Empty;
     
     private readonly List<string> _alreadyGivenNames = [];
-    private string _targetAssemblyPath = targetAssemblyPath;
+    private string _targetAssemblyPath = string.Empty;
     
     
     /// <summary>
     /// Start the remapping process
     /// </summary>
     public async Task Run(
-        string oldAssemblyPath,
+        string targetAssemblyPath,
+        string? oldAssemblyPath,
         string outPath = "",
         bool validate = false)
     {
         Logger.Stopwatch.Start();
         OutPath = outPath;
+        _targetAssemblyPath = targetAssemblyPath;
+        
+        Module = DataProvider.LoadModule(targetAssemblyPath);
         
         LoadOrDeobfuscateAssembly();
-        InitializeComponents(oldAssemblyPath);
 
         if (!RunRemapProcess(validate))
         {
-            Context.Instance.Get<Statistics>()
-                !.DisplayStatistics(true);
+            statistics.DisplayStatistics(true);
         }
         
         // Don't go any further during a validation
@@ -79,8 +87,7 @@ public class MappingController(string targetAssemblyPath)
         StartMatchingTasks();
         ChooseBestMatches();
         
-        var succeeded = Context.Instance.Get<Statistics>()
-            !.DisplayFailuresAndChanges(false, true);
+        var succeeded = statistics.DisplayFailuresAndChanges(false, true);
 
         return succeeded;
     }
@@ -89,45 +96,18 @@ public class MappingController(string targetAssemblyPath)
     /// Publicize, fix name mangled method names, create custom spt attr, and fix async attributes
     /// </summary>
     /// <param name="oldAssemblyPath">Old assembly path for use with spt attr</param>
-    private async Task PublicizeAndFixAssembly(string oldAssemblyPath)
+    private async Task PublicizeAndFixAssembly(string? oldAssemblyPath)
     {
         PublicizeObfuscatedTypes();
         
-        Context.Instance.Get<Renamer>()!
-            .FixInterfaceMangledMethodNames();
+        renamer.FixInterfaceMangledMethodNames(Module!);
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
-            await Context.Instance.Get<AttributeFactory>()
-                !.CreateCustomTypeAttribute();
+            await attributeFactory.CreateCustomTypeAttribute(Module!);
         }
         
-        Context.Instance.Get<AttributeFactory>()!
-            .UpdateAsyncAttributes();
-    }
-
-    /// <summary>
-    /// Register Mapping dependencies with the app context
-    /// </summary>
-    /// <param name="oldAssemblyPath">Path to previous clients assembly</param>
-    private void InitializeComponents(string oldAssemblyPath)
-    {
-        var ctx = Context.Instance;
-
-        var stats = new Statistics();
-        var renamer = new Renamer(Module, Types, stats);
-        var publicizer = new Publicizer(stats);
-        var attrFactory = new AttributeFactory(Module, Types);
-        
-        ctx.RegisterComponent<Statistics>(stats);
-        ctx.RegisterComponent<Renamer>(renamer);
-        ctx.RegisterComponent<Publicizer>(publicizer);
-        ctx.RegisterComponent<AttributeFactory>(attrFactory);
-
-        if (string.IsNullOrEmpty(oldAssemblyPath)) return;
-        
-        var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
-        ctx.RegisterComponent<DiffCompare>(diff);
+        attributeFactory.UpdateAsyncAttributes(Module!);
     }
     
     #region Matching
@@ -261,10 +241,7 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="remap">Mapping to process</param>
     private void RenameAndPublicizeRemap(RemapModel remap)
     {
-        var renamer = Context.Instance.Get<Renamer>()!;
-        var publicizer = Context.Instance.Get<Publicizer>()!;
-        
-        renamer.RenameRemap(remap);
+        renamer.RenameRemap(Module!, remap);
         
         var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
             
@@ -280,7 +257,6 @@ public class MappingController(string targetAssemblyPath)
         // Filter down remaining types to ones that we have not remapped.
         // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
         var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!));
-        var publicizer = Context.Instance.Get<Publicizer>()!;
         
         foreach (var type in obfuscatedTypes)
         {
@@ -292,13 +268,11 @@ public class MappingController(string targetAssemblyPath)
         }
     }
 
-    private static void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
+    private void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
     {
-        var renamer = Context.Instance.Get<Renamer>()!;
-        
         foreach (var field in publicizedFields)
         {
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(Module!, field);
         }
     }
     
@@ -459,8 +433,7 @@ public class MappingController(string targetAssemblyPath)
         
         StartHDiffz();
         
-        Context.Instance.Get<Statistics>()!
-            .DisplayStatistics(false, hollowedPath, OutPath);
+        statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }
 
     /// <summary>

@@ -1,14 +1,12 @@
-﻿using System.Diagnostics;
-using AssemblyLib.Application;
-using AssemblyLib.Enums;
+﻿using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
-using Newtonsoft.Json;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Statistics() 
-	: IComponent
+[Injectable(InjectionType.Singleton)]
+public sealed class Statistics()
 {
 	public int TypePublicizedCount;
 	public int FieldPublicizedCount;

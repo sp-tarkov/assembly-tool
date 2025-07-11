@@ -2,9 +2,11 @@
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher;
 
+//[Injectable(InjectionType.Singleton)]
 public class AutoMatcher(bool isRegen)
 {
 	private ModuleDefinition? Module { get; set; }
@@ -93,7 +95,7 @@ public class AutoMatcher(bool isRegen)
 			
 		DataProvider.Remaps.Clear();
 		DataProvider.Remaps.Add(remapModel);
-		await new MappingController(assemblyPath).Run(string.Empty, validate: true);
+		//await new MappingController(assemblyPath).Run(string.Empty, validate: true);
 
 		if (remapModel.Succeeded)
 		{
@@ -155,6 +157,6 @@ public class AutoMatcher(bool isRegen)
 			throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
 		}
 			
-		await new MappingController(assemblyPath).Run(oldAssemblyPath, outPath);
+		//await new MappingController(assemblyPath).Run(oldAssemblyPath, outPath);
 	}
 }

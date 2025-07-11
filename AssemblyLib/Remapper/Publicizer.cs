@@ -2,13 +2,13 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Application;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
-internal sealed class Publicizer(Statistics stats) 
-    : IComponent
+[Injectable]
+public sealed class Publicizer(Statistics stats) 
 {
     /// <summary>
     /// Publicize the provided type

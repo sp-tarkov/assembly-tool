@@ -1,8 +1,7 @@
-﻿using CliFx;
+﻿using AssemblyLib;
+using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
-using AssemblyLib.Utils;
-using AssemblyLib.ReMapper;
 using AssemblyTool.Utils;
 
 namespace AssemblyTool.Commands;
@@ -26,7 +25,8 @@ public class ReMap : ICommand
         {
             throw new DirectoryNotFoundException("OutPath could not be resolved.");
         }
-        
-        await new MappingController(TargetAssemblyPath).Run(OldAssemblyPath!, outPath);
+
+        var app = new App();
+        await app.RunRemapProcess(TargetAssemblyPath, OldAssemblyPath, outPath);
     }
 }

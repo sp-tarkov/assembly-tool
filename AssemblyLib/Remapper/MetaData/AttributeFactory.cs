@@ -6,18 +6,18 @@ using AsmResolver.DotNet.Signatures;
 using AsmResolver.DotNet.Signatures.Types;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.MetaData;
 
-public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> types)
-    : IComponent
+[Injectable]
+public class AttributeFactory(DiffCompare diffCompare)
 {
     private ICustomAttributeType? _sptRenamedDef;
     
-    public async Task CreateCustomTypeAttribute()
+    public async Task CreateCustomTypeAttribute(ModuleDefinition module)
     {
         var customAttribute = new TypeDefinition(
             "SPT",
@@ -70,14 +70,13 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         // Add the attribute to the assembly
         module.TopLevelTypes.Add(customAttribute);
         
-        await AddMetaDataAttributeToTypes();
+        await AddMetaDataAttributeToTypes(module);
     }
 
-    private async Task AddMetaDataAttributeToTypes()
+    private async Task AddMetaDataAttributeToTypes(ModuleDefinition module)
     {
         var attrTasks = new List<Task>(DataProvider.Remaps.Count);
-        var diff = Context.Instance.Get<DiffCompare>();
-
+        
         foreach (var mapping in DataProvider.Remaps)
         {
             attrTasks.Add(
@@ -85,7 +84,7 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
                 {
                     try
                     {
-                        AddMetaDataAttributeToTypes(mapping, diff);
+                        AddMetaDataAttributeToTypes(module, mapping);
                     }
                     catch (Exception ex)
                     {
@@ -98,7 +97,10 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         await Task.WhenAll(attrTasks);
     }
     
-    private void AddMetaDataAttributeToTypes(RemapModel remap, DiffCompare? diff)
+    private void AddMetaDataAttributeToTypes(
+        ModuleDefinition module, 
+        RemapModel remap
+        )
     {
         var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute")
             .ImportWith(module.DefaultImporter);
@@ -113,19 +115,10 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
                 remap.OriginalTypeName)
             );
 
-        if (diff is not null)
-        {
-            customAttribute.Signature?.FixedArguments.Add(
-                new CustomAttributeArgument(
-                    module.CorLibTypeFactory.Boolean, 
-                    diff.IsSame(remap.TypePrimeCandidate!))
-            );
-        }
-
         remap.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
     }
     
-    public void UpdateAsyncAttributes()
+    public void UpdateAsyncAttributes(ModuleDefinition module)
     {
         Logger.Log("Updating Async Attributes...");
         
@@ -144,13 +137,17 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
             {
                 if (IsAsyncMethod(method))
                 {
-                    UpdateAttributeCollection(method, type.NestedTypes);
+                    UpdateAttributeCollection(module, method, type.NestedTypes);
                 }
             }
         }
     }
     
-    private void UpdateAttributeCollection(MethodDefinition method, IList<TypeDefinition> nestedTypes)
+    private void UpdateAttributeCollection(
+        ModuleDefinition module,
+        MethodDefinition method, 
+        IList<TypeDefinition> nestedTypes
+        )
     {
         // Key - Old :: Val - New
         Dictionary<CustomAttribute, CustomAttribute> attrReplacements = [];
@@ -169,7 +166,7 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
                 continue;
             }
             
-            attrReplacements.Add(attr, CreateNewAsyncAttribute(typeDefTarget!));
+            attrReplacements.Add(attr, CreateNewAsyncAttribute(module, typeDefTarget!));
         }
         
         foreach (var replacement in attrReplacements)
@@ -181,7 +178,10 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         }
     }
     
-    private CustomAttribute CreateNewAsyncAttribute(TypeDefinition targetTypeDef)
+    private CustomAttribute CreateNewAsyncAttribute(
+        ModuleDefinition module, 
+        TypeDefinition targetTypeDef
+        )
     {
         var factory = module.CorLibTypeFactory;
 

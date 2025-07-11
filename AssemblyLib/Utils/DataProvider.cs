@@ -25,13 +25,13 @@ public class DataProvider
     private readonly List<RemapModel> _remaps = [];
     private readonly Lock _remapLock = new ();
     
-    public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
+    public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
 
-    public static ModuleDefinition Mscorlib { get; private set; }
+    public ModuleDefinition? Mscorlib { get; private set; }
 
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {

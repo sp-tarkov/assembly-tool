@@ -16,19 +16,16 @@ namespace AssemblyLib.ReMapper.MetaData;
 
 [Injectable]
 public class AttributeFactory(
-    DataProvider dataProvider,
-    DiffCompare diffCompare
+    DataProvider dataProvider
     )
 {
-    private ICustomAttributeType? _sptRenamedDef;
-    
     public async Task CreateCustomTypeAttribute(ModuleDefinition module)
     {
         var customAttribute = new TypeDefinition(
             "SPT",
             "SPTRenamedClassAttribute",
             TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass,
-            DataProvider.Mscorlib.GetAllTypes().First(t => t.FullName == "System.Attribute")
+            dataProvider.Mscorlib?.GetAllTypes().First(t => t.FullName == "System.Attribute")
                 .ImportWith(module.DefaultImporter)
         );
         
@@ -161,7 +158,7 @@ public class AttributeFactory(
 
             // Find the argument target in the nested types
             var typeDefTarget = nestedTypes
-                .FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element).Name);
+                .FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name);
 
             if (typeDefTarget is null)
             {
@@ -171,7 +168,7 @@ public class AttributeFactory(
                 continue;
             }
             
-            attrReplacements.Add(attr, CreateNewAsyncAttribute(module, typeDefTarget!));
+            attrReplacements.Add(attr, CreateNewAsyncAttribute(module, typeDefTarget));
         }
         
         foreach (var replacement in attrReplacements)

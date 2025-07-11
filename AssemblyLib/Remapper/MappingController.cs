@@ -411,7 +411,7 @@ public class MappingController(
                 ? dataProvider.Settings.ItemObjectIdOverrides
                 : dataProvider.Settings.TemplateObjectIdOverrides;
             
-            if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
+            if (!dataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))
             {
                 continue;

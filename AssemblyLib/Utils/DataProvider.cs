@@ -2,13 +2,15 @@
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace AssemblyLib.Utils;
 
-public static class DataProvider
+[Injectable(InjectionType.Singleton)]
+public class DataProvider
 {
-    static DataProvider()
+    public DataProvider()
     {
         Settings = LoadAppSettings();
         ItemTemplates = LoadItems();
@@ -16,7 +18,7 @@ public static class DataProvider
         LoadMappingFile();
     }
 
-    public static Settings Settings { get; }
+    public Settings Settings { get; }
 
     public static List<RemapModel> Remaps { get; } = [];
     public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
@@ -27,7 +29,7 @@ public static class DataProvider
 
     public static ModuleDefinition Mscorlib { get; private set; }
 
-    public static ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
+    public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
         var directory = Path.GetDirectoryName(path)!;
 
@@ -46,7 +48,7 @@ public static class DataProvider
         return module;
     }
 
-    public static void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
+    public void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(MappingNewPath))
         {
@@ -72,7 +74,7 @@ public static class DataProvider
         Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
     }
 
-    public static void LoadMappingFile()
+    public void LoadMappingFile()
     {
         if (!File.Exists(MappingPath))
         {
@@ -93,7 +95,7 @@ public static class DataProvider
         ValidateMappings();
     }
 
-    private static void ValidateMappings()
+    private void ValidateMappings()
     {
         var duplicateGroups = Remaps
             .GroupBy(m => m.NewTypeName)
@@ -111,7 +113,7 @@ public static class DataProvider
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
 
-    private static Settings LoadAppSettings()
+    private Settings LoadAppSettings()
     {
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
@@ -124,7 +126,7 @@ public static class DataProvider
         return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
 
-    private static Dictionary<string, ItemTemplateModel> LoadItems()
+    private Dictionary<string, ItemTemplateModel> LoadItems()
     {
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);

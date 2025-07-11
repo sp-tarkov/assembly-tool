@@ -1,8 +1,10 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
+[Injectable]
 public class NestedFilters
 {
     public bool Filter(TypeDefinition target, TypeDefinition candidate, NestedTypeParams nt)

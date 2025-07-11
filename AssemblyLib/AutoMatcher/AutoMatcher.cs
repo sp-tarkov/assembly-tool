@@ -1,4 +1,5 @@
-﻿using AsmResolver.DotNet;
+﻿using System.Reflection;
+using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
@@ -9,13 +10,14 @@ namespace AssemblyLib.AutoMatcher;
 [Injectable(InjectionType.Singleton)]
 public class AutoMatcher(
 	MappingController mappingController,
-	AssemblyUtils assemblyUtils
+	AssemblyUtils assemblyUtils,
+	DataProvider dataProvider,
+	TypeFilters typeFilter
 	)
 {
 	private ModuleDefinition? Module { get; set; }
 	private List<TypeDefinition>? CandidateTypes { get; set; }
-	
-	private static readonly List<string> TypesToMatch = DataProvider.Settings.TypeNamesToMatch;
+	private List<string>? TypesToMatch;
 	
 	private string? _newTypeName;
 	
@@ -28,8 +30,10 @@ public class AutoMatcher(
 		)
 	{
 		var result = assemblyUtils.TryDeObfuscate(
-			DataProvider.LoadModule(assemblyPath), assemblyPath);
+			dataProvider.LoadModule(assemblyPath), assemblyPath);
 
+		TypesToMatch = dataProvider.Settings.TypeNamesToMatch;
+		
 		_newTypeName = newTypeName;
 		
 		assemblyPath = result.Item1;
@@ -90,13 +94,11 @@ public class AutoMatcher(
 		)
 	{
 		Logger.Log($"Starting Candidates: {CandidateTypes!.Count}", ConsoleColor.Yellow);
-
-		var filters = new TypeFilters(CandidateTypes);
 		
 		// Purpose of this pass is to eliminate any types that have no matching parameters
 		foreach (var candidate in CandidateTypes!.ToList())
 		{
-			filters.Filter(target, candidate, remapModel);
+			typeFilter.Filter(target, candidate, remapModel);
 		}
 		
 		if (CandidateTypes!.Count == 1)
@@ -160,7 +162,7 @@ public class AutoMatcher(
 		if (response != "y" && response != "yes") return;
 		
 		DataProvider.Remaps.Clear();
-		DataProvider.LoadMappingFile();
+		dataProvider.LoadMappingFile();
 
 		// Remove the remap so we can re-add it
 		if (isRegen && _newTypeName is not null)
@@ -176,7 +178,7 @@ public class AutoMatcher(
 		}
 			
 		DataProvider.Remaps.Add(remapModel);
-		DataProvider.UpdateMapping(false, true);
+		dataProvider.UpdateMapping(false, true);
 	}
 
 	private async Task RunMappingProcess(

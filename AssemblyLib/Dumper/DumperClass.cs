@@ -11,7 +11,8 @@ namespace AssemblyLib.Dumper;
 
 [Injectable(InjectionType.Singleton)]
 public class DumperClass(
-    AssemblyUtils assemblyUtils
+    AssemblyUtils assemblyUtils,
+    DataProvider dataProvider
     )
 {
     private ModuleDefinition? _gameModule { get; set; }
@@ -58,12 +59,12 @@ public class DumperClass(
             Logger.Log($"File DumpLib.dll does not exist at {_dumpLibPath}", ConsoleColor.Red);
         }
         
-        var kvp = assemblyUtils.TryDeObfuscate(DataProvider.LoadModule(_assemblyPath), _assemblyPath);
+        var kvp = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
         _assemblyPath = kvp.Item1;
         _gameModule = kvp.Item2;
-        _checkerModule = DataProvider.LoadModule(_fileCheckerPath);
-        _msModule = DataProvider.LoadModule(_mscorlibPath);
-        _dumpModule = DataProvider.LoadModule(_dumpLibPath, false);
+        _checkerModule = dataProvider.LoadModule(_fileCheckerPath);
+        _msModule = dataProvider.LoadModule(_mscorlibPath);
+        _dumpModule = dataProvider.LoadModule(_dumpLibPath, false);
         _gameTypes = _gameModule.GetAllTypes().ToList();
         _checkerTypes = _checkerModule.GetAllTypes().ToList();
         _gameImporter = new ReferenceImporter(_gameModule);

@@ -1,8 +1,10 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
+[Injectable]
 public class PropertyFilters
 {
     public bool Filter(TypeDefinition target, TypeDefinition candidate, PropertyParams props)

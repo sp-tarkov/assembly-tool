@@ -2,15 +2,21 @@
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
-public class MethodFilters
+[Injectable]
+public class MethodFilters(
+    DataProvider dataProvider
+    )
 {
-    private static readonly List<string> MethodsToIgnore = DataProvider.Settings.MethodNamesToIgnore;
+    private List<string>? MethodsToIgnore;
     
     public bool Filter(TypeDefinition target, TypeDefinition candidate, MethodParams methods)
     {
+        MethodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
+        
         // Target has no methods and type has no methods
         if (!target.Methods.Any() && !candidate.Methods.Any())
         {
@@ -59,7 +65,7 @@ public class MethodFilters
     /// </summary>
     /// <param name="type">Type to clean methods on</param>
     /// <returns>A collection of cleaned method names</returns>
-    private static IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
+    private IEnumerable<string> GetFilteredMethodNamesInType(TypeDefinition type)
     {
         return type.Methods
             .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
@@ -75,7 +81,7 @@ public class MethodFilters
     /// <param name="target">Target type</param>
     /// <param name="candidate">Candidate type</param>
     /// <returns>True if there are common methods</returns>
-    private static bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
+    private bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
     {
         return target.Methods
                 // Get target methods that are not a constructor a get, or set method

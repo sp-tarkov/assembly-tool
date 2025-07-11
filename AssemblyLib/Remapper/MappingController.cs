@@ -14,6 +14,7 @@ namespace AssemblyLib.ReMapper;
 
 [Injectable(InjectionType.Singleton)]
 public class MappingController(
+    DataProvider dataProvider,
     Statistics statistics, 
     Renamer renamer,
     Publicizer publicizer,
@@ -44,7 +45,7 @@ public class MappingController(
         OutPath = outPath;
         _targetAssemblyPath = targetAssemblyPath;
         
-        Module = DataProvider.LoadModule(targetAssemblyPath);
+        Module = dataProvider.LoadModule(targetAssemblyPath);
         
         LoadOrDeobfuscateAssembly();
 
@@ -355,13 +356,13 @@ public class MappingController(
     /// <param name="table">Type or Template table</param>
     /// <param name="extName">ItemClass or TemplateClass</param>
     /// <param name="isItemClass">Is this table for items or templates?</param>
-    private static void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
+    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
     {
         foreach (var type in table)
         {
             var overrideTable = isItemClass
-                ? DataProvider.Settings.ItemObjectIdOverrides
-                : DataProvider.Settings.TemplateObjectIdOverrides;
+                ? dataProvider.Settings.ItemObjectIdOverrides
+                : dataProvider.Settings.TemplateObjectIdOverrides;
             
             if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))

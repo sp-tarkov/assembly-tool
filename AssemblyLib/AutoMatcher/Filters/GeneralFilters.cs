@@ -1,15 +1,21 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
-public class GeneralFilters
+[Injectable]
+public class GeneralFilters(
+    DataProvider dataProvider
+    )
 {
-    private static readonly List<string> TypesToMatch = DataProvider.Settings.TypeNamesToMatch;
+    private List<string>? TypesToMatch;
     
     public bool Filter(TypeDefinition target, TypeDefinition candidate, GenericParams parms)
     {
+        TypesToMatch ??= dataProvider.Settings.TypeNamesToMatch;
+        
         if (target.IsPublic != candidate.IsPublic) return false;
         if (target.IsAbstract != candidate.IsAbstract) return false;
         if (target.IsInterface != candidate.IsInterface) return false;

@@ -6,7 +6,9 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable(InjectionType.Singleton)]
-public sealed class Statistics()
+public sealed class Statistics(
+	DataProvider dataProvider
+	)
 {
 	public int TypePublicizedCount;
 	public int FieldPublicizedCount;
@@ -30,18 +32,18 @@ public sealed class Statistics()
 		
 		DisplayWriteAssembly(outPath);
 			
-		if (DataProvider.Settings.CopyToGame && !string.IsNullOrEmpty(DataProvider.Settings.GamePath) && File.Exists(outPath))
+		if (dataProvider.Settings.CopyToGame && !string.IsNullOrEmpty(dataProvider.Settings.GamePath) && File.Exists(outPath))
 		{
-			var gameDest = Path.Combine(DataProvider.Settings.GamePath, "EscapeFromTarkov_Data", "Managed", "Assembly-CSharp.dll");
+			var gameDest = Path.Combine(dataProvider.Settings.GamePath, "EscapeFromTarkov_Data", "Managed", "Assembly-CSharp.dll");
                 
 			File.Copy(outPath, gameDest, true);
                 
 			Logger.Log($"Assembly has been installed to the game: {gameDest}", ConsoleColor.Yellow);
 		}
 		
-		if (DataProvider.Settings.CopyToModules && !string.IsNullOrEmpty(DataProvider.Settings.ModulesProjectPath) && File.Exists(hollowedPath))
+		if (dataProvider.Settings.CopyToModules && !string.IsNullOrEmpty(dataProvider.Settings.ModulesProjectPath) && File.Exists(hollowedPath))
 		{
-			var hollowedDest = Path.Combine(DataProvider.Settings.ModulesProjectPath, "project", "Shared", "Hollowed", "hollowed.dll");
+			var hollowedDest = Path.Combine(dataProvider.Settings.ModulesProjectPath, "project", "Shared", "Hollowed", "hollowed.dll");
                 
 			File.Copy(hollowedPath, hollowedDest, true);
                 
@@ -154,7 +156,7 @@ public sealed class Statistics()
 		Logger.Log($"Assembly written to `{outPath}`", ConsoleColor.Green);
 		Logger.Log($"Hollowed written to `{_hollowedPath}`", ConsoleColor.Green);
 		
-		DataProvider.UpdateMapping();
+		dataProvider.UpdateMapping();
 		
 		Logger.Log($"Remap took {Logger.Stopwatch.Elapsed.TotalSeconds:F1} seconds", ConsoleColor.Green);
 	}

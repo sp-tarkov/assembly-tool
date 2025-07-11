@@ -5,7 +5,9 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable]
-public class AssemblyUtils
+public class AssemblyUtils(
+	DataProvider dataProvider
+	)
 {
 	public (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
 	{
@@ -23,7 +25,7 @@ public class AssemblyUtils
 			var newPath = Path.GetDirectoryName(assemblyPath);
 			newPath = Path.Combine(newPath!, cleanedName);
 			
-			module = DataProvider.LoadModule(newPath);
+			module = dataProvider.LoadModule(newPath);
 		}
 		
 		return (assemblyPath, module);

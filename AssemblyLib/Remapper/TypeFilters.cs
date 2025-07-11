@@ -7,7 +7,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable]
-public class TypeFilters
+public class TypeFilters(NestedTypeFilters nestedTypeFilters)
 {
     public bool DoesTypePassFilters(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
@@ -205,9 +205,9 @@ public class TypeFilters
         return true;
     }
 
-    private static bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
+    private bool FilterTypesByNested(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
-        types = NestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
+        types = nestedTypeFilters.FilterByInclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -216,7 +216,7 @@ public class TypeFilters
             return false;
         }
         
-        types = NestedTypeFilters.FilterByExclude(types, mapping.SearchParams);
+        types = nestedTypeFilters.FilterByExclude(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -225,7 +225,7 @@ public class TypeFilters
             return false;
         }
         
-        types = NestedTypeFilters.FilterByCount(types, mapping.SearchParams);
+        types = nestedTypeFilters.FilterByCount(types, mapping.SearchParams);
         
         if (!types.Any())
         {
@@ -234,7 +234,7 @@ public class TypeFilters
             return false;
         }
         
-        types = NestedTypeFilters.FilterByNestedVisibility(types, mapping.SearchParams);
+        types = nestedTypeFilters.FilterByNestedVisibility(types, mapping.SearchParams);
 
         if (!types.Any())
         {

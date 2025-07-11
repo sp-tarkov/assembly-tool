@@ -1,15 +1,21 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
-public class FieldFilters
+[Injectable]
+public class FieldFilters(
+    DataProvider dataProvider
+    )
 {
-    private static readonly List<string> FieldsToIgnore = DataProvider.Settings.FieldNamesToIgnore;
+    private List<string>? _fieldsToIgnore;
     
     public bool Filter(TypeDefinition target, TypeDefinition candidate, FieldParams fields)
     {
+        _fieldsToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
+        
         // Target has no fields and type has no fields
         if (!target.Fields.Any() && !candidate.Fields.Any())
         {
@@ -48,11 +54,11 @@ public class FieldFilters
         return commonFields.Any();
     }
     
-    private static IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
+    private IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
     {
         return type.Fields
             // Don't match de-obfuscator given method names
-            .Where(m => !FieldsToIgnore.Any(mi => m.Name!.StartsWith(mi)))
+            .Where(m => !_fieldsToIgnore.Any(mi => m.Name!.StartsWith(mi)))
             .Select(s => s.Name!.ToString());
     }
 }

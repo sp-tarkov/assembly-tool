@@ -6,24 +6,26 @@ using AsmResolver.DotNet.Signatures;
 using AsmResolver.DotNet.Signatures.Types;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Application;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
+using Serilog;
+using Serilog.Events;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.MetaData;
 
-public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> types)
-    : IComponent
+[Injectable]
+public class AttributeFactory(
+    DataProvider dataProvider
+    )
 {
-    private ICustomAttributeType? _sptRenamedDef;
-    
-    public async Task CreateCustomTypeAttribute()
+    public async Task CreateCustomTypeAttribute(ModuleDefinition module)
     {
         var customAttribute = new TypeDefinition(
             "SPT",
             "SPTRenamedClassAttribute",
             TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass,
-            DataProvider.Mscorlib.GetAllTypes().First(t => t.FullName == "System.Attribute")
+            dataProvider.Mscorlib?.GetAllTypes().First(t => t.FullName == "System.Attribute")
                 .ImportWith(module.DefaultImporter)
         );
         
@@ -70,26 +72,25 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         // Add the attribute to the assembly
         module.TopLevelTypes.Add(customAttribute);
         
-        await AddMetaDataAttributeToTypes();
+        await AddMetaDataAttributeToTypes(module);
     }
 
-    private async Task AddMetaDataAttributeToTypes()
+    private async Task AddMetaDataAttributeToTypes(ModuleDefinition module)
     {
-        var attrTasks = new List<Task>(DataProvider.Remaps.Count);
-        var diff = Context.Instance.Get<DiffCompare>();
-
-        foreach (var mapping in DataProvider.Remaps)
+        var attrTasks = new List<Task>(dataProvider.RemapCount());
+        
+        foreach (var mapping in dataProvider.GetRemaps())
         {
             attrTasks.Add(
                 Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        AddMetaDataAttributeToTypes(mapping, diff);
+                        AddMetaDataAttributeToTypes(module, mapping);
                     }
                     catch (Exception ex)
                     {
-                        Logger.Log($"Exception in task: {ex.Message}", ConsoleColor.Red);
+                        Log.Error("Exception in task: {ExMessage}", ex.Message);
                     }
                 })
             );
@@ -98,7 +99,10 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
         await Task.WhenAll(attrTasks);
     }
     
-    private void AddMetaDataAttributeToTypes(RemapModel remap, DiffCompare? diff)
+    private void AddMetaDataAttributeToTypes(
+        ModuleDefinition module, 
+        RemapModel remap
+        )
     {
         var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute")
             .ImportWith(module.DefaultImporter);
@@ -113,27 +117,16 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
                 remap.OriginalTypeName)
             );
 
-        if (diff is not null)
-        {
-            customAttribute.Signature?.FixedArguments.Add(
-                new CustomAttributeArgument(
-                    module.CorLibTypeFactory.Boolean, 
-                    diff.IsSame(remap.TypePrimeCandidate!))
-            );
-        }
-
         remap.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
     }
     
-    public void UpdateAsyncAttributes()
+    public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        Logger.Log("Updating Async Attributes...");
-        
-        foreach (var type in DataProvider.Remaps.Select(r => r.TypePrimeCandidate))
+        foreach (var type in dataProvider.GetRemaps().Select(r => r.TypePrimeCandidate))
         {
             if (type is null)
             {
-                Logger.Log("Type was null, skipping ...");
+                Log.Error("Type was null, skipping ...");
 
                 continue;
             }
@@ -144,13 +137,17 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
             {
                 if (IsAsyncMethod(method))
                 {
-                    UpdateAttributeCollection(method, type.NestedTypes);
+                    UpdateAttributeCollection(module, method, type.NestedTypes);
                 }
             }
         }
     }
     
-    private void UpdateAttributeCollection(MethodDefinition method, IList<TypeDefinition> nestedTypes)
+    private void UpdateAttributeCollection(
+        ModuleDefinition module,
+        MethodDefinition method, 
+        IList<TypeDefinition> nestedTypes
+        )
     {
         // Key - Old :: Val - New
         Dictionary<CustomAttribute, CustomAttribute> attrReplacements = [];
@@ -161,27 +158,38 @@ public class AttributeFactory(ModuleDefinition module, List<TypeDefinition> type
 
             // Find the argument target in the nested types
             var typeDefTarget = nestedTypes
-                .FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element).Name);
+                .FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name);
 
             if (typeDefTarget is null)
             {
-                Logger.Log($"Failed to locate AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}", ConsoleColor.Red);
+                Log.Error("Failed to locate AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
+                    method.DeclaringType?.Name?.ToString(), 
+                    method.Name?.ToString());
                 continue;
             }
             
-            attrReplacements.Add(attr, CreateNewAsyncAttribute(typeDefTarget!));
+            attrReplacements.Add(attr, CreateNewAsyncAttribute(module, typeDefTarget));
         }
         
         foreach (var replacement in attrReplacements)
         {
-            Logger.Log($"Updating AsyncStateMachineAttribute for method {method.DeclaringType?.Name}::{method.Name}");
+            if (Log.IsEnabled(LogEventLevel.Error))
+            {
+                Log.Debug("Updating AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}", 
+                    method.DeclaringType?.Name?.ToString(), 
+                    method.Name?.ToString()
+                );
+            }
             
             method.CustomAttributes.Remove(replacement.Key);
             method.CustomAttributes.Add(replacement.Value);
         }
     }
     
-    private CustomAttribute CreateNewAsyncAttribute(TypeDefinition targetTypeDef)
+    private CustomAttribute CreateNewAsyncAttribute(
+        ModuleDefinition module, 
+        TypeDefinition targetTypeDef
+        )
     {
         var factory = module.CorLibTypeFactory;
 

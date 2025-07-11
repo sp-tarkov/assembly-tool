@@ -4,43 +4,56 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Application;
 using AssemblyLib.Enums;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
+using Serilog;
+using Serilog.Events;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper;
 
-public class MappingController(string targetAssemblyPath)
+[Injectable(InjectionType.Singleton)]
+public class MappingController(
+    DataProvider dataProvider,
+    Statistics statistics, 
+    Renamer renamer,
+    Publicizer publicizer,
+    TypeFilters typeFilters,
+    AssemblyUtils assemblyUtils,
+    AttributeFactory attributeFactory
+    )
 {
-    private ModuleDefinition Module { get; set; } = DataProvider.LoadModule(targetAssemblyPath);
+    private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition> Types { get; set; } = [];
     
     private string OutPath { get; set; } = string.Empty;
     
     private readonly List<string> _alreadyGivenNames = [];
-    private string _targetAssemblyPath = targetAssemblyPath;
+    private string _targetAssemblyPath = string.Empty;
     
     
     /// <summary>
     /// Start the remapping process
     /// </summary>
     public async Task Run(
-        string oldAssemblyPath,
+        string targetAssemblyPath,
+        string? oldAssemblyPath,
         string outPath = "",
         bool validate = false)
     {
-        Logger.Stopwatch.Start();
+        statistics.Stopwatch.Start();
         OutPath = outPath;
+        _targetAssemblyPath = targetAssemblyPath;
+        
+        Module = dataProvider.LoadModule(targetAssemblyPath);
         
         LoadOrDeobfuscateAssembly();
-        InitializeComponents(oldAssemblyPath);
 
-        if (!RunRemapProcess(validate))
+        if (!await RunRemapProcess(validate))
         {
-            Context.Instance.Get<Statistics>()
-                !.DisplayStatistics(true);
+            statistics.DisplayStatistics(true);
         }
         
         // Don't go any further during a validation
@@ -55,7 +68,7 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private void LoadOrDeobfuscateAssembly()
     {
-        var result = AssemblyUtils.TryDeObfuscate(
+        var result = assemblyUtils.TryDeObfuscate(
             Module, _targetAssemblyPath);
         
         _targetAssemblyPath = result.Item1;
@@ -69,7 +82,7 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     /// <param name="validate">Generates dynamic item.json remaps if false</param>
     /// <returns>Returns true if succeeded or false if not</returns>
-    private bool RunRemapProcess(bool validate)
+    private async Task<bool> RunRemapProcess(bool validate)
     {
         if (!validate)
         {
@@ -77,10 +90,9 @@ public class MappingController(string targetAssemblyPath)
         }
         
         StartMatchingTasks();
-        ChooseBestMatches();
+        await ChooseBestMatches();
         
-        var succeeded = Context.Instance.Get<Statistics>()
-            !.DisplayFailuresAndChanges(false, true);
+        var succeeded = statistics.DisplayFailuresAndChanges(false, true);
 
         return succeeded;
     }
@@ -89,45 +101,21 @@ public class MappingController(string targetAssemblyPath)
     /// Publicize, fix name mangled method names, create custom spt attr, and fix async attributes
     /// </summary>
     /// <param name="oldAssemblyPath">Old assembly path for use with spt attr</param>
-    private async Task PublicizeAndFixAssembly(string oldAssemblyPath)
+    private async Task PublicizeAndFixAssembly(string? oldAssemblyPath)
     {
-        PublicizeObfuscatedTypes();
+        await PublicizeObfuscatedTypes();
         
-        Context.Instance.Get<Renamer>()!
-            .FixInterfaceMangledMethodNames();
+        Log.Information("Fixing method names...");
+        renamer.FixInterfaceMangledMethodNames(Module!);
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
-            await Context.Instance.Get<AttributeFactory>()
-                !.CreateCustomTypeAttribute();
+            Log.Information("Creating custom attributes...");
+            await attributeFactory.CreateCustomTypeAttribute(Module!);
         }
         
-        Context.Instance.Get<AttributeFactory>()!
-            .UpdateAsyncAttributes();
-    }
-
-    /// <summary>
-    /// Register Mapping dependencies with the app context
-    /// </summary>
-    /// <param name="oldAssemblyPath">Path to previous clients assembly</param>
-    private void InitializeComponents(string oldAssemblyPath)
-    {
-        var ctx = Context.Instance;
-
-        var stats = new Statistics();
-        var renamer = new Renamer(Module, Types, stats);
-        var publicizer = new Publicizer(stats);
-        var attrFactory = new AttributeFactory(Module, Types);
-        
-        ctx.RegisterComponent<Statistics>(stats);
-        ctx.RegisterComponent<Renamer>(renamer);
-        ctx.RegisterComponent<Publicizer>(publicizer);
-        ctx.RegisterComponent<AttributeFactory>(attrFactory);
-
-        if (string.IsNullOrEmpty(oldAssemblyPath)) return;
-        
-        var diff = new DiffCompare(DataProvider.LoadModule(oldAssemblyPath));
-        ctx.RegisterComponent<DiffCompare>(diff);
+        Log.Information("Updating Async Attributes...");
+        attributeFactory.UpdateAsyncAttributes(Module!);
     }
     
     #region Matching
@@ -137,9 +125,9 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private void StartMatchingTasks()
     {
-        Logger.Log("Creating Mapping Table...");
+        Log.Information("Creating Mapping Table...");
         
-        foreach (var remap in DataProvider.Remaps)
+        foreach (var remap in dataProvider.GetRemaps())
         {
             MatchRemap(remap);
         }
@@ -166,9 +154,7 @@ public class MappingController(string targetAssemblyPath)
         }
         
         // Run through a series of filters and report an error if all types are filtered out.
-        var filters = new TypeFilters();
-        
-        if (!filters.DoesTypePassFilters(mapping, ref types)) return;
+        if (!typeFilters.DoesTypePassFilters(mapping, ref types)) return;
         
         mapping.TypeCandidates.UnionWith(types);
     }
@@ -185,7 +171,7 @@ public class MappingController(string targetAssemblyPath)
 
         if (type is null)
         {
-            Logger.Log($"Could not find type [{mapping.OriginalTypeName}]", ConsoleColor.Red);
+            Log.Error("Could not find type [{MappingOriginalTypeName}]", mapping.OriginalTypeName);
             return;
         }
         
@@ -195,37 +181,68 @@ public class MappingController(string targetAssemblyPath)
 
         _alreadyGivenNames.Add(mapping.OriginalTypeName);
 
-        Logger.Log($"Forcing `{mapping.OriginalTypeName}` to `{mapping.NewTypeName}`", ConsoleColor.Yellow);
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]", 
+                mapping.OriginalTypeName, 
+                mapping.NewTypeName
+            );
+        }
+        
         RenameAndPublicizeRemap(mapping);
     }
     
     /// <summary>
     /// Choose the best possible match from all remaps
     /// </summary>
-    private void ChooseBestMatches()
+    private async Task ChooseBestMatches()
     {
-        Logger.Log("Renaming and Publicizing Remaps...");
+        Log.Information("Renaming and Publicizing Remaps...");
         
-        foreach (var remap in DataProvider.Remaps)
+        var tasks = new List<Task>(dataProvider.RemapCount());
+        foreach (var remap in dataProvider.GetRemaps())
         {
-            if (remap.UseForceRename)
+            tasks.Add(Task.Factory.StartNew(() =>
             {
-                HandleForceRename(remap);
-                continue;
-            }
-            
-            if (remap.TypeCandidates.Count == 0 || remap.Succeeded) { return; }
-            
-            var winner = remap.TypeCandidates.FirstOrDefault();
-            
-            if (winner is null || IsAmbiguousMatch(remap, winner)) continue;
-            
-            remap.Succeeded = true;
-            remap.OriginalTypeName = winner.Name!;
-            
-            Logger.Log($"Match [{remap.NewTypeName}] -> [{remap.OriginalTypeName}]", ConsoleColor.Green);
-            RenameAndPublicizeRemap(remap);
+                ChooseBestMatch(remap);
+            }));
         }
+        
+        await Task.WhenAll(tasks.ToArray());
+    }
+
+    private void ChooseBestMatch(RemapModel remap)
+    {
+        if (remap.UseForceRename)
+        {
+            HandleForceRename(remap);
+            return;
+        }
+
+        if (remap.TypeCandidates.Count == 0 || remap.Succeeded)
+        {
+            return;
+        }
+            
+        var winner = remap.TypeCandidates.FirstOrDefault();
+
+        if (winner is null || IsAmbiguousMatch(remap, winner))
+        {
+            return;
+        }
+            
+        remap.Succeeded = true;
+        remap.OriginalTypeName = winner.Name!;
+
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", 
+                remap.NewTypeName, 
+                remap.OriginalTypeName
+            );
+        }
+            
+        RenameAndPublicizeRemap(remap);
     }
 
     /// <summary>
@@ -245,7 +262,10 @@ public class MappingController(string targetAssemblyPath)
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
-            Logger.Log($"Failure During Matching: [{remap.NewTypeName}] is ambiguous with previous match", ConsoleColor.Red);
+            Log.Error("Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match", 
+                remap.NewTypeName
+                );
+            
             return true;
         }
 
@@ -261,10 +281,7 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="remap">Mapping to process</param>
     private void RenameAndPublicizeRemap(RemapModel remap)
     {
-        var renamer = Context.Instance.Get<Renamer>()!;
-        var publicizer = Context.Instance.Get<Publicizer>()!;
-        
-        renamer.RenameRemap(remap);
+        renamer.RenameRemap(Module!, remap);
         
         var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
             
@@ -273,32 +290,37 @@ public class MappingController(string targetAssemblyPath)
         FixPublicizedFieldNamesOnType(fieldsToFix);
     }
 
-    private void PublicizeObfuscatedTypes()
+    private async Task PublicizeObfuscatedTypes()
     {
-        Logger.Log("Publicizing Obfuscated Types...");
+        Log.Information("Publicizing Obfuscated Types...");
         
         // Filter down remaining types to ones that we have not remapped.
         // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
-        var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!));
-        var publicizer = Context.Instance.Get<Publicizer>()!;
+        var obfuscatedTypes = Types
+            .Where(t => !_alreadyGivenNames.Contains(t.Name!))
+            .ToList();
         
+        var tasks = new List<Task>(obfuscatedTypes.Count);
         foreach (var type in obfuscatedTypes)
         {
-            var fieldsToFix = publicizer.PublicizeType(type);
+            tasks.Add(Task.Factory.StartNew(() =>
+            {
+                var fieldsToFix = publicizer.PublicizeType(type);
             
-            if (fieldsToFix.Count == 0) continue;
+                if (fieldsToFix.Count == 0) return;
             
-            FixPublicizedFieldNamesOnType(fieldsToFix);
+                FixPublicizedFieldNamesOnType(fieldsToFix);
+            }));
         }
+        
+        await Task.WhenAll(tasks);
     }
 
-    private static void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
+    private void FixPublicizedFieldNamesOnType(List<FieldDefinition> publicizedFields)
     {
-        var renamer = Context.Instance.Get<Renamer>()!;
-        
         foreach (var field in publicizedFields)
         {
-            renamer.RenamePublicizedFieldAndUpdateMemberRefs(field);
+            renamer.RenamePublicizedFieldAndUpdateMemberRefs(Module!, field);
         }
     }
     
@@ -308,13 +330,13 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="path">Path to the cleaned assembly</param>
     private void GenerateDynamicRemaps(string path)
     {
-        Logger.Log("Generating Dynamic Remaps...");
+        Log.Information("Generating Dynamic Remaps...");
 
         var templateMappingClass = GetTemplateMappingClass(path);
 
         if (templateMappingClass is null)
         {
-            Logger.Log("templateMappingClass is null...", ConsoleColor.Red);
+            Log.Error("templateMappingClass is null...");
             return;
         }
         
@@ -322,7 +344,7 @@ public class MappingController(string targetAssemblyPath)
             .GetField("TypeTable")!
             .GetValue(templateMappingClass)!;
         
-        Logger.Log("Overriding Item Classes...");
+        Log.Information("Overriding Item Classes...");
         
         BuildAssociationFromTable(typeTable, "ItemClass", true);
         
@@ -330,7 +352,7 @@ public class MappingController(string targetAssemblyPath)
             .GetField("TemplateTypeTable")!
             .GetValue(templateMappingClass)!;
         
-        Logger.Log("Overriding Template Classes...");
+        Log.Information("Overriding Template Classes...");
         
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
@@ -352,7 +374,7 @@ public class MappingController(string targetAssemblyPath)
         
         if (templateMappingTypeDef is null)
         {
-            Logger.Log("Could not find type for field TypeTable", ConsoleColor.Red);
+            Log.Error("Could not find type for field TypeTable");
             return null;
         }
 
@@ -368,7 +390,7 @@ public class MappingController(string targetAssemblyPath)
         
         if (templateMappingClass is null)
         {
-            Logger.Log($"Could not resolve type for {templateMappingTypeDef.Name}", ConsoleColor.Red);
+            Log.Error("Could not resolve type for {Utf8String}", templateMappingTypeDef.Name);
             return null;
         }
         
@@ -381,15 +403,15 @@ public class MappingController(string targetAssemblyPath)
     /// <param name="table">Type or Template table</param>
     /// <param name="extName">ItemClass or TemplateClass</param>
     /// <param name="isItemClass">Is this table for items or templates?</param>
-    private static void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
+    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
     {
         foreach (var type in table)
         {
             var overrideTable = isItemClass
-                ? DataProvider.Settings.ItemObjectIdOverrides
-                : DataProvider.Settings.TemplateObjectIdOverrides;
+                ? dataProvider.Settings.ItemObjectIdOverrides
+                : dataProvider.Settings.TemplateObjectIdOverrides;
             
-            if (!DataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
+            if (!dataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
                 !type.Value.Name.StartsWith("GClass"))
             {
                 continue;
@@ -415,10 +437,16 @@ public class MappingController(string targetAssemblyPath)
             {
                 remap.NewTypeName = overriddenTypeName;
             }
+
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Overriding type {ValueName} to {RemapNewTypeName}", 
+                    type.Value.Name, 
+                    remap.NewTypeName
+                );
+            }
             
-            Logger.Log($"Overriding type {type.Value.Name} to {remap.NewTypeName}", ConsoleColor.Green);
-            
-            DataProvider.Remaps.Add(remap);
+            dataProvider.AddMapping(remap);
         }
     }
     
@@ -438,8 +466,8 @@ public class MappingController(string targetAssemblyPath)
         }
         catch (Exception e)
         {
-            Logger.Log(e);
-            throw;
+            Log.Error("Exception during write assembly task:\n{Exception}",e.Message);
+            return;
         }
         
         await StartHollow();
@@ -453,14 +481,13 @@ public class MappingController(string targetAssemblyPath)
         }
         catch (Exception e)
         {
-            Logger.Log(e);
-            throw;
+            Log.Error("Exception during write hollow task:\n{Exception}",e.Message);
+            return;
         }
         
         StartHDiffz();
         
-        Context.Instance.Get<Statistics>()!
-            .DisplayStatistics(false, hollowedPath, OutPath);
+        statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }
 
     /// <summary>
@@ -468,7 +495,7 @@ public class MappingController(string targetAssemblyPath)
     /// </summary>
     private async Task StartHollow()
     {
-        Logger.Log("Creating Hollow...");
+        Log.Information("Creating Hollow...");
         
         var tasks = new List<Task>(Types.Count());
         
@@ -483,7 +510,7 @@ public class MappingController(string targetAssemblyPath)
                 }
                 catch (Exception ex)
                 {
-                    Logger.QueueTaskException($"Exception in task: {ex.Message}");
+                    Log.Error("Exception in task:\n{ExMessage}", ex.Message);
                 }
             }));
         }
@@ -515,7 +542,7 @@ public class MappingController(string targetAssemblyPath)
     
     private void StartHDiffz()
     {
-        Logger.Log("Creating Delta...");
+        Log.Information("Creating Delta...");
         
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
 
@@ -553,7 +580,7 @@ public class MappingController(string targetAssemblyPath)
 
         if (error.Length > 0)
         {
-            Logger.Log("Error: " + error, ConsoleColor.Red);
+            Log.Error("Error: {Error}",error);
         }
     }
 }

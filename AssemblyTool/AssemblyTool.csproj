@@ -20,4 +20,10 @@
   <ItemGroup>
     <PackageReference Include="CliFx" Version="2.3.5" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

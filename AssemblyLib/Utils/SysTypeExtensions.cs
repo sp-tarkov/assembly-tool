@@ -3,8 +3,19 @@ using AsmResolver;
 
 namespace AssemblyLib.Utils;
 
-public static class SysTypeExtentions
+public static class SysTypeExtensions
 {
+    private static readonly List<string> TypesToMatch =
+    [
+        "Class",
+        "GClass",
+        "GStruct",
+        "GControl",
+        "ValueStruct",
+        "Interface",
+        "GInterface"
+    ];
+    
     /// <summary>
     /// Returns a string trimmed after any non letter character
     /// </summary>
@@ -89,9 +100,8 @@ public static class SysTypeExtentions
         {
             realString = realString.Replace("_", "");
         }
-
-        var list = DataProvider.Settings!.TypeNamesToMatch;
-        var result = list.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+        
+        var result = TypesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
 
         return result;
     }

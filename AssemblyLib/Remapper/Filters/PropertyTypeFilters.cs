@@ -1,9 +1,11 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-internal static class PropertyTypeFilters
+[Injectable]
+public class PropertyTypeFilters
 {
     /// <summary>
     /// Filters based on property includes
@@ -11,7 +13,7 @@ internal static class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Properties.IncludeProperties.Count == 0) return types;
 
@@ -36,7 +38,7 @@ internal static class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Properties.ExcludeProperties.Count == 0) return types;
 
@@ -62,7 +64,7 @@ internal static class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Properties.PropertyCount == -1) return types;
 

@@ -1,12 +1,12 @@
 ﻿using AsmResolver.DotNet;
-using AssemblyLib.Application;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.MetaData;
 
-internal sealed class DiffCompare(ModuleDefinition oldModule) 
-	: IComponent
+[Injectable]
+public sealed class DiffCompare
 {
-	public bool IsSame(TypeDefinition newType)
+	public bool IsSame(ModuleDefinition oldModule, TypeDefinition newType)
 	{
 		var oldTypes = oldModule.GetAllTypes();
 		var typeDefs = oldTypes as TypeDefinition[] ?? oldTypes.ToArray();

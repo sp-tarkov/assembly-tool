@@ -1,14 +1,18 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Concurrent;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using Serilog;
+using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace AssemblyLib.Utils;
 
-public static class DataProvider
+[Injectable(InjectionType.Singleton)]
+public class DataProvider
 {
-    static DataProvider()
+    public DataProvider()
     {
         Settings = LoadAppSettings();
         ItemTemplates = LoadItems();
@@ -16,18 +20,20 @@ public static class DataProvider
         LoadMappingFile();
     }
 
-    public static Settings Settings { get; }
+    public Settings Settings { get; }
 
-    public static List<RemapModel> Remaps { get; } = [];
-    public static Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
+    private readonly List<RemapModel> _remaps = [];
+    private readonly Lock _remapLock = new ();
+    
+    public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
     private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
     private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
 
-    public static ModuleDefinition Mscorlib { get; private set; }
+    public ModuleDefinition? Mscorlib { get; private set; }
 
-    public static ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
+    public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
         var directory = Path.GetDirectoryName(path)!;
 
@@ -46,7 +52,40 @@ public static class DataProvider
         return module;
     }
 
-    public static void UpdateMapping(bool respectNullableAnnotations = true, bool isAutoMatch = false)
+    public List<RemapModel> GetRemaps()
+    {
+        return _remaps;
+    }
+    
+    public int RemapCount() => _remaps.Count;
+    
+    public void AddMapping(RemapModel remap)
+    {
+        lock (_remapLock)
+        {
+            _remaps.Add(remap);
+        }
+    }
+
+    public bool RemoveMapping(RemapModel remap)
+    {
+        lock (_remapLock)
+        {
+            return _remaps.Remove(remap);
+        }
+    }
+    
+    public void ClearMappings()
+    {
+        lock (_remapLock)
+        {
+            _remaps.Clear();
+        }
+    }
+    
+    
+
+    public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(MappingNewPath))
         {
@@ -61,7 +100,7 @@ public static class DataProvider
             Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
-        var jsonText = JsonSerializer.Serialize(Remaps, settings);
+        var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
         var path = isAutoMatch
             ? MappingPath
@@ -69,14 +108,14 @@ public static class DataProvider
 
         File.WriteAllText(path, jsonText);
 
-        Logger.Log($"Mapping file updated with new type names and saved to {path}", ConsoleColor.Green);
+        Log.Information("Mapping file updated with new type names and saved to {Path}", path);
     }
 
-    public static void LoadMappingFile()
+    public void LoadMappingFile()
     {
         if (!File.Exists(MappingPath))
         {
-            Logger.Log($"Cannot find mapping.json at `{MappingPath}`", ConsoleColor.Red);
+            Log.Information("Cannot find mapping.json at: {Path}", MappingPath);
             return;
         }
 
@@ -88,14 +127,14 @@ public static class DataProvider
         };
 
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
-        Remaps.AddRange(remaps!);
+        _remaps.AddRange(remaps!);
 
         ValidateMappings();
     }
 
-    private static void ValidateMappings()
+    private void ValidateMappings()
     {
-        var duplicateGroups = Remaps
+        var duplicateGroups = _remaps
             .GroupBy(m => m.NewTypeName)
             .Where(g => g.Count() > 1)
             .ToList();
@@ -105,13 +144,13 @@ public static class DataProvider
         foreach (var duplicate in duplicateGroups)
         {
             var duplicateNewTypeName = duplicate.Key;
-            Logger.Log($"Ambiguous NewTypeName: {duplicateNewTypeName} found. Cancelling Remap.", ConsoleColor.Red);
+            Log.Error("Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.", duplicateNewTypeName);
         }
 
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
 
-    private static Settings LoadAppSettings()
+    private Settings LoadAppSettings()
     {
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
@@ -124,7 +163,7 @@ public static class DataProvider
         return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
 
-    private static Dictionary<string, ItemTemplateModel> LoadItems()
+    private Dictionary<string, ItemTemplateModel> LoadItems()
     {
         var itemsPath = Path.Combine(DataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);

@@ -1,9 +1,11 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-internal static class CtorTypeFilters
+[Injectable]
+public class CtorTypeFilters
 {
     /// <summary>
     /// Search for types with a constructor of a given length
@@ -11,7 +13,7 @@ internal static class CtorTypeFilters
     /// <param name="parms"></param>
     /// <param name="score"></param>
     /// <returns>Filtered list</returns>
-    public static IEnumerable<TypeDefinition> FilterByParameterCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByParameterCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.ConstructorParameterCount == -1) return types;
 

@@ -1,9 +1,13 @@
 ﻿using System.Linq;
 using AsmResolver.DotNet;
+using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Dumper;
 
-public static class DumpyReflectionHelper
+[Injectable]
+public class DumpyReflectionHelper(
+    
+    )
 {
     /// <summary>
     /// <para>Gets the type that has a method called SendAndHandleRetries.</para>
@@ -11,7 +15,7 @@ public static class DumpyReflectionHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetBackRequestType(TypeDefinition type)
+    public bool GetBackRequestType(TypeDefinition type)
     {
         return type.Methods.Any(m => m.Name == "SendAndHandleRetries");
     }
@@ -21,7 +25,7 @@ public static class DumpyReflectionHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetValidateCertType(TypeDefinition type)
+    public bool GetValidateCertType(TypeDefinition type)
     {
         return type.Methods.Any(m => m.Name == "ValidateCertificate");
     }
@@ -31,7 +35,7 @@ public static class DumpyReflectionHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetRunValidationType(TypeDefinition type)
+    public bool GetRunValidationType(TypeDefinition type)
     {
         return type.Methods.Any(m => m.Name == "RunValidation");
     }
@@ -42,47 +46,47 @@ public static class DumpyReflectionHelper
     /// </summary>
     /// <param name="type">TypeDefinition</param>
     /// <returns>boolean</returns>
-    public static bool GetEnsureConsistencyType(TypeDefinition type)
+    public bool GetEnsureConsistencyType(TypeDefinition type)
     {
         return type.Name == "ConsistencyController";
     }
 
-    public static bool GetMenuscreenType(TypeDefinition type)
+    public bool GetMenuscreenType(TypeDefinition type)
     {
         return type.Name == "MenuScreen";
     }
 
-    public static bool GetBackRequestMethod(MethodDefinition method)
+    public bool GetBackRequestMethod(MethodDefinition method)
     {
         return method.Parameters.Any(p => p.Name is "backRequest") && method.Parameters.Any(p => p.Name is "bResponse");
     }
 
-    public static bool GetValidateCertMethods(MethodDefinition method)
+    public bool GetValidateCertMethods(MethodDefinition method)
     {
         return method.Name == "ValidateCertificate";
     }
 
-    public static bool GetRunValidationMethod(MethodDefinition method)
+    public bool GetRunValidationMethod(MethodDefinition method)
     {
         return method.Name == "RunValidation";
     }
 
-    public static bool GetRunValidationNextMethod(MethodDefinition method)
+    public  bool GetRunValidationNextMethod(MethodDefinition method)
     {
         return method.Name == "MoveNext";
     }
 
-    public static bool GetMenuscreenMethod(MethodDefinition method)
+    public bool GetMenuscreenMethod(MethodDefinition method)
     {
         return method.Name == "Awake";
     }
 
-    public static bool GetEnsureConMethod(MethodDefinition method)
+    public bool GetEnsureConMethod(MethodDefinition method)
     {
         return method.Name == "EnsureConsistency";
     }
 
-    public static bool GetEnsureConSingleMethod(MethodDefinition method)
+    public bool GetEnsureConSingleMethod(MethodDefinition method)
     {
         return method.Name == "EnsureConsistencySingle";
     }

@@ -485,7 +485,7 @@ public class MappingController(
             return;
         }
         
-        StartHDiffz();
+        assemblyUtils.StartHDiffz(OutPath);
         
         statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }
@@ -537,50 +537,6 @@ public class MappingController(
 
             // Assign the new method body
             method.CilMethodBody = newBody;
-        }
-    }
-    
-    private void StartHDiffz()
-    {
-        Log.Information("Creating Delta...");
-        
-        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
-
-        var outDir = Path.GetDirectoryName(OutPath);
-        
-        var originalFile = Path.Combine(outDir!, "Assembly-CSharp.dll");
-        var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-remapped-publicized.dll");
-        var deltaFile = Path.Combine(outDir!, "Assembly-CSharp.dll.delta");
-
-        if (File.Exists(deltaFile))
-        {
-            File.Delete(deltaFile);
-        }
-        
-        var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
-        
-        var startInfo = new ProcessStartInfo
-        {
-            FileName = hdiffPath,
-            WorkingDirectory = Path.GetDirectoryName(hdiffPath),
-            Arguments = arguments,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            CreateNoWindow = true
-        };
-
-        using var process = new Process();
-        process.StartInfo = startInfo;
-
-        process.Start();
-        //var output = process.StandardOutput.ReadToEnd();
-        var error = process.StandardError.ReadToEnd();
-        process.WaitForExit();
-
-        if (error.Length > 0)
-        {
-            Log.Error("Error: {Error}",error);
         }
     }
 }

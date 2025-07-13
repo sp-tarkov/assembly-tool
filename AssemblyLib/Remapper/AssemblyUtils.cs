@@ -16,7 +16,7 @@ public class AssemblyUtils(
 	{
 		if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
 		{
-			Log.Information("Assembly is obfuscated, running de-obfuscation...\n", ConsoleColor.Yellow);
+			Log.Information("Assembly is obfuscated, running de-obfuscation...");
 			
 			module = null;
             
@@ -82,15 +82,74 @@ public class AssemblyUtils(
         // Construct the token string (similar to Mono.Cecil's format)
         // Shift table index to the upper 8 bits
         token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
-        Console.WriteLine($"Deobfuscation token: {token}");
-
+        Log.Information("Deobfuscated token: {Token}", token);
+        
         var cmd = isLauncher
             ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
             : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
         
         var executablePath = Path.Combine(AppContext.BaseDirectory, "de4dot", "de4dot-x64.exe");
+        var workingDir = Path.GetDirectoryName(executablePath);
         
-        var process = Process.Start(executablePath, cmd);
-        process.WaitForExit();
+        var startInfo = new ProcessStartInfo
+        {
+	        FileName = executablePath,
+	        WorkingDirectory = workingDir,
+	        Arguments = cmd,
+	        UseShellExecute = false,
+	        RedirectStandardOutput = true,
+	        RedirectStandardError = true,
+	        CreateNoWindow = true
+        };
+        
+        var proc = new Process();
+        proc.StartInfo = startInfo;
+        
+        proc.Start();
+        proc.WaitForExit();
     }
+	
+	public void StartHDiffz(string outPath)
+	{
+		Log.Information("Creating Delta...");
+        
+		var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
+
+		var outDir = Path.GetDirectoryName(outPath);
+        
+		var originalFile = Path.Combine(outDir!, "Assembly-CSharp.dll");
+		var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-remapped-publicized.dll");
+		var deltaFile = Path.Combine(outDir!, "Assembly-CSharp.dll.delta");
+
+		if (File.Exists(deltaFile))
+		{
+			File.Delete(deltaFile);
+		}
+        
+		var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
+        
+		var startInfo = new ProcessStartInfo
+		{
+			FileName = hdiffPath,
+			WorkingDirectory = Path.GetDirectoryName(hdiffPath),
+			Arguments = arguments,
+			UseShellExecute = false,
+			RedirectStandardOutput = true,
+			RedirectStandardError = true,
+			CreateNoWindow = true
+		};
+
+		using var process = new Process();
+		process.StartInfo = startInfo;
+
+		process.Start();
+		//var output = process.StandardOutput.ReadToEnd();
+		var error = process.StandardError.ReadToEnd();
+		process.WaitForExit();
+
+		if (error.Length > 0)
+		{
+			Log.Error("Error: {Error}",error);
+		}
+	}
 }

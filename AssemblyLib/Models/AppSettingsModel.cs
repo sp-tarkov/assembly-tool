@@ -1,17 +1,10 @@
-﻿using AssemblyLib.Utils;
-
-namespace AssemblyLib.Models;
+﻿namespace AssemblyLib.Models;
 
 /// <summary>
 /// All settings container
 /// </summary>
 public class Settings
 {
-    /// <summary>
-    /// Enables or disables debug logging
-    /// </summary>
-    public bool DebugLogging { get; set; }
-    
     /// <summary>
     /// Path to the games root directory
     /// </summary>

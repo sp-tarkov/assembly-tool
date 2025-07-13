@@ -92,9 +92,7 @@ public class MappingController(
         StartMatchingTasks();
         await ChooseBestMatches();
         
-        var succeeded = statistics.DisplayFailuresAndChanges(false, true);
-
-        return succeeded;
+        return dataProvider.GetRemaps().All(remap => remap.Succeeded);
     }
 
     /// <summary>
@@ -106,7 +104,7 @@ public class MappingController(
         await PublicizeObfuscatedTypes();
         
         Log.Information("Fixing method names...");
-        renamer.FixInterfaceMangledMethodNames(Module!);
+        await renamer.FixInterfaceMangledMethodNames(Module!);
         
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {

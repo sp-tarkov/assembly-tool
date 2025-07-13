@@ -25,7 +25,11 @@ public sealed class Statistics(
 	
 	public readonly Stopwatch Stopwatch = new();
 	
-	public void DisplayStatistics(bool validate = false, string hollowedPath = "", string outPath = "")
+	public void DisplayStatistics(
+		bool validate = false, 
+		string hollowedPath = "", 
+		string outPath = ""
+		)
 	{
 		_hollowedPath = hollowedPath;
 		
@@ -86,7 +90,10 @@ public sealed class Statistics(
 		}
 	}
 
-	public bool DisplayFailuresAndChanges(bool validate, bool isRemapProcess = false)
+	public bool DisplayFailuresAndChanges(
+		bool validate, 
+		bool isRemapProcess = false
+		)
 	{
 		var failures = 0;
 		var changes = 0;

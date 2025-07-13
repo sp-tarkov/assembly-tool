@@ -85,23 +85,30 @@ public sealed class Renamer(
         remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
     }
 
-    public void FixInterfaceMangledMethodNames(ModuleDefinition module)
+    public async Task FixInterfaceMangledMethodNames(ModuleDefinition module)
     {
-        // We're only looking for implementations
-        foreach (var type in module.GetAllTypes().Where(t => !t.IsInterface))
+        var types = module.GetAllTypes().Where(t => !t.IsInterface);
+        
+        var tasks = new List<Task>(types.Count());
+        foreach (var type in types)
         {
-            var renamedMethodNames = new List<Utf8String>();
-            foreach (var method in type.Methods)
+            tasks.Add(Task.Factory.StartNew(() =>
             {
-                if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod) continue;
+                var renamedMethodNames = new List<Utf8String>();
+                foreach (var method in type.Methods)
+                {
+                    if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod) continue;
                 
-                var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
+                    var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
                 
-                if (newMethodName == Utf8String.Empty) continue;
+                    if (newMethodName == Utf8String.Empty) continue;
                 
-                renamedMethodNames.Add(newMethodName);
-            }
+                    renamedMethodNames.Add(newMethodName);
+                }
+            }));
         }
+        
+        await Task.WhenAll(tasks);
     }
     
     private Utf8String FixInterfaceMangledMethod(

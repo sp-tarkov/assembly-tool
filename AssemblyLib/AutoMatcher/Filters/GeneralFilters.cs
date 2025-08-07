@@ -10,12 +10,8 @@ public class GeneralFilters(
     DataProvider dataProvider
     )
 {
-    private List<string>? TypesToMatch;
-    
     public bool Filter(TypeDefinition target, TypeDefinition candidate, GenericParams parms)
     {
-        TypesToMatch ??= dataProvider.Settings.TypeNamesToMatch;
-        
         if (target.IsPublic != candidate.IsPublic) return false;
         if (target.IsAbstract != candidate.IsAbstract) return false;
         if (target.IsInterface != candidate.IsInterface) return false;
@@ -35,7 +31,8 @@ public class GeneralFilters(
         parms.HasAttribute = target.CustomAttributes.Any();
         parms.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
-        if ((bool)parms.IsDerived && !TypesToMatch.Any(t => target.Name!.StartsWith(t)))
+        if ((bool)parms.IsDerived && !dataProvider.Settings.TypeNamesToMatch
+                .Any(t => target.Name!.StartsWith(t)))
         {
             parms.MatchBaseClass = target.BaseType?.Name;
         }

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-using AssemblyLib.Enums;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Enums;
 using AssemblyLib.Utils;
 using Serilog;
 using SPTarkov.DI.Annotations;

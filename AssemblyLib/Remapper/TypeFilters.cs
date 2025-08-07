@@ -1,6 +1,6 @@
 ﻿using AsmResolver.DotNet;
-using AssemblyLib.Enums;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Enums;
 using AssemblyLib.ReMapper.Filters;
 using SPTarkov.DI.Annotations;
 

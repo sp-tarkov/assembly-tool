@@ -1,4 +1,4 @@
-﻿namespace AssemblyLib.Enums;
+﻿namespace AssemblyLib.Models.Enums;
 
 internal enum EMatchResult
 {

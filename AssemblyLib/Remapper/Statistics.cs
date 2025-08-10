@@ -62,6 +62,51 @@ public sealed class Statistics(
 		Environment.Exit(0);
 	}
 
+	public void DisplayAssemblyStatistics(string assemblyPath)
+	{
+		var module = dataProvider.LoadModule(assemblyPath, false);
+		var types = module.GetAllTypes();
+		
+		var totalTypes = types.Count();
+		var totalClasses = types.Count(t => t.IsClass);
+		var totalStructs = types.Count(t => t.InheritsFrom("System.ValueType"));
+		var totalEnums = types.Count(t => t.IsEnum);
+		var totalInterfaces =  types.Count(t => t.IsInterface);
+		
+		var totalObfuscatedClasses = types.Count(t => t.Name is not null 
+			&& t.Name.StartsWith("GClass") || t.Name.StartsWith("Class"));
+		
+		var totalObfuscatedStructs = types.Count(t => t.Name is not null 
+			&& t.Name.StartsWith("GStruct") ||  t.Name.StartsWith("Struct"));
+		
+		var totalObfuscatedInterfaces = types.Count(t => t.Name is not null  
+			&& t.IsInterface
+			&& t.Name.StartsWith("GInterface") ||  t.Name.StartsWith("Interface"));
+		
+		var totalNamedClasses = totalClasses - totalObfuscatedClasses;
+		var totalNamedStructs = totalStructs - totalObfuscatedStructs;
+		var totalNamedInterfaces = totalInterfaces - totalObfuscatedInterfaces;
+		
+		Log.Information("------------- Assembly Statistics ---------------");
+		Log.Information("Types:      {Total}", totalTypes);
+		Log.Information("Classes:    {Total}", totalClasses);
+		Log.Information("Structs:    {Total}", totalStructs);
+		Log.Information("Enums:      {Total}", totalEnums);
+		Log.Information("Interfaces: {Total}", totalInterfaces);
+		
+		Log.Information("---------- De-Obfuscation Statistics -------------");
+		Log.Information("Total obfuscated classes:     {Total}", totalObfuscatedClasses);
+		Log.Information("Total obfuscated structs:     {Total}", totalNamedStructs);
+		Log.Information("Total obfuscated enums:       Cannot be obfuscated");
+		Log.Information("Total obfuscated interfaces:  {total}", totalObfuscatedInterfaces);
+		
+		Log.Information("Total named classes:          {Total}", totalNamedClasses);
+		Log.Information("Total named structs:          {Total}", totalNamedStructs);
+		Log.Information("Total named interfaces:       {Total}", totalNamedInterfaces);
+		Log.Information("Total named enums:            {total}", totalEnums);
+		Log.Information("Named class coverage:         {coverage}%", totalNamedClasses / (float)totalClasses * 100f);
+	}
+	
 	private void DisplayAlternativeMatches()
 	{
 		Log.Information("\n--------------------------------------------------");

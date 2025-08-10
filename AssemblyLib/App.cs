@@ -70,6 +70,14 @@ public class App
         return Task.CompletedTask;
     }
 
+    public Task RunStatistics(string assemblyPath)
+    {
+        var statistics = _provider?.GetService<Statistics>();
+        statistics?.DisplayAssemblyStatistics(assemblyPath);
+        
+        return Task.CompletedTask;
+    }
+
     private void ConfigureApplication()
     {
         var services = new ServiceCollection();

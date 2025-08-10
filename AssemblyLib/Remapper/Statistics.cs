@@ -90,7 +90,7 @@ public sealed class Statistics(
 		}
 	}
 
-	public bool DisplayFailuresAndChanges(
+	private bool DisplayFailuresAndChanges(
 		bool validate, 
 		bool isRemapProcess = false
 		)

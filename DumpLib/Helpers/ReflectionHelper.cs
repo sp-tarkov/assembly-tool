@@ -253,16 +253,11 @@ namespace DumpLib.Helpers
             }
         }
 
-        /// <summary>
-        /// TODO: Rename as its not an actual shim
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public static object GetProfileShim()
+        public static object GetProfileDescriptor()
         {
             try
             {
-                var typeToUse = TypeHelper.GetProfileShimType();
+                var typeToUse = TypeHelper.GetProfileDescriptorType();
                 var instance = Activator.CreateInstance(typeToUse,
                     new object[]
                     {
@@ -283,8 +278,8 @@ namespace DumpLib.Helpers
         {
             try
             {
-                var completeData = ReflectionHelper.GetProfileShim();
-                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileShimType());
+                var completeData = ReflectionHelper.GetProfileDescriptor();
+                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileDescriptorType());
                 return converterMethod.Invoke(null, new[] { completeData, Array.Empty<JsonConverter>() });
             }
             catch (Exception e)

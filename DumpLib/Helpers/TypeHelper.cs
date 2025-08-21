@@ -254,7 +254,11 @@ public static class TypeHelper
         }
     }
 
-    public static Type GetProfileShimType()
+    /// <summary>
+    /// Remapped as CompleteProfileDescriptorClass
+    /// </summary>
+    /// <returns></returns>
+    public static Type GetProfileDescriptorType()
     {
         try
         {
@@ -265,7 +269,7 @@ public static class TypeHelper
                 var properties = x.GetProperties();
                 var methods = x.GetMethods();
 
-                return fields.Length == 26
+                return fields.Length == 27
                        && constructors.Length == 2
                        && properties.Length == 0
                        && methods.Length == 4

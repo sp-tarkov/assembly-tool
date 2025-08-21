@@ -10,7 +10,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable]
-public sealed class Publicizer(Statistics stats) 
+public sealed class Publicizer(DataProvider dataProvider, Statistics stats) 
 {
     /// <summary>
     /// Publicize the provided type
@@ -70,8 +70,15 @@ public sealed class Publicizer(Statistics stats)
 
     private void PublicizeMethod(MethodDefinition method)
     {
-        if (method.IsCompilerControlled || method.IsPublic || method.IsGetMethod || method.IsSetMethod) return;
-        
+        if (method.IsCompilerControlled || method.IsPublic) return;
+
+        if (method.Name.StartsWith("GInterface") && 
+            dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod)))
+        {
+            Log.Information($"Not publicizing {method.Name} due to it being ignored");
+            return;
+        }
+
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
         

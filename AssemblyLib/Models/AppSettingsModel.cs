@@ -39,6 +39,8 @@ public class Settings
     /// List of method names to be ignored during the auto-match process.
     /// </summary>
     public required List<string> FieldNamesToIgnore { get; set; }
+
+    public required List<string> InterfaceMethodsToIgnore { get; set; }
     
     /// <summary>
     /// Pairs of item overrides used for the TemplateIdToObjectMappingClass matching process

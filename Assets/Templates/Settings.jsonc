@@ -39,7 +39,14 @@
     "Interface",
     "Ginterface"
   ],
-  "ItemObjectIdOverrides": {
+  "InterfaceMethodsToIgnore": [
+    "get_ProfileId",
+    "get_Nickname",
+    "get_Side",
+    "get_PrestigeLevel"
+  ],
+  "ItemObjectIdOverrides":
+   {
     
   },
   "TemplateObjectIdOverrides": {

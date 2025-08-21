@@ -1,4 +1,5 @@
-﻿using AsmResolver;
+﻿
+using AsmResolver;
 
 namespace AssemblyLib.Utils;
 
@@ -8,7 +9,12 @@ internal static class AsmResolverExtensions
     {
         return utf8.ToString().StartsWith(value, comparisonType);
     }
-    
+
+    public static bool EndsWith(this Utf8String utf8, string value, StringComparison comparisonType = StringComparison.OrdinalIgnoreCase)
+    {
+        return utf8.ToString().EndsWith(value, comparisonType);
+    }
+
     public static bool Contains(this Utf8String utf8, string value, StringComparison comparisonType = StringComparison.OrdinalIgnoreCase)
     {
         return utf8.ToString().Contains(value, comparisonType);

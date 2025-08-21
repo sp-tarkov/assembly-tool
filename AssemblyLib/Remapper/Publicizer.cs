@@ -70,16 +70,14 @@ public sealed class Publicizer(Statistics stats)
 
     private void PublicizeMethod(MethodDefinition method)
     {
-        if (method.IsCompilerControlled || method.IsPublic) return;
+        if (method.IsCompilerControlled || method.IsPublic || method.IsGetMethod || method.IsSetMethod) return;
         
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen") return;
         
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
-
-        if (method.IsGetMethod || method.IsSetMethod) return;
-
+        
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
             Log.Debug("Publicizing Method [{MethodDeclaringType}::{MethodName}]", 

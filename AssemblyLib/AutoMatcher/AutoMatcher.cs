@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AsmResolver.DotNet;
+using AssemblyLib.AutoMatcher.Filters;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;
@@ -13,12 +14,12 @@ public class AutoMatcher(
 	MappingController mappingController,
 	AssemblyUtils assemblyUtils,
 	DataProvider dataProvider,
-	TypeFilters typeFilter
+	IReadOnlyList<IAutoMatchFilter> filters
 	)
 {
 	private ModuleDefinition? Module { get; set; }
-	private List<TypeDefinition>? CandidateTypes { get; set; }
-	private List<string>? TypesToMatch;
+	private List<TypeDefinition>? _candidateTypes;
+	private List<string>? _typesToMatch;
 	
 	private string? _newTypeName;
 	
@@ -33,7 +34,7 @@ public class AutoMatcher(
 		var result = assemblyUtils.TryDeObfuscate(
 			dataProvider.LoadModule(assemblyPath), assemblyPath);
 
-		TypesToMatch = dataProvider.Settings.TypeNamesToMatch;
+		_typesToMatch = dataProvider.Settings.TypeNamesToMatch;
 
 		if (isRegen)
 		{
@@ -63,7 +64,7 @@ public class AutoMatcher(
 		GetCandidateTypes(targetTypeDef);
 		Log.Information(
 			"Found {CandidateTypesCount} potential candidates: {FullName}", 
-			CandidateTypes?.Count ?? 0, 
+			_candidateTypes?.Count ?? 0, 
 			targetTypeDef.FullName
 			);
 		
@@ -89,15 +90,15 @@ public class AutoMatcher(
 	{
 		if (targetTypeDef.IsNested)
 		{
-			CandidateTypes = targetTypeDef.DeclaringType?.NestedTypes
-				.Where(t => TypesToMatch.Any(token => t.Name!.StartsWith(token)))
+			_candidateTypes = targetTypeDef.DeclaringType?.NestedTypes
+				.Where(t => _typesToMatch.Any(token => t.Name!.StartsWith(token)))
 				.ToList();
 			
 			return;
 		}
 		
-		CandidateTypes = Module?.GetAllTypes()
-			.Where(t => TypesToMatch.Any(token => t.Name!.StartsWith(token)))
+		_candidateTypes = Module?.GetAllTypes()
+			.Where(t => _typesToMatch.Any(token => t.Name!.StartsWith(token)))
 			.ToList();
 	}
 	
@@ -109,15 +110,21 @@ public class AutoMatcher(
 		bool isRegen
 		)
 	{
-		Log.Information("Starting Candidates: {Count}", CandidateTypes!.Count);
+		Log.Information("Starting Candidates: {Count}", _candidateTypes!.Count);
 		
 		// Purpose of this pass is to eliminate any types that have no matching parameters
-		foreach (var candidate in CandidateTypes!.ToList())
+		foreach (var candidate in _candidateTypes!.ToList())
 		{
-			typeFilter.Filter(target, candidate, remapModel);
+			foreach (var filter in filters)
+			{
+				if (!filter.Filter(target, candidate, remapModel.SearchParams))
+				{
+					_candidateTypes.Remove(candidate);	
+				}
+			}
 		}
 		
-		if (CandidateTypes!.Count == 1)
+		if (_candidateTypes!.Count == 1)
 		{
 			await RunTest(remapModel, assemblyPath, oldAssemblyPath, isRegen);
 			return;

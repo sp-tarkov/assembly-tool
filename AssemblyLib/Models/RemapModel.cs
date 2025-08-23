@@ -45,7 +45,7 @@ public class RemapModel
 /// <summary>
 /// Search filters to find types and remap them
 /// </summary>
-public class SearchParams : IFilterParams
+public class SearchParams
 {
     public GenericParams GenericParams { get; set; } = new();
     public MethodParams Methods { get; set; } = new();
@@ -55,7 +55,7 @@ public class SearchParams : IFilterParams
     public EventParams Events { get; set; } = new();
 }
 
-public class GenericParams : IFilterParams
+public class GenericParams
 {
     public bool IsPublic { get; set; } = true;
     public bool IsAbstract { get; set; }
@@ -72,7 +72,7 @@ public class GenericParams : IFilterParams
     public string? MatchBaseClass { get; set; } = null;
 }
 
-public class MethodParams : IFilterParams
+public class MethodParams
 {
     public int ConstructorParameterCount { get; set; } = -1;
     public int MethodCount { get; set; } = -1;
@@ -80,21 +80,21 @@ public class MethodParams : IFilterParams
     public HashSet<string> ExcludeMethods { get; set; } = [];
 }
 
-public class FieldParams : IFilterParams
+public class FieldParams
 {
     public int FieldCount { get; set; } = -1;
     public HashSet<string> IncludeFields { get; set; } = [];
     public HashSet<string> ExcludeFields { get; set; } = [];
 }
 
-public class PropertyParams : IFilterParams
+public class PropertyParams
 {
     public int PropertyCount { get; set; } = -1;
     public HashSet<string> IncludeProperties { get; set; } = [];
     public HashSet<string> ExcludeProperties { get; set; } = [];
 }
 
-public class NestedTypeParams : IFilterParams
+public class NestedTypeParams
 {
     public bool IsNested { get; set; }
     public bool IsNestedAssembly { get; set; }
@@ -113,7 +113,7 @@ public class NestedTypeParams : IFilterParams
     public HashSet<string> ExcludeNestedTypes { get; set; } = [];
 }
 
-public class EventParams : IFilterParams
+public class EventParams
 {
     public int EventCount { get; set; } = -1;
     public HashSet<string> IncludeEvents { get; set; } = [];

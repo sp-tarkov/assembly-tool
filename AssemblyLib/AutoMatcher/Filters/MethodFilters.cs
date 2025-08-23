@@ -15,19 +15,14 @@ public class MethodFilters(
 {
     private List<string>? _methodsToIgnore;
     
-    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        if (filterParams is not MethodParams methodParams)
-        {
-            throw new FilterException("FilterParams in MethodFilters is not MethodParams or is null");
-        }
-        
         _methodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
         
         // Target has no methods and type has no methods
         if (!target.Methods.Any() && !candidate.Methods.Any())
         {
-            methodParams.MethodCount = 0;
+            searchParams.Methods.MethodCount = 0;
             return true;
         }
 		
@@ -57,16 +52,16 @@ public class MethodFilters(
         var excludeMethods = GetFilteredMethodNamesInType(candidate)
             .Except(GetFilteredMethodNamesInType(target));
 		
-        methodParams.IncludeMethods.UnionWith(includeMethods);
-        methodParams.ExcludeMethods.UnionWith(excludeMethods);
+        searchParams.Methods.IncludeMethods.UnionWith(includeMethods);
+        searchParams.Methods.ExcludeMethods.UnionWith(excludeMethods);
 		
-        methodParams.MethodCount = target.Methods
+        searchParams.Methods.MethodCount = target.Methods
             .Count(m => 
                 m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
 
         if (target.Methods.Any(m => m is { IsConstructor: true, Parameters.Count: > 0 }))
         {
-            methodParams.ConstructorParameterCount = target.Methods.First(m => 
+            searchParams.Methods.ConstructorParameterCount = target.Methods.First(m => 
                     m is { IsConstructor: true, Parameters.Count: > 0 })
                 .Parameters.Count;
         }

@@ -1,4 +1,5 @@
 ﻿using AsmResolver.DotNet;
+using AssemblyLib.Models;
 using AssemblyLib.Models.Interfaces;
 using Serilog;
 
@@ -6,7 +7,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 
 public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
 {
-    public abstract bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParam);
+    public abstract bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 
     /// <summary>
     ///     Logs the failure to the console
@@ -20,4 +21,7 @@ public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
     }
 }
 
-public interface IAutoMatchFilter;
+public interface IAutoMatchFilter
+{
+    bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
+}

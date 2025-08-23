@@ -14,19 +14,14 @@ public class FieldFilters(
 {
     private List<string>? _fieldNamesToIgnore;
     
-    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        if (filterParams is not FieldParams fieldParams)
-        {
-            throw new FilterException("FilterParams in FieldFilters is not FieldParams or is null");
-        }
-        
         _fieldNamesToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
         
         // Target has no fields and type has no fields
         if (!target.Fields.Any() && !candidate.Fields.Any())
         {
-            fieldParams.FieldCount = 0;
+            searchParams.Fields.FieldCount = 0;
             return true;
         }
 		
@@ -56,10 +51,10 @@ public class FieldFilters(
         var excludeFields = candidateFields
             .Except(targetFields);
 		
-        fieldParams.IncludeFields.UnionWith(includeFields);
-        fieldParams.ExcludeFields.UnionWith(excludeFields);
+        searchParams.Fields.IncludeFields.UnionWith(includeFields);
+        searchParams.Fields.ExcludeFields.UnionWith(excludeFields);
 		
-        fieldParams.FieldCount = target.Fields.Count;
+        searchParams.Fields.FieldCount = target.Fields.Count;
 		
         return commonFields.Any() ||
                LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has no common fields with candidate");

@@ -12,13 +12,8 @@ public class GeneralFilters(
     DataProvider dataProvider
     ) : AbstractAutoMatchFilter
 {
-    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        if (filterParams is not GenericParams genericParams)
-        {
-            throw new FilterException("FilterParams in GeneralFilters is not GenericParams or is null");
-        }
-
         if (target.IsPublic && !candidate.IsPublic)
         {
             return LogFailure($"`{candidate.FullName}` filtered out during GeneralFilters: Target is public but candidate is not");
@@ -59,19 +54,19 @@ public class GeneralFilters(
             return LogFailure($"`{candidate.FullName}` filtered out during GeneralFilters: Target is sealed but candidate is not");
         }
 		
-        genericParams.IsPublic = target.IsPublic;
-        genericParams.IsAbstract = target.IsAbstract;
-        genericParams.IsInterface = target.IsInterface;
-        genericParams.IsEnum = target.IsEnum;
-        genericParams.HasGenericParameters = target.GenericParameters.Any();
-        genericParams.IsSealed = target.IsSealed;
-        genericParams.HasAttribute = target.CustomAttributes.Any();
-        genericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
+        searchParams.GenericParams.IsPublic = target.IsPublic;
+        searchParams.GenericParams.IsAbstract = target.IsAbstract;
+        searchParams.GenericParams.IsInterface = target.IsInterface;
+        searchParams.GenericParams.IsEnum = target.IsEnum;
+        searchParams.GenericParams.HasGenericParameters = target.GenericParameters.Any();
+        searchParams.GenericParams.IsSealed = target.IsSealed;
+        searchParams.GenericParams.HasAttribute = target.CustomAttributes.Any();
+        searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
-        if ((bool)genericParams.IsDerived && !dataProvider.Settings.TypeNamesToMatch
+        if ((bool)searchParams.GenericParams.IsDerived && !dataProvider.Settings.TypeNamesToMatch
                 .Any(t => target.Name!.StartsWith(t)))
         {
-            genericParams.MatchBaseClass = target.BaseType?.Name;
+            searchParams.GenericParams.MatchBaseClass = target.BaseType?.Name;
         }
 		
         return true;

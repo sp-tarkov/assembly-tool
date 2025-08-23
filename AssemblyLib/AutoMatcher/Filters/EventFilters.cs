@@ -10,17 +10,12 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class EventFilters : AbstractAutoMatchFilter
 {
-    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        if (filterParams is not EventParams eventParams)
-        {
-            throw new FilterException("FilterParams in EventFilters is not EventParams or is null");
-        }
-        
         // Target has no events but type has events
         if (!target.Events.Any() && candidate.Events.Any())
         {
-            eventParams.EventCount = 0;
+            searchParams.Events.EventCount = 0;
             return LogFailure($"`{candidate.FullName}` filtered out during EventFilters: Target has no events but candidate has events");
         }
 		
@@ -48,9 +43,9 @@ public class EventFilters : AbstractAutoMatchFilter
             .Select(s => s.Name!.ToString())
             .Except(target.Events.Select(s => s.Name!.ToString()));
         
-        eventParams.IncludeEvents.UnionWith(includeEvents);
-        eventParams.ExcludeEvents.UnionWith(excludeEvents);
-        eventParams.EventCount = target.NestedTypes.Count;
+        searchParams.Events.IncludeEvents.UnionWith(includeEvents);
+        searchParams.Events.ExcludeEvents.UnionWith(excludeEvents);
+        searchParams.Events.EventCount = target.NestedTypes.Count;
 		
         return commonEvents.Any() || 
                target.Events.Count == 0 || 

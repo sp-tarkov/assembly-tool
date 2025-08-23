@@ -9,17 +9,12 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class PropertyFilters : AbstractAutoMatchFilter
 {
-    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        if (filterParams is not PropertyParams propertyParams)
-        {
-            throw new FilterException("FilterParams in PropertyFilters is not PropertyParams or is null");
-        }
-        
         // Both target and candidate don't have properties
         if (!target.Properties.Any() && !candidate.Properties.Any())
         {
-            propertyParams.PropertyCount = 0;
+            searchParams.Properties.PropertyCount = 0;
             return true;
         }
 		
@@ -49,10 +44,10 @@ public class PropertyFilters : AbstractAutoMatchFilter
             .Select(s => s.Name!.ToString())
             .Except(target.Properties.Select(s => s.Name!.ToString()));
 		
-        propertyParams.IncludeProperties.UnionWith(includeProps);
-        propertyParams.ExcludeProperties.UnionWith(excludeProps);
+        searchParams.Properties.IncludeProperties.UnionWith(includeProps);
+        searchParams.Properties.ExcludeProperties.UnionWith(excludeProps);
 		
-        propertyParams.PropertyCount = target.Properties.Count;
+        searchParams.Properties.PropertyCount = target.Properties.Count;
 
         // Returns true if there are common props so we don't filter it out, or log a failure and return false
         return commonProps.Any() || 

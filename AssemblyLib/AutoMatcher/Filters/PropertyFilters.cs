@@ -1,26 +1,34 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 [Injectable]
-public class PropertyFilters
+public class PropertyFilters : AbstractAutoMatchFilter
 {
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, PropertyParams props)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Both target and candidate don't have properties
         if (!target.Properties.Any() && !candidate.Properties.Any())
         {
-            props.PropertyCount = 0;
+            searchParams.Properties.PropertyCount = 0;
             return true;
         }
 		
         // Target has props but type has no props
-        if (target.Properties.Any() && !candidate.Properties.Any()) return false;
+        if (target.Properties.Any() && !candidate.Properties.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Target has properties and candidate has no properties");
+        }
 		
         // Target has a different number of props
-        if (target.Properties.Count != candidate.Properties.Count) return false;
+        if (target.Properties.Count != candidate.Properties.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Candidate has a different number of properties");
+        }
 		
         var commonProps = target.Properties
             .Select(s => s.Name)
@@ -36,11 +44,13 @@ public class PropertyFilters
             .Select(s => s.Name!.ToString())
             .Except(target.Properties.Select(s => s.Name!.ToString()));
 		
-        props.IncludeProperties.UnionWith(includeProps);
-        props.ExcludeProperties.UnionWith(excludeProps);
+        searchParams.Properties.IncludeProperties.UnionWith(includeProps);
+        searchParams.Properties.ExcludeProperties.UnionWith(excludeProps);
 		
-        props.PropertyCount = target.Properties.Count;
-		
-        return commonProps.Any();
+        searchParams.Properties.PropertyCount = target.Properties.Count;
+
+        // Returns true if there are common props so we don't filter it out, or log a failure and return false
+        return commonProps.Any() || 
+               LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Candidate has no common properties with target");
     }
 }

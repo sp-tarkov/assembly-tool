@@ -1,6 +1,8 @@
 ﻿using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using AssemblyLib.Utils;
 using SPTarkov.DI.Annotations;
 
@@ -9,29 +11,38 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class MethodFilters(
     DataProvider dataProvider
-    )
+    ) : AbstractAutoMatchFilter
 {
-    private List<string>? MethodsToIgnore;
+    private List<string>? _methodsToIgnore;
     
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, MethodParams methods)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        MethodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
+        _methodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
         
         // Target has no methods and type has no methods
         if (!target.Methods.Any() && !candidate.Methods.Any())
         {
-            methods.MethodCount = 0;
+            searchParams.Methods.MethodCount = 0;
             return true;
         }
 		
         // Target has no methods but type has methods
-        if (!target.Methods.Any() && candidate.Methods.Any()) return false;
+        if (!target.Methods.Any() && candidate.Methods.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has no methods but candidate does");
+        }
 		
         // Target has methods but type has no methods
-        if (target.Methods.Any() && !candidate.Methods.Any()) return false;
+        if (target.Methods.Any() && !candidate.Methods.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has methods but candidate does not");
+        }
 		
         // Target has a different number of methods
-        if (target.Methods.Count != candidate.Methods.Count) return false;
+        if (target.Methods.Count != candidate.Methods.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has a different number of methods");
+        }
         
         // Methods in target that are not in candidate
         var includeMethods = GetFilteredMethodNamesInType(target)
@@ -41,22 +52,24 @@ public class MethodFilters(
         var excludeMethods = GetFilteredMethodNamesInType(candidate)
             .Except(GetFilteredMethodNamesInType(target));
 		
-        methods.IncludeMethods.UnionWith(includeMethods);
-        methods.ExcludeMethods.UnionWith(excludeMethods);
+        searchParams.Methods.IncludeMethods.UnionWith(includeMethods);
+        searchParams.Methods.ExcludeMethods.UnionWith(excludeMethods);
 		
-        methods.MethodCount = target.Methods
+        searchParams.Methods.MethodCount = target.Methods
             .Count(m => 
                 m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
 
         if (target.Methods.Any(m => m is { IsConstructor: true, Parameters.Count: > 0 }))
         {
-            methods.ConstructorParameterCount = target.Methods.First(m => 
+            searchParams.Methods.ConstructorParameterCount = target.Methods.First(m => 
                     m is { IsConstructor: true, Parameters.Count: > 0 })
                 .Parameters.Count;
         }
 		
         // True if we have common methods, or all methods are constructors
-        return HasCommonMethods(target, candidate) || target.Methods.All(m => m.IsConstructor);
+        return HasCommonMethods(target, candidate) || 
+               target.Methods.All(m => m.IsConstructor) || 
+               LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Candidate has no common methods");
     }
     
     /// <summary>
@@ -70,8 +83,8 @@ public class MethodFilters(
         return type.Methods
             .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
             // Don't match de-obfuscator given method names
-            .Where(m => !MethodsToIgnore.Any(mi => 
-                m.Name!.StartsWith(mi) || m.Name!.Contains('.')))
+            .Where(m => !_methodsToIgnore?.Any(mi => 
+                m.Name!.StartsWith(mi) || m.Name!.Contains('.')) ?? false)
             .Select(s => s.Name!.ToString());
     }
 
@@ -81,7 +94,7 @@ public class MethodFilters(
     /// <param name="target">Target type</param>
     /// <param name="candidate">Candidate type</param>
     /// <returns>True if there are common methods</returns>
-    private bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
+    private static bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
     {
         return target.Methods
                 // Get target methods that are not a constructor a get, or set method

@@ -1,5 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using AssemblyLib.Utils;
 using SPTarkov.DI.Annotations;
 
@@ -8,32 +10,35 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class FieldFilters(
     DataProvider dataProvider
-    )
+    ) : AbstractAutoMatchFilter
 {
-    private List<string>? _fieldsToIgnore;
+    private List<string>? _fieldNamesToIgnore;
     
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, FieldParams fields)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
-        _fieldsToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
+        _fieldNamesToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
         
         // Target has no fields and type has no fields
         if (!target.Fields.Any() && !candidate.Fields.Any())
         {
-            fields.FieldCount = 0;
+            searchParams.Fields.FieldCount = 0;
             return true;
         }
 		
         // Target has fields but type has no fields
-        if (target.Fields.Any() && !candidate.Fields.Any()) return false;
+        if (target.Fields.Any() && !candidate.Fields.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has fields but candidate has no fields");
+        }
 		
         // Target has a different number of fields
-        if (target.Fields.Count != candidate.Fields.Count) return false;
+        if (target.Fields.Count != candidate.Fields.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has a different number of fields than the candidate");
+        }
 
-        var targetFields = GetFilteredFieldNamesInType(target)
-            .ToArray();
-		
-        var candidateFields = GetFilteredFieldNamesInType(candidate)
-            .ToArray();
+        var targetFields = GetFilteredFieldNamesInType(target);
+        var candidateFields = GetFilteredFieldNamesInType(candidate);
 		
         var commonFields = targetFields
             .Intersect(candidateFields);
@@ -46,19 +51,21 @@ public class FieldFilters(
         var excludeFields = candidateFields
             .Except(targetFields);
 		
-        fields.IncludeFields.UnionWith(includeFields);
-        fields.ExcludeFields.UnionWith(excludeFields);
+        searchParams.Fields.IncludeFields.UnionWith(includeFields);
+        searchParams.Fields.ExcludeFields.UnionWith(excludeFields);
 		
-        fields.FieldCount = target.Fields.Count;
+        searchParams.Fields.FieldCount = target.Fields.Count;
 		
-        return commonFields.Any();
+        return commonFields.Any() ||
+               LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has no common fields with candidate");
     }
     
-    private IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
+    private string[] GetFilteredFieldNamesInType(TypeDefinition type)
     {
         return type.Fields
             // Don't match de-obfuscator given method names
-            .Where(m => !_fieldsToIgnore.Any(mi => m.Name!.StartsWith(mi)))
-            .Select(s => s.Name!.ToString());
+            .Where(m => !_fieldNamesToIgnore?.Any(mi => m.Name!.StartsWith(mi)) ?? false)
+            .Select(s => s.Name!.ToString())
+            .ToArray();
     }
 }

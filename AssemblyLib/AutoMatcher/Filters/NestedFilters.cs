@@ -1,26 +1,34 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 [Injectable]
-public class NestedFilters
+public class NestedFilters : AbstractAutoMatchFilter
 {
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, NestedTypeParams nt)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Target has no nt's but type has nt's
         if (!target.NestedTypes.Any() && candidate.NestedTypes.Any())
         {
-            nt.NestedTypeCount = 0;
+            searchParams.NestedTypes.NestedTypeCount = 0;
             return false;
         }
 		
         // Target has nt's but type has no nt's
-        if (target.NestedTypes.Any() && !candidate.NestedTypes.Any()) return false;
+        if (target.NestedTypes.Any() && !candidate.NestedTypes.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during NestedFilters: Target has nested types but candidate does not");
+        }
 		
         // Target has a different number of nt's
-        if (target.NestedTypes.Count != candidate.NestedTypes.Count) return false;
+        if (target.NestedTypes.Count != candidate.NestedTypes.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during NestedFilters: Target has different number of nested types");
+        }
 		
         var commonNts = target.NestedTypes
             .Select(s => s.Name)
@@ -34,21 +42,21 @@ public class NestedFilters
             .Select(s => s.Name!.ToString())
             .Except(target.NestedTypes.Select(s => s.Name!.ToString()));
 		
-        nt.IncludeNestedTypes.UnionWith(includeNts);
-        nt.ExcludeNestedTypes.UnionWith(excludeNts);
+        searchParams.NestedTypes.IncludeNestedTypes.UnionWith(includeNts);
+        searchParams.NestedTypes.ExcludeNestedTypes.UnionWith(excludeNts);
 		
-        nt.NestedTypeCount = target.NestedTypes.Count;
-        nt.IsNested = target.IsNested;
-        nt.IsNestedAssembly = target.IsNestedAssembly;
-        nt.IsNestedFamily = target.IsNestedFamily;
-        nt.IsNestedPrivate = target.IsNestedPrivate;
-        nt.IsNestedPublic = target.IsNestedPublic;
-        nt.IsNestedFamilyAndAssembly = target.IsNestedFamilyAndAssembly;
-        nt.IsNestedFamilyOrAssembly = target.IsNestedFamilyOrAssembly;
+        searchParams.NestedTypes.NestedTypeCount = target.NestedTypes.Count;
+        searchParams.NestedTypes.IsNested = target.IsNested;
+        searchParams.NestedTypes.IsNestedAssembly = target.IsNestedAssembly;
+        searchParams.NestedTypes.IsNestedFamily = target.IsNestedFamily;
+        searchParams.NestedTypes.IsNestedPrivate = target.IsNestedPrivate;
+        searchParams.NestedTypes.IsNestedPublic = target.IsNestedPublic;
+        searchParams.NestedTypes.IsNestedFamilyAndAssembly = target.IsNestedFamilyAndAssembly;
+        searchParams.NestedTypes.IsNestedFamilyOrAssembly = target.IsNestedFamilyOrAssembly;
 		
         if (target.DeclaringType is not null)
         {
-            nt.NestedTypeParentName = target.DeclaringType.Name!;
+            searchParams.NestedTypes.NestedTypeParentName = target.DeclaringType.Name!;
         }
 		
         return commonNts.Any() || target.NestedTypes.Count == 0;

@@ -24,10 +24,16 @@ public class PropertyFilters : AbstractAutoMatchFilter
         }
 		
         // Target has props but type has no props
-        if (target.Properties.Any() && !candidate.Properties.Any()) return false;
+        if (target.Properties.Any() && !candidate.Properties.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Target has properties and candidate has no properties");
+        }
 		
         // Target has a different number of props
-        if (target.Properties.Count != candidate.Properties.Count) return false;
+        if (target.Properties.Count != candidate.Properties.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Candidate has a different number of properties");
+        }
 		
         var commonProps = target.Properties
             .Select(s => s.Name)
@@ -47,7 +53,9 @@ public class PropertyFilters : AbstractAutoMatchFilter
         propertyParams.ExcludeProperties.UnionWith(excludeProps);
 		
         propertyParams.PropertyCount = target.Properties.Count;
-		
-        return commonProps.Any();
+
+        // Returns true if there are common props so we don't filter it out, or log a failure and return false
+        return commonProps.Any() || 
+               LogFailure($"`{candidate.FullName}` filtered out during PropertyFilters: Candidate has no common properties with target");
     }
 }

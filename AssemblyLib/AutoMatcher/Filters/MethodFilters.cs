@@ -32,13 +32,22 @@ public class MethodFilters(
         }
 		
         // Target has no methods but type has methods
-        if (!target.Methods.Any() && candidate.Methods.Any()) return false;
+        if (!target.Methods.Any() && candidate.Methods.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has no methods but candidate does");
+        }
 		
         // Target has methods but type has no methods
-        if (target.Methods.Any() && !candidate.Methods.Any()) return false;
+        if (target.Methods.Any() && !candidate.Methods.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has methods but candidate does not");
+        }
 		
         // Target has a different number of methods
-        if (target.Methods.Count != candidate.Methods.Count) return false;
+        if (target.Methods.Count != candidate.Methods.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Target has a different number of methods");
+        }
         
         // Methods in target that are not in candidate
         var includeMethods = GetFilteredMethodNamesInType(target)
@@ -63,7 +72,9 @@ public class MethodFilters(
         }
 		
         // True if we have common methods, or all methods are constructors
-        return HasCommonMethods(target, candidate) || target.Methods.All(m => m.IsConstructor);
+        return HasCommonMethods(target, candidate) || 
+               target.Methods.All(m => m.IsConstructor) || 
+               LogFailure($"`{candidate.FullName}` filtered out during MethodFilters: Candidate has no common methods");
     }
     
     /// <summary>
@@ -77,8 +88,8 @@ public class MethodFilters(
         return type.Methods
             .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
             // Don't match de-obfuscator given method names
-            .Where(m => !_methodsToIgnore.Any(mi => 
-                m.Name!.StartsWith(mi) || m.Name!.Contains('.')))
+            .Where(m => !_methodsToIgnore?.Any(mi => 
+                m.Name!.StartsWith(mi) || m.Name!.Contains('.')) ?? false)
             .Select(s => s.Name!.ToString());
     }
 

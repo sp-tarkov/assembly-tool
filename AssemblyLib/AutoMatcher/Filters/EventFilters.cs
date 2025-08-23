@@ -2,6 +2,7 @@
 using AssemblyLib.Models;
 using AssemblyLib.Models.Exceptions;
 using AssemblyLib.Models.Interfaces;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
@@ -20,14 +21,20 @@ public class EventFilters : AbstractAutoMatchFilter
         if (!target.Events.Any() && candidate.Events.Any())
         {
             eventParams.EventCount = 0;
-            return false;
+            return LogFailure($"`{candidate.FullName}` filtered out during EventFilters: Target has no events but candidate has events");
         }
 		
         // Target has events but type has no events
-        if (target.Events.Any() && !candidate.Events.Any()) return false;
+        if (target.Events.Any() && !candidate.Events.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during EventFilters: Candidate has events but target has no events");
+        }
 		
         // Target has a different number of events
-        if (target.Events.Count != candidate.Events.Count) return false;
+        if (target.Events.Count != candidate.Events.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during EventFilters: Target has a different number of events than the candidate");
+        }
 		
         var commonEvents = target.Events
             .Select(s => s.Name)
@@ -35,18 +42,18 @@ public class EventFilters : AbstractAutoMatchFilter
 		
         var includeEvents = target.Events
             .Select(s => s.Name!.ToString())
-            .Except(candidate.Events.Select(s => s.Name!.ToString()))
-            .ToHashSet();
+            .Except(candidate.Events.Select(s => s.Name!.ToString()));
 		
         var excludeEvents = candidate.Events
             .Select(s => s.Name!.ToString())
-            .Except(target.Events.Select(s => s.Name!.ToString()))
-            .ToHashSet();
+            .Except(target.Events.Select(s => s.Name!.ToString()));
         
         eventParams.IncludeEvents.UnionWith(includeEvents);
         eventParams.ExcludeEvents.UnionWith(excludeEvents);
         eventParams.EventCount = target.NestedTypes.Count;
 		
-        return commonEvents.Any() || target.Events.Count == 0;
+        return commonEvents.Any() || 
+               target.Events.Count == 0 || 
+               LogFailure($"`{candidate.FullName}` filtered out during EventFilters: Target has no common events with candidate");
     }
 }

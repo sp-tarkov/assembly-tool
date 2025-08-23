@@ -24,10 +24,16 @@ public class NestedFilters : AbstractAutoMatchFilter
         }
 		
         // Target has nt's but type has no nt's
-        if (target.NestedTypes.Any() && !candidate.NestedTypes.Any()) return false;
+        if (target.NestedTypes.Any() && !candidate.NestedTypes.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during NestedFilters: Target has nested types but candidate does not");
+        }
 		
         // Target has a different number of nt's
-        if (target.NestedTypes.Count != candidate.NestedTypes.Count) return false;
+        if (target.NestedTypes.Count != candidate.NestedTypes.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during NestedFilters: Target has different number of nested types");
+        }
 		
         var commonNts = target.NestedTypes
             .Select(s => s.Name)

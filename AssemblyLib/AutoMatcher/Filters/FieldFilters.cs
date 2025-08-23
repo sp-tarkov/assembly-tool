@@ -31,16 +31,19 @@ public class FieldFilters(
         }
 		
         // Target has fields but type has no fields
-        if (target.Fields.Any() && !candidate.Fields.Any()) return false;
+        if (target.Fields.Any() && !candidate.Fields.Any())
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has fields but candidate has no fields");
+        }
 		
         // Target has a different number of fields
-        if (target.Fields.Count != candidate.Fields.Count) return false;
+        if (target.Fields.Count != candidate.Fields.Count)
+        {
+            return LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has a different number of fields than the candidate");
+        }
 
-        var targetFields = GetFilteredFieldNamesInType(target)
-            .ToArray();
-		
-        var candidateFields = GetFilteredFieldNamesInType(candidate)
-            .ToArray();
+        var targetFields = GetFilteredFieldNamesInType(target);
+        var candidateFields = GetFilteredFieldNamesInType(candidate);
 		
         var commonFields = targetFields
             .Intersect(candidateFields);
@@ -58,14 +61,16 @@ public class FieldFilters(
 		
         fieldParams.FieldCount = target.Fields.Count;
 		
-        return commonFields.Any();
+        return commonFields.Any() ||
+               LogFailure($"`{candidate.FullName}` filtered out during FieldFilters: Target has no common fields with candidate");
     }
     
-    private IEnumerable<string> GetFilteredFieldNamesInType(TypeDefinition type)
+    private string[] GetFilteredFieldNamesInType(TypeDefinition type)
     {
         return type.Fields
             // Don't match de-obfuscator given method names
             .Where(m => !_fieldNamesToIgnore?.Any(mi => m.Name!.StartsWith(mi)) ?? false)
-            .Select(s => s.Name!.ToString());
+            .Select(s => s.Name!.ToString())
+            .ToArray();
     }
 }

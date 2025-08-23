@@ -1,6 +1,8 @@
 ﻿using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using AssemblyLib.Utils;
 using SPTarkov.DI.Annotations;
 
@@ -9,18 +11,23 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class MethodFilters(
     DataProvider dataProvider
-    )
+    ) : AbstractAutoMatchFilter
 {
-    private List<string>? MethodsToIgnore;
+    private List<string>? _methodsToIgnore;
     
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, MethodParams methods)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
     {
-        MethodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
+        if (filterParams is not MethodParams methodParams)
+        {
+            throw new FilterException("FilterParams in MethodFilters is not MethodParams or is null");
+        }
+        
+        _methodsToIgnore ??= dataProvider.Settings.MethodNamesToIgnore;
         
         // Target has no methods and type has no methods
         if (!target.Methods.Any() && !candidate.Methods.Any())
         {
-            methods.MethodCount = 0;
+            methodParams.MethodCount = 0;
             return true;
         }
 		
@@ -41,16 +48,16 @@ public class MethodFilters(
         var excludeMethods = GetFilteredMethodNamesInType(candidate)
             .Except(GetFilteredMethodNamesInType(target));
 		
-        methods.IncludeMethods.UnionWith(includeMethods);
-        methods.ExcludeMethods.UnionWith(excludeMethods);
+        methodParams.IncludeMethods.UnionWith(includeMethods);
+        methodParams.ExcludeMethods.UnionWith(excludeMethods);
 		
-        methods.MethodCount = target.Methods
+        methodParams.MethodCount = target.Methods
             .Count(m => 
                 m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false, IsSpecialName: false });
 
         if (target.Methods.Any(m => m is { IsConstructor: true, Parameters.Count: > 0 }))
         {
-            methods.ConstructorParameterCount = target.Methods.First(m => 
+            methodParams.ConstructorParameterCount = target.Methods.First(m => 
                     m is { IsConstructor: true, Parameters.Count: > 0 })
                 .Parameters.Count;
         }
@@ -70,7 +77,7 @@ public class MethodFilters(
         return type.Methods
             .Where(m => m is { IsConstructor: false, IsGetMethod: false, IsSetMethod: false })
             // Don't match de-obfuscator given method names
-            .Where(m => !MethodsToIgnore.Any(mi => 
+            .Where(m => !_methodsToIgnore.Any(mi => 
                 m.Name!.StartsWith(mi) || m.Name!.Contains('.')))
             .Select(s => s.Name!.ToString());
     }
@@ -81,7 +88,7 @@ public class MethodFilters(
     /// <param name="target">Target type</param>
     /// <param name="candidate">Candidate type</param>
     /// <returns>True if there are common methods</returns>
-    private bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
+    private static bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
     {
         return target.Methods
                 // Get target methods that are not a constructor a get, or set method

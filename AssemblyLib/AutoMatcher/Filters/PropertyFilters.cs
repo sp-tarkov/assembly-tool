@@ -1,18 +1,25 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 [Injectable]
-public class PropertyFilters
+public class PropertyFilters : AbstractAutoMatchFilter
 {
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, PropertyParams props)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
     {
+        if (filterParams is not PropertyParams propertyParams)
+        {
+            throw new FilterException("FilterParams in PropertyFilters is not PropertyParams or is null");
+        }
+        
         // Both target and candidate don't have properties
         if (!target.Properties.Any() && !candidate.Properties.Any())
         {
-            props.PropertyCount = 0;
+            propertyParams.PropertyCount = 0;
             return true;
         }
 		
@@ -36,10 +43,10 @@ public class PropertyFilters
             .Select(s => s.Name!.ToString())
             .Except(target.Properties.Select(s => s.Name!.ToString()));
 		
-        props.IncludeProperties.UnionWith(includeProps);
-        props.ExcludeProperties.UnionWith(excludeProps);
+        propertyParams.IncludeProperties.UnionWith(includeProps);
+        propertyParams.ExcludeProperties.UnionWith(excludeProps);
 		
-        props.PropertyCount = target.Properties.Count;
+        propertyParams.PropertyCount = target.Properties.Count;
 		
         return commonProps.Any();
     }

@@ -1,18 +1,25 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 [Injectable]
-public class NestedFilters
+public class NestedFilters : AbstractAutoMatchFilter
 {
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, NestedTypeParams nt)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
     {
+        if (filterParams is not NestedTypeParams nestedParams)
+        {
+            throw new FilterException("FilterParams in NestedFilters is not NestedTypeParams or is null");
+        }
+        
         // Target has no nt's but type has nt's
         if (!target.NestedTypes.Any() && candidate.NestedTypes.Any())
         {
-            nt.NestedTypeCount = 0;
+            nestedParams.NestedTypeCount = 0;
             return false;
         }
 		
@@ -34,21 +41,21 @@ public class NestedFilters
             .Select(s => s.Name!.ToString())
             .Except(target.NestedTypes.Select(s => s.Name!.ToString()));
 		
-        nt.IncludeNestedTypes.UnionWith(includeNts);
-        nt.ExcludeNestedTypes.UnionWith(excludeNts);
+        nestedParams.IncludeNestedTypes.UnionWith(includeNts);
+        nestedParams.ExcludeNestedTypes.UnionWith(excludeNts);
 		
-        nt.NestedTypeCount = target.NestedTypes.Count;
-        nt.IsNested = target.IsNested;
-        nt.IsNestedAssembly = target.IsNestedAssembly;
-        nt.IsNestedFamily = target.IsNestedFamily;
-        nt.IsNestedPrivate = target.IsNestedPrivate;
-        nt.IsNestedPublic = target.IsNestedPublic;
-        nt.IsNestedFamilyAndAssembly = target.IsNestedFamilyAndAssembly;
-        nt.IsNestedFamilyOrAssembly = target.IsNestedFamilyOrAssembly;
+        nestedParams.NestedTypeCount = target.NestedTypes.Count;
+        nestedParams.IsNested = target.IsNested;
+        nestedParams.IsNestedAssembly = target.IsNestedAssembly;
+        nestedParams.IsNestedFamily = target.IsNestedFamily;
+        nestedParams.IsNestedPrivate = target.IsNestedPrivate;
+        nestedParams.IsNestedPublic = target.IsNestedPublic;
+        nestedParams.IsNestedFamilyAndAssembly = target.IsNestedFamilyAndAssembly;
+        nestedParams.IsNestedFamilyOrAssembly = target.IsNestedFamilyOrAssembly;
 		
         if (target.DeclaringType is not null)
         {
-            nt.NestedTypeParentName = target.DeclaringType.Name!;
+            nestedParams.NestedTypeParentName = target.DeclaringType.Name!;
         }
 		
         return commonNts.Any() || target.NestedTypes.Count == 0;

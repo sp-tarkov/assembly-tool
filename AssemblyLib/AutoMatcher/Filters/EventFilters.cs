@@ -1,18 +1,25 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 [Injectable]
-public class EventFilters
+public class EventFilters : AbstractAutoMatchFilter
 {
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, EventParams events)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
     {
+        if (filterParams is not EventParams eventParams)
+        {
+            throw new FilterException("FilterParams in EventFilters is not EventParams or is null");
+        }
+        
         // Target has no events but type has events
         if (!target.Events.Any() && candidate.Events.Any())
         {
-            events.EventCount = 0;
+            eventParams.EventCount = 0;
             return false;
         }
 		
@@ -36,9 +43,9 @@ public class EventFilters
             .Except(target.Events.Select(s => s.Name!.ToString()))
             .ToHashSet();
         
-        events.IncludeEvents.UnionWith(includeEvents);
-        events.ExcludeEvents.UnionWith(excludeEvents);
-        events.EventCount = target.NestedTypes.Count;
+        eventParams.IncludeEvents.UnionWith(includeEvents);
+        eventParams.ExcludeEvents.UnionWith(excludeEvents);
+        eventParams.EventCount = target.NestedTypes.Count;
 		
         return commonEvents.Any() || target.Events.Count == 0;
     }

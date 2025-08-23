@@ -1,5 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Exceptions;
+using AssemblyLib.Models.Interfaces;
 using AssemblyLib.Utils;
 using SPTarkov.DI.Annotations;
 
@@ -8,18 +10,23 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class FieldFilters(
     DataProvider dataProvider
-    )
+    ) : AbstractAutoMatchFilter
 {
-    private List<string>? _fieldsToIgnore;
+    private List<string>? _fieldNamesToIgnore;
     
-    public bool Filter(TypeDefinition target, TypeDefinition candidate, FieldParams fields)
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, IFilterParams filterParams)
     {
-        _fieldsToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
+        if (filterParams is not FieldParams fieldParams)
+        {
+            throw new FilterException("FilterParams in FieldFilters is not FieldParams or is null");
+        }
+        
+        _fieldNamesToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
         
         // Target has no fields and type has no fields
         if (!target.Fields.Any() && !candidate.Fields.Any())
         {
-            fields.FieldCount = 0;
+            fieldParams.FieldCount = 0;
             return true;
         }
 		
@@ -46,10 +53,10 @@ public class FieldFilters(
         var excludeFields = candidateFields
             .Except(targetFields);
 		
-        fields.IncludeFields.UnionWith(includeFields);
-        fields.ExcludeFields.UnionWith(excludeFields);
+        fieldParams.IncludeFields.UnionWith(includeFields);
+        fieldParams.ExcludeFields.UnionWith(excludeFields);
 		
-        fields.FieldCount = target.Fields.Count;
+        fieldParams.FieldCount = target.Fields.Count;
 		
         return commonFields.Any();
     }
@@ -58,7 +65,7 @@ public class FieldFilters(
     {
         return type.Fields
             // Don't match de-obfuscator given method names
-            .Where(m => !_fieldsToIgnore.Any(mi => m.Name!.StartsWith(mi)))
+            .Where(m => !_fieldNamesToIgnore?.Any(mi => m.Name!.StartsWith(mi)) ?? false)
             .Select(s => s.Name!.ToString());
     }
 }

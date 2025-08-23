@@ -228,5 +228,35 @@
 		"Role": "bossKillaAgro",
 		"Limit": 2,
 		"Difficulty": "normal"
+	},
+	{
+		"Role": "shooterBTR",
+		"Limit": 2,
+		"Difficulty": "normal"
+	},
+	{
+		"Role": "pmcBEAR",
+		"Limit": 2,
+		"Difficulty": "normal"
+	},
+	{
+		"Role": "pmcUSEC",
+		"Limit": 2,
+		"Difficulty": "normal"
+	},
+	{
+		"Role": "sectantPredvestnik",
+		"Limit": 2,
+		"Difficulty": "normal"
+	},
+	{
+		"Role": "sectantPrizrak",
+		"Limit": 2,
+		"Difficulty": "normal"
+	},
+	{
+		"Role": "sectantOni",
+		"Limit": 2,
+		"Difficulty": "normal"
 	}
 ]

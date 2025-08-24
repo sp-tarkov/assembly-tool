@@ -18,7 +18,6 @@ public sealed class PropertyTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesCount);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -27,7 +26,6 @@ public sealed class PropertyTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesInclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -36,7 +34,6 @@ public sealed class PropertyTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesExclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }

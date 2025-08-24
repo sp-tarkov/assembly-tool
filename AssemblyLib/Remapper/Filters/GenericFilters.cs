@@ -20,7 +20,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsPublic);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -29,7 +28,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsAbstract);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -38,7 +36,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsSealed);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -47,7 +44,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsInterface);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -56,7 +52,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsEnum);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -65,7 +60,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.HasGenericParameters);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -74,7 +68,6 @@ public sealed class GenericFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -82,8 +75,7 @@ public sealed class GenericFilters : IRemapFilter
         types = FilterDerived(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
-            remapModel.TypeCandidates.UnionWith(types);
+            remapModel.NoMatchReasons.Add(ENoMatchReason.IsDerived);
             filteredTypes = types;
             return false;
         }

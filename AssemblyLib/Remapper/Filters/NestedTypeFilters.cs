@@ -18,7 +18,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeCount);
-            remapModel.TypeCandidates.UnionWith(types);
+            //remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -27,7 +27,6 @@ public sealed class NestedTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedVisibility);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -36,7 +35,6 @@ public sealed class NestedTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeInclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -45,7 +43,6 @@ public sealed class NestedTypeFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeExclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }

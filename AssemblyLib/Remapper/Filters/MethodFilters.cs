@@ -18,7 +18,6 @@ public sealed class MethodFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsInclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -27,7 +26,6 @@ public sealed class MethodFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsExclude);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -36,7 +34,6 @@ public sealed class MethodFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.ConstructorParameterCount);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }
@@ -45,7 +42,6 @@ public sealed class MethodFilters : IRemapFilter
         if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsCount);
-            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
         }

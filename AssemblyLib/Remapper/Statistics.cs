@@ -60,6 +60,7 @@ public sealed class Statistics(DataProvider dataProvider)
         if (
             dataProvider.Settings.CopyToModules
             && !string.IsNullOrEmpty(dataProvider.Settings.ModulesProjectPath)
+            && Directory.Exists(dataProvider.Settings.ModulesProjectPath)
             && File.Exists(hollowedPath)
         )
         {

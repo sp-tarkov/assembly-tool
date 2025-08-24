@@ -16,23 +16,22 @@ namespace AssemblyLib.ReMapper;
 [Injectable(InjectionType.Singleton)]
 public class MappingController(
     DataProvider dataProvider,
-    Statistics statistics, 
+    Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
     TypeFilters typeFilters,
     AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory
-    )
+)
 {
     private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition> Types { get; set; } = [];
-    
+
     private string OutPath { get; set; } = string.Empty;
-    
+
     private readonly List<string> _alreadyGivenNames = [];
     private string _targetAssemblyPath = string.Empty;
-    
-    
+
     /// <summary>
     /// Start the remapping process
     /// </summary>
@@ -40,23 +39,25 @@ public class MappingController(
         string targetAssemblyPath,
         string? oldAssemblyPath,
         string outPath = "",
-        bool validate = false)
+        bool validate = false
+    )
     {
         statistics.Stopwatch.Start();
         OutPath = outPath;
         _targetAssemblyPath = targetAssemblyPath;
-        
+
         Module = dataProvider.LoadModule(targetAssemblyPath);
-        
+
         LoadOrDeobfuscateAssembly();
 
         if (!await RunRemapProcess(validate))
         {
             statistics.DisplayStatistics(true);
         }
-        
+
         // Don't go any further during a validation
-        if (validate) return;
+        if (validate)
+            return;
 
         await PublicizeAndFixAssembly(oldAssemblyPath);
         await StartWriteAssemblyTasks();
@@ -67,15 +68,14 @@ public class MappingController(
     /// </summary>
     private void LoadOrDeobfuscateAssembly()
     {
-        var result = assemblyUtils.TryDeObfuscate(
-            Module, _targetAssemblyPath);
-        
+        var result = assemblyUtils.TryDeObfuscate(Module, _targetAssemblyPath);
+
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
-        
+
         Types.AddRange(Module.GetAllTypes());
     }
-    
+
     /// <summary>
     /// Runs the matching process for remaps
     /// </summary>
@@ -87,10 +87,10 @@ public class MappingController(
         {
             GenerateDynamicRemaps(_targetAssemblyPath);
         }
-        
+
         StartMatchingTasks();
         await ChooseBestMatches();
-        
+
         return dataProvider.GetRemaps().All(remap => remap.Succeeded);
     }
 
@@ -101,35 +101,35 @@ public class MappingController(
     private async Task PublicizeAndFixAssembly(string? oldAssemblyPath)
     {
         await PublicizeObfuscatedTypes();
-        
+
         Log.Information("Fixing method names...");
         await renamer.FixInterfaceMangledMethodNames(Module!);
-        
+
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
             Log.Information("Creating custom attributes...");
             await attributeFactory.CreateCustomTypeAttribute(Module!);
         }
-        
+
         Log.Information("Updating Async Attributes...");
         attributeFactory.UpdateAsyncAttributes(Module!);
     }
-    
+
     #region Matching
-    
+
     /// <summary>
     /// Queues the workload for finding best matches for a given remap.
     /// </summary>
     private void StartMatchingTasks()
     {
         Log.Information("Creating Mapping Table...");
-        
+
         foreach (var remap in dataProvider.GetRemaps())
         {
             MatchRemap(remap);
         }
     }
-    
+
     /// <summary>
     /// First we filter our type collection based on simple search parameters (true/false/null)
     /// where null is a third disabled state. Then we score the types based on the search parameters
@@ -137,25 +137,28 @@ public class MappingController(
     /// <param name="mapping">Mapping to score</param>
     private void MatchRemap(RemapModel mapping)
     {
-        if (mapping.UseForceRename) return;
+        if (mapping.UseForceRename)
+            return;
 
         // Filter down nested objects
         var types = mapping.SearchParams.NestedTypes.IsNested
             ? Types.Where(t => t.IsNested)
             : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
-            
 
         if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
         {
-            types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
+            types = types.Where(t =>
+                t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName
+            );
         }
-        
+
         // Run through a series of filters and report an error if all types are filtered out.
-        if (!typeFilters.DoesTypePassFilters(mapping, ref types)) return;
-        
+        if (!typeFilters.DoesTypePassFilters(mapping, ref types))
+            return;
+
         mapping.TypeCandidates.UnionWith(types);
     }
-    
+
     /// <summary>
     /// Directly renames a type instead of passing the remap through filters
     /// used for remaps generated from items.json (Dynamic remaps)
@@ -163,15 +166,14 @@ public class MappingController(
     /// <param name="mapping">Mapping to force rename</param>
     private void HandleForceRename(RemapModel mapping)
     {
-        var type = Types
-            .FirstOrDefault(t => t.Name == mapping.OriginalTypeName);
+        var type = Types.FirstOrDefault(t => t.Name == mapping.OriginalTypeName);
 
         if (type is null)
         {
             Log.Error("Could not find type [{MappingOriginalTypeName}]", mapping.OriginalTypeName);
             return;
         }
-        
+
         mapping.TypePrimeCandidate = type;
         mapping.OriginalTypeName = type.Name!;
         mapping.Succeeded = true;
@@ -180,31 +182,34 @@ public class MappingController(
 
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            Log.Debug("Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]", 
-                mapping.OriginalTypeName, 
+            Log.Debug(
+                "Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]",
+                mapping.OriginalTypeName,
                 mapping.NewTypeName
             );
         }
-        
+
         RenameAndPublicizeRemap(mapping);
     }
-    
+
     /// <summary>
     /// Choose the best possible match from all remaps
     /// </summary>
     private async Task ChooseBestMatches()
     {
         Log.Information("Renaming and Publicizing Remaps...");
-        
+
         var tasks = new List<Task>(dataProvider.RemapCount());
         foreach (var remap in dataProvider.GetRemaps())
         {
-            tasks.Add(Task.Factory.StartNew(() =>
-            {
-                ChooseBestMatch(remap);
-            }));
+            tasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    ChooseBestMatch(remap);
+                })
+            );
         }
-        
+
         await Task.WhenAll(tasks.ToArray());
     }
 
@@ -220,25 +225,26 @@ public class MappingController(
         {
             return;
         }
-            
+
         var winner = remap.TypeCandidates.FirstOrDefault();
 
         if (winner is null || IsAmbiguousMatch(remap, winner))
         {
             return;
         }
-            
+
         remap.Succeeded = true;
         remap.OriginalTypeName = winner.Name!;
 
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            Log.Debug("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", 
-                remap.NewTypeName, 
+            Log.Debug(
+                "Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]",
+                remap.NewTypeName,
                 remap.OriginalTypeName
             );
         }
-            
+
         RenameAndPublicizeRemap(remap);
     }
 
@@ -252,17 +258,18 @@ public class MappingController(
     {
         remap.TypePrimeCandidate = match;
         remap.OriginalTypeName = match.Name!;
-        
+
         if (_alreadyGivenNames.Contains(match.FullName))
         {
             remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
-            Log.Error("Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match", 
+            Log.Error(
+                "Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match",
                 remap.NewTypeName
-                );
-            
+            );
+
             return true;
         }
 
@@ -271,7 +278,7 @@ public class MappingController(
     }
 
     #endregion
-    
+
     /// <summary>
     /// Process the renaming and publication of a specific remap
     /// </summary>
@@ -279,37 +286,39 @@ public class MappingController(
     private void RenameAndPublicizeRemap(RemapModel remap)
     {
         renamer.RenameRemap(Module!, remap);
-        
+
         var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
-            
-        if (fieldsToFix.Count == 0) return;
-        
+
+        if (fieldsToFix.Count == 0)
+            return;
+
         FixPublicizedFieldNamesOnType(fieldsToFix);
     }
 
     private async Task PublicizeObfuscatedTypes()
     {
         Log.Information("Publicizing Obfuscated Types...");
-        
+
         // Filter down remaining types to ones that we have not remapped.
         // We can use _alreadyGivenNames because it should contain all mapped classes at this point.
-        var obfuscatedTypes = Types
-            .Where(t => !_alreadyGivenNames.Contains(t.Name!))
-            .ToList();
-        
+        var obfuscatedTypes = Types.Where(t => !_alreadyGivenNames.Contains(t.Name!)).ToList();
+
         var tasks = new List<Task>(obfuscatedTypes.Count);
         foreach (var type in obfuscatedTypes)
         {
-            tasks.Add(Task.Factory.StartNew(() =>
-            {
-                var fieldsToFix = publicizer.PublicizeType(type);
-            
-                if (fieldsToFix.Count == 0) return;
-            
-                FixPublicizedFieldNamesOnType(fieldsToFix);
-            }));
+            tasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    var fieldsToFix = publicizer.PublicizeType(type);
+
+                    if (fieldsToFix.Count == 0)
+                        return;
+
+                    FixPublicizedFieldNamesOnType(fieldsToFix);
+                })
+            );
         }
-        
+
         await Task.WhenAll(tasks);
     }
 
@@ -320,7 +329,7 @@ public class MappingController(
             renamer.RenamePublicizedFieldAndUpdateMemberRefs(Module!, field);
         }
     }
-    
+
     /// <summary>
     /// Finds GClass associations from items.json based on parent types and mongoId
     /// </summary>
@@ -336,21 +345,21 @@ public class MappingController(
             Log.Error("templateMappingClass is null...");
             return;
         }
-        
-        var typeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TypeTable")!
-            .GetValue(templateMappingClass)!;
-        
+
+        var typeTable =
+            (Dictionary<string, Type>)
+                templateMappingClass.GetField("TypeTable")!.GetValue(templateMappingClass)!;
+
         Log.Information("Overriding Item Classes...");
-        
+
         BuildAssociationFromTable(typeTable, "ItemClass", true);
-        
-        var templateTypeTable = (Dictionary<string, Type>)templateMappingClass
-            .GetField("TemplateTypeTable")!
-            .GetValue(templateMappingClass)!;
-        
+
+        var templateTypeTable =
+            (Dictionary<string, Type>)
+                templateMappingClass.GetField("TemplateTypeTable")!.GetValue(templateMappingClass)!;
+
         Log.Information("Overriding Template Classes...");
-        
+
         BuildAssociationFromTable(templateTypeTable, "TemplateClass", false);
     }
 
@@ -364,11 +373,10 @@ public class MappingController(
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
-        var templateMappingTypeDef = Types.SingleOrDefault(t => 
-            t.Fields.Select(f => f.Name)
-                .ToList()
-                .Contains("TypeTable"));
-        
+        var templateMappingTypeDef = Types.SingleOrDefault(t =>
+            t.Fields.Select(f => f.Name).ToList().Contains("TypeTable")
+        );
+
         if (templateMappingTypeDef is null)
         {
             Log.Error("Could not find type for field TypeTable");
@@ -379,37 +387,41 @@ public class MappingController(
         {
             path = path.Replace(".dll", "-cleaned.dll");
         }
-        
+
         var assembly = Assembly.LoadFrom(path);
-        var templateMappingClass = assembly.Modules
-            .First()
-            .GetType(templateMappingTypeDef.Name!);
-        
+        var templateMappingClass = assembly.Modules.First().GetType(templateMappingTypeDef.Name!);
+
         if (templateMappingClass is null)
         {
             Log.Error("Could not resolve type for {Utf8String}", templateMappingTypeDef.Name);
             return null;
         }
-        
+
         return templateMappingClass;
     }
-    
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="table">Type or Template table</param>
     /// <param name="extName">ItemClass or TemplateClass</param>
     /// <param name="isItemClass">Is this table for items or templates?</param>
-    private void BuildAssociationFromTable(Dictionary<string, Type> table, string extName, bool isItemClass)
+    private void BuildAssociationFromTable(
+        Dictionary<string, Type> table,
+        string extName,
+        bool isItemClass
+    )
     {
         foreach (var type in table)
         {
             var overrideTable = isItemClass
                 ? dataProvider.Settings.ItemObjectIdOverrides
                 : dataProvider.Settings.TemplateObjectIdOverrides;
-            
-            if (!dataProvider.ItemTemplates.TryGetValue(type.Key, out var template) ||
-                !type.Value.Name.StartsWith("GClass"))
+
+            if (
+                !dataProvider.ItemTemplates.TryGetValue(type.Key, out var template)
+                || !type.Value.Name.StartsWith("GClass")
+            )
             {
                 continue;
             }
@@ -427,7 +439,7 @@ public class MappingController(
                 OriginalTypeName = type.Value.Name,
                 NewTypeName = $"{template.Name}{extName}",
                 UseForceRename = true,
-                Succeeded = true
+                Succeeded = true,
             };
 
             if (overrideTable.TryGetValue(type.Key, out var overriddenTypeName))
@@ -437,36 +449,37 @@ public class MappingController(
 
             if (Log.IsEnabled(LogEventLevel.Debug))
             {
-                Log.Debug("Overriding type {ValueName} to {RemapNewTypeName}", 
-                    type.Value.Name, 
+                Log.Debug(
+                    "Overriding type {ValueName} to {RemapNewTypeName}",
+                    type.Value.Name,
                     remap.NewTypeName
                 );
             }
-            
+
             dataProvider.AddMapping(remap);
         }
     }
-    
+
     /// <summary>
     /// Write the assembly back to disk and update the mapping file on disk
     /// </summary>
     private async Task StartWriteAssemblyTasks()
     {
         const string dllName = "-cleaned-remapped-publicized.dll";
-        OutPath = Path.Combine(OutPath,  Module.Name!.Replace(".dll", dllName));
+        OutPath = Path.Combine(OutPath, Module.Name!.Replace(".dll", dllName));
 
         try
         {
             Module.Assembly?.Write(OutPath);
-            
+
             //Module!.Write(OutPath);
         }
         catch (Exception e)
         {
-            Log.Error("Exception during write assembly task:\n{Exception}",e.Message);
+            Log.Error("Exception during write assembly task:\n{Exception}", e.Message);
             return;
         }
-        
+
         await StartHollow();
 
         var hollowedDir = Path.GetDirectoryName(OutPath);
@@ -478,12 +491,12 @@ public class MappingController(
         }
         catch (Exception e)
         {
-            Log.Error("Exception during write hollow task:\n{Exception}",e.Message);
+            Log.Error("Exception during write hollow task:\n{Exception}", e.Message);
             return;
         }
-        
+
         assemblyUtils.StartHDiffz(OutPath);
-        
+
         statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }
 
@@ -493,25 +506,26 @@ public class MappingController(
     private async Task StartHollow()
     {
         Log.Information("Creating Hollow...");
-        
+
         var tasks = new List<Task>(Types.Count());
-        
+
         foreach (var type in Types)
         {
             tasks.Add(
                 Task.Factory.StartNew(() =>
-            {
-                try
                 {
-                    HollowType(type);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("Exception in task:\n{ExMessage}", ex.Message);
-                }
-            }));
+                    try
+                    {
+                        HollowType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Exception in task:\n{ExMessage}", ex.Message);
+                    }
+                })
+            );
         }
-        
+
         await Task.WhenAll(tasks.ToArray());
     }
 
@@ -523,7 +537,10 @@ public class MappingController(
             var newBody = new CilMethodBody(method);
 
             // If the method returns something, return default value
-            if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)
+            if (
+                method.Signature?.ReturnType != null
+                && method.Signature.ReturnType.ElementType != ElementType.Void
+            )
             {
                 // Push default value onto the stack
                 newBody.Instructions.Add(CilOpCodes.Ldnull);

@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
-
   <Import Project="..\De4DotCommon.props" />
-  
   <ItemGroup>
     <ProjectReference Include="..\de4dot.blocks\de4dot.blocks.csproj" />
     <ProjectReference Include="..\de4dot.code\de4dot.code.csproj" />
   </ItemGroup>
-
 </Project>

@@ -9,9 +9,7 @@ public static class Builder
 {
     public static int Main(string[] args)
     {
-        return new CakeHost()
-            .UseContext<Context>()
-            .Run(args);
+        return new CakeHost().UseContext<Context>().Run(args);
     }
 }
 

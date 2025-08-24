@@ -10,7 +10,9 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._comfortAssembly.GetTypes().First(x => x.Name.StartsWith("Singleton"));
+            return DataHelper
+                ._comfortAssembly.GetTypes()
+                .First(x => x.Name.StartsWith("Singleton"));
         }
         catch (Exception e)
         {
@@ -28,7 +30,9 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x => x.Name.StartsWith("ClientApplication"));
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x => x.Name.StartsWith("ClientApplication"));
         }
         catch (Exception e)
         {
@@ -46,12 +50,9 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.IsInterface &&
-                x.GetMethods().Any(m =>
-                    m.Name == "GetPhpSessionId"
-                )
-            );
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x => x.IsInterface && x.GetMethods().Any(m => m.Name == "GetPhpSessionId"));
         }
         catch (Exception e)
         {
@@ -69,9 +70,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.Name == "TarkovApplication"
-            );
+            return DataHelper._eftAssembly.GetTypes().First(x => x.Name == "TarkovApplication");
         }
         catch (Exception e)
         {
@@ -89,19 +88,23 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-            {
-                var fields = x.GetFields();
-                if (fields.Any(f => f.Name == "Role") &&
-                    fields.Any(f => f.Name == "Limit") &&
-                    fields.Any(f => f.Name == "Difficulty")
-                    && fields.Length == 3)
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x =>
                 {
-                    return true;
-                }
+                    var fields = x.GetFields();
+                    if (
+                        fields.Any(f => f.Name == "Role")
+                        && fields.Any(f => f.Name == "Limit")
+                        && fields.Any(f => f.Name == "Difficulty")
+                        && fields.Length == 3
+                    )
+                    {
+                        return true;
+                    }
 
-                return false;
-            });
+                    return false;
+                });
         }
         catch (Exception e)
         {
@@ -115,10 +118,11 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._msAssembly.GetTypes().First(x =>
-                x.Name.StartsWith("List") &&
-                x.Namespace == "System.Collections.Generic"
-            );
+            return DataHelper
+                ._msAssembly.GetTypes()
+                .First(x =>
+                    x.Name.StartsWith("List") && x.Namespace == "System.Collections.Generic"
+                );
         }
         catch (Exception e)
         {
@@ -136,8 +140,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.Name == "LocalRaidSettings");
+            return DataHelper._eftAssembly.GetTypes().First(x => x.Name == "LocalRaidSettings");
         }
         catch (Exception e)
         {
@@ -151,8 +154,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.Name == "RaidSettings");
+            return DataHelper._eftAssembly.GetTypes().First(x => x.Name == "RaidSettings");
         }
         catch (Exception e)
         {
@@ -166,11 +168,9 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.GetFields().Any(f =>
-                    f.Name == "killerAid"
-                )
-            );
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x => x.GetFields().Any(f => f.Name == "killerAid"));
         }
         catch (Exception e)
         {
@@ -184,11 +184,9 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.GetMethods().Any(m =>
-                    m.Name == "ToUnparsedData"
-                )
-            );
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x => x.GetMethods().Any(m => m.Name == "ToUnparsedData"));
         }
         catch (Exception e)
         {
@@ -202,8 +200,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.Name == "Profile");
+            return DataHelper._eftAssembly.GetTypes().First(x => x.Name == "Profile");
         }
         catch (Exception e)
         {
@@ -218,17 +215,19 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-            {
-                var fields = x.GetFields();
-                var methods = x.GetMethods();
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x =>
+                {
+                    var fields = x.GetFields();
+                    var methods = x.GetMethods();
 
-                return fields.Length == 6 &&
-                       fields.Any(f => f.Name == "location") &&
-                       fields.Any(f => f.Name == "_id") &&
-                       methods.Any(m => m.Name == "Clone") &&
-                       methods.Any(m => m.Name == "ToString");
-            });
+                    return fields.Length == 6
+                        && fields.Any(f => f.Name == "location")
+                        && fields.Any(f => f.Name == "_id")
+                        && methods.Any(m => m.Name == "Clone")
+                        && methods.Any(m => m.Name == "ToString");
+                });
         }
         catch (Exception e)
         {
@@ -242,9 +241,11 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._msAssembly.GetTypes().First(x =>
-                x.Name.StartsWith("Dictionary") &&
-                x.Namespace == "System.Collections.Generic");
+            return DataHelper
+                ._msAssembly.GetTypes()
+                .First(x =>
+                    x.Name.StartsWith("Dictionary") && x.Namespace == "System.Collections.Generic"
+                );
         }
         catch (Exception e)
         {
@@ -262,24 +263,26 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-            {
-                var fields = x.GetFields();
-                var constructors = x.GetConstructors();
-                var properties = x.GetProperties();
-                var methods = x.GetMethods();
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x =>
+                {
+                    var fields = x.GetFields();
+                    var constructors = x.GetConstructors();
+                    var properties = x.GetProperties();
+                    var methods = x.GetMethods();
 
-                return fields.Length == 27
-                       && constructors.Length == 2
-                       && properties.Length == 0
-                       && methods.Length == 4
-                       && fields.Any(f => f.Name == "Id")
-                       && fields.Any(f => f.Name == "AccountId")
-                       && fields.Any(f => f.Name == "PetId")
-                       && fields.Any(f => f.Name == "KarmaValue")
-                       && fields.Any(f => f.Name == "Customization")
-                       && fields.Any(f => f.Name == "Encyclopedia");
-            });
+                    return fields.Length == 27
+                        && constructors.Length == 2
+                        && properties.Length == 0
+                        && methods.Length == 4
+                        && fields.Any(f => f.Name == "Id")
+                        && fields.Any(f => f.Name == "AccountId")
+                        && fields.Any(f => f.Name == "PetId")
+                        && fields.Any(f => f.Name == "KarmaValue")
+                        && fields.Any(f => f.Name == "Customization")
+                        && fields.Any(f => f.Name == "Encyclopedia");
+                });
         }
         catch (Exception e)
         {
@@ -293,18 +296,20 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-            {
-                var fields = x.GetFields();
-                var methods = x.GetMethods();
-            
-                return fields.Length == 1 &&
-                       methods.Length == 20 &&
-                       !x.IsInterface &&
-                       methods.Any(m => m.Name == "IsItemKnown") &&
-                       methods.Any(m => m.Name == "TryFindChangedContainer") &&
-                       methods.Any(m => m.Name == "GetObserverItemState");
-            });
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x =>
+                {
+                    var fields = x.GetFields();
+                    var methods = x.GetMethods();
+
+                    return fields.Length == 1
+                        && methods.Length == 20
+                        && !x.IsInterface
+                        && methods.Any(m => m.Name == "IsItemKnown")
+                        && methods.Any(m => m.Name == "TryFindChangedContainer")
+                        && methods.Any(m => m.Name == "GetObserverItemState");
+                });
         }
         catch (Exception e)
         {

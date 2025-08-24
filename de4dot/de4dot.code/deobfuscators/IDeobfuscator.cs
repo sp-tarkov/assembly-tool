@@ -1,37 +1,40 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
 using System.Collections.Generic;
-using dnlib.PE;
-using dnlib.DotNet;
-using dnlib.DotNet.Writer;
 using de4dot.blocks;
 using de4dot.blocks.cflow;
 using de4dot.code.renamer;
+using dnlib.DotNet;
+using dnlib.DotNet.Writer;
+using dnlib.PE;
 
-namespace de4dot.code.deobfuscators {
-	public interface IDeobfuscatorOptions {
+namespace de4dot.code.deobfuscators
+{
+	public interface IDeobfuscatorOptions
+	{
 		bool RenameResourcesInCode { get; }
 	}
 
-	public enum DecrypterType {
+	public enum DecrypterType
+	{
 		Default,
 		None,
 		Static,
@@ -40,7 +43,8 @@ namespace de4dot.code.deobfuscators {
 	}
 
 	[Flags]
-	public enum StringFeatures {
+	public enum StringFeatures
+	{
 		AllowNoDecryption = 1,
 		AllowStaticDecryption = 2,
 		AllowDynamicDecryption = 4,
@@ -48,12 +52,14 @@ namespace de4dot.code.deobfuscators {
 	}
 
 	[Flags]
-	public enum RenamingOptions {
+	public enum RenamingOptions
+	{
 		RemoveNamespaceIfOneType = 1,
 		RenameResourceKeys = 2,
 	}
 
-	public interface IDeobfuscator : INameChecker, IDisposable {
+	public interface IDeobfuscator : INameChecker, IDisposable
+	{
 		string Type { get; }
 		string TypeLong { get; }
 		string Name { get; }

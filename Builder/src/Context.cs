@@ -12,7 +12,8 @@ public class Context : FrostingContext
     public string MsBuildConfiguration { get; set; }
     public bool Diagnostic { get; set; } = true;
 
-    public Context(ICakeContext context) : base(context)
+    public Context(ICakeContext context)
+        : base(context)
     {
         // set the working dir to be solution directory
         context.Environment.WorkingDirectory = new DirectoryPath(Path.GetFullPath("../"));

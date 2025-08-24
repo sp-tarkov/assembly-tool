@@ -15,7 +15,7 @@ public class RemapModel
     [JsonIgnore]
     public List<ENoMatchReason> NoMatchReasons { get; set; } = [];
 
-    [JsonIgnore] 
+    [JsonIgnore]
     public string AmbiguousTypeMatch { get; set; } = string.Empty;
 
     /// <summary>
@@ -64,7 +64,7 @@ public class GenericParams
     public bool? HasAttribute { get; set; } = null;
     public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; } = null;
-    
+
     /// <summary>
     /// Name of the derived classes declaring type
     /// </summary>
@@ -102,7 +102,7 @@ public class NestedTypeParams
     public bool IsNestedPublic { get; set; }
     public bool IsNestedFamilyAndAssembly { get; set; }
     public bool IsNestedFamilyOrAssembly { get; set; }
-    
+
     /// <summary>
     /// Name of the nested types parent
     /// </summary>

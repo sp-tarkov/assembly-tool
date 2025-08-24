@@ -10,7 +10,7 @@ namespace AssemblyLib;
 public class App
 {
     private ServiceProvider? _provider;
-    
+
     public App()
     {
         ConfigureLogger();
@@ -18,55 +18,61 @@ public class App
     }
 
     public async Task RunRemapProcess(
-        string assemblyPath, 
-        string? oldAssemblyPath, 
+        string assemblyPath,
+        string? oldAssemblyPath,
         string outPath,
         bool validate = false
-        )
+    )
     {
         var controller = _provider?.GetService<MappingController>();
         await controller?.Run(assemblyPath, oldAssemblyPath, outPath, validate)!;
     }
 
     public async Task RunAutoMatcher(
-        string assemblyPath, 
-        string oldAssemblyPath, 
-        string oldTypeName, 
-        string newTypeName, 
+        string assemblyPath,
+        string oldAssemblyPath,
+        string oldTypeName,
+        string newTypeName,
         bool isRegen
-        )
+    )
     {
         var controller = _provider?.GetService<AutoMatcher.AutoMatcher>();
-        await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
+        await controller?.AutoMatch(
+            assemblyPath,
+            oldAssemblyPath,
+            oldTypeName,
+            newTypeName,
+            isRegen
+        )!;
     }
 
     public Task CreateDumper(string managedPath)
     {
         var controller = _provider?.GetService<DumperClass>();
-        
+
         Log.Information("Creating dumper...");
-        
+
         controller?.LoadModule(managedPath);
         controller?.CreateDumpFolders();
         controller?.CreateDumper();
         controller?.CopyFiles();
         controller?.ZipFiles();
-        
+
         Log.Information("Complete...");
-        
+
         return Task.CompletedTask;
     }
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)
     {
         var controller = _provider?.GetService<AssemblyUtils>();
-        
+
         Log.Information("Deobfuscating assembly...");
-        
+
         controller?.Deobfuscate(assemblyPath, isLauncher);
-        
+
         Log.Information("Complete...");
-        
+
         return Task.CompletedTask;
     }
 
@@ -74,7 +80,7 @@ public class App
     {
         var statistics = _provider?.GetService<Statistics>();
         statistics?.DisplayAssemblyStatistics(assemblyPath);
-        
+
         return Task.CompletedTask;
     }
 
@@ -82,13 +88,13 @@ public class App
     {
         var services = new ServiceCollection();
         var diHandler = new DependencyInjectionHandler(services);
-        
+
         diHandler.AddInjectableTypesFromTypeAssembly(typeof(App));
         diHandler.InjectAll();
-        
+
         _provider = services.BuildServiceProvider();
     }
-    
+
     private static void ConfigureLogger()
     {
         var config = new ConfigurationBuilder()

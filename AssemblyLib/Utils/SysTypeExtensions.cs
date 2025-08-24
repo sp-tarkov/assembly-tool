@@ -13,9 +13,9 @@ public static class SysTypeExtensions
         "GControl",
         "ValueStruct",
         "Interface",
-        "GInterface"
+        "GInterface",
     ];
-    
+
     /// <summary>
     /// Returns a string trimmed after any non letter character
     /// </summary>
@@ -29,9 +29,7 @@ public static class SysTypeExtensions
 
         foreach (char c in str.ToString())
         {
-            if (trimChars.Contains(c))
-            {
-            }
+            if (trimChars.Contains(c)) { }
 
             if (char.IsLetter(c) || char.IsDigit(c))
             {
@@ -64,9 +62,7 @@ public static class SysTypeExtensions
 
         foreach (char c in str)
         {
-            if (trimChars.Contains(c))
-            {
-            }
+            if (trimChars.Contains(c)) { }
 
             if (char.IsLetter(c) || char.IsDigit(c))
             {
@@ -95,13 +91,15 @@ public static class SysTypeExtensions
     public static bool IsObfuscatedName(this Utf8String str)
     {
         var realString = str.ToString();
-        
+
         if (realString.Trim().StartsWith("_"))
         {
             realString = realString.Replace("_", "");
         }
-        
-        var result = TypesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+
+        var result = TypesToMatch.Any(item =>
+            realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase)
+        );
 
         return result;
     }

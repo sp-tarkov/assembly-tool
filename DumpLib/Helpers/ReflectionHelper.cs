@@ -16,7 +16,9 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return TypeHelper.GetTarkovApplicationType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                return TypeHelper
+                    .GetTarkovApplicationType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
                     .First(x => x.FieldType.GetMethods().Any(m => m.Name == "StopAfkMonitor"));
             }
             catch (Exception e)
@@ -37,8 +39,10 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return (singletonType as Type).GetProperty("Instance", BindingFlags.Public | BindingFlags.Static)
-                    .GetGetMethod().Invoke(singletonType, null);
+                return (singletonType as Type)
+                    .GetProperty("Instance", BindingFlags.Public | BindingFlags.Static)
+                    .GetGetMethod()
+                    .Invoke(singletonType, null);
             }
             catch (Exception e)
             {
@@ -57,7 +61,10 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return TypeHelper.GetTarkovApplicationType().GetMethod("GetClientBackEndSession").Invoke(instance, null);
+                return TypeHelper
+                    .GetTarkovApplicationType()
+                    .GetMethod("GetClientBackEndSession")
+                    .Invoke(instance, null);
             }
             catch (Exception e)
             {
@@ -92,7 +99,9 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return (firstType as Type).MakeGenericType(new Type[] { secondType as Type, thirdType as Type });
+                return (firstType as Type).MakeGenericType(
+                    new Type[] { secondType as Type, thirdType as Type }
+                );
             }
             catch (Exception e)
             {
@@ -111,7 +120,9 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return MethodHelper.GetDeserializerMethodInfo().MakeGenericMethod(new Type[] { type as Type });
+                return MethodHelper
+                    .GetDeserializerMethodInfo()
+                    .MakeGenericMethod(new Type[] { type as Type });
             }
             catch (Exception e)
             {
@@ -150,14 +161,23 @@ namespace DumpLib.Helpers
                 var interfaceType = TypeHelper.GetInterfaceType();
 
                 // Create singleton
-                var clientApplicationInterfaceType = CreateGenericType(clientApplicationType, interfaceType);
-                var singletonClientApplicationInterfaceType = CreateGenericType(singletonType, clientApplicationInterfaceType);
+                var clientApplicationInterfaceType = CreateGenericType(
+                    clientApplicationType,
+                    interfaceType
+                );
+                var singletonClientApplicationInterfaceType = CreateGenericType(
+                    singletonType,
+                    clientApplicationInterfaceType
+                );
 
                 // Get singleton instance
-                var singletonClientApplicationInterfaceInstance = ReflectionHelper.GetSingletonInstance(singletonClientApplicationInterfaceType);
+                var singletonClientApplicationInterfaceInstance =
+                    ReflectionHelper.GetSingletonInstance(singletonClientApplicationInterfaceType);
 
                 tarkovApp = singletonClientApplicationInterfaceInstance;
-                return ReflectionHelper.GetBackendSession(singletonClientApplicationInterfaceInstance);
+                return ReflectionHelper.GetBackendSession(
+                    singletonClientApplicationInterfaceInstance
+                );
             }
             catch (Exception e)
             {
@@ -176,11 +196,22 @@ namespace DumpLib.Helpers
             try
             {
                 // combine List<> and WaveSettingsType
-                var listWaveType = CreateGenericType(TypeHelper.GetListType(), TypeHelper.GetWaveSettingsType());
+                var listWaveType = CreateGenericType(
+                    TypeHelper.GetListType(),
+                    TypeHelper.GetWaveSettingsType()
+                );
 
                 // combine with JsonConvert.DeserializeObject<>() and invoke with getCurrentDir + "\\DUMPDATA\\.replace("\\\\","\\") + "botReqData.json";
                 return CreateDeserializerMethod(listWaveType)
-                    .Invoke(null, new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "botReqData.json")) });
+                    .Invoke(
+                        null,
+                        new[]
+                        {
+                            File.ReadAllText(
+                                Path.Combine(DataHelper.DumpDataPath, "botReqData.json")
+                            ),
+                        }
+                    );
             }
             catch (Exception e)
             {
@@ -194,7 +225,10 @@ namespace DumpLib.Helpers
         {
             try
             {
-                var locationsProp = DataHelper.Session.GetType().GetProperty("LocationSettings").GetValue(DataHelper.Session);
+                var locationsProp = DataHelper
+                    .Session.GetType()
+                    .GetProperty("LocationSettings")
+                    .GetValue(DataHelper.Session);
                 return locationsProp.GetType().GetField("locations").GetValue(locationsProp);
             }
             catch (Exception e)
@@ -209,7 +243,10 @@ namespace DumpLib.Helpers
         {
             try
             {
-                return DataHelper.Session.GetType().GetProperty("LocationSettings").GetValue(DataHelper.Session);
+                return DataHelper
+                    .Session.GetType()
+                    .GetProperty("LocationSettings")
+                    .GetValue(DataHelper.Session);
             }
             catch (Exception e)
             {
@@ -223,8 +260,20 @@ namespace DumpLib.Helpers
         {
             try
             {
-                var values = (IEnumerable<object>)DataHelper.LocationValues.GetType().GetProperty("Values").GetValue(DataHelper.LocationValues);
-                return values.FirstOrDefault(x => x.GetType().GetField("Id").GetValue(x).ToString().ToLower().Contains(map.ToLower()));
+                var values =
+                    (IEnumerable<object>)
+                        DataHelper
+                            .LocationValues.GetType()
+                            .GetProperty("Values")
+                            .GetValue(DataHelper.LocationValues);
+                return values.FirstOrDefault(x =>
+                    x.GetType()
+                        .GetField("Id")
+                        .GetValue(x)
+                        .ToString()
+                        .ToLower()
+                        .Contains(map.ToLower())
+                );
             }
             catch (Exception e)
             {
@@ -241,9 +290,18 @@ namespace DumpLib.Helpers
         {
             try
             {
-                var profile = DataHelper.Session.GetType().GetProperty("Profile").GetValue(DataHelper.Session);
-                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileType());
-                return converterMethod.Invoke(null, new[] { profile, Array.Empty<JsonConverter>() });
+                var profile = DataHelper
+                    .Session.GetType()
+                    .GetProperty("Profile")
+                    .GetValue(DataHelper.Session);
+                var converterMethod = CreateGenericMethod(
+                    MethodHelper.GetToUnparsedDataMethod(),
+                    TypeHelper.GetProfileType()
+                );
+                return converterMethod.Invoke(
+                    null,
+                    new[] { profile, Array.Empty<JsonConverter>() }
+                );
             }
             catch (Exception e)
             {
@@ -258,12 +316,20 @@ namespace DumpLib.Helpers
             try
             {
                 var typeToUse = TypeHelper.GetProfileDescriptorType();
-                var instance = Activator.CreateInstance(typeToUse,
+                var instance = Activator.CreateInstance(
+                    typeToUse,
                     new object[]
                     {
-                        DataHelper.Session.GetType().GetProperty("Profile").GetValue(DataHelper.Session),
-                        TypeHelper.GetProfileSearchControllerType().GetField("Instance").GetValue(null)
-                    });
+                        DataHelper
+                            .Session.GetType()
+                            .GetProperty("Profile")
+                            .GetValue(DataHelper.Session),
+                        TypeHelper
+                            .GetProfileSearchControllerType()
+                            .GetField("Instance")
+                            .GetValue(null),
+                    }
+                );
                 return instance;
             }
             catch (Exception e)
@@ -279,8 +345,14 @@ namespace DumpLib.Helpers
             try
             {
                 var completeData = ReflectionHelper.GetProfileDescriptor();
-                var converterMethod = CreateGenericMethod(MethodHelper.GetToUnparsedDataMethod(), TypeHelper.GetProfileDescriptorType());
-                return converterMethod.Invoke(null, new[] { completeData, Array.Empty<JsonConverter>() });
+                var converterMethod = CreateGenericMethod(
+                    MethodHelper.GetToUnparsedDataMethod(),
+                    TypeHelper.GetProfileDescriptorType()
+                );
+                return converterMethod.Invoke(
+                    null,
+                    new[] { completeData, Array.Empty<JsonConverter>() }
+                );
             }
             catch (Exception e)
             {
@@ -294,7 +366,8 @@ namespace DumpLib.Helpers
         {
             try
             {
-                raidsettings.GetType()
+                raidsettings
+                    .GetType()
                     .GetField("_locationSettings", BindingFlags.NonPublic | BindingFlags.Instance)
                     .SetValue(raidsettings, GetLocationsFromSession());
 

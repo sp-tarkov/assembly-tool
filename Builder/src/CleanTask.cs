@@ -22,7 +22,9 @@ public class CleanTask : FrostingTask<Context>
     private void CleanBuildFolders(Context context)
     {
         context.Log.Information("Cleaning Build Folders");
-        context.CleanDirectory(Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build"));
+        context.CleanDirectory(
+            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build")
+        );
     }
 
     private void CleanObjFolders(Context context)
@@ -44,6 +46,12 @@ public class CleanTask : FrostingTask<Context>
     private void CleanDe4dotFolders(Context context)
     {
         context.Log.Information("Cleaning De4dot Folders");
-        context.CleanDirectory(Path.Combine(context.Environment.WorkingDirectory.FullPath, "de4dot", context.MsBuildConfiguration));
+        context.CleanDirectory(
+            Path.Combine(
+                context.Environment.WorkingDirectory.FullPath,
+                "de4dot",
+                context.MsBuildConfiguration
+            )
+        );
     }
 }

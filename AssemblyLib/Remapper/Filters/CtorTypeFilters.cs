@@ -13,9 +13,13 @@ public class CtorTypeFilters
     /// <param name="parms"></param>
     /// <param name="score"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByParameterCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByParameterCount(
+        IEnumerable<TypeDefinition> types,
+        SearchParams parms
+    )
     {
-        if (parms.Methods.ConstructorParameterCount == -1) return types;
+        if (parms.Methods.ConstructorParameterCount == -1)
+            return types;
 
         return types.Where(type =>
         {

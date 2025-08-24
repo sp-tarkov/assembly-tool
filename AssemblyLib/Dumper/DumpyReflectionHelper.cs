@@ -4,9 +4,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Dumper;
 
 [Injectable]
-public class DumpyReflectionHelper(
-    
-    )
+public class DumpyReflectionHelper()
 {
     /// <summary>
     /// <para>Gets the type that has a method called SendAndHandleRetries.</para>
@@ -57,7 +55,8 @@ public class DumpyReflectionHelper(
 
     public bool GetBackRequestMethod(MethodDefinition method)
     {
-        return method.Parameters.Any(p => p.Name is "backRequest") && method.Parameters.Any(p => p.Name is "bResponse");
+        return method.Parameters.Any(p => p.Name is "backRequest")
+            && method.Parameters.Any(p => p.Name is "bResponse");
     }
 
     public bool GetValidateCertMethods(MethodDefinition method)
@@ -70,7 +69,7 @@ public class DumpyReflectionHelper(
         return method.Name == "RunValidation";
     }
 
-    public  bool GetRunValidationNextMethod(MethodDefinition method)
+    public bool GetRunValidationNextMethod(MethodDefinition method)
     {
         return method.Name == "MoveNext";
     }

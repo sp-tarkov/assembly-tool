@@ -1,42 +1,52 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
 using System.Collections.Generic;
 using dnlib.DotNet;
 
-namespace de4dot.code.renamer {
-	public abstract class TypeNames {
-		protected Dictionary<string, NameCreator> typeNames = new Dictionary<string, NameCreator>(StringComparer.Ordinal);
+namespace de4dot.code.renamer
+{
+	public abstract class TypeNames
+	{
+		protected Dictionary<string, NameCreator> typeNames = new Dictionary<string, NameCreator>(
+			StringComparer.Ordinal
+		);
 		protected NameCreator genericParamNameCreator = new NameCreator("gparam_");
 		protected NameCreator fnPtrNameCreator = new NameCreator("fnptr_");
 		protected NameCreator unknownNameCreator = new NameCreator("unknown_");
 		protected Dictionary<string, string> fullNameToShortName;
 		protected Dictionary<string, string> fullNameToShortNamePrefix;
 
-		public string Create(TypeSig typeRef) {
+		public string Create(TypeSig typeRef)
+		{
 			typeRef = typeRef.RemovePinnedAndModifiers();
 			if (typeRef == null)
 				return unknownNameCreator.Create();
-			if (typeRef is GenericInstSig gis) {
-				if (gis.FullName == "System.Nullable`1" &&
-					gis.GenericArguments.Count == 1 && gis.GenericArguments[0] != null) {
+			if (typeRef is GenericInstSig gis)
+			{
+				if (
+					gis.FullName == "System.Nullable`1"
+					&& gis.GenericArguments.Count == 1
+					&& gis.GenericArguments[0] != null
+				)
+				{
 					typeRef = gis.GenericArguments[0];
 				}
 			}
@@ -55,7 +65,8 @@ namespace de4dot.code.renamer {
 
 			var fullName = elementType == null ? typeRef.FullName : elementType.FullName;
 			var dict = prefix == "" ? fullNameToShortName : fullNameToShortNamePrefix;
-			if (!dict.TryGetValue(fullName, out string shortName)) {
+			if (!dict.TryGetValue(fullName, out string shortName))
+			{
 				fullName = fullName.Replace('/', '.');
 				int index = fullName.LastIndexOf('.');
 				shortName = index > 0 ? fullName.Substring(index + 1) : fullName;
@@ -68,8 +79,10 @@ namespace de4dot.code.renamer {
 			return AddTypeName(typeFullName, shortName, prefix).Create();
 		}
 
-		bool IsFnPtrSig(TypeSig sig) {
-			while (sig != null) {
+		bool IsFnPtrSig(TypeSig sig)
+		{
+			while (sig != null)
+			{
 				if (sig is FnPtrSig)
 					return true;
 				sig = sig.Next;
@@ -77,7 +90,8 @@ namespace de4dot.code.renamer {
 			return false;
 		}
 
-		bool IsGenericParam(ITypeDefOrRef tdr) {
+		bool IsGenericParam(ITypeDefOrRef tdr)
+		{
 			var ts = tdr as TypeSpec;
 			if (ts == null)
 				return false;
@@ -85,9 +99,11 @@ namespace de4dot.code.renamer {
 			return sig is GenericSig;
 		}
 
-		static string GetPrefix(TypeSig typeRef) {
+		static string GetPrefix(TypeSig typeRef)
+		{
 			string prefix = "";
-			while (typeRef != null) {
+			while (typeRef != null)
+			{
 				if (typeRef.IsPointer)
 					prefix += "p";
 				typeRef = typeRef.Next;
@@ -95,7 +111,8 @@ namespace de4dot.code.renamer {
 			return prefix;
 		}
 
-		protected INameCreator AddTypeName(string fullName, string newName, string prefix) {
+		protected INameCreator AddTypeName(string fullName, string newName, string prefix)
+		{
 			newName = FixName(prefix, newName);
 
 			var name2 = " " + newName;
@@ -108,10 +125,12 @@ namespace de4dot.code.renamer {
 
 		protected abstract string FixName(string prefix, string name);
 
-		public virtual TypeNames Merge(TypeNames other) {
+		public virtual TypeNames Merge(TypeNames other)
+		{
 			if (this == other)
 				return this;
-			foreach (var pair in other.typeNames) {
+			foreach (var pair in other.typeNames)
+			{
 				if (typeNames.TryGetValue(pair.Key, out var nc))
 					nc.Merge(pair.Value);
 				else
@@ -123,18 +142,23 @@ namespace de4dot.code.renamer {
 			return this;
 		}
 
-		protected static string UpperFirst(string s) {
+		protected static string UpperFirst(string s)
+		{
 			if (string.IsNullOrEmpty(s))
 				return string.Empty;
 			return s.Substring(0, 1).ToUpperInvariant() + s.Substring(1);
 		}
 	}
 
-	public class VariableNameCreator : TypeNames {
+	public class VariableNameCreator : TypeNames
+	{
 		static Dictionary<string, string> ourFullNameToShortName;
 		static Dictionary<string, string> ourFullNameToShortNamePrefix;
-		static VariableNameCreator() {
-			ourFullNameToShortName = new Dictionary<string, string>(StringComparer.Ordinal) {
+
+		static VariableNameCreator()
+		{
+			ourFullNameToShortName = new Dictionary<string, string>(StringComparer.Ordinal)
+			{
 				{ "System.Boolean", "bool" },
 				{ "System.Byte", "byte" },
 				{ "System.Char", "char" },
@@ -152,7 +176,8 @@ namespace de4dot.code.renamer {
 				{ "System.UIntPtr", "uintptr" },
 				{ "System.Decimal", "decimal" },
 			};
-			ourFullNameToShortNamePrefix = new Dictionary<string, string>(StringComparer.Ordinal) {
+			ourFullNameToShortNamePrefix = new Dictionary<string, string>(StringComparer.Ordinal)
+			{
 				{ "System.Boolean", "Bool" },
 				{ "System.Byte", "Byte" },
 				{ "System.Char", "Char" },
@@ -172,14 +197,17 @@ namespace de4dot.code.renamer {
 			};
 		}
 
-		public VariableNameCreator() {
+		public VariableNameCreator()
+		{
 			fullNameToShortName = ourFullNameToShortName;
 			fullNameToShortNamePrefix = ourFullNameToShortNamePrefix;
 		}
 
-		static string LowerLeadingChars(string name) {
+		static string LowerLeadingChars(string name)
+		{
 			var s = "";
-			for (int i = 0; i < name.Length; i++) {
+			for (int i = 0; i < name.Length; i++)
+			{
 				char c = char.ToLowerInvariant(name[i]);
 				if (c == name[i])
 					return s + name.Substring(i);
@@ -188,7 +216,8 @@ namespace de4dot.code.renamer {
 			return s;
 		}
 
-		protected override string FixName(string prefix, string name) {
+		protected override string FixName(string prefix, string name)
+		{
 			name = LowerLeadingChars(name);
 			if (prefix == "")
 				return name;
@@ -196,15 +225,23 @@ namespace de4dot.code.renamer {
 		}
 	}
 
-	public class PropertyNameCreator : TypeNames {
-		static Dictionary<string, string> ourFullNameToShortName = new Dictionary<string, string>(StringComparer.Ordinal);
-		static Dictionary<string, string> ourFullNameToShortNamePrefix = new Dictionary<string, string>(StringComparer.Ordinal);
+	public class PropertyNameCreator : TypeNames
+	{
+		static Dictionary<string, string> ourFullNameToShortName = new Dictionary<string, string>(
+			StringComparer.Ordinal
+		);
+		static Dictionary<string, string> ourFullNameToShortNamePrefix = new Dictionary<
+			string,
+			string
+		>(StringComparer.Ordinal);
 
-		public PropertyNameCreator() {
+		public PropertyNameCreator()
+		{
 			fullNameToShortName = ourFullNameToShortName;
 			fullNameToShortNamePrefix = ourFullNameToShortNamePrefix;
 		}
 
-		protected override string FixName(string prefix, string name) => prefix.ToUpperInvariant() + UpperFirst(name);
+		protected override string FixName(string prefix, string name) =>
+			prefix.ToUpperInvariant() + UpperFirst(name);
 	}
 }

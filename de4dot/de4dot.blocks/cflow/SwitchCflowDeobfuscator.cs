@@ -1,31 +1,34 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
 using System.Collections.Generic;
 using dnlib.DotNet.Emit;
 
-namespace de4dot.blocks.cflow {
-	class SwitchCflowDeobfuscator : BlockDeobfuscator {
+namespace de4dot.blocks.cflow
+{
+	class SwitchCflowDeobfuscator : BlockDeobfuscator
+	{
 		InstructionEmulator instructionEmulator = new InstructionEmulator();
 
-		protected override bool Deobfuscate(Block switchBlock) {
+		protected override bool Deobfuscate(Block switchBlock)
+		{
 			if (switchBlock.LastInstr.OpCode.Code != Code.Switch)
 				return false;
 
@@ -52,16 +55,20 @@ namespace de4dot.blocks.cflow {
 
 		static bool IsSwitchTopOfStack(Block switchBlock) => switchBlock.Instructions.Count == 1;
 
-		static bool IsLdlocBranch(Block switchBlock, bool isSwitch) {
+		static bool IsLdlocBranch(Block switchBlock, bool isSwitch)
+		{
 			int numInstrs = 1 + (isSwitch ? 1 : 0);
-			return switchBlock.Instructions.Count == numInstrs && switchBlock.Instructions[0].IsLdloc();
+			return switchBlock.Instructions.Count == numInstrs
+				&& switchBlock.Instructions[0].IsLdloc();
 		}
 
 		static bool IsSwitchType1(Block switchBlock) => switchBlock.FirstInstr.IsLdloc();
 
-		bool IsSwitchType2(Block switchBlock) {
+		bool IsSwitchType2(Block switchBlock)
+		{
 			Local local = null;
-			foreach (var instr in switchBlock.Instructions) {
+			foreach (var instr in switchBlock.Instructions)
+			{
 				if (!instr.IsLdloc())
 					continue;
 				local = Instr.GetLocalVar(blocks.Locals, instr);
@@ -70,9 +77,11 @@ namespace de4dot.blocks.cflow {
 			if (local == null)
 				return false;
 
-			foreach (var source in switchBlock.Sources) {
+			foreach (var source in switchBlock.Sources)
+			{
 				var instrs = source.Instructions;
-				for (int i = 1; i < instrs.Count; i++) {
+				for (int i = 1; i < instrs.Count; i++)
+				{
 					var ldci4 = instrs[i - 1];
 					if (!ldci4.IsLdcI4())
 						continue;
@@ -89,15 +98,18 @@ namespace de4dot.blocks.cflow {
 			return false;
 		}
 
-		bool IsStLdlocBranch(Block switchBlock, bool isSwitch) {
+		bool IsStLdlocBranch(Block switchBlock, bool isSwitch)
+		{
 			int numInstrs = 2 + (isSwitch ? 1 : 0);
-			return switchBlock.Instructions.Count == numInstrs &&
-				switchBlock.Instructions[0].IsStloc() &&
-				switchBlock.Instructions[1].IsLdloc() &&
-				Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[0]) == Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[1]);
+			return switchBlock.Instructions.Count == numInstrs
+				&& switchBlock.Instructions[0].IsStloc()
+				&& switchBlock.Instructions[1].IsLdloc()
+				&& Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[0])
+					== Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[1]);
 		}
 
-		bool DeobfuscateTOS(Block switchBlock) {
+		bool DeobfuscateTOS(Block switchBlock)
+		{
 			bool modified = false;
 			if (switchBlock.Targets == null)
 				return modified;
@@ -108,7 +120,8 @@ namespace de4dot.blocks.cflow {
 			return modified;
 		}
 
-		bool DeobfuscateLdloc(Block switchBlock) {
+		bool DeobfuscateLdloc(Block switchBlock)
+		{
 			bool modified = false;
 
 			var switchVariable = Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[0]);
@@ -119,12 +132,18 @@ namespace de4dot.blocks.cflow {
 				return modified;
 			var targets = new List<Block>(switchBlock.Targets);
 
-			modified |= DeobfuscateLdloc(targets, switchBlock.FallThrough, switchBlock, switchVariable);
+			modified |= DeobfuscateLdloc(
+				targets,
+				switchBlock.FallThrough,
+				switchBlock,
+				switchVariable
+			);
 
 			return modified;
 		}
 
-		bool DeobfuscateStLdloc(Block switchBlock) {
+		bool DeobfuscateStLdloc(Block switchBlock)
+		{
 			bool modified = false;
 
 			var switchVariable = Instr.GetLocalVar(blocks.Locals, switchBlock.Instructions[0]);
@@ -148,15 +167,21 @@ namespace de4dot.blocks.cflow {
 		//		stloc N
 		//		ldloc N
 		//		switch (......)
-		bool DeobfuscateStLdloc(IList<Block> switchTargets, Block switchFallThrough, Block block) {
+		bool DeobfuscateStLdloc(IList<Block> switchTargets, Block switchFallThrough, Block block)
+		{
 			bool modified = false;
-			foreach (var source in new List<Block>(block.Sources)) {
+			foreach (var source in new List<Block>(block.Sources))
+			{
 				if (!IsBranchBlock(source))
 					continue;
 				instructionEmulator.Initialize(blocks, allBlocks[0] == source);
 				instructionEmulator.Emulate(source.Instructions);
 
-				var target = GetSwitchTarget(switchTargets, switchFallThrough, instructionEmulator.Pop());
+				var target = GetSwitchTarget(
+					switchTargets,
+					switchFallThrough,
+					instructionEmulator.Pop()
+				);
 				if (target == null)
 					continue;
 				source.ReplaceLastNonBranchWithBranch(0, target);
@@ -174,31 +199,50 @@ namespace de4dot.blocks.cflow {
 		//	swblk:
 		//		ldloc N
 		//		switch (......)
-		bool DeobfuscateLdloc(IList<Block> switchTargets, Block switchFallThrough, Block block, Local switchVariable) {
+		bool DeobfuscateLdloc(
+			IList<Block> switchTargets,
+			Block switchFallThrough,
+			Block block,
+			Local switchVariable
+		)
+		{
 			bool modified = false;
-			foreach (var source in new List<Block>(block.Sources)) {
-				if (IsBranchBlock(source)) {
+			foreach (var source in new List<Block>(block.Sources))
+			{
+				if (IsBranchBlock(source))
+				{
 					instructionEmulator.Initialize(blocks, allBlocks[0] == source);
 					instructionEmulator.Emulate(source.Instructions);
 
-					var target = GetSwitchTarget(switchTargets, switchFallThrough, instructionEmulator.GetLocal(switchVariable));
+					var target = GetSwitchTarget(
+						switchTargets,
+						switchFallThrough,
+						instructionEmulator.GetLocal(switchVariable)
+					);
 					if (target == null)
 						continue;
 					source.ReplaceLastNonBranchWithBranch(0, target);
 					modified = true;
 				}
-				else if (IsBccBlock(source)) {
+				else if (IsBccBlock(source))
+				{
 					instructionEmulator.Initialize(blocks, allBlocks[0] == source);
 					instructionEmulator.Emulate(source.Instructions);
 
-					var target = GetSwitchTarget(switchTargets, switchFallThrough, instructionEmulator.GetLocal(switchVariable));
+					var target = GetSwitchTarget(
+						switchTargets,
+						switchFallThrough,
+						instructionEmulator.GetLocal(switchVariable)
+					);
 					if (target == null)
 						continue;
-					if (source.Targets[0] == block) {
+					if (source.Targets[0] == block)
+					{
 						source.SetNewTarget(0, target);
 						modified = true;
 					}
-					if (source.FallThrough == block) {
+					if (source.FallThrough == block)
+					{
 						source.SetNewFallThrough(target);
 						modified = true;
 					}
@@ -213,19 +257,27 @@ namespace de4dot.blocks.cflow {
 		//		br swblk
 		//	swblk:
 		//		switch (......)
-		bool DeobfuscateTOS(IList<Block> switchTargets, Block switchFallThrough, Block block) {
+		bool DeobfuscateTOS(IList<Block> switchTargets, Block switchFallThrough, Block block)
+		{
 			bool modified = false;
-			foreach (var source in new List<Block>(block.Sources)) {
+			foreach (var source in new List<Block>(block.Sources))
+			{
 				if (!IsBranchBlock(source))
 					continue;
 				instructionEmulator.Initialize(blocks, allBlocks[0] == source);
 				instructionEmulator.Emulate(source.Instructions);
 
-				var target = GetSwitchTarget(switchTargets, switchFallThrough, instructionEmulator.Pop());
-				if (target == null) {
+				var target = GetSwitchTarget(
+					switchTargets,
+					switchFallThrough,
+					instructionEmulator.Pop()
+				);
+				if (target == null)
+				{
 					modified |= DeobfuscateTos_Ldloc(switchTargets, switchFallThrough, source);
 				}
-				else {
+				else
+				{
 					source.ReplaceLastNonBranchWithBranch(0, target);
 					source.Add(new Instr(OpCodes.Pop.ToInstruction()));
 					modified = true;
@@ -240,8 +292,10 @@ namespace de4dot.blocks.cflow {
 		//		stloc N
 		//		ldloc N
 		//		br swblk
-		bool DeobfuscateTos_Ldloc(IList<Block> switchTargets, Block switchFallThrough, Block block) {
-			if (IsLdlocBranch(block, false)) {
+		bool DeobfuscateTos_Ldloc(IList<Block> switchTargets, Block switchFallThrough, Block block)
+		{
+			if (IsLdlocBranch(block, false))
+			{
 				var switchVariable = Instr.GetLocalVar(blocks.Locals, block.Instructions[0]);
 				if (switchVariable == null)
 					return false;
@@ -253,64 +307,70 @@ namespace de4dot.blocks.cflow {
 			return false;
 		}
 
-		static bool IsBranchBlock(Block block) {
+		static bool IsBranchBlock(Block block)
+		{
 			if (block.Targets != null)
 				return false;
 			if (block.FallThrough == null)
 				return false;
-			switch (block.LastInstr.OpCode.Code) {
-			case Code.Switch:
-			case Code.Leave:
-			case Code.Leave_S:
-				return false;
-			default:
-				return true;
+			switch (block.LastInstr.OpCode.Code)
+			{
+				case Code.Switch:
+				case Code.Leave:
+				case Code.Leave_S:
+					return false;
+				default:
+					return true;
 			}
 		}
 
-		static bool IsBccBlock(Block block) {
+		static bool IsBccBlock(Block block)
+		{
 			if (block.Targets == null || block.Targets.Count != 1)
 				return false;
 			if (block.FallThrough == null)
 				return false;
-			switch (block.LastInstr.OpCode.Code) {
-			case Code.Beq:
-			case Code.Beq_S:
-			case Code.Bge:
-			case Code.Bge_S:
-			case Code.Bge_Un:
-			case Code.Bge_Un_S:
-			case Code.Bgt:
-			case Code.Bgt_S:
-			case Code.Bgt_Un:
-			case Code.Bgt_Un_S:
-			case Code.Ble:
-			case Code.Ble_S:
-			case Code.Ble_Un:
-			case Code.Ble_Un_S:
-			case Code.Blt:
-			case Code.Blt_S:
-			case Code.Blt_Un:
-			case Code.Blt_Un_S:
-			case Code.Bne_Un:
-			case Code.Bne_Un_S:
-			case Code.Brfalse:
-			case Code.Brfalse_S:
-			case Code.Brtrue:
-			case Code.Brtrue_S:
-				return true;
-			default:
-				return false;
+			switch (block.LastInstr.OpCode.Code)
+			{
+				case Code.Beq:
+				case Code.Beq_S:
+				case Code.Bge:
+				case Code.Bge_S:
+				case Code.Bge_Un:
+				case Code.Bge_Un_S:
+				case Code.Bgt:
+				case Code.Bgt_S:
+				case Code.Bgt_Un:
+				case Code.Bgt_Un_S:
+				case Code.Ble:
+				case Code.Ble_S:
+				case Code.Ble_Un:
+				case Code.Ble_Un_S:
+				case Code.Blt:
+				case Code.Blt_S:
+				case Code.Blt_Un:
+				case Code.Blt_Un_S:
+				case Code.Bne_Un:
+				case Code.Bne_Un_S:
+				case Code.Brfalse:
+				case Code.Brfalse_S:
+				case Code.Brtrue:
+				case Code.Brtrue_S:
+					return true;
+				default:
+					return false;
 			}
 		}
 
-		bool DeobfuscateType1(Block switchBlock) {
+		bool DeobfuscateType1(Block switchBlock)
+		{
 			if (!EmulateGetTarget(switchBlock, out var target) || target != null)
 				return false;
 
 			bool modified = false;
 
-			foreach (var source in new List<Block>(switchBlock.Sources)) {
+			foreach (var source in new List<Block>(switchBlock.Sources))
+			{
 				if (!source.CanAppend(switchBlock))
 					continue;
 				if (!WillHaveKnownTarget(switchBlock, source))
@@ -323,12 +383,15 @@ namespace de4dot.blocks.cflow {
 			return modified;
 		}
 
-		bool DeobfuscateType2(Block switchBlock) {
+		bool DeobfuscateType2(Block switchBlock)
+		{
 			bool modified = false;
 
 			var bccSources = new List<Block>();
-			foreach (var source in new List<Block>(switchBlock.Sources)) {
-				if (source.LastInstr.IsConditionalBranch()) {
+			foreach (var source in new List<Block>(switchBlock.Sources))
+			{
+				if (source.LastInstr.IsConditionalBranch())
+				{
 					bccSources.Add(source);
 					continue;
 				}
@@ -341,7 +404,8 @@ namespace de4dot.blocks.cflow {
 				modified = true;
 			}
 
-			foreach (var bccSource in bccSources) {
+			foreach (var bccSource in bccSources)
+			{
 				if (!WillHaveKnownTarget(switchBlock, bccSource))
 					continue;
 				var consts = GetBccLocalConstants(bccSource);
@@ -361,9 +425,11 @@ namespace de4dot.blocks.cflow {
 			return modified;
 		}
 
-		static Block CreateBlock(Dictionary<Local, int> consts, Block fallThrough) {
+		static Block CreateBlock(Dictionary<Local, int> consts, Block fallThrough)
+		{
 			var block = new Block();
-			foreach (var kv in consts) {
+			foreach (var kv in consts)
+			{
 				block.Instructions.Add(new Instr(Instruction.CreateLdcI4(kv.Value)));
 				block.Instructions.Add(new Instr(OpCodes.Stloc.ToInstruction(kv.Key)));
 			}
@@ -371,12 +437,15 @@ namespace de4dot.blocks.cflow {
 			return block;
 		}
 
-		Dictionary<Local, int> GetBccLocalConstants(Block block) {
+		Dictionary<Local, int> GetBccLocalConstants(Block block)
+		{
 			var dict = new Dictionary<Local, int>();
 			var instrs = block.Instructions;
-			for (int i = 0; i < instrs.Count; i++) {
+			for (int i = 0; i < instrs.Count; i++)
+			{
 				var instr = instrs[i];
-				if (instr.IsStloc()) {
+				if (instr.IsStloc())
+				{
 					var local = Instr.GetLocalVar(blocks.Locals, instr);
 					if (local == null)
 						continue;
@@ -386,12 +455,14 @@ namespace de4dot.blocks.cflow {
 					else
 						dict[local] = ldci4.GetLdcI4Value();
 				}
-				else if (instr.IsLdloc()) {
+				else if (instr.IsLdloc())
+				{
 					var local = Instr.GetLocalVar(blocks.Locals, instr);
 					if (local != null)
 						dict.Remove(local);
 				}
-				else if (instr.OpCode.Code == Code.Ldloca || instr.OpCode.Code == Code.Ldloca_S) {
+				else if (instr.OpCode.Code == Code.Ldloca || instr.OpCode.Code == Code.Ldloca_S)
+				{
 					if (instr.Operand is Local local)
 						dict.Remove(local);
 				}
@@ -399,12 +470,19 @@ namespace de4dot.blocks.cflow {
 			return dict;
 		}
 
-		bool EmulateGetTarget(Block switchBlock, out Block target) {
+		bool EmulateGetTarget(Block switchBlock, out Block target)
+		{
 			instructionEmulator.Initialize(blocks, allBlocks[0] == switchBlock);
-			try {
-				instructionEmulator.Emulate(switchBlock.Instructions, 0, switchBlock.Instructions.Count - 1);
+			try
+			{
+				instructionEmulator.Emulate(
+					switchBlock.Instructions,
+					0,
+					switchBlock.Instructions.Count - 1
+				);
 			}
-			catch (NullReferenceException) {
+			catch (NullReferenceException)
+			{
 				// Here if eg. invalid metadata token in a call instruction (operand is null)
 				target = null;
 				return false;
@@ -413,33 +491,47 @@ namespace de4dot.blocks.cflow {
 			return true;
 		}
 
-		bool WillHaveKnownTarget(Block switchBlock, Block source) {
+		bool WillHaveKnownTarget(Block switchBlock, Block source)
+		{
 			instructionEmulator.Initialize(blocks, allBlocks[0] == source);
-			try {
+			try
+			{
 				instructionEmulator.Emulate(source.Instructions);
-				instructionEmulator.Emulate(switchBlock.Instructions, 0, switchBlock.Instructions.Count - 1);
+				instructionEmulator.Emulate(
+					switchBlock.Instructions,
+					0,
+					switchBlock.Instructions.Count - 1
+				);
 			}
-			catch (NullReferenceException) {
+			catch (NullReferenceException)
+			{
 				// Here if eg. invalid metadata token in a call instruction (operand is null)
 				return false;
 			}
 			return GetTarget(switchBlock) != null;
 		}
 
-		Block GetTarget(Block switchBlock) {
+		Block GetTarget(Block switchBlock)
+		{
 			var val1 = instructionEmulator.Pop();
 			if (!val1.IsInt32())
 				return null;
-			return CflowUtils.GetSwitchTarget(switchBlock.Targets, switchBlock.FallThrough, (Int32Value)val1);
+			return CflowUtils.GetSwitchTarget(
+				switchBlock.Targets,
+				switchBlock.FallThrough,
+				(Int32Value)val1
+			);
 		}
 
-		static Block GetSwitchTarget(IList<Block> targets, Block fallThrough, Value value) {
+		static Block GetSwitchTarget(IList<Block> targets, Block fallThrough, Value value)
+		{
 			if (!value.IsInt32())
 				return null;
 			return CflowUtils.GetSwitchTarget(targets, fallThrough, (Int32Value)value);
 		}
 
-		static bool FixSwitchBranch(Block switchBlock) {
+		static bool FixSwitchBranch(Block switchBlock)
+		{
 			// Code:
 			//	blk1:
 			//		ldc.i4 XXX
@@ -457,13 +549,16 @@ namespace de4dot.blocks.cflow {
 
 			bool modified = false;
 
-			foreach (var commonSource in new List<Block>(switchBlock.Sources)) {
+			foreach (var commonSource in new List<Block>(switchBlock.Sources))
+			{
 				if (commonSource.Instructions.Count != 1)
 					continue;
 				if (!commonSource.FirstInstr.IsStloc())
 					continue;
-				foreach (var blk in new List<Block>(commonSource.Sources)) {
-					if (blk.CanAppend(commonSource)) {
+				foreach (var blk in new List<Block>(commonSource.Sources))
+				{
+					if (blk.CanAppend(commonSource))
+					{
 						blk.Append(commonSource);
 						modified = true;
 					}

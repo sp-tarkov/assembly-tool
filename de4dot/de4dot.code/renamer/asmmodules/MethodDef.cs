@@ -1,27 +1,29 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Collections.Generic;
 using dnlib.DotNet;
 
-namespace de4dot.code.renamer.asmmodules {
-	public class MMethodDef : Ref {
+namespace de4dot.code.renamer.asmmodules
+{
+	public class MMethodDef : Ref
+	{
 		IList<MGenericParamDef> genericParams;
 		IList<MParamDef> paramDefs = new List<MParamDef>();
 		MParamDef returnParamDef;
@@ -34,8 +36,10 @@ namespace de4dot.code.renamer.asmmodules {
 		public int VisibleParameterBaseIndex => visibleBaseIndex;
 		public IList<MParamDef> ParamDefs => paramDefs;
 
-		public IEnumerable<MParamDef> AllParamDefs {
-			get {
+		public IEnumerable<MParamDef> AllParamDefs
+		{
+			get
+			{
 				yield return returnParamDef;
 				foreach (var paramDef in paramDefs)
 					yield return paramDef;
@@ -47,10 +51,12 @@ namespace de4dot.code.renamer.asmmodules {
 		public MethodDef MethodDef => (MethodDef)memberRef;
 
 		public MMethodDef(MethodDef methodDef, MTypeDef owner, int index)
-			: base(methodDef, owner, index) {
+			: base(methodDef, owner, index)
+		{
 			genericParams = MGenericParamDef.CreateGenericParamDefList(MethodDef.GenericParameters);
 			visibleBaseIndex = methodDef.MethodSig != null && methodDef.MethodSig.HasThis ? 1 : 0;
-			for (int i = 0; i < methodDef.Parameters.Count; i++) {
+			for (int i = 0; i < methodDef.Parameters.Count; i++)
+			{
 				var param = methodDef.Parameters[i];
 				if (param.IsNormalMethodParameter)
 					visibleParamCount++;
@@ -60,8 +66,11 @@ namespace de4dot.code.renamer.asmmodules {
 		}
 
 		public bool IsPublic() => MethodDef.IsPublic;
+
 		public bool IsVirtual() => MethodDef.IsVirtual;
+
 		public bool IsNewSlot() => MethodDef.IsNewSlot;
+
 		public bool IsStatic() => MethodDef.IsStatic;
 	}
 }

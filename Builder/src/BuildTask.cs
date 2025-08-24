@@ -20,18 +20,20 @@ public class BuildTask : FrostingTask<Context>
     private void BuildDe4dot(Context context)
     {
         context.Log.Information("Building De4dot");
-        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "de4dot\\de4dot-x64\\de4dot-x64.csproj"),
-            new DotNetBuildSettings
-            {
-                Configuration = context.MsBuildConfiguration,
-            }
+        context.DotNetBuild(
+            Path.Combine(
+                context.Environment.WorkingDirectory.FullPath,
+                "de4dot\\de4dot-x64\\de4dot-x64.csproj"
+            ),
+            new DotNetBuildSettings { Configuration = context.MsBuildConfiguration }
         );
-        
-        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "de4dot\\AssemblyServer-x64\\AssemblyServer-x64.csproj"),
-            new DotNetBuildSettings
-            {
-                Configuration = context.MsBuildConfiguration,
-            }
+
+        context.DotNetBuild(
+            Path.Combine(
+                context.Environment.WorkingDirectory.FullPath,
+                "de4dot\\AssemblyServer-x64\\AssemblyServer-x64.csproj"
+            ),
+            new DotNetBuildSettings { Configuration = context.MsBuildConfiguration }
         );
         context.Log.Information("Finished Building De4dot");
     }
@@ -39,11 +41,12 @@ public class BuildTask : FrostingTask<Context>
     private void BuildAssemblyTool(Context context)
     {
         context.Log.Information("Building Assembly Tool");
-        context.DotNetBuild(Path.Combine(context.Environment.WorkingDirectory.FullPath, "AssemblyTool\\AssemblyTool.csproj"),
-            new DotNetBuildSettings
-            {
-                Configuration = context.MsBuildConfiguration,
-            }
+        context.DotNetBuild(
+            Path.Combine(
+                context.Environment.WorkingDirectory.FullPath,
+                "AssemblyTool\\AssemblyTool.csproj"
+            ),
+            new DotNetBuildSettings { Configuration = context.MsBuildConfiguration }
         );
         context.Log.Information("Finished Building Assembly Tool");
     }

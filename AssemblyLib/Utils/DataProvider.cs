@@ -22,8 +22,8 @@ public class DataProvider
     public Settings Settings { get; }
 
     private readonly List<RemapModel> _remaps = [];
-    private readonly Lock _remapLock = new ();
-    
+    private readonly Lock _remapLock = new();
+
     public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
     private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
@@ -55,9 +55,9 @@ public class DataProvider
     {
         return _remaps;
     }
-    
+
     public int RemapCount() => _remaps.Count;
-    
+
     public void AddMapping(RemapModel remap)
     {
         lock (_remapLock)
@@ -73,7 +73,7 @@ public class DataProvider
             return _remaps.Remove(remap);
         }
     }
-    
+
     public void ClearMappings()
     {
         lock (_remapLock)
@@ -81,8 +81,6 @@ public class DataProvider
             _remaps.Clear();
         }
     }
-    
-    
 
     public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
@@ -101,9 +99,7 @@ public class DataProvider
 
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
-        var path = isAutoMatch
-            ? MappingPath
-            : MappingNewPath;
+        var path = isAutoMatch ? MappingPath : MappingNewPath;
 
         File.WriteAllText(path, jsonText);
 
@@ -120,10 +116,7 @@ public class DataProvider
 
         var jsonText = File.ReadAllText(MappingPath);
 
-        JsonSerializerOptions settings = new()
-        {
-            AllowTrailingCommas = true,
-        };
+        JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
 
         var remaps = JsonSerializer.Deserialize<List<RemapModel>>(jsonText, settings);
         _remaps.AddRange(remaps!);
@@ -138,12 +131,16 @@ public class DataProvider
             .Where(g => g.Count() > 1)
             .ToList();
 
-        if (duplicateGroups.Count <= 1) return;
+        if (duplicateGroups.Count <= 1)
+            return;
 
         foreach (var duplicate in duplicateGroups)
         {
             var duplicateNewTypeName = duplicate.Key;
-            Log.Error("Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.", duplicateNewTypeName);
+            Log.Error(
+                "Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.",
+                duplicateNewTypeName
+            );
         }
 
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
@@ -154,10 +151,7 @@ public class DataProvider
         var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
 
-        JsonSerializerOptions settings = new()
-        {
-            AllowTrailingCommas = true,
-        };
+        JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
 
         return JsonSerializer.Deserialize<Settings>(jsonText, settings)!;
     }
@@ -170,9 +164,12 @@ public class DataProvider
         JsonSerializerOptions settings = new()
         {
             RespectNullableAnnotations = true,
-            PropertyNameCaseInsensitive = true
+            PropertyNameCaseInsensitive = true,
         };
 
-        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
+        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(
+            jsonText,
+            settings
+        )!;
     }
 }

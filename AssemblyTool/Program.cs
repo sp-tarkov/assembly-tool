@@ -8,7 +8,7 @@ public static class Program
     public static async Task<int> Main() =>
         await new CliApplicationBuilder()
             .AddCommandsFromThisAssembly()
-            .AllowDebugMode() 
+            .AllowDebugMode()
             .SetExecutableName("AssemblyTool")
             .Build()
             .RunAsync();

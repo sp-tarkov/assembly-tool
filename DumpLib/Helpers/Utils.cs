@@ -5,8 +5,10 @@ namespace DumpLib.Helpers
 {
     public static class Utils
     {
-        private static string _loggerPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\Log.txt").Replace("\\\\", "\\");
-        
+        private static string _loggerPath = (
+            Directory.GetCurrentDirectory() + "\\DUMPDATA\\Log.txt"
+        ).Replace("\\\\", "\\");
+
         /// <summary>
         /// Log message to something
         /// </summary>
@@ -17,7 +19,9 @@ namespace DumpLib.Helpers
             try
             {
                 writer = new StreamWriter(_loggerPath, true);
-                writer.WriteLine($"[{messageType}] - {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}");
+                writer.WriteLine(
+                    $"[{messageType}] - {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}"
+                );
             }
             catch (Exception e)
             {
@@ -33,7 +37,7 @@ namespace DumpLib.Helpers
                 }
             }
         }
-        
+
         /// <summary>
         /// Log message to something
         /// </summary>
@@ -42,7 +46,7 @@ namespace DumpLib.Helpers
         {
             LogMessage(message, "Error");
         }
-        
+
         /// <summary>
         /// Log message to something
         /// </summary>
@@ -51,7 +55,7 @@ namespace DumpLib.Helpers
         {
             LogMessage(message, "Info");
         }
-        
+
         /// <summary>
         /// Log message to something
         /// </summary>

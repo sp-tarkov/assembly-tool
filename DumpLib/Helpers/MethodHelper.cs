@@ -12,16 +12,16 @@ public class MethodHelper
     {
         try
         {
-            return DataHelper._newtonAssembly.GetTypes().First(x =>
-                x.Name == "JsonConvert"
-            ).GetMethods().First(m =>
-                m.Name == "DeserializeObject" &&
-                m.IsGenericMethodDefinition &&
-                m.GetParameters().Length == 1 &&
-                m.GetParameters().Any(p =>
-                    p.ParameterType == typeof(string)
-                )
-            );
+            return DataHelper
+                ._newtonAssembly.GetTypes()
+                .First(x => x.Name == "JsonConvert")
+                .GetMethods()
+                .First(m =>
+                    m.Name == "DeserializeObject"
+                    && m.IsGenericMethodDefinition
+                    && m.GetParameters().Length == 1
+                    && m.GetParameters().Any(p => p.ParameterType == typeof(string))
+                );
         }
         catch (Exception e)
         {
@@ -39,13 +39,16 @@ public class MethodHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x =>
                 {
                     var methods = x.GetMethods();
 
-                    return methods.Any(m => m.Name == "Quit") && methods.Any(m => m.Name == "QuitWithCode");
-                }
-            ).GetMethod("Quit");
+                    return methods.Any(m => m.Name == "Quit")
+                        && methods.Any(m => m.Name == "QuitWithCode");
+                })
+                .GetMethod("Quit");
         }
         catch (Exception e)
         {
@@ -59,10 +62,10 @@ public class MethodHelper
     {
         try
         {
-            return DataHelper._eftAssembly.GetTypes().First(x =>
-                x.GetMethods().Any(m =>
-                    m.Name == "ToUnparsedData"
-                )).GetMethod("ToUnparsedData");
+            return DataHelper
+                ._eftAssembly.GetTypes()
+                .First(x => x.GetMethods().Any(m => m.Name == "ToUnparsedData"))
+                .GetMethod("ToUnparsedData");
         }
         catch (Exception e)
         {

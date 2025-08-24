@@ -13,17 +13,23 @@ public class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByInclude(
+        IEnumerable<TypeDefinition> types,
+        SearchParams parms
+    )
     {
-        if (parms.Properties.IncludeProperties.Count == 0) return types;
+        if (parms.Properties.IncludeProperties.Count == 0)
+            return types;
 
         List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (parms.Properties.IncludeProperties
-                .All(includeName => type.Properties
-                    .Any(prop => prop.Name == includeName)))
+            if (
+                parms.Properties.IncludeProperties.All(includeName =>
+                    type.Properties.Any(prop => prop.Name == includeName)
+                )
+            )
             {
                 filteredTypes.Add(type);
             }
@@ -38,16 +44,21 @@ public class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByExclude(
+        IEnumerable<TypeDefinition> types,
+        SearchParams parms
+    )
     {
-        if (parms.Properties.ExcludeProperties.Count == 0) return types;
+        if (parms.Properties.ExcludeProperties.Count == 0)
+            return types;
 
         List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
-            var match = type.Properties
-                .Where(prop => parms.Properties.ExcludeProperties.Contains(prop.Name!));
+            var match = type.Properties.Where(prop =>
+                parms.Properties.ExcludeProperties.Contains(prop.Name!)
+            );
 
             if (!match.Any())
             {
@@ -64,9 +75,13 @@ public class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    public IEnumerable<TypeDefinition> FilterByCount(
+        IEnumerable<TypeDefinition> types,
+        SearchParams parms
+    )
     {
-        if (parms.Properties.PropertyCount == -1) return types;
+        if (parms.Properties.PropertyCount == -1)
+            return types;
 
         if (parms.Properties.PropertyCount >= 0)
         {

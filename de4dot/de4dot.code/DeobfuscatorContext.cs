@@ -1,43 +1,50 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
 using System.Collections.Generic;
 using dnlib.DotNet;
 
-namespace de4dot.code {
+namespace de4dot.code
+{
 	// "global" data and methods that is shared between all deobfuscators that deobfuscate
 	// assemblies at the same time.
-	public class DeobfuscatorContext : IDeobfuscatorContext {
-		Dictionary<string, object> dataDict = new Dictionary<string, object>(StringComparer.Ordinal);
+	public class DeobfuscatorContext : IDeobfuscatorContext
+	{
+		Dictionary<string, object> dataDict = new Dictionary<string, object>(
+			StringComparer.Ordinal
+		);
 
 		public void Clear() => dataDict.Clear();
+
 		public void SetData(string name, object data) => dataDict[name] = data;
 
-		public object GetData(string name) {
+		public object GetData(string name)
+		{
 			dataDict.TryGetValue(name, out object value);
 			return value;
 		}
 
 		public void ClearData(string name) => dataDict.Remove(name);
 
-		static ITypeDefOrRef GetNonGenericTypeRef(ITypeDefOrRef typeRef) {
+		static ITypeDefOrRef GetNonGenericTypeRef(ITypeDefOrRef typeRef)
+		{
 			var ts = typeRef as TypeSpec;
 			if (ts == null)
 				return typeRef;
@@ -47,7 +54,8 @@ namespace de4dot.code {
 			return gis.GenericType.TypeDefOrRef;
 		}
 
-		public TypeDef ResolveType(ITypeDefOrRef type) {
+		public TypeDef ResolveType(ITypeDefOrRef type)
+		{
 			if (type == null)
 				return null;
 			type = GetNonGenericTypeRef(type);
@@ -61,7 +69,8 @@ namespace de4dot.code {
 			return null;
 		}
 
-		public MethodDef ResolveMethod(IMethod method) {
+		public MethodDef ResolveMethod(IMethod method)
+		{
 			if (method == null)
 				return null;
 
@@ -79,7 +88,8 @@ namespace de4dot.code {
 			return type.Resolve(mr) as MethodDef;
 		}
 
-		public FieldDef ResolveField(IField field) {
+		public FieldDef ResolveField(IField field)
+		{
 			if (field == null)
 				return null;
 

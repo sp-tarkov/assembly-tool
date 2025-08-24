@@ -1,27 +1,29 @@
 /*
-    Copyright (C) 2011-2015 de4dot@gmail.com
+	Copyright (C) 2011-2015 de4dot@gmail.com
 
-    This file is part of de4dot.
+	This file is part of de4dot.
 
-    de4dot is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	de4dot is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    de4dot is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	de4dot is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with de4dot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Collections.Generic;
 using de4dot.code.renamer.asmmodules;
 
-namespace de4dot.code.renamer {
-	public class MemberInfo {
+namespace de4dot.code.renamer
+{
+	public class MemberInfo
+	{
 		protected Ref memberRef;
 		public string oldFullName;
 		public string oldName;
@@ -29,48 +31,64 @@ namespace de4dot.code.renamer {
 		public bool renamed;
 		public string suggestedName;
 
-		public MemberInfo(Ref memberRef) {
+		public MemberInfo(Ref memberRef)
+		{
 			this.memberRef = memberRef;
 			oldFullName = memberRef.memberRef.FullName;
 			oldName = memberRef.memberRef.Name.String;
 			newName = memberRef.memberRef.Name.String;
 		}
 
-		public void Rename(string newTypeName) {
+		public void Rename(string newTypeName)
+		{
 			renamed = true;
 			newName = newTypeName;
 		}
 
 		public bool GotNewName() => oldName != newName;
+
 		public override string ToString() => $"O:{oldFullName} -- N:{newName}";
 	}
 
-	public class GenericParamInfo : MemberInfo {
-		public GenericParamInfo(MGenericParamDef genericParamDef) : base(genericParamDef) { }
+	public class GenericParamInfo : MemberInfo
+	{
+		public GenericParamInfo(MGenericParamDef genericParamDef)
+			: base(genericParamDef) { }
 	}
 
-	public class PropertyInfo : MemberInfo {
-		public PropertyInfo(MPropertyDef propertyDef) : base(propertyDef) { }
+	public class PropertyInfo : MemberInfo
+	{
+		public PropertyInfo(MPropertyDef propertyDef)
+			: base(propertyDef) { }
 	}
 
-	public class EventInfo : MemberInfo {
-		public EventInfo(MEventDef eventDef) : base(eventDef) { }
+	public class EventInfo : MemberInfo
+	{
+		public EventInfo(MEventDef eventDef)
+			: base(eventDef) { }
 	}
 
-	public class FieldInfo : MemberInfo {
-		public FieldInfo(MFieldDef fieldDef) : base(fieldDef) { }
+	public class FieldInfo : MemberInfo
+	{
+		public FieldInfo(MFieldDef fieldDef)
+			: base(fieldDef) { }
 	}
 
-	public class MethodInfo : MemberInfo {
+	public class MethodInfo : MemberInfo
+	{
 		public MMethodDef MethodDef => (MMethodDef)memberRef;
-		public MethodInfo(MMethodDef methodDef) : base(methodDef) { }
+
+		public MethodInfo(MMethodDef methodDef)
+			: base(methodDef) { }
 	}
 
-	public class ParamInfo {
+	public class ParamInfo
+	{
 		public string oldName;
 		public string newName;
 
-		public ParamInfo(MParamDef paramDef) {
+		public ParamInfo(MParamDef paramDef)
+		{
 			oldName = paramDef.ParameterDef.Name;
 			newName = paramDef.ParameterDef.Name;
 		}
@@ -78,18 +96,23 @@ namespace de4dot.code.renamer {
 		public bool GotNewName() => oldName != newName;
 	}
 
-	public class MemberInfos {
+	public class MemberInfos
+	{
 		Dictionary<MTypeDef, TypeInfo> allTypeInfos = new Dictionary<MTypeDef, TypeInfo>();
-		Dictionary<MPropertyDef, PropertyInfo> allPropertyInfos = new Dictionary<MPropertyDef, PropertyInfo>();
+		Dictionary<MPropertyDef, PropertyInfo> allPropertyInfos =
+			new Dictionary<MPropertyDef, PropertyInfo>();
 		Dictionary<MEventDef, EventInfo> allEventInfos = new Dictionary<MEventDef, EventInfo>();
 		Dictionary<MFieldDef, FieldInfo> allFieldInfos = new Dictionary<MFieldDef, FieldInfo>();
-		Dictionary<MMethodDef, MethodInfo> allMethodInfos = new Dictionary<MMethodDef, MethodInfo>();
-		Dictionary<MGenericParamDef, GenericParamInfo> allGenericParamInfos = new Dictionary<MGenericParamDef, GenericParamInfo>();
+		Dictionary<MMethodDef, MethodInfo> allMethodInfos =
+			new Dictionary<MMethodDef, MethodInfo>();
+		Dictionary<MGenericParamDef, GenericParamInfo> allGenericParamInfos =
+			new Dictionary<MGenericParamDef, GenericParamInfo>();
 		Dictionary<MParamDef, ParamInfo> allParamInfos = new Dictionary<MParamDef, ParamInfo>();
 		DerivedFrom checkWinFormsClass;
 
-		static string[] WINFORMS_CLASSES = new string[] {
-#region Win Forms class names
+		static string[] WINFORMS_CLASSES = new string[]
+		{
+			#region Win Forms class names
 			"System.Windows.Forms.Control",
 			"System.Windows.Forms.AxHost",
 			"System.Windows.Forms.ButtonBase",
@@ -181,26 +204,45 @@ namespace de4dot.code.renamer {
 			"System.ComponentModel.Design.ObjectSelectorEditor.Selector",
 			"System.Windows.Forms.WebBrowserBase",
 			"System.Windows.Forms.WebBrowser",
-#endregion
+			#endregion
 		};
 
 		public MemberInfos() => checkWinFormsClass = new DerivedFrom(WINFORMS_CLASSES);
+
 		public bool IsWinFormsClass(MTypeDef type) => checkWinFormsClass.Check(type);
+
 		public TypeInfo Type(MTypeDef t) => allTypeInfos[t];
-		public bool TryGetType(MTypeDef t, out TypeInfo info) => allTypeInfos.TryGetValue(t, out info);
-		public bool TryGetEvent(MEventDef e, out EventInfo info) => allEventInfos.TryGetValue(e, out info);
-		public bool TryGetProperty(MPropertyDef p, out PropertyInfo info) => allPropertyInfos.TryGetValue(p, out info);
+
+		public bool TryGetType(MTypeDef t, out TypeInfo info) =>
+			allTypeInfos.TryGetValue(t, out info);
+
+		public bool TryGetEvent(MEventDef e, out EventInfo info) =>
+			allEventInfos.TryGetValue(e, out info);
+
+		public bool TryGetProperty(MPropertyDef p, out PropertyInfo info) =>
+			allPropertyInfos.TryGetValue(p, out info);
+
 		public PropertyInfo Property(MPropertyDef prop) => allPropertyInfos[prop];
+
 		public EventInfo Event(MEventDef evt) => allEventInfos[evt];
+
 		public FieldInfo Field(MFieldDef field) => allFieldInfos[field];
+
 		public MethodInfo Method(MMethodDef method) => allMethodInfos[method];
-		public GenericParamInfo GenericParam(MGenericParamDef gparam) => allGenericParamInfos[gparam];
+
+		public GenericParamInfo GenericParam(MGenericParamDef gparam) =>
+			allGenericParamInfos[gparam];
+
 		public ParamInfo Param(MParamDef param) => allParamInfos[param];
+
 		public void Add(MPropertyDef prop) => allPropertyInfos[prop] = new PropertyInfo(prop);
+
 		public void Add(MEventDef evt) => allEventInfos[evt] = new EventInfo(evt);
 
-		public void Initialize(Modules modules) {
-			foreach (var type in modules.AllTypes) {
+		public void Initialize(Modules modules)
+		{
+			foreach (var type in modules.AllTypes)
+			{
 				allTypeInfos[type] = new TypeInfo(type, this);
 
 				foreach (var gp in type.GenericParams)
@@ -215,7 +257,8 @@ namespace de4dot.code.renamer {
 				foreach (var prop in type.AllProperties)
 					Add(prop);
 
-				foreach (var method in type.AllMethods) {
+				foreach (var method in type.AllMethods)
+				{
 					allMethodInfos[method] = new MethodInfo(method);
 					foreach (var gp in method.GenericParams)
 						allGenericParamInfos[gp] = new GenericParamInfo(gp);

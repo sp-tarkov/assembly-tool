@@ -1,14 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <Configurations>Debug;Release;WAIT_FOR_DEBUGGER</Configurations>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
-
   <Import Project="..\De4DotCommon.props" />
-  
   <ItemGroup>
     <PackageReference Include="dnlib" Version="4.4.0" />
   </ItemGroup>
-
 </Project>

@@ -20,7 +20,9 @@ public sealed class Renamer(Statistics stats)
         var newName = string.Empty;
 
         if (origName is null || origName.Length < 3 || IsSerializedField(fieldDef))
+        {
             return;
+        }
 
         // Handle underscores
         if (origName[0] == '_')
@@ -34,7 +36,9 @@ public sealed class Renamer(Statistics stats)
         }
 
         if (newName == string.Empty)
+        {
             return;
+        }
 
         var fields = fieldDef.DeclaringType?.Fields;
         var props = fieldDef.DeclaringType?.Properties;
@@ -90,12 +94,16 @@ public sealed class Renamer(Statistics stats)
                     foreach (var method in type.Methods)
                     {
                         if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
+                        {
                             continue;
+                        }
 
                         var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
 
                         if (newMethodName == Utf8String.Empty)
+                        {
                             continue;
+                        }
 
                         renamedMethodNames.Add(newMethodName);
                     }
@@ -115,7 +123,9 @@ public sealed class Renamer(Statistics stats)
         var splitName = method.Name?.Split('.');
 
         if (splitName is null || splitName.Length < 2)
+        {
             return Utf8String.Empty;
+        }
 
         var realMethodNameString = splitName.Last();
         var newName = new Utf8String(realMethodNameString);
@@ -158,7 +168,9 @@ public sealed class Renamer(Statistics stats)
             foreach (var field in fields)
             {
                 if (field.Signature?.FieldType.Name != oldTypeName)
+                {
                     continue;
+                }
 
                 var newFieldName = GetNewFieldName(field, newTypeName, fieldCount);
 
@@ -199,13 +211,17 @@ public sealed class Renamer(Statistics stats)
             foreach (var property in properties)
             {
                 if (property.Signature!.ReturnType.Name != oldTypeName)
+                {
                     continue;
+                }
 
-                var newPropertyName = GetNewPropertyName(module, newTypeName, propertyCount);
+                var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
 
                 // Dont need to do extra work
                 if (property.Name == newPropertyName)
+                {
                     continue;
+                }
 
                 if (Log.IsEnabled(LogEventLevel.Debug))
                 {
@@ -235,19 +251,21 @@ public sealed class Renamer(Statistics stats)
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
-    private Utf8String GetNewPropertyName(ModuleDefinition module, string newName, int propertyCount = 0)
+    private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
     {
         stats.PropertyRenamedCount++;
 
         return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
     }
 
-    private void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
+    private static void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {
             if (reference.Resolve() != target)
+            {
                 continue;
+            }
 
             if (Log.IsEnabled(LogEventLevel.Debug))
             {
@@ -269,7 +287,9 @@ public sealed class Renamer(Statistics stats)
         foreach (var reference in module.GetImportedMemberReferences())
         {
             if (reference.Resolve() != target)
+            {
                 continue;
+            }
 
             if (Log.IsEnabled(LogEventLevel.Debug))
             {

@@ -31,7 +31,9 @@ public sealed class Statistics(DataProvider dataProvider)
         DisplayFailuresAndChanges(validate);
 
         if (validate)
+        {
             return;
+        }
 
         DisplayWriteAssembly(outPath);
 
@@ -89,15 +91,16 @@ public sealed class Statistics(DataProvider dataProvider)
         var totalInterfaces = types.Count(t => t.IsInterface);
 
         var totalObfuscatedClasses = types.Count(t =>
-            t.Name is not null && t.Name.StartsWith("GClass") || t.Name.StartsWith("Class")
+            t.Name is not null && t.Name.StartsWith("GClass") || (t.Name?.StartsWith("Class") ?? false)
         );
 
         var totalObfuscatedStructs = types.Count(t =>
-            t.Name is not null && t.Name.StartsWith("GStruct") || t.Name.StartsWith("Struct")
+            t.Name is not null && t.Name.StartsWith("GStruct") || (t.Name?.StartsWith("Struct") ?? false)
         );
 
         var totalObfuscatedInterfaces = types.Count(t =>
-            t.Name is not null && t.IsInterface && t.Name.StartsWith("GInterface") || t.Name.StartsWith("Interface")
+            t.Name is not null && t.IsInterface && t.Name.StartsWith("GInterface")
+            || (t.Name?.StartsWith("Interface") ?? false)
         );
 
         var totalNamedClasses = totalClasses - totalObfuscatedClasses;
@@ -142,7 +145,7 @@ public sealed class Statistics(DataProvider dataProvider)
         }
     }
 
-    private void DisplayAlternativeMatches(RemapModel remap)
+    private static void DisplayAlternativeMatches(RemapModel remap)
     {
         Log.Information(
             "Warning! There were {TypeCandidatesCount} possible matches for {RemapNewTypeName}. Consider adding more search parameters, Only showing the first 5.",
@@ -156,7 +159,7 @@ public sealed class Statistics(DataProvider dataProvider)
         }
     }
 
-    private bool DisplayFailuresAndChanges(bool validate, bool isRemapProcess = false)
+    private void DisplayFailuresAndChanges(bool validate, bool isRemapProcess = false)
     {
         var failures = 0;
         var changes = 0;
@@ -184,7 +187,7 @@ public sealed class Statistics(DataProvider dataProvider)
                         Log.Error($"Reason: {reason}", ConsoleColor.Red);
                     }
 
-                    Log.Error("-----------------------------------------------", ConsoleColor.Red);
+                    Log.Error("-----------------------------------------------");
                     failures++;
                     continue;
                 }
@@ -196,13 +199,11 @@ public sealed class Statistics(DataProvider dataProvider)
                 //Log.Error(remap);
 
                 Log.Information("Passed validation");
-                return failures == 0;
+                return;
             }
 
             changes++;
         }
-
-        var succeeded = failures == 0;
 
         Log.Information("--------------------------------------------------");
         Log.Information("Types publicized: {S}", TypePublicizedCount);
@@ -212,11 +213,13 @@ public sealed class Statistics(DataProvider dataProvider)
         if (failures > 0)
         {
             Log.Error("Types that failed: {Failures}", failures);
-            return succeeded;
+            return;
         }
 
         if (isRemapProcess)
-            return succeeded;
+        {
+            return;
+        }
 
         Log.Information("Methods publicized: {S}", MethodPublicizedCount);
         Log.Information("Methods renamed: {S}", MethodRenamedCount);
@@ -224,8 +227,6 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("Fields renamed: {S}", FieldRenamedCount);
         Log.Information("Properties publicized: {S}", PropertyPublicizedCount);
         Log.Information("Properties renamed: {S}", PropertyRenamedCount);
-
-        return succeeded;
     }
 
     private void DisplayWriteAssembly(string outPath)

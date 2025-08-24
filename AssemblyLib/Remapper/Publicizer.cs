@@ -61,12 +61,19 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             // NOTE: Ignore properties that are interface impls that are private.
             // This causes issues with json deserialization in the server.
             if (property.Name?.Contains(".") ?? false)
+            {
                 continue;
+            }
 
             if (property.GetMethod != null)
+            {
                 PublicizeMethod(property.GetMethod);
+            }
+
             if (property.SetMethod != null)
+            {
                 PublicizeMethod(property.SetMethod);
+            }
 
             stats.PropertyPublicizedCount++;
         }
@@ -77,20 +84,24 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     private void PublicizeMethod(MethodDefinition method)
     {
         if (method.IsCompilerControlled || method.IsPublic)
+        {
             return;
+        }
 
         if (
-            method.Name.StartsWith("GInterface")
+            (method.Name?.StartsWith("GInterface") ?? false)
             && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
-            Log.Information($"Not publicizing {method.Name} due to it being ignored");
+            Log.Information($"Not publicizing {method.DeclaringType!.FullName}::{method.Name} due to it being ignored");
             return;
         }
 
         // Workaround to not publicize a specific method so the game doesn't crash
         if (method.Name == "TryGetScreen")
+        {
             return;
+        }
 
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
@@ -123,7 +134,9 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || IsEventField(type, field))
+            {
                 continue;
+            }
 
             if (Log.IsEnabled(LogEventLevel.Debug))
             {
@@ -147,7 +160,9 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
                 field.HasCustomAttribute("UnityEngine", "SerializeField")
                 || field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute")
             )
+            {
                 continue;
+            }
 
             // Make sure we don't serialize this field.
             // TODO: Do we need this?

@@ -14,12 +14,15 @@
   <ItemGroup>
     <PackageReference Include="AsmResolver" Version="5.5.1" />
     <PackageReference Include="AsmResolver.DotNet" Version="5.5.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
     <PackageReference Include="Serilog" Version="4.3.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
-    <PackageReference Include="SPTarkov.DI" Version="4.0.0-prerelease28" />
-    <PackageReference Include="System.Linq.Async" Version="6.0.3" />
+    <PackageReference Include="SPTarkov.DI" Version="4.0.0-pre.20250818.1738" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DumpLib\DumpLib.csproj" />

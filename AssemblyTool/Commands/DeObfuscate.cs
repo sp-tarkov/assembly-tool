@@ -8,10 +8,7 @@ using CliFx.Infrastructure;
 
 namespace AssemblyTool.Commands;
 
-[Command(
-    "DeObfuscate",
-    Description = "Generates a de-obfuscated -cleaned dll in the folder your assembly is in"
-)]
+[Command("DeObfuscate", Description = "Generates a de-obfuscated -cleaned dll in the folder your assembly is in")]
 public class DeObfuscate : ICommand
 {
     [CommandParameter(

@@ -24,7 +24,11 @@ public class PropertyTypeFilters
 
         foreach (var type in types)
         {
-            if (parms.Properties.IncludeProperties.All(includeName => type.Properties.Any(prop => prop.Name == includeName)))
+            if (
+                parms.Properties.IncludeProperties.All(includeName =>
+                    type.Properties.Any(prop => prop.Name == includeName)
+                )
+            )
             {
                 filteredTypes.Add(type);
             }

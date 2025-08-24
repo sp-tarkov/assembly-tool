@@ -21,10 +21,7 @@ public class BuildTask : FrostingTask<Context>
     {
         context.Log.Information("Building De4dot");
         context.DotNetBuild(
-            Path.Combine(
-                context.Environment.WorkingDirectory.FullPath,
-                "de4dot\\de4dot-x64\\de4dot-x64.csproj"
-            ),
+            Path.Combine(context.Environment.WorkingDirectory.FullPath, "de4dot\\de4dot-x64\\de4dot-x64.csproj"),
             new DotNetBuildSettings { Configuration = context.MsBuildConfiguration }
         );
 
@@ -42,10 +39,7 @@ public class BuildTask : FrostingTask<Context>
     {
         context.Log.Information("Building Assembly Tool");
         context.DotNetBuild(
-            Path.Combine(
-                context.Environment.WorkingDirectory.FullPath,
-                "AssemblyTool\\AssemblyTool.csproj"
-            ),
+            Path.Combine(context.Environment.WorkingDirectory.FullPath, "AssemblyTool\\AssemblyTool.csproj"),
             new DotNetBuildSettings { Configuration = context.MsBuildConfiguration }
         );
         context.Log.Information("Finished Building Assembly Tool");

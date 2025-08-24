@@ -160,7 +160,11 @@ public class DataProvider
         var itemsPath = Path.Combine(_dataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        JsonSerializerOptions settings = new() { RespectNullableAnnotations = true, PropertyNameCaseInsensitive = true };
+        JsonSerializerOptions settings = new()
+        {
+            RespectNullableAnnotations = true,
+            PropertyNameCaseInsensitive = true,
+        };
 
         return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
     }

@@ -9,11 +9,7 @@ namespace AssemblyTool.Commands;
 [Command("statistics", Description = "Generates statistics related to the assembly.")]
 public class Statistics : ICommand
 {
-    [CommandParameter(
-        0,
-        IsRequired = true,
-        Description = "The absolute path to your de-obfuscated and remapped dll"
-    )]
+    [CommandParameter(0, IsRequired = true, Description = "The absolute path to your de-obfuscated and remapped dll")]
     public required string TargetAssemblyPath { get; init; }
 
     public async ValueTask ExecuteAsync(IConsole console)

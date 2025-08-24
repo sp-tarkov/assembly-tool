@@ -129,8 +129,7 @@ public class AssemblyUtils(DataProvider dataProvider)
             File.Delete(deltaFile);
         }
 
-        var arguments =
-            $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
+        var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
 
         var startInfo = new ProcessStartInfo
         {

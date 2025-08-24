@@ -7,11 +7,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class EventFilters : AbstractAutoMatchFilter
 {
-    public override bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    )
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Target has no events but type has events
         if (!target.Events.Any() && candidate.Events.Any())
@@ -38,9 +34,7 @@ public class EventFilters : AbstractAutoMatchFilter
             );
         }
 
-        var commonEvents = target
-            .Events.Select(s => s.Name)
-            .Intersect(candidate.Events.Select(s => s.Name));
+        var commonEvents = target.Events.Select(s => s.Name).Intersect(candidate.Events.Select(s => s.Name));
 
         var includeEvents = target
             .Events.Select(s => s.Name!.ToString())

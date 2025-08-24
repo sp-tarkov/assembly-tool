@@ -7,11 +7,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class PropertyFilters : AbstractAutoMatchFilter
 {
-    public override bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    )
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Both target and candidate don't have properties
         if (!target.Properties.Any() && !candidate.Properties.Any())
@@ -36,9 +32,7 @@ public class PropertyFilters : AbstractAutoMatchFilter
             );
         }
 
-        var commonProps = target
-            .Properties.Select(s => s.Name)
-            .Intersect(candidate.Properties.Select(s => s.Name));
+        var commonProps = target.Properties.Select(s => s.Name).Intersect(candidate.Properties.Select(s => s.Name));
 
         // Props in target that are not in candidate
         var includeProps = target

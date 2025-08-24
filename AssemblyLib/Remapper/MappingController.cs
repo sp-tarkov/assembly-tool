@@ -36,7 +36,12 @@ public class MappingController(
     /// <summary>
     /// Start the remapping process
     /// </summary>
-    public async Task Run(string targetAssemblyPath, string? oldAssemblyPath, string outPath = "", bool validate = false)
+    public async Task Run(
+        string targetAssemblyPath,
+        string? oldAssemblyPath,
+        string outPath = "",
+        bool validate = false
+    )
     {
         statistics.Stopwatch.Start();
         OutPath = outPath;
@@ -182,7 +187,11 @@ public class MappingController(
 
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            Log.Debug("Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]", mapping.OriginalTypeName, mapping.NewTypeName);
+            Log.Debug(
+                "Match [{MappingOriginalTypeName}] to [{MappingNewTypeName}]",
+                mapping.OriginalTypeName,
+                mapping.NewTypeName
+            );
         }
 
         RenameAndPublicizeRemap(mapping);
@@ -234,7 +243,11 @@ public class MappingController(
 
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            Log.Debug("Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]", remap.NewTypeName, remap.OriginalTypeName);
+            Log.Debug(
+                "Match [{RemapNewTypeName}] -> [{RemapOriginalTypeName}]",
+                remap.NewTypeName,
+                remap.OriginalTypeName
+            );
         }
 
         RenameAndPublicizeRemap(remap);
@@ -257,7 +270,10 @@ public class MappingController(
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
-            Log.Error("Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match", remap.NewTypeName);
+            Log.Error(
+                "Failure During Matching: [{RemapNewTypeName}] is ambiguous with previous match",
+                remap.NewTypeName
+            );
 
             return true;
         }
@@ -339,14 +355,16 @@ public class MappingController(
             return;
         }
 
-        var typeTable = (Dictionary<string, Type>)templateMappingClass.GetField("TypeTable")!.GetValue(templateMappingClass)!;
+        var typeTable =
+            (Dictionary<string, Type>)templateMappingClass.GetField("TypeTable")!.GetValue(templateMappingClass)!;
 
         Log.Information("Overriding Item Classes...");
 
         BuildAssociationFromTable(typeTable, "ItemClass", true);
 
         var templateTypeTable =
-            (Dictionary<string, Type>)templateMappingClass.GetField("TemplateTypeTable")!.GetValue(templateMappingClass)!;
+            (Dictionary<string, Type>)
+                templateMappingClass.GetField("TemplateTypeTable")!.GetValue(templateMappingClass)!;
 
         Log.Information("Overriding Template Classes...");
 
@@ -363,7 +381,9 @@ public class MappingController(
         // HACK: Because this is written in net8 and the assembly is net472 we must resolve the type this way instead of
         // filtering types directly using GetTypes() Otherwise, it causes serialization issues.
         // This is also necessary because we can't access non-compile time constants with dnlib.
-        var templateMappingTypeDef = Types.SingleOrDefault(t => t.Fields.Select(f => f.Name).ToList().Contains("TypeTable"));
+        var templateMappingTypeDef = Types.SingleOrDefault(t =>
+            t.Fields.Select(f => f.Name).ToList().Contains("TypeTable")
+        );
 
         if (templateMappingTypeDef is null)
         {
@@ -398,9 +418,14 @@ public class MappingController(
     {
         foreach (var type in table)
         {
-            var overrideTable = isItemClass ? dataProvider.Settings.ItemObjectIdOverrides : dataProvider.Settings.TemplateObjectIdOverrides;
+            var overrideTable = isItemClass
+                ? dataProvider.Settings.ItemObjectIdOverrides
+                : dataProvider.Settings.TemplateObjectIdOverrides;
 
-            if (!dataProvider.ItemTemplates.TryGetValue(type.Key, out var template) || !type.Value.Name.StartsWith("GClass"))
+            if (
+                !dataProvider.ItemTemplates.TryGetValue(type.Key, out var template)
+                || !type.Value.Name.StartsWith("GClass")
+            )
             {
                 continue;
             }

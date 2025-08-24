@@ -10,9 +10,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper
-                ._comfortAssembly.GetTypes()
-                .First(x => x.Name.StartsWith("Singleton"));
+            return DataHelper._comfortAssembly.GetTypes().First(x => x.Name.StartsWith("Singleton"));
         }
         catch (Exception e)
         {
@@ -30,9 +28,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper
-                ._eftAssembly.GetTypes()
-                .First(x => x.Name.StartsWith("ClientApplication"));
+            return DataHelper._eftAssembly.GetTypes().First(x => x.Name.StartsWith("ClientApplication"));
         }
         catch (Exception e)
         {
@@ -120,9 +116,7 @@ public static class TypeHelper
         {
             return DataHelper
                 ._msAssembly.GetTypes()
-                .First(x =>
-                    x.Name.StartsWith("List") && x.Namespace == "System.Collections.Generic"
-                );
+                .First(x => x.Name.StartsWith("List") && x.Namespace == "System.Collections.Generic");
         }
         catch (Exception e)
         {
@@ -168,9 +162,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper
-                ._eftAssembly.GetTypes()
-                .First(x => x.GetFields().Any(f => f.Name == "killerAid"));
+            return DataHelper._eftAssembly.GetTypes().First(x => x.GetFields().Any(f => f.Name == "killerAid"));
         }
         catch (Exception e)
         {
@@ -184,9 +176,7 @@ public static class TypeHelper
     {
         try
         {
-            return DataHelper
-                ._eftAssembly.GetTypes()
-                .First(x => x.GetMethods().Any(m => m.Name == "ToUnparsedData"));
+            return DataHelper._eftAssembly.GetTypes().First(x => x.GetMethods().Any(m => m.Name == "ToUnparsedData"));
         }
         catch (Exception e)
         {
@@ -243,9 +233,7 @@ public static class TypeHelper
         {
             return DataHelper
                 ._msAssembly.GetTypes()
-                .First(x =>
-                    x.Name.StartsWith("Dictionary") && x.Namespace == "System.Collections.Generic"
-                );
+                .First(x => x.Name.StartsWith("Dictionary") && x.Namespace == "System.Collections.Generic");
         }
         catch (Exception e)
         {

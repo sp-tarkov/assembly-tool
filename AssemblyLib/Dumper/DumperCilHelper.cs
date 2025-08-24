@@ -6,14 +6,9 @@ namespace AssemblyLib.Dumper;
 [Injectable]
 public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
 {
-    public IMethodDefOrRef RunValidationCreateMethod(
-        ReferenceImporter importer,
-        ModuleDefinition gameModule
-    )
+    public IMethodDefOrRef RunValidationCreateMethod(ReferenceImporter importer, ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var methodToFind = typeToFind
             .NestedTypes[0]
             .Fields[1]
@@ -22,14 +17,9 @@ public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
         return importer.ImportMethod(methodToFind);
     }
 
-    public IMethodDefOrRef RunValidationGetTaskMethod(
-        ReferenceImporter importer,
-        ModuleDefinition gameModule
-    )
+    public IMethodDefOrRef RunValidationGetTaskMethod(ReferenceImporter importer, ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var methodToFind = typeToFind
             .NestedTypes[0]
             .Fields[1]
@@ -40,27 +30,21 @@ public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
 
     public FieldDefinition RunValidationFieldZero(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[0];
         return fieldToFind;
     }
 
     public FieldDefinition RunValidationFieldOne(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[1];
         return fieldToFind;
     }
 
     public FieldDefinition RunValidationFieldTwo(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[2];
         return fieldToFind;
     }
@@ -76,48 +60,35 @@ public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
 
     public MethodDefinition MoveNextValidationSetSucceedMethod(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var methodToFind = typeToFind.Methods.FirstOrDefault(x => x.Name == "set_Succeed");
         return methodToFind;
     }
 
     public FieldDefinition MoveNextValidationFieldZero(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[0];
         return fieldToFind;
     }
 
     public FieldDefinition MoveNextValidationFieldOne(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[1];
         return fieldToFind;
     }
 
     public FieldDefinition MoveNextValidationFieldTwo(ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var fieldToFind = typeToFind.NestedTypes[0].Fields[2];
         return fieldToFind;
     }
 
-    public IMethodDefOrRef MoveNextValidationSetExceptionMethod(
-        ReferenceImporter importer,
-        ModuleDefinition gameModule
-    )
+    public IMethodDefOrRef MoveNextValidationSetExceptionMethod(ReferenceImporter importer, ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var methodToFind = typeToFind
             .NestedTypes[0]
             .Fields[1]
@@ -126,14 +97,9 @@ public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
         return importer.ImportMethod(methodToFind);
     }
 
-    public IMethodDefOrRef MoveNextValidationSetResultMethod(
-        ReferenceImporter importer,
-        ModuleDefinition gameModule
-    )
+    public IMethodDefOrRef MoveNextValidationSetResultMethod(ReferenceImporter importer, ModuleDefinition gameModule)
     {
-        var typeToFind = gameModule
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
+        var typeToFind = gameModule.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetRunValidationType);
         var methodToFind = typeToFind
             .NestedTypes[0]
             .Fields[1]
@@ -144,19 +110,12 @@ public class DumperCilHelper(DumpyReflectionHelper dumpyReflectionHelper)
 
     public MethodDefinition EnsureConsistencySucceedMethod(ModuleDefinition module)
     {
-        var typeToFind = module
-            .GetAllTypes()
-            .FirstOrDefault(dumpyReflectionHelper.GetEnsureConsistencyType);
-        var methodToFind = typeToFind
-            .NestedTypes[0]
-            .Methods.FirstOrDefault(x => x.Name == "Succeed");
+        var typeToFind = module.GetAllTypes().FirstOrDefault(dumpyReflectionHelper.GetEnsureConsistencyType);
+        var methodToFind = typeToFind.NestedTypes[0].Methods.FirstOrDefault(x => x.Name == "Succeed");
         return methodToFind;
     }
 
-    public IMethodDefOrRef DumpyStartDumpyMethod(
-        ReferenceImporter importer,
-        ModuleDefinition dumpModule
-    )
+    public IMethodDefOrRef DumpyStartDumpyMethod(ReferenceImporter importer, ModuleDefinition dumpModule)
     {
         var typeToFind = dumpModule.GetAllTypes().FirstOrDefault(x => x.Name == "DumpyTool");
         var methodToFind = typeToFind.Methods.FirstOrDefault(x => x.Name == "StartDumpyTask");

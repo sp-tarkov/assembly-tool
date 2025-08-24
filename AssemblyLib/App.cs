@@ -37,13 +37,7 @@ public class App
     )
     {
         var controller = _provider?.GetService<AutoMatcher.AutoMatcher>();
-        await controller?.AutoMatch(
-            assemblyPath,
-            oldAssemblyPath,
-            oldTypeName,
-            newTypeName,
-            isRegen
-        )!;
+        await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
     }
 
     public Task CreateDumper(string managedPath)

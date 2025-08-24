@@ -24,7 +24,11 @@ public class NestedTypeFilters
 
         foreach (var type in types)
         {
-            if (parms.NestedTypes.IncludeNestedTypes.All(includeName => type.NestedTypes.Any(nestedType => nestedType.Name == includeName)))
+            if (
+                parms.NestedTypes.IncludeNestedTypes.All(includeName =>
+                    type.NestedTypes.Any(nestedType => nestedType.Name == includeName)
+                )
+            )
             {
                 filteredTypes.Add(type);
             }

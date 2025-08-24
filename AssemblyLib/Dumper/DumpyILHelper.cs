@@ -7,20 +7,14 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Dumper;
 
 [Injectable]
-public class DumpyILHelper(
-    DumperCilHelper dumperCilHelper,
-    DumpyReflectionHelper dumpyReflectionHelper
-)
+public class DumpyILHelper(DumperCilHelper dumperCilHelper, DumpyReflectionHelper dumpyReflectionHelper)
 {
     /// <summary>
     /// <para>Sets up local variables and returns a List of instructions to add.</para>
     /// </summary>
     /// <param name="gameImporter">Importer</param>
     /// <param name="method">MethodDef</param>
-    public List<CilInstruction> GetBackRequestInstructions(
-        MethodDefinition? method,
-        ReferenceImporter? gameImporter
-    )
+    public List<CilInstruction> GetBackRequestInstructions(MethodDefinition? method, ReferenceImporter? gameImporter)
     {
         return new List<CilInstruction>
         {
@@ -45,9 +39,7 @@ public class DumpyILHelper(
     {
         // Add our own local variables
         // var1 index0 class1159Type
-        var sptClassType = gameModule
-            .GetAllTypes()
-            .First(dumpyReflectionHelper.GetRunValidationType);
+        var sptClassType = gameModule.GetAllTypes().First(dumpyReflectionHelper.GetRunValidationType);
         var sptClass = new CilLocalVariable(sptClassType.ToTypeSignature());
         method.CilMethodBody.LocalVariables.Add(sptClass);
 
@@ -75,19 +67,13 @@ public class DumpyILHelper(
             new(CilOpCodes.Ldarg_0),
             new(CilOpCodes.Ldflda, dumperCilHelper.MoveNextValidationFieldOne(gameModule)),
             new(CilOpCodes.Ldloc_1),
-            new(
-                CilOpCodes.Call,
-                dumperCilHelper.MoveNextValidationSetExceptionMethod(gameImporter, gameModule)
-            ),
+            new(CilOpCodes.Call, dumperCilHelper.MoveNextValidationSetExceptionMethod(gameImporter, gameModule)),
             new(CilOpCodes.Ldarg_0),
             new(CilOpCodes.Ldc_I4_S, (sbyte)-2),
             new(CilOpCodes.Stfld, dumperCilHelper.MoveNextValidationFieldZero(gameModule)),
             new(CilOpCodes.Ldarg_0),
             new(CilOpCodes.Ldflda, dumperCilHelper.MoveNextValidationFieldOne(gameModule)),
-            new(
-                CilOpCodes.Call,
-                dumperCilHelper.MoveNextValidationSetResultMethod(gameImporter, gameModule)
-            ),
+            new(CilOpCodes.Call, dumperCilHelper.MoveNextValidationSetResultMethod(gameImporter, gameModule)),
             new(CilOpCodes.Ret),
         };
     }
@@ -108,9 +94,7 @@ public class DumpyILHelper(
     {
         // init local vars
         // var1 index0 TimeSpan type
-        var sptTimeSpanType = checkImporter?.ImportType(
-            msModule.GetAllTypes().First(x => x.Name == "TimeSpan")
-        );
+        var sptTimeSpanType = checkImporter?.ImportType(msModule.GetAllTypes().First(x => x.Name == "TimeSpan"));
         var sptClass = new CilLocalVariable(sptTimeSpanType.ToTypeSignature());
         method.CilMethodBody.LocalVariables.Add(sptClass);
 
@@ -122,10 +106,7 @@ public class DumpyILHelper(
             .Interfaces[0]
             .Interface;
         var typeMethod = checkImporter?.ImportMethod(
-            msModule
-                .GetAllTypes()
-                .First(x => x.Name == "Task")
-                .Methods.First(x => x.Name == "FromResult")
+            msModule.GetAllTypes().First(x => x.Name == "Task").Methods.First(x => x.Name == "FromResult")
         );
         var generac = new MethodSpecification(
             typeMethod as IMethodDefOrRef,
@@ -159,15 +140,9 @@ public class DumpyILHelper(
     )
     {
         // Create genericInstance of a method
-        var type = gameModule
-            .GetAllTypes()
-            .First(dumpyReflectionHelper.GetRunValidationType)
-            .NestedTypes[0];
+        var type = gameModule.GetAllTypes().First(dumpyReflectionHelper.GetRunValidationType).NestedTypes[0];
         var typeMethod = gameImporter?.ImportMethod(
-            msModule
-                .GetAllTypes()
-                .First(x => x.Name == "AsyncTaskMethodBuilder")
-                .Methods.First(x => x.Name == "Start")
+            msModule.GetAllTypes().First(x => x.Name == "AsyncTaskMethodBuilder").Methods.First(x => x.Name == "Start")
         );
         var generac = new MethodSpecification(
             typeMethod as IMethodDefOrRef,
@@ -178,10 +153,7 @@ public class DumpyILHelper(
         {
             // <RunValidation>d__.<>t__builder = AsyncTaskMethodBuilder.Create();
             new(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
-            new(
-                CilOpCodes.Call,
-                dumperCilHelper.RunValidationCreateMethod(gameImporter, gameModule)
-            ),
+            new(CilOpCodes.Call, dumperCilHelper.RunValidationCreateMethod(gameImporter, gameModule)),
             new(CilOpCodes.Stfld, dumperCilHelper.RunValidationFieldOne(gameModule)),
             // <RunValidation>dCil__.<>4__this = this;
             new(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
@@ -199,10 +171,7 @@ public class DumpyILHelper(
             // return <RunValidCilation>d__.<>t__builder.Task;
             new(CilOpCodes.Ldloca_S, method.CilMethodBody.LocalVariables[0]),
             new(CilOpCodes.Ldflda, dumperCilHelper.RunValidationFieldOne(gameModule)),
-            new(
-                CilOpCodes.Call,
-                dumperCilHelper.RunValidationGetTaskMethod(gameImporter, gameModule)
-            ),
+            new(CilOpCodes.Call, dumperCilHelper.RunValidationGetTaskMethod(gameImporter, gameModule)),
             new(CilOpCodes.Ret),
         };
     }
@@ -241,9 +210,7 @@ public class DumpyILHelper(
             TryEnd = method.CilMethodBody.Instructions[7].CreateLabel(),
             HandlerStart = method.CilMethodBody.Instructions[7].CreateLabel(),
             HandlerEnd = method.CilMethodBody.Instructions[16].CreateLabel(),
-            ExceptionType = importer.ImportType(
-                msModule.GetAllTypes().First(x => x.Name == "Exception")
-            ),
+            ExceptionType = importer.ImportType(msModule.GetAllTypes().First(x => x.Name == "Exception")),
         };
     }
 }

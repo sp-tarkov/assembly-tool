@@ -24,11 +24,7 @@ public class RegenerateSignature : CliFx.ICommand
     )]
     public required string OldTypeName { get; init; }
 
-    [CommandParameter(
-        2,
-        IsRequired = true,
-        Description = "The new type name as listed in the mapping file"
-    )]
+    [CommandParameter(2, IsRequired = true, Description = "The new type name as listed in the mapping file")]
     public required string NewTypeName { get; init; }
 
     [CommandParameter(

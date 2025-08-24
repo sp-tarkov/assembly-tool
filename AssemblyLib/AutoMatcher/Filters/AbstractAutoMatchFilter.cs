@@ -6,11 +6,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 
 public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
 {
-    public abstract bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    );
+    public abstract bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 
     /// <summary>
     ///     Logs the failure to the console

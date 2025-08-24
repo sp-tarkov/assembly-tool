@@ -34,10 +34,7 @@ public class TypeFilters(
         return true;
     }
 
-    private static bool FilterTypesByGeneric(
-        RemapModel mapping,
-        ref IEnumerable<TypeDefinition> types
-    )
+    private static bool FilterTypesByGeneric(RemapModel mapping, ref IEnumerable<TypeDefinition> types)
     {
         var parms = mapping.SearchParams;
 
@@ -104,9 +101,7 @@ public class TypeFilters(
             return false;
         }
 
-        types = types.Where(t =>
-            t.GenericParameters.Any() == parms.GenericParams.HasGenericParameters
-        );
+        types = types.Where(t => t.GenericParameters.Any() == parms.GenericParams.HasGenericParameters);
 
         if (!types.Any())
         {
@@ -287,20 +282,14 @@ public class TypeFilters(
         return true;
     }
 
-    private static IEnumerable<TypeDefinition> FilterAttributes(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    private static IEnumerable<TypeDefinition> FilterAttributes(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         return parms.GenericParams.HasAttribute is not null
             ? types.Where(t => t.CustomAttributes.Any() == parms.GenericParams.HasAttribute)
             : types;
     }
 
-    private static IEnumerable<TypeDefinition> FilterDerived(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    private static IEnumerable<TypeDefinition> FilterDerived(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         // Filter based on IsDerived or not
         if (parms.GenericParams.IsDerived is true)

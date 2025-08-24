@@ -100,10 +100,7 @@ public sealed class DiffCompare
             return false;
         }
 
-        if (
-            newMethod.CilMethodBody!.Instructions.Count
-            != oldMethod.CilMethodBody!.Instructions.Count
-        )
+        if (newMethod.CilMethodBody!.Instructions.Count != oldMethod.CilMethodBody!.Instructions.Count)
         {
             return false;
         }

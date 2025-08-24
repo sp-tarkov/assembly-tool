@@ -45,8 +45,7 @@ public class MethodHelper
                 {
                     var methods = x.GetMethods();
 
-                    return methods.Any(m => m.Name == "Quit")
-                        && methods.Any(m => m.Name == "QuitWithCode");
+                    return methods.Any(m => m.Name == "Quit") && methods.Any(m => m.Name == "QuitWithCode");
                 })
                 .GetMethod("Quit");
         }

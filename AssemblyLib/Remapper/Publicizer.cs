@@ -25,9 +25,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         }
 
         if (
-            type
-                is { IsNested: false, IsPublic: false }
-                    or { IsNested: true, IsNestedPublic: false }
+            type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface?.Name != "IEffect")
         )
         {
@@ -83,9 +81,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
         if (
             method.Name.StartsWith("GInterface")
-            && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod =>
-                method.Name.EndsWith(ignoredMethod)
-            )
+            && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
             Log.Information($"Not publicizing {method.Name} due to it being ignored");
@@ -174,9 +170,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         {
             if (evt.AddMethod is { CilMethodBody: not null })
             {
-                if (
-                    IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name)
-                )
+                if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
                 {
                     return true;
                 }
@@ -184,12 +178,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
             if (evt.RemoveMethod is { CilMethodBody: not null })
             {
-                if (
-                    IsMemberReferenceNameMatch(
-                        evt.RemoveMethod.CilMethodBody.Instructions,
-                        field.Name
-                    )
-                )
+                if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
                 {
                     return true;
                 }
@@ -197,12 +186,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
             if (evt.FireMethod is { CilMethodBody: not null })
             {
-                if (
-                    IsMemberReferenceNameMatch(
-                        evt.FireMethod.CilMethodBody.Instructions,
-                        field.Name
-                    )
-                )
+                if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
                 {
                     return true;
                 }
@@ -212,17 +196,11 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         return false;
     }
 
-    private static bool IsMemberReferenceNameMatch(
-        CilInstructionCollection instructions,
-        Utf8String? memberName
-    )
+    private static bool IsMemberReferenceNameMatch(CilInstructionCollection instructions, Utf8String? memberName)
     {
         foreach (var instr in instructions)
         {
-            if (
-                instr.Operand is FieldDefinition fieldDefinition
-                && fieldDefinition.Name == memberName
-            )
+            if (instr.Operand is FieldDefinition fieldDefinition && fieldDefinition.Name == memberName)
             {
                 return true;
             }

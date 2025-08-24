@@ -8,11 +8,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
 {
-    public override bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    )
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         if (target.IsPublic && !candidate.IsPublic)
         {
@@ -77,8 +73,7 @@ public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
         searchParams.GenericParams.HasGenericParameters = target.GenericParameters.Any();
         searchParams.GenericParams.IsSealed = target.IsSealed;
         searchParams.GenericParams.HasAttribute = target.CustomAttributes.Any();
-        searchParams.GenericParams.IsDerived =
-            target.BaseType != null && target.BaseType.Name != "Object";
+        searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
 
         if (
             (bool)searchParams.GenericParams.IsDerived

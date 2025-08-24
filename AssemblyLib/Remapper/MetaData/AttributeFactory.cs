@@ -21,10 +21,7 @@ public class AttributeFactory(DataProvider dataProvider)
         var customAttribute = new TypeDefinition(
             "SPT",
             "SPTRenamedClassAttribute",
-            TypeAttributes.Public
-                | TypeAttributes.AutoLayout
-                | TypeAttributes.Class
-                | TypeAttributes.AnsiClass,
+            TypeAttributes.Public | TypeAttributes.AutoLayout | TypeAttributes.Class | TypeAttributes.AnsiClass,
             dataProvider
                 .Mscorlib?.GetAllTypes()
                 .First(t => t.FullName == "System.Attribute")
@@ -51,9 +48,7 @@ public class AttributeFactory(DataProvider dataProvider)
         // Create the constructor
         var ctor = new MethodDefinition(
             new Utf8String(".ctor"),
-            MethodAttributes.Public
-                | MethodAttributes.SpecialName
-                | MethodAttributes.RuntimeSpecialName,
+            MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RuntimeSpecialName,
             new MethodSignature(
                 CallingConventionAttributes.Default,
                 module.CorLibTypeFactory.Void,
@@ -74,14 +69,10 @@ public class AttributeFactory(DataProvider dataProvider)
 
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_0));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg, (ushort)0));
-        ctor.CilMethodBody.Instructions.Add(
-            new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[0])
-        );
+        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[0]));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg_0));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldarg, (ushort)1));
-        ctor.CilMethodBody.Instructions.Add(
-            new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[1])
-        );
+        ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Stfld, customAttribute.Fields[1]));
         ctor.CilMethodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ret));
 
         // Add the attribute to the assembly
@@ -116,9 +107,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
     private void AddMetaDataAttributeToTypes(ModuleDefinition module, RemapModel remap)
     {
-        var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute").ImportWith(
-            module.DefaultImporter
-        );
+        var typeRef = new TypeReference(module, "SPT", "SPTRenamedClassAttribute").ImportWith(module.DefaultImporter);
 
         var ctor = typeRef
             .Resolve()
@@ -208,10 +197,7 @@ public class AttributeFactory(DataProvider dataProvider)
         }
     }
 
-    private CustomAttribute CreateNewAsyncAttribute(
-        ModuleDefinition module,
-        TypeDefinition targetTypeDef
-    )
+    private CustomAttribute CreateNewAsyncAttribute(ModuleDefinition module, TypeDefinition targetTypeDef)
     {
         var factory = module.CorLibTypeFactory;
 
@@ -221,14 +207,8 @@ public class AttributeFactory(DataProvider dataProvider)
             .ToTypeSignature();
 
         var asyncAttrRef = factory
-            .CorLibScope.CreateTypeReference(
-                "System.Runtime.CompilerServices",
-                "AsyncStateMachineAttribute"
-            )
-            .CreateMemberReference(
-                ".ctor",
-                MethodSignature.CreateInstance(module.CorLibTypeFactory.Void, sysTypeRef)
-            )
+            .CorLibScope.CreateTypeReference("System.Runtime.CompilerServices", "AsyncStateMachineAttribute")
+            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(module.CorLibTypeFactory.Void, sysTypeRef))
             .ImportWith(module.DefaultImporter);
 
         // Create a custom attribute.
@@ -236,9 +216,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
         var targetSig = targetTypeDef.ToTypeSignature();
 
-        customAttribute.Signature?.FixedArguments.Add(
-            new CustomAttributeArgument(sysTypeRef, targetSig)
-        );
+        customAttribute.Signature?.FixedArguments.Add(new CustomAttributeArgument(sysTypeRef, targetSig));
 
         return customAttribute;
     }

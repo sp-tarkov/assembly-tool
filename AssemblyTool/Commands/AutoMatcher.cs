@@ -27,11 +27,7 @@ public class AutoMatchCommand : ICommand
     )]
     public required string OldTypeName { get; init; }
 
-    [CommandParameter(
-        2,
-        IsRequired = true,
-        Description = "The name you want the type to be renamed to"
-    )]
+    [CommandParameter(2, IsRequired = true, Description = "The name you want the type to be renamed to")]
     public required string NewTypeName { get; init; }
 
     [CommandParameter(

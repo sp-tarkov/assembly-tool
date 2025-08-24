@@ -23,11 +23,7 @@ public sealed class Statistics(DataProvider dataProvider)
 
     public readonly Stopwatch Stopwatch = new();
 
-    public void DisplayStatistics(
-        bool validate = false,
-        string hollowedPath = "",
-        string outPath = ""
-    )
+    public void DisplayStatistics(bool validate = false, string hollowedPath = "", string outPath = "")
     {
         _hollowedPath = hollowedPath;
 
@@ -74,10 +70,7 @@ public sealed class Statistics(DataProvider dataProvider)
 
             File.Copy(hollowedPath, hollowedDest, true);
 
-            Log.Information(
-                "Hollowed has been copied to the modules project: {HollowedDest}",
-                hollowedDest
-            );
+            Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
         }
 
         // In-case a thread is hanging
@@ -104,8 +97,7 @@ public sealed class Statistics(DataProvider dataProvider)
         );
 
         var totalObfuscatedInterfaces = types.Count(t =>
-            t.Name is not null && t.IsInterface && t.Name.StartsWith("GInterface")
-            || t.Name.StartsWith("Interface")
+            t.Name is not null && t.IsInterface && t.Name.StartsWith("GInterface") || t.Name.StartsWith("Interface")
         );
 
         var totalNamedClasses = totalClasses - totalObfuscatedClasses;
@@ -129,10 +121,7 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("Total named structs:          {Total}", totalNamedStructs);
         Log.Information("Total named interfaces:       {Total}", totalNamedInterfaces);
         Log.Information("Total named enums:            {total}", totalEnums);
-        Log.Information(
-            "Named class coverage:         {coverage}%",
-            totalNamedClasses / (float)totalClasses * 100f
-        );
+        Log.Information("Named class coverage:         {coverage}%", totalNamedClasses / (float)totalClasses * 100f);
     }
 
     private void DisplayAlternativeMatches()
@@ -176,19 +165,12 @@ public sealed class Statistics(DataProvider dataProvider)
         {
             switch (remap.Succeeded)
             {
-                case false
-                    when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
-                    Log.Error(
-                        "----------------------------------------------------------------------"
-                    );
-                    Log.Error(
-                        "Ambiguous match with a previous match during matching. Skipping remap."
-                    );
+                case false when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
+                    Log.Error("----------------------------------------------------------------------");
+                    Log.Error("Ambiguous match with a previous match during matching. Skipping remap.");
                     Log.Error($"New Type Name: {remap.NewTypeName}");
                     Log.Error($"{remap.AmbiguousTypeMatch} already assigned to a previous match.");
-                    Log.Error(
-                        "----------------------------------------------------------------------"
-                    );
+                    Log.Error("----------------------------------------------------------------------");
 
                     failures++;
                     break;
@@ -255,9 +237,6 @@ public sealed class Statistics(DataProvider dataProvider)
 
         dataProvider.UpdateMappingFile();
 
-        Log.Information(
-            "Remap took {ElapsedTotalSeconds:F1} seconds",
-            Stopwatch.Elapsed.TotalSeconds
-        );
+        Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
     }
 }

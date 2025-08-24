@@ -31,23 +31,14 @@ public class OutputTask : FrostingTask<Context>
     private void CopyDataFiles(Context context)
     {
         var listOfFiles = Directory
-            .GetFiles(
-                Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/Templates")
-            )
+            .GetFiles(Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/Templates"))
             .ToList();
 
-        listOfFiles.Add(
-            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/mappings.jsonc")
-        );
+        listOfFiles.Add(Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/mappings.jsonc"));
 
-        listOfFiles.Add(
-            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/hdiffz.exe")
-        );
+        listOfFiles.Add(Path.Combine(context.Environment.WorkingDirectory.FullPath, "Assets/hdiffz.exe"));
 
-        context.CopyFiles(
-            listOfFiles,
-            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "Data")
-        );
+        context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "Data"));
     }
 
     private void CopyDe4dotFiles(Context context)
@@ -68,10 +59,7 @@ public class OutputTask : FrostingTask<Context>
             listOfFiles.RemoveAll(m => m.Contains(".pdb"));
         }
 
-        context.CopyFiles(
-            listOfFiles,
-            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "de4dot")
-        );
+        context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build", "de4dot"));
     }
 
     private void CopyDumpFiles(Context context)
@@ -104,9 +92,6 @@ public class OutputTask : FrostingTask<Context>
             //listOfFiles.RemoveAll(m => m.Contains(".pdb"));
         }
 
-        context.CopyFiles(
-            listOfFiles,
-            Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build")
-        );
+        context.CopyFiles(listOfFiles, Path.Combine(context.Environment.WorkingDirectory.FullPath, "Build"));
     }
 }

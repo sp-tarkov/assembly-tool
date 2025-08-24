@@ -13,10 +13,7 @@ namespace AssemblyLib.ReMapper;
 [Injectable]
 public sealed class Renamer(Statistics stats)
 {
-    public void RenamePublicizedFieldAndUpdateMemberRefs(
-        ModuleDefinition module,
-        FieldDefinition fieldDef
-    )
+    public void RenamePublicizedFieldAndUpdateMemberRefs(ModuleDefinition module, FieldDefinition fieldDef)
     {
         var origName = fieldDef.Name?.ToString();
 
@@ -95,11 +92,7 @@ public sealed class Renamer(Statistics stats)
                         if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
                             continue;
 
-                        var newMethodName = FixInterfaceMangledMethod(
-                            module,
-                            method,
-                            renamedMethodNames
-                        );
+                        var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
 
                         if (newMethodName == Utf8String.Empty)
                             continue;
@@ -155,11 +148,7 @@ public sealed class Renamer(Statistics stats)
         return newName;
     }
 
-    private void RenameObfuscatedFields(
-        ModuleDefinition module,
-        Utf8String oldTypeName,
-        Utf8String newTypeName
-    )
+    private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
         {
@@ -200,11 +189,7 @@ public sealed class Renamer(Statistics stats)
         }
     }
 
-    private void RenameObfuscatedProperties(
-        ModuleDefinition module,
-        Utf8String oldTypeName,
-        Utf8String newTypeName
-    )
+    private void RenameObfuscatedProperties(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
         {
@@ -250,22 +235,14 @@ public sealed class Renamer(Statistics stats)
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
-    private Utf8String GetNewPropertyName(
-        ModuleDefinition module,
-        string newName,
-        int propertyCount = 0
-    )
+    private Utf8String GetNewPropertyName(ModuleDefinition module, string newName, int propertyCount = 0)
     {
         stats.PropertyRenamedCount++;
 
         return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
     }
 
-    private void UpdateMemberReferences(
-        ModuleDefinition module,
-        FieldDefinition target,
-        Utf8String newName
-    )
+    private void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {
@@ -287,11 +264,7 @@ public sealed class Renamer(Statistics stats)
         }
     }
 
-    private void UpdateMemberReferences(
-        ModuleDefinition module,
-        MethodDefinition target,
-        Utf8String newName
-    )
+    private void UpdateMemberReferences(ModuleDefinition module, MethodDefinition target, Utf8String newName)
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {

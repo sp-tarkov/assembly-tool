@@ -10,11 +10,7 @@ public class FieldFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
 {
     private List<string>? _fieldNamesToIgnore;
 
-    public override bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    )
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         _fieldNamesToIgnore ??= dataProvider.Settings.FieldNamesToIgnore;
 

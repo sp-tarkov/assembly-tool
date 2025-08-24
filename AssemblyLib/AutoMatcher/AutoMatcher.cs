@@ -22,7 +22,13 @@ public class AutoMatcher(
 
     private string? _newTypeName;
 
-    public async Task AutoMatch(string assemblyPath, string oldAssemblyPath, string oldTypeName, string newTypeName, bool isRegen)
+    public async Task AutoMatch(
+        string assemblyPath,
+        string oldAssemblyPath,
+        string oldTypeName,
+        string newTypeName,
+        bool isRegen
+    )
     {
         var result = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
 
@@ -81,10 +87,19 @@ public class AutoMatcher(
             return;
         }
 
-        _candidateTypes = Module?.GetAllTypes().Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false).ToList();
+        _candidateTypes = Module
+            ?.GetAllTypes()
+            .Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
+            .ToList();
     }
 
-    private async Task StartFilter(TypeDefinition target, RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
+    private async Task StartFilter(
+        TypeDefinition target,
+        RemapModel remapModel,
+        string assemblyPath,
+        string oldAssemblyPath,
+        bool isRegen
+    )
     {
         Log.Information("Starting Candidates: {Count}", _candidateTypes!.Count);
 
@@ -124,7 +139,12 @@ public class AutoMatcher(
         }
     }
 
-    private async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
+    private async Task ProcessEndQuestions(
+        RemapModel remapModel,
+        string assemblyPath,
+        string oldAssemblyPath,
+        bool isRegen
+    )
     {
         Thread.Sleep(1000);
 

@@ -55,8 +55,7 @@ public class DumpyReflectionHelper()
 
     public bool GetBackRequestMethod(MethodDefinition method)
     {
-        return method.Parameters.Any(p => p.Name is "backRequest")
-            && method.Parameters.Any(p => p.Name is "bResponse");
+        return method.Parameters.Any(p => p.Name is "backRequest") && method.Parameters.Any(p => p.Name is "bResponse");
     }
 
     public bool GetValidateCertMethods(MethodDefinition method)

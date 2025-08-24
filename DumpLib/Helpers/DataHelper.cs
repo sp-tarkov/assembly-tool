@@ -7,36 +7,28 @@ namespace DumpLib.Helpers;
 public static class DataHelper
 {
     public static Assembly _newtonAssembly = Assembly.LoadFrom(
-        (
-            Directory.GetCurrentDirectory()
-            + "\\EscapeFromTarkov_Data\\Managed\\Newtonsoft.Json.dll"
-        ).Replace("\\\\", "\\")
-    );
-
-    public static Assembly _msAssembly = Assembly.LoadFrom(
-        (
-            Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll"
-        ).Replace("\\\\", "\\")
-    );
-
-    public static Assembly _eftAssembly = Assembly.LoadFrom(
-        (
-            Directory.GetCurrentDirectory()
-            + "\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll"
-        ).Replace("\\\\", "\\")
-    );
-
-    public static Assembly _comfortAssembly = Assembly.LoadFrom(
-        (Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Comfort.dll").Replace(
+        (Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Newtonsoft.Json.dll").Replace(
             "\\\\",
             "\\"
         )
     );
 
-    public static string DumpDataPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\").Replace(
-        "\\\\",
-        "\\"
+    public static Assembly _msAssembly = Assembly.LoadFrom(
+        (Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\mscorlib.dll").Replace("\\\\", "\\")
     );
+
+    public static Assembly _eftAssembly = Assembly.LoadFrom(
+        (Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll").Replace(
+            "\\\\",
+            "\\"
+        )
+    );
+
+    public static Assembly _comfortAssembly = Assembly.LoadFrom(
+        (Directory.GetCurrentDirectory() + "\\EscapeFromTarkov_Data\\Managed\\Comfort.dll").Replace("\\\\", "\\")
+    );
+
+    public static string DumpDataPath = (Directory.GetCurrentDirectory() + "\\DUMPDATA\\").Replace("\\\\", "\\");
 
     public static SptConfigClass ConfigSettings = GetSptConfig();
 
@@ -111,13 +103,7 @@ public static class DataHelper
         {
             var objectToReturn = ReflectionHelper
                 .CreateDeserializerMethod(TypeHelper.GetRaidConfigType())
-                .Invoke(
-                    null,
-                    new[]
-                    {
-                        File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "raidConfig.json")),
-                    }
-                );
+                .Invoke(null, new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "raidConfig.json")) });
 
             // we now need to attach LocationSettingsClass to _locationSettings in this object - DataHelper.LocationValues should be inited by this point
             return ReflectionHelper.SetLocationSettingsOnRaidSettings(objectToReturn);
@@ -140,13 +126,7 @@ public static class DataHelper
         {
             return ReflectionHelper
                 .CreateDeserializerMethod(TypeHelper.GetEndRaidType())
-                .Invoke(
-                    null,
-                    new[]
-                    {
-                        File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "endRaid.json")),
-                    }
-                );
+                .Invoke(null, new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "endRaid.json")) });
         }
         catch (Exception e)
         {
@@ -166,15 +146,7 @@ public static class DataHelper
         {
             return ReflectionHelper
                 .CreateDeserializerMethod(TypeHelper.GetLocalRaidSettingsType())
-                .Invoke(
-                    null,
-                    new[]
-                    {
-                        File.ReadAllText(
-                            Path.Combine(DataHelper.DumpDataPath, "raidSettings.json")
-                        ),
-                    }
-                );
+                .Invoke(null, new[] { File.ReadAllText(Path.Combine(DataHelper.DumpDataPath, "raidSettings.json")) });
         }
         catch (Exception e)
         {

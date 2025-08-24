@@ -32,10 +32,7 @@ namespace DumpLib
                             Utils.LogError("[Dumpy] Exception occured in SetupBackend");
                             Utils.LogError(e);
 
-                            if (
-                                DataHelper.ErrorCounter
-                                >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit
-                            )
+                            if (DataHelper.ErrorCounter >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit)
                             {
                                 Utils.LogError(
                                     $"[Dumpy] ErrorsCounter was {DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit}, exiting app!"
@@ -65,25 +62,18 @@ namespace DumpLib
                                 foreach (var map in DataHelper.ConfigSettings.MapNames)
                                 {
                                     // Set location in the RaidSettings object
-                                    Utils.LogInfo(
-                                        $"[Dumpy] Setting LocalRaidSettings location to: {map}"
-                                    );
+                                    Utils.LogInfo($"[Dumpy] Setting LocalRaidSettings location to: {map}");
                                     DataHelper
                                         .LocalRaidSettings.GetType()
                                         .GetField("location")
                                         .SetValue(DataHelper.LocalRaidSettings, map);
 
                                     // Set location in the RaidConfig object
-                                    Utils.LogInfo(
-                                        $"[Dumpy] Setting RaidSettings location to: {map}"
-                                    );
+                                    Utils.LogInfo($"[Dumpy] Setting RaidSettings location to: {map}");
                                     DataHelper
                                         .RaidSettings.GetType()
                                         .GetProperty("SelectedLocation")
-                                        .SetValue(
-                                            DataHelper.RaidSettings,
-                                            ReflectionHelper.CheckLocationID(map)
-                                        );
+                                        .SetValue(DataHelper.RaidSettings, ReflectionHelper.CheckLocationID(map));
 
                                     // "/client/raid/configuration"
                                     // Call server with new map name in RaidSettings
@@ -92,10 +82,7 @@ namespace DumpLib
                                         DataHelper
                                             .Session.GetType()
                                             .GetMethod("SendRaidSettings")
-                                            .Invoke(
-                                                DataHelper.Session,
-                                                new[] { DataHelper.RaidSettings }
-                                            );
+                                            .Invoke(DataHelper.Session, new[] { DataHelper.RaidSettings });
 
                                     // Artificial wait to hopefully keep BSG off our toes
                                     Utils.LogInfo("[Dumpy] Waiting 10s");
@@ -107,10 +94,7 @@ namespace DumpLib
                                     var localRaidSettings = DataHelper
                                         .Session.GetType()
                                         .GetMethod("LocalRaidStarted")
-                                        .Invoke(
-                                            DataHelper.Session,
-                                            new[] { DataHelper.LocalRaidSettings }
-                                        );
+                                        .Invoke(DataHelper.Session, new[] { DataHelper.LocalRaidSettings });
                                     // Await the task
                                     await (Task)localRaidSettings;
                                     // Get the result
@@ -119,8 +103,7 @@ namespace DumpLib
                                         .GetProperty("Result")
                                         .GetValue(localRaidSettings);
                                     // get the string from the result
-                                    var result2 = (string)
-                                        result.GetType().GetField("serverId").GetValue(result);
+                                    var result2 = (string)result.GetType().GetField("serverId").GetValue(result);
                                     // set that to our LocalRaidSettings object
                                     DataHelper
                                         .LocalRaidSettings.GetType()
@@ -138,10 +121,7 @@ namespace DumpLib
                                         DataHelper
                                             .Session.GetType()
                                             .GetMethod("LoadBots")
-                                            .Invoke(
-                                                DataHelper.Session,
-                                                new[] { DataHelper.WaveSettings }
-                                            );
+                                            .Invoke(DataHelper.Session, new[] { DataHelper.WaveSettings });
 
                                     // Artificial wait to hopefully keep BSG off our toes
                                     Utils.LogInfo("[Dumpy] Waiting 10s");
@@ -181,40 +161,26 @@ namespace DumpLib
                                         .GetField("serverId")
                                         .SetValue(DataHelper.LocalRaidSettings, null);
 
-                                    await Task.Delay(
-                                        DataHelper.ConfigSettings.SptTimings.SingleIterationDelayMs
-                                    );
+                                    await Task.Delay(DataHelper.ConfigSettings.SptTimings.SingleIterationDelayMs);
                                 }
 
-                                var controller = DataHelper.MainMenuController.GetValue(
-                                    DataHelper.TarkovApp
-                                );
+                                var controller = DataHelper.MainMenuController.GetValue(DataHelper.TarkovApp);
                                 if (controller != null)
                                 {
-                                    controller
-                                        .GetType()
-                                        .GetMethod("StopAfkMonitor")
-                                        .Invoke(controller, null);
+                                    controller.GetType().GetMethod("StopAfkMonitor").Invoke(controller, null);
                                 }
 
                                 Utils.LogInfo(
                                     $"[Dumpy] Restarting Loop in {DataHelper.ConfigSettings.SptTimings.AllIterationDelayMs}ms"
                                 );
-                                await Task.Delay(
-                                    DataHelper.ConfigSettings.SptTimings.AllIterationDelayMs
-                                );
+                                await Task.Delay(DataHelper.ConfigSettings.SptTimings.AllIterationDelayMs);
                             }
                             catch (Exception e)
                             {
-                                Utils.LogError(
-                                    "[Dumpy] Exception occured in StartDumpyTask::Iteration"
-                                );
+                                Utils.LogError("[Dumpy] Exception occured in StartDumpyTask::Iteration");
                                 Utils.LogError(e);
 
-                                if (
-                                    DataHelper.ErrorCounter
-                                    >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit
-                                )
+                                if (DataHelper.ErrorCounter >= DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit)
                                 {
                                     Utils.LogError(
                                         $"[Dumpy] ErrorsCounter was {DataHelper.ConfigSettings.SptTimings.RetriesBeforeQuit}, exiting app"
@@ -242,9 +208,7 @@ namespace DumpLib
                 // get dumping path
                 DataHelper.DumpingPath = DataHelper.GetDumpPath();
                 // get client backend session
-                DataHelper.Session = ReflectionHelper.CreateBackendSessionAndTarkovApp(
-                    out DataHelper.TarkovApp
-                );
+                DataHelper.Session = ReflectionHelper.CreateBackendSessionAndTarkovApp(out DataHelper.TarkovApp);
                 // get field for MainMenuController
                 DataHelper.MainMenuController = ReflectionHelper.GetMainMenuControllerField();
                 // get wave information from json
@@ -278,10 +242,7 @@ namespace DumpLib
         {
             try
             {
-                var uri = new Uri(
-                    (string)
-                        requestType.GetType().GetMethod("get_MainURLFull").Invoke(requestType, null)
-                );
+                var uri = new Uri((string)requestType.GetType().GetMethod("get_MainURLFull").Invoke(requestType, null));
                 var path = DataHelper.DumpingPath;
                 var file = uri.LocalPath.Replace("/", ".").Remove(0, 1);
                 var time = DateTime.Now.ToString(DataHelper.ConfigSettings.DateTimeFormat);

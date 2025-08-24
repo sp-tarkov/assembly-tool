@@ -7,11 +7,7 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class NestedFilters : AbstractAutoMatchFilter
 {
-    public override bool Filter(
-        TypeDefinition target,
-        TypeDefinition candidate,
-        SearchParams searchParams
-    )
+    public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Target has no nt's but type has nt's
         if (!target.NestedTypes.Any() && candidate.NestedTypes.Any())
@@ -36,9 +32,7 @@ public class NestedFilters : AbstractAutoMatchFilter
             );
         }
 
-        var commonNts = target
-            .NestedTypes.Select(s => s.Name)
-            .Intersect(candidate.NestedTypes.Select(s => s.Name));
+        var commonNts = target.NestedTypes.Select(s => s.Name).Intersect(candidate.NestedTypes.Select(s => s.Name));
 
         var includeNts = target
             .NestedTypes.Select(s => s.Name!.ToString())

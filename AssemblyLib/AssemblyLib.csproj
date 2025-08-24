@@ -18,7 +18,7 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
-    <PackageReference Include="SPTarkov.DI" Version="4.0.0-pre.20250818.1738" />
+    <PackageReference Include="SPTarkov.DI" Version="4.0.0-prerelease28" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
   </ItemGroup>
   <ItemGroup>

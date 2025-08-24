@@ -5,15 +5,15 @@ using AssemblyLib.Models.Enums;
 namespace AssemblyLib.Models;
 
 /// <summary>
-/// Object to store linq statements in inside of json to search and remap classes
+///     Stores search parameters and other data for the remap process
 /// </summary>
-public class RemapModel
+public sealed record RemapModel
 {
     [JsonIgnore]
     public bool Succeeded { get; set; } = false;
 
     [JsonIgnore]
-    public List<ENoMatchReason> NoMatchReasons { get; set; } = [];
+    public HashSet<ENoMatchReason> NoMatchReasons { get; set; } = [];
 
     [JsonIgnore]
     public string AmbiguousTypeMatch { get; set; } = string.Empty;

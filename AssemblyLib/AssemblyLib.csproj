@@ -27,8 +27,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Interfaces\" />
-  </ItemGroup>
 </Project>

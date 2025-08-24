@@ -5,7 +5,7 @@ namespace AssemblyLib.Utils;
 
 public static class SysTypeExtensions
 {
-    private static readonly List<string> TypesToMatch =
+    private static readonly List<string> _typesToMatch =
     [
         "Class",
         "GClass",
@@ -25,9 +25,9 @@ public static class SysTypeExtensions
     {
         var sb = new StringBuilder();
 
-        var trimChars = new char[] { '`', '[', ']' };
+        var trimChars = new[] { '`', '[', ']' };
 
-        foreach (char c in str.ToString())
+        foreach (var c in str.ToString())
         {
             if (trimChars.Contains(c)) { }
 
@@ -58,9 +58,9 @@ public static class SysTypeExtensions
     {
         var sb = new StringBuilder();
 
-        var trimChars = new char[] { '`', '[', ']' };
+        var trimChars = new[] { '`', '[', ']' };
 
-        foreach (char c in str)
+        foreach (var c in str)
         {
             if (trimChars.Contains(c)) { }
 
@@ -86,7 +86,6 @@ public static class SysTypeExtensions
     /// Does the property or field name exist in a given list, this applies prefixes and handles capitalization.
     /// </summary>
     /// <param name="str"></param>
-    /// <param name="list"></param>
     /// <returns>True if it in the list</returns>
     public static bool IsObfuscatedName(this Utf8String str)
     {
@@ -97,9 +96,7 @@ public static class SysTypeExtensions
             realString = realString.Replace("_", "");
         }
 
-        var result = TypesToMatch.Any(item =>
-            realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase)
-        );
+        var result = _typesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
 
         return result;
     }

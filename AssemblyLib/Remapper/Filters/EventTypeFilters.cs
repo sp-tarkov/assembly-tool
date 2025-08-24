@@ -13,29 +13,24 @@ public class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.IncludeEvents.Count == 0)
+        {
             return types;
+        }
 
         List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (
-                parms.Events.IncludeEvents.All(includeName =>
-                    type.Events.Any(ev => ev.Name == includeName)
-                )
-            )
+            if (parms.Events.IncludeEvents.All(includeName => type.Events.Any(ev => ev.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 
     /// <summary>
@@ -44,13 +39,12 @@ public class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.ExcludeEvents.Count == 0)
+        {
             return types;
+        }
 
         List<TypeDefinition> filteredTypes = [];
 
@@ -64,6 +58,6 @@ public class EventTypeFilters
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 }

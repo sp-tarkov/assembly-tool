@@ -22,26 +22,15 @@ public class AutoMatcher(
 
     private string? _newTypeName;
 
-    public async Task AutoMatch(
-        string assemblyPath,
-        string oldAssemblyPath,
-        string oldTypeName,
-        string newTypeName,
-        bool isRegen
-    )
+    public async Task AutoMatch(string assemblyPath, string oldAssemblyPath, string oldTypeName, string newTypeName, bool isRegen)
     {
-        var result = assemblyUtils.TryDeObfuscate(
-            dataProvider.LoadModule(assemblyPath),
-            assemblyPath
-        );
+        var result = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
 
         _typesToMatch = dataProvider.Settings.TypeNamesToMatch;
 
         if (isRegen)
         {
-            var target = dataProvider
-                .GetRemaps()
-                .SingleOrDefault(r => r.NewTypeName == newTypeName);
+            var target = dataProvider.GetRemaps().SingleOrDefault(r => r.NewTypeName == newTypeName);
 
             if (target is null)
             {
@@ -86,27 +75,16 @@ public class AutoMatcher(
         if (targetTypeDef.IsNested)
         {
             _candidateTypes = targetTypeDef
-                .DeclaringType?.NestedTypes.Where(t =>
-                    _typesToMatch.Any(token => t.Name!.StartsWith(token))
-                )
+                .DeclaringType?.NestedTypes.Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
                 .ToList();
 
             return;
         }
 
-        _candidateTypes = Module
-            ?.GetAllTypes()
-            .Where(t => _typesToMatch.Any(token => t.Name!.StartsWith(token)))
-            .ToList();
+        _candidateTypes = Module?.GetAllTypes().Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false).ToList();
     }
 
-    private async Task StartFilter(
-        TypeDefinition target,
-        RemapModel remapModel,
-        string assemblyPath,
-        string oldAssemblyPath,
-        bool isRegen
-    )
+    private async Task StartFilter(TypeDefinition target, RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
     {
         Log.Information("Starting Candidates: {Count}", _candidateTypes!.Count);
 
@@ -131,12 +109,7 @@ public class AutoMatcher(
         Log.Error("Could not find a match... :(");
     }
 
-    private async Task RunTest(
-        RemapModel remapModel,
-        string assemblyPath,
-        string oldAssemblyPath,
-        bool isRegen
-    )
+    private async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
     {
         Log.Information("Narrowed candidates down to one. Testing generated model...");
 
@@ -151,12 +124,7 @@ public class AutoMatcher(
         }
     }
 
-    private async Task ProcessEndQuestions(
-        RemapModel remapModel,
-        string assemblyPath,
-        string oldAssemblyPath,
-        bool isRegen
-    )
+    private async Task ProcessEndQuestions(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
     {
         Thread.Sleep(1000);
 
@@ -164,7 +132,9 @@ public class AutoMatcher(
         var resp = Console.ReadLine()?.ToLower();
 
         if (string.IsNullOrEmpty(resp))
+        {
             return;
+        }
 
         AddNewMappingToList(resp, remapModel, isRegen);
 
@@ -172,7 +142,9 @@ public class AutoMatcher(
         var resp2 = Console.ReadLine()?.ToLower();
 
         if (string.IsNullOrEmpty(resp2))
+        {
             return;
+        }
 
         await RunMappingProcess(resp2, assemblyPath, oldAssemblyPath);
     }
@@ -180,7 +152,9 @@ public class AutoMatcher(
     private void AddNewMappingToList(string response, RemapModel remapModel, bool isRegen)
     {
         if (response != "y" && response != "yes")
+        {
             return;
+        }
 
         dataProvider.ClearMappings();
         dataProvider.LoadMappingFile();
@@ -207,22 +181,18 @@ public class AutoMatcher(
         dataProvider.UpdateMappingFile(false, true);
     }
 
-    private async Task RunMappingProcess(
-        string response,
-        string assemblyPath,
-        string oldAssemblyPath
-    )
+    private async Task RunMappingProcess(string response, string assemblyPath, string oldAssemblyPath)
     {
         if (response != "y" && response != "yes")
+        {
             return;
+        }
 
         var outPath = Path.GetDirectoryName(assemblyPath);
 
         if (outPath is null)
         {
-            throw new DirectoryNotFoundException(
-                $"Could not resolve directory for `{assemblyPath}`"
-            );
+            throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
         }
 
         await mappingController.Run(assemblyPath, oldAssemblyPath, outPath);

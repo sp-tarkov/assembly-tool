@@ -26,9 +26,9 @@ public class DataProvider
 
     public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
-    private static readonly string DataPath = Path.Combine(AppContext.BaseDirectory, "Data");
-    private static readonly string MappingPath = Path.Combine(DataPath, "mappings.jsonc");
-    private static readonly string MappingNewPath = Path.Combine(DataPath, "mappings-new.jsonc");
+    private static readonly string _dataPath = Path.Combine(AppContext.BaseDirectory, "Data");
+    private static readonly string _mappingPath = Path.Combine(_dataPath, "mappings.jsonc");
+    private static readonly string _mappingNewPath = Path.Combine(_dataPath, "mappings-new.jsonc");
 
     public ModuleDefinition? Mscorlib { get; private set; }
 
@@ -56,7 +56,10 @@ public class DataProvider
         return _remaps;
     }
 
-    public int RemapCount() => _remaps.Count;
+    public int RemapCount()
+    {
+        return _remaps.Count;
+    }
 
     public void AddMapping(RemapModel remap)
     {
@@ -84,9 +87,9 @@ public class DataProvider
 
     public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
-        if (!File.Exists(MappingNewPath))
+        if (!File.Exists(_mappingNewPath))
         {
-            File.Create(MappingNewPath).Close();
+            File.Create(_mappingNewPath).Close();
         }
 
         JsonSerializerOptions settings = new()
@@ -99,7 +102,7 @@ public class DataProvider
 
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
-        var path = isAutoMatch ? MappingPath : MappingNewPath;
+        var path = isAutoMatch ? _mappingPath : _mappingNewPath;
 
         File.WriteAllText(path, jsonText);
 
@@ -108,13 +111,13 @@ public class DataProvider
 
     public void LoadMappingFile()
     {
-        if (!File.Exists(MappingPath))
+        if (!File.Exists(_mappingPath))
         {
-            Log.Information("Cannot find mapping.json at: {Path}", MappingPath);
+            Log.Information("Cannot find mapping.json at: {Path}", _mappingPath);
             return;
         }
 
-        var jsonText = File.ReadAllText(MappingPath);
+        var jsonText = File.ReadAllText(_mappingPath);
 
         JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
 
@@ -126,21 +129,17 @@ public class DataProvider
 
     private void ValidateMappings()
     {
-        var duplicateGroups = _remaps
-            .GroupBy(m => m.NewTypeName)
-            .Where(g => g.Count() > 1)
-            .ToList();
+        var duplicateGroups = _remaps.GroupBy(m => m.NewTypeName).Where(g => g.Count() > 1).ToList();
 
         if (duplicateGroups.Count <= 1)
+        {
             return;
+        }
 
         foreach (var duplicate in duplicateGroups)
         {
             var duplicateNewTypeName = duplicate.Key;
-            Log.Error(
-                "Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.",
-                duplicateNewTypeName
-            );
+            Log.Error("Ambiguous NewTypeName: {DuplicateNewTypeName} found. Cancelling Remap.", duplicateNewTypeName);
         }
 
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
@@ -148,7 +147,7 @@ public class DataProvider
 
     private Settings LoadAppSettings()
     {
-        var settingsPath = Path.Combine(DataPath, "Settings.jsonc");
+        var settingsPath = Path.Combine(_dataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
 
         JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
@@ -158,18 +157,11 @@ public class DataProvider
 
     private Dictionary<string, ItemTemplateModel> LoadItems()
     {
-        var itemsPath = Path.Combine(DataPath, "items.json");
+        var itemsPath = Path.Combine(_dataPath, "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
-        JsonSerializerOptions settings = new()
-        {
-            RespectNullableAnnotations = true,
-            PropertyNameCaseInsensitive = true,
-        };
+        JsonSerializerOptions settings = new() { RespectNullableAnnotations = true, PropertyNameCaseInsensitive = true };
 
-        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(
-            jsonText,
-            settings
-        )!;
+        return JsonSerializer.Deserialize<Dictionary<string, ItemTemplateModel>>(jsonText, settings)!;
     }
 }

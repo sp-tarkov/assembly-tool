@@ -13,29 +13,24 @@ public class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.IncludeFields.Count == 0)
+        {
             return types;
+        }
 
         List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
-            if (
-                parms.Fields.IncludeFields.All(includeName =>
-                    type.Fields.Any(field => field.Name == includeName)
-                )
-            )
+            if (parms.Fields.IncludeFields.All(includeName => type.Fields.Any(field => field.Name == includeName)))
             {
                 filteredTypes.Add(type);
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 
     /// <summary>
@@ -44,21 +39,18 @@ public class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.ExcludeFields.Count == 0)
+        {
             return types;
+        }
 
         List<TypeDefinition> filteredTypes = [];
 
         foreach (var type in types)
         {
-            var match = type.Fields.Where(field =>
-                parms.Fields.ExcludeFields.Contains(field.Name!)
-            );
+            var match = type.Fields.Where(field => parms.Fields.ExcludeFields.Contains(field.Name!));
 
             if (!match.Any())
             {
@@ -66,7 +58,7 @@ public class FieldTypeFilters
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 
     /// <summary>
@@ -75,13 +67,12 @@ public class FieldTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByCount(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Fields.FieldCount == -1)
+        {
             return types;
+        }
 
         if (parms.Fields.FieldCount >= 0)
         {

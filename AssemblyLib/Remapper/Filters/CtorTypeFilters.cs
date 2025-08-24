@@ -10,16 +10,15 @@ public class CtorTypeFilters
     /// <summary>
     /// Search for types with a constructor of a given length
     /// </summary>
-    /// <param name="parms"></param>
-    /// <param name="score"></param>
+    /// <param name="types">Types to filter</param>
+    /// <param name="parms">Search params</param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByParameterCount(
-        IEnumerable<TypeDefinition> types,
-        SearchParams parms
-    )
+    public IEnumerable<TypeDefinition> FilterByParameterCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Methods.ConstructorParameterCount == -1)
+        {
             return types;
+        }
 
         return types.Where(type =>
         {

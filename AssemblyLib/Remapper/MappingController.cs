@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Immutable;
+using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
@@ -21,7 +22,7 @@ public sealed class MappingController(
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    IReadOnlyList<IRemapFilter> filters,
+    IEnumerable<IRemapFilter> filters,
     AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory
 )
@@ -162,14 +163,13 @@ public sealed class MappingController(
         {
             if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes) || filteredTypes is null)
             {
-                remainingTypePool = null;
-                break;
+                return;
             }
 
             remainingTypePool = filteredTypes;
         }
 
-        if (remainingTypePool is null || !remainingTypePool.Any())
+        if (!remainingTypePool.Any())
         {
             return;
         }

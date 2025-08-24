@@ -5,48 +5,52 @@ using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
+[Injectable(TypePriority = 1)]
 public sealed class MethodFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out List<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition>? filteredTypes
     )
     {
-        var internFilteredTypes = FilterByInclude(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsInclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByExclude(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsExclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByCtorParameterCount(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByCtorParameterCount(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.ConstructorParameterCount);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByCount(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByCount(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsCount);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        filteredTypes = internFilteredTypes.ToList();
+        filteredTypes = types;
         return true;
     }
 

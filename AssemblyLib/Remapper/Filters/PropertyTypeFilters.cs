@@ -5,40 +5,43 @@ using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
+[Injectable(TypePriority = 3)]
 public sealed class PropertyTypeFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out List<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition>? filteredTypes
     )
     {
-        var internFilteredTypes = FilterByCount(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByCount(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesCount);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByInclude(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesInclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByExclude(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesExclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        filteredTypes = internFilteredTypes.ToList();
+        filteredTypes = types;
         return true;
     }
 

@@ -5,48 +5,52 @@ using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
+[Injectable(TypePriority = 5)]
 public sealed class NestedTypeFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out List<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition>? filteredTypes
     )
     {
-        var internFilteredTypes = FilterByCount(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByCount(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeCount);
+            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = null;
             return false;
         }
 
-        internFilteredTypes = FilterByNestedVisibility(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByNestedVisibility(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedVisibility);
+            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = null;
             return false;
         }
 
-        internFilteredTypes = FilterByInclude(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeInclude);
+            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = null;
             return false;
         }
 
-        internFilteredTypes = FilterByExclude(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeExclude);
+            remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = null;
             return false;
         }
 
-        filteredTypes = internFilteredTypes.ToList();
+        filteredTypes = types;
         return true;
     }
 

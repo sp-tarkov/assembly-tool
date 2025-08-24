@@ -5,32 +5,34 @@ using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
+[Injectable(TypePriority = 4)]
 public sealed class EventTypeFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out List<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition>? filteredTypes
     )
     {
-        var internFilteredTypes = FilterByInclude(types, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.EventsInclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterByExclude(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.EventsExclude);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        filteredTypes = internFilteredTypes.ToList();
+        filteredTypes = types;
         return true;
     }
 

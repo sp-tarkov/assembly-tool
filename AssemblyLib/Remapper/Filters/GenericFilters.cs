@@ -5,84 +5,90 @@ using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
+[Injectable(TypePriority = 0)]
 public sealed class GenericFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out List<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition>? filteredTypes
     )
     {
         var genericParams = remapModel.SearchParams.GenericParams;
 
-        var internFilteredTypes = types.Where(t => t.IsPublic == genericParams.IsPublic);
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.IsPublic == genericParams.IsPublic);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsPublic);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = internFilteredTypes.Where(t => t.IsAbstract == genericParams.IsAbstract);
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.IsAbstract == genericParams.IsAbstract);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsAbstract);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = internFilteredTypes.Where(t => t.IsSealed == genericParams.IsSealed);
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.IsSealed == genericParams.IsSealed);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsSealed);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = internFilteredTypes.Where(t => t.IsInterface == genericParams.IsInterface);
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.IsInterface == genericParams.IsInterface);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsInterface);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = internFilteredTypes.Where(t => t.IsEnum == genericParams.IsEnum);
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.IsEnum == genericParams.IsEnum);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.IsEnum);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = internFilteredTypes.Where(t =>
-            t.GenericParameters.Any() == genericParams.HasGenericParameters
-        );
-        if (!internFilteredTypes.Any())
+        types = types.Where(t => t.GenericParameters.Any() == genericParams.HasGenericParameters);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.HasGenericParameters);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterAttributes(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterAttributes(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        internFilteredTypes = FilterDerived(internFilteredTypes, remapModel.SearchParams);
-        if (!internFilteredTypes.Any())
+        types = FilterDerived(types, remapModel.SearchParams);
+        if (!types.Any())
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
-            filteredTypes = null;
+            remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
             return false;
         }
 
-        filteredTypes = internFilteredTypes.ToList();
+        filteredTypes = types;
         return true;
     }
 

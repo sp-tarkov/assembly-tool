@@ -156,24 +156,25 @@ public sealed class MappingController(
             types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
 
-        var remainingTypes = new List<TypeDefinition>();
+        // Start off with all types in the pool, filter them down with each filter pass until (hopefully) only one remains
+        var remainingTypePool = types;
         foreach (var filter in filters)
         {
-            if (!filter.Filter(types, mapping, out var filteredTypes) || filteredTypes is null)
+            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes) || filteredTypes is null)
             {
-                remainingTypes = null;
+                remainingTypePool = null;
                 break;
             }
 
-            remainingTypes = filteredTypes;
+            remainingTypePool = filteredTypes;
         }
 
-        if (remainingTypes is null || remainingTypes.Count == 0)
+        if (remainingTypePool is null || !remainingTypePool.Any())
         {
             return;
         }
 
-        mapping.TypeCandidates.UnionWith(remainingTypes);
+        mapping.TypeCandidates.UnionWith(remainingTypePool);
     }
 
     /// <summary>

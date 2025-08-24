@@ -1,19 +1,46 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
 [Injectable]
-public class EventTypeFilters
+public sealed class EventTypeFilters : IRemapFilter
 {
+    public bool Filter(
+        IEnumerable<TypeDefinition> types,
+        RemapModel remapModel,
+        out List<TypeDefinition>? filteredTypes
+    )
+    {
+        var internFilteredTypes = FilterByInclude(types, remapModel.SearchParams);
+        if (!internFilteredTypes.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.EventsInclude);
+            filteredTypes = null;
+            return false;
+        }
+
+        internFilteredTypes = FilterByExclude(internFilteredTypes, remapModel.SearchParams);
+        if (!internFilteredTypes.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.EventsExclude);
+            filteredTypes = null;
+            return false;
+        }
+
+        filteredTypes = internFilteredTypes.ToList();
+        return true;
+    }
+
     /// <summary>
     /// Filters based on events name
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.IncludeEvents.Count == 0)
         {
@@ -39,7 +66,7 @@ public class EventTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Events.ExcludeEvents.Count == 0)
         {

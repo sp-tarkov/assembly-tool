@@ -6,6 +6,7 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
 using AssemblyLib.Models.Enums;
+using AssemblyLib.ReMapper.Filters;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
 using Serilog;
@@ -20,7 +21,7 @@ public class MappingController(
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    TypeFilters typeFilters,
+    IReadOnlyList<IRemapFilter> filters,
     AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory
 )
@@ -155,13 +156,24 @@ public class MappingController(
             types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
 
-        // Run through a series of filters and report an error if all types are filtered out.
-        if (!typeFilters.DoesTypePassFilters(mapping, ref types))
+        var remainingTypes = new List<TypeDefinition>();
+        foreach (var filter in filters)
+        {
+            if (!filter.Filter(types, mapping, out var filteredTypes) || filteredTypes is null)
+            {
+                remainingTypes = null;
+                break;
+            }
+
+            remainingTypes = filteredTypes;
+        }
+
+        if (remainingTypes is null || remainingTypes.Count == 0)
         {
             return;
         }
 
-        mapping.TypeCandidates.UnionWith(types);
+        mapping.TypeCandidates.UnionWith(remainingTypes);
     }
 
     /// <summary>

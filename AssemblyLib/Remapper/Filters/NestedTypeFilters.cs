@@ -11,7 +11,7 @@ public sealed class NestedTypeFilters : IRemapFilter
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out IEnumerable<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition> filteredTypes
     )
     {
         types = FilterByCount(types, remapModel.SearchParams);
@@ -19,7 +19,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeCount);
             remapModel.TypeCandidates.UnionWith(types);
-            filteredTypes = null;
+            filteredTypes = types;
             return false;
         }
 
@@ -28,7 +28,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedVisibility);
             remapModel.TypeCandidates.UnionWith(types);
-            filteredTypes = null;
+            filteredTypes = types;
             return false;
         }
 
@@ -37,7 +37,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeInclude);
             remapModel.TypeCandidates.UnionWith(types);
-            filteredTypes = null;
+            filteredTypes = types;
             return false;
         }
 
@@ -46,7 +46,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         {
             remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeExclude);
             remapModel.TypeCandidates.UnionWith(types);
-            filteredTypes = null;
+            filteredTypes = types;
             return false;
         }
 

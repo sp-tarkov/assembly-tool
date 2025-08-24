@@ -15,6 +15,6 @@ public interface IRemapFilter
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out IEnumerable<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition> filteredTypes
     );
 }

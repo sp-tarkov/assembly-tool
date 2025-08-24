@@ -11,7 +11,7 @@ public sealed class GenericFilters : IRemapFilter
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out IEnumerable<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition> filteredTypes
     )
     {
         var genericParams = remapModel.SearchParams.GenericParams;

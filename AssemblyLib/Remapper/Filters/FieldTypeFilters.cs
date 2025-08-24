@@ -11,7 +11,7 @@ public sealed class FieldTypeFilters : IRemapFilter
     public bool Filter(
         IEnumerable<TypeDefinition> types,
         RemapModel remapModel,
-        out IEnumerable<TypeDefinition>? filteredTypes
+        out IEnumerable<TypeDefinition> filteredTypes
     )
     {
         types = FilterByCount(types, remapModel.SearchParams);

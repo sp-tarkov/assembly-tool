@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using AsmResolver.DotNet;
+﻿using AsmResolver.DotNet;
 using AssemblyLib.AutoMatcher.Filters;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;

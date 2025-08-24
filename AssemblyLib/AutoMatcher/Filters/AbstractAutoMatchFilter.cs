@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Interfaces;
 using Serilog;
 
 namespace AssemblyLib.AutoMatcher.Filters;

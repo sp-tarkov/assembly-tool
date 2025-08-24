@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models.Enums;
-using AssemblyLib.Models.Interfaces;
 
 namespace AssemblyLib.Models;
 

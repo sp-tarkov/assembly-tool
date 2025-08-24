@@ -1,5 +1,4 @@
-﻿
-using AsmResolver;
+﻿using AsmResolver;
 
 namespace AssemblyLib.Utils;
 

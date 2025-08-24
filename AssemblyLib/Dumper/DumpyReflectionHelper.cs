@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AsmResolver.DotNet;
+﻿using AsmResolver.DotNet;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Dumper;

@@ -13,7 +13,7 @@ public class AutoMatcher(
     MappingController mappingController,
     AssemblyUtils assemblyUtils,
     DataProvider dataProvider,
-    IReadOnlyList<IAutoMatchFilter> filters
+    IEnumerable<IAutoMatchFilter> filters
 )
 {
     private ModuleDefinition? Module { get; set; }

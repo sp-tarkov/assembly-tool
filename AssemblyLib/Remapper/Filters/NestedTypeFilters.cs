@@ -1,19 +1,63 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
-public class NestedTypeFilters
+[Injectable(TypePriority = 5)]
+public sealed class NestedTypeFilters : IRemapFilter
 {
+    public bool Filter(
+        IEnumerable<TypeDefinition> types,
+        RemapModel remapModel,
+        out IEnumerable<TypeDefinition> filteredTypes
+    )
+    {
+        types = FilterByCount(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeCount);
+            //remapModel.TypeCandidates.UnionWith(types);
+            filteredTypes = types;
+            return false;
+        }
+
+        types = FilterByNestedVisibility(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedVisibility);
+            filteredTypes = types;
+            return false;
+        }
+
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeInclude);
+            filteredTypes = types;
+            return false;
+        }
+
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeExclude);
+            filteredTypes = types;
+            return false;
+        }
+
+        filteredTypes = types;
+        return true;
+    }
+
     /// <summary>
     /// Filters based on nested type includes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.IncludeNestedTypes.Count == 0)
         {
@@ -43,7 +87,7 @@ public class NestedTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.ExcludeNestedTypes.Count == 0)
         {
@@ -71,7 +115,7 @@ public class NestedTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.NestedTypeCount >= 0)
         {
@@ -81,7 +125,10 @@ public class NestedTypeFilters
         return types;
     }
 
-    public IEnumerable<TypeDefinition> FilterByNestedVisibility(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByNestedVisibility(
+        IEnumerable<TypeDefinition> types,
+        SearchParams parms
+    )
     {
         types = FilterNestedByName(types, parms);
 
@@ -99,7 +146,7 @@ public class NestedTypeFilters
         return types;
     }
 
-    private IEnumerable<TypeDefinition> FilterNestedByName(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterNestedByName(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.NestedTypes.NestedTypeParentName is not "")
         {

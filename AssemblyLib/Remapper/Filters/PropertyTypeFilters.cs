@@ -1,19 +1,54 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
+using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
 
-[Injectable]
-public class PropertyTypeFilters
+[Injectable(TypePriority = 3)]
+public sealed class PropertyTypeFilters : IRemapFilter
 {
+    public bool Filter(
+        IEnumerable<TypeDefinition> types,
+        RemapModel remapModel,
+        out IEnumerable<TypeDefinition> filteredTypes
+    )
+    {
+        types = FilterByCount(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesCount);
+            filteredTypes = types;
+            return false;
+        }
+
+        types = FilterByInclude(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesInclude);
+            filteredTypes = types;
+            return false;
+        }
+
+        types = FilterByExclude(types, remapModel.SearchParams);
+        if (!types.Any())
+        {
+            remapModel.NoMatchReasons.Add(ENoMatchReason.PropertiesExclude);
+            filteredTypes = types;
+            return false;
+        }
+
+        filteredTypes = types;
+        return true;
+    }
+
     /// <summary>
     /// Filters based on property includes
     /// </summary>
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByInclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Properties.IncludeProperties.Count == 0)
         {
@@ -43,7 +78,7 @@ public class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByExclude(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         if (parms.Properties.ExcludeProperties.Count == 0)
         {
@@ -71,7 +106,7 @@ public class PropertyTypeFilters
     /// <param name="types"></param>
     /// <param name="parms"></param>
     /// <returns>Filtered list</returns>
-    public IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
+    private static IEnumerable<TypeDefinition> FilterByCount(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
         // Param is disabled
         if (parms.Properties.PropertyCount == -1)

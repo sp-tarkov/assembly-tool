@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Immutable;
+using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
@@ -6,6 +7,7 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
 using AssemblyLib.Models.Enums;
+using AssemblyLib.ReMapper.Filters;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
 using Serilog;
@@ -15,12 +17,12 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable(InjectionType.Singleton)]
-public class MappingController(
+public sealed class MappingController(
     DataProvider dataProvider,
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    TypeFilters typeFilters,
+    IEnumerable<IRemapFilter> filters,
     AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory
 )
@@ -155,13 +157,24 @@ public class MappingController(
             types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
         }
 
-        // Run through a series of filters and report an error if all types are filtered out.
-        if (!typeFilters.DoesTypePassFilters(mapping, ref types))
+        // Start off with all types in the pool, filter them down with each filter pass until (hopefully) only one remains
+        var remainingTypePool = types;
+        foreach (var filter in filters)
+        {
+            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes) || filteredTypes is null)
+            {
+                return;
+            }
+
+            remainingTypePool = filteredTypes;
+        }
+
+        if (!remainingTypePool.Any())
         {
             return;
         }
 
-        mapping.TypeCandidates.UnionWith(types);
+        mapping.TypeCandidates.UnionWith(remainingTypePool);
     }
 
     /// <summary>

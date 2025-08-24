@@ -137,7 +137,9 @@ public class AttributeFactory(DataProvider dataProvider)
             }
 
             if (type.NestedTypes.Count == 0)
+            {
                 continue;
+            }
 
             foreach (var method in type.Methods)
             {
@@ -161,7 +163,9 @@ public class AttributeFactory(DataProvider dataProvider)
         foreach (var attr in method.CustomAttributes.ToArray())
         {
             if (!IsAsyncStateMachineAttribute(attr))
+            {
                 continue;
+            }
 
             // Find the argument target in the nested types
             var typeDefTarget = nestedTypes.FirstOrDefault(t =>

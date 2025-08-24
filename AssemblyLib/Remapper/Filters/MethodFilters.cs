@@ -6,7 +6,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper.Filters;
 
 [Injectable]
-public class MethodFilters : IRemapFilter
+public sealed class MethodFilters : IRemapFilter
 {
     public bool Filter(
         IEnumerable<TypeDefinition> types,

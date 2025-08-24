@@ -16,7 +16,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.ReMapper;
 
 [Injectable(InjectionType.Singleton)]
-public class MappingController(
+public sealed class MappingController(
     DataProvider dataProvider,
     Statistics statistics,
     Renamer renamer,

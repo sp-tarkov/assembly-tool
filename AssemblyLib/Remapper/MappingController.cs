@@ -161,7 +161,7 @@ public sealed class MappingController(
         var remainingTypePool = types;
         foreach (var filter in filters)
         {
-            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes) || filteredTypes is null)
+            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes))
             {
                 return;
             }

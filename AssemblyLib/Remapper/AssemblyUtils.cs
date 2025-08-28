@@ -10,24 +10,24 @@ namespace AssemblyLib.ReMapper;
 [Injectable]
 public class AssemblyUtils(DataProvider dataProvider)
 {
-    public (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
+    public (string, ModuleDefinition?) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
     {
-        if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
+        if (module!.GetAllTypes().Any(t => t.Name?.Contains("GClass") ?? false))
         {
-            Log.Information("Assembly is obfuscated, running de-obfuscation...");
-
-            module = null;
-
-            Deobfuscate(assemblyPath);
-
-            var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
-            cleanedName = $"{cleanedName}-cleaned.dll";
-
-            var newPath = Path.GetDirectoryName(assemblyPath);
-            newPath = Path.Combine(newPath!, cleanedName);
-
-            module = dataProvider.LoadModule(newPath);
+            return (assemblyPath, module);
         }
+
+        Log.Information("Assembly is obfuscated, running de-obfuscation...");
+
+        Deobfuscate(assemblyPath);
+
+        var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
+        cleanedName = $"{cleanedName}-cleaned.dll";
+
+        var newPath = Path.GetDirectoryName(assemblyPath);
+        newPath = Path.Combine(newPath!, cleanedName);
+
+        module = dataProvider.LoadModule(newPath);
 
         return (assemblyPath, module);
     }

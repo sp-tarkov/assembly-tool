@@ -23,9 +23,9 @@ public sealed class MappingController(
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    IEnumerable<IRemapFilter> filters,
     AssemblyUtils assemblyUtils,
     AttributeFactory attributeFactory,
+    FilterService filterService,
     TypeCache typeCache
 )
 {
@@ -80,9 +80,13 @@ public sealed class MappingController(
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
 
+        Types.AddRange(Module?.GetAllTypes() ?? []);
         typeCache.HydrateCache();
 
-        Types.AddRange(Module.GetAllTypes());
+        if (Types.Count == 0)
+        {
+            throw new InvalidOperationException("No types found during loading/deobfuscation of assembly");
+        }
     }
 
     /// <summary>
@@ -135,50 +139,8 @@ public sealed class MappingController(
 
         foreach (var remap in dataProvider.GetRemaps())
         {
-            MatchRemap(remap);
+            filterService.FilterRemap(remap);
         }
-    }
-
-    /// <summary>
-    /// First we filter our type collection based on simple search parameters (true/false/null)
-    /// where null is a third disabled state. Then we score the types based on the search parameters
-    /// </summary>
-    /// <param name="mapping">Mapping to score</param>
-    private void MatchRemap(RemapModel mapping)
-    {
-        if (mapping.UseForceRename)
-        {
-            return;
-        }
-
-        // Filter down nested objects
-        var types = mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(t => t.IsNested)
-            : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
-
-        if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
-        {
-            types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
-        }
-
-        // Start off with all types in the pool, filter them down with each filter pass until (hopefully) only one remains
-        var remainingTypePool = types;
-        foreach (var filter in filters)
-        {
-            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes))
-            {
-                return;
-            }
-
-            remainingTypePool = filteredTypes;
-        }
-
-        if (!remainingTypePool.Any())
-        {
-            return;
-        }
-
-        mapping.TypeCandidates.UnionWith(remainingTypePool);
     }
 
     /// <summary>

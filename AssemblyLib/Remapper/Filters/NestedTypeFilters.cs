@@ -150,7 +150,9 @@ public sealed class NestedTypeFilters : IRemapFilter
     {
         if (parms.NestedTypes.NestedTypeParentName is not "")
         {
-            types = types.Where(t => t.DeclaringType!.Name == parms.NestedTypes.NestedTypeParentName);
+            types = types.Where(t =>
+                t.DeclaringType != null && t.DeclaringType!.Name == parms.NestedTypes.NestedTypeParentName
+            );
         }
 
         return types;

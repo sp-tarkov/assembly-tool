@@ -6,7 +6,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Remapper;
 
 [Injectable(InjectionType.Singleton)]
-public class TypeCache(DataProvider dataProvider)
+public sealed class TypeCache(DataProvider dataProvider)
 {
     /// <summary>
     ///     Is the cache hydrated?

@@ -29,4 +29,5 @@ public enum ENoMatchReason
     NestedVisibility,
     EventsInclude,
     EventsExclude,
+    NoAvailableCache,
 }

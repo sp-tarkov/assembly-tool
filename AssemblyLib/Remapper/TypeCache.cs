@@ -66,7 +66,12 @@ public class TypeCache(DataProvider dataProvider)
             throw new InvalidOperationException("Module is not loaded when trying to hydrate type cache");
         }
 
-        var allTypes = dataProvider.LoadedModule?.GetAllTypes();
+        // Load all types except the ones that are compiler generated, they should NEVER be a target of a remap.
+        // Also filter out named classes, we NEVER want to rename an already named class, so don't put them up for consideration
+        var allTypes = dataProvider
+            .LoadedModule?.GetAllTypes()
+            .Where(t => !t.IsCompilerGenerated() && (t.Name?.IsObfuscatedName() ?? false));
+
         if (allTypes is null || !allTypes.Any())
         {
             throw new NullReferenceException("Could not get types from module, something has gone horrible wrong.");
@@ -74,32 +79,30 @@ public class TypeCache(DataProvider dataProvider)
 
         Log.Information("Hydrating TypeCache");
 
-        // Load all classes except the ones that are compiler generated, they should NEVER be a target of a remap.
-        var classes = allTypes.Where(t => t.IsClass && !t.IsCompilerGenerated());
-
+        var classes = allTypes.Where(t => t.IsClass);
         Classes = classes.Where(t => !t.IsAbstract && !t.IsSealed && !t.IsNested).ToList();
         AbstractClasses = classes.Where(t => t.IsAbstract).ToList();
         NestedClasses = classes.Where(t => t.IsNested).ToList();
         SealedClasses = classes.Where(t => t.IsSealed).ToList();
 
-        // TODO: Structs
+        Structs = allTypes.Where(t => t.IsValueType && !t.IsNested && !t.IsEnum).ToList();
+        NestedStructs = allTypes.Where(t => t.IsValueType && t.IsNested && !t.IsEnum).ToList();
 
         Interfaces = allTypes.Where(t => t.IsInterface).ToList();
         Enums = allTypes.Where(t => t.IsEnum).ToList();
 
         Log.Information("-------------------------------- Cache Hydrated --------------------------------");
-        Log.Information("Loaded: {num} Total types", allTypes.Count());
+        Log.Information("Loaded: {num} Total obfuscated types", allTypes.Count());
         Log.Information("Loaded: {num} Non-nested, sealed, or abstract classes", Classes.Count);
         Log.Information("Loaded: {num} Abstract classes", AbstractClasses.Count);
         Log.Information("Loaded: {num} Nested classes", NestedClasses.Count);
         Log.Information("Loaded: {num} Sealed classes", SealedClasses.Count);
 
-        //Log.Information("Loaded: {num} Non-nested structs", Structs.Count);
-        //Log.Information("Loaded: {num} Nested structs", NestedStructs.Count);
+        Log.Information("Loaded: {num} Non-nested structs", Structs.Count);
+        Log.Information("Loaded: {num} Nested structs", NestedStructs.Count);
 
         Log.Information("Loaded: {num} Interfaces", Interfaces.Count);
         Log.Information("Loaded: {num} Enums", Interfaces.Count);
-
         Log.Information("--------------------------------------------------------------------------------");
 
         IsHydrated = true;

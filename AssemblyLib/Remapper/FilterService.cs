@@ -48,19 +48,32 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
         var genericParams = mapping.SearchParams.GenericParams;
         var nestedParams = mapping.SearchParams.NestedTypes;
 
-        if (genericParams.IsEnum)
-        {
-            return typeCache.Enums;
-        }
+        // IMPORTANT: always return combined conditionals before we look for individual ones
+        // Otherwise cases such as static can be missed
 
-        if (genericParams.IsInterface)
-        {
-            return typeCache.Interfaces;
-        }
+        /* Type             IL designation
+         * Interface:       .class interface public auto ansi abstract beforefieldinit
+         * Class:           .class public auto ansi beforefieldinit
+         * Abstract Class:  .class public auto ansi abstract beforefieldinit
+         * Sealed Class:    .class public auto ansi sealed beforefieldinit
+         * Static Class:    .class public auto ansi abstract sealed beforefieldinit
+         */
 
-        if (genericParams.IsAbstract)
+        switch (genericParams.IsAbstract)
         {
-            return typeCache.AbstractClasses;
+            // Abstract and sealed (static classes)
+            case true when genericParams.IsSealed:
+                return typeCache.StaticClasses;
+
+            // Normal abstract classes
+            // Interfaces are also considered abstract, ignore those.
+            case true when !genericParams.IsInterface:
+                return typeCache.AbstractClasses;
+
+            // Not abstract or sealed (normal class)
+            case false when !genericParams.IsSealed:
+                // Additionally check for nested
+                return nestedParams.IsNested ? typeCache.NestedClasses : typeCache.Classes;
         }
 
         if (genericParams.IsSealed)
@@ -68,11 +81,14 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
             return typeCache.SealedClasses;
         }
 
-        // Not abstract or sealed
-        if (!genericParams.IsAbstract && !genericParams.IsSealed)
+        if (genericParams.IsInterface)
         {
-            // Additionally check for nested
-            return nestedParams.IsNested ? typeCache.NestedClasses : typeCache.Classes;
+            return typeCache.Interfaces;
+        }
+
+        if (genericParams.IsEnum)
+        {
+            return typeCache.Enums;
         }
 
         Log.Error(

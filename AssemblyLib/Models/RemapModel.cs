@@ -60,6 +60,17 @@ public class GenericParams
     public bool IsInterface { get; set; }
     public bool IsEnum { get; set; }
     public bool IsSealed { get; set; }
+
+    [JsonIgnore]
+    public bool IsStatic
+    {
+        get { return IsAbstract && IsSealed; }
+    }
+
+    // TODO: Temporary ignore on the json, will need migrations
+    [JsonIgnore]
+    public bool IsStruct { get; set; }
+
     public bool? HasAttribute { get; set; }
     public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; }

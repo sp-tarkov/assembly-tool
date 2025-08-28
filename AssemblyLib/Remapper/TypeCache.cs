@@ -24,17 +24,22 @@ public sealed class TypeCache(DataProvider dataProvider)
     public List<TypeDefinition>? AbstractClasses { get; private set; }
 
     /// <summary>
-    ///     Contains all nested classes
-    /// </summary>
-    public List<TypeDefinition>? NestedClasses { get; private set; }
-
-    /// <summary>
     ///     Contains all sealed classes
     /// </summary>
     public List<TypeDefinition>? SealedClasses { get; private set; }
 
     /// <summary>
-    ///     Contains all non-nested structs
+    ///     Contains all static classes (abstract and sealed)
+    /// </summary>
+    public List<TypeDefinition>? StaticClasses { get; private set; }
+
+    /// <summary>
+    ///     Contains all nested classes, can be sealed or abstract
+    /// </summary>
+    public List<TypeDefinition>? NestedClasses { get; private set; }
+
+    /// <summary>
+    ///     Contains all non-nested, non-readonly structs
     /// </summary>
     public List<TypeDefinition>? Structs { get; private set; }
 
@@ -77,13 +82,14 @@ public sealed class TypeCache(DataProvider dataProvider)
             throw new NullReferenceException("Could not get types from module, something has gone horrible wrong.");
         }
 
-        Log.Information("Hydrating TypeCache");
-
         var classes = allTypes.Where(t => t.IsClass);
+
         Classes = classes.Where(t => !t.IsAbstract && !t.IsSealed && !t.IsNested).ToList();
         AbstractClasses = classes.Where(t => t.IsAbstract).ToList();
-        NestedClasses = classes.Where(t => t.IsNested).ToList();
         SealedClasses = classes.Where(t => t.IsSealed).ToList();
+        StaticClasses = classes.Where(t => t.IsAbstract && !t.IsSealed).ToList();
+
+        NestedClasses = classes.Where(t => t.IsNested).ToList();
 
         Structs = allTypes.Where(t => t.IsValueType && !t.IsNested && !t.IsEnum).ToList();
         NestedStructs = allTypes.Where(t => t.IsValueType && t.IsNested && !t.IsEnum).ToList();
@@ -95,8 +101,9 @@ public sealed class TypeCache(DataProvider dataProvider)
         Log.Information("Loaded: {num} Total obfuscated types", allTypes.Count());
         Log.Information("Loaded: {num} Non-nested, sealed, or abstract classes", Classes.Count);
         Log.Information("Loaded: {num} Abstract classes", AbstractClasses.Count);
-        Log.Information("Loaded: {num} Nested classes", NestedClasses.Count);
         Log.Information("Loaded: {num} Sealed classes", SealedClasses.Count);
+        Log.Information("Loaded: {num} Static classes", StaticClasses.Count);
+        Log.Information("Loaded: {num} Nested classes", NestedClasses.Count);
 
         Log.Information("Loaded: {num} Non-nested structs", Structs.Count);
         Log.Information("Loaded: {num} Nested structs", NestedStructs.Count);

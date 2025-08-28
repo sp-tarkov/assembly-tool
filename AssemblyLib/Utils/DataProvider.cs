@@ -20,17 +20,26 @@ public class DataProvider
     }
 
     public Settings Settings { get; }
+    public ModuleDefinition? LoadedModule { get; private set; }
+    public ModuleDefinition? Mscorlib { get; private set; }
 
-    private readonly List<RemapModel> _remaps = [];
-    private readonly Lock _remapLock = new();
+    public bool IsModuleLoaded
+    {
+        get { return LoadedModule != null; }
+    }
+
+    public bool IsMscorlibLoaded
+    {
+        get { return Mscorlib != null; }
+    }
 
     public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
+    private readonly List<RemapModel> _remaps = [];
+    private readonly Lock _remapLock = new();
     private static readonly string _dataPath = Path.Combine(AppContext.BaseDirectory, "Data");
     private static readonly string _mappingPath = Path.Combine(_dataPath, "mappings.jsonc");
     private static readonly string _mappingNewPath = Path.Combine(_dataPath, "mappings-new.jsonc");
-
-    public ModuleDefinition? Mscorlib { get; private set; }
 
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
@@ -43,11 +52,7 @@ public class DataProvider
             Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
         }
 
-        if (module is null)
-        {
-            throw new NullReferenceException("Module is null...");
-        }
-
+        LoadedModule = module ?? throw new NullReferenceException("Module is null...");
         return module;
     }
 

@@ -7,6 +7,7 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
 using AssemblyLib.Models.Enums;
+using AssemblyLib.Remapper;
 using AssemblyLib.ReMapper.Filters;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
@@ -24,7 +25,8 @@ public sealed class MappingController(
     Publicizer publicizer,
     IEnumerable<IRemapFilter> filters,
     AssemblyUtils assemblyUtils,
-    AttributeFactory attributeFactory
+    AttributeFactory attributeFactory,
+    TypeCache typeCache
 )
 {
     private ModuleDefinition? Module { get; set; }
@@ -77,6 +79,8 @@ public sealed class MappingController(
 
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
+
+        typeCache.HydrateCache();
 
         Types.AddRange(Module.GetAllTypes());
     }

@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
@@ -17,7 +16,7 @@ public sealed class EventTypeFilters : IRemapFilter
         types = FilterByInclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.EventsInclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by included events");
             filteredTypes = types;
             return false;
         }
@@ -25,7 +24,7 @@ public sealed class EventTypeFilters : IRemapFilter
         types = FilterByExclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.EventsExclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by excluded events");
             filteredTypes = types;
             return false;
         }

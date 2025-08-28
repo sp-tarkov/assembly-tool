@@ -1,6 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using Serilog;
+using Serilog.Events;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
@@ -15,7 +16,11 @@ public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
     /// <returns>False</returns>
     protected static bool LogFailure(string failureReason)
     {
-        Log.Error("{failureReason}", failureReason);
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("{failureReason}", failureReason);
+        }
+
         return false;
     }
 }

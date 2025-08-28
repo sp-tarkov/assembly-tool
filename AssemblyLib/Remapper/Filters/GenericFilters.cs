@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.ReMapper.Filters;
@@ -19,7 +18,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsPublic == genericParams.IsPublic);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsPublic);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by visibility (public/private)");
             filteredTypes = types;
             return false;
         }
@@ -27,7 +26,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsAbstract == genericParams.IsAbstract);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsAbstract);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by abstract classes");
             filteredTypes = types;
             return false;
         }
@@ -35,7 +34,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsSealed == genericParams.IsSealed);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsSealed);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by sealed classes");
             filteredTypes = types;
             return false;
         }
@@ -43,7 +42,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsInterface == genericParams.IsInterface);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsInterface);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by interfaces");
             filteredTypes = types;
             return false;
         }
@@ -51,7 +50,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsEnum == genericParams.IsEnum);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsEnum);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by enums");
             filteredTypes = types;
             return false;
         }
@@ -59,7 +58,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.GenericParameters.Any() == genericParams.HasGenericParameters);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.HasGenericParameters);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by generic parameters");
             filteredTypes = types;
             return false;
         }
@@ -67,7 +66,7 @@ public sealed class GenericFilters : IRemapFilter
         types = FilterAttributes(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by attributes");
             filteredTypes = types;
             return false;
         }
@@ -75,7 +74,7 @@ public sealed class GenericFilters : IRemapFilter
         types = FilterDerived(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsDerived);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by derived classes");
             filteredTypes = types;
             return false;
         }

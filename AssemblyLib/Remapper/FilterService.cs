@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using AssemblyLib.ReMapper.Filters;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -21,7 +20,7 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
         var typesToFilter = GetCacheForMapping(mapping);
         if (typesToFilter is null || typesToFilter.Count == 0)
         {
-            mapping.NoMatchReasons.Add(ENoMatchReason.NoAvailableCache);
+            mapping.FailureReasons.Add("No cache available for remap");
             return;
         }
 

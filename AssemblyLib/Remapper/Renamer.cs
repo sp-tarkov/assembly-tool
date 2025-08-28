@@ -73,11 +73,11 @@ public sealed class Renamer(Statistics stats)
         // Rename all fields and properties first
 
         // TODO: Passing strings as Utf8String, fix the model
-        RenameObfuscatedFields(module, remap.TypePrimeCandidate!.Name!, remap.NewTypeName);
+        RenameObfuscatedFields(module, remap.ChosenType!.Name!, remap.NewTypeName);
 
-        RenameObfuscatedProperties(module, remap.TypePrimeCandidate!.Name!, remap.NewTypeName);
+        RenameObfuscatedProperties(module, remap.ChosenType!.Name!, remap.NewTypeName);
 
-        remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
+        remap.ChosenType.Name = new Utf8String(remap.NewTypeName);
     }
 
     public async Task FixInterfaceMangledMethodNames(ModuleDefinition module)

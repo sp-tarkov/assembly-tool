@@ -133,6 +133,8 @@ public class AutoMatcher(
 
         await mappingController.Run(assemblyPath, string.Empty, validate: true);
 
+        Log.Information("\n{remapModel}", dataProvider.SerializeRemap(remapModel));
+
         if (remapModel.Succeeded)
         {
             await ProcessEndQuestions(remapModel, assemblyPath, oldAssemblyPath, isRegen);

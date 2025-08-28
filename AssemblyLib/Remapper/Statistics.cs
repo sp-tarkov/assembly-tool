@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using AssemblyLib.Utils;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -129,8 +128,6 @@ public sealed class Statistics(DataProvider dataProvider)
 
     private void DisplayAlternativeMatches()
     {
-        Log.Information("\n--------------------------------------------------");
-
         foreach (var remap in dataProvider.GetRemaps())
         {
             if (remap.Succeeded is false)
@@ -166,38 +163,24 @@ public sealed class Statistics(DataProvider dataProvider)
 
         foreach (var remap in dataProvider.GetRemaps())
         {
-            switch (remap.Succeeded)
+            if (!remap.Succeeded)
             {
-                case false when remap.NoMatchReasons.Contains(ENoMatchReason.AmbiguousWithPreviousMatch):
-                    Log.Error("----------------------------------------------------------------------");
-                    Log.Error("Ambiguous match with a previous match during matching. Skipping remap.");
-                    Log.Error($"New Type Name: {remap.NewTypeName}");
-                    Log.Error($"{remap.AmbiguousTypeMatch} already assigned to a previous match.");
-                    Log.Error("----------------------------------------------------------------------");
+                Log.Error("-----------------------------------------------");
+                Log.Error("Renaming {newName} failed with reason(s)", remap.NewTypeName);
 
-                    failures++;
-                    break;
-                case false:
+                foreach (var reason in remap.FailureReasons)
                 {
-                    Log.Error("-----------------------------------------------");
-                    Log.Error($"Renaming {remap.NewTypeName} failed with reason(s)");
-
-                    foreach (var reason in remap.NoMatchReasons)
-                    {
-                        Log.Error($"Reason: {reason}", ConsoleColor.Red);
-                    }
-
-                    Log.Error("-----------------------------------------------");
-                    failures++;
-                    continue;
+                    Log.Error("Reason: {reason}", reason);
                 }
+
+                Log.Error("-----------------------------------------------");
+                failures++;
+
+                continue;
             }
 
             if (validate && remap.Succeeded)
             {
-                //Log.Error("Generated Model: ");
-                //Log.Error(remap);
-
                 Log.Information("Passed validation");
                 return;
             }

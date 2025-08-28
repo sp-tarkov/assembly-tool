@@ -41,6 +41,13 @@ public class DataProvider
     private static readonly string _mappingPath = Path.Combine(_dataPath, "mappings.jsonc");
     private static readonly string _mappingNewPath = Path.Combine(_dataPath, "mappings-new.jsonc");
 
+    private static readonly JsonSerializerOptions _serializerOptions = new()
+    {
+        WriteIndented = true,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
+
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
         var directory = Path.GetDirectoryName(path)!;
@@ -90,6 +97,11 @@ public class DataProvider
         }
     }
 
+    public string SerializeRemap(RemapModel remap)
+    {
+        return JsonSerializer.Serialize(remap, _serializerOptions);
+    }
+
     public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
     {
         if (!File.Exists(_mappingNewPath))
@@ -97,12 +109,9 @@ public class DataProvider
             File.Create(_mappingNewPath).Close();
         }
 
-        JsonSerializerOptions settings = new()
+        JsonSerializerOptions settings = new(_serializerOptions)
         {
-            WriteIndented = true,
             RespectNullableAnnotations = !respectNullableAnnotations,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
 
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
@@ -150,7 +159,7 @@ public class DataProvider
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
 
-    private Settings LoadAppSettings()
+    private static Settings LoadAppSettings()
     {
         var settingsPath = Path.Combine(_dataPath, "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);

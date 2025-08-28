@@ -122,12 +122,12 @@ public class AttributeFactory(DataProvider dataProvider)
             new CustomAttributeArgument(module.CorLibTypeFactory.String, remap.OriginalTypeName)
         );
 
-        remap.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
+        remap.ChosenType!.CustomAttributes.Add(customAttribute);
     }
 
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        foreach (var type in dataProvider.GetRemaps().Select(r => r.TypePrimeCandidate))
+        foreach (var type in dataProvider.GetRemaps().Select(r => r.ChosenType))
         {
             if (type is null)
             {

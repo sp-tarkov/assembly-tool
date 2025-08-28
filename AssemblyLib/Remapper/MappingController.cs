@@ -1,14 +1,11 @@
-﻿using System.Collections.Immutable;
-using System.Reflection;
+﻿using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using AssemblyLib.Remapper;
-using AssemblyLib.ReMapper.Filters;
 using AssemblyLib.ReMapper.MetaData;
 using AssemblyLib.Utils;
 using Serilog;
@@ -158,7 +155,7 @@ public sealed class MappingController(
             return;
         }
 
-        mapping.TypePrimeCandidate = type;
+        mapping.ChosenType = type;
         mapping.OriginalTypeName = type.Name!;
         mapping.Succeeded = true;
 
@@ -240,12 +237,12 @@ public sealed class MappingController(
     /// <returns>True if ambiguous match</returns>
     private bool IsAmbiguousMatch(RemapModel remap, TypeDefinition match)
     {
-        remap.TypePrimeCandidate = match;
+        remap.ChosenType = match;
         remap.OriginalTypeName = match.Name!;
 
         if (_alreadyGivenNames.Contains(match.FullName))
         {
-            remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
+            remap.FailureReasons.Add("Ambiguous match, please select a new type name");
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
@@ -271,7 +268,7 @@ public sealed class MappingController(
     {
         renamer.RenameRemap(Module!, remap);
 
-        var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
+        var fieldsToFix = publicizer.PublicizeType(remap.ChosenType!);
 
         if (fieldsToFix.Count == 0)
         {

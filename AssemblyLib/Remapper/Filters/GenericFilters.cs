@@ -23,38 +23,6 @@ public sealed class GenericFilters : IRemapFilter
             return false;
         }
 
-        types = types.Where(t => t.IsAbstract == genericParams.IsAbstract);
-        if (!types.Any())
-        {
-            remapModel.FailureReasons.Add("No remaining candidates after filtering by abstract classes");
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsSealed == genericParams.IsSealed);
-        if (!types.Any())
-        {
-            remapModel.FailureReasons.Add("No remaining candidates after filtering by sealed classes");
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsInterface == genericParams.IsInterface);
-        if (!types.Any())
-        {
-            remapModel.FailureReasons.Add("No remaining candidates after filtering by interfaces");
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsEnum == genericParams.IsEnum);
-        if (!types.Any())
-        {
-            remapModel.FailureReasons.Add("No remaining candidates after filtering by enums");
-            filteredTypes = types;
-            return false;
-        }
-
         types = types.Where(t => t.GenericParameters.Any() == genericParams.HasGenericParameters);
         if (!types.Any())
         {

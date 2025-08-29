@@ -67,10 +67,7 @@ public class GenericParams
         get { return IsAbstract && IsSealed; }
     }
 
-    // TODO: Temporary ignore on the json, will need migrations
-    [JsonIgnore]
-    public bool IsStruct { get; set; }
-
+    public bool? IsStruct { get; set; }
     public bool? HasAttribute { get; set; }
     public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; }

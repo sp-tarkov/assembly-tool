@@ -73,7 +73,17 @@ public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
         searchParams.GenericParams.HasGenericParameters = target.GenericParameters.Any();
         searchParams.GenericParams.IsSealed = target.IsSealed;
         searchParams.GenericParams.HasAttribute = target.CustomAttributes.Any();
-        searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
+
+        switch (target.IsValueType)
+        {
+            // Structs are never derived
+            case false:
+                searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
+                break;
+            case true when !target.IsEnum:
+                searchParams.GenericParams.IsStruct = true;
+                break;
+        }
 
         if (
             (bool)searchParams.GenericParams.IsDerived

@@ -57,13 +57,26 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
          * Abstract Class:  .class public auto ansi abstract beforefieldinit
          * Sealed Class:    .class public auto ansi sealed beforefieldinit
          * Static Class:    .class public auto ansi abstract sealed beforefieldinit
+         * Structs:         .class public sequential ansi sealed beforefieldinit [Name] extends [System.Runtime]System.ValueType
          */
 
         // Abstract and sealed = static
         if (genericParams.IsStatic)
         {
-            Log.Information("StaticClasses cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+            Log.Information("Static class cache chosen for remap: {newTypeName}", mapping.NewTypeName);
             return typeCache.StaticClasses;
+        }
+
+        if (genericParams.IsStruct ?? false)
+        {
+            if (nestedParams.IsNested)
+            {
+                Log.Information("Nested struct cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+                return typeCache.NestedStructs;
+            }
+
+            Log.Information("Struct cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+            return typeCache.Structs;
         }
 
         // Interface - considered abstract so check it before abstract

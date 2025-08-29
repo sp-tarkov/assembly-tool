@@ -10,6 +10,10 @@
     <Platforms>AnyCPU</Platforms>
     <LangVersion>latest</LangVersion>
     <RootNamespace>AssemblyTool</RootNamespace>
+    <OutputPath>$(SolutionDir)Build\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
@@ -22,4 +26,23 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <Target Name="CleanBuild" AfterTargets="PreBuildEvent">
+    <!-- Annoying workaround because you cant just delete the folder if its open in a console -->
+    <ItemGroup>
+      <FilesToDelete Include="$(SolutionDir)Build\**\*.*" />
+      <DirsToDelete Include="$(SolutionDir)Build\**\*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" ContinueOnError="true" />
+    <RemoveDir Directories="@(DirsToDelete)" ContinueOnError="true" />
+  </Target>
+  <Target Name="CopyAssets" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <Assets Include="$(SolutionDir)Assets\**\*.*" />
+      <DumpData Include="$(SolutionDir)DumpLib\DUMPDATA\**\*.*" />
+    </ItemGroup>
+    <!-- Copies Assets -->
+    <Copy SourceFiles="@(Assets);" DestinationFolder="$(SolutionDir)Build\Assets\%(RecursiveDir)" />
+    <!-- Copies Dump Data -->
+    <Copy SourceFiles="@(DumpData);" DestinationFolder="$(SolutionDir)Build\DUMPDATA\%(RecursiveDir)" />
+  </Target>
 </Project>

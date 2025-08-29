@@ -89,7 +89,7 @@ public class AssemblyUtils(DataProvider dataProvider)
             ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
             : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
 
-        var executablePath = Path.Combine(AppContext.BaseDirectory, "de4dot", "de4dot-x64.exe");
+        var executablePath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "de4dot", "de4dot-x64.exe");
         var workingDir = Path.GetDirectoryName(executablePath);
 
         var startInfo = new ProcessStartInfo
@@ -114,7 +114,7 @@ public class AssemblyUtils(DataProvider dataProvider)
     {
         Log.Information("Creating Delta...");
 
-        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
+        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "HDiffz", "hdiffz.exe");
 
         var outDir = Path.GetDirectoryName(outPath);
 

@@ -37,9 +37,9 @@ public class DataProvider
 
     private readonly List<RemapModel> _remaps = [];
     private readonly Lock _remapLock = new();
-    private static readonly string _dataPath = Path.Combine(AppContext.BaseDirectory, "Data");
-    private static readonly string _mappingPath = Path.Combine(_dataPath, "mappings.jsonc");
-    private static readonly string _mappingNewPath = Path.Combine(_dataPath, "mappings-new.jsonc");
+    private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
+    private static readonly string _mappingPath = Path.Combine(_assetsPath, "Json", "mappings.jsonc");
+    private static readonly string _mappingNewPath = Path.Combine(_assetsPath, "Json", "mappings-new.jsonc");
 
     private static readonly JsonSerializerOptions _serializerOptions = new()
     {
@@ -161,7 +161,7 @@ public class DataProvider
 
     private static Settings LoadAppSettings()
     {
-        var settingsPath = Path.Combine(_dataPath, "Settings.jsonc");
+        var settingsPath = Path.Combine(_assetsPath, "Json", "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
 
         JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
@@ -171,7 +171,7 @@ public class DataProvider
 
     private Dictionary<string, ItemTemplateModel> LoadItems()
     {
-        var itemsPath = Path.Combine(_dataPath, "items.json");
+        var itemsPath = Path.Combine(_assetsPath, "Json", "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
         JsonSerializerOptions settings = new()

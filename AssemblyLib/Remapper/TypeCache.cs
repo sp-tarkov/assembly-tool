@@ -87,7 +87,7 @@ public sealed class TypeCache(DataProvider dataProvider)
         Classes = classes.Where(t => !t.IsAbstract && !t.IsSealed && !t.IsNested).ToList();
         AbstractClasses = classes.Where(t => t.IsAbstract).ToList();
         SealedClasses = classes.Where(t => t.IsSealed).ToList();
-        StaticClasses = classes.Where(t => t.IsAbstract && !t.IsSealed).ToList();
+        StaticClasses = classes.Where(t => t.IsAbstract && t.IsSealed).ToList();
 
         NestedClasses = classes.Where(t => t.IsNested).ToList();
 

@@ -92,19 +92,27 @@ public sealed class GenericFilters : IRemapFilter
 
     private static IEnumerable<TypeDefinition> FilterDerived(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
-        // Filter based on IsDerived or not
-        if (parms.GenericParams.IsDerived is true)
+        switch (parms.GenericParams.IsDerived)
         {
-            types = types.Where(t => t.BaseType?.Name != "Object");
-
-            if (parms.GenericParams.MatchBaseClass is not null and not "")
+            case true:
             {
-                types = types.Where(t => t.BaseType?.Name == parms.GenericParams.MatchBaseClass);
+                types = types.Where(t => t.BaseType?.FullName != "System.Object");
+
+                if (parms.GenericParams.MatchBaseClass is not null and not "")
+                {
+                    types = types.Where(t => t.BaseType?.Name == parms.GenericParams.MatchBaseClass);
+                }
+
+                break;
             }
-        }
-        else if (parms.GenericParams.IsDerived is false)
-        {
-            types = types.Where(t => t.BaseType?.Name == "Object");
+
+            // Interfaces don't derive from anything
+            case false when parms.GenericParams.IsInterface:
+                break;
+
+            case false:
+                types = types.Where(t => t.BaseType?.FullName == "System.Object");
+                break;
         }
 
         return types;

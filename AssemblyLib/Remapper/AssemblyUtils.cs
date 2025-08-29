@@ -34,8 +34,6 @@ public class AssemblyUtils(DataProvider dataProvider)
 
     public void Deobfuscate(string assemblyPath, bool isLauncher = false)
     {
-        string token;
-
         var module = ModuleDefinition.FromFile(assemblyPath);
 
         var potentialStringDelegates = new List<MethodDefinition>();
@@ -84,7 +82,7 @@ public class AssemblyUtils(DataProvider dataProvider)
 
         // Construct the token string (similar to Mono.Cecil's format)
         // Shift table index to the upper 8 bits
-        token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
+        var token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
         Log.Information("Deobfuscated token: {Token}", token);
 
         var cmd = isLauncher

@@ -20,6 +20,7 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
         var typesToFilter = GetCacheForMapping(mapping);
         if (typesToFilter is null || typesToFilter.Count == 0)
         {
+            // This should NEVER be hit.
             mapping.FailureReasons.Add("No cache available for remap");
             return;
         }

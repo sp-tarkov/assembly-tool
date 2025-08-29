@@ -16274,69 +16274,6 @@
     }
   },
   {
-    "NewTypeName": "WeaponMalfunctionStateClass",
-    "OriginalTypeName": "MalfunctionState",
-    "UseForceRename": false,
-    "SearchParams": {
-      "GenericParams": {
-        "IsPublic": false,
-        "IsAbstract": false,
-        "IsInterface": false,
-        "IsEnum": false,
-        "IsSealed": false,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": false
-      },
-      "Methods": {
-        "ConstructorParameterCount": -1,
-        "MethodCount": -1,
-        "IncludeMethods": [
-          "IsKnownMalfunction",
-          "ChangeStateSilent"
-        ],
-        "ExcludeMethods": []
-      },
-      "Fields": {
-        "FieldCount": -1,
-        "IncludeFields": [
-          "UseAmmoWithoutShell"
-        ],
-        "ExcludeFields": [
-          "allowFlipping"
-        ]
-      },
-      "Properties": {
-        "PropertyCount": -1,
-        "IncludeProperties": [
-          "PlayersWhoKnowAboutMalfunction",
-          "IsUnderbarrelWeapon",
-          "VelocityDelta",
-          "IsAnyMalfExceptMisfire"
-        ],
-        "ExcludeProperties": []
-      },
-      "NestedTypes": {
-        "IsNested": true,
-        "IsNestedAssembly": false,
-        "IsNestedFamily": false,
-        "IsNestedPrivate": false,
-        "IsNestedPublic": true,
-        "IsNestedFamilyAndAssembly": false,
-        "IsNestedFamilyOrAssembly": false,
-        "NestedTypeParentName": "",
-        "NestedTypeCount": -1,
-        "IncludeNestedTypes": [],
-        "ExcludeNestedTypes": []
-      },
-      "Events": {
-        "EventCount": -1,
-        "IncludeEvents": [],
-        "ExcludeEvents": []
-      }
-    }
-  },
-  {
     "NewTypeName": "CompositeDisposableClass",
     "OriginalTypeName": "GClass804",
     "UseForceRename": false,

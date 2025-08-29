@@ -49,8 +49,7 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
         var genericParams = mapping.SearchParams.GenericParams;
         var nestedParams = mapping.SearchParams.NestedTypes;
 
-        // IMPORTANT: always return combined conditionals before we look for individual ones
-        // Otherwise cases such as static can be missed
+        // Order here is very important do NOT change it, Otherwise cases such as static can be missed
 
         /* Type             IL designation
          * Interface:       .class interface public auto ansi abstract beforefieldinit
@@ -60,42 +59,48 @@ public sealed class FilterService(IEnumerable<IRemapFilter> filters, TypeCache t
          * Static Class:    .class public auto ansi abstract sealed beforefieldinit
          */
 
-        switch (genericParams.IsAbstract)
+        // Abstract and sealed = static
+        if (genericParams.IsStatic)
         {
-            // Abstract and sealed (static classes)
-            case true when genericParams.IsSealed:
-                return typeCache.StaticClasses;
+            Log.Information("StaticClasses cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+            return typeCache.StaticClasses;
+        }
 
-            // Normal abstract classes
-            // Interfaces are also considered abstract, ignore those.
-            case true when !genericParams.IsInterface:
-                return typeCache.AbstractClasses;
+        // Interface - considered abstract so check it before abstract
+        if (genericParams.IsInterface)
+        {
+            Log.Information("Interface cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+            return typeCache.Interfaces;
+        }
 
-            // Not abstract or sealed (normal class)
-            case false when !genericParams.IsSealed:
-                // Additionally check for nested
-                return nestedParams.IsNested ? typeCache.NestedClasses : typeCache.Classes;
+        if (genericParams.IsAbstract)
+        {
+            Log.Information("Abstract class cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+            return typeCache.AbstractClasses;
         }
 
         if (genericParams.IsSealed)
         {
+            Log.Information("Sealed class cache chosen for remap: {newTypeName}", mapping.NewTypeName);
             return typeCache.SealedClasses;
         }
 
-        if (genericParams.IsInterface)
-        {
-            return typeCache.Interfaces;
-        }
-
+        // Enums are never obfuscated but im putting this here anyway just in-case
         if (genericParams.IsEnum)
         {
+            Log.Information("Enum cache chosen for remap: {newTypeName}", mapping.NewTypeName);
             return typeCache.Enums;
         }
 
-        Log.Error(
-            "Could not find cache for remap: {remapName}. This is a code issue, not a remap issue, skipping remap",
-            mapping.NewTypeName
-        );
-        return [];
+        // Last thing to consider is if its nested or not
+        switch (nestedParams.IsNested)
+        {
+            case true:
+                Log.Information("Nested class cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+                return typeCache.NestedClasses;
+            case false:
+                Log.Information("Nested class cache chosen for remap: {newTypeName}", mapping.NewTypeName);
+                return typeCache.Classes;
+        }
     }
 }

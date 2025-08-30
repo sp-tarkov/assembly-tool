@@ -46,7 +46,7 @@ public class EventFilters : AbstractAutoMatchFilter
 
         searchParams.Events.IncludeEvents.UnionWith(includeEvents);
         searchParams.Events.ExcludeEvents.UnionWith(excludeEvents);
-        searchParams.Events.EventCount = target.NestedTypes.Count;
+        searchParams.Events.EventCount = target.Events.Count;
 
         return commonEvents.Any()
             || target.Events.Count == 0

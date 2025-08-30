@@ -13,6 +13,18 @@ public sealed class EventTypeFilters : IRemapFilter
         out IEnumerable<TypeDefinition> filteredTypes
     )
     {
+        // -1 is disabled
+        if (remapModel.SearchParams.Events.EventCount >= 0)
+        {
+            types = types.Where(t => t.Events.Count == remapModel.SearchParams.Events.EventCount);
+            if (!types.Any())
+            {
+                remapModel.FailureReasons.Add("No remaining candidates after filtering by event count");
+                filteredTypes = types;
+                return false;
+            }
+        }
+
         types = FilterByInclude(types, remapModel.SearchParams);
         if (!types.Any())
         {

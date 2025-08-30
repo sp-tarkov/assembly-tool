@@ -36,7 +36,7 @@ public class App
         bool isRegen
     )
     {
-        var controller = _provider?.GetService<AutoMatcher.AutoMatcher>();
+        var controller = _provider?.GetService<AutoMatcher.AutoMatchController>();
         await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
     }
 

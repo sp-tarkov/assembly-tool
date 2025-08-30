@@ -9,8 +9,8 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.AutoMatcher;
 
 [Injectable(InjectionType.Singleton)]
-public class AutoMatcher(
-    MappingController mappingController,
+public class AutoMatchController(
+    ControllerBridge controllerBridge,
     AssemblyUtils assemblyUtils,
     DataProvider dataProvider,
     IEnumerable<IAutoMatchFilter> filters
@@ -131,7 +131,7 @@ public class AutoMatcher(
         dataProvider.ClearMappings();
         dataProvider.AddMapping(remapModel);
 
-        await mappingController.Run(assemblyPath, string.Empty, validate: true);
+        await controllerBridge.RunRemapper(assemblyPath, string.Empty, validate: true);
 
         Log.Information("\n{remapModel}", dataProvider.SerializeRemap(remapModel));
 
@@ -217,6 +217,6 @@ public class AutoMatcher(
             throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
         }
 
-        await mappingController.Run(assemblyPath, oldAssemblyPath, outPath);
+        await controllerBridge.RunRemapper(assemblyPath, oldAssemblyPath, outPath);
     }
 }

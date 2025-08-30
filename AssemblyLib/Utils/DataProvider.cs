@@ -39,7 +39,6 @@ public class DataProvider
     private readonly Lock _remapLock = new();
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
     private static readonly string _mappingPath = Path.Combine(_assetsPath, "Json", "mappings.jsonc");
-    private static readonly string _mappingNewPath = Path.Combine(_assetsPath, "Json", "mappings-new.jsonc");
 
     private static readonly JsonSerializerOptions _serializerOptions = new()
     {
@@ -102,13 +101,8 @@ public class DataProvider
         return JsonSerializer.Serialize(remap, _serializerOptions);
     }
 
-    public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
+    public void UpdateMappingFile(bool respectNullableAnnotations = true)
     {
-        if (!File.Exists(_mappingNewPath))
-        {
-            File.Create(_mappingNewPath).Close();
-        }
-
         JsonSerializerOptions settings = new(_serializerOptions)
         {
             RespectNullableAnnotations = !respectNullableAnnotations,
@@ -116,11 +110,9 @@ public class DataProvider
 
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
-        var path = isAutoMatch ? _mappingPath : _mappingNewPath;
+        File.WriteAllText(_mappingPath, jsonText);
 
-        File.WriteAllText(path, jsonText);
-
-        Log.Information("Mapping file updated with new type names and saved to {Path}", path);
+        Log.Information("Mapping file updated with new type names and saved to {Path}", _mappingPath);
     }
 
     public void LoadMappingFile()

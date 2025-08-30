@@ -200,7 +200,7 @@ public class AutoMatcher(
         }
 
         remaps.Add(remapModel);
-        dataProvider.UpdateMappingFile(false, true);
+        dataProvider.UpdateMappingFile(false);
     }
 
     private async Task RunMappingProcess(string response, string assemblyPath, string oldAssemblyPath)

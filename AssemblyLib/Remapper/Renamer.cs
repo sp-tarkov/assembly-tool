@@ -120,7 +120,9 @@ public sealed class Renamer(Statistics stats)
         List<Utf8String> renamedMethodsOnType
     )
     {
-        var splitName = method.Name?.Split('.');
+        // Cache the method name early to avoid multiple accesses
+        var methodName = method.Name?.ToString();
+        var splitName = methodName?.Split('.');
 
         if (splitName is null || splitName.Length < 2)
         {
@@ -136,7 +138,13 @@ public sealed class Renamer(Statistics stats)
             newName = new Utf8String($"{realMethodNameString}_{sameNameCount}");
         }
 
-        if (method.DeclaringType!.Methods.Any(m => m.Name == realMethodNameString))
+        // Cache existing method names to avoid concurrent enumeration
+        var existingMethodNames = method
+            .DeclaringType!.Methods.Select(m => m.Name?.ToString())
+            .Where(name => name != null)
+            .ToHashSet();
+
+        if (existingMethodNames.Contains(realMethodNameString))
         {
             newName = new Utf8String($"{realMethodNameString}_1");
         }
@@ -146,7 +154,7 @@ public sealed class Renamer(Statistics stats)
             Log.Debug(
                 "Renaming method [{MethodDeclaringType}::{MethodName}] to [{TypeDefinition}::{Utf8String}]",
                 method.DeclaringType,
-                method.Name?.ToString(),
+                methodName,
                 method.DeclaringType,
                 newName.ToString()
             );

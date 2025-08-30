@@ -108,6 +108,12 @@ public class DataProvider
             RespectNullableAnnotations = !respectNullableAnnotations,
         };
 
+        // Clear out the dynamically generated remaps before writing
+        foreach (var remap in _remaps.ToList().Where(remap => remap.UseForceRename))
+        {
+            _remaps.Remove(remap);
+        }
+
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
         File.WriteAllText(_mappingPath, jsonText);

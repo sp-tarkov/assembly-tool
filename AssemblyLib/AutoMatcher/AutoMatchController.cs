@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.AutoMatcher.Filters;
-using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Remapper;
 using AssemblyLib.Shared;
@@ -20,7 +19,6 @@ public class AutoMatchController(
 {
     private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition>? _candidateTypes;
-    private List<string>? _typesToMatch;
 
     private string? _newTypeName;
 
@@ -33,8 +31,6 @@ public class AutoMatchController(
     )
     {
         var result = assemblyWriter.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
-
-        _typesToMatch = dataProvider.Settings.TypeNamesToMatch;
 
         if (isRegen)
         {
@@ -119,6 +115,8 @@ public class AutoMatchController(
                 }
                 break;
         }
+
+        Log.Information("Generated Model:\n{remapModel}", dataProvider.SerializeRemap(remapModel));
     }
 
     private async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
@@ -129,8 +127,6 @@ public class AutoMatchController(
         dataProvider.AddMapping(remapModel);
 
         await mappingController.Run(assemblyPath, string.Empty, validate: true);
-
-        Log.Information("\n{remapModel}", dataProvider.SerializeRemap(remapModel));
 
         if (remapModel.Succeeded)
         {
@@ -147,6 +143,7 @@ public class AutoMatchController(
     {
         Thread.Sleep(1000);
 
+        Log.Information("Signature generation successful!");
         Log.Information("Add remap to existing list?.. (y/n)");
         var resp = Console.ReadLine()?.ToLower();
 

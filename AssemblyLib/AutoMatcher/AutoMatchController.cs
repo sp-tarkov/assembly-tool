@@ -102,13 +102,23 @@ public class AutoMatchController(
             }
         }
 
-        if (_candidateTypes!.Count == 1)
+        switch (_candidateTypes!.Count)
         {
-            await RunTest(remapModel, assemblyPath, oldAssemblyPath, isRegen);
-            return;
+            case 0:
+                Log.Error("No potential candidates remain, could not build a signature.");
+                break;
+            case 1:
+                await RunTest(remapModel, assemblyPath, oldAssemblyPath, isRegen);
+                break;
+            case > 1:
+                Log.Information("Could not isolate type {type}", remapModel.NewTypeName);
+                Log.Information("Showing all remaining potential types:");
+                foreach (var type in _candidateTypes)
+                {
+                    Log.Information("\t{FullName}", type.FullName);
+                }
+                break;
         }
-
-        Log.Error("Could not find a match... :(");
     }
 
     private async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)

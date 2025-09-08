@@ -14,7 +14,8 @@ public class AutoMatchController(
     MappingController mappingController,
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
-    IEnumerable<IAutoMatchFilter> filters
+    IEnumerable<IAutoMatchFilter> filters,
+    TypeCache typeCache
 )
 {
     private ModuleDefinition? Module { get; set; }
@@ -60,7 +61,9 @@ public class AutoMatchController(
         }
         Log.Information("Found target type: {FullName}", targetTypeDef.FullName);
 
-        GetCandidateTypes(targetTypeDef);
+        typeCache.HydrateCache();
+        _candidateTypes = typeCache.SelectCache(targetTypeDef);
+
         Log.Information(
             "Found {CandidateTypesCount} potential candidates: {FullName}",
             _candidateTypes?.Count ?? 0,
@@ -75,23 +78,6 @@ public class AutoMatchController(
     private TypeDefinition? FindTargetType(string oldTypeName)
     {
         return Module!.GetAllTypes().FirstOrDefault(t => t.FullName == oldTypeName);
-    }
-
-    private void GetCandidateTypes(TypeDefinition targetTypeDef)
-    {
-        if (targetTypeDef.IsNested)
-        {
-            _candidateTypes = targetTypeDef
-                .DeclaringType?.NestedTypes.Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
-                .ToList();
-
-            return;
-        }
-
-        _candidateTypes = Module
-            ?.GetAllTypes()
-            .Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
-            .ToList();
     }
 
     private async Task StartFilter(

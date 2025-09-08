@@ -1,5 +1,7 @@
 ﻿using AsmResolver.DotNet;
+using AssemblyLib.Exceptions;
 using AssemblyLib.Extensions;
+using AssemblyLib.Models;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
@@ -8,59 +10,56 @@ namespace AssemblyLib.Shared;
 [Injectable(InjectionType.Singleton)]
 public sealed class TypeCache(DataProvider dataProvider)
 {
-    /// <summary>
-    ///     Is the cache hydrated?
-    /// </summary>
-    public bool IsHydrated { get; private set; }
+    private bool _isHydrated;
 
     /// <summary>
     ///     Contains all classes that are NOT nested, sealed, or abstract
     /// </summary>
-    public List<TypeDefinition>? Classes { get; private set; }
+    private List<TypeDefinition>? _classes;
 
     /// <summary>
     ///     Contains all abstract classes
     /// </summary>
-    public List<TypeDefinition>? AbstractClasses { get; private set; }
+    private List<TypeDefinition>? _abstractClasses;
 
     /// <summary>
     ///     Contains all sealed classes
     /// </summary>
-    public List<TypeDefinition>? SealedClasses { get; private set; }
+    private List<TypeDefinition>? _sealedClasses;
 
     /// <summary>
     ///     Contains all static classes (abstract and sealed)
     /// </summary>
-    public List<TypeDefinition>? StaticClasses { get; private set; }
+    private List<TypeDefinition>? _staticClasses;
 
     /// <summary>
     ///     Contains all nested classes, can be sealed or abstract
     /// </summary>
-    public List<TypeDefinition>? NestedClasses { get; private set; }
+    private List<TypeDefinition>? _nestedClasses;
 
     /// <summary>
     ///     Contains all non-nested, non-readonly structs
     /// </summary>
-    public List<TypeDefinition>? Structs { get; private set; }
+    private List<TypeDefinition>? _structs;
 
     /// <summary>
     ///     Contains all nested Structs
     /// </summary>
-    public List<TypeDefinition>? NestedStructs { get; private set; }
+    private List<TypeDefinition>? _nestedStructs;
 
     /// <summary>
     ///     Contains all interfaces
     /// </summary>
-    public List<TypeDefinition>? Interfaces { get; private set; }
+    private List<TypeDefinition>? _interfaces;
 
     /// <summary>
     ///     Contains all enums
     /// </summary>
-    public List<TypeDefinition>? Enums { get; private set; }
+    private List<TypeDefinition>? _enums;
 
     public void HydrateCache()
     {
-        if (IsHydrated)
+        if (_isHydrated)
         {
             Log.Warning("Trying to hydrate an already hydrated type cache");
             return;
@@ -84,34 +83,168 @@ public sealed class TypeCache(DataProvider dataProvider)
 
         var classes = allTypes.Where(t => t.IsClass);
 
-        Classes = classes.Where(t => !t.IsAbstract && !t.IsSealed && !t.IsNested).ToList();
-        AbstractClasses = classes.Where(t => t.IsAbstract).ToList();
-        SealedClasses = classes.Where(t => t.IsSealed).ToList();
-        StaticClasses = classes.Where(t => t.IsAbstract && t.IsSealed).ToList();
+        _classes = classes.Where(t => !t.IsAbstract && !t.IsSealed && !t.IsNested).ToList();
+        _abstractClasses = classes.Where(t => t.IsAbstract).ToList();
+        _sealedClasses = classes.Where(t => t.IsSealed).ToList();
+        _staticClasses = classes.Where(t => t.IsAbstract && t.IsSealed).ToList();
 
-        NestedClasses = classes.Where(t => t.IsNested).ToList();
+        _nestedClasses = classes.Where(t => t.IsNested).ToList();
 
-        Structs = allTypes.Where(t => t.IsValueType && !t.IsNested && !t.IsEnum).ToList();
-        NestedStructs = allTypes.Where(t => t.IsValueType && t.IsNested && !t.IsEnum).ToList();
+        _structs = allTypes.Where(t => t.IsValueType && !t.IsNested && !t.IsEnum).ToList();
+        _nestedStructs = allTypes.Where(t => t.IsValueType && t.IsNested && !t.IsEnum).ToList();
 
-        Interfaces = allTypes.Where(t => t.IsInterface).ToList();
-        Enums = allTypes.Where(t => t.IsEnum).ToList();
+        _interfaces = allTypes.Where(t => t.IsInterface).ToList();
+        _enums = allTypes.Where(t => t.IsEnum).ToList();
 
         Log.Information("-------------------------------- Cache Hydrated --------------------------------");
         Log.Information("Loaded: {num} Total obfuscated types", allTypes.Count());
-        Log.Information("Loaded: {num} Non-nested, sealed, or abstract classes", Classes.Count);
-        Log.Information("Loaded: {num} Abstract classes", AbstractClasses.Count);
-        Log.Information("Loaded: {num} Sealed classes", SealedClasses.Count);
-        Log.Information("Loaded: {num} Static classes", StaticClasses.Count);
-        Log.Information("Loaded: {num} Nested classes", NestedClasses.Count);
+        Log.Information("Loaded: {num} Non-nested, sealed, or abstract classes", _classes.Count);
+        Log.Information("Loaded: {num} Abstract classes", _abstractClasses.Count);
+        Log.Information("Loaded: {num} Sealed classes", _sealedClasses.Count);
+        Log.Information("Loaded: {num} Static classes", _staticClasses.Count);
+        Log.Information("Loaded: {num} Nested classes", _nestedClasses.Count);
 
-        Log.Information("Loaded: {num} Non-nested structs", Structs.Count);
-        Log.Information("Loaded: {num} Nested structs", NestedStructs.Count);
+        Log.Information("Loaded: {num} Non-nested structs", _structs.Count);
+        Log.Information("Loaded: {num} Nested structs", _nestedStructs.Count);
 
-        Log.Information("Loaded: {num} Interfaces", Interfaces.Count);
-        Log.Information("Loaded: {num} Enums", Interfaces.Count);
+        Log.Information("Loaded: {num} Interfaces", _interfaces.Count);
+        Log.Information("Loaded: {num} Enums", _interfaces.Count);
         Log.Information("--------------------------------------------------------------------------------");
 
-        IsHydrated = true;
+        _isHydrated = true;
+    }
+
+    /// <summary>
+    ///     Select the correct cache for the provided remap
+    /// </summary>
+    /// <param name="remapModel">Remap to select the cache for</param>
+    /// <returns>Selected cache</returns>
+    public List<TypeDefinition> SelectCache(RemapModel remapModel)
+    {
+        var genericParams = remapModel.SearchParams.GenericParams;
+        var nestedParams = remapModel.SearchParams.NestedTypes;
+
+        // Order here is very important do NOT change it, Otherwise cases such as static can be missed
+
+        /* Type             IL designation
+         * Interface:       .class interface public auto ansi abstract beforefieldinit
+         * Class:           .class public auto ansi beforefieldinit
+         * Abstract Class:  .class public auto ansi abstract beforefieldinit
+         * Sealed Class:    .class public auto ansi sealed beforefieldinit
+         * Static Class:    .class public auto ansi abstract sealed beforefieldinit
+         * Structs:         .class public sequential ansi sealed beforefieldinit [Name] extends [System.Runtime]System.ValueType
+         */
+
+        // Abstract and sealed = static
+        if (genericParams.IsStatic)
+        {
+            Log.Information("Static class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _staticClasses ?? throw new TypeCacheException("Static class cache is null");
+        }
+
+        if (genericParams.IsStruct ?? false)
+        {
+            if (nestedParams.IsNested)
+            {
+                Log.Information("Nested struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                return _nestedStructs ?? throw new TypeCacheException("NestedStructs cache is null");
+            }
+
+            Log.Information("Struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _structs ?? throw new TypeCacheException("Structs cache is null");
+        }
+
+        // Interface - considered abstract so check it before abstract
+        if (genericParams.IsInterface)
+        {
+            Log.Information("Interface cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _interfaces ?? throw new TypeCacheException("Interfaces cache is null");
+        }
+
+        if (genericParams.IsAbstract)
+        {
+            Log.Information("Abstract class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _abstractClasses ?? throw new TypeCacheException("AbstractClasses cache is null");
+        }
+
+        if (genericParams.IsSealed)
+        {
+            Log.Information("Sealed class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _sealedClasses ?? throw new TypeCacheException("SealedClasses cache is null");
+        }
+
+        // Enums are never obfuscated but im putting this here anyway just in-case
+        if (genericParams.IsEnum)
+        {
+            Log.Information("Enum cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            return _enums ?? throw new TypeCacheException("Enum cache is null");
+        }
+
+        // Last thing to consider is if its nested or not
+        switch (nestedParams.IsNested)
+        {
+            case true:
+                Log.Information("Nested class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                return _nestedClasses ?? throw new TypeCacheException("NestedClasses cache is null");
+            case false:
+                Log.Information("Class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                return _classes ?? throw new TypeCacheException("Classes cache is null");
+        }
+    }
+
+    public List<TypeDefinition> SelectCache(TypeDefinition typeDef)
+    {
+        // Abstract and sealed = static
+        if (typeDef.IsStatic())
+        {
+            Log.Information("Static class cache chosen for type: {name}", typeDef.Name);
+            return _staticClasses ?? throw new TypeCacheException("Static class cache is null");
+        }
+
+        if (typeDef.IsStruct())
+        {
+            if (typeDef.IsNested)
+            {
+                Log.Information("Nested struct cache chosen for type: {name}", typeDef.Name);
+                return _nestedStructs ?? throw new TypeCacheException("NestedStructs cache is null");
+            }
+
+            Log.Information("Struct cache chosen for type: {name}", typeDef.Name);
+            return _structs ?? throw new TypeCacheException("Structs cache is null");
+        }
+
+        if (typeDef.IsInterface)
+        {
+            Log.Information("Interface cache chosen for type: {name}", typeDef.Name);
+            return _interfaces ?? throw new TypeCacheException("Interfaces cache is null");
+        }
+
+        if (typeDef.IsAbstract)
+        {
+            Log.Information("Abstract class cache chosen for type: {name}", typeDef.Name);
+            return _abstractClasses ?? throw new TypeCacheException("AbstractClasses cache is null");
+        }
+
+        if (typeDef.IsSealed)
+        {
+            Log.Information("Sealed class cache chosen for type: {name}", typeDef.Name);
+            return _sealedClasses ?? throw new TypeCacheException("SealedClasses cache is null");
+        }
+
+        if (typeDef.IsEnum)
+        {
+            Log.Information("Enum cache chosen for type: {name}", typeDef.Name);
+            return _enums ?? throw new TypeCacheException("Enum cache is null");
+        }
+
+        switch (typeDef.IsNested)
+        {
+            case true:
+                Log.Information("Nested class cache chosen for remap: {name}", typeDef.Name);
+                return _nestedClasses ?? throw new TypeCacheException("NestedClasses cache is null");
+            case false:
+                Log.Information("Class cache chosen for remap: {name}", typeDef.Name);
+                return _classes ?? throw new TypeCacheException("Classes cache is null");
+        }
     }
 }

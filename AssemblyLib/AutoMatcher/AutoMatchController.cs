@@ -10,7 +10,7 @@ namespace AssemblyLib.AutoMatcher;
 
 [Injectable(InjectionType.Singleton)]
 public class AutoMatchController(
-    ControllerBridge controllerBridge,
+    MappingController mappingController,
     AssemblyUtils assemblyUtils,
     DataProvider dataProvider,
     IEnumerable<IAutoMatchFilter> filters
@@ -131,7 +131,7 @@ public class AutoMatchController(
         dataProvider.ClearMappings();
         dataProvider.AddMapping(remapModel);
 
-        await controllerBridge.RunRemapper(assemblyPath, string.Empty, validate: true);
+        await mappingController.Run(assemblyPath, string.Empty, validate: true);
 
         Log.Information("\n{remapModel}", dataProvider.SerializeRemap(remapModel));
 
@@ -217,6 +217,6 @@ public class AutoMatchController(
             throw new DirectoryNotFoundException($"Could not resolve directory for `{assemblyPath}`");
         }
 
-        await controllerBridge.RunRemapper(assemblyPath, oldAssemblyPath, outPath);
+        await mappingController.Run(assemblyPath, oldAssemblyPath, outPath);
     }
 }

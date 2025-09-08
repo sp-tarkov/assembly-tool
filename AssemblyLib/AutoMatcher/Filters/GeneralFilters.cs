@@ -1,7 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;

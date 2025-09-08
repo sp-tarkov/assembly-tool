@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
-using AssemblyLib.Utils;
 using Serilog;
 using SPTarkov.DI.Annotations;
 

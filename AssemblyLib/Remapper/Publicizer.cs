@@ -3,12 +3,12 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
 public sealed class Publicizer(DataProvider dataProvider, Statistics stats)

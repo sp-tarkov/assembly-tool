@@ -2,14 +2,13 @@
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
 public sealed class Renamer(Statistics stats)

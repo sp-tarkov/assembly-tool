@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class Statistics(DataProvider dataProvider)

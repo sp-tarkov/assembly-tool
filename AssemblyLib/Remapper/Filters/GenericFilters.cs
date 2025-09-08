@@ -2,7 +2,7 @@
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 0)]
 public sealed class GenericFilters : IRemapFilter

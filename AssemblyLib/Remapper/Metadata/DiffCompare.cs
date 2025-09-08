@@ -1,7 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.MetaData;
+namespace AssemblyLib.Remapper.MetaData;
 
 [Injectable]
 public sealed class DiffCompare

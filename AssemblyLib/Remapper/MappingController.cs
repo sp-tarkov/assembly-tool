@@ -6,15 +6,13 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Remapper;
-using AssemblyLib.ReMapper.MetaData;
+using AssemblyLib.Remapper.MetaData;
 using AssemblyLib.Shared;
-using AssemblyLib.Utils;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class MappingController(
@@ -22,7 +20,7 @@ public sealed class MappingController(
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    AssemblyUtils assemblyUtils,
+    AssemblyWriter assemblyWriter,
     AttributeFactory attributeFactory,
     FilterService filterService,
     TypeCache typeCache
@@ -74,7 +72,7 @@ public sealed class MappingController(
     /// </summary>
     private void LoadOrDeobfuscateAssembly()
     {
-        var result = assemblyUtils.TryDeObfuscate(Module, _targetAssemblyPath);
+        var result = assemblyWriter.TryDeObfuscate(Module, _targetAssemblyPath);
 
         _targetAssemblyPath = result.Item1;
         Module = result.Item2;
@@ -479,7 +477,7 @@ public sealed class MappingController(
             return;
         }
 
-        assemblyUtils.StartHDiffz(OutPath);
+        assemblyWriter.StartHDiffz(OutPath);
 
         statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }

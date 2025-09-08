@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics;
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
-public class AssemblyUtils(DataProvider dataProvider)
+public class AssemblyWriter(DataProvider dataProvider)
 {
     public (string, ModuleDefinition?) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
     {

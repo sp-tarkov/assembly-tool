@@ -2,7 +2,7 @@
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 5)]
 public sealed class NestedTypeFilters : IRemapFilter

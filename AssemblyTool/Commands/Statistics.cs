@@ -1,5 +1,4 @@
-﻿using AssemblyLib;
-using AssemblyTool.Utils;
+﻿using AssemblyLib.Shared;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
@@ -14,8 +13,6 @@ public class Statistics : ICommand
 
     public async ValueTask ExecuteAsync(IConsole console)
     {
-        Debugger.TryWaitForDebuggerAttach();
-
         var app = new App();
         await app.RunStatistics(TargetAssemblyPath);
     }

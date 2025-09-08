@@ -6,7 +6,7 @@ using Serilog;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace AssemblyLib.Utils;
+namespace AssemblyLib.Shared;
 
 [Injectable(InjectionType.Singleton)]
 public class DataProvider

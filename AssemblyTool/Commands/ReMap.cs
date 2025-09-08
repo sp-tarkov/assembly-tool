@@ -1,5 +1,4 @@
-﻿using AssemblyLib;
-using AssemblyTool.Utils;
+﻿using AssemblyLib.Shared;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
@@ -28,8 +27,6 @@ public class ReMap : ICommand
 
     public async ValueTask ExecuteAsync(IConsole console)
     {
-        Debugger.TryWaitForDebuggerAttach();
-
         var outPath = Path.GetDirectoryName(TargetAssemblyPath);
 
         if (outPath is null)

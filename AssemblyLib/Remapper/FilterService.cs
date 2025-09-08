@@ -1,6 +1,6 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.ReMapper.Filters;
+using AssemblyLib.Remapper.Filters;
 using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;

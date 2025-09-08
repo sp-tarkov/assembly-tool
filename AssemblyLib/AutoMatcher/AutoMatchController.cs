@@ -2,8 +2,8 @@
 using AssemblyLib.AutoMatcher.Filters;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.ReMapper;
-using AssemblyLib.Utils;
+using AssemblyLib.Remapper;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
@@ -12,7 +12,7 @@ namespace AssemblyLib.AutoMatcher;
 [Injectable(InjectionType.Singleton)]
 public class AutoMatchController(
     MappingController mappingController,
-    AssemblyUtils assemblyUtils,
+    AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     IEnumerable<IAutoMatchFilter> filters
 )
@@ -31,7 +31,7 @@ public class AutoMatchController(
         bool isRegen
     )
     {
-        var result = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
+        var result = assemblyWriter.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
 
         _typesToMatch = dataProvider.Settings.TypeNamesToMatch;
 

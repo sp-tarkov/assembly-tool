@@ -1,5 +1,6 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.AutoMatcher.Filters;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.ReMapper;
 using AssemblyLib.Utils;

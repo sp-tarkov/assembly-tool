@@ -1,9 +1,10 @@
 ﻿using AsmResolver.DotNet;
+using AssemblyLib.Extensions;
 using AssemblyLib.Utils;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Remapper;
+namespace AssemblyLib.Shared;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class TypeCache(DataProvider dataProvider)

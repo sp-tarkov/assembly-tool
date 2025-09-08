@@ -1,5 +1,6 @@
 ﻿using AsmResolver;
 using AsmResolver.DotNet;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using Serilog;

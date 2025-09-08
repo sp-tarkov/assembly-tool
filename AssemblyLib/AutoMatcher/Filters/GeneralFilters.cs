@@ -1,4 +1,5 @@
 ﻿using AsmResolver.DotNet;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Utils;
 using SPTarkov.DI.Annotations;

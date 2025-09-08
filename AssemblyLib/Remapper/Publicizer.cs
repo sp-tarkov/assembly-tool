@@ -2,6 +2,7 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AssemblyLib.Extensions;
 using AssemblyLib.Utils;
 using Serilog;
 using Serilog.Events;

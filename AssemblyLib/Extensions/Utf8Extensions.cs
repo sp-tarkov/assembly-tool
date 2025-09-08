@@ -1,8 +1,8 @@
 ﻿using AsmResolver;
 
-namespace AssemblyLib.Utils;
+namespace AssemblyLib.Extensions;
 
-internal static class AsmResolverExtensions
+internal static class Utf8Extensions
 {
     private static readonly HashSet<string> _typesToMatch =
     [

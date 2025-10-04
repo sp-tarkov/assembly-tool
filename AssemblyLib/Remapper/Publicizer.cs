@@ -94,7 +94,11 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
-            Log.Information($"Not publicizing {method.DeclaringType!.FullName}::{method.Name} due to it being ignored");
+            Log.Information(
+                "Not publicizing {FullName}::{MethodName} due to it being ignored",
+                method.DeclaringType!.FullName,
+                method.Name
+            );
             return;
         }
 

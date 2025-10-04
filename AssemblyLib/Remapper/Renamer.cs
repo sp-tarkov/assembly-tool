@@ -87,28 +87,23 @@ public sealed class Renamer(Statistics stats)
         var tasks = new List<Task>(types.Count());
         foreach (var type in types)
         {
-            tasks.Add(
-                Task.Factory.StartNew(() =>
+            var renamedMethodNames = new List<Utf8String>();
+            foreach (var method in type.Methods)
+            {
+                if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
                 {
-                    var renamedMethodNames = new List<Utf8String>();
-                    foreach (var method in type.Methods)
-                    {
-                        if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
-                        {
-                            continue;
-                        }
+                    continue;
+                }
 
-                        var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
+                var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
 
-                        if (newMethodName == Utf8String.Empty)
-                        {
-                            continue;
-                        }
+                if (newMethodName == Utf8String.Empty)
+                {
+                    continue;
+                }
 
-                        renamedMethodNames.Add(newMethodName);
-                    }
-                })
-            );
+                renamedMethodNames.Add(newMethodName);
+            }
         }
 
         await Task.WhenAll(tasks);

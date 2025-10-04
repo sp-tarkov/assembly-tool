@@ -7,6 +7,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class EventFilters : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "EventFilters"; }
+    }
+
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Target has no events but type has events

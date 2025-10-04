@@ -91,10 +91,24 @@ public class AutoMatchController(
         {
             foreach (var filter in filters)
             {
-                if (!filter.Filter(target, candidate, remapModel.SearchParams))
+                if (filter.Filter(target, candidate, remapModel.SearchParams))
                 {
-                    _candidateTypes.Remove(candidate);
+                    continue;
                 }
+
+                if (target.FullName == candidate.FullName)
+                {
+                    Log.Error(
+                        "Candidate: {candidate} filtered out after filter: {filter}",
+                        candidate.Name?.ToString(),
+                        filter.FilterName
+                    );
+
+                    _candidateTypes.Remove(candidate);
+                    break;
+                }
+
+                _candidateTypes.Remove(candidate);
             }
         }
 

@@ -12020,58 +12020,6 @@
     }
   },
   {
-    "NewTypeName": "MoveAllOperationClass",
-    "OriginalTypeName": "GClass1196",
-    "UseForceRename": false,
-    "SearchParams": {
-      "GenericParams": {
-        "IsPublic": true,
-        "IsAbstract": false,
-        "IsInterface": false,
-        "IsEnum": false,
-        "IsSealed": true,
-        "HasGenericParameters": false
-      },
-      "Methods": {
-        "ConstructorParameterCount": 5,
-        "MethodCount": 4,
-        "IncludeMethods": [],
-        "ExcludeMethods": []
-      },
-      "Fields": {
-        "FieldCount": 4,
-        "IncludeFields": [
-          "Equipment",
-          "Item"
-        ],
-        "ExcludeFields": []
-      },
-      "Properties": {
-        "PropertyCount": -1,
-        "IncludeProperties": [],
-        "ExcludeProperties": []
-      },
-      "NestedTypes": {
-        "IsNested": false,
-        "IsNestedAssembly": false,
-        "IsNestedFamily": false,
-        "IsNestedPrivate": false,
-        "IsNestedPublic": false,
-        "IsNestedFamilyAndAssembly": false,
-        "IsNestedFamilyOrAssembly": false,
-        "NestedTypeParentName": "",
-        "NestedTypeCount": -1,
-        "IncludeNestedTypes": [],
-        "ExcludeNestedTypes": []
-      },
-      "Events": {
-        "EventCount": -1,
-        "IncludeEvents": [],
-        "ExcludeEvents": []
-      }
-    }
-  },
-  {
     "NewTypeName": "SplitDescriptorClass",
     "OriginalTypeName": "GClass1663",
     "UseForceRename": false,
@@ -16843,7 +16791,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 14,
         "IncludeMethods": [
           "GetAutoVaultingStrategy",
           "GetVaultingStrategy"
@@ -22212,7 +22160,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 22,
+        "MethodCount": 24,
         "IncludeMethods": [
           "Enter",
           "StartExiting",
@@ -22746,7 +22694,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 9,
+        "MethodCount": 20,
         "IncludeMethods": [
           "add_OnGoalTargetChange",
           "remove_OnGoalTargetChange",
@@ -22869,7 +22817,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 0,
-        "MethodCount": 3,
+        "MethodCount": 4,
         "IncludeMethods": [
           "SetTarget",
           "ShootDone",
@@ -23166,7 +23114,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 0,
-        "MethodCount": 11,
+        "MethodCount": 18,
         "IncludeMethods": [
           "Init",
           "AirdropEvent",
@@ -23427,7 +23375,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 5,
+        "MethodCount": 16,
         "IncludeMethods": [
           "SetStatus",
           "CheckForStatusChange",
@@ -23526,7 +23474,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 19,
+        "MethodCount": 21,
         "IncludeMethods": [
           "Init",
           "RegisterKeyToReset",
@@ -23791,7 +23739,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 21,
+        "MethodCount": 23,
         "IncludeMethods": [
           "add_OnQuestExpired",
           "remove_OnQuestExpired",
@@ -24265,7 +24213,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 9,
+        "MethodCount": 11,
         "IncludeMethods": [
           "add_ExplosionEvent",
           "remove_ExplosionEvent",
@@ -24457,7 +24405,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 49,
+        "MethodCount": 57,
         "IncludeMethods": [
           "OnUpdate",
           "StartShellingPosition",
@@ -24603,7 +24551,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 7,
         "IncludeMethods": [
           "SyncProjectilesStates",
           "CreateActiveProjectile",
@@ -24879,7 +24827,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 27,
+        "MethodCount": 32,
         "IncludeMethods": [
           "Init",
           "SetSyncObject",
@@ -24976,7 +24924,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 10,
+        "MethodCount": 15,
         "IncludeMethods": [
           "SetSyncObject",
           "Init",
@@ -25080,7 +25028,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 4,
+        "MethodCount": 11,
         "IncludeMethods": [
           "ExecuteInternal",
           "ToDescriptor",
@@ -25256,7 +25204,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 0,
+        "MethodCount": 5,
         "IncludeMethods": [
           "op_Implicit"
         ],
@@ -25566,7 +25514,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 4,
+        "MethodCount": 12,
         "IncludeMethods": [
           "Start",
           "Stop",
@@ -25652,7 +25600,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 3,
+        "MethodCount": 9,
         "IncludeMethods": [
           "TryPauseFrameRelatedMetrics",
           "TryResumeFrameRelatedMetrics"
@@ -26093,7 +26041,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 1,
+        "MethodCount": 3,
         "IncludeMethods": [
           "Clone"
         ],
@@ -26224,7 +26172,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 13,
+        "MethodCount": 17,
         "IncludeMethods": [
           "HasNonEmptyTransferContainer",
           "InitTransferContainer",
@@ -26297,7 +26245,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 2,
+        "MethodCount": 3,
         "IncludeMethods": [
           "Create",
           "GetPoolSizeForResourceType"
@@ -26449,7 +26397,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 3,
+        "MethodCount": 6,
         "IncludeMethods": [
           "ToString",
           "Serialize",
@@ -26570,7 +26518,7 @@
     }
   },
   {
-    "NewTypeName": "VOIPBanDataClass",
+    "NewTypeName": "VoipBanDataClass",
     "OriginalTypeName": "GClass2013",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -26587,7 +26535,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 5,
+        "MethodCount": 10,
         "IncludeMethods": [
           "add_OnBanExpired",
           "remove_OnBanExpired",
@@ -26711,7 +26659,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 28,
+        "MethodCount": 33,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -26763,7 +26711,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 8,
         "IncludeMethods": [
           "Reset",
           "SetVector",
@@ -26955,7 +26903,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 15,
+        "MethodCount": 30,
         "IncludeMethods": [
           "CalcSit",
           "TryCheckSafe",
@@ -27241,7 +27189,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 28,
+        "MethodCount": 38,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -27293,7 +27241,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 15,
+        "MethodCount": 18,
         "IncludeMethods": [
           "MergeAxisWithDefault",
           "GetBoundItemNames",
@@ -27396,7 +27344,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 17,
+        "MethodCount": 22,
         "IncludeMethods": [
           "ToggleEventEnvironment",
           "OnTriggerStateChanged",
@@ -27833,7 +27781,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 17,
+        "MethodCount": 20,
         "IncludeMethods": [
           "Init",
           "ManualUpdate",
@@ -27949,7 +27897,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 3,
+        "MethodCount": 4,
         "IncludeMethods": [
           "ToString",
           "Serialize",
@@ -28068,7 +28016,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 17,
         "IncludeMethods": [
           "CreateFragment",
           "SetExplosiveItemParams"
@@ -28465,7 +28413,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 3,
+        "MethodCount": 17,
         "IncludeMethods": [
           "ToInventory"
         ],
@@ -28571,7 +28519,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 51,
+        "MethodCount": 58,
         "IncludeMethods": [
           "add_OnRedrawByItemRequired",
           "remove_OnRedrawByItemRequired",
@@ -28723,7 +28671,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 30,
+        "MethodCount": 32,
         "IncludeMethods": [
           "SetPatrolMode",
           "Activate",
@@ -28930,7 +28878,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 2,
+        "MethodCount": 4,
         "IncludeMethods": [
           "InitConditionsConnectorsManager",
           "SetConditionValue"
@@ -29699,7 +29647,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 6,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "GetSearchRadius",
@@ -29932,7 +29880,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 7,
         "IncludeMethods": [
           "Compare",
           "UpdateFromAnotherItem",
@@ -30759,7 +30707,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 16,
+        "MethodCount": 18,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -30811,7 +30759,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 24,
+        "MethodCount": 27,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -31229,7 +31177,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 14,
+        "MethodCount": 20,
         "IncludeMethods": [
           "Activate",
           "ShootDone",
@@ -31800,7 +31748,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 16,
+        "MethodCount": 22,
         "IncludeMethods": [
           "SetReachDist",
           "GetReturnPoint",
@@ -31898,7 +31846,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 16,
+        "MethodCount": 20,
         "IncludeMethods": [
           "TryGetRole",
           "ChooseProfile",
@@ -32006,7 +31954,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 1,
+        "MethodCount": 7,
         "IncludeMethods": [
           "ToString"
         ],
@@ -32147,7 +32095,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 5,
+        "MethodCount": 28,
         "IncludeMethods": [
           "Init",
           "IsActive",
@@ -32214,7 +32162,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 7,
-        "MethodCount": 9,
+        "MethodCount": 14,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -32774,7 +32722,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 11,
+        "MethodCount": 15,
         "IncludeMethods": [
           "ActivateBot",
           "FillBackupProfilesData",
@@ -33172,7 +33120,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 4,
+        "MethodCount": 10,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -33600,7 +33548,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 11,
+        "MethodCount": 42,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -33749,7 +33697,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 6,
         "IncludeMethods": [
           "IsTalkDetected",
           "SetTalkDateTime"
@@ -33899,7 +33847,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 5,
+        "MethodCount": 6,
         "IncludeMethods": [
           "ReloadLocale",
           "ReloadBackendLocale",
@@ -34013,7 +33961,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 19,
+        "MethodCount": 22,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -34065,7 +34013,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 1,
+        "MethodCount": 3,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "Populate",
@@ -35545,7 +35493,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 8,
+        "MethodCount": 10,
         "IncludeMethods": [
           "UpdateInput",
           "UpdateCommand",
@@ -36016,7 +35964,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 6,
+        "MethodCount": 9,
         "IncludeMethods": [
           "OnConditionValueChanged",
           "CreateConditionalList",
@@ -36100,7 +36048,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 8,
         "IncludeMethods": [
           "add_surveyViewed",
           "remove_surveyViewed",
@@ -36239,7 +36187,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 1,
+        "MethodCount": 2,
         "IncludeMethods": [
           "InitConditionsConnectorsManager"
         ],
@@ -36583,7 +36531,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 18,
+        "MethodCount": 20,
         "IncludeMethods": [
           "CalculatePathFull",
           "FindPathOfCoresTest",
@@ -37309,7 +37257,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 1,
+        "MethodCount": 9,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "Dispose",
@@ -37709,7 +37657,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 8,
+        "MethodCount": 20,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -37761,7 +37709,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 11,
+        "MethodCount": 16,
         "IncludeMethods": [
           "GetRealSoundValue",
           "ValidateMicrophone",
@@ -37907,7 +37855,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 32,
+        "MethodCount": 91,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -37917,7 +37865,7 @@
         "ExcludeFields": []
       },
       "Properties": {
-        "PropertyCount": 34,
+        "PropertyCount": 35,
         "IncludeProperties": [],
         "ExcludeProperties": []
       },
@@ -37959,7 +37907,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 20,
+        "MethodCount": 21,
         "IncludeMethods": [
           "CheckOnExclude",
           "GetSettings",
@@ -38457,7 +38405,7 @@
         ]
       },
       "Fields": {
-        "FieldCount": 15,
+        "FieldCount": 14,
         "IncludeFields": [
           "VisibleAngle",
           "VisibleDistance",

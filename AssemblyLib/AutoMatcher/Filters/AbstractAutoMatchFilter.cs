@@ -7,6 +7,8 @@ namespace AssemblyLib.AutoMatcher.Filters;
 
 public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
 {
+    public abstract string FilterName { get; }
+
     public abstract bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 
     /// <summary>
@@ -27,5 +29,7 @@ public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
 
 public interface IAutoMatchFilter
 {
+    public string FilterName { get; }
+
     bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 }

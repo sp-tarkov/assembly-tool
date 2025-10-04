@@ -164,7 +164,7 @@ public sealed class MethodFilters : IRemapFilter
         var count = 0;
         foreach (var method in type.Methods)
         {
-            if (method is { IsConstructor: false, IsSpecialName: false, IsGetMethod: false, IsSetMethod: false })
+            if (method is { IsConstructor: false })
             {
                 count++;
             }

@@ -9,6 +9,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class FieldFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "FieldFilters"; }
+    }
+
     private List<string>? _fieldNamesToIgnore;
 
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)

@@ -9,6 +9,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "GeneralFilters"; }
+    }
+
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         if (target.IsPublic && !candidate.IsPublic)

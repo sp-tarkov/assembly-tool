@@ -80,11 +80,10 @@ public sealed class Renamer(Statistics stats)
         remap.ChosenType.Name = new Utf8String(remap.NewTypeName);
     }
 
-    public async Task FixInterfaceMangledMethodNames(ModuleDefinition module)
+    public void FixInterfaceMangledMethodNames(ModuleDefinition module)
     {
         var types = module.GetAllTypes().Where(t => !t.IsInterface);
 
-        var tasks = new List<Task>(types.Count());
         foreach (var type in types)
         {
             var renamedMethodNames = new List<Utf8String>();
@@ -105,8 +104,6 @@ public sealed class Renamer(Statistics stats)
                 renamedMethodNames.Add(newMethodName);
             }
         }
-
-        await Task.WhenAll(tasks);
     }
 
     private Utf8String FixInterfaceMangledMethod(

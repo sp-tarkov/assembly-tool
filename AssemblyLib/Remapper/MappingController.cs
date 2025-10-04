@@ -113,7 +113,7 @@ public sealed class MappingController(
         await PublicizeObfuscatedTypes();
 
         Log.Information("Fixing method names...");
-        await renamer.FixInterfaceMangledMethodNames(Module!);
+        renamer.FixInterfaceMangledMethodNames(Module!);
 
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {

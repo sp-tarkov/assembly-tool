@@ -101,6 +101,7 @@ public sealed class Renamer(Statistics stats)
                     continue;
                 }
 
+                stats.MethodRenamedCount++;
                 renamedMethodNames.Add(newMethodName);
             }
         }

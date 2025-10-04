@@ -20,9 +20,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
     public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
-        // TODO: Disabled for testing purposes
-        return [];
-
         if (Log.IsEnabled(LogEventLevel.Debug))
         {
             Log.Debug("Publicizing Type [{Utf8String}]", type.Name?.ToString());

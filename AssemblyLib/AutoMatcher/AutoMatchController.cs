@@ -30,7 +30,12 @@ public class AutoMatchController(
         bool isRegen
     )
     {
-        var result = assemblyWriter.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
+        var result = assemblyWriter.Deobfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
+        if (!result.Success)
+        {
+            Log.Error("Failed to deobfuscate assembly, exiting.");
+            return;
+        }
 
         if (isRegen)
         {
@@ -45,8 +50,9 @@ public class AutoMatchController(
 
         _newTypeName = newTypeName;
 
-        assemblyPath = result.Item1;
-        Module = result.Item2;
+        assemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        Module = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
 
         var targetTypeDef = FindTargetType(oldTypeName);
 

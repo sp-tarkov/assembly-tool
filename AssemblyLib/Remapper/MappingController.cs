@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
@@ -50,7 +51,11 @@ public sealed class MappingController(
 
         Module = dataProvider.LoadModule(targetAssemblyPath);
 
-        LoadOrDeobfuscateAssembly();
+        if (!TryDeobfuscateAssembly())
+        {
+            Log.Error("Failed to deobfuscate assembly, exiting.");
+            return;
+        }
 
         if (!await RunRemapProcess(validate))
         {
@@ -68,22 +73,38 @@ public sealed class MappingController(
     }
 
     /// <summary>
-    /// Load or Deobfuscate the assembly
+    /// Deobfuscate the assembly
     /// </summary>
-    private void LoadOrDeobfuscateAssembly()
+    private bool TryDeobfuscateAssembly()
     {
-        var result = assemblyWriter.TryDeObfuscate(Module, _targetAssemblyPath);
+        var sw = Stopwatch.StartNew();
 
-        _targetAssemblyPath = result.Item1;
-        Module = result.Item2;
+        var result = assemblyWriter.Deobfuscate(Module, _targetAssemblyPath);
+        if (!result.Success)
+        {
+            return false;
+        }
+
+        _targetAssemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        Module = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
 
         Types.AddRange(Module?.GetAllTypes() ?? []);
-        typeCache.HydrateCache();
 
         if (Types.Count == 0)
         {
             throw new InvalidOperationException("No types found during loading/deobfuscation of assembly");
         }
+
+        typeCache.HydrateCache();
+
+        Log.Information(
+            "Deobfuscation completed. Took {time:F2} seconds. Deobfuscated assembly written to: {assemblyPath}",
+            sw.ElapsedMilliseconds / 1000,
+            result.DeObfuscatedAssemblyPath
+        );
+
+        return true;
     }
 
     /// <summary>

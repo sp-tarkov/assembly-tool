@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Cil;
+using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -8,31 +9,44 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Remapper;
 
 [Injectable]
-public class AssemblyWriter(DataProvider dataProvider)
+public sealed class AssemblyWriter(DataProvider dataProvider)
 {
-    public (string, ModuleDefinition?) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
+    internal DeObfuscationResult Deobfuscate(ModuleDefinition? module, string assemblyPath)
     {
+        var result = new DeObfuscationResult();
+
         if (module!.GetAllTypes().Any(t => t.Name?.Contains("GClass") ?? false))
         {
-            return (assemblyPath, module);
+            Log.Information("Assembly is not obfuscated.");
+
+            result.Success = true;
+            result.DeObfuscatedAssemblyPath = assemblyPath;
+            result.DeObfuscatedModule = module;
+
+            return result;
         }
 
         Log.Information("Assembly is obfuscated, running de-obfuscation...");
 
-        Deobfuscate(assemblyPath);
+        if (!Deobfuscate(assemblyPath))
+        {
+            result.Success = false;
 
-        var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
-        cleanedName = $"{cleanedName}-cleaned.dll";
+            return result;
+        }
 
-        var newPath = Path.GetDirectoryName(assemblyPath);
-        newPath = Path.Combine(newPath!, cleanedName);
+        var fileName = Path.GetFileNameWithoutExtension(assemblyPath);
+        var managedPath = Path.GetDirectoryName(assemblyPath);
+        var cleanedPath = Path.Combine(managedPath!, $"{fileName}-cleaned.dll");
 
-        module = dataProvider.LoadModule(newPath);
+        result.Success = true;
+        result.DeObfuscatedAssemblyPath = cleanedPath;
+        result.DeObfuscatedModule = dataProvider.LoadModule(cleanedPath);
 
-        return (assemblyPath, module);
+        return result;
     }
 
-    public void Deobfuscate(string assemblyPath, bool isLauncher = false)
+    public bool Deobfuscate(string assemblyPath, bool isLauncher = false)
     {
         var module = ModuleDefinition.FromFile(assemblyPath);
 
@@ -75,6 +89,8 @@ public class AssemblyWriter(DataProvider dataProvider)
                 potentialStringDelegates.Count,
                 string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))
             );
+
+            return false;
         }
 
         var methodDef = potentialStringDelegates[0];
@@ -108,6 +124,8 @@ public class AssemblyWriter(DataProvider dataProvider)
 
         proc.Start();
         proc.WaitForExit();
+
+        return true;
     }
 
     public void StartHDiffz(string outPath)

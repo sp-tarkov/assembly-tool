@@ -59,9 +59,11 @@ public class DumperClass(
             Log.Error("File DumpLib.dll does not exist at {DumpLibPath}", _dumpLibPath);
         }
 
-        var kvp = assemblyWriter.TryDeObfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
-        _assemblyPath = kvp.Item1;
-        _gameModule = kvp.Item2;
+        var result = assemblyWriter.Deobfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
+        _assemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        _gameModule = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
+
         _checkerModule = dataProvider.LoadModule(_fileCheckerPath);
         _msModule = dataProvider.LoadModule(_mscorlibPath);
         _dumpModule = dataProvider.LoadModule(_dumpLibPath, false);

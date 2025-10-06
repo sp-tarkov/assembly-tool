@@ -91,30 +91,11 @@ public class MethodFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
     }
 
     /// <summary>
-    /// Produce an intersecting set of methods by name and return if any are common
+    ///     Do all the methods in both the target and candidate match?
     /// </summary>
     /// <param name="target">Target type</param>
     /// <param name="candidate">Candidate type</param>
-    /// <returns>True if there are common methods</returns>
-    private static bool HasCommonMethods(TypeDefinition target, TypeDefinition candidate)
-    {
-        return target
-            .Methods
-            // Get target methods that are not a constructor a get, or set method
-            .Where(m => m is { IsConstructor: false })
-            .Select(s => s.Name)
-            // Produce a set of method names that exist in both the target and the candidate
-            .Intersect(
-                candidate
-                    .Methods
-                    // Get candidate methods that are not a constructor a get, or set method
-                    .Where(m => m is { IsConstructor: false })
-                    .Select(s => s.Name)
-            )
-            // Is there any common methods?
-            .Any();
-    }
-
+    /// <returns></returns>
     private static bool AllMethodsMatch(TypeDefinition target, TypeDefinition candidate)
     {
         var targetNames = target.Methods.Select(s => s.Name?.ToString());

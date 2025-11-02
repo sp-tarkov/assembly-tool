@@ -1,41 +1,53 @@
 ﻿using System.Diagnostics;
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Utils;
+using AssemblyLib.Models;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
-public class AssemblyUtils(DataProvider dataProvider)
+public sealed class AssemblyWriter(DataProvider dataProvider)
 {
-    public (string, ModuleDefinition) TryDeObfuscate(ModuleDefinition? module, string assemblyPath)
+    internal DeObfuscationResult Deobfuscate(ModuleDefinition? module, string assemblyPath)
     {
-        if (!module!.GetAllTypes().Any(t => t.Name.Contains("GClass")))
+        var result = new DeObfuscationResult();
+
+        if (module!.GetAllTypes().Any(t => t.Name?.Contains("GClass") ?? false))
         {
-            Log.Information("Assembly is obfuscated, running de-obfuscation...");
+            Log.Information("Assembly is not obfuscated.");
 
-            module = null;
+            result.Success = true;
+            result.DeObfuscatedAssemblyPath = assemblyPath;
+            result.DeObfuscatedModule = module;
 
-            Deobfuscate(assemblyPath);
-
-            var cleanedName = Path.GetFileNameWithoutExtension(assemblyPath);
-            cleanedName = $"{cleanedName}-cleaned.dll";
-
-            var newPath = Path.GetDirectoryName(assemblyPath);
-            newPath = Path.Combine(newPath!, cleanedName);
-
-            module = dataProvider.LoadModule(newPath);
+            return result;
         }
 
-        return (assemblyPath, module);
+        Log.Information("Assembly is obfuscated, running de-obfuscation...");
+
+        if (!Deobfuscate(assemblyPath))
+        {
+            result.Success = false;
+
+            return result;
+        }
+
+        var fileName = Path.GetFileNameWithoutExtension(assemblyPath);
+        var managedPath = Path.GetDirectoryName(assemblyPath);
+        var cleanedPath = Path.Combine(managedPath!, $"{fileName}-cleaned.dll");
+
+        result.Success = true;
+        result.DeObfuscatedAssemblyPath = cleanedPath;
+        result.DeObfuscatedModule = dataProvider.LoadModule(cleanedPath);
+
+        return result;
     }
 
-    public void Deobfuscate(string assemblyPath, bool isLauncher = false)
+    public bool Deobfuscate(string assemblyPath, bool isLauncher = false)
     {
-        string token;
-
         var module = ModuleDefinition.FromFile(assemblyPath);
 
         var potentialStringDelegates = new List<MethodDefinition>();
@@ -77,6 +89,8 @@ public class AssemblyUtils(DataProvider dataProvider)
                 potentialStringDelegates.Count,
                 string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))
             );
+
+            return false;
         }
 
         var methodDef = potentialStringDelegates[0];
@@ -84,14 +98,14 @@ public class AssemblyUtils(DataProvider dataProvider)
 
         // Construct the token string (similar to Mono.Cecil's format)
         // Shift table index to the upper 8 bits
-        token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
+        var token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
         Log.Information("Deobfuscated token: {Token}", token);
 
         var cmd = isLauncher
             ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
             : $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtyp delegate --strtok \"{token}\"";
 
-        var executablePath = Path.Combine(AppContext.BaseDirectory, "de4dot", "de4dot-x64.exe");
+        var executablePath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "de4dot", "de4dot-x64.exe");
         var workingDir = Path.GetDirectoryName(executablePath);
 
         var startInfo = new ProcessStartInfo
@@ -110,13 +124,15 @@ public class AssemblyUtils(DataProvider dataProvider)
 
         proc.Start();
         proc.WaitForExit();
+
+        return true;
     }
 
     public void StartHDiffz(string outPath)
     {
         Log.Information("Creating Delta...");
 
-        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Data", "hdiffz.exe");
+        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "HDiffz", "hdiffz.exe");
 
         var outDir = Path.GetDirectoryName(outPath);
 

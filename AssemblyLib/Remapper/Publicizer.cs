@@ -2,12 +2,13 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
-using AssemblyLib.Utils;
+using AssemblyLib.Extensions;
+using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
 public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
@@ -93,7 +94,11 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
-            Log.Information($"Not publicizing {method.DeclaringType!.FullName}::{method.Name} due to it being ignored");
+            Log.Information(
+                "Not publicizing {FullName}::{MethodName} due to it being ignored",
+                method.DeclaringType!.FullName,
+                method.Name.ToString()
+            );
             return;
         }
 

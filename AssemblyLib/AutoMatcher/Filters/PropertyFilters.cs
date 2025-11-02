@@ -7,6 +7,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class PropertyFilters : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "PropertyFilters"; }
+    }
+
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Both target and candidate don't have properties

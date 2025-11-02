@@ -2,8 +2,8 @@
 using System.IO.Compression;
 using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.ReMapper;
-using AssemblyLib.Utils;
+using AssemblyLib.Remapper;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
@@ -11,7 +11,7 @@ namespace AssemblyLib.Dumper;
 
 [Injectable(InjectionType.Singleton)]
 public class DumperClass(
-    AssemblyUtils assemblyUtils,
+    AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     DumpyILHelper dumpyIlHelper,
     DumpyReflectionHelper dumpyReflectionHelper
@@ -59,9 +59,11 @@ public class DumperClass(
             Log.Error("File DumpLib.dll does not exist at {DumpLibPath}", _dumpLibPath);
         }
 
-        var kvp = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
-        _assemblyPath = kvp.Item1;
-        _gameModule = kvp.Item2;
+        var result = assemblyWriter.Deobfuscate(dataProvider.LoadModule(_assemblyPath), _assemblyPath);
+        _assemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        _gameModule = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
+
         _checkerModule = dataProvider.LoadModule(_fileCheckerPath);
         _msModule = dataProvider.LoadModule(_mscorlibPath);
         _dumpModule = dataProvider.LoadModule(_dumpLibPath, false);

@@ -1,11 +1,14 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using Serilog;
+using Serilog.Events;
 
 namespace AssemblyLib.AutoMatcher.Filters;
 
 public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
 {
+    public abstract string FilterName { get; }
+
     public abstract bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 
     /// <summary>
@@ -15,12 +18,18 @@ public abstract class AbstractAutoMatchFilter : IAutoMatchFilter
     /// <returns>False</returns>
     protected static bool LogFailure(string failureReason)
     {
-        Log.Error("{failureReason}", failureReason);
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("{failureReason}", failureReason);
+        }
+
         return false;
     }
 }
 
 public interface IAutoMatchFilter
 {
+    public string FilterName { get; }
+
     bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams);
 }

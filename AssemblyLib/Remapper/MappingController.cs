@@ -1,20 +1,19 @@
-﻿using System.Collections.Immutable;
+﻿using System.Diagnostics;
 using System.Reflection;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
-using AssemblyLib.ReMapper.Filters;
-using AssemblyLib.ReMapper.MetaData;
-using AssemblyLib.Utils;
+using AssemblyLib.Remapper.MetaData;
+using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class MappingController(
@@ -22,9 +21,10 @@ public sealed class MappingController(
     Statistics statistics,
     Renamer renamer,
     Publicizer publicizer,
-    IEnumerable<IRemapFilter> filters,
-    AssemblyUtils assemblyUtils,
-    AttributeFactory attributeFactory
+    AssemblyWriter assemblyWriter,
+    AttributeFactory attributeFactory,
+    FilterService filterService,
+    TypeCache typeCache
 )
 {
     private ModuleDefinition? Module { get; set; }
@@ -51,7 +51,11 @@ public sealed class MappingController(
 
         Module = dataProvider.LoadModule(targetAssemblyPath);
 
-        LoadOrDeobfuscateAssembly();
+        if (!TryDeobfuscateAssembly())
+        {
+            Log.Error("Failed to deobfuscate assembly, exiting.");
+            return;
+        }
 
         if (!await RunRemapProcess(validate))
         {
@@ -69,16 +73,38 @@ public sealed class MappingController(
     }
 
     /// <summary>
-    /// Load or Deobfuscate the assembly
+    /// Deobfuscate the assembly
     /// </summary>
-    private void LoadOrDeobfuscateAssembly()
+    private bool TryDeobfuscateAssembly()
     {
-        var result = assemblyUtils.TryDeObfuscate(Module, _targetAssemblyPath);
+        var sw = Stopwatch.StartNew();
 
-        _targetAssemblyPath = result.Item1;
-        Module = result.Item2;
+        var result = assemblyWriter.Deobfuscate(Module, _targetAssemblyPath);
+        if (!result.Success)
+        {
+            return false;
+        }
 
-        Types.AddRange(Module.GetAllTypes());
+        _targetAssemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        Module = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
+
+        Types.AddRange(Module?.GetAllTypes() ?? []);
+
+        if (Types.Count == 0)
+        {
+            throw new InvalidOperationException("No types found during loading/deobfuscation of assembly");
+        }
+
+        typeCache.HydrateCache();
+
+        Log.Information(
+            "Deobfuscation completed. Took {time:F2} seconds. Deobfuscated assembly written to: {assemblyPath}",
+            sw.ElapsedMilliseconds / 1000,
+            result.DeObfuscatedAssemblyPath
+        );
+
+        return true;
     }
 
     /// <summary>
@@ -108,7 +134,7 @@ public sealed class MappingController(
         await PublicizeObfuscatedTypes();
 
         Log.Information("Fixing method names...");
-        await renamer.FixInterfaceMangledMethodNames(Module!);
+        renamer.FixInterfaceMangledMethodNames(Module!);
 
         if (!string.IsNullOrEmpty(oldAssemblyPath))
         {
@@ -131,50 +157,8 @@ public sealed class MappingController(
 
         foreach (var remap in dataProvider.GetRemaps())
         {
-            MatchRemap(remap);
+            filterService.FilterRemap(remap);
         }
-    }
-
-    /// <summary>
-    /// First we filter our type collection based on simple search parameters (true/false/null)
-    /// where null is a third disabled state. Then we score the types based on the search parameters
-    /// </summary>
-    /// <param name="mapping">Mapping to score</param>
-    private void MatchRemap(RemapModel mapping)
-    {
-        if (mapping.UseForceRename)
-        {
-            return;
-        }
-
-        // Filter down nested objects
-        var types = mapping.SearchParams.NestedTypes.IsNested
-            ? Types.Where(t => t.IsNested)
-            : Types.Where(t => (bool)t.Name?.IsObfuscatedName());
-
-        if (mapping.SearchParams.NestedTypes.NestedTypeParentName != string.Empty)
-        {
-            types = types.Where(t => t.DeclaringType!.Name == mapping.SearchParams.NestedTypes.NestedTypeParentName);
-        }
-
-        // Start off with all types in the pool, filter them down with each filter pass until (hopefully) only one remains
-        var remainingTypePool = types;
-        foreach (var filter in filters)
-        {
-            if (!filter.Filter(remainingTypePool, mapping, out var filteredTypes))
-            {
-                return;
-            }
-
-            remainingTypePool = filteredTypes;
-        }
-
-        if (!remainingTypePool.Any())
-        {
-            return;
-        }
-
-        mapping.TypeCandidates.UnionWith(remainingTypePool);
     }
 
     /// <summary>
@@ -192,7 +176,7 @@ public sealed class MappingController(
             return;
         }
 
-        mapping.TypePrimeCandidate = type;
+        mapping.ChosenType = type;
         mapping.OriginalTypeName = type.Name!;
         mapping.Succeeded = true;
 
@@ -274,12 +258,12 @@ public sealed class MappingController(
     /// <returns>True if ambiguous match</returns>
     private bool IsAmbiguousMatch(RemapModel remap, TypeDefinition match)
     {
-        remap.TypePrimeCandidate = match;
+        remap.ChosenType = match;
         remap.OriginalTypeName = match.Name!;
 
         if (_alreadyGivenNames.Contains(match.FullName))
         {
-            remap.NoMatchReasons.Add(ENoMatchReason.AmbiguousWithPreviousMatch);
+            remap.FailureReasons.Add("Ambiguous match, please select a new type name");
             remap.AmbiguousTypeMatch = match.FullName;
             remap.Succeeded = false;
 
@@ -305,7 +289,7 @@ public sealed class MappingController(
     {
         renamer.RenameRemap(Module!, remap);
 
-        var fieldsToFix = publicizer.PublicizeType(remap.TypePrimeCandidate!);
+        var fieldsToFix = publicizer.PublicizeType(remap.ChosenType!);
 
         if (fieldsToFix.Count == 0)
         {
@@ -514,7 +498,7 @@ public sealed class MappingController(
             return;
         }
 
-        assemblyUtils.StartHDiffz(OutPath);
+        assemblyWriter.StartHDiffz(OutPath);
 
         statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }

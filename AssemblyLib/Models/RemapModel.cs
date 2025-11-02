@@ -1,6 +1,5 @@
 ﻿using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
-using AssemblyLib.Models.Enums;
 
 namespace AssemblyLib.Models;
 
@@ -13,7 +12,7 @@ public sealed record RemapModel
     public bool Succeeded { get; set; } = false;
 
     [JsonIgnore]
-    public HashSet<ENoMatchReason> NoMatchReasons { get; set; } = [];
+    public HashSet<string> FailureReasons { get; set; } = [];
 
     [JsonIgnore]
     public string AmbiguousTypeMatch { get; set; } = string.Empty;
@@ -28,7 +27,7 @@ public sealed record RemapModel
     /// This is the final chosen type we will use to remap
     /// </summary>
     [JsonIgnore]
-    public TypeDefinition? TypePrimeCandidate { get; set; }
+    public TypeDefinition? ChosenType { get; set; }
 
     public string NewTypeName { get; set; } = string.Empty;
 
@@ -61,6 +60,14 @@ public class GenericParams
     public bool IsInterface { get; set; }
     public bool IsEnum { get; set; }
     public bool IsSealed { get; set; }
+
+    [JsonIgnore]
+    public bool IsStatic
+    {
+        get { return IsAbstract && IsSealed; }
+    }
+
+    public bool? IsStruct { get; set; }
     public bool? HasAttribute { get; set; }
     public bool HasGenericParameters { get; set; }
     public bool? IsDerived { get; set; }

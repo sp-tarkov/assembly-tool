@@ -1,7 +1,4 @@
-﻿using AssemblyLib;
-using AssemblyLib.Dumper;
-using AssemblyLib.Utils;
-using AssemblyTool.Utils;
+﻿using AssemblyLib.Shared;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
@@ -20,8 +17,6 @@ public class Dumper : ICommand
 
     public ValueTask ExecuteAsync(IConsole console)
     {
-        Debugger.TryWaitForDebuggerAttach();
-
         var app = new App();
         app.CreateDumper(ManagedDirectory);
 

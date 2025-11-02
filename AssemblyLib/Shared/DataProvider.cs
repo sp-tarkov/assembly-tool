@@ -6,7 +6,7 @@ using Serilog;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace AssemblyLib.Utils;
+namespace AssemblyLib.Shared;
 
 [Injectable(InjectionType.Singleton)]
 public class DataProvider
@@ -20,17 +20,32 @@ public class DataProvider
     }
 
     public Settings Settings { get; }
+    public ModuleDefinition? LoadedModule { get; private set; }
+    public ModuleDefinition? Mscorlib { get; private set; }
 
-    private readonly List<RemapModel> _remaps = [];
-    private readonly Lock _remapLock = new();
+    public bool IsModuleLoaded
+    {
+        get { return LoadedModule != null; }
+    }
+
+    public bool IsMscorlibLoaded
+    {
+        get { return Mscorlib != null; }
+    }
 
     public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
-    private static readonly string _dataPath = Path.Combine(AppContext.BaseDirectory, "Data");
-    private static readonly string _mappingPath = Path.Combine(_dataPath, "mappings.jsonc");
-    private static readonly string _mappingNewPath = Path.Combine(_dataPath, "mappings-new.jsonc");
+    private readonly List<RemapModel> _remaps = [];
+    private readonly Lock _remapLock = new();
+    private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
+    private static readonly string _mappingPath = Path.Combine(_assetsPath, "Json", "mappings.jsonc");
 
-    public ModuleDefinition? Mscorlib { get; private set; }
+    private static readonly JsonSerializerOptions _serializerOptions = new()
+    {
+        WriteIndented = true,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
 
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
@@ -43,11 +58,7 @@ public class DataProvider
             Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
         }
 
-        if (module is null)
-        {
-            throw new NullReferenceException("Module is null...");
-        }
-
+        LoadedModule = module ?? throw new NullReferenceException("Module is null...");
         return module;
     }
 
@@ -85,28 +96,29 @@ public class DataProvider
         }
     }
 
-    public void UpdateMappingFile(bool respectNullableAnnotations = true, bool isAutoMatch = false)
+    public string SerializeRemap(RemapModel remap)
     {
-        if (!File.Exists(_mappingNewPath))
-        {
-            File.Create(_mappingNewPath).Close();
-        }
+        return JsonSerializer.Serialize(remap, _serializerOptions);
+    }
 
-        JsonSerializerOptions settings = new()
+    public void UpdateMappingFile(bool respectNullableAnnotations = true)
+    {
+        JsonSerializerOptions settings = new(_serializerOptions)
         {
-            WriteIndented = true,
             RespectNullableAnnotations = !respectNullableAnnotations,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         };
+
+        // Clear out the dynamically generated remaps before writing
+        foreach (var remap in _remaps.ToList().Where(remap => remap.UseForceRename))
+        {
+            _remaps.Remove(remap);
+        }
 
         var jsonText = JsonSerializer.Serialize(_remaps, settings);
 
-        var path = isAutoMatch ? _mappingPath : _mappingNewPath;
+        File.WriteAllText(_mappingPath, jsonText);
 
-        File.WriteAllText(path, jsonText);
-
-        Log.Information("Mapping file updated with new type names and saved to {Path}", path);
+        Log.Information("Mapping file updated with new type names and saved to {Path}", _mappingPath);
     }
 
     public void LoadMappingFile()
@@ -145,9 +157,9 @@ public class DataProvider
         throw new Exception($"There are {duplicateGroups.Count} sets of duplicated remaps.");
     }
 
-    private Settings LoadAppSettings()
+    private static Settings LoadAppSettings()
     {
-        var settingsPath = Path.Combine(_dataPath, "Settings.jsonc");
+        var settingsPath = Path.Combine(_assetsPath, "Json", "Settings.jsonc");
         var jsonText = File.ReadAllText(settingsPath);
 
         JsonSerializerOptions settings = new() { AllowTrailingCommas = true };
@@ -157,7 +169,7 @@ public class DataProvider
 
     private Dictionary<string, ItemTemplateModel> LoadItems()
     {
-        var itemsPath = Path.Combine(_dataPath, "items.json");
+        var itemsPath = Path.Combine(_assetsPath, "Json", "items.json");
         var jsonText = File.ReadAllText(itemsPath);
 
         JsonSerializerOptions settings = new()

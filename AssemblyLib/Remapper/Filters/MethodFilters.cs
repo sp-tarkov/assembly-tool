@@ -1,9 +1,8 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 1)]
 public sealed class MethodFilters : IRemapFilter
@@ -17,7 +16,7 @@ public sealed class MethodFilters : IRemapFilter
         types = FilterByInclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsInclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by included methods");
             filteredTypes = types;
             return false;
         }
@@ -25,7 +24,7 @@ public sealed class MethodFilters : IRemapFilter
         types = FilterByExclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsExclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by excluded methods");
             filteredTypes = types;
             return false;
         }
@@ -33,7 +32,7 @@ public sealed class MethodFilters : IRemapFilter
         types = FilterByCtorParameterCount(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.ConstructorParameterCount);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by constructor parameter count");
             filteredTypes = types;
             return false;
         }
@@ -41,7 +40,7 @@ public sealed class MethodFilters : IRemapFilter
         types = FilterByCount(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.MethodsCount);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by method count");
             filteredTypes = types;
             return false;
         }
@@ -165,7 +164,7 @@ public sealed class MethodFilters : IRemapFilter
         var count = 0;
         foreach (var method in type.Methods)
         {
-            if (method is { IsConstructor: false, IsSpecialName: false, IsGetMethod: false, IsSetMethod: false })
+            if (method is { IsConstructor: false })
             {
                 count++;
             }

@@ -1,9 +1,8 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 0)]
 public sealed class GenericFilters : IRemapFilter
@@ -19,39 +18,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.IsPublic == genericParams.IsPublic);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsPublic);
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsAbstract == genericParams.IsAbstract);
-        if (!types.Any())
-        {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsAbstract);
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsSealed == genericParams.IsSealed);
-        if (!types.Any())
-        {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsSealed);
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsInterface == genericParams.IsInterface);
-        if (!types.Any())
-        {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsInterface);
-            filteredTypes = types;
-            return false;
-        }
-
-        types = types.Where(t => t.IsEnum == genericParams.IsEnum);
-        if (!types.Any())
-        {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsEnum);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by visibility (public/private)");
             filteredTypes = types;
             return false;
         }
@@ -59,7 +26,7 @@ public sealed class GenericFilters : IRemapFilter
         types = types.Where(t => t.GenericParameters.Any() == genericParams.HasGenericParameters);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.HasGenericParameters);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by generic parameters");
             filteredTypes = types;
             return false;
         }
@@ -67,7 +34,7 @@ public sealed class GenericFilters : IRemapFilter
         types = FilterAttributes(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.HasAttribute);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by attributes");
             filteredTypes = types;
             return false;
         }
@@ -75,7 +42,7 @@ public sealed class GenericFilters : IRemapFilter
         types = FilterDerived(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.IsDerived);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by derived classes");
             filteredTypes = types;
             return false;
         }
@@ -93,19 +60,27 @@ public sealed class GenericFilters : IRemapFilter
 
     private static IEnumerable<TypeDefinition> FilterDerived(IEnumerable<TypeDefinition> types, SearchParams parms)
     {
-        // Filter based on IsDerived or not
-        if (parms.GenericParams.IsDerived is true)
+        switch (parms.GenericParams.IsDerived)
         {
-            types = types.Where(t => t.BaseType?.Name != "Object");
-
-            if (parms.GenericParams.MatchBaseClass is not null and not "")
+            case true:
             {
-                types = types.Where(t => t.BaseType?.Name == parms.GenericParams.MatchBaseClass);
+                types = types.Where(t => t.BaseType?.FullName != "System.Object");
+
+                if (parms.GenericParams.MatchBaseClass is not null and not "")
+                {
+                    types = types.Where(t => t.BaseType?.Name == parms.GenericParams.MatchBaseClass);
+                }
+
+                break;
             }
-        }
-        else if (parms.GenericParams.IsDerived is false)
-        {
-            types = types.Where(t => t.BaseType?.Name == "Object");
+
+            // Interfaces don't derive from anything
+            case false when parms.GenericParams.IsInterface:
+                break;
+
+            case false:
+                types = types.Where(t => t.BaseType?.FullName == "System.Object");
+                break;
         }
 
         return types;

@@ -1,7 +1,4 @@
-﻿using AssemblyLib;
-using AssemblyLib.ReMapper;
-using AssemblyLib.Utils;
-using AssemblyTool.Utils;
+﻿using AssemblyLib.Shared;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
@@ -23,8 +20,6 @@ public class DeObfuscate : ICommand
 
     public ValueTask ExecuteAsync(IConsole console)
     {
-        Debugger.TryWaitForDebuggerAttach();
-
         var app = new App();
         app.DeObfuscate(AssemblyPath, IsLauncher);
 

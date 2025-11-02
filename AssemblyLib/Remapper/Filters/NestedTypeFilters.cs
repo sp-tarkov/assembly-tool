@@ -1,9 +1,8 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 5)]
 public sealed class NestedTypeFilters : IRemapFilter
@@ -17,7 +16,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         types = FilterByCount(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeCount);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by nested type count");
             //remapModel.TypeCandidates.UnionWith(types);
             filteredTypes = types;
             return false;
@@ -26,7 +25,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         types = FilterByNestedVisibility(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedVisibility);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by nested type visibility");
             filteredTypes = types;
             return false;
         }
@@ -34,7 +33,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         types = FilterByInclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeInclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by included nested types");
             filteredTypes = types;
             return false;
         }
@@ -42,7 +41,7 @@ public sealed class NestedTypeFilters : IRemapFilter
         types = FilterByExclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.NestedTypeExclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by excluded nested types");
             filteredTypes = types;
             return false;
         }
@@ -150,7 +149,9 @@ public sealed class NestedTypeFilters : IRemapFilter
     {
         if (parms.NestedTypes.NestedTypeParentName is not "")
         {
-            types = types.Where(t => t.DeclaringType!.Name == parms.NestedTypes.NestedTypeParentName);
+            types = types.Where(t =>
+                t.DeclaringType != null && t.DeclaringType!.Name == parms.NestedTypes.NestedTypeParentName
+            );
         }
 
         return types;

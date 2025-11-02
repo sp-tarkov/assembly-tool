@@ -370,6 +370,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -5722,6 +5723,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -5774,6 +5776,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -6337,6 +6340,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -6389,6 +6393,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": true
       },
       "Methods": {
@@ -6596,6 +6601,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -6648,6 +6654,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -7011,6 +7018,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -7898,6 +7906,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -8734,6 +8743,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -8787,6 +8797,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -10701,6 +10712,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -10914,6 +10926,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -10969,6 +10982,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11072,6 +11086,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11387,6 +11402,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11441,6 +11457,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11802,6 +11819,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11854,6 +11872,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -11972,58 +11991,6 @@
           "DestroyedItems",
           "From",
           "To"
-        ],
-        "ExcludeFields": []
-      },
-      "Properties": {
-        "PropertyCount": -1,
-        "IncludeProperties": [],
-        "ExcludeProperties": []
-      },
-      "NestedTypes": {
-        "IsNested": false,
-        "IsNestedAssembly": false,
-        "IsNestedFamily": false,
-        "IsNestedPrivate": false,
-        "IsNestedPublic": false,
-        "IsNestedFamilyAndAssembly": false,
-        "IsNestedFamilyOrAssembly": false,
-        "NestedTypeParentName": "",
-        "NestedTypeCount": -1,
-        "IncludeNestedTypes": [],
-        "ExcludeNestedTypes": []
-      },
-      "Events": {
-        "EventCount": -1,
-        "IncludeEvents": [],
-        "ExcludeEvents": []
-      }
-    }
-  },
-  {
-    "NewTypeName": "MoveAllOperationClass",
-    "OriginalTypeName": "GClass1196",
-    "UseForceRename": false,
-    "SearchParams": {
-      "GenericParams": {
-        "IsPublic": true,
-        "IsAbstract": false,
-        "IsInterface": false,
-        "IsEnum": false,
-        "IsSealed": true,
-        "HasGenericParameters": false
-      },
-      "Methods": {
-        "ConstructorParameterCount": 5,
-        "MethodCount": 4,
-        "IncludeMethods": [],
-        "ExcludeMethods": []
-      },
-      "Fields": {
-        "FieldCount": 4,
-        "IncludeFields": [
-          "Equipment",
-          "Item"
         ],
         "ExcludeFields": []
       },
@@ -16255,69 +16222,6 @@
     }
   },
   {
-    "NewTypeName": "WeaponMalfunctionStateClass",
-    "OriginalTypeName": "MalfunctionState",
-    "UseForceRename": false,
-    "SearchParams": {
-      "GenericParams": {
-        "IsPublic": false,
-        "IsAbstract": false,
-        "IsInterface": false,
-        "IsEnum": false,
-        "IsSealed": false,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": false
-      },
-      "Methods": {
-        "ConstructorParameterCount": -1,
-        "MethodCount": -1,
-        "IncludeMethods": [
-          "IsKnownMalfunction",
-          "ChangeStateSilent"
-        ],
-        "ExcludeMethods": []
-      },
-      "Fields": {
-        "FieldCount": -1,
-        "IncludeFields": [
-          "UseAmmoWithoutShell"
-        ],
-        "ExcludeFields": [
-          "allowFlipping"
-        ]
-      },
-      "Properties": {
-        "PropertyCount": -1,
-        "IncludeProperties": [
-          "PlayersWhoKnowAboutMalfunction",
-          "IsUnderbarrelWeapon",
-          "VelocityDelta",
-          "IsAnyMalfExceptMisfire"
-        ],
-        "ExcludeProperties": []
-      },
-      "NestedTypes": {
-        "IsNested": true,
-        "IsNestedAssembly": false,
-        "IsNestedFamily": false,
-        "IsNestedPrivate": false,
-        "IsNestedPublic": true,
-        "IsNestedFamilyAndAssembly": false,
-        "IsNestedFamilyOrAssembly": false,
-        "NestedTypeParentName": "",
-        "NestedTypeCount": -1,
-        "IncludeNestedTypes": [],
-        "ExcludeNestedTypes": []
-      },
-      "Events": {
-        "EventCount": -1,
-        "IncludeEvents": [],
-        "ExcludeEvents": []
-      }
-    }
-  },
-  {
     "NewTypeName": "CompositeDisposableClass",
     "OriginalTypeName": "GClass804",
     "UseForceRename": false,
@@ -16887,7 +16791,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 14,
         "IncludeMethods": [
           "GetAutoVaultingStrategy",
           "GetVaultingStrategy"
@@ -18449,6 +18353,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -18556,6 +18461,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -18614,6 +18520,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19658,6 +19565,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19712,6 +19620,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19765,6 +19674,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19872,6 +19782,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19931,6 +19842,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -19988,6 +19900,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20043,6 +19956,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20096,6 +20010,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20151,6 +20066,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20205,6 +20121,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20268,6 +20185,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20327,6 +20245,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20379,6 +20298,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20436,6 +20356,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20493,6 +20414,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20548,6 +20470,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20605,6 +20528,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -20658,6 +20582,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
+        "IsStruct": true,
         "HasGenericParameters": false
       },
       "Methods": {
@@ -22235,7 +22160,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 22,
+        "MethodCount": 24,
         "IncludeMethods": [
           "Enter",
           "StartExiting",
@@ -22769,7 +22694,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 9,
+        "MethodCount": 20,
         "IncludeMethods": [
           "add_OnGoalTargetChange",
           "remove_OnGoalTargetChange",
@@ -22868,7 +22793,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 0,
+        "EventCount": 2,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -22892,7 +22817,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 0,
-        "MethodCount": 3,
+        "MethodCount": 4,
         "IncludeMethods": [
           "SetTarget",
           "ShootDone",
@@ -23125,9 +23050,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -23191,7 +23114,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 0,
-        "MethodCount": 11,
+        "MethodCount": 18,
         "IncludeMethods": [
           "Init",
           "AirdropEvent",
@@ -23269,7 +23192,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -23344,7 +23267,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 3,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -23452,7 +23375,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 5,
+        "MethodCount": 16,
         "IncludeMethods": [
           "SetStatus",
           "CheckForStatusChange",
@@ -23527,7 +23450,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -23551,7 +23474,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 19,
+        "MethodCount": 21,
         "IncludeMethods": [
           "Init",
           "RegisterKeyToReset",
@@ -23816,7 +23739,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 21,
+        "MethodCount": 23,
         "IncludeMethods": [
           "add_OnQuestExpired",
           "remove_OnQuestExpired",
@@ -23889,7 +23812,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 11,
+        "EventCount": 1,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -24290,7 +24213,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 9,
+        "MethodCount": 11,
         "IncludeMethods": [
           "add_ExplosionEvent",
           "remove_ExplosionEvent",
@@ -24482,7 +24405,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 49,
+        "MethodCount": 57,
         "IncludeMethods": [
           "OnUpdate",
           "StartShellingPosition",
@@ -24604,7 +24527,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 9,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -24628,7 +24551,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 7,
         "IncludeMethods": [
           "SyncProjectilesStates",
           "CreateActiveProjectile",
@@ -24904,7 +24827,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 27,
+        "MethodCount": 32,
         "IncludeMethods": [
           "Init",
           "SetSyncObject",
@@ -24977,7 +24900,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -25001,7 +24924,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 10,
+        "MethodCount": 15,
         "IncludeMethods": [
           "SetSyncObject",
           "Init",
@@ -25105,7 +25028,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 4,
+        "MethodCount": 11,
         "IncludeMethods": [
           "ExecuteInternal",
           "ToDescriptor",
@@ -25173,7 +25096,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -25191,9 +25114,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -25279,13 +25200,11 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": true,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 0,
+        "MethodCount": 5,
         "IncludeMethods": [
           "op_Implicit"
         ],
@@ -25571,7 +25490,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -25595,7 +25514,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 4,
+        "MethodCount": 12,
         "IncludeMethods": [
           "Start",
           "Stop",
@@ -25681,7 +25600,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 3,
+        "MethodCount": 9,
         "IncludeMethods": [
           "TryPauseFrameRelatedMetrics",
           "TryResumeFrameRelatedMetrics"
@@ -26122,7 +26041,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 1,
+        "MethodCount": 3,
         "IncludeMethods": [
           "Clone"
         ],
@@ -26253,7 +26172,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 13,
+        "MethodCount": 17,
         "IncludeMethods": [
           "HasNonEmptyTransferContainer",
           "InitTransferContainer",
@@ -26302,7 +26221,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 4,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -26326,7 +26245,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 2,
+        "MethodCount": 3,
         "IncludeMethods": [
           "Create",
           "GetPoolSizeForResourceType"
@@ -26478,7 +26397,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 3,
+        "MethodCount": 6,
         "IncludeMethods": [
           "ToString",
           "Serialize",
@@ -26599,7 +26518,7 @@
     }
   },
   {
-    "NewTypeName": "VOIPBanDataClass",
+    "NewTypeName": "VoipBanDataClass",
     "OriginalTypeName": "GClass2013",
     "UseForceRename": false,
     "AutoGenerated": true,
@@ -26616,7 +26535,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 5,
+        "MethodCount": 10,
         "IncludeMethods": [
           "add_OnBanExpired",
           "remove_OnBanExpired",
@@ -26740,7 +26659,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 28,
+        "MethodCount": 33,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -26768,7 +26687,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -26792,7 +26711,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 8,
         "IncludeMethods": [
           "Reset",
           "SetVector",
@@ -26984,7 +26903,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 15,
+        "MethodCount": 30,
         "IncludeMethods": [
           "CalcSit",
           "TryCheckSafe",
@@ -27270,7 +27189,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 28,
+        "MethodCount": 38,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -27298,7 +27217,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 4,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -27322,7 +27241,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 15,
+        "MethodCount": 18,
         "IncludeMethods": [
           "MergeAxisWithDefault",
           "GetBoundItemNames",
@@ -27401,7 +27320,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -27425,7 +27344,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 17,
+        "MethodCount": 22,
         "IncludeMethods": [
           "ToggleEventEnvironment",
           "OnTriggerStateChanged",
@@ -27862,7 +27781,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 17,
+        "MethodCount": 20,
         "IncludeMethods": [
           "Init",
           "ManualUpdate",
@@ -27954,7 +27873,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -27978,7 +27897,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 3,
+        "MethodCount": 4,
         "IncludeMethods": [
           "ToString",
           "Serialize",
@@ -28097,7 +28016,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 17,
         "IncludeMethods": [
           "CreateFragment",
           "SetExplosiveItemParams"
@@ -28358,7 +28277,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -28494,7 +28413,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 3,
+        "MethodCount": 17,
         "IncludeMethods": [
           "ToInventory"
         ],
@@ -28576,7 +28495,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -28600,7 +28519,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 51,
+        "MethodCount": 58,
         "IncludeMethods": [
           "add_OnRedrawByItemRequired",
           "remove_OnRedrawByItemRequired",
@@ -28728,7 +28647,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 13,
+        "EventCount": 2,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -28752,7 +28671,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 30,
+        "MethodCount": 32,
         "IncludeMethods": [
           "SetPatrolMode",
           "Activate",
@@ -28819,7 +28738,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -28959,7 +28878,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 2,
+        "MethodCount": 4,
         "IncludeMethods": [
           "InitConditionsConnectorsManager",
           "SetConditionValue"
@@ -29219,7 +29138,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -29351,7 +29270,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -29548,7 +29467,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -29728,7 +29647,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 6,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "GetSearchRadius",
@@ -29961,7 +29880,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 7,
         "IncludeMethods": [
           "Compare",
           "UpdateFromAnotherItem",
@@ -30764,7 +30683,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -30788,7 +30707,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 16,
+        "MethodCount": 18,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -30816,7 +30735,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 5,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -30840,7 +30759,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 24,
+        "MethodCount": 27,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -30868,7 +30787,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -30886,9 +30805,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": 2,
@@ -31236,7 +31153,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -31260,7 +31177,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 14,
+        "MethodCount": 20,
         "IncludeMethods": [
           "Activate",
           "ShootDone",
@@ -31831,7 +31748,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 16,
+        "MethodCount": 22,
         "IncludeMethods": [
           "SetReachDist",
           "GetReturnPoint",
@@ -31929,7 +31846,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 16,
+        "MethodCount": 20,
         "IncludeMethods": [
           "TryGetRole",
           "ChooseProfile",
@@ -32037,7 +31954,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 1,
+        "MethodCount": 7,
         "IncludeMethods": [
           "ToString"
         ],
@@ -32154,7 +32071,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -32178,7 +32095,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 6,
-        "MethodCount": 5,
+        "MethodCount": 28,
         "IncludeMethods": [
           "Init",
           "IsActive",
@@ -32221,7 +32138,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -32245,7 +32162,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 7,
-        "MethodCount": 9,
+        "MethodCount": 14,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -32273,7 +32190,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 4,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -32677,7 +32594,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -32805,7 +32722,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 11,
+        "MethodCount": 15,
         "IncludeMethods": [
           "ActivateBot",
           "FillBackupProfilesData",
@@ -32895,7 +32812,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 8,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -33088,7 +33005,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -33203,7 +33120,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 5,
-        "MethodCount": 4,
+        "MethodCount": 10,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -33607,7 +33524,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -33631,7 +33548,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 11,
+        "MethodCount": 42,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -33659,7 +33576,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 4,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -33780,7 +33697,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 2,
+        "MethodCount": 6,
         "IncludeMethods": [
           "IsTalkDetected",
           "SetTalkDateTime"
@@ -33930,7 +33847,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 5,
+        "MethodCount": 6,
         "IncludeMethods": [
           "ReloadLocale",
           "ReloadBackendLocale",
@@ -33968,7 +33885,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 4,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -34044,7 +33961,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 19,
+        "MethodCount": 22,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -34072,7 +33989,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -34096,7 +34013,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 1,
+        "MethodCount": 3,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "Populate",
@@ -34424,9 +34341,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": 4,
@@ -35554,7 +35469,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -35578,7 +35493,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 3,
-        "MethodCount": 8,
+        "MethodCount": 10,
         "IncludeMethods": [
           "UpdateInput",
           "UpdateCommand",
@@ -35764,7 +35679,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 18,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -36049,7 +35964,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 6,
+        "MethodCount": 9,
         "IncludeMethods": [
           "OnConditionValueChanged",
           "CreateConditionalList",
@@ -36109,7 +36024,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -36133,7 +36048,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 6,
+        "MethodCount": 8,
         "IncludeMethods": [
           "add_surveyViewed",
           "remove_surveyViewed",
@@ -36272,7 +36187,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 1,
+        "MethodCount": 2,
         "IncludeMethods": [
           "InitConditionsConnectorsManager"
         ],
@@ -36616,7 +36531,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 4,
-        "MethodCount": 18,
+        "MethodCount": 20,
         "IncludeMethods": [
           "CalculatePathFull",
           "FindPathOfCoresTest",
@@ -36715,7 +36630,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 2,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37151,9 +37066,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -37236,9 +37149,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -37346,7 +37257,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 1,
-        "MethodCount": 1,
+        "MethodCount": 9,
         "IncludeMethods": [],
         "ExcludeMethods": [
           "Dispose",
@@ -37590,7 +37501,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37717,15 +37628,12 @@
         "NestedTypeParentName": "",
         "NestedTypeCount": 1,
         "IncludeNestedTypes": [
-          "Class462"
         ],
         "ExcludeNestedTypes": [
-          "Class709",
-          "Class904"
         ]
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37749,7 +37657,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 8,
+        "MethodCount": 20,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -37771,13 +37679,13 @@
         "IsNestedPublic": true,
         "IsNestedFamilyAndAssembly": false,
         "IsNestedFamilyOrAssembly": false,
-        "NestedTypeParentName": "GClass743",
+        "NestedTypeParentName": "",
         "NestedTypeCount": 1,
         "IncludeNestedTypes": [],
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37801,7 +37709,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 11,
+        "MethodCount": 16,
         "IncludeMethods": [
           "GetRealSoundValue",
           "ValidateMicrophone",
@@ -37871,7 +37779,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 1,
+        "EventCount": 0,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37947,7 +37855,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": 2,
-        "MethodCount": 32,
+        "MethodCount": 91,
         "IncludeMethods": [],
         "ExcludeMethods": []
       },
@@ -37957,7 +37865,7 @@
         "ExcludeFields": []
       },
       "Properties": {
-        "PropertyCount": 34,
+        "PropertyCount": 35,
         "IncludeProperties": [],
         "ExcludeProperties": []
       },
@@ -37975,7 +37883,7 @@
         "ExcludeNestedTypes": []
       },
       "Events": {
-        "EventCount": 0,
+        "EventCount": 6,
         "IncludeEvents": [],
         "ExcludeEvents": []
       }
@@ -37999,7 +37907,7 @@
       },
       "Methods": {
         "ConstructorParameterCount": -1,
-        "MethodCount": 20,
+        "MethodCount": 21,
         "IncludeMethods": [
           "CheckOnExclude",
           "GetSettings",
@@ -38096,9 +38004,7 @@
         "IsInterface": false,
         "IsEnum": false,
         "IsSealed": true,
-        "HasAttribute": false,
-        "HasGenericParameters": false,
-        "IsDerived": true
+        "IsStruct": true
       },
       "Methods": {
         "ConstructorParameterCount": -1,
@@ -38499,7 +38405,7 @@
         ]
       },
       "Fields": {
-        "FieldCount": 15,
+        "FieldCount": 14,
         "IncludeFields": [
           "VisibleAngle",
           "VisibleDistance",

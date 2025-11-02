@@ -1,11 +1,11 @@
 ﻿using AssemblyLib.Dumper;
-using AssemblyLib.ReMapper;
+using AssemblyLib.Remapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using SPTarkov.DI;
 
-namespace AssemblyLib;
+namespace AssemblyLib.Shared;
 
 public class App
 {
@@ -36,7 +36,7 @@ public class App
         bool isRegen
     )
     {
-        var controller = _provider?.GetService<AutoMatcher.AutoMatcher>();
+        var controller = _provider?.GetService<AutoMatcher.AutoMatchController>();
         await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
     }
 
@@ -59,7 +59,7 @@ public class App
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)
     {
-        var controller = _provider?.GetService<AssemblyUtils>();
+        var controller = _provider?.GetService<AssemblyWriter>();
 
         Log.Information("Deobfuscating assembly...");
 

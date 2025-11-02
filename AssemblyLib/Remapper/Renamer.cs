@@ -1,14 +1,14 @@
 ﻿using AsmResolver;
 using AsmResolver.DotNet;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 
-namespace AssemblyLib.ReMapper;
+namespace AssemblyLib.Remapper;
 
 [Injectable]
 public sealed class Renamer(Statistics stats)
@@ -73,45 +73,38 @@ public sealed class Renamer(Statistics stats)
         // Rename all fields and properties first
 
         // TODO: Passing strings as Utf8String, fix the model
-        RenameObfuscatedFields(module, remap.TypePrimeCandidate!.Name!, remap.NewTypeName);
+        RenameObfuscatedFields(module, remap.ChosenType!.Name!, remap.NewTypeName);
 
-        RenameObfuscatedProperties(module, remap.TypePrimeCandidate!.Name!, remap.NewTypeName);
+        RenameObfuscatedProperties(module, remap.ChosenType!.Name!, remap.NewTypeName);
 
-        remap.TypePrimeCandidate.Name = new Utf8String(remap.NewTypeName);
+        remap.ChosenType.Name = new Utf8String(remap.NewTypeName);
     }
 
-    public async Task FixInterfaceMangledMethodNames(ModuleDefinition module)
+    public void FixInterfaceMangledMethodNames(ModuleDefinition module)
     {
         var types = module.GetAllTypes().Where(t => !t.IsInterface);
 
-        var tasks = new List<Task>(types.Count());
         foreach (var type in types)
         {
-            tasks.Add(
-                Task.Factory.StartNew(() =>
+            var renamedMethodNames = new List<Utf8String>();
+            foreach (var method in type.Methods)
+            {
+                if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
                 {
-                    var renamedMethodNames = new List<Utf8String>();
-                    foreach (var method in type.Methods)
-                    {
-                        if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
-                        {
-                            continue;
-                        }
+                    continue;
+                }
 
-                        var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
+                var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
 
-                        if (newMethodName == Utf8String.Empty)
-                        {
-                            continue;
-                        }
+                if (newMethodName == Utf8String.Empty)
+                {
+                    continue;
+                }
 
-                        renamedMethodNames.Add(newMethodName);
-                    }
-                })
-            );
+                stats.MethodRenamedCount++;
+                renamedMethodNames.Add(newMethodName);
+            }
         }
-
-        await Task.WhenAll(tasks);
     }
 
     private Utf8String FixInterfaceMangledMethod(
@@ -120,7 +113,9 @@ public sealed class Renamer(Statistics stats)
         List<Utf8String> renamedMethodsOnType
     )
     {
-        var splitName = method.Name?.Split('.');
+        // Cache the method name early to avoid multiple accesses
+        var methodName = method.Name?.ToString();
+        var splitName = methodName?.Split('.');
 
         if (splitName is null || splitName.Length < 2)
         {
@@ -136,7 +131,13 @@ public sealed class Renamer(Statistics stats)
             newName = new Utf8String($"{realMethodNameString}_{sameNameCount}");
         }
 
-        if (method.DeclaringType!.Methods.Any(m => m.Name == realMethodNameString))
+        // Cache existing method names to avoid concurrent enumeration
+        var existingMethodNames = method
+            .DeclaringType!.Methods.Select(m => m.Name?.ToString())
+            .Where(name => name != null)
+            .ToHashSet();
+
+        if (existingMethodNames.Contains(realMethodNameString))
         {
             newName = new Utf8String($"{realMethodNameString}_1");
         }
@@ -146,7 +147,7 @@ public sealed class Renamer(Statistics stats)
             Log.Debug(
                 "Renaming method [{MethodDeclaringType}::{MethodName}] to [{TypeDefinition}::{Utf8String}]",
                 method.DeclaringType,
-                method.Name?.ToString(),
+                methodName,
                 method.DeclaringType,
                 newName.ToString()
             );

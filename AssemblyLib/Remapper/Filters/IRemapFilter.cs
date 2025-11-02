@@ -1,7 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 public interface IRemapFilter
 {

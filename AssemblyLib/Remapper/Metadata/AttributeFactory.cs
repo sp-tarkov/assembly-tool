@@ -6,12 +6,12 @@ using AsmResolver.DotNet.Signatures.Types;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.MetaData;
+namespace AssemblyLib.Remapper.MetaData;
 
 [Injectable]
 public class AttributeFactory(DataProvider dataProvider)
@@ -122,12 +122,12 @@ public class AttributeFactory(DataProvider dataProvider)
             new CustomAttributeArgument(module.CorLibTypeFactory.String, remap.OriginalTypeName)
         );
 
-        remap.TypePrimeCandidate!.CustomAttributes.Add(customAttribute);
+        remap.ChosenType!.CustomAttributes.Add(customAttribute);
     }
 
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        foreach (var type in dataProvider.GetRemaps().Select(r => r.TypePrimeCandidate))
+        foreach (var type in dataProvider.GetRemaps().Select(r => r.ChosenType))
         {
             if (type is null)
             {

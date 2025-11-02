@@ -7,6 +7,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class NestedFilters : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "NestedFilters"; }
+    }
+
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         // Target has no nt's but type has nt's

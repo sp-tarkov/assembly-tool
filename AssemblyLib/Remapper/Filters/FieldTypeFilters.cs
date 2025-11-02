@@ -1,9 +1,8 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.Models.Enums;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.ReMapper.Filters;
+namespace AssemblyLib.Remapper.Filters;
 
 [Injectable(TypePriority = 2)]
 public sealed class FieldTypeFilters : IRemapFilter
@@ -17,7 +16,7 @@ public sealed class FieldTypeFilters : IRemapFilter
         types = FilterByCount(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.FieldsCount);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by field count");
             filteredTypes = types;
             return false;
         }
@@ -25,7 +24,7 @@ public sealed class FieldTypeFilters : IRemapFilter
         types = FilterByInclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.FieldsInclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by included fields");
             filteredTypes = types;
             return false;
         }
@@ -33,7 +32,7 @@ public sealed class FieldTypeFilters : IRemapFilter
         types = FilterByExclude(types, remapModel.SearchParams);
         if (!types.Any())
         {
-            remapModel.NoMatchReasons.Add(ENoMatchReason.FieldsExclude);
+            remapModel.FailureReasons.Add("No remaining candidates after filtering by excluded fields");
             filteredTypes = types;
             return false;
         }

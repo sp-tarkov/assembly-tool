@@ -1,24 +1,24 @@
 ﻿using AsmResolver.DotNet;
 using AssemblyLib.AutoMatcher.Filters;
 using AssemblyLib.Models;
-using AssemblyLib.ReMapper;
-using AssemblyLib.Utils;
+using AssemblyLib.Remapper;
+using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher;
 
 [Injectable(InjectionType.Singleton)]
-public class AutoMatcher(
+public class AutoMatchController(
     MappingController mappingController,
-    AssemblyUtils assemblyUtils,
+    AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
-    IEnumerable<IAutoMatchFilter> filters
+    IEnumerable<IAutoMatchFilter> filters,
+    TypeCache typeCache
 )
 {
     private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition>? _candidateTypes;
-    private List<string>? _typesToMatch;
 
     private string? _newTypeName;
 
@@ -30,9 +30,12 @@ public class AutoMatcher(
         bool isRegen
     )
     {
-        var result = assemblyUtils.TryDeObfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
-
-        _typesToMatch = dataProvider.Settings.TypeNamesToMatch;
+        var result = assemblyWriter.Deobfuscate(dataProvider.LoadModule(assemblyPath), assemblyPath);
+        if (!result.Success)
+        {
+            Log.Error("Failed to deobfuscate assembly, exiting.");
+            return;
+        }
 
         if (isRegen)
         {
@@ -47,8 +50,9 @@ public class AutoMatcher(
 
         _newTypeName = newTypeName;
 
-        assemblyPath = result.Item1;
-        Module = result.Item2;
+        assemblyPath =
+            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
+        Module = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
 
         var targetTypeDef = FindTargetType(oldTypeName);
 
@@ -59,7 +63,9 @@ public class AutoMatcher(
         }
         Log.Information("Found target type: {FullName}", targetTypeDef.FullName);
 
-        GetCandidateTypes(targetTypeDef);
+        typeCache.HydrateCache();
+        _candidateTypes = typeCache.SelectCache(targetTypeDef);
+
         Log.Information(
             "Found {CandidateTypesCount} potential candidates: {FullName}",
             _candidateTypes?.Count ?? 0,
@@ -74,23 +80,6 @@ public class AutoMatcher(
     private TypeDefinition? FindTargetType(string oldTypeName)
     {
         return Module!.GetAllTypes().FirstOrDefault(t => t.FullName == oldTypeName);
-    }
-
-    private void GetCandidateTypes(TypeDefinition targetTypeDef)
-    {
-        if (targetTypeDef.IsNested)
-        {
-            _candidateTypes = targetTypeDef
-                .DeclaringType?.NestedTypes.Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
-                .ToList();
-
-            return;
-        }
-
-        _candidateTypes = Module
-            ?.GetAllTypes()
-            .Where(t => _typesToMatch?.Any(token => t.Name!.StartsWith(token)) ?? false)
-            .ToList();
     }
 
     private async Task StartFilter(
@@ -108,20 +97,46 @@ public class AutoMatcher(
         {
             foreach (var filter in filters)
             {
-                if (!filter.Filter(target, candidate, remapModel.SearchParams))
+                if (filter.Filter(target, candidate, remapModel.SearchParams))
                 {
-                    _candidateTypes.Remove(candidate);
+                    continue;
                 }
+
+                if (target.FullName == candidate.FullName)
+                {
+                    Log.Error(
+                        "Candidate: {candidate} filtered out after filter: {filter}",
+                        candidate.Name?.ToString(),
+                        filter.FilterName
+                    );
+
+                    _candidateTypes.Remove(candidate);
+                    break;
+                }
+
+                _candidateTypes.Remove(candidate);
             }
         }
 
-        if (_candidateTypes!.Count == 1)
+        switch (_candidateTypes!.Count)
         {
-            await RunTest(remapModel, assemblyPath, oldAssemblyPath, isRegen);
-            return;
+            case 0:
+                Log.Error("No potential candidates remain, could not build a signature.");
+                break;
+            case 1:
+                await RunTest(remapModel, assemblyPath, oldAssemblyPath, isRegen);
+                break;
+            case > 1:
+                Log.Information("Could not isolate type {type}", remapModel.NewTypeName);
+                Log.Information("Showing all remaining potential types:");
+                foreach (var type in _candidateTypes)
+                {
+                    Log.Information("\t{FullName}", type.FullName);
+                }
+                break;
         }
 
-        Log.Error("Could not find a match... :(");
+        Log.Information("Generated Model:\n{remapModel}", dataProvider.SerializeRemap(remapModel));
     }
 
     private async Task RunTest(RemapModel remapModel, string assemblyPath, string oldAssemblyPath, bool isRegen)
@@ -148,6 +163,7 @@ public class AutoMatcher(
     {
         Thread.Sleep(1000);
 
+        Log.Information("Signature generation successful!");
         Log.Information("Add remap to existing list?.. (y/n)");
         var resp = Console.ReadLine()?.ToLower();
 
@@ -198,7 +214,7 @@ public class AutoMatcher(
         }
 
         remaps.Add(remapModel);
-        dataProvider.UpdateMappingFile(false, true);
+        dataProvider.UpdateMappingFile(false);
     }
 
     private async Task RunMappingProcess(string response, string assemblyPath, string oldAssemblyPath)

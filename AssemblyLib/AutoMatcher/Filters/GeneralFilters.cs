@@ -1,6 +1,7 @@
 ﻿using AsmResolver.DotNet;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Utils;
+using AssemblyLib.Shared;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.AutoMatcher.Filters;
@@ -8,6 +9,11 @@ namespace AssemblyLib.AutoMatcher.Filters;
 [Injectable]
 public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
 {
+    public override string FilterName
+    {
+        get { return "GeneralFilters"; }
+    }
+
     public override bool Filter(TypeDefinition target, TypeDefinition candidate, SearchParams searchParams)
     {
         if (target.IsPublic && !candidate.IsPublic)
@@ -73,7 +79,17 @@ public class GeneralFilters(DataProvider dataProvider) : AbstractAutoMatchFilter
         searchParams.GenericParams.HasGenericParameters = target.GenericParameters.Any();
         searchParams.GenericParams.IsSealed = target.IsSealed;
         searchParams.GenericParams.HasAttribute = target.CustomAttributes.Any();
-        searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
+
+        switch (target.IsValueType)
+        {
+            // Structs are never derived
+            case false:
+                searchParams.GenericParams.IsDerived = target.BaseType != null && target.BaseType.Name != "Object";
+                break;
+            case true when !target.IsEnum:
+                searchParams.GenericParams.IsStruct = true;
+                break;
+        }
 
         if (
             (bool)searchParams.GenericParams.IsDerived

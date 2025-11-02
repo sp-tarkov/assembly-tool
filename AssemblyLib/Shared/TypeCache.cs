@@ -108,7 +108,7 @@ public sealed class TypeCache(DataProvider dataProvider)
         Log.Information("Loaded: {num} Nested structs", _nestedStructs.Count);
 
         Log.Information("Loaded: {num} Interfaces", _interfaces.Count);
-        Log.Information("Loaded: {num} Enums", _interfaces.Count);
+        Log.Information("Loaded: {num} Enums", _enums.Count);
         Log.Information("--------------------------------------------------------------------------------");
 
         _isHydrated = true;

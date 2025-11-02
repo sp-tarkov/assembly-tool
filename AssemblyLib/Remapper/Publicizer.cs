@@ -97,7 +97,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             Log.Information(
                 "Not publicizing {FullName}::{MethodName} due to it being ignored",
                 method.DeclaringType!.FullName,
-                method.Name
+                method.Name.ToString()
             );
             return;
         }

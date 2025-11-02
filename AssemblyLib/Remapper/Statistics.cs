@@ -77,6 +77,7 @@ public sealed class Statistics(DataProvider dataProvider)
             Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
         }
 
+        Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
         // In-case a thread is hanging
         Environment.Exit(0);
     }
@@ -223,7 +224,5 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("Hollowed written to `{HollowedPath}`", _hollowedPath);
 
         dataProvider.UpdateMappingFile();
-
-        Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
     }
 }

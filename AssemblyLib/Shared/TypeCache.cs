@@ -3,6 +3,7 @@ using AssemblyLib.Exceptions;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Shared;
@@ -138,7 +139,11 @@ public sealed class TypeCache(DataProvider dataProvider)
         // Abstract and sealed = static
         if (genericParams.IsStatic)
         {
-            Log.Information("Static class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Static class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _staticClasses ?? throw new TypeCacheException("Static class cache is null");
         }
 
@@ -146,37 +151,61 @@ public sealed class TypeCache(DataProvider dataProvider)
         {
             if (nestedParams.IsNested)
             {
-                Log.Information("Nested struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Nested struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                }
+
                 return _nestedStructs ?? throw new TypeCacheException("NestedStructs cache is null");
             }
 
-            Log.Information("Struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Struct cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _structs ?? throw new TypeCacheException("Structs cache is null");
         }
 
         // Interface - considered abstract so check it before abstract
         if (genericParams.IsInterface)
         {
-            Log.Information("Interface cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Interface cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _interfaces ?? throw new TypeCacheException("Interfaces cache is null");
         }
 
         if (genericParams.IsAbstract)
         {
-            Log.Information("Abstract class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Abstract class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _abstractClasses ?? throw new TypeCacheException("AbstractClasses cache is null");
         }
 
         if (genericParams.IsSealed)
         {
-            Log.Information("Sealed class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Sealed class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _sealedClasses ?? throw new TypeCacheException("SealedClasses cache is null");
         }
 
         // Enums are never obfuscated but im putting this here anyway just in-case
         if (genericParams.IsEnum)
         {
-            Log.Information("Enum cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Enum cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+            }
+
             return _enums ?? throw new TypeCacheException("Enum cache is null");
         }
 
@@ -184,10 +213,18 @@ public sealed class TypeCache(DataProvider dataProvider)
         switch (nestedParams.IsNested)
         {
             case true:
-                Log.Information("Nested class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Nested class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                }
+
                 return _nestedClasses ?? throw new TypeCacheException("NestedClasses cache is null");
             case false:
-                Log.Information("Class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Class cache chosen for remap: {newTypeName}", remapModel.NewTypeName);
+                }
+
                 return _classes ?? throw new TypeCacheException("Classes cache is null");
         }
     }
@@ -199,7 +236,11 @@ public sealed class TypeCache(DataProvider dataProvider)
         // Abstract and sealed = static
         if (typeDef.IsStatic())
         {
-            Log.Information("Static class cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Static class cache chosen for type: {name}", strName);
+            }
+
             return _staticClasses ?? throw new TypeCacheException("Static class cache is null");
         }
 
@@ -207,45 +248,77 @@ public sealed class TypeCache(DataProvider dataProvider)
         {
             if (typeDef.IsNested)
             {
-                Log.Information("Nested struct cache chosen for type: {name}", strName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Nested struct cache chosen for type: {name}", strName);
+                }
+
                 return _nestedStructs ?? throw new TypeCacheException("NestedStructs cache is null");
             }
 
-            Log.Information("Struct cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Struct cache chosen for type: {name}", strName);
+            }
+
             return _structs ?? throw new TypeCacheException("Structs cache is null");
         }
 
         if (typeDef.IsInterface)
         {
-            Log.Information("Interface cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Interface cache chosen for type: {name}", strName);
+            }
+
             return _interfaces ?? throw new TypeCacheException("Interfaces cache is null");
         }
 
         if (typeDef.IsAbstract)
         {
-            Log.Information("Abstract class cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Abstract class cache chosen for type: {name}", strName);
+            }
+
             return _abstractClasses ?? throw new TypeCacheException("AbstractClasses cache is null");
         }
 
         if (typeDef.IsSealed)
         {
-            Log.Information("Sealed class cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Sealed class cache chosen for type: {name}", strName);
+            }
+
             return _sealedClasses ?? throw new TypeCacheException("SealedClasses cache is null");
         }
 
         if (typeDef.IsEnum)
         {
-            Log.Information("Enum cache chosen for type: {name}", strName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Enum cache chosen for type: {name}", strName);
+            }
+
             return _enums ?? throw new TypeCacheException("Enum cache is null");
         }
 
         switch (typeDef.IsNested)
         {
             case true:
-                Log.Information("Nested class cache chosen for remap: {name}", strName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Nested class cache chosen for remap: {name}", strName);
+                }
+
                 return _nestedClasses ?? throw new TypeCacheException("NestedClasses cache is null");
             case false:
-                Log.Information("Class cache chosen for remap: {name}", strName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Class cache chosen for remap: {name}", strName);
+                }
+
                 return _classes ?? throw new TypeCacheException("Classes cache is null");
         }
     }

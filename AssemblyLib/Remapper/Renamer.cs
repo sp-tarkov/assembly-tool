@@ -84,27 +84,30 @@ public sealed class Renamer(Statistics stats)
     {
         var types = module.GetAllTypes().Where(t => !t.IsInterface);
 
-        foreach (var type in types)
-        {
-            var renamedMethodNames = new List<Utf8String>();
-            foreach (var method in type.Methods)
+        Parallel.ForEach(
+            types,
+            type =>
             {
-                if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
+                var renamedMethodNames = new List<Utf8String>();
+                foreach (var method in type.Methods)
                 {
-                    continue;
+                    if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
+                    {
+                        continue;
+                    }
+
+                    var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
+
+                    if (newMethodName == Utf8String.Empty)
+                    {
+                        continue;
+                    }
+
+                    Interlocked.Increment(ref stats.MethodRenamedCount);
+                    renamedMethodNames.Add(newMethodName);
                 }
-
-                var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
-
-                if (newMethodName == Utf8String.Empty)
-                {
-                    continue;
-                }
-
-                stats.MethodRenamedCount++;
-                renamedMethodNames.Add(newMethodName);
             }
-        }
+        );
     }
 
     private Utf8String FixInterfaceMangledMethod(

@@ -50,9 +50,11 @@ public sealed class Statistics(DataProvider dataProvider)
                 "Assembly-CSharp.dll"
             );
 
-            File.Copy(outPath, gameDest, true);
-
-            Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
+            if (File.Exists(gameDest))
+            {
+                File.Copy(outPath, gameDest, true);
+                Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
+            }
         }
 
         if (
@@ -131,7 +133,7 @@ public sealed class Statistics(DataProvider dataProvider)
     {
         foreach (var remap in dataProvider.GetRemaps())
         {
-            if (remap.Succeeded is false)
+            if (!remap.Succeeded)
             {
                 continue;
             }

@@ -194,11 +194,11 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("--------------------------------------------------");
         Log.Information("Types publicized: {S}", TypePublicizedCount);
         Log.Information("Types renamed: {Changes}", changes);
-        Log.Information("--------------------------------------------------");
 
         if (failures > 0)
         {
             Log.Error("Types that failed: {Failures}", failures);
+            Log.Information("--------------------------------------------------");
             return;
         }
 

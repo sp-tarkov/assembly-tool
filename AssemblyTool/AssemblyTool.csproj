@@ -19,7 +19,7 @@
     <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CliFx" Version="2.3.5" />
+    <PackageReference Include="CliFx" Version="2.3.6" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

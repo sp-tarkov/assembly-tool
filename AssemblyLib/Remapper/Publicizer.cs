@@ -17,7 +17,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     /// Publicize the provided type
     /// </summary>
     /// <param name="type">Type to publicize</param>
-    /// <returns>Dictionary of publicized fields Key: Field Val: IsProtected</returns>
+    /// <returns>List of fields that should be renamed</returns>
     public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
         if (Log.IsEnabled(LogEventLevel.Debug))
@@ -125,41 +125,33 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
     private List<FieldDefinition> PublicizeFields(TypeDefinition type)
     {
-        if (!ShouldPublicizeFields(type))
+        // We only publicize fields that are serialized on GameObjects
+        if (type.IsGameObject())
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            foreach (var field in type.Fields)
             {
-                Log.Debug("Skipping field publication on [{Utf8String}]", type.Name?.ToString());
+                if (!field.IsPublic && !field.IsEventField() && field.IsUnitySerializedField())
+                {
+                    field.PublicizeField();
+                    stats.FieldPublicizedCount++;
+                }
             }
 
+            // We don't rename anything on GameObjects, this breaks unity, return an empty list.
             return [];
         }
 
-        var result = new List<FieldDefinition>();
+        var fieldsToRename = new List<FieldDefinition>();
         foreach (var field in type.Fields)
         {
-            if (field.IsPublic || IsEventField(type, field))
+            if (field.IsPublic || field.IsEventField())
             {
                 continue;
             }
 
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                Log.Debug(
-                    "Publicizing Field [{FieldDeclaringType}::{Utf8String}]",
-                    field.DeclaringType,
-                    field.Name?.ToString()
-                );
-            }
-
+            field.PublicizeField();
+            fieldsToRename.Add(field);
             stats.FieldPublicizedCount++;
-            field.Attributes &= ~FieldAttributes.FieldAccessMask; // Remove all visibility mask attributes
-            field.Attributes |= FieldAttributes.Public; // Apply a public visibility attribute
-
-            // Ensure the field is NOT readonly
-            field.Attributes &= ~FieldAttributes.InitOnly;
-
-            result.Add(field);
 
             if (
                 field.HasCustomAttribute("UnityEngine", "SerializeField")
@@ -169,63 +161,10 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
                 continue;
             }
 
-            // Make sure we don't serialize this field.
-            // TODO: Do we need this?
+            // This field isn't meant to be serialized, make sure we don't serialize it
             field.Attributes |= FieldAttributes.NotSerialized;
         }
 
-        return result;
-    }
-
-    private static bool ShouldPublicizeFields(TypeDefinition type)
-    {
-        return !type.InheritsFrom("UnityEngine", "Object")
-            && !type.InheritsFrom("Sirenix.OdinInspector", "SerializedMonoBehaviour");
-    }
-
-    private static bool IsEventField(TypeDefinition type, FieldDefinition field)
-    {
-        // TODO: This can be cleaned up, redundant code.
-        foreach (var evt in type.Events)
-        {
-            if (evt.AddMethod is { CilMethodBody: not null })
-            {
-                if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
-            }
-
-            if (evt.RemoveMethod is { CilMethodBody: not null })
-            {
-                if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
-            }
-
-            if (evt.FireMethod is { CilMethodBody: not null })
-            {
-                if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private static bool IsMemberReferenceNameMatch(CilInstructionCollection instructions, Utf8String? memberName)
-    {
-        foreach (var instr in instructions)
-        {
-            if (instr.Operand is FieldDefinition fieldDefinition && fieldDefinition.Name == memberName)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return fieldsToRename;
     }
 }

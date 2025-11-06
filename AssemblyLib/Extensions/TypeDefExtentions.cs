@@ -13,4 +13,10 @@ internal static class TypeDefinitionExtensions
     {
         return typeDef.IsValueType && !typeDef.IsEnum;
     }
+
+    public static bool IsGameObject(this TypeDefinition type)
+    {
+        return type.InheritsFrom("UnityEngine", "Object")
+            || type.InheritsFrom("Sirenix.OdinInspector", "SerializedMonoBehaviour");
+    }
 }

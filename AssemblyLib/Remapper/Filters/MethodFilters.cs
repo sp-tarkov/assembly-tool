@@ -100,7 +100,7 @@ public sealed class MethodFilters : IRemapFilter
             }
         }
 
-        return filteredTypes.Any() ? filteredTypes : types;
+        return filteredTypes.Count != 0 ? filteredTypes : types;
     }
 
     /// <summary>
@@ -118,7 +118,7 @@ public sealed class MethodFilters : IRemapFilter
 
         if (parms.Methods.MethodCount >= 0)
         {
-            types = types.Where(t => GetMethodCountExcludingConstructors(t) == parms.Methods.MethodCount);
+            types = types.Where(t => t.Methods.Count(m => !m.IsConstructor) == parms.Methods.MethodCount);
         }
 
         return types;
@@ -148,28 +148,8 @@ public sealed class MethodFilters : IRemapFilter
             {
                 // Ensure Parameters isn't null before checking Count
                 var parameters = ctor.Parameters;
-                // This +1 offset is needed for some reason, needs investigation
                 return parameters.Count == parms.Methods.ConstructorParameterCount;
             });
         });
-    }
-
-    /// <summary>
-    /// We don't want the constructors included in the count
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    private static int GetMethodCountExcludingConstructors(TypeDefinition type)
-    {
-        var count = 0;
-        foreach (var method in type.Methods)
-        {
-            if (method is { IsConstructor: false })
-            {
-                count++;
-            }
-        }
-
-        return count;
     }
 }

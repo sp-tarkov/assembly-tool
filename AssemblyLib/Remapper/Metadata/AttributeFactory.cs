@@ -127,7 +127,15 @@ public class AttributeFactory(DataProvider dataProvider)
 
     public void UpdateAsyncAttributes(ModuleDefinition module)
     {
-        foreach (var type in dataProvider.GetRemaps().Select(r => r.ChosenType))
+        var types = dataProvider.GetRemaps().Select(r => r.ChosenType).ToList();
+        var nestedTypes = new List<TypeDefinition>();
+        foreach (var type in types)
+        {
+            nestedTypes.AddRange(type.NestedTypes);
+        }
+        types.AddRange(nestedTypes);
+
+        foreach (var type in types)
         {
             if (type is null)
             {

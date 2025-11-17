@@ -1,5 +1,4 @@
-﻿using AssemblyLib.Dumper;
-using AssemblyLib.Remapper;
+﻿using AssemblyLib.Remapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -38,23 +37,6 @@ public class App
     {
         var controller = _provider?.GetService<AutoMatcher.AutoMatchController>();
         await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
-    }
-
-    public Task CreateDumper(string managedPath)
-    {
-        var controller = _provider?.GetService<DumperClass>();
-
-        Log.Information("Creating dumper...");
-
-        controller?.LoadModule(managedPath);
-        controller?.CreateDumpFolders();
-        controller?.CreateDumper();
-        controller?.CopyFiles();
-        controller?.ZipFiles();
-
-        Log.Information("Complete...");
-
-        return Task.CompletedTask;
     }
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)

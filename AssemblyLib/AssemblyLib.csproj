@@ -24,7 +24,4 @@
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
     <PackageReference Include="SPTarkov.DI" Version="4.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DumpLib\DumpLib.csproj" />
-  </ItemGroup>
 </Project>

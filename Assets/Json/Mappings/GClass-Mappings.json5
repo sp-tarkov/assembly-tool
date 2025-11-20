@@ -1,46 +1,4 @@
 {
-
-  "EFT.SkillManager": {
-    "NestedTypes": {
-      "GClass2250": {
-        "NewName": "WeaponBuffsInfo"
-      },
-      "GClass2251": {
-        "NewName": "ShotParams"
-      },
-      "GClass2252": {
-        "NewName": "Buff"
-      },
-      "GClass2253": {
-        "NewName": "FloatBuff"
-      },
-      "GClass2254": {
-        "NewName": "ProbabilityBuff"
-      },
-      "GClass2255": {
-        "NewName": "GainBuff"
-      },
-      "GClass2256": {
-        "NewName": "LossBuff"
-      },
-      "GClass2257": {
-        "NewName": "BooleanBuff"
-      },
-      "GClass2258`1": {
-        // Buff<T>
-        "NewName": "Buff"
-      },
-      "GClass2259": {
-        "NewName": "SkillAction"
-      },
-      "GClass2260`1": {
-        "NewName": "SkillAction"
-      },
-      "GClass2261`1": {
-        "NewName": "SkillDependency"
-      }
-    }
-  },
   "GClass32": {
     // AICoreStrategyAbstractClass
     "NewName": "AICoreAgentBase",
@@ -243,6 +201,14 @@
     "NewName": "AnimatorParameter",
     "NewNamespace": "FastAnimatorSystem",
   },
+  "GClass1330": {
+    "NewName": "FastAnimationEventsStateBehaviour",
+    "NewNamespace": "AnimationEventSystem",
+  },
+  "GClass1331": {
+    "NewName": "FastAnimationPlayerStateContainerBehaviour",
+    "NewNamespace": "AnimationEventSystem",
+  },
   "GClass1367": {
     "NewName": "BitWriter",
     "NewNamespace": "BitPacking",
@@ -278,6 +244,11 @@
     "NewName": "GlobalConfigResponse",
     "NewNamespace": "JsonType",
   },
+  "GClass1442": {
+    // BotPresetClass
+    "NewName": "BotPreset",
+    "NewNamespace": "JsonType",
+  },
   "GClass1445": {
     "NewName": "AnimatorFactory",
     "NewNamespace": "AnimationSystem",
@@ -286,10 +257,9 @@
     "NewName": "UnityAnimatorWrapper",
     "NewNamespace": "AnimationSystem",
   },
-  "GClass1442": {
-    // BotPresetClass
-    "NewName": "BotPreset",
-    "NewNamespace": "JsonType",
+  "GClass1453": {
+    "NewName": "EAnimationEventParamTypeExtension",
+    "NewNamespace": "AnimationEventSystem",
   },
   "GClass1496": {
     // ExfiltrationControllerClass

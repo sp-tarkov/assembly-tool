@@ -14,6 +14,9 @@
   "GInterface23": {
     "NewName": "IBotCreator"
   },
+  "GInterface27": {
+    "NewName": "IEventsConsumer"
+  },
   "GInterface36`1": {
     "NewName": "IClientBackEnd"
   },
@@ -42,6 +45,10 @@
   },
   "GInterface136": {
     "NewName": "IAnimationEventsConsumer",
+    "NewNamespace": "AnimationEventSystem"
+  },
+  "GInterface137": {
+    "NewName": "IEventBehaviour",
     "NewNamespace": "AnimationEventSystem"
   },
   "GInterface154": {

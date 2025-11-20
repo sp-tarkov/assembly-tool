@@ -1,0 +1,115 @@
+{
+  "EFT.Player": {
+    "NestedTypes": {
+      "Class1271`1": {
+        "NewName": "GrenadeOperation"
+      },
+      "Class1282`1": {
+        "NewName": "BaseKnifeOperation"
+      },
+      "Class1310": {
+        "NewName": "InventoryOperation"
+      },
+      "Class1311": {
+        "NewName": "SetInHandsOperation"
+      },
+      "Class1312": {
+        "NewName": "RemoveFromHandsOperation"
+      },
+
+      "GClass724": {
+        "NewName": "PlayerLogger"
+      },
+      "GClass1537": {
+        "NewName": "ItemComponentNotFoundError"
+      },
+      "GClass1538": {
+        "NewName": "ItemParentIsWrongError"
+      },
+      "GClass1539": {
+        "NewName": "WrongComponentStateError"
+      },
+      "GClass2003": {
+        "NewName": "Constants"
+      },
+      "GClass2004": {
+        "NewName": "Garbage"
+      },
+      "GClass2012": {
+        "NewName": "ObjectInHandsOperation"
+      },
+      "GClass2059`1": {
+        "NewName": "SlotObserver"
+      },
+      "GClass2060": {
+        "NewName": "GrenadeThrowResult"
+      },
+
+      "GInterface193": {
+        "NewName": "IGrenadeOperation"
+      },
+
+      "GDelegate65": {
+        "NewName": "DamageDelegate"
+      },
+      "GDelegate66": {
+        "NewName": "DeltaTimeDelegate"
+      },
+
+      "GStruct182": {
+        "NewName": "KnifeRaycastHit"
+      },
+
+      "Interface9": {
+        "NewName": "IQuickUsOperation"
+      },
+      "Interface10": {
+        "NewName": "IBaseKnifeOperation"
+      },
+      "Interface11": {
+        "NewName": "IBaseUsableItemOperation"
+      }
+    }
+  },
+  "EFT.SkillManager": {
+    "NestedTypes": {
+      "GClass2250": {
+        "NewName": "WeaponBuffsInfo"
+      },
+      "GClass2251": {
+        "NewName": "ShotParams"
+      },
+      "GClass2252": {
+        "NewName": "Buff"
+      },
+      "GClass2253": {
+        "NewName": "FloatBuff"
+      },
+      "GClass2254": {
+        "NewName": "ProbabilityBuff"
+      },
+      "GClass2255": {
+        "NewName": "GainBuff"
+      },
+      "GClass2256": {
+        "NewName": "LossBuff"
+      },
+      "GClass2257": {
+        "NewName": "BooleanBuff"
+      },
+      "GClass2258`1": {
+        // Buff<T>
+        "NewName": "Buff"
+      },
+      "GClass2259": {
+        "NewName": "SkillAction"
+      },
+      "GClass2260`1": {
+        "NewName": "SkillAction"
+      },
+      "GClass2261`1": {
+        "NewName": "SkillDependency"
+      }
+    }
+  }
+}

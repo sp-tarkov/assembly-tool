@@ -100,7 +100,10 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
                 var nestedType = model.Type.NestedTypes.FirstOrDefault(t => t.Name == name);
                 if (nestedType is null)
                 {
+                    var children = string.Join(", ", nestedType?.NestedTypes.Select(t => t.Name?.ToString()) ?? []);
+
                     Log.Error("Failed to find nested type: {name} on parent {parent}", name, model.Type.FullName);
+                    Log.Error("Available children for {parent}: {children}", model.Type.FullName, children);
                     continue;
                 }
 
@@ -119,8 +122,8 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
 
     private void RenameMapping(DirectMapModel model)
     {
-        model.Type?.Name = new Utf8String(model.NewName!);
         var oldName = model.Type?.FullName;
+        model.Type?.Name = new Utf8String(model.NewName!);
 
         if (model.NewNamespace is not null)
         {
@@ -131,8 +134,13 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
         RenameMethods(model);
     }
 
-    private static void RenameMethods(DirectMapModel model)
+    private void RenameMethods(DirectMapModel model)
     {
+        if (model.Type?.IsInterface ?? false)
+        {
+            RenameInterfacePrefacedMethods(model.Type);
+        }
+
         var methodsToRename = model.MethodRenames;
         if (methodsToRename is null || methodsToRename.Count == 0)
         {
@@ -151,6 +159,38 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
                 Log.Information("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
                 method.Name = new Utf8String(newName);
             }
+        }
+    }
+
+    private void RenameInterfacePrefacedMethods(TypeDefinition interfaceToRenameFor)
+    {
+        var implementations = Module!.GetAllTypes().Where(t => t.Implements(interfaceToRenameFor.FullName));
+        if (!implementations.Any())
+        {
+            return;
+        }
+
+        Log.Information("Fixing method names for interface: {interface}", interfaceToRenameFor.FullName);
+
+        var interfaceMethodNames = interfaceToRenameFor.Methods.Select(t => t.Name!.ToString()).ToArray();
+
+        foreach (var method in implementations.SelectMany(t => t.Methods))
+        {
+            var methodSplitName = method.Name!.Split('.');
+            if (methodSplitName.Length <= 1)
+            {
+                continue;
+            }
+
+            var realMethodName = methodSplitName.Last();
+
+            // Not a method impl from this interface
+            if (!interfaceMethodNames.Contains(realMethodName))
+            {
+                continue;
+            }
+
+            method.Name = new Utf8String($"{interfaceToRenameFor.Name}.{realMethodName}");
         }
     }
 

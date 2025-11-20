@@ -36,5 +36,30 @@
     // PostRaidHealthScreenClass
     "NewName": "SessionResultShowOperation",
     "NewNamespace": "EFT"
+  },
+  "Class3637": {
+    "NewName": "ClothState",
+    "NewNamespace": "AmplifyMotion",
+  },
+  "Class3638": {
+    "NewName": "ParticleState",
+    "NewNamespace": "AmplifyMotion",
+    "NestedTypes": {
+      "Class3641": {
+        "NewName": "Particle"
+      }
+    }
+  },
+  "Class3639": {
+    "NewName": "SkinnedState",
+    "NewNamespace": "AmplifyMotion",
+  },
+  "Class3640": {
+    "NewName": "SolidState",
+    "NewNamespace": "AmplifyMotion",
+  },
+  "Class3642": {
+    "NewName": "WorkerThreadPool",
+    "NewNamespace": "AmplifyMotion",
   }
 }

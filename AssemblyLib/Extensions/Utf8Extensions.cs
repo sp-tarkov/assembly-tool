@@ -16,63 +16,60 @@ internal static class Utf8Extensions
         "GInterface",
     ];
 
-    public static bool StartsWith(
-        this Utf8String utf8,
-        string value,
-        StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
-    )
+    /// <param name="utf8"></param>
+    extension(Utf8String utf8)
     {
-        return utf8.ToString().StartsWith(value, comparisonType);
-    }
-
-    public static bool EndsWith(
-        this Utf8String utf8,
-        string value,
-        StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
-    )
-    {
-        return utf8.ToString().EndsWith(value, comparisonType);
-    }
-
-    public static bool Contains(
-        this Utf8String utf8,
-        string value,
-        StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
-    )
-    {
-        return utf8.ToString().Contains(value, comparisonType);
-    }
-
-    public static string[] Split(this Utf8String utf8, char separator)
-    {
-        var str = utf8.ToString();
-
-        return str.Split(separator);
-    }
-
-    public static Utf8String Replace(this Utf8String utf8, string oldValue, string newValue)
-    {
-        var str = utf8.ToString();
-
-        return new Utf8String(str.Replace(oldValue, newValue));
-    }
-
-    /// <summary>
-    /// Does the property or field name exist in a given list, this applies prefixes and handles capitalization.
-    /// </summary>
-    /// <param name="str"></param>
-    /// <returns>True if it in the list</returns>
-    public static bool IsObfuscatedName(this Utf8String str)
-    {
-        var realString = str.ToString();
-
-        if (realString.Trim().StartsWith('_'))
+        public bool StartsWith(string value,
+            StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
+        )
         {
-            realString = realString.Replace("_", "");
+            return utf8.ToString().StartsWith(value, comparisonType);
         }
 
-        var result = _typesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+        public bool EndsWith(string value,
+            StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
+        )
+        {
+            return utf8.ToString().EndsWith(value, comparisonType);
+        }
 
-        return result;
+        public bool Contains(string value,
+            StringComparison comparisonType = StringComparison.OrdinalIgnoreCase
+        )
+        {
+            return utf8.ToString().Contains(value, comparisonType);
+        }
+
+        public string[] Split(char separator)
+        {
+            var str = utf8.ToString();
+
+            return str.Split(separator);
+        }
+
+        public Utf8String Replace(string oldValue, string newValue)
+        {
+            var str = utf8.ToString();
+
+            return new Utf8String(str.Replace(oldValue, newValue));
+        }
+
+        /// <summary>
+        /// Does the property or field name exist in a given list, this applies prefixes and handles capitalization.
+        /// </summary>
+        /// <returns>True if it in the list</returns>
+        public bool IsObfuscatedName()
+        {
+            var realString = utf8.ToString();
+
+            if (realString.Trim().StartsWith('_'))
+            {
+                realString = realString.Replace("_", "");
+            }
+
+            var result = _typesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+
+            return result;
+        }
     }
 }

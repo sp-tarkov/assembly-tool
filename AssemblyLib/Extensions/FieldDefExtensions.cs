@@ -9,86 +9,86 @@ namespace AssemblyLib.Extensions;
 
 internal static class FieldDefExtensions
 {
-    /// <summary>
-    ///     Is this a unity serialized field
-    /// </summary>
     /// <param name="field">Field to check</param>
-    /// <returns>True if serialized field</returns>
-    public static bool IsUnitySerializedField(this FieldDefinition field)
+    extension(FieldDefinition field)
     {
-        return field.HasCustomAttribute("UnityEngine", "SerializeField");
-    }
-
-    /// <summary>
-    ///     Publicizes field and removes readonly
-    /// </summary>
-    /// <param name="field">Field to publicize</param>
-    public static void PublicizeField(this FieldDefinition field)
-    {
-        if (Log.IsEnabled(LogEventLevel.Debug))
+        /// <summary>
+        ///     Is this a unity serialized field
+        /// </summary>
+        /// <returns>True if serialized field</returns>
+        public bool IsUnitySerializedField()
         {
-            Log.Debug(
-                "Publicizing Field [{FieldDeclaringType}::{Utf8String}]",
-                field.DeclaringType,
-                field.Name?.ToString()
-            );
+            return field.HasCustomAttribute("UnityEngine", "SerializeField");
         }
 
-        // Remove all visibility mask attributes
-        field.Attributes &= ~FieldAttributes.FieldAccessMask;
-        // Apply a public visibility attribute
-        field.Attributes |= FieldAttributes.Public;
-        // Ensure the field is NOT readonly
-        field.Attributes &= ~FieldAttributes.InitOnly;
-    }
-
-    /// <summary>
-    ///     Is this field a newtonsoft serialized field
-    /// </summary>
-    /// <param name="field">Field to check</param>
-    /// <returns>true if newtonsoft json field</returns>
-    public static bool IsNewtonSoftProperty(this FieldDefinition field)
-    {
-        return field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute");
-    }
-
-    /// <summary>
-    ///     Is this field a backing field for an event?
-    /// </summary>
-    /// <param name="field">Field to check</param>
-    /// <returns>True if backing field</returns>
-    public static bool IsEventField(this FieldDefinition field)
-    {
-        var declType = field.DeclaringType;
-
-        foreach (var evt in declType?.Events ?? [])
+        /// <summary>
+        ///     Publicizes field and removes readonly
+        /// </summary>
+        public void PublicizeField()
         {
-            if (evt.AddMethod is { CilMethodBody: not null })
+            if (Log.IsEnabled(LogEventLevel.Debug))
             {
-                if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
+                Log.Debug(
+                    "Publicizing Field [{FieldDeclaringType}::{Utf8String}]",
+                    field.DeclaringType,
+                    field.Name?.ToString()
+                );
             }
 
-            if (evt.RemoveMethod is { CilMethodBody: not null })
-            {
-                if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
-            }
-
-            if (evt.FireMethod is { CilMethodBody: not null })
-            {
-                if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
-                {
-                    return true;
-                }
-            }
+            // Remove all visibility mask attributes
+            field.Attributes &= ~FieldAttributes.FieldAccessMask;
+            // Apply a public visibility attribute
+            field.Attributes |= FieldAttributes.Public;
+            // Ensure the field is NOT readonly
+            field.Attributes &= ~FieldAttributes.InitOnly;
         }
 
-        return false;
+        /// <summary>
+        ///     Is this field a newtonsoft serialized field
+        /// </summary>
+        /// <returns>true if newtonsoft json field</returns>
+        public bool IsNewtonSoftProperty()
+        {
+            return field.HasCustomAttribute("Newtonsoft.Json", "JsonPropertyAttribute");
+        }
+
+        /// <summary>
+        ///     Is this field a backing field for an event?
+        /// </summary>
+        /// <returns>True if backing field</returns>
+        public bool IsEventField()
+        {
+            var declType = field.DeclaringType;
+
+            foreach (var evt in declType?.Events ?? [])
+            {
+                if (evt.AddMethod is { CilMethodBody: not null })
+                {
+                    if (IsMemberReferenceNameMatch(evt.AddMethod.CilMethodBody.Instructions, field.Name))
+                    {
+                        return true;
+                    }
+                }
+
+                if (evt.RemoveMethod is { CilMethodBody: not null })
+                {
+                    if (IsMemberReferenceNameMatch(evt.RemoveMethod.CilMethodBody.Instructions, field.Name))
+                    {
+                        return true;
+                    }
+                }
+
+                if (evt.FireMethod is { CilMethodBody: not null })
+                {
+                    if (IsMemberReferenceNameMatch(evt.FireMethod.CilMethodBody.Instructions, field.Name))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 
     /// <summary>

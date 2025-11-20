@@ -1,5 +1,5 @@
-﻿using AssemblyLib.Remapper;
-using Microsoft.Extensions.Configuration;
+﻿using AssemblyLib.DirectMapper;
+using AssemblyLib.Remapper;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using SPTarkov.DI;
@@ -16,15 +16,18 @@ public class App
         ConfigureApplication();
     }
 
-    public async Task RunRemapProcess(
-        string assemblyPath,
-        string? oldAssemblyPath,
-        string outPath,
-        bool validate = false
-    )
+    public Task RunRemapProcess(string assemblyPath, string? oldAssemblyPath, string outPath, bool validate = false)
     {
         var controller = _provider?.GetService<MappingController>();
-        await controller?.Run(assemblyPath, oldAssemblyPath, outPath, validate)!;
+        controller?.Run(assemblyPath, oldAssemblyPath, outPath, validate);
+
+        return Task.CompletedTask;
+    }
+
+    public async Task RunDirectMapProcess(string targetAssemblyPath)
+    {
+        var controller = _provider?.GetService<DirectMapController>();
+        await controller?.Run(targetAssemblyPath)!;
     }
 
     public async Task RunAutoMatcher(
@@ -73,11 +76,21 @@ public class App
 
     private static void ConfigureLogger()
     {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(config).CreateLogger();
+        Log.Logger = new LoggerConfiguration()
+#if DEBUG
+            .MinimumLevel.Debug()
+#else
+            .MinimumLevel.Information()
+#endif
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.File(
+                "logs/bot-.log",
+                rollingInterval: RollingInterval.Day,
+                rollOnFileSizeLimit: true,
+                fileSizeLimitBytes: 10_000_000,
+                retainedFileCountLimit: 50
+            )
+            .CreateLogger();
     }
 }

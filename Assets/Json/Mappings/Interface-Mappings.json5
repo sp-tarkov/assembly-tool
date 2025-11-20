@@ -1,0 +1,9 @@
+{
+  "Interface1": {
+    "NewName": "IPatrolLook",
+  },
+  "Interface13": {
+    "NewName": "INetworkGame",
+    "NewNamespace": "EFT"
+  }
+}

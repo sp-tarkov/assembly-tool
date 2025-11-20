@@ -1,0 +1,911 @@
+{
+
+  "EFT.SkillManager": {
+    "NestedTypes": {
+      "GClass2250": {
+        "NewName": "WeaponBuffsInfo"
+      },
+      "GClass2251": {
+        "NewName": "ShotParams"
+      },
+      "GClass2252": {
+        "NewName": "Buff"
+      },
+      "GClass2253": {
+        "NewName": "FloatBuff"
+      },
+      "GClass2254": {
+        "NewName": "ProbabilityBuff"
+      },
+      "GClass2255": {
+        "NewName": "GainBuff"
+      },
+      "GClass2256": {
+        "NewName": "LossBuff"
+      },
+      "GClass2257": {
+        "NewName": "BooleanBuff"
+      },
+      "GClass2258`1": {
+        // Buff<T>
+        "NewName": "Buff"
+      },
+      "GClass2259": {
+        "NewName": "SkillAction"
+      },
+      "GClass2260`1": {
+        "NewName": "SkillAction"
+      },
+      "GClass2261`1": {
+        "NewName": "SkillDependency"
+      }
+    }
+  },
+  "GClass32": {
+    // AICoreStrategyAbstractClass
+    "NewName": "AICoreAgentBase",
+  },
+  "GClass33`1": {
+    // AICoreAgentClass
+    "NewName": "AICoreAgent",
+  },
+  "GClass34": {
+    // AICoreControllerClass
+    "NewName": "AICoreController",
+  },
+  "GClass36": {
+    // BaseLogicLayerAbstractClass
+    "NewName": "BaseLogicLayerSimple",
+  },
+  "GClass37": {
+    // BaseLogicLayerSimpleAbstractClass
+    "NewName": "BaseLogicLayer",
+  },
+  "GClass118": {
+    "NewName": "MalfunctionLayer",
+  },
+  "GClass307": {
+    "NewName": "ClientBackendSession",
+    "NewNamespace": "EFT"
+  },
+  "GClass372": {
+    "NewName": "VectorExtension",
+  },
+  "GClass378": {
+    "NewName": "BotWavesOptimization",
+  },
+  "GClass382": {
+    // ShootPointClass
+    "NewName": "ShootToPoint",
+  },
+  "GClass385": {
+    // CoverSearchDefenceDataClass
+    "NewName": "CoverSearchDefenceData",
+  },
+  "GClass389": {
+    // EditorsCoverPointDebugDataClass
+    "NewName": "EditorsCoverPointDebugData",
+  },
+  "GClass419": {
+    // ReachableClass
+    "NewName": "NavGraphEditorPointReachable",
+  },
+  "GClass443": {
+    "NewName": "BotWavesOptimization",
+  },
+  "GClass445`2": {
+    "NewName": "BossWithStayFollowersPosition",
+  },
+  "GClass500": {
+    "NewName": "BotPathController",
+  },
+  "GClass540": {
+    "NewName": "AbstractBotPath",
+  },
+  "GClass572": {
+    // BotCurrentEnemiesClass
+    "NewName": "BotGroupCurrentEnemies",
+  },
+  "GClass580": {
+    // BotSettingsClass
+    "NewName": "BotGroupEnemyInfo",
+  },
+  "GClass613": {
+    // ScatteringSettingsClass
+    "NewName": "BotCurrentScatteringSetting",
+  },
+  "GClass618": {
+    // BotDifficultySettingsClass
+    "NewName": "BotSettings",
+  },
+  "GClass620": {
+    "NewName": "BotSettingsController",
+  },
+  "GClass637": {
+    // BackendConfigAbstractClass
+    "NewName": "AppEnvironment",
+  },
+  "GClass647`1": {
+    // GenericParsedJsonResponseClass
+    // JsonResponse<T>
+    "NewName": "JsonResponse",
+  },
+  "GClass648": {
+    "NewName": "JsonResponse",
+  },
+  "GClass668": {
+    // BossSpawnerClass
+    "NewName": "BotBossSpawn",
+  },
+  "GClass676": {
+    // BotsClass
+    "NewName": "BotList",
+  },
+  "GClass677": {
+    // ZoneLeaveControllerClass
+    "NewName": "BotZonesLeaveController",
+  },
+  "GClass691": {
+    // BotEventHandler
+    "NewName": "GlobalEventDispatcher",
+  },
+  "GClass757": {
+    // WeaponAnimationSpeedControllerClass
+    "NewName": "AnimationControllersParametersTable",
+  },
+  "GClass796": {
+    // TimerClass
+    "NewName": "Timer",
+  },
+  "GClass825": {
+    // LayerMaskClass
+    "NewName": "LayerMaskController",
+  },
+  "GClass848`1": {
+    "NewName": "Compute",
+  },
+  "GClass849`1": {
+    "NewName": "Deferred",
+  },
+  "GClass855": {
+    "NewName": "Utils",
+  },
+  "GClass883": {
+    // ApplicationConfigClass
+    "NewName": "ApplicationConfig",
+  },
+  "GClass920": {
+    "NewName": "BotCreatorClient",
+  },
+  "GClass1033": {
+    "NewName": "DecalSystemUtils",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1034": {
+    "NewName": "MeshCutter",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1035": {
+    "NewName": "ProjectorHelper",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1036": {
+    "NewName": "SkinnedMeshCutter",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1037": {
+    // DecalMeshClass
+    "NewName": "TemporaryMesh",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1040": {
+    "NewName": "PlayerIconCreatorMaterialChanger",
+    "NewNamespace": "PlayerIcons"
+  },
+  "GClass1050": {
+    // ChatServerClass
+    "NewName": "ChatServerState",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1066": {
+    // ChatMessageClass
+    "NewName": "DialogueChatMessage",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1069": {
+    // DialogueClass
+    "NewName": "UpdatableChatDialogue",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1075": {
+    // GameGraphicsClass
+    "NewName": "GraphicsSettingsController",
+    "NewNamespace": "EFT.Settings.Graphics"
+  },
+  "GClass1128": {
+    "NewName": "AbstractSpatialAudioCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1172": {
+    "NewName": "AudioSourceContainer",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1201": {
+    "NewName": "EmptyBotDevelopService",
+    "NewNamespace": "AI"
+  },
+  "GClass1314": {
+    // FastAnimatorProcessorClass
+    "NewName": "FastAnimatorProcessor",
+    "NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1325": {
+    "NewName": "AnimatorParameter",
+    "NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1367": {
+    "NewName": "BitWriter",
+    "NewNamespace": "BitPacking",
+  },
+  "GClass1368": {
+    "NewName": "BitWriterStream",
+    "NewNamespace": "BitPacking",
+  },
+  "GClass1391": {
+    // QuestItemClass
+    "NewName": "QuestItem",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1394": {
+    "NewName": "LoginDataResponse",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1397": {
+    "NewName": "InsuredProfileItems",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1401": {
+    "NewName": "JsonLootItem",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1418": {
+    // LocationSettingsClass
+    "NewName": "LocationSettings",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1438": {
+    // BackendConfigClass
+    "NewName": "GlobalConfigResponse",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1445": {
+    "NewName": "AnimatorFactory",
+    "NewNamespace": "AnimationSystem",
+  },
+  "GClass1446": {
+    "NewName": "UnityAnimatorWrapper",
+    "NewNamespace": "AnimationSystem",
+  },
+  "GClass1442": {
+    // BotPresetClass
+    "NewName": "BotPreset",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1496": {
+    // ExfiltrationControllerClass
+    "NewName": "ExfiltrationController",
+    "NewNamespace": "CommonAssets.Scripts.Game",
+  },
+  "GClass1618": {
+    // JobPriorityClass
+    "NewName": "JobYieldPriority",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "GClass1620": {
+    "NewName": "JobYield",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "GClass1634`1": {
+    "NewName": "ConditionalBook",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass1635": {
+    "NewName": "PrestigeBook",
+    "NewNamespace": "EFT.Prestige",
+  },
+  "GClass1636": {
+    "NewName": "QuestBook",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass1637": {
+    "NewName": "HideoutCustomizationOffersBook",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass1638": {
+    "NewName": "AchievementsBook",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass1657": {
+    "NewName": "BundleLock",
+    "NewNamespace": "Diz.Resources",
+  },
+  "GClass1658`1": {
+    "NewName": "DependencyGraph",
+    "NewNamespace": "Diz.DependencyManager",
+  },
+  "GClass1677": {
+    "NewName": "BotMemory",
+    "NewNamespace": "EFT",
+  },
+  "GClass1715": {
+    // BackendConfigSettingsClass
+    "NewName": "GlobalConfiguration",
+    "NewNamespace": "EFT",
+  },
+  "GClass1792": {
+    // RagfairSettingsClass
+    "NewName": "RagfairSettings",
+    "NewNamespace": "EFT",
+  },
+  "GClass1804": {
+    // AssetsManagerSingletonClass
+    "NewName": "Assets",
+    "NewNamespace": "EFT",
+  },
+  "GClass1813": {
+    "NewName": "Version",
+    "NewNamespace": "EFT",
+  },
+  "GClass1814": {
+    "NewName": "Bonus",
+    "NewNamespace": "EFT",
+  },
+  "GClass1817": {
+    "NewName": "PercentageBonus",
+    "NewNamespace": "EFT"
+  },
+  "GClass1827": {
+    "NewName": "SkillGroupLevelingBoostBonus",
+    "NewNamespace": "EFT"
+  },
+  "GClass1827": {
+    "NewName": "SkillLevelingBoostBonus",
+    "NewNamespace": "EFT"
+  },
+  "GClass1879": {
+    "NewName": "CountTypeBotWave",
+    "NewNamespace": "EFT"
+  },
+  "GClass1880": {
+    // BotWaveDataClass
+    "NewName": "SpawnWave",
+    "NewNamespace": "EFT"
+  },
+  "GClass1892": {
+    // GameTimerClass
+    "NewName": "GameTimer",
+    "NewNamespace": "EFT",
+  },
+  "GClass1907": {
+    // HalloweenEventControllerClass
+    "NewName": "HalloweenEventController",
+    "NewNamespace": "EFT",
+  },
+  "GClass1912": {
+    // ItemFactoryClass
+    "NewName": "ItemFactory",
+    "NewNamespace": "EFT"
+  },
+  "GClass1919": {
+    // RadioTransmitterHandlerClass
+    "NewName": "RadioTransmitterHandler",
+    "NewNamespace": "EFT"
+  },
+  "GClass1946": {
+    "NewName": "JsonLootItemDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2073": {
+    "NewName": "HeadLightsValidator",
+    "NewNamespace": "EFT"
+  },
+  "GClass2087": {
+    "NewName": "Firearms",
+    "NewNamespace": "EFT"
+  },
+  "GClass2188": {
+    // ProfileStatusClass
+    "NewName": "ProfileStatus",
+    "NewNamespace": "EFT"
+  },
+  "GClass2200": {
+    "NewName": "DamageStats",
+    "NewNamespace": "EFT"
+  },
+  "GClass2217": {
+    "NewName": "DamageStatsDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2231": {
+    // InfoClass
+    "NewName": "ProfileInfo",
+    "NewNamespace": "EFT"
+  },
+  "GClass2245": {
+    "NewName": "BaseSkill",
+    "NewNamespace": "EFT"
+  },
+  "GClass2246": {
+    "NewName": "Mastering",
+    "NewNamespace": "EFT"
+  },
+  "GClass2247": {
+    "NewName": "Skill",
+    "NewNamespace": "EFT",
+    "MethodRenames": {
+      "method_2": "CalculateLevelExp",
+      "method_3": "UpdateRules",
+      "method_4": "CalculateRealEarnedXpForLobby"
+    }
+  },
+  "GClass2249": {
+    "NewName": "WeaponSkill",
+    "NewNamespace": "EFT",
+  },
+  "GClass2279": {
+    // PoolManagerClass
+    "NewName": "ObjectFactory",
+    "NewNamespace": "EFT"
+  },
+  "GClass2290": {
+    "NewName": "BaseSpeaker",
+    "NewNamespace": "EFT"
+  },
+  "GClass2310": {
+    // PostRaidHealthScreenClass
+    "NewName": "MainMenuShowOperation",
+    "NewNamespace": "EFT",
+  },
+  "GClass2311": {
+    "NewName": "NewsHub",
+    "NewNamespace": "EFT",
+  },
+  "GClass2320": {
+    // BackendDummyClass
+    "NewName": "ClientBackEndEmulator",
+    "NewNamespace": "EFT",
+  },
+  "GClass2324": {
+    // ProfileChangesPocoClass
+    "NewName": "ProfileChanges",
+    "NewNamespace": "EFT",
+  },
+  "GClass2332": {
+    // SocialNetworkClass
+    "NewName": "SocialNetwork",
+    "NewNamespace": "EFT",
+  },
+  "GClass2350": {
+    // LocaleManagerClass
+    "NewName": "LocalizationManager",
+    "NewNamespace": "EFT",
+  },
+  "GClass2354": {
+    // GetActionsClass
+    "NewName": "InteractionContextHelper",
+    "NewNamespace": "EFT",
+  },
+  "GClass2378": {
+    "NewName": "LoggerFactoryClass",
+  },
+  "GClass2388": {
+    // SharedGameSettingsClass
+    "NewName": "SettingsManager",
+    "NewNamespace": "EFT.Settings",
+  },
+  "GClass2409": {
+    "NewName": "InputAxisCombination",
+    "NewNamespace": "EFT.InputSystem",
+  },
+  "GClass2410": {
+    "NewName": "InputKeyCombination",
+    "NewNamespace": "EFT.InputSystem",
+  },
+  "GClass2413": {
+    // InputBindingsDataClass
+    "NewName": "InputPreset",
+    "NewNamespace": "EFT.InputSystem",
+  },
+  "GClass2419": {
+    // EnergyControllerClass
+    "NewName": "EnergyController",
+    "NewNamespace": "EFT.Hideout",
+  },
+  "GClass2423": {
+    // HideoutClass
+    "NewName": "HideoutRepresentation",
+    "NewNamespace": "EFT.Hideout",
+  },
+  "GClass2428": {
+    // ImprovementControllerClass
+    "NewName": "ImprovementController",
+    "NewNamespace": "EFT.Hideout",
+  },
+  "GClass2450": {
+    // HideoutClass
+    "NewName": "FuelConsumption",
+    "NewNamespace": "EFT.Hideout",
+  },
+  "GClass2480": {
+    // NotificationAbstractClass
+    "NewName": "Notification",
+    "NewNamespace": "EFT.Communications",
+  },
+  "GClass2545": {
+    // SpawnSystemClass
+    "NewName": "SpawnSystem",
+    "NewNamespace": "EFT.Game.Spawning",
+  },
+  "GClass2566": {
+    // NotificationManagerClass
+    "NewName": "NotificationManager",
+    "NewNamespace": "EFT.Communications",
+  },
+  "GClass2569": {
+    // TraderAssortmentControllerClass
+    "NewName": "Assortment",
+    "NewNamespace": "EFT.Trading",
+  },
+  "GClass2572": {
+    // TraderClass
+    "NewName": "Trader",
+    "NewNamespace": "EFT.Trading",
+  },
+  "GClass2576": {
+    "NewName": "MagBuildStorage",
+    "NewNamespace": "EFT.Builds",
+  },
+  "GClass2605": {
+    // WeatherClass
+    "NewName": "WeatherNode",
+    "NewNamespace": "EFT.Weather",
+  },
+  "GClass2629": {
+    // ClientMetricsClass
+    "NewName": "ServerMetricsCollector",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2633": {
+    // CacheResourcesPopAbstractClass
+    "NewName": "ResourceCache",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2640": {
+    // MetricsClass
+    "NewName": "ClientMetrics",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2632": {
+    "NewName": "ServerMetricsConfig",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2641": {
+    "NewName": "ClientMetricsConfig",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2642": {
+    "NewName": "ClientMetricsEvents",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2646": {
+    "NewName": "BaseTripWire",
+    "NewNamespace": "EFT.SyncronizableObjects",
+  },
+  "GClass2647": {
+    "NewName": "SynchronizableObjectLogicProcessor",
+    "NewNamespace": "EFT.SyncronizableObjects",
+  },
+  "GClass2648": {
+    // SynchronizableObjectLogicProcessorClass
+    "NewName": "ClientSynchronizableObjectLogicProcessor",
+    "NewNamespace": "EFT.SyncronizableObjects",
+  },
+  "GClass2650": {
+    "NewName": "AirdropManager",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2651": {
+    "NewName": "ServerAirdropManager",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2653": {
+    "NewName": "ServerAirdrop",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2654": {
+    "NewName": "ServerPlane",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2656": {
+    "NewName": "AirdropDataReceiver",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2657": {
+    "NewName": "ClientAirdrop",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2658": {
+    "NewName": "ClientAirPlane",
+    "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2722": {
+    "NewName": "PredefinedCounters",
+    "NewNamespace": "EFT.Counters",
+  },
+  "GClass2723": {
+    // SessionCountersClass
+    "NewName": "CountersCollection",
+    "NewNamespace": "EFT.Counters",
+  },
+  "GClass2971": {
+    // SessionCountersClass
+    "NewName": "ObservedPlayerHandsController",
+    "NewNamespace": "EFT.NextObservedPlayer",
+  },
+  "GClass3013": {
+    // HealthControllerClass
+    "NewName": "OfflineHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3066": {
+    // PacketEncryptorAbstractClass
+    "NewName": "BaseNetworkCryptography",
+    "NewNamespace": "EFT.Network",
+  },
+  "GClass3108": {
+    "NewName": "NotesManager",
+    "NewNamespace": "EFT.Notes",
+  },
+  "GClass3110": {
+    // AmmoPackReloadingClass
+    "NewName": "AmmoPack",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3114": {
+    // StashGridClass
+    "NewName": "Grid",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3368": {
+    // TemplateIdToObjectMappingsClass
+    "NewName": "JsonTypes",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3375": {
+    // ItemAttributeClass
+    "NewName": "ItemAttribute",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3383": {
+    "NewName": "ItemContext",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3395": {
+    // InteractionsHandlerClass
+    "NewName": "ItemManipulator",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3449": {
+    // TraderControllerClass
+    "NewName": "ItemController",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3454": {
+    "NewName": "OtherPlayerProfileItemContext",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3459": {
+    "NewName": "AreaStashItemContext",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3463": {
+    "NewName": "DragItemContext",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3536": {
+    "NewName": "Handbook",
+    "NewNamespace": "EFT.Handbook",
+  },
+  "GClass3540": {
+    "NewName": "BtrController",
+    "NewNamespace": "EFT.Vehicle",
+  },
+  "GClass3579": {
+    // GlobalEventHandlerClass
+    "NewName": "GlobalEventsController",
+    "NewNamespace": "EFT.GlobalEvents",
+  },
+  "GClass3591": {
+    "NewName": "ProfileStorage",
+    "NewNamespace": "EFT.Development",
+  },
+  "GClass3686": {
+    // CameraClass
+    "NewName": "CameraManager",
+    "NewNamespace": "EFT.CameraControl",
+  },
+  "GClass3688": {
+    "NewName": "CameraState",
+    "NewNamespace": "EFT.CameraControl",
+  },
+  "GClass3693": {
+    // BufferZoneControllerClass
+    "NewName": "BufferZoneController",
+    "NewNamespace": "EFT.BufferZone",
+  },
+  "GClass3707": {
+    // RagdollClass
+    "NewName": "CorpseRagdoll",
+    "NewNamespace": "EFT.Interactive",
+  },
+  "GClass3733": {
+    "NewName": "BallisticCalculatorConstants",
+    "NewNamespace": "EFT.Ballistics",
+  },
+  "GClass3734": {
+    "NewName": "Shot",
+    "NewNamespace": "EFT.Ballistics",
+  },
+  "GClass3738": {
+    // ActionsTypesClass
+    "NewName": "InteractionAction",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass3739": {
+    // ActionsReturnClass
+    "NewName": "AvailableInteractionState",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass3752": {
+    "NewName": "BaseContextInteractions",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass3753`1": {
+    "NewName": "ContextInteractions",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass3858`1": {
+    // UserInterfaceClass
+    "NewName": "ScreenManager",
+    "NewNamespace": "EFT.UI.Screens",
+  },
+  "GClass3926`1": {
+    "NewName": "BaseMatchmakerController",
+    "NewNamespace": "EFT.UI.Matchmaker",
+  },
+  "GClass3927": {
+    "NewName": "MatchmakerPlayersController",
+    "NewNamespace": "EFT.UI.Matchmaker",
+  },
+  "GClass3938": {
+    // RagFairClass
+    "NewName": "Ragfair",
+    "NewNamespace": "EFT.UI.Ragfair",
+  },
+  "GClass3951": {
+    // InsuranceCompanyClass
+    "NewName": "InsuranceCompany",
+    "NewNamespace": "EFT.UI.Insurance",
+  },
+  "GClass3952": {
+    "NewName": "InsuredItem",
+    "NewNamespace": "EFT.UI.Insurance",
+  },
+  "GClass3961": {
+    "NewName": "BundlesManager",
+    "NewNamespace": "EFT.AssetsManager",
+  },
+  "GClass3966": {
+    "NewName": "AssetsManager",
+    "NewNamespace": "EFT.AssetsManager",
+  },
+  "GClass3970`1": {
+    // AssetPoolAbstractClass
+    "NewName": "AbstractAssetsPool",
+    "NewNamespace": "EFT.AssetsManager",
+  },
+  "GClass3993`1": {
+    // AbstractQuestClass
+    "NewName": "Conditional",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass3994": {
+    "NewName": "PrestigeLevel",
+    "NewNamespace": "EFT.Prestige",
+  },
+  "GClass3995": {
+    "NewName": "Quest",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass3997": {
+    "NewName": "Achievement",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass3999`1": {
+    "NewName": "ConditionalController",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4000": {
+    "NewName": "PrestigeController",
+    "NewNamespace": "EFT.Prestige",
+  },
+  "GClass4004": {
+    // AbstractQuestControllerClass
+    "NewName": "QuestController",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4009": {
+    // AbstractAchievementControllerClass
+    "NewName": "AchievementsController",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass4023`1": {
+    // QuestControllerAbstractClass
+    "NewName": "ConditionsConnectorsManager",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4052": {
+    "NewName": "QuestDataClass",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4053": {
+    "NewName": "RepeatableQuestTemplate",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4054": {
+    "NewName": "QuestTemplate",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4058": {
+    // DailyQuestClass
+    "NewName": "RepeatableQuestsRange",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4060": {
+    // AchievementDataClass
+    "NewName": "AchievementStatusData",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass4075": {
+    "NewName": "BakeHDRPTool",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4076": {
+    "NewName": "BoundsEx",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4077": {
+    "NewName": "Texture2DEx",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4078": {
+    "NewName": "SpriteUtilityEx",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4079": {
+    "NewName": "RenderTextureEx",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4080": {
+    "NewName": "Vector2Ex",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4081": {
+    "NewName": "ImposterBakingTools",
+    "NewNamespace": "AmplifyImpostors",
+  },
+  "GClass4082": {
+    "NewName": "Triangulator",
+    "NewNamespace": "AmplifyImpostors",
+  }
+}

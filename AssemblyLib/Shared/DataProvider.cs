@@ -17,6 +17,7 @@ public class DataProvider
         ItemTemplates = LoadItems();
 
         LoadMappingFile();
+        LoadDirectMappingFile();
     }
 
     public Settings Settings { get; }
@@ -36,9 +37,12 @@ public class DataProvider
     public Dictionary<string, ItemTemplateModel> ItemTemplates { get; private set; }
 
     private readonly List<RemapModel> _remaps = [];
+    public Dictionary<string, DirectMapModel> DirectMapModels { get; } = [];
+
     private readonly Lock _remapLock = new();
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
     private static readonly string _mappingPath = Path.Combine(_assetsPath, "Json", "mappings.jsonc");
+    private static readonly string _directMappingPath = Path.Combine(_assetsPath, "Json", "Mappings");
 
     private static readonly JsonSerializerOptions _serializerOptions = new()
     {
@@ -137,6 +141,42 @@ public class DataProvider
         _remaps.AddRange(remaps!);
 
         ValidateMappings();
+    }
+
+    private void LoadDirectMappingFile()
+    {
+        if (!Directory.Exists(_directMappingPath))
+        {
+            Log.Information("Cannot find mappings at: {Path}", _directMappingPath);
+            return;
+        }
+
+        JsonSerializerOptions settings = new()
+        {
+            AllowTrailingCommas = true,
+            ReadCommentHandling = JsonCommentHandling.Skip,
+        };
+
+        var count = 0;
+        foreach (var file in Directory.GetFiles(_directMappingPath))
+        {
+            var jsonText = File.ReadAllText(file);
+            var tmp = JsonSerializer.Deserialize<Dictionary<string, DirectMapModel>>(jsonText, settings)!;
+
+            foreach (var (name, model) in tmp)
+            {
+                if (!DirectMapModels.TryAdd(name, model))
+                {
+                    Log.Error("Duplicate DirectMapModel: {Name} found.", name);
+                }
+
+                count++;
+            }
+
+            Log.Information("Direct Mapping file loaded: {Path}", file);
+        }
+
+        Log.Information("Direct Mapping count: {Count}", count);
     }
 
     private void ValidateMappings()

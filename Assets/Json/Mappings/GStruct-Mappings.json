@@ -1,0 +1,99 @@
+{
+  "EFT.SkillManager+GStruct279": {
+    "NewName": "MovementParams"
+  },
+  "GStruct7": {
+    "NewName": "AICoreActionEnd"
+  },
+  "GStruct8`2": {
+    "NewName": "AICoreActionResult"
+  },
+  "GStruct18": {
+    "NewName": "DebugBotDataStructInner"
+  },
+  "GStruct20": {
+    // ActorDataStruct
+    "NewName": "DebugBotStruct"
+  },
+  "GStruct23": {
+    "NewName": "SpawnDelayDebugModel"
+  },
+  "GStruct26": {
+    // LegacyParamsStruct
+    "NewName": "SendRequest"
+  },
+  "GStruct29": {
+    "NewName": "IntVec2"
+  },
+  "GStruct39": {
+    "NewName": "SmokeGrenadeNetworkData"
+  },
+  "GStruct46": {
+    "NewName": "SynchronizableObjectPacket"
+  },
+  "GStruct63": {
+    "NewName": "MarginsRect"
+  },
+  "GStruct80": {
+    "NewName": "DecalMeshVertexData",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GStruct81": {
+    "NewName": "Segment",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GStruct129": {
+    // TimeRangeInfoStruct
+    "NewName": "TimeBound",
+    "NewNamespace": "Interpolation"
+  },
+  "GStruct139": {
+    "NewName": "ResourceTypeInfo",
+    "NewNamespace": "JsonType"
+  },
+  "GStruct153": {
+    "NewName": "OperationResult",
+    "NewNamespace": "Diz.LanguageExtensions"
+  },
+  "GStruct159": {
+    "NewName": "DoubleVector3",
+    "NewNamespace": "ChartAndGraph"
+  },
+  "GStruct217": {
+    // PlayerInteractPacket
+    "NewName": "InteractWithBtrPacket",
+    "NewNamespace": "EFT"
+  },
+  "GStruct239": {
+    // FirearmLightStateStruct
+    "NewName": "LightState",
+    "NewNamespace": "EFT"
+  },
+  "GStruct255": {
+    "NewName": "PlayerSpiritFootprint",
+    "NewNamespace": "EFT"
+  },
+  "GStruct258": {
+    // CharacterStruct
+    "NewName": "CharacterControllerFootprint",
+    "NewNamespace": "EFT"
+  },
+  "GStruct387": {
+    "NewName": "SyncPositionPacket",
+    "NewNamespace": "EFT.NetworkPackets"
+  },
+  "GStruct418": {
+    "NewName": "DisconnectionInformation",
+    "NewNamespace": "EFT.Network.Transport"
+  },
+  "GStruct428": {
+    // BTRDataPacketStruct
+    "NewName": "ShapshotBTRMessage",
+    "NewNamespace": "EFT.Network.Transport"
+  },
+  "GStruct441": {
+    // DamageInfoStruct
+    "NewName": "DamageInfo",
+    "NewNamespace": "EFT.Ballistics"
+  }
+}

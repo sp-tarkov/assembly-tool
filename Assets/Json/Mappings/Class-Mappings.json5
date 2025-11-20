@@ -1,0 +1,40 @@
+{
+  "Class305`1": {
+    // BackendAbstractClass
+    "NewName": "ClientBackend",
+    "NewNamespace": "EFT"
+  },
+  "Class307": {
+    // ProfileEndpointFactoryAbstractClass
+    "NewName": "ClientBackendSession",
+    "NewNamespace": "EFT"
+  },
+  "Class308": {
+    // GameServerClass
+    "NewName": "EftClientBackendSession",
+    "NewNamespace": "EFT"
+  },
+  "Class313": {
+    // DataHandlerClass
+    "NewName": "HTTPTransportManager"
+  },
+  "Class1051": {
+    "NewName": "EasyBundle",
+    "NewNamespace": "Diz.Resources"
+  },
+  "Class1124": {
+    // SslCertPatchClass
+    "NewName": "ClientCertificateHandler",
+    "NewNamespace": "EFT"
+  },
+  "Class1507": {
+    // BattleeyePatchClass
+    "NewName": "AnticheatValidationOperation",
+    "NewNamespace": "EFT"
+  },
+  "Class1524": {
+    // PostRaidHealthScreenClass
+    "NewName": "SessionResultShowOperation",
+    "NewNamespace": "EFT"
+  }
+}

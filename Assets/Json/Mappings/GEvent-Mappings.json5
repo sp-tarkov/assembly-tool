@@ -1,0 +1,10 @@
+{
+  "GEventArgs1": {
+    "NewName": "ItemEventArgs",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GEventArgs2": {
+    "NewName": "AddItemEventArgs",
+    "NewNamespace": "EFT.InventoryLogic"
+  }
+}

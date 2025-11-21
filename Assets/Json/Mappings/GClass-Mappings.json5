@@ -83,6 +83,14 @@
     // BackendConfigAbstractClass
     "NewName": "AppEnvironment",
   },
+  "GClass641": {
+    "NewName": "TimerManager",
+    "NestedTypes": {
+      "GInterface16": {
+        "NewName": "ITimer"
+      }
+    }
+  },
   "GClass647`1": {
     // GenericParsedJsonResponseClass
     // JsonResponse<T>
@@ -271,6 +279,10 @@
     "NewName": "JsonLootItem",
     "NewNamespace": "JsonType",
   },
+  "GClass1412": {
+    "NewName": "RaidPlayer",
+    "NewNamespace": "EFT.UI.Matchmaker",
+  },
   "GClass1418": {
     // LocationSettingsClass
     "NewName": "LocationSettings",
@@ -425,6 +437,10 @@
     "NewName": "Firearms",
     "NewNamespace": "EFT"
   },
+  "GClass2184": {
+    "NewName": "PlayerVisualRepresentation",
+    "NewNamespace": "EFT"
+  },
   "GClass2188": {
     // ProfileStatusClass
     "NewName": "ProfileStatus",
@@ -471,6 +487,10 @@
   },
   "GClass2290": {
     "NewName": "BaseSpeaker",
+    "NewNamespace": "EFT"
+  },
+  "GClass2297": {
+    "NewName": "PrefsUtils",
     "NewNamespace": "EFT"
   },
   "GClass2310": {
@@ -805,6 +825,15 @@
     "NewName": "OtherPlayerProfileItemContext",
     "NewNamespace": "EFT.InventoryLogic",
   },
+  "GClass3456": {
+    "NewName": "ModdingSelectableItemContext",
+    "NewNamespace": "EFT.InventoryLogic",
+    "NestedTypes": {
+      "GInterface437": {
+        "NewName": "IModdingSelectionContext"
+      }
+    }
+  },
   "GClass3459": {
     "NewName": "AreaStashItemContext",
     "NewNamespace": "EFT.InventoryLogic",
@@ -834,6 +863,11 @@
     // CameraClass
     "NewName": "CameraManager",
     "NewNamespace": "EFT.CameraControl",
+    "NestedTypes": {
+      "GInterface465": {
+        "NewName": "ISettings"
+      }
+    }
   },
   "GClass3688": {
     "NewName": "CameraState",
@@ -874,6 +908,10 @@
   "GClass3753`1": {
     "NewName": "ContextInteractions",
     "NewNamespace": "EFT.UI",
+  },
+  "GClass3783": {
+    "NewName": "RaidGroupContextInteractions",
+    "NewNamespace": "EFT.UI.Matchmaker",
   },
   "GClass3858`1": {
     // UserInterfaceClass

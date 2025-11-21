@@ -103,6 +103,17 @@
       },
       "Interface11": {
         "NewName": "IBaseUsableItemOperation"
+      },
+
+      "FirearmController": {
+        "NestedTypes": {
+          "GClass2013": {
+            "NewName": "FirearmOperation"
+          },
+          "GClass2037": {
+            "NewName": "Idling"
+          }
+        }
       }
     }
   },
@@ -154,6 +165,55 @@
       },
       "GClass2261`1": {
         "NewName": "SkillDependency"
+      }
+    }
+  },
+  "EFT.MovingPlatforms.MovingPlatform": {
+    "NestedTypes": {
+      "GInterface459": {
+        "NewName": "IPlatformTransportee"
+      }
+    }
+  },
+  "EFT.UI.ClothingItem": {
+    "NestedTypes": {
+      "GClass3815": {
+        "NewName": "FullOffer"
+      }
+    }
+  },
+  "EFT.UI.Gestures.PredefinedLayoutGroup": {
+    "NestedTypes": {
+      "GInterface500": {
+        "NewName": "ICanChangeAlignment"
+      }
+    }
+  },
+  "EFT.UI.ItemSelectionCell": {
+    "NestedTypes": {
+      "GInterface478": {
+        "NewName": "IItemSelectionHandler"
+      }
+    }
+  },
+  "EFT.UI.NotifierView": {
+    "NestedTypes": {
+      "GInterface484": {
+        "NewName": "IProfileChangeHandler"
+      }
+    }
+  },
+  "EFT.UI.SessionEnd.SessionResultExitStatus": {
+    "NestedTypes": {
+      "GClass3899": {
+        "NewName": "ExitStatusScreenController"
+      }
+    }
+  },
+  "EFT.Interactive.WindowBreakerManager": {
+    "NestedTypes": {
+      "GInterface469": {
+        "NewName": "IBreakable"
       }
     }
   },

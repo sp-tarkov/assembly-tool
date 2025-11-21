@@ -137,7 +137,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         var outDir = Path.GetDirectoryName(outPath);
 
         var originalFile = Path.Combine(outDir!, "Assembly-CSharp.dll");
-        var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-remapped-publicized.dll");
+        var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-direct-mapped-publicized.dll");
         var deltaFile = Path.Combine(outDir!, "Assembly-CSharp.dll.delta");
 
         if (File.Exists(deltaFile))

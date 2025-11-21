@@ -498,7 +498,7 @@ public sealed class MappingController(
             return;
         }
 
-        assemblyWriter.StartHDiffz(OutPath);
+        //assemblyWriter.StartHDiffz(OutPath);
 
         statistics.DisplayStatistics(false, hollowedPath, OutPath);
     }

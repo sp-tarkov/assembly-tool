@@ -1,6 +1,9 @@
 using System.Diagnostics;
 using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Cil;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Remapper;
@@ -18,7 +21,7 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
 
     private string _targetAssemblyPath = string.Empty;
 
-    public Task Run(string assemblyPath)
+    public async Task Run(string assemblyPath)
     {
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
@@ -26,13 +29,11 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
         if (!TryDeobfuscateAssembly())
         {
             Log.Error("Failed to deobfuscate assembly, exiting.");
-            return Task.CompletedTask;
+            return;
         }
 
         RunRenamingProcess();
-        WriteAssembly();
-
-        return Task.CompletedTask;
+        await WriteAssembly();
     }
 
     private bool TryDeobfuscateAssembly()
@@ -65,22 +66,20 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
         return true;
     }
 
-    private Task RunRenamingProcess()
+    private void RunRenamingProcess()
     {
         var mappings = dataProvider.DirectMapModels;
 
         if (mappings.Count == 0)
         {
             Log.Error("No direct-mappings loaded.");
-            return Task.CompletedTask;
+            return;
         }
 
         foreach (var (targetFullName, mapping) in mappings)
         {
             HandleMappingRecursive(targetFullName, mapping);
         }
-
-        return Task.CompletedTask;
     }
 
     private void HandleMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
@@ -194,7 +193,7 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
         }
     }
 
-    private Task WriteAssembly()
+    private async Task WriteAssembly()
     {
         const string dllName = "-cleaned-direct-mapped-publicized.dll";
         var outPath = Path.Combine(
@@ -215,6 +214,72 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
 
         Log.Information("Direct map completed. Assembly written to: {outPath}", outPath);
 
-        return Task.CompletedTask;
+        await StartHollow();
+
+        var hollowedDir = Path.GetDirectoryName(outPath);
+        var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
+
+        try
+        {
+            Module?.Write(hollowedPath);
+        }
+        catch (Exception e)
+        {
+            Log.Error("Exception during write hollow task:\n{Exception}", e.Message);
+            return;
+        }
+
+        assemblyWriter.StartHDiffz(outPath);
+    }
+
+    /// <summary>
+    /// Hollows out all logic from the dll
+    /// </summary>
+    private async Task StartHollow()
+    {
+        Log.Information("Creating Hollow...");
+
+        var tasks = new List<Task>(Types.Count);
+
+        foreach (var type in Types)
+        {
+            tasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        HollowType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Exception in task:\n{ExMessage}", ex.Message);
+                    }
+                })
+            );
+        }
+
+        await Task.WhenAll(tasks.ToArray());
+    }
+
+    private static void HollowType(TypeDefinition type)
+    {
+        foreach (var method in type.Methods.Where(m => m.HasMethodBody))
+        {
+            // Create a new empty CIL body
+            var newBody = new CilMethodBody(method);
+
+            // If the method returns something, return default value
+            if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)
+            {
+                // Push default value onto the stack
+                newBody.Instructions.Add(CilOpCodes.Ldnull);
+            }
+
+            // Just return (for void methods)
+            newBody.Instructions.Add(CilOpCodes.Ret);
+
+            // Assign the new method body
+            method.CilMethodBody = newBody;
+        }
     }
 }

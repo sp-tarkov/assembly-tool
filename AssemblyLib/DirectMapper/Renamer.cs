@@ -12,7 +12,7 @@ namespace AssemblyLib.DirectMapper;
 [Injectable]
 public sealed class Renamer(Statistics stats)
 {
-    private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
+    public void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
         {
@@ -55,7 +55,7 @@ public sealed class Renamer(Statistics stats)
         }
     }
 
-    private void RenameObfuscatedProperties(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
+    public void RenameObfuscatedProperties(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
         {

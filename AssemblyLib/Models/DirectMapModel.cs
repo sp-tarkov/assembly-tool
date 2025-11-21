@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using AsmResolver;
 using AsmResolver.DotNet;
 
 namespace AssemblyLib.Models;
@@ -6,10 +7,7 @@ namespace AssemblyLib.Models;
 public record DirectMapModel
 {
     [JsonIgnore]
-    public TypeDefinition? Type { get; set; }
-
-    [JsonIgnore]
-    public string? OldName { get; set; }
+    public ToolData ToolData { get; } = new();
 
     public string? NewName { get; init; }
     public string? NewNamespace { get; init; }
@@ -19,4 +17,14 @@ public record DirectMapModel
     public Dictionary<string, string>? FieldRenames { get; init; }
 
     public Dictionary<string, DirectMapModel>? NestedTypes { get; init; }
+}
+
+public record ToolData
+{
+    public TypeDefinition? Type { get; set; }
+
+    public string? FullOldName { get; set; }
+    public string? ShortOldName { get; set; }
+
+    public List<FieldDefinition> FieldsToRename { get; } = [];
 }

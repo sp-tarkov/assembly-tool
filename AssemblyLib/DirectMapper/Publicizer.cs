@@ -1,6 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
+using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
@@ -11,6 +12,11 @@ namespace AssemblyLib.DirectMapper;
 [Injectable]
 public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 {
+    public void PublicizeType(DirectMapModel model)
+    {
+        model.ToolData.FieldsToRename.AddRange(PublicizeType(model.ToolData.Type!));
+    }
+
     /// <summary>
     /// Publicize the provided type
     /// </summary>

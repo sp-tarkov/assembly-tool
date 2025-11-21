@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using AsmResolver;
 using AsmResolver.DotNet;
@@ -37,7 +38,7 @@ public class DirectMapController(
         }
 
         RunRenamingProcess();
-        PublicizeAssembly();
+        PublicizeObfuscatedTypes();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
     }
 
@@ -89,8 +90,10 @@ public class DirectMapController(
 
     private void HandleMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
     {
-        model.Type = parent ?? Types.FirstOrDefault(t => t.FullName == targetFullName);
-        if (model.Type is null)
+        var toolData = model.ToolData;
+
+        toolData.Type = parent ?? Types.FirstOrDefault(t => t.FullName == targetFullName);
+        if (toolData.Type is null)
         {
             Log.Error("Failed to find type: {target}", targetFullName);
             return;
@@ -101,13 +104,13 @@ public class DirectMapController(
         {
             foreach (var (name, nestedModel) in model.NestedTypes)
             {
-                var nestedType = model.Type.NestedTypes.FirstOrDefault(t => t.Name == name);
+                var nestedType = toolData.Type.NestedTypes.FirstOrDefault(t => t.Name == name);
                 if (nestedType is null)
                 {
                     var children = string.Join(", ", nestedType?.NestedTypes.Select(t => t.Name?.ToString()) ?? []);
 
-                    Log.Error("Failed to find nested type: {name} on parent {parent}", name, model.Type.FullName);
-                    Log.Error("Available children for {parent}: {children}", model.Type.FullName, children);
+                    Log.Error("Failed to find nested type: {name} on parent {parent}", name, toolData.Type.FullName);
+                    Log.Error("Available children for {parent}: {children}", toolData.Type.FullName, children);
                     continue;
                 }
 
@@ -122,27 +125,39 @@ public class DirectMapController(
         }
 
         RenameMapping(model);
+        publicizer.PublicizeType(model);
+
+        renamer.RenameObfuscatedFields(Module!, toolData.ShortOldName!, model.NewName);
+        renamer.RenameObfuscatedProperties(Module!, toolData.ShortOldName!, model.NewName);
     }
 
     private void RenameMapping(DirectMapModel model)
     {
-        model.OldName = model.Type?.FullName;
-        model.Type?.Name = new Utf8String(model.NewName!);
+        var toolData = model.ToolData;
+
+        toolData.FullOldName = model.ToolData.Type?.FullName;
+        toolData.ShortOldName = toolData.Type!.Name!.ToString();
+
+        toolData.Type?.Name = new Utf8String(model.NewName!);
 
         if (model.NewNamespace is not null)
         {
-            model.Type?.Namespace = new Utf8String(model.NewNamespace);
+            toolData.Type?.Namespace = new Utf8String(model.NewNamespace);
         }
-        Log.Information("Type: {old} -> {new}", model.OldName, model.Type?.FullName);
+        Log.Information("Type: {old} -> {new}", toolData.FullOldName, toolData.Type?.FullName);
 
         RenameMethods(model);
+
+        publicizer.PublicizeType(model);
     }
 
     private void RenameMethods(DirectMapModel model)
     {
-        if (model.Type?.IsInterface ?? false)
+        var toolData = model.ToolData;
+
+        if (toolData.Type?.IsInterface ?? false)
         {
-            RenameInterfacePrefacedMethods(model.Type);
+            RenameInterfacePrefacedMethods(toolData.Type);
         }
 
         var methodsToRename = model.MethodRenames;
@@ -151,7 +166,7 @@ public class DirectMapController(
             return;
         }
 
-        foreach (var method in model.Type?.Methods ?? [])
+        foreach (var method in toolData.Type?.Methods ?? [])
         {
             if (method.Name is null || method.IsCompilerControlled || method.IsGetMethod || method.IsSetMethod)
             {
@@ -198,7 +213,7 @@ public class DirectMapController(
         }
     }
 
-    private void PublicizeAssembly()
+    private void PublicizeObfuscatedTypes()
     {
         Log.Information("Publicizing assembly please wait...");
 

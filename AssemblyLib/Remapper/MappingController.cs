@@ -69,7 +69,6 @@ public sealed class MappingController(
         }
 
         await PublicizeAndFixAssembly(oldAssemblyPath);
-        await StartWriteAssemblyTasks();
     }
 
     /// <summary>
@@ -454,103 +453,6 @@ public sealed class MappingController(
             }
 
             dataProvider.AddMapping(remap);
-        }
-    }
-
-    /// <summary>
-    /// Write the assembly back to disk and update the mapping file on disk
-    /// </summary>
-    private async Task StartWriteAssemblyTasks()
-    {
-        const string dllName = "-cleaned-remapped-publicized.dll";
-
-        OutPath = Path.Combine(OutPath, Module?.Name?.Replace(".dll", dllName) ?? Utf8String.Empty);
-        if (!OutPath.EndsWith(".dll"))
-        {
-            const string message = "Failed to write assembly to disk, could not replace assembly name.";
-
-            Log.Error(message);
-            throw new NullReferenceException(message);
-        }
-
-        try
-        {
-            Module?.Assembly?.Write(OutPath);
-        }
-        catch (Exception e)
-        {
-            Log.Error("Exception during write assembly task:\n{Exception}", e.Message);
-            return;
-        }
-
-        await StartHollow();
-
-        var hollowedDir = Path.GetDirectoryName(OutPath);
-        var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
-
-        try
-        {
-            Module?.Write(hollowedPath);
-        }
-        catch (Exception e)
-        {
-            Log.Error("Exception during write hollow task:\n{Exception}", e.Message);
-            return;
-        }
-
-        //assemblyWriter.StartHDiffz(OutPath);
-
-        statistics.DisplayStatistics(false, hollowedPath, OutPath);
-    }
-
-    /// <summary>
-    /// Hollows out all logic from the dll
-    /// </summary>
-    private async Task StartHollow()
-    {
-        Log.Information("Creating Hollow...");
-
-        var tasks = new List<Task>(Types.Count());
-
-        foreach (var type in Types)
-        {
-            tasks.Add(
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        HollowType(type);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error("Exception in task:\n{ExMessage}", ex.Message);
-                    }
-                })
-            );
-        }
-
-        await Task.WhenAll(tasks.ToArray());
-    }
-
-    private static void HollowType(TypeDefinition type)
-    {
-        foreach (var method in type.Methods.Where(m => m.HasMethodBody))
-        {
-            // Create a new empty CIL body
-            var newBody = new CilMethodBody(method);
-
-            // If the method returns something, return default value
-            if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)
-            {
-                // Push default value onto the stack
-                newBody.Instructions.Add(CilOpCodes.Ldnull);
-            }
-
-            // Just return (for void methods)
-            newBody.Instructions.Add(CilOpCodes.Ret);
-
-            // Assign the new method body
-            method.CilMethodBody = newBody;
         }
     }
 }

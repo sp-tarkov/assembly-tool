@@ -13,7 +13,12 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
-public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dataProvider)
+public class DirectMapController(
+    AssemblyWriter assemblyWriter,
+    DataProvider dataProvider,
+    Renamer renamer,
+    Publicizer publicizer
+)
 {
     private ModuleDefinition? Module { get; set; }
     private List<TypeDefinition> Types { get; set; } = [];
@@ -32,6 +37,7 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
         }
 
         RunRenamingProcess();
+        PublicizeAssembly();
         await WriteAssembly();
     }
 
@@ -190,6 +196,19 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
 
             method.Name = new Utf8String($"{interfaceToRenameFor.Name}.{realMethodName}");
         }
+    }
+
+    private void PublicizeAssembly()
+    {
+        Log.Information("Publicizing assembly please wait...");
+
+        Parallel.ForEach(
+            Types,
+            type =>
+            {
+                publicizer.PublicizeType(type);
+            }
+        );
     }
 
     private async Task WriteAssembly()

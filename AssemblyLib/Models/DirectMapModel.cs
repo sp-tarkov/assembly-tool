@@ -8,6 +8,9 @@ public record DirectMapModel
     [JsonIgnore]
     public TypeDefinition? Type { get; set; }
 
+    [JsonIgnore]
+    public string? OldName { get; set; }
+
     public string? NewName { get; init; }
     public string? NewNamespace { get; init; }
 

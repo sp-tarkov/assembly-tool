@@ -1,6 +1,4 @@
-﻿using AsmResolver;
-using AsmResolver.DotNet;
-using AsmResolver.DotNet.Code.Cil;
+﻿using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
@@ -8,7 +6,7 @@ using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Remapper;
+namespace AssemblyLib.DirectMapper;
 
 [Injectable]
 public sealed class Publicizer(DataProvider dataProvider, Statistics stats)

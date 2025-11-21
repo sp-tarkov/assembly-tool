@@ -6,7 +6,6 @@ using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Remapper;
 using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -121,14 +120,14 @@ public class DirectMapController(AssemblyWriter assemblyWriter, DataProvider dat
 
     private void RenameMapping(DirectMapModel model)
     {
-        var oldName = model.Type?.FullName;
+        model.OldName = model.Type?.FullName;
         model.Type?.Name = new Utf8String(model.NewName!);
 
         if (model.NewNamespace is not null)
         {
             model.Type?.Namespace = new Utf8String(model.NewNamespace);
         }
-        Log.Information("Type: {old} -> {new}", oldName, model.Type?.FullName);
+        Log.Information("Type: {old} -> {new}", model.OldName, model.Type?.FullName);
 
         RenameMethods(model);
     }

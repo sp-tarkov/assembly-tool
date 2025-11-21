@@ -1,5 +1,4 @@
 ﻿using AssemblyLib.DirectMapper;
-using AssemblyLib.Remapper;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using SPTarkov.DI;
@@ -16,30 +15,10 @@ public class App
         ConfigureApplication();
     }
 
-    public Task RunRemapProcess(string assemblyPath, string? oldAssemblyPath, string outPath, bool validate = false)
-    {
-        var controller = _provider?.GetService<MappingController>();
-        controller?.Run(assemblyPath, oldAssemblyPath, outPath, validate);
-
-        return Task.CompletedTask;
-    }
-
     public async Task RunDirectMapProcess(string targetAssemblyPath)
     {
         var controller = _provider?.GetService<DirectMapController>();
         await controller?.Run(targetAssemblyPath)!;
-    }
-
-    public async Task RunAutoMatcher(
-        string assemblyPath,
-        string oldAssemblyPath,
-        string oldTypeName,
-        string newTypeName,
-        bool isRegen
-    )
-    {
-        var controller = _provider?.GetService<AutoMatcher.AutoMatchController>();
-        await controller?.AutoMatch(assemblyPath, oldAssemblyPath, oldTypeName, newTypeName, isRegen)!;
     }
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)
@@ -85,7 +64,7 @@ public class App
             .Enrich.FromLogContext()
             .WriteTo.Console()
             .WriteTo.File(
-                "logs/bot-.log",
+                "logs/assembly-tool-.log",
                 rollingInterval: RollingInterval.Day,
                 rollOnFileSizeLimit: true,
                 fileSizeLimitBytes: 10_000_000,

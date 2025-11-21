@@ -5,7 +5,7 @@ using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Remapper;
+namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class Statistics(DataProvider dataProvider)
@@ -27,15 +27,10 @@ public sealed class Statistics(DataProvider dataProvider)
     {
         _hollowedPath = hollowedPath;
 
-        DisplayAlternativeMatches();
-        DisplayFailuresAndChanges(validate);
-
         if (validate)
         {
             return;
         }
-
-        DisplayWriteAssembly(outPath);
 
         if (
             dataProvider.Settings.CopyToGame
@@ -128,101 +123,5 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("Total named interfaces:       {Total}", totalNamedInterfaces);
         Log.Information("Total named enums:            {total}", totalEnums);
         Log.Information("Named class coverage:         {coverage}%", totalNamedClasses / (float)totalClasses * 100f);
-    }
-
-    private void DisplayAlternativeMatches()
-    {
-        foreach (var remap in dataProvider.GetRemaps())
-        {
-            if (!remap.Succeeded)
-            {
-                continue;
-            }
-
-            if (remap.TypeCandidates.Count > 1)
-            {
-                DisplayAlternativeMatches(remap);
-            }
-        }
-    }
-
-    private static void DisplayAlternativeMatches(RemapModel remap)
-    {
-        Log.Information(
-            "Warning! There were {TypeCandidatesCount} possible matches for {RemapNewTypeName}. Consider adding more search parameters, Only showing the first 5.",
-            remap.TypeCandidates.Count,
-            remap.NewTypeName
-        );
-
-        foreach (var type in remap.TypeCandidates.Skip(1).Take(5))
-        {
-            Log.Warning("{Utf8String}", type.Name?.ToString());
-        }
-    }
-
-    private void DisplayFailuresAndChanges(bool validate, bool isRemapProcess = false)
-    {
-        var failures = 0;
-        var changes = 0;
-
-        foreach (var remap in dataProvider.GetRemaps())
-        {
-            if (!remap.Succeeded)
-            {
-                Log.Error("-----------------------------------------------");
-                Log.Error("Renaming {newName} failed with reason(s)", remap.NewTypeName);
-
-                foreach (var reason in remap.FailureReasons)
-                {
-                    Log.Error("Reason: {reason}", reason);
-                }
-
-                Log.Error("-----------------------------------------------");
-                failures++;
-
-                continue;
-            }
-
-            if (validate && remap.Succeeded)
-            {
-                Log.Information("Passed validation");
-                return;
-            }
-
-            changes++;
-        }
-
-        Log.Information("--------------------------------------------------");
-        Log.Information("Types publicized: {S}", TypePublicizedCount);
-        Log.Information("Types renamed: {Changes}", changes);
-
-        if (failures > 0)
-        {
-            Log.Error("Types that failed: {Failures}", failures);
-            Log.Information("--------------------------------------------------");
-            return;
-        }
-
-        if (isRemapProcess)
-        {
-            return;
-        }
-
-        Log.Information("Methods publicized: {S}", MethodPublicizedCount);
-        Log.Information("Methods renamed: {S}", MethodRenamedCount);
-        Log.Information("Fields publicized: {S}", FieldPublicizedCount);
-        Log.Information("Fields renamed: {S}", FieldRenamedCount);
-        Log.Information("Properties publicized: {S}", PropertyPublicizedCount);
-        Log.Information("Properties renamed: {S}", PropertyRenamedCount);
-    }
-
-    private void DisplayWriteAssembly(string outPath)
-    {
-        Log.Information("--------------------------------------------------");
-
-        Log.Information("Assembly written to `{OutPath}`", outPath);
-        Log.Information("Hollowed written to `{HollowedPath}`", _hollowedPath);
-
-        dataProvider.UpdateMappingFile();
     }
 }

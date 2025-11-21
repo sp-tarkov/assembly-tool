@@ -1,167 +1,17 @@
 ﻿using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
-using AssemblyLib.Models;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
 using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
 using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 
-namespace AssemblyLib.Remapper;
+namespace AssemblyLib.DirectMapper;
 
 [Injectable]
 public sealed class Renamer(Statistics stats)
 {
-    public void RenamePublicizedFieldAndUpdateMemberRefs(ModuleDefinition module, FieldDefinition fieldDef)
-    {
-        var origName = fieldDef.Name?.ToString();
-
-        var newName = string.Empty;
-
-        if (origName is null || origName.Length < 3 || IsSerializedField(fieldDef))
-        {
-            return;
-        }
-
-        // Handle underscores
-        if (origName[0] == '_')
-        {
-            newName = char.ToUpper(origName[1]) + origName[2..];
-        }
-
-        if (char.IsLower(origName[0]))
-        {
-            newName = char.ToUpper(origName[0]) + origName[1..];
-        }
-
-        if (newName == string.Empty)
-        {
-            return;
-        }
-
-        var fields = fieldDef.DeclaringType?.Fields;
-        var props = fieldDef.DeclaringType?.Properties;
-
-        if (
-            (fields is not null && fields.Any(f => f.Name == newName))
-            || (props is not null && props.Any(p => p.Name == newName))
-        )
-        {
-            newName += "_1";
-        }
-
-        if (Log.IsEnabled(LogEventLevel.Debug))
-        {
-            Log.Debug(
-                "Renaming Publicized field [{FieldDefDeclaringType}::{OrigName}] to [{TypeDefinition}::{NewName}]",
-                fieldDef.DeclaringType,
-                origName,
-                fieldDef.DeclaringType,
-                newName
-            );
-        }
-
-        var newUtf8Name = new Utf8String(newName);
-
-        UpdateMemberReferences(module, fieldDef, newUtf8Name);
-        fieldDef.Name = newUtf8Name;
-    }
-
-    public void RenameRemap(ModuleDefinition module, RemapModel remap)
-    {
-        // Rename all fields and properties first
-
-        // TODO: Passing strings as Utf8String, fix the model
-        RenameObfuscatedFields(module, remap.ChosenType!.Name!, remap.NewTypeName);
-
-        RenameObfuscatedProperties(module, remap.ChosenType!.Name!, remap.NewTypeName);
-
-        remap.ChosenType.Name = new Utf8String(remap.NewTypeName);
-    }
-
-    public void FixInterfaceMangledMethodNames(ModuleDefinition module)
-    {
-        var types = module.GetAllTypes().Where(t => !t.IsInterface);
-
-        Parallel.ForEach(
-            types,
-            type =>
-            {
-                var renamedMethodNames = new List<Utf8String>();
-                foreach (var method in type.Methods)
-                {
-                    if (method.IsConstructor || method.IsSetMethod || method.IsGetMethod)
-                    {
-                        continue;
-                    }
-
-                    var newMethodName = FixInterfaceMangledMethod(module, method, renamedMethodNames);
-
-                    if (newMethodName == Utf8String.Empty)
-                    {
-                        continue;
-                    }
-
-                    Interlocked.Increment(ref stats.MethodRenamedCount);
-                    renamedMethodNames.Add(newMethodName);
-                }
-            }
-        );
-    }
-
-    private Utf8String FixInterfaceMangledMethod(
-        ModuleDefinition module,
-        MethodDefinition method,
-        List<Utf8String> renamedMethodsOnType
-    )
-    {
-        // Cache the method name early to avoid multiple accesses
-        var methodName = method.Name?.ToString();
-        var splitName = methodName?.Split('.');
-
-        if (splitName is null || splitName.Length < 2)
-        {
-            return Utf8String.Empty;
-        }
-
-        var realMethodNameString = splitName.Last();
-        var newName = new Utf8String(realMethodNameString);
-        var sameNameCount = renamedMethodsOnType.Count(c => c == newName);
-
-        if (sameNameCount > 0)
-        {
-            newName = new Utf8String($"{realMethodNameString}_{sameNameCount}");
-        }
-
-        // Cache existing method names to avoid concurrent enumeration
-        var existingMethodNames = method
-            .DeclaringType!.Methods.Select(m => m.Name?.ToString())
-            .Where(name => name != null)
-            .ToHashSet();
-
-        if (existingMethodNames.Contains(realMethodNameString))
-        {
-            newName = new Utf8String($"{realMethodNameString}_1");
-        }
-
-        if (Log.IsEnabled(LogEventLevel.Debug))
-        {
-            Log.Debug(
-                "Renaming method [{MethodDeclaringType}::{MethodName}] to [{TypeDefinition}::{Utf8String}]",
-                method.DeclaringType,
-                methodName,
-                method.DeclaringType,
-                newName.ToString()
-            );
-        }
-
-        UpdateMemberReferences(module, method, newName);
-        method.Name = newName;
-
-        return newName;
-    }
-
     private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())

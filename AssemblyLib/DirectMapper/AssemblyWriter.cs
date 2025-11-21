@@ -6,7 +6,7 @@ using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Remapper;
+namespace AssemblyLib.DirectMapper;
 
 [Injectable]
 public sealed class AssemblyWriter(DataProvider dataProvider)

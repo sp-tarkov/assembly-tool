@@ -659,6 +659,27 @@
     "NewName": "CountersCollection",
     "NewNamespace": "EFT.Counters",
   },
+  "GClass2794": {
+    "NewName": "CommandMessageAutoSender",
+    "NewNamespace": "EFT.NextObservedPlayer",
+    "NestedTypes": {
+      "GInterface316": {
+        "NewName": "IChecker"
+      },
+      "GClass2795`1": {
+        "NewName": "Checker"
+      },
+      "GClass2796": {
+        "NewName": "FloatChecker"
+      },
+      "GClass2797": {
+        "NewName": "BoolChecker"
+      },
+      "GClass2798`1": {
+        "NewName": "EnumChecker"
+      }
+    }
+  },
   "GClass2971": {
     // SessionCountersClass
     "NewName": "ObservedPlayerHandsController",

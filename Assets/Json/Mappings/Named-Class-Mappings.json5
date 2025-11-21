@@ -27,6 +27,13 @@
       }
     }
   },
+  "EFT.ClientPlayer": {
+    "NestedTypes": {
+      "GInterface230": {
+        "NewName": "IClientPlayerDataSender"
+      }
+    }
+  },
   "EFT.Player": {
     "NestedTypes": {
       "Class1271`1": {
@@ -96,6 +103,16 @@
       },
       "Interface11": {
         "NewName": "IBaseUsableItemOperation"
+      }
+    }
+  },
+  "EFT.PlayerBody": {
+    "NestedTypes": {
+      "GInterface233": {
+        "NewName": "ISlotModelPositionTuner"
+      },
+      "GClass2355": {
+        "NewName": "SlotView"
       }
     }
   },

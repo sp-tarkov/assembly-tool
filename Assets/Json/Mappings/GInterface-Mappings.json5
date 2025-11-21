@@ -705,6 +705,82 @@
     "NewName": "IGrenadeController",
     "NewNamespace": "EFT"
   },
+  "GInterface202": {
+    "NewName": "IUsableItemController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface203": {
+    "NewName": "IMedsController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface204": {
+    "NewName": "IQuickUseHandsController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface205`1": {
+    "NewName": "IQuckUseHandsController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface206": {
+    "NewName": "IQuickGrenadeThrowController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface207": {
+    "NewName": "IQuckKnifeKickController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface208": {
+    "NewName": "IQuickUseItem",
+    "NewNamespace": "EFT"
+  },
+  "GInterface209": {
+    "NewName": "IPlayerOwner",
+    "NewNamespace": "EFT"
+  },
+  "GInterface210": {
+    "NewName": "IShellCollisionListener",
+    "NewNamespace": "EFT"
+  },
+  "GInterface211": {
+    "NewName": "ICustomRotator",
+    "NewNamespace": "EFT"
+  },
+  "GInterface212": {
+    "NewName": "IPlayerEventsConsumer",
+    "NewNamespace": "EFT"
+  },
+  "GInterface214": {
+    "NewName": "IProfileDataContainer",
+    "NewNamespace": "EFT"
+  },
+  "GInterface215": {
+    "NewName": "ISearchableContainer",
+    "NewNamespace": "EFT"
+  },
+  "GInterface216`1": {
+    "NewName": "IUpdatableNestable",
+    "NewNamespace": "EFT"
+  },
+  "GInterface217`1": {
+    "NewName": "INestable",
+    "NewNamespace": "EFT"
+  },
+  "GInterface218": {
+    "NewName": "IVolumeControl",
+    "NewNamespace": "EFT"
+  },
+  "GInterface219": {
+    "NewName": "IProfileUpdatesHandler",
+    "NewNamespace": "EFT"
+  },
+  "GInterface220": {
+    "NewName": "ICapchaHandler",
+    "NewNamespace": "EFT"
+  },
+  "GInterface221": {
+    "NewName": "IImageLoader",
+    "NewNamespace": "EFT"
+  },
   "GInterface222": {
     "NewName": "IClientSession",
     "NewNamespace": "EFT"
@@ -713,41 +789,711 @@
     "NewName": "IEftSession",
     "NewNamespace": "EFT"
   },
+  "GInterface224": {
+    "NewName": "IProfileSession",
+    "NewNamespace": "EFT"
+  },
   "GInterface225`1": {
     "NewName": "IMatchmakerSession",
     "NewNamespace": "EFT"
+  },
+  "GInterface226": {
+    "NewName": "IQuestSession",
+    "NewNamespace": "EFT"
+  },
+  "GInterface227": {
+    "NewName": "ISocial",
+    "NewNamespace": "EFT"
+  },
+  "GInterface228": {
+    "NewName": "INetworkGameSession",
+    "NewNamespace": "EFT"
+  },
+  "GInterface229": {
+    "NewName": "IUpdate",
+    "NewNamespace": "EFT"
+  },
+  "GInterface231": {
+    "NewName": "IPlayerInputTranslator",
+    "NewNamespace": "EFT"
+  },
+  "GInterface232": {
+    "NewName": "IHandsInputTranslator",
+    "NewNamespace": "EFT"
+  },
+  "GInterface234": {
+    "NewName": "IExchangeable",
+    "NewNamespace": "EFT"
+  },
+  "GInterface235": {
+    "NewName": "ISurveyAnswer",
+    "NewNamespace": "EFT"
+  },
+  "GInterface236": {
+    "NewName": "IDress",
+    "NewNamespace": "EFT.Visual"
+  },
+  "GInterface238": {
+    "NewName": "ITransmittableDevice",
+    "NewNamespace": "EFT.ClientItems.ClientSpecItems"
+  },
+  "GInterface239": {
+    "NewName": "IInputTree",
+    "NewNamespace": "EFT.InputSystem"
+  },
+  "GInterface240": {
+    "NewName": "IGameKey",
+    "NewNamespace": "EFT.InputSystem"
+  },
+  "GInterface241": {
+    "NewName": "IInputUpdater",
+    "NewNamespace": "EFT.InputSystem"
+  },
+  "GInterface242": {
+    "NewName": "IAmbianceObject",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface243": {
+    "NewName": "IInteractiveAmbianceObject",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface244": {
+    "NewName": "IGenerator",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface245": {
+    "NewName": "IHideoutAreaWrapper",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface246": {
+    "NewName": "IHideoutMonoBehaviour",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface247": {
+    "NewName": "IConsumer",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface248": {
+    "NewName": "IEnergyDependentBehaviour",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface249": {
+    "NewName": "IProductionStorage",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface250": {
+    "NewName": "ISpecialProductionCoefficient",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface251": {
+    "NewName": "IProduceView",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface252": {
+    "NewName": "IHideoutStart",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface253": {
+    "NewName": "IConsumerAreaBehaviour",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface254": {
+    "NewName": "ITooltipHideoutArea",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface255": {
+    "NewName": "IItemSlotsAreaBehaviour",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface256": {
+    "NewName": "IQteAreaBehaviour",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface257": {
+    "NewName": "IAreaRelatedPanel",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface258": {
+    "NewName": "IRequirementPanel",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface259": {
+    "NewName": "IAreaSpecialActionScreen",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface260": {
+    "NewName": "ICameraMover",
+    "NewNamespace": "EFT.Hideout"
+  },
+  "GInterface261": {
+    "NewName": "ITargetScoring",
+    "NewNamespace": "EFT.Hideout.ShootingRange"
+  },
+  "GInterface262": {
+    "NewName": "IFoldingTarget",
+    "NewNamespace": "EFT.Hideout.ShootingRange"
   },
   "GInterface263": {
     // IConnectionHandler
     "NewName": "ILongPollingRequest",
     "NewNamespace": "EFT.Communications"
   },
+  "GInterface264": {
+    "NewName": "ITradingSession",
+    "NewNamespace": "EFT.Trading"
+  },
+  "GInterface265": {
+    "NewName": "IRepairController",
+    "NewNamespace": "EFT.Repairing"
+  },
   "GInterface266": {
     "NewName": "IRepairer",
     "NewNamespace": "EFT.Repairing"
+  },
+  "GInterface267": {
+    "NewName": "IBuild",
+    "NewNamespace": "EFT.Builds"
+  },
+  "GInterface268": {
+    "NewName": "ISoundInteractionController",
+    "NewNamespace": "EFT.Tripwire"
+  },
+  "GInterface269": {
+    "NewName": "ITripwireSoundController",
+    "NewNamespace": "EFT.Tripwire"
+  },
+  "GInterface270": {
+    "NewName": "IMovementContextAdapter",
+    "NewNamespace": "EFT.Character"
+  },
+  "GInterface271": {
+    "NewName": "IActiveHeadphones",
+    "NewNamespace": "EFT.ActiveHeadphones"
+  },
+  "GInterface272": {
+    "NewName": "IActiveHeadphonesFactory",
+    "NewNamespace": "EFT.ActiveHeadphones"
+  },
+  "GInterface273": {
+    "NewName": "IHeadphonesTemplateComponent",
+    "NewNamespace": "EFT.ActiveHeadphones"
+  },
+  "GInterface274": {
+    "NewName": "IMetricsCollector",
+    "NewNamespace": "EFT.Utilities"
+  },
+  "GInterface275": {
+    "NewName": "IRaidCounter",
+    "NewNamespace": "EFT.Utilities"
+  },
+  "GInterface276": {
+    "NewName": "IGlobalsArray",
+    "NewNamespace": "EFT.Utilities"
   },
   "GInterface277": {
     "NewName": "ISynchronizableLogic",
     "NewNamespace": "EFT.SynchronizableObjects"
   },
+  "GInterface278": {
+    "NewName": "ISyncEnvironment",
+    "NewNamespace": "EFT.SynchronizableObjects"
+  },
+  "GInterface279": {
+    "NewName": "IAirdropDataSender",
+    "NewNamespace": "EFT.Airdrop"
+  },
+  "GInterface280": {
+    "NewName": "IStreamingAnimator",
+    "NewNamespace": "EFT.StreamingAnimatorSystem"
+  },
+  "GInterface281": {
+    "NewName": "IMountingPage",
+    "NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
+  },
+  "GInterface282": {
+    "NewName": "IVaultingMove",
+    "NewNamespace": "EFT.Vaulting"
+  },
+  "GInterface283": {
+    "NewName": "IVaultingContext",
+    "NewNamespace": "EFT.Vaulting"
+  },
+  "GInterface284": {
+    "NewName": "IApproximationVaultingPageView",
+    "NewNamespace": "EFT.Vaulting.Debug.View"
+  },
+  "GInterface285": {
+    "NewName": "IAutomaticVaultingPageView",
+    "NewNamespace": "EFT.Vaulting.Debug.View"
+  },
+  "GInterface286": {
+    "NewName": "IDiscreteSurfacePageView",
+    "NewNamespace": "EFT.Vaulting.Debug.View"
+  },
+  "GInterface287": {
+    "NewName": "IVaultingDebugPageView",
+    "NewNamespace": "EFT.Vaulting.Debug.View"
+  },
+  "GInterface288": {
+    "NewName": "IDiscreteSurfacePageController",
+    "NewNamespace": "EFT.Vaulting.Debug.Controller"
+  },
+  "GInterface289": {
+    "NewName": "IVaultingDebugPageController",
+    "NewNamespace": "EFT.Vaulting.Debug.Controller"
+  },
+  "GInterface290": {
+    "NewName": "IVaultingView",
+    "NewNamespace": "EFT.Vaulting.Views"
+  },
+  "GInterface291": {
+    "NewName": "IAutomaticVaultingModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface292": {
+    "NewName": "IVaultingModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface293": {
+    "NewName": "IVaultingRestrictionsModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface294": {
+    "NewName": "IGridRootMoverTransferModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface295": {
+    "NewName": "IGridSettingsDataTransferModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface296": {
+    "NewName": "ISurfaceApproximatorModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface297": {
+    "NewName": "IGridPointsModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface298": {
+    "NewName": "IGridRootMoverModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface299": {
+    "NewName": "IObstacleCalculatorModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface300": {
+    "NewName": "IStairsCalculator",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface301": {
+    "NewName": "IVaulingMovesModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface302": {
+    "NewName": "IVaultingStateModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface303": {
+    "NewName": "IWeightCalculatorModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface304": {
+    "NewName": "IVaultingModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface305": {
+    "NewName": "IGridCalculatorControllerDebug",
+    "NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GInterface306": {
+    "NewName": "IAnimatedInteractionsView",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.View"
+  },
+  "GInterface307": {
+    "NewName": "IAnimatedInteractionsModel",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+  },
+  "GInterface308": {
+    "NewName": "IAnimatedStates",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+  },
+  "GInterface309": {
+    "NewName": "IGestureInteractionModel",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+  },
+  "GInterface310": {
+    "NewName": "IInventoryInteractionsModel",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+  },
+  "GInterface311": {
+    "NewName": "IInteractionStateBehaviour",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+  },
+  "GInterface312": {
+    "NewName": "IAnimatedInteractionsController",
+    "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Controller"
+  },
+  "GInterface313": {
+    "NewName": "IKinematicModel",
+    "NewNamespace": "EFT.ObstacleCollision"
+  },
+  "GInterface314": {
+    "NewName": "ICollisionCalculatorModel",
+    "NewNamespace": "EFT.ObstacleCollision.Models"
+  },
+  "GInterface315": {
+    "NewName": "IObstacleCollisionModel",
+    "NewNamespace": "EFT.ObstacleCollision.Models"
+  },
+  "GInterface317": {
+    "NewName": "ICommandExecutable",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
   "GInterface318": {
     "NewName": "ICommandMessage",
     "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface319": {
+    "NewName": "IObservedPlayerStateContext",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface320": {
+    "NewName": "IHandsOperationResult",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface321": {
+    "NewName": "IHandOperationLifeCircle",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface322": {
+    "NewName": "IHandOperation",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface323": {
+    "NewName": "IObservedUsableItem",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GInterface324": {
+    "NewName": "IStimulatorDebuff",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface325": {
+    "NewName": "IStimulatorBuff",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface326": {
+    "NewName": "IExperienceHealthEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface327": {
+    "NewName": "IQuickHealthEffect",
+    "NewNamespace": "EFT.HealthSystem"
   },
   "GInterface328": {
     // IEffect
     "NewName": "IHealthEffect",
     "NewNamespace": "EFT.HealthSystem"
   },
-  "GInterface393": {
-    // IHealthEffect
-    "NewName": "IHealthEffectsComponentTemplate",
+  "GInterface329": {
+    "NewName": "IEffectTriggersUIPanel",
     "NewNamespace": "EFT.HealthSystem"
   },
-  "GInterface399": {
-    // IMedkitResource
-    "NewName": "IMedKitComponentTemplate",
+  "GInterface330": {
+    "NewName": "IInitializable",
     "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface331": {
+    "NewName": "IStackable",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface332": {
+    "NewName": "IStackableFromDifferentTemplates",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface333": {
+    "NewName": "IRestorable",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface334": {
+    "NewName": "IDesirable",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface335": {
+    "NewName": "IPermanent",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface336": {
+    "NewName": "IInsignificant",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface337": {
+    "NewName": "IHiddenByAnotherEffectAllOverBody",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface338": {
+    "NewName": "IFullHealthRegenerationEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface339": {
+    "NewName": "ILightBleeding",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface340": {
+    "NewName": "IHeavyBleeding",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface341": {
+    "NewName": "IBleeding",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface342": {
+    "NewName": "IFracture",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface343": {
+    "NewName": "IDehydration",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface344": {
+    "NewName": "IExhaustion",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface345": {
+    "NewName": "IRadExposure",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface346": {
+    "NewName": "IIntoxication",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface347": {
+    "NewName": "ILethalIntoxication",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface348": {
+    "NewName": "IExistence",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface349": {
+    "NewName": "IRegeneration",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface350": {
+    "NewName": "IBerserk",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface351": {
+    "NewName": "IBodyTemperature",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface352": {
+    "NewName": "IContusion",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface353": {
+    "NewName": "IDisorientation",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface354": {
+    "NewName": "IFlash",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface355": {
+    "NewName": "IZombieInfection",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface356": {
+    "NewName": "ILowEdgeHealth",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface357": {
+    "NewName": "IPain",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface358": {
+    "NewName": "IPainKiller",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface359": {
+    "NewName": "IStandingScreen",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface360": {
+    "NewName": "IStun",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface361": {
+    "NewName": "ITremor",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface362": {
+    "NewName": "IWound",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface363": {
+    "NewName": "ITunnelVision",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface364": {
+    "NewName": "IEncumbered",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface365": {
+    "NewName": "IOverEncumbered",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface366": {
+    "NewName": "IChronicStaminaFatigue",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface367": {
+    "NewName": "IImmunityPreventedNegativeEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface368": {
+    "NewName": "IHalloweenBuff",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface369": {
+    "NewName": "IMisfireEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface370": {
+    "NewName": "IStaminaZeroEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface371": {
+    "NewName": "IPanicEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface372": {
+    "NewName": "IFrostbite",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface373": {
+    "NewName": "IDamageModifier",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface374": {
+    "NewName": "IHealthBoost",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface375": {
+    "NewName": "IEndurance",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface376": {
+    "NewName": "IMedEffect",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface377": {
+    "NewName": "IStimulator",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface378": {
+    "NewName": "IMusclePain",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface379": {
+    "NewName": "IMildMusclePain",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface380": {
+    "NewName": "ISevereMusclePain",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface381": {
+    "NewName": "IBaseHealthController",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GInterface382": {
+    "NewName": "ISerializableMessage",
+    "NewNamespace": "EFT.Network"
+  },
+  "GInterface383": {
+    "NewName": "IArmorComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface384": {
+    "NewName": "IBarrelComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface385": {
+    "NewName": "IEquipmentPenaltyComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface386": {
+    "NewName": "IExplosiveAmmoTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface387": {
+    "NewName": "IFaceShieldComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface388": {
+    "NewName": "IFireModeComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface389": {
+    "NewName": "IFoldableComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface390": {
+    "NewName": "IFoodDrinkComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface391": {
+    "NewName": "IGridLayoutComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface392": {
+    "NewName": "IStimulatorBuffsComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface393": {
+    "NewName": "IHealthEffectsComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface394": {
+    "NewName": "IKeyComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface395": {
+    "NewName": "IKnifeComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface396": {
+    "NewName": "ILightComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface397": {
+    "NewName": "ILockableComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface398": {
+    "NewName": "IMapComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface399": {
+    "NewName": "IMedKitComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface400": {
+    "NewName": "IMuzzleComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface401": {
+    "NewName": "INightVisionComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface402": {
+    "NewName": "IRepairableComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface403": {
+    "NewName": "IPoisonComponentTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
   },
   "GInterface421": {
     // IRollback

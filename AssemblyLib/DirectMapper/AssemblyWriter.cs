@@ -1,6 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
+using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
+using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
@@ -44,6 +49,96 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         result.DeObfuscatedModule = dataProvider.LoadModule(cleanedPath);
 
         return result;
+    }
+
+    public async Task WriteAssembly(ModuleDefinition module, string targetAssemblyPath)
+    {
+        const string dllName = "-cleaned-direct-mapped-publicized.dll";
+        var outPath = Path.Combine(
+            Path.GetDirectoryName(targetAssemblyPath)
+                ?? throw new NullReferenceException("Target assembly path is null"),
+            module.Name?.Replace(".dll", dllName) ?? Utf8String.Empty
+        );
+
+        try
+        {
+            module.Assembly!.Write(outPath);
+        }
+        catch (Exception e)
+        {
+            Log.Fatal(e, "Failed to write assembly to: {outPath}", outPath);
+            throw;
+        }
+
+        Log.Information("Direct map completed. Assembly written to: {outPath}", outPath);
+
+        await StartHollow(module.GetAllTypes());
+
+        var hollowedDir = Path.GetDirectoryName(outPath);
+        var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");
+
+        try
+        {
+            module.Write(hollowedPath);
+        }
+        catch (Exception e)
+        {
+            Log.Error("Exception during write hollow task:\n{Exception}", e.Message);
+            return;
+        }
+
+        StartHDiffz(outPath);
+    }
+
+    /// <summary>
+    /// Hollows out all logic from the dll
+    /// </summary>
+    private async Task StartHollow(IEnumerable<TypeDefinition> types)
+    {
+        Log.Information("Creating Hollow...");
+
+        var tasks = new List<Task>(types.Count());
+
+        foreach (var type in types)
+        {
+            tasks.Add(
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        HollowType(type);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Exception in task:\n{ExMessage}", ex.Message);
+                    }
+                })
+            );
+        }
+
+        await Task.WhenAll(tasks.ToArray());
+    }
+
+    private static void HollowType(TypeDefinition type)
+    {
+        foreach (var method in type.Methods.Where(m => m.HasMethodBody))
+        {
+            // Create a new empty CIL body
+            var newBody = new CilMethodBody(method);
+
+            // If the method returns something, return default value
+            if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)
+            {
+                // Push default value onto the stack
+                newBody.Instructions.Add(CilOpCodes.Ldnull);
+            }
+
+            // Just return (for void methods)
+            newBody.Instructions.Add(CilOpCodes.Ret);
+
+            // Assign the new method body
+            method.CilMethodBody = newBody;
+        }
     }
 
     public bool Deobfuscate(string assemblyPath, bool isLauncher = false)

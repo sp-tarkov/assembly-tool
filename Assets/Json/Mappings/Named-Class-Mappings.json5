@@ -1,4 +1,25 @@
 {
+  "BetterAudio": {
+    "NestedTypes": {
+      "GInterface34": {
+        "NewName": "ISourceGroup"
+      }
+    }
+  },
+  "BetterAudioSource": {
+    "NestedTypes": {
+      "GInterface35": {
+        "NewName": "IReleaseListener"
+      }
+    }
+  },
+  "BodyPartCollider": {
+    "NestedTypes": {
+      "GInterface20": {
+        "NewName": "IObserverToPlayerBridge"
+      }
+    }
+  },
   "EFT.Player": {
     "NestedTypes": {
       "Class1271`1": {
@@ -109,6 +130,20 @@
       },
       "GClass2261`1": {
         "NewName": "SkillDependency"
+      }
+    }
+  },
+  "EndByExitTrigerScenario": {
+    "NestedTypes": {
+      "GInterface146": {
+        "NewName": "IGame"
+      }
+    }
+  },
+  "EnvironmentManagerBase": {
+    "NestedTypes": {
+      "GInterface24": {
+        "NewName": "IAABB"
       }
     }
   }

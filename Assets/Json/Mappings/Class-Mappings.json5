@@ -37,6 +37,18 @@
     "NewName": "SessionResultShowOperation",
     "NewNamespace": "EFT"
   },
+  "Class2046": {
+    "NewName": "LongPollingRequestAbstract",
+    "NewNamespace": "EFT.Communications"
+  },
+  "Class2047": {
+    "NewName": "LongPollingRequest",
+    "NewNamespace": "EFT.Communications"
+  },
+  "Class2048": {
+    "NewName": "LongPollingWebSocketRequest",
+    "NewNamespace": "EFT.Communications"
+  },
   "Class3637": {
     "NewName": "ClothState",
     "NewNamespace": "AmplifyMotion",

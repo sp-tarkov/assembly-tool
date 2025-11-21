@@ -128,12 +128,31 @@
   "GClass855": {
     "NewName": "Utils",
   },
+  "GClass879": {
+    "NewName": "CustomHandle",
+    "NestedTypes": {
+      "GInterface33": {
+        "NewName": "IResizableByHandle"
+      }
+    }
+  },
   "GClass883": {
     // ApplicationConfigClass
     "NewName": "ApplicationConfig",
   },
   "GClass920": {
     "NewName": "BotCreatorClient",
+  },
+  "GClass952": {
+    "NewName": "TimeQueue",
+    "NestedTypes": {
+      "GInterface48": {
+        "NewName": "ITimeQueueItem"
+      },
+      "GStruct145": {
+        "NewName": "TimeAction"
+      }
+    }
   },
   "GClass1033": {
     "NewName": "DecalSystemUtils",
@@ -179,6 +198,24 @@
     // GameGraphicsClass
     "NewName": "GraphicsSettingsController",
     "NewNamespace": "EFT.Settings.Graphics"
+  },
+  "GClass1087": {
+    "NewName": "BaseJsonSettingsProvider",
+    "NewNamespace": "Bsg.GameSettings.Json",
+    "NestedTypes": {
+      "GInterface66": {
+        "NewName": "IJsonSerializer"
+      }
+    }
+  },
+  "GClass1094": {
+    "NewName": "VersionJsonSerializer",
+    "NewNamespace": "Bsg.GameSettings.Json",
+    "NestedTypes": {
+      "GInterface67": {
+        "NewName": "IVersion"
+      }
+    }
   },
   "GClass1128": {
     "NewName": "AbstractSpatialAudioCalculator",
@@ -311,6 +348,11 @@
     // BackendConfigSettingsClass
     "NewName": "GlobalConfiguration",
     "NewNamespace": "EFT",
+    "NestedTypes": {
+      "GInterface168": {
+        "NewName": "ITraderInfo"
+      }
+    }
   },
   "GClass1792": {
     // RagfairSettingsClass

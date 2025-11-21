@@ -82,6 +82,26 @@
     "NewName": "SyncPositionPacket",
     "NewNamespace": "EFT.NetworkPackets"
   },
+  "GStruct392": {
+    "NewName": "EnduranceEffectStore",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GStruct393": {
+    "NewName": "MedEffectStore",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GStruct394": {
+    "NewName": "StimulatorStore",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GStruct395": {
+    "NewName": "EffectInfoStorage",
+    "NewNamespace": "EFT.HealthSystem"
+  },
+  "GStruct396": {
+    "NewName": "SyncHealthPacket",
+    "NewNamespace": "EFT.HealthSystem"
+  },
   "GStruct418": {
     "NewName": "DisconnectionInformation",
     "NewNamespace": "EFT.Network.Transport"

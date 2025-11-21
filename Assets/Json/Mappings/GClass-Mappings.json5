@@ -685,9 +685,77 @@
     "NewName": "ObservedPlayerHandsController",
     "NewNamespace": "EFT.NextObservedPlayer",
   },
+  "GClass3009`1": {
+    "NewName": "BaseHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3010": {
+    "NewName": "PlayerHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3011": {
+    "NewName": "NetworkHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3012": {
+    "NewName": "ClientPlayerHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
   "GClass3013": {
     // HealthControllerClass
     "NewName": "OfflineHealthController",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3017": {
+    "NewName": "MedEffectHelper",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3018": {
+    "NewName": "StimulatorHelper",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3019": {
+    "NewName": "EffectSettings",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3051": {
+    "NewName": "DamageHelper",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3052": {
+    "NewName": "HealthTreatmentBodyPartData",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3053": {
+    "NewName": "HealthTreatmentData",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3054": {
+    "NewName": "SimpleBuffDescription",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3055": {
+    "NewName": "BuffDescription",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3056": {
+    "NewName": "EffectDescription",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3057": {
+    "NewName": "BodyPartWithEffects",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3058": {
+    "NewName": "HealthHelper",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3061": {
+    "NewName": "SyncHealthPacketSerialization",
+    "NewNamespace": "EFT.HealthSystem",
+  },
+  "GClass3062": {
+    "NewName": "RelativeHealthValue",
     "NewNamespace": "EFT.HealthSystem",
   },
   "GClass3066": {

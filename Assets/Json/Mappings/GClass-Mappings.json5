@@ -149,7 +149,7 @@
       "GInterface48": {
         "NewName": "ITimeQueueItem"
       },
-      "GStruct145": {
+      "Struct145": {
         "NewName": "TimeAction"
       }
     }

@@ -6,7 +6,7 @@
       }
     }
   },
-  "BetterAudioSource": {
+  "BetterSource": {
     "NestedTypes": {
       "GInterface35": {
         "NewName": "IReleaseListener"
@@ -17,6 +17,13 @@
     "NestedTypes": {
       "GInterface20": {
         "NewName": "IObserverToPlayerBridge"
+      }
+    }
+  },
+  "CommonAssets.Scripts.Game.EndByExitTrigerScenario": {
+    "NestedTypes": {
+      "GInterface146": {
+        "NewName": "IGame"
       }
     }
   },
@@ -130,13 +137,6 @@
       },
       "GClass2261`1": {
         "NewName": "SkillDependency"
-      }
-    }
-  },
-  "EndByExitTrigerScenario": {
-    "NestedTypes": {
-      "GInterface146": {
-        "NewName": "IGame"
       }
     }
   },

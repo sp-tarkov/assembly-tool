@@ -177,11 +177,7 @@
     "NewName": "ISettingsProvider",
     "NewNamespace": "Bsg.GameSettings"
   },
-  "GInterface65": {
-    "NewName": "ISettingsGroupFactory",
-    "NewNamespace": "Bsg.GameSettings"
-  },
-  "GInterface66": {
+  "GInterface65`1": {
     "NewName": "ISettingsGroupFactory",
     "NewNamespace": "Bsg.GameSettings"
   },

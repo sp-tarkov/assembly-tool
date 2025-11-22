@@ -140,6 +140,171 @@
   "GClass45": {
     "NewName": "AssaultEnemyFarLayer",
   },
+  "GClass46": {
+    "NewName": "AssaultTargetLayer",
+  },
+  "GClass47": {
+    "NewName": "BossKillaAgroSearchLayer",
+  },
+  "GClass48": {
+    "NewName": "AvoidDangerLayer",
+  },
+  "GClass49": {
+    "NewName": "BoarAvoidDangerLayer",
+  },
+  "GClass50": {
+    "NewName": "BoarAbstractLayer",
+  },
+  "GClass51": {
+    "NewName": "BoarAbstractPatrolLayer",
+  },
+  "GClass52": {
+    "NewName": "BoarClosePatrolLayer",
+  },
+  "GClass53": {
+    "NewName": "BoarPatrolLayer",
+  },
+  "GClass54": {
+    "NewName": "BossBoarPatrolLayer",
+  },
+  "GClass55": {
+    "NewName": "BoarFightAbstractLayer",
+  },
+  "GClass56": {
+    "NewName": "BoarFightAbstractLayer",
+  },
+  "GClass57": {
+    "NewName": "BoarSniperEnemyLayer",
+  },
+  "GClass58": {
+    "NewName": "FollowerBoarFightLayer",
+  },
+  "GClass59": {
+    "NewName": "BoarSniperTargetLayer",
+  },
+  "GClass60": {
+    "NewName": "BossBullyLayer",
+  },
+  "GClass61": {
+    "NewName": "HalloweenHideFromInfectedLayer",
+  },
+  "GClass62": {
+    "NewName": "BossKillaLayer",
+  },
+  "GClass63": {
+    "NewName": "BigPipeFightLayer",
+  },
+  "GClass64": {
+    "NewName": "GluharAsKillaLayer",
+  },
+  "GClass65": {
+    "NewName": "GluharFightAbstractLayer",
+  },
+  "GClass66": {
+    "NewName": "BossGluharFightLayer",
+  },
+  "GClass67": {
+    "NewName": "FollowerGluharAssaultFightLayer",
+  },
+  "GClass68": {
+    "NewName": "FollowerGluharScoutFightLayer",
+  },
+  "GClass69": {
+    "NewName": "BaseBTRLayer",
+  },
+  "GClass70": {
+    "NewName": "SupressEnemiesBTRLayer",
+  },
+  "GClass71": {
+    "NewName": "DebugLogicLayer",
+  },
+  "GClass72": {
+    "NewName": "FollowPlayerLayerEvent",
+  },
+  "GClass73": {
+    "NewName": "KhorovodLayer",
+  },
+  "GClass74": {
+    "NewName": "ObdolbosEventPatrolLayer",
+  },
+  "GClass75": {
+    "NewName": "ExfiltrationLayer",
+  },
+  "GClass76": {
+    "NewName": "BirdEyeAbstractLayer",
+  },
+  "GClass77": {
+    "NewName": "BirdEyeFightLayer",
+  },
+  "GClass78": {
+    "NewName": "BirdEyeHoldLayer",
+  },
+  "GClass79": {
+    "NewName": "BirdEyePatrolLayer",
+  },
+  "GClass80": {
+    "NewName": "BossKnightFightLayer",
+  },
+  "GClass81": {
+    "NewName": "StationaryWithSuppressLayer",
+  },
+  "GClass82": {
+    "NewName": "FollowerBoarStationaryLayer",
+  },
+  "GClass83": {
+    "NewName": "ExUsecPeacefulRequestLayer",
+  },
+  "GClass84": {
+    "NewName": "FightRequestLayer",
+  },
+  "GClass85": {
+    "NewName": "InfectedFightRequestLayer",
+  },
+  "GClass86": {
+    "NewName": "FollowerPatrolLayer",
+  },
+  "GClass87": {
+    "NewName": "ForcedForHelpAssaultLayer",
+  },
+  "GClass88": {
+    "NewName": "GroupAttackLayer",
+  },
+  "GClass89": {
+    "NewName": "GifterLayer",
+  },
+  "GClass90": {
+    "NewName": "GluharTargetLayer",
+  },
+  "GClass91": {
+    "NewName": "HoldNearBossLayer",
+  },
+  "GClass92": {
+    "NewName": "KolontayHoldNearBossLayer",
+  },
+  "GClass93": {
+    "NewName": "PeaceZryachiyPatrolLayer",
+  },
+  "GClass94": {
+    "NewName": "RavangeZryrachiyEnemyLayer",
+  },
+  "GClass95": {
+    "NewName": "SectantSummoningBaseLayer",
+  },
+  "GClass96": {
+    "NewName": "SectantPriestSummoningLayer",
+  },
+  "GClass97": {
+    "NewName": "SummoningPriestPatrolLayer",
+  },
+  "GClass98": {
+    "NewName": "InfectedAttackLayer",
+  },
+  "GClass99": {
+    "NewName": "InfectedPatrolLayer",
+  },
+  "GClass100": {
+    "NewName": "HoldOrCoverTargetLayer",
+  },
   "GClass118": {
     "NewName": "MalfunctionLayer",
   },

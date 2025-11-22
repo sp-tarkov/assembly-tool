@@ -38,6 +38,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         {
             result.Success = false;
 
+            Log.Error("Failed to deobfuscate assembly.");
             return result;
         }
 

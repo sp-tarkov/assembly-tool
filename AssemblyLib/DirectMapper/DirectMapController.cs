@@ -33,7 +33,6 @@ public class DirectMapController(
 
         if (!TryDeobfuscateAssembly())
         {
-            Log.Error("Failed to deobfuscate assembly, exiting.");
             return;
         }
 

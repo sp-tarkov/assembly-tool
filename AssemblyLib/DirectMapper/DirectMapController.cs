@@ -44,8 +44,6 @@ public class DirectMapController(
 
     private bool TryDeobfuscateAssembly()
     {
-        var sw = Stopwatch.StartNew();
-
         var result = assemblyWriter.Deobfuscate(Module, _targetAssemblyPath);
         if (!result.Success)
         {
@@ -62,12 +60,6 @@ public class DirectMapController(
         {
             throw new InvalidOperationException("No types found during loading/deobfuscation of assembly");
         }
-
-        Log.Information(
-            "Deobfuscation completed. Took {time:F2} seconds. Deobfuscated assembly written to: {assemblyPath}",
-            sw.ElapsedMilliseconds / 1000,
-            result.DeObfuscatedAssemblyPath
-        );
 
         return true;
     }

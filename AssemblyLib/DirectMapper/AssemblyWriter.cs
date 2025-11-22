@@ -18,6 +18,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 {
     internal DeObfuscationResult Deobfuscate(ModuleDefinition? module, string assemblyPath)
     {
+        var sw = Stopwatch.StartNew();
         var result = new DeObfuscationResult();
 
         if (module!.GetAllTypes().Any(t => t.Name?.Contains("GClass") ?? false))
@@ -47,6 +48,12 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         result.Success = true;
         result.DeObfuscatedAssemblyPath = cleanedPath;
         result.DeObfuscatedModule = dataProvider.LoadModule(cleanedPath);
+
+        Log.Information(
+            "Deobfuscation completed. Took {time:F2} seconds. Deobfuscated assembly written to: {assemblyPath}",
+            sw.ElapsedMilliseconds / 1000,
+            result.DeObfuscatedAssemblyPath
+        );
 
         return result;
     }

@@ -72,20 +72,43 @@ public class DataProvider
             var jsonText = File.ReadAllText(file);
             var tmp = JsonSerializer.Deserialize<Dictionary<string, DirectMapModel>>(jsonText, settings)!;
 
+            var localCount = 0;
             foreach (var (name, model) in tmp)
             {
                 if (!DirectMapModels.TryAdd(name, model))
                 {
                     Log.Error("Duplicate DirectMapModel: {Name} found.", name);
+                    continue;
                 }
 
-                count++;
+                localCount++;
             }
 
-            Log.Information("Direct Mapping file loaded: {Path}", file);
+            count += CountMappingsRecursively(tmp);
+            Log.Information(
+                "Direct Mapping file loaded {Count} mappings from: {Path}",
+                localCount,
+                Path.GetFileName(file)
+            );
         }
 
-        Log.Information("Direct Mapping count: {Count}", count);
+        Log.Information("Total Count: {Count}", count);
+    }
+
+    private static int CountMappingsRecursively(Dictionary<string, DirectMapModel> models)
+    {
+        // Don't count things we aren't renaming
+        var count = models.Count(kvp => kvp.Value.NewName is not null);
+
+        foreach (var (_, mapping) in models)
+        {
+            if (mapping.NestedTypes?.Count > 0)
+            {
+                count += CountMappingsRecursively(mapping.NestedTypes);
+            }
+        }
+
+        return count;
     }
 
     private static Settings LoadAppSettings()

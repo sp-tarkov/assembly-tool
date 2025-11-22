@@ -22,16 +22,6 @@ public class DataProvider
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }
 
-    public bool IsModuleLoaded
-    {
-        get { return LoadedModule != null; }
-    }
-
-    public bool IsMscorlibLoaded
-    {
-        get { return Mscorlib != null; }
-    }
-
     public Dictionary<string, DirectMapModel> DirectMapModels { get; } = [];
 
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");

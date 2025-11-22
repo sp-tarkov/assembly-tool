@@ -1,4 +1,98 @@
 {
+  "GClass0": {
+    "NewName": "qb_Point",
+  },
+  "GClass1": {
+    "NewName": "qb_RaycastResult",
+  },
+  "GClass2": {
+    "NewName": "qb_Stroke",
+  },
+  "GClass3": {
+    "NewName": "qb_TemplateSignature",
+  },
+  "GClass4": {
+    "NewName": "TODSkyProvider",
+  },
+  "GClass5": {
+    "NewName": "TOD_Util",
+  },
+  "GClass6": {
+    "NewName": "GameObjectExtensions",
+  },
+  "GClass7": {
+    "NewName": "MonoBehaviourExtensions",
+  },
+  "GClass8": {
+    "NewName": "RandomExtensions",
+  },
+  "GClass9": {
+    "NewName": "CommandLineReader",
+  },
+  "GClass10": {
+    "NewName": "ConsoleProDebug",
+  },
+  "GClass13": {
+    "NewName": "EmbeddedProfiler",
+  },
+  "GClass14": {
+    "NewName": "ProfilerHelper",
+  },
+  "GClass15": {
+    "NewName": "PauseReasonExtension",
+  },
+  "GClass16": {
+    "NewName": "ProfilerSpikeAnalyzer",
+  },
+  "GClass17": {
+    "NewName": "AVGValueChangeMeasurer",
+    "NestedTypes": {
+      "GClass18": {
+        "NewName": "Counter"
+      }
+    }
+  },
+  "GClass19": {
+    "NewName": "ValueChangeMeasurer",
+    "NestedTypes": {
+      "GClass20": {
+        "NewName": "Counter"
+      }
+    }
+  },
+  "GClass21": {
+    "NewName": "NetMeasurer",
+  },
+  "GClass22": {
+    "NewName": "DebugTimeMeasurer",
+  },
+  "GClass23": {
+    "NewName": "SimpleProfiler",
+  },
+  "GClass24": {
+    "NewName": "ReleaseProfileSpikeAnalyser",
+  },
+  "GClass25": {
+    "NewName": "AIPeriodAction",
+  },
+  "GClass26": {
+    "NewName": "CoreActionResultParams",
+  },
+  "GClass27": {
+    "NewName": "AimingResultParams",
+  },
+  "GClass28": {
+    "NewName": "ShootHoldResultParams",
+  },
+  "GClass29": {
+    "NewName": "CoreActionResultParamsFlankMove",
+  },
+  "GClass30": {
+    "NewName": "CoreActionGoToPoint",
+  },
+  "GClass31": {
+    "NewName": "MoveToCoverActionResultData",
+  },
   "GClass32": {
     // AICoreStrategyAbstractClass
     "NewName": "AICoreAgentBase",
@@ -11,6 +105,9 @@
     // AICoreControllerClass
     "NewName": "AICoreController",
   },
+  "GClass35`1": {
+    "NewName": "AICoreLayer",
+  },
   "GClass36": {
     // BaseLogicLayerAbstractClass
     "NewName": "BaseLogicLayerSimple",
@@ -18,6 +115,30 @@
   "GClass37": {
     // BaseLogicLayerSimpleAbstractClass
     "NewName": "BaseLogicLayer",
+  },
+  "GClass38": {
+    "NewName": "WithCutDistLayer",
+  },
+  "GClass39": {
+    "NewName": "AssaultHaveEnemyLayer",
+  },
+  "GClass40": {
+    "NewName": "MarksmanEnemyLayer",
+  },
+  "GClass41": {
+    "NewName": "PushAndSuppressLayer",
+  },
+  "GClass42": {
+    "NewName": "AssaultBuildingLayer",
+  },
+  "GClass43": {
+    "NewName": "ControlBuildingLayer",
+  },
+  "GClass44": {
+    "NewName": "ControlBuildingNoTargetLayer",
+  },
+  "GClass45": {
+    "NewName": "AssaultEnemyFarLayer",
   },
   "GClass118": {
     "NewName": "MalfunctionLayer",
@@ -225,6 +346,57 @@
       }
     }
   },
+  "GClass1096": {
+    "NewName": "ClientAudioSettings",
+    "NewNamespace": "Audio",
+    "NestedTypes": {
+      "GClass1097": {
+        "NewName": "PointOfViewSoundVolumeData"
+      },
+      "GClass1098": {
+        "NewName": "GlobalAudioGroupPreset"
+      },
+      "GClass1099": {
+        "NewName": "EnvironmentAudioSettings"
+      },
+      "GClass1100": {
+        "NewName": "SurfaceMultiplier"
+      },
+      "GClass1101": {
+        "NewName": "WindMultiplier"
+      },
+      "GClass1102": {
+        "NewName": "RainSettings"
+      },
+      "GClass1103": {
+        "NewName": "SeasonAmbientSettings"
+      },
+      "GClass1104": {
+        "NewName": "PlayerAudioSettings"
+      },
+      "GClass1105": {
+        "NewName": "MovementRolloffMultiplier"
+      },
+      "GClass1106": {
+        "NewName": "MetaXRAudioPluginSettings"
+      },
+      "GClass1107": {
+        "NewName": "ActiveHeadphonesSettings"
+      }
+    }
+  },
+  "GClass1108": {
+    "NewName": "AudioLoggerFactory",
+    "NewNamespace": "Audio"
+  },
+  "GClass1109": {
+    "NewName": "DebugAudioLogger",
+    "NewNamespace": "Audio"
+  },
+  "GClass1110": {
+    "NewName": "NullAudioLogger",
+    "NewNamespace": "Audio"
+  },
   "GClass1128": {
     "NewName": "AbstractSpatialAudioCalculator",
     "NewNamespace": "Audio.SpatialSystem"
@@ -305,6 +477,26 @@
   "GClass1446": {
     "NewName": "UnityAnimatorWrapper",
     "NewNamespace": "AnimationSystem",
+  },
+  "GClass1448": {
+    "NewName": "ComputedNode",
+    "NewNamespace": "AnimationSystem.RootMotionTable",
+  },
+  "GClass1449": {
+    "NewName": "ComputedClipNode",
+    "NewNamespace": "AnimationSystem.RootMotionTable",
+  },
+  "GClass1450": {
+    "NewName": "ComputedTreeNode",
+    "NewNamespace": "AnimationSystem.RootMotionTable",
+  },
+  "GClass1451": {
+    "NewName": "ComputedNodeSerializer",
+    "NewNamespace": "AnimationSystem.RootMotionTable",
+  },
+  "GClass1452": {
+    "NewName": "ComputedBlendTree",
+    "NewNamespace": "AnimationSystem.RootMotionTable",
   },
   "GClass1453": {
     "NewName": "EAnimationEventParamTypeExtension",

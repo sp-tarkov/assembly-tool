@@ -51,6 +51,10 @@
     "NewName": "ResourceTypeInfo",
     "NewNamespace": "JsonType"
   },
+  "GStruct141": {
+    "NewName": "MotionInfo",
+    "NewNamespace": "AnimationSystem.RootMotionTable"
+  },
   "GStruct153": {
     "NewName": "OperationResult",
     "NewNamespace": "Diz.LanguageExtensions"

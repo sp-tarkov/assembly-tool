@@ -24,11 +24,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     /// <returns>List of fields that should be renamed</returns>
     public List<FieldDefinition> PublicizeType(TypeDefinition type)
     {
-        if (Log.IsEnabled(LogEventLevel.Debug))
-        {
-            Log.Debug("Publicizing Type [{Utf8String}]", type.Name?.ToString());
-        }
-
         if (
             type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
             && type.Interfaces.All(i => i.Interface?.Name != "IEffect")
@@ -51,15 +46,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
         foreach (var property in type.Properties)
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                Log.Debug(
-                    "Publicizing Property [{PropertyDeclaringType}::{PropertyName}]",
-                    property.DeclaringType,
-                    property.Name?.ToString()
-                );
-            }
-
             // TODO: This is hacky but works for now, find a better solution. Need to check MD tokens to build associations,
             // this is a problem for later me.
 
@@ -114,15 +100,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
-
-        if (Log.IsEnabled(LogEventLevel.Debug))
-        {
-            Log.Debug(
-                "Publicizing Method [{MethodDeclaringType}::{MethodName}]",
-                method.DeclaringType,
-                method.Name?.ToString()
-            );
-        }
 
         stats.MethodPublicizedCount++;
     }

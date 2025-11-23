@@ -1,18 +1,30 @@
-﻿using AsmResolver;
+using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
+using AssemblyLib.Models;
+using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
-using FieldDefinition = AsmResolver.DotNet.FieldDefinition;
-using MethodDefinition = AsmResolver.DotNet.MethodDefinition;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public sealed class Renamer(Statistics stats)
+public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRenamer
 {
-    public void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
+    public int Priority { get; } = 1;
+
+    public ERenamerType Type
+    {
+        get { return ERenamerType.Fields; }
+    }
+
+    public void Rename(DirectMapModel model)
+    {
+        RenameObfuscatedFields(dataProvider.LoadedModule!, model.ToolData.ShortOldName!, model.NewName!);
+    }
+
+    private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
         {
@@ -21,6 +33,11 @@ public sealed class Renamer(Statistics stats)
             var fieldCount = 0;
             foreach (var field in fields)
             {
+                if (IsSerializedField(field))
+                {
+                    continue;
+                }
+
                 if (field.Signature?.FieldType.Name != oldTypeName)
                 {
                     continue;
@@ -55,46 +72,6 @@ public sealed class Renamer(Statistics stats)
         }
     }
 
-    public void RenameObfuscatedProperties(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
-    {
-        foreach (var type in module.GetAllTypes())
-        {
-            var properties = type.Properties.Where(prop => prop.Name!.IsObfuscatedName());
-
-            var propertyCount = 0;
-            foreach (var property in properties)
-            {
-                if (property.Signature!.ReturnType.Name != oldTypeName)
-                {
-                    continue;
-                }
-
-                var newPropertyName = GetNewPropertyName(newTypeName, propertyCount);
-
-                // Dont need to do extra work
-                if (property.Name == newPropertyName)
-                {
-                    continue;
-                }
-
-                if (Log.IsEnabled(LogEventLevel.Debug))
-                {
-                    Log.Debug(
-                        "Renaming property [{PropertyDeclaringType}::{PropertyName}] to [{TypeDefinition}::{NewPropertyName}]",
-                        property.DeclaringType,
-                        property.Name?.ToString(),
-                        property.DeclaringType,
-                        newPropertyName.ToString()
-                    );
-                }
-
-                property.Name = newPropertyName;
-
-                propertyCount++;
-            }
-        }
-    }
-
     private Utf8String GetNewFieldName(FieldDefinition field, string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
@@ -105,38 +82,7 @@ public sealed class Renamer(Statistics stats)
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
     }
 
-    private Utf8String GetNewPropertyName(string newName, int propertyCount = 0)
-    {
-        stats.PropertyRenamedCount++;
-
-        return new Utf8String(propertyCount > 0 ? $"{newName}_{propertyCount}" : newName);
-    }
-
     private static void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
-    {
-        foreach (var reference in module.GetImportedMemberReferences())
-        {
-            if (reference.Resolve() != target)
-            {
-                continue;
-            }
-
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                Log.Debug(
-                    "Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]",
-                    target.DeclaringType,
-                    target.Name?.ToString(),
-                    target.DeclaringType,
-                    newName.ToString()
-                );
-            }
-
-            reference.Name = newName;
-        }
-    }
-
-    private void UpdateMemberReferences(ModuleDefinition module, MethodDefinition target, Utf8String newName)
     {
         foreach (var reference in module.GetImportedMemberReferences())
         {

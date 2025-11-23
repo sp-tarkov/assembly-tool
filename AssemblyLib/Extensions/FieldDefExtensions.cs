@@ -26,15 +26,6 @@ internal static class FieldDefExtensions
         /// </summary>
         public void PublicizeField()
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                Log.Debug(
-                    "Publicizing Field [{FieldDeclaringType}::{Utf8String}]",
-                    field.DeclaringType,
-                    field.Name?.ToString()
-                );
-            }
-
             // Remove all visibility mask attributes
             field.Attributes &= ~FieldAttributes.FieldAccessMask;
             // Apply a public visibility attribute

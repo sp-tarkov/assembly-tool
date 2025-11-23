@@ -1144,8 +1144,80 @@
     "NewName": "NullAudioLogger",
     "NewNamespace": "Audio"
   },
+  "GClass1111": {
+    "NewName": "TransformPositionTracker",
+    "NewNamespace": "Audio"
+  },
+  "GClass1112": {
+    "NewName": "ClientBroadcastSyncController",
+    "NewNamespace": "Audio.RadioSystem"
+  },
+  "GClass1113": {
+    "NewName": "QueueSpeakerBase",
+    "NewNamespace": "Audio.QueueSpeakerSystem"
+  },
+  "GClass1114": {
+    "NewName": "PhraseQueueSpeaker",
+    "NewNamespace": "Audio.QueueSpeakerSystem"
+  },
+  "GClass1115": {
+    "NewName": "BtrDriverDialogueEventHandler",
+    "NewNamespace": "Audio.NPC.BtrDriver"
+  },
+  "GClass1116": {
+    "NewName": "PhraseController",
+    "NewNamespace": "Audio.NPC.BtrDriver"
+  },
+  "GClass1117": {
+    "NewName": "BtrDriverPhraseController",
+    "NewNamespace": "Audio.NPC.BtrDriver"
+  },
+  "GClass1118": {
+    "NewName": "AudioExtensions",
+    "NewNamespace": "Audio.Extensions"
+  },
+  "GClass1119": {
+    "NewName": "AudioBakeDataReader",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1120": {
+    "NewName": "AudioBakeDataSerializer",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1121": {
+    "NewName": "AudioBakeDataWriter",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1122": {
+    "NewName": "AudioRoomStorage",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1123": {
+    "NewName": "OutdoorPortalsDataContainer",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1124": {
+    "NewName": "PortalDataBufferService",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1125": {
+    "NewName": "PropagationVolumesManager",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1126": {
+    "NewName": "SoundOcclusionProcessor",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1127": {
+    "NewName": "OcclusionParameters",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
   "GClass1128": {
     "NewName": "AbstractSpatialAudioCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1129": {
+    "NewName": "ParallelSoundPropagationCalculator",
     "NewNamespace": "Audio.SpatialSystem"
   },
   "GClass1172": {
@@ -1155,6 +1227,14 @@
   "GClass1201": {
     "NewName": "EmptyBotDevelopService",
     "NewNamespace": "AI"
+  },
+  "GClass1204": {
+    "NewName": "BakeInformation",
+    "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GClass1205": {
+    "NewName": "IndexOnlyObjectSampleSet",
+    "NewNamespace": "Koenigz.PerfectCulling"
   },
   "GClass1314": {
     // FastAnimatorProcessorClass

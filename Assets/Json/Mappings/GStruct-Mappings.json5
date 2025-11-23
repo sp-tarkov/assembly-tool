@@ -127,5 +127,29 @@
     // DamageInfoStruct
     "NewName": "DamageInfo",
     "NewNamespace": "EFT.Ballistics"
-  }
+  },
+  "GStruct152`1": {
+    "NewName": "OperationCreationResult",
+    "NewNamespace": "Diz.LanguageExtensions"
+  },
+  "GStruct210": {
+    "NewName": "Client2ServerPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct371": {
+    "NewName": "EmptyHandPacket",
+    "NewNamespace": "EFT.NetworkPackets",
+  },
+  "GStruct374": {
+    "NewName": "GrenadePacket",
+    "NewNamespace": "EFT.NetworkPackets",
+  },
+  "GStruct380": {
+    "NewName": "KnifePacket",
+    "NewNamespace": "EFT.NetworkPackets",
+  },
+  "GStruct391": {
+    "NewName": "UsableItemPacket",
+    "NewNamespace": "EFT.NetworkPackets",
+  },
 }

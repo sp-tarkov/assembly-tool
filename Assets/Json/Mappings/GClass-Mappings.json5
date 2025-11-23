@@ -2423,6 +2423,202 @@
   "GClass4082": {
     "NewName": "Triangulator",
     "NewNamespace": "AmplifyImpostors",
-  }
+  },
+  "GClass1956": {
+    "NewName": "InventoryOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass3474": {
+    "NewName": "AbstractOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1957": {
+    "NewName": "AddNoteOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1958": {
+    "NewName": "ApplyKeyOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1959": {
+    "NewName": "BindItemOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1960": {
+    "NewName": "CheckMagazineOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1961": {
+    "NewName": "CreateMapMarkerOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1962": {
+    "NewName": "DeleteMapMarkerOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1963": {
+    "NewName": "DeleteNoteOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1964": {
+    "NewName": "EditMapMarkerOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1965": {
+    "NewName": "EditNoteOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1966": {
+    "NewName": "ExamineMalfTypeOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1967": {
+    "NewName": "ExamineMalfunctionOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1968": {
+    "NewName": "ExamineOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1969": {
+    "NewName": "FaceshieldMarkOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1970": {
+    "NewName": "FoldOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1971": {
+    "NewName": "MagOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1972": {
+    "NewName": "LoadMagOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1973": {
+    "NewName": "UnloadMagOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1974": {
+    "NewName": "MergeOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1975": {
+    "NewName": "MoveOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1976": {
+    "NewName": "PlantTripwireOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1977": {
+    "NewName": "RemoveOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1978": {
+    "NewName": "SetDialogProgressOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1979": {
+    "NewName": "SetupItemOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1980": {
+     // This doesn't exist in 1.0, name deduced from usage
+    "NewName": "SetVariableOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1981": {
+    "NewName": "SplitOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1982": {
+    "NewName": "OperateStationaryWeaponOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1983": {
+    "NewName": "SwapOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1984": {
+    "NewName": "TagOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1985": {
+    "NewName": "ThrowOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1986": {
+    "NewName": "ToggleOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1987": {
+    "NewName": "TransferOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1988": {
+    "NewName": "UnbindItemOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1989": {
+    "NewName": "WeaponRechamberOperationDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1990": {
+    "NewName": "QuestActionDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1991": {
+    "NewName": "QuestAcceptDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1992": {
+    "NewName": "QuestFinishDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1993": {
+    "NewName": "QuestHandoverDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1994": {
+    "NewName": "AddToWishlistOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1995": {
+    "NewName": "SplitToNowhereDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1996": {
+    "NewName": "TransferFromNowhereDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1997": {
+    "NewName": "ChangeItemsOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1998": {
+    "NewName": "ChangeWishlistItemCategoryOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1999": {
+    "NewName": "PurchaseTraderServiceOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass2000": {
+    "NewName": "RemoveFromWishlistOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass2001": {
+    "NewName": "SearchSuboperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass2002": {
+    "NewName": "SearchContentOperationDescriptor",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass3000": {
+    "NewName": "GrenadePacketSerializationExtensions",
+    "NewNamespace": "EFT.NetworkPackets.Serialization",
+  },
 }
-

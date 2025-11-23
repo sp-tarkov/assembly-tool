@@ -794,8 +794,68 @@
   "GClass849`1": {
     "NewName": "Deferred",
   },
+  "GClass851": {
+    "NewName": "LogExtensions",
+  },
+  "GClass853": {
+    "NewName": "CollectionUtils",
+  },
+  "GClass854": {
+    "NewName": "UIDebug",
+  },
   "GClass855": {
     "NewName": "Utils",
+  },
+  "GClass856": {
+    "NewName": "MyExtensions",
+  },
+  "GClass858": {
+    "NewName": "VectorChecksExtensions",
+  },
+  "GClass859": {
+    "NewName": "AirdropTrajectoryCalculator",
+  },
+  "GClass860": {
+    "NewName": "RendererExtensions",
+  },
+  "GClass861": {
+    "NewName": "UnityResourcesProxy",
+	"NestedTypes": {
+      "Class390": {
+        "NewName": "UnityResourcesProxyLogger"
+      }
+    }
+  },
+  "GClass862": {
+    "NewName": "ComponentHelper",
+  },
+  "GClass865": {
+    "NewName": "DebugUtils",
+  },
+  "GClass866`1": {
+    "NewName": "EnumHelper",
+  },
+  "GClass867": {
+    "NewName": "EnumExtensions",
+  },
+  "GClass868": {
+    "NewName": "FileUtils",
+  },
+  "GClass870": {
+    "NewName": "FindObjectsProxy",
+  },
+  "GClass872": {
+    "NewName": "ShadersFinder",
+  },
+  "GClass873": {
+    "NewName": "FloatPlugin",
+	"NewNamespace": "DG.Tweening.Plugins"
+  },
+  "GClass875": {
+    "NewName": "GuidManager",
+  },
+  "GClass876": {
+    "NewName": "GuidReferenceEqualityComparer",
   },
   "GClass879": {
     "NewName": "CustomHandle",
@@ -805,12 +865,180 @@
       }
     }
   },
+  "GClass881": {
+    "NewName": "SerializationExtensions",
+  },
   "GClass883": {
     // ApplicationConfigClass
     "NewName": "ApplicationConfig",
   },
+  "GClass885": {
+    "NewName": "AudioSourcePrewarmer",
+  },
+  "GClass886": {
+    "NewName": "GagSoundLimiter",
+  },
+  "GClass887": {
+    "NewName": "BulletSoundsUtils",
+  },
+  "GClass888": {
+    "NewName": "BetterAudioQueue",
+  },
+  "GClass890": {
+    "NewName": "SuperBetterAudioQueue",
+  },
+  "GClass891": {
+    "NewName": "AudioSample",
+  },
+  "GClass892": {
+    "NewName": "SimpleAudioSample",
+  },
+  "GClass893": {
+    "NewName": "SuperAudioSample",
+  },
+  "GClass895": {
+    "NewName": "Gag",
+  },
+  "GClass899": {
+    "NewName": "PlayerVoiceLoader",
+	"NestedTypes": {
+      "Struct99": {
+        "NewName": "BringVoice"
+      }
+    }
+  },
+  "GClass900": {
+    "NewName": "SavWav",
+  },
+  "GClass901": {
+    "NewName": "DebugSoundOcclusionLine",
+  },
+  "GClass902": {
+    "NewName": "SpatialAudioRoomComparer",
+  },
+  "GClass903": {
+    "NewName": "ClientLoginResult",
+  },
+  "GClass904": {
+    "NewName": "RepairKitsCollection",
+  },
+  "GClass905": {
+    "NewName": "DefaultRepairStrategy",
+  },
+  "GClass906": {
+    "NewName": "ArmorRepairStrategy",
+  },
+  "GClass911": {
+    "NewName": "StationaryStrategy",
+  },
+  "GClass914": {
+    "NewName": "HWEcho",
+  },
+  "GClass916": {
+    "NewName": "ConcaveBorder",
+  },
+  "GClass917": {
+    "NewName": "BasePlayerCulling",
+  },
+  "GClass919": {
+    "NewName": "ObserverPlayerCulling",
+  },
   "GClass920": {
     "NewName": "BotCreatorClient",
+  },
+  "GClass921": {
+    "NewName": "ObservedPlayerHealthController",
+  },
+  "GClass922": {
+    "NewName": "PlayerClippingRules",
+  },
+  "GClass924`2": {
+    "NewName": "GClass924",
+  },
+  "GClass925": {
+    "NewName": "ClothingIconCreator",
+  },
+  "GClass926": {
+    "NewName": "ItemIconCreator",
+  },
+  "GClass927": {
+    "NewName": "PlayerIconCreator",
+  },
+  "GClass928": {
+    "NewName": "IconsHash",
+  },
+  "GClass929": {
+    "NewName": "ItemIcon",
+  },
+  "GClass930": {
+    "NewName": "ItemIconCache",
+  },
+  "GClass931": {
+    "NewName": "IconCreatorGraphicsSettings",
+  },
+  "GClass932": {
+    "NewName": "PlayerIconRequest",
+  },
+  "GClass933": {
+    "NewName": "ShaderReplacer",
+	"NestedTypes": {
+      "Struct133": {
+        "NewName": "MaterialPath"
+      }
+  },
+  "GClass934": {
+    "NewName": "RoadSplineMaterialsPool",
+  },
+  "GClass935": {
+    "NewName": "MaterialExtension",
+  },
+  "GClass936": {
+    "NewName": "ScreenLocker",
+  },
+  "GClass937": {
+    "NewName": "AutoExchange",
+  },
+  "GClass938": {
+    "NewName": "DebugGraph",
+  },
+  "GClass939": {
+    "NewName": "FrustumScanner",
+  },
+  "GClass940": {
+    "NewName": "Helpers",
+  },
+  "GClass941": {
+    "NewName": "InfoUtility",
+  },
+  "GClass942": {
+    "NewName": "InputFieldExtensions",
+  },
+  "GClass943": {
+    "NewName": "NonAllocLineCaster",
+  },
+  "GClass944`1": {
+    "NewName": "PoolWithoutAlloc",
+  },
+  "GClass945": {
+    "NewName": "ProfileDataContainerExtension",
+  },
+  "GClass946": {
+    "NewName": "IntNumericOperations",
+  },
+  "GClass947": {
+    "NewName": "FloatNumericOperations",
+  },
+  "GClass948`1": {
+    "NewName": "ProgressAggregator",
+  },
+  "GClass949": {
+    "NewName": "RectTransformExtensions",
+  },
+  "GClass950": {
+    "NewName": "SoundOcclusionObstacleChecker",
+  },
+  "GClass951": {
+    "NewName": "Spacer",
   },
   "GClass952": {
     "NewName": "TimeQueue",
@@ -822,6 +1050,90 @@
         "NewName": "TimeAction"
       }
     }
+  },
+  "GClass953": {
+    "NewName": "Transliteration"
+  },
+  "GClass954": {
+    "NewName": "WaitForJobCompleted"
+  },
+  "GClass955": {
+    "NewName": "AreaLightLUT"
+  },
+  "GClass956": {
+    "NewName": "BloodDrop"
+  },
+  "GClass957": {
+    "NewName": "BloodDropPlacer"
+  },
+  "GClass958": {
+    "NewName": "BloodDropsController"
+  },
+  "GClass960": {
+    "NewName": "RectExtensions"
+  },
+  "GClass962`1": {
+    "NewName": "Quadrant"
+  },
+  "GClass963": {
+    "NewName": "StaticDeferredDecalQuadrant"
+  },
+  "GClass964": {
+    "NewName": "TextureTreeQuadrant"
+  },
+    "GClass965`2": {
+    "NewName": "QuadTree"
+  },
+  "GClass966": {
+    "NewName": "StaticDeferredDecalQuadTree"
+  },
+  "GClass967": {
+    "NewName": "TextureQuadTree"
+  },
+  "GClass968": {
+    "NewName": "StaticDeferredDecalDrawInstance"
+  },
+  "GClass969": {
+    "NewName": "StaticDeferredDecalQuadTreeDrawInstance"
+  },
+  "GClass971": {
+    "NewName": "TextureQuadrantInfo"
+  },
+  "GClass972": {
+    "NewName": "GraphicsHelper"
+  },
+  "GClass973": {
+    "NewName": "ByPriorityComparer1"
+  },
+  "GClass974": {
+    "NewName": "StencilShadowByPriorityComparer"
+  },
+  "GClass975": {
+    "NewName": "TextureGenerator3D"
+  },
+  "GClass976": {
+    "NewName": "SpeedTreeCombiner"
+  },
+  "GClass977": {
+    "NewName": "GlitchController"
+  },
+  "GClass978": {
+    "NewName": "MotionBlurController"
+  },
+  "GClass979": {
+    "NewName": "PixelationController"
+  },
+  "GClass980": {
+    "NewName": "StuckFPSController"
+  },
+  "GClass981": {
+    "NewName": "DestructionHelper"
+  },
+  "GClass982": {
+    "NewName": "Face"
+  },
+  "GClass985": {
+    "NewName": "RainCondensatorHelper"
   },
   "GClass986": {
     "NewName": "RainScreenDropsPlacer"
@@ -1268,6 +1580,10 @@
   "GClass1205": {
     "NewName": "IndexOnlyObjectSampleSet",
     "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GClass1272": {
+    "NewName": "GPUInstancerRenderer",
+    "NewNamespace": "GPUInstancer"
   },
   "GClass1314": {
     // FastAnimatorProcessorClass
@@ -1924,6 +2240,10 @@
         "NewName": "ISettings"
       }
     }
+  },
+  "GClass3687": {
+    "NewName": "OpticCameraManager",
+    "NewNamespace": "EFT.CameraControl",
   },
   "GClass3688": {
     "NewName": "CameraState",

@@ -38,7 +38,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
                     continue;
                 }
 
-                if (field.Signature?.FieldType.Name != oldTypeName)
+                if (field.Signature?.FieldType.Name != newTypeName)
                 {
                     continue;
                 }
@@ -84,13 +84,8 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
 
     private static void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
     {
-        foreach (var reference in module.GetImportedMemberReferences())
+        foreach (var reference in module.GetImportedMemberReferences().Where(r => r.Resolve() == target))
         {
-            if (reference.Resolve() != target)
-            {
-                continue;
-            }
-
             if (Log.IsEnabled(LogEventLevel.Debug))
             {
                 Log.Debug(

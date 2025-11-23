@@ -78,7 +78,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
             throw;
         }
 
-        Log.Information("Direct map completed. Assembly written to: {outPath}", outPath);
+        Log.Information("Assembly written to: {outPath}", outPath);
 
         await StartHollow(module.GetAllTypes());
 
@@ -95,6 +95,8 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
             return;
         }
 
+        Log.Information("Hollowed written to: {outPath}", hollowedPath);
+
         StartHDiffz(outPath);
     }
 
@@ -103,8 +105,6 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
     /// </summary>
     private async Task StartHollow(IEnumerable<TypeDefinition> types)
     {
-        Log.Information("Creating Hollow...");
-
         var tasks = new List<Task>(types.Count());
 
         foreach (var type in types)
@@ -231,10 +231,8 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         return true;
     }
 
-    public void StartHDiffz(string outPath)
+    private void StartHDiffz(string outPath)
     {
-        Log.Information("Creating Delta...");
-
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "HDiffz", "hdiffz.exe");
 
         var outDir = Path.GetDirectoryName(outPath);
@@ -272,6 +270,9 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         if (error.Length > 0)
         {
             Log.Error("Error: {Error}", error);
+            return;
         }
+
+        Log.Information("Delta written to: {outPath}", deltaFile);
     }
 }

@@ -4,6 +4,7 @@ using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
@@ -42,8 +43,13 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
 
             if (methodsToRename.TryGetValue(method.Name, out var newName))
             {
-                Log.Information("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
+                }
+
                 method.Name = new Utf8String(newName);
+                return;
             }
         }
     }

@@ -32,6 +32,8 @@ public class DirectMapController(
         RunRenamingProcess();
         PublicizeObfuscatedTypes();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
+
+        Log.Information("Direct map completed.");
     }
 
     private bool TryDeobfuscateAssembly()
@@ -66,61 +68,24 @@ public class DirectMapController(
             return;
         }
 
+        Log.Information("Renaming assembly...");
+
         foreach (var (targetFullName, mapping) in mappings)
         {
-            HandleMappingRecursive(targetFullName, mapping);
-        }
-    }
-
-    private void HandleMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
-    {
-        var toolData = model.ToolData;
-
-        toolData.Type = parent ?? Types.FirstOrDefault(t => t.FullName == targetFullName);
-        if (toolData.Type is null)
-        {
-            Log.Error("Failed to find type: {target}", targetFullName);
-            return;
+            renamerService.RenameMappingRecursive(targetFullName, mapping);
         }
 
-        // Do children type's first so the parent can be used to find them
-        if (model.NestedTypes is not null)
-        {
-            foreach (var (name, nestedModel) in model.NestedTypes)
-            {
-                var nestedType = toolData.Type.NestedTypes.FirstOrDefault(t => t.Name == name);
-                if (nestedType is null)
-                {
-                    var children = string.Join(", ", nestedType?.NestedTypes.Select(t => t.Name?.ToString()) ?? []);
-
-                    Log.Error("Failed to find nested type: {name} on parent {parent}", name, toolData.Type.FullName);
-                    Log.Error("Available children for {parent}: {children}", toolData.Type.FullName, children);
-                    continue;
-                }
-
-                HandleMappingRecursive(name, nestedModel, nestedType);
-            }
-        }
-
-        // We're purely an entry for nested types. Do nothing else.
-        if (model.NewName is null)
-        {
-            return;
-        }
-
-        renamerService.RenameMapping(model);
+        // Make sure we don't do this until after renaming remaps
+        renamerService.RenameCompilerGeneratedTypes();
     }
 
     private void PublicizeObfuscatedTypes()
     {
-        Log.Information("Publicizing assembly please wait...");
+        Log.Information("Publicizing assembly...");
 
-        Parallel.ForEach(
-            Types,
-            type =>
-            {
-                publicizer.PublicizeType(type);
-            }
-        );
+        foreach (var type in Types)
+        {
+            publicizer.PublicizeType(type);
+        }
     }
 }

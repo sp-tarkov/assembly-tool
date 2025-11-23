@@ -1005,7 +1005,7 @@
     "NewName": "ChatMessagesList",
     "NewNamespace": "ChatShared",
 	"NestedTypes": {
-      "GClass1061": {
+      "GClass1062": {
         "NewName": "ChatMessageParamsSerializer"
       },
 	  "GClass1063": {
@@ -1034,7 +1034,7 @@
     "NewName": "UpdatableFriendsInvitation",
     "NewNamespace": "ChatShared"
   },
-  "GClass1071": {
+  "GClass1071`1": {
     "NewName": "BaseSettingsController",
     "NewNamespace": "Bsg.GameSettings"
   },
@@ -1063,15 +1063,15 @@
     "NewName": "ControlSettingsController",
     "NewNamespace": "EFT.Settings.Game"
   },
-  "GClass1078": {
+  "GClass1078`2": {
     "NewName": "GameSettingProxy",
     "NewNamespace": "Bsg.GameSettings"
   },
-  "GClass1080": {
+  "GClass1080`1": {
     "NewName": "SettingsPreset",
     "NewNamespace": "Bsg.GameSettings"
   },
-  "GClass1081": {
+  "GClass1081`1": {
     "NewName": "SettingsGroup",
     "NewNamespace": "Bsg.GameSettings"
   },

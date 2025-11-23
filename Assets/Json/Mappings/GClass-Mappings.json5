@@ -823,6 +823,39 @@
       }
     }
   },
+  "GClass986": {
+    "NewName": "RainScreenDropsPlacer"
+  },
+  "GClass987": {
+    "NewName": "SingleDrop"
+  },
+  "GClass988": {
+    "NewName": "Audio2DPlayer"
+  },
+  "GClass989": {
+    "NewName": "UtilsScreen"
+  },
+  "GClass990": {
+    "NewName": "TexUtils"
+  },
+  "GClass991": {
+    "NewName": "ComponentCopyPaste"
+  },
+  "GClass992": {
+    "NewName": "StaticUtils"
+  },
+  "GClass995": {
+    "NewName": "InteractionAgent"
+  },
+  "GClass997": {
+    "NewName": "CustomCullingCommon"
+  },
+  "GClass998`1": {
+    "NewName": "IndexedList"
+  },
+  "GClass999": {
+    "NewName": "ObservedCullingObject"
+  },
   "GClass1000": {
     "NewName": "MBOITParticlesManager",
     "NewNamespace": "AbsolutDecals"

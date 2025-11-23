@@ -27,6 +27,13 @@ public class ClassRenamer : IRenamer
             toolData.Type?.Namespace = new Utf8String(model.NewNamespace);
         }
 
-        toolData.Type?.Name = new Utf8String(model.NewName!);
+        var genericParametersCount = toolData.Type!.GenericParameters.Count;
+
+        var utf8Name =
+            genericParametersCount > 0
+                ? new Utf8String($"{model.NewName!}`{genericParametersCount}")
+                : new Utf8String(model.NewName!);
+
+        toolData.Type?.Name = utf8Name;
     }
 }

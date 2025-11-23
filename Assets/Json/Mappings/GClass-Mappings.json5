@@ -305,15 +305,233 @@
   "GClass100": {
     "NewName": "HoldOrCoverTargetLayer",
   },
+  "GClass101": {
+    "NewName": "HoldOrCoverFightLayer",
+  },
   "GClass102": {
     "NewName": "BaseAbstractKojaniyLayer"
+  },
+  "GClass103": {
+    "NewName": "FightKojaniyAbstractLayer"
+  },
+  "GClass104": {
+    "NewName": "BossKojaniyLayer"
+  },
+  "GClass105": {
+    "NewName": "FollowerKojaniyLayer"
+  },
+  "GClass106": {
+    "NewName": "FollowerKojaniyLayer"
+  },
+  "GClass107": {
+    "NewName": "FollowerKolontaySecurityPatrolLayer"
+  },
+  "GClass108": {
+    "NewName": "KolontayAbstractFightLayer"
+  },
+  "GClass109": {
+    "NewName": "BossKolontayBaseFightLayer"
+  },
+  "GClass110": {
+    "NewName": "BossKolontayFightLayer"
+  },
+  "GClass111": {
+    "NewName": "BossKolontaySoloFightLayer"
+  },
+  "GClass112": {
+    "NewName": "FollowerKolontayFightProtectLayer"
+  },
+  "GClass113": {
+    "NewName": "KolontayAssaultProtectLayer"
+  },
+  "GClass114": {
+    "NewName": "KolontayEnemyNoAtMyHouseLayer"
+  },
+  "GClass115": {
+    "NewName": "KolontayForceAttackLayer"
+  },
+  "GClass116": {
+    "NewName": "KolontayTargetLayer"
+  },
+  "GClass117": {
+    "NewName": "LootPatrolLayer"
   },
   "GClass118": {
     "NewName": "MalfunctionLayer",
   },
-  "GClass307": {
-    "NewName": "ClientBackendSession",
-    "NewNamespace": "EFT"
+  "GClass119": {
+    "NewName": "MarksmanTargetLayer",
+  },
+  "GClass120": {
+    "NewName": "PanicLayer",
+  },
+  "GClass121": {
+    "NewName": "PartisanBadSavageLayer",
+  },
+  "GClass122": {
+    "NewName": "PartisanBasePlantingLayer",
+  },
+  "GClass123": {
+    "NewName": "PartisanPlantingTargetLayer",
+  },
+  "GClass124": {
+    "NewName": "PartisanPlantingTargetManyLayer",
+  },
+  "GClass125": {
+    "NewName": "PartisanFightBaseLayer",
+  },
+  "GClass126": {
+    "NewName": "PartisanFightLayer",
+  },
+  "GClass127": {
+    "NewName": "PartisanFightManyLayer",
+  },
+  "GClass128": {
+    "NewName": "PartisanZeroSavageLayer",
+  },
+  "GClass129": {
+    "NewName": "PartisanPersuitLayer",
+  },
+  "GClass130": {
+    "NewName": "PartisanStalkeringLayer",
+  },
+  "GClass131": {
+    "NewName": "PartisanStalkeringManyLayer",
+  },
+  "GClass132": {
+    "NewName": "PatrolActionsLayer",
+  },
+  "GClass133": {
+    "NewName": "PatrolAssaultLayer",
+  },
+  "GClass134": {
+    "NewName": "FullMapPatrolLayer",
+  },
+  "GClass135": {
+    "NewName": "PatrolStayAtPositionLayer",
+  },
+  "GClass136": {
+    "NewName": "StayAtGeneratorPositionLayer",
+  },
+  "GClass137": {
+    "NewName": "InfectedPatrolStayAtPositionLayer",
+  },
+  "GClass138": {
+    "NewName": "PatrolStayAtPositionLayerWithIndoor",
+  },
+  "GClass139": {
+    "NewName": "PeacefulRequestLayer",
+  },
+  "GClass140": {
+    "NewName": "InfectedPeacefulRequestLayer",
+  },
+  "GClass141": {
+    "NewName": "PmcBearLayer",
+  },
+  "GClass142": {
+    "NewName": "PmcLayer",
+  },
+  "GClass143": {
+    "NewName": "FollowerBullyProtectLayer",
+  },
+  "GClass144": {
+    "NewName": "FollowerGluharFightProtectLayer",
+  },
+  "GClass145": {
+    "NewName": "PmcUsecLayer",
+  },
+  "GClass146": {
+    "NewName": "AbstractSanitarFightLayer",
+  },
+  "GClass147": {
+    "NewName": "BossSanitarFightLayer",
+  },
+  "GClass148": {
+    "NewName": "FollowerSanitarFightLayer",
+  },
+  "GClass149": {
+    "NewName": "SanitarTargetLayer",
+  },
+  "GClass150": {
+    "NewName": "AbstractSectantFightLayer",
+  },
+  "GClass151": {
+    "NewName": "HideAndSuicideLayer",
+  },
+  "GClass152": {
+    "NewName": "RunAndHideFightLayer",
+  },
+  "GClass153": {
+    "NewName": "SectantMeleeLayer",
+  },
+  "GClass154": {
+    "NewName": "SectantRunAndStrikeLayer",
+  },
+  "GClass155": {
+    "NewName": "SectantSupSootLayer",
+  },
+  "GClass156": {
+    "NewName": "BossKillaAgroFightLayerClose",
+  },
+  "GClass157": {
+    "NewName": "BossTagillaAbstractLayer",
+  },
+  "GClass158": {
+    "NewName": "BossTagillaAgroFightLayer",
+  },
+  "GClass159": {
+    "NewName": "BossTagillaAgroFightLayerClose",
+  },
+  "GClass160": {
+    "NewName": "BossTagillaAmbushLayer",
+  },
+  "GClass161": {
+    "NewName": "BossTagillaHelpsKillaLayer",
+  },
+  "GClass162": {
+    "NewName": "BossTagillaMainLayer",
+  },
+  "GClass163": {
+    "NewName": "BossTagillaSearchLayer",
+  },
+  "GClass164": {
+    "NewName": "TestLayer",
+  },
+  "GClass165": {
+    "NewName": "TestSecondLayer",
+  },
+  "GClass166": {
+    "NewName": "WarnPlayerLayer",
+  },
+  "GClass167": {
+    "NewName": "ZryachiyBaseLayer",
+  },
+  "GClass168": {
+    "NewName": "ZryachiyAbstractLayer",
+  },
+  "GClass169": {
+    "NewName": "ZryachiyCloseFightLayer",
+  },
+  "GClass170": {
+    "NewName": "ZryachiyFightLayer",
+  },
+  "GClass171": {
+    "NewName": "ZryachiyFollowerFightLayer",
+  },
+  "GClass172": {
+    "NewName": "ZryachiyPatrolLayer",
+  },
+  "GClass173": {
+    "NewName": "ZryachiyCheckCloseEnemiesLayer",
+  },
+  "GClass174": {
+    "NewName": "StandByLogicLayer",
+  },
+  "GClass175": {
+    "NewName": "AICoreNode",
+  },
+  "GClass176`1": {
+    "NewName": "AICoreNode",
   },
   "GClass372": {
     "NewName": "VectorExtension",

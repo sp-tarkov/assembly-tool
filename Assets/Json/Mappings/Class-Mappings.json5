@@ -1,4 +1,7 @@
 {
+  "Class304": {
+    "NewName": "Backend",
+  },
   "Class305`1": {
     // BackendAbstractClass
     "NewName": "ClientBackend",

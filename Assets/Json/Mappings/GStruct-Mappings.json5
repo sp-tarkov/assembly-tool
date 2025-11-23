@@ -34,6 +34,14 @@
   "GStruct63": {
     "NewName": "MarginsRect"
   },
+  "GStruct74": {
+    "NewName": "FlareData",
+    "NewNamespace": "MultiFlare"
+  },
+  "GStruct75": {
+    "NewName": "FlareGpuData",
+    "NewNamespace": "MultiFlare"
+  },
   "GStruct80": {
     "NewName": "DecalMeshVertexData",
     "NewNamespace": "AbsolutDecals"

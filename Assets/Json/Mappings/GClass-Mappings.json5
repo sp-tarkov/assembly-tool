@@ -305,6 +305,9 @@
   "GClass100": {
     "NewName": "HoldOrCoverTargetLayer",
   },
+  "GClass102": {
+    "NewName": "BaseAbstractKojaniyLayer"
+  },
   "GClass118": {
     "NewName": "MalfunctionLayer",
   },
@@ -447,6 +450,93 @@
         "NewName": "TimeAction"
       }
     }
+  },
+  "GClass1000": {
+    "NewName": "MBOITParticlesManager",
+    "NewNamespace": "AbsolutDecals"
+  },
+  "GClass1002": {
+    "NewName": "Extensions"
+  },
+  "GClass1003": {
+    "NewName": "PhotoManager"
+  },
+  "GClass1004": {
+    "NewName": "Texture2DExtensionDrawing"
+  },
+  "GClass1005": {
+    "NewName": "TerrainTreeAndGrassCleaner"
+  },
+  "GClass1006": {
+    "NewName": "VolumetricBounds"
+  },
+  "GClass1009": {
+    "NewName": "Matrix",
+    "NewNamespace": "CSML"
+  },
+  "GClass1011": {
+    "NewName": "DWindow",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1012": {
+    "NewName": "EditorGUIImitation",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1013": {
+    "NewName": "N",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1014": {
+    "NewName": "NArray",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1015": {
+    "NewName": "NClass",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1016": {
+    "NewName": "NList",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1017": {
+    "NewName": "NValue",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1019": {
+    "NewName": "ViewInfo",
+    "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1021": {
+    "NewName": "PerformanceMeter",
+    "NewNamespace": "Systems.Effects"
+  },
+  "GClass1022": {
+    "NewName": "TextureHelper",
+    "NewNamespace": "Systems.Effects"
+  },
+  "GClass1023": {
+    "NewName": "FlareManager",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1024": {
+    "NewName": "BatchCollection",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1025": {
+    "NewName": "CameraRenderer",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1026": {
+    "NewName": "GameCameraRenderer",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1027": {
+    "NewName": "FlareBatch",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1030": {
+    "NewName": "LightStorage",
+    "NewNamespace": "MultiFlare"
   },
   "GClass1033": {
     "NewName": "DecalSystemUtils",

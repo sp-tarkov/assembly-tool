@@ -22,6 +22,11 @@ public class ClassRenamer : IRenamer
         toolData.FullOldName = model.ToolData.Type?.FullName;
         toolData.ShortOldName = toolData.Type!.Name!.ToString();
 
+        if (!string.IsNullOrEmpty(model.NewNamespace))
+        {
+            toolData.Type?.Namespace = new Utf8String(model.NewNamespace);
+        }
+
         toolData.Type?.Name = new Utf8String(model.NewName!);
     }
 }

@@ -875,9 +875,6 @@
   "GClass885": {
     "NewName": "AudioSourcePrewarmer",
   },
-  "GClass887": {
-    "NewName": "BulletSoundsUtils",
-  },
   "GClass888": {
     "NewName": "BetterAudioQueue",
   },
@@ -898,6 +895,9 @@
   },
   "GClass896": {
     "NewName": "GagSoundLimiter",
+  },
+  "GClass897": {
+    "NewName": "BulletSoundsUtils",
   },
   "GClass899": {
     "NewName": "PlayerVoiceLoader",

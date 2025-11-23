@@ -533,6 +533,42 @@
   "GClass176`1": {
     "NewName": "AICoreNode",
   },
+  "GClass177`1": {
+    "NewName": "BaseNode",
+  },
+  "GClass178": {
+    "NewName": "Aiming",
+  },
+  "GClass179": {
+    "NewName": "AimingDebugShoot",
+  },
+  "GClass180": {
+    "NewName": "AimingFromStationary",
+  },
+  "GClass181": {
+    "NewName": "AimingNearPlayer",
+  },
+  "GClass182": {
+    "NewName": "AimingToFlash",
+  },
+  "GClass183": {
+    "NewName": "AimingToGoalTarget",
+  },
+  "GClass184": {
+    "NewName": "AimingToReservWay",
+  },
+  "GClass185": {
+    "NewName": "AimingToSmoke",
+  },
+  "GClass186": {
+    "NewName": "AimingToStationarySuppressionPoint",
+  },
+  "GClass187": {
+    "NewName": "AimingToSuppressionPoint",
+  },
+  "GClass188": {
+    "NewName": "AimingFlashedNode",
+  },
   "GClass372": {
     "NewName": "VectorExtension",
   },
@@ -555,6 +591,9 @@
     // ReachableClass
     "NewName": "NavGraphEditorPointReachable",
   },
+  "GClass429": {
+    "NewName": "BotData",
+  },
   "GClass443": {
     "NewName": "BotWavesOptimization",
   },
@@ -563,6 +602,48 @@
   },
   "GClass500": {
     "NewName": "BotPathController",
+  },
+  "GClass501": {
+    "NewName": "BotPathFinderCorePoints",
+  },
+  "GClass502": {
+    "NewName": "BotObserveData",
+  },
+  "GClass503": {
+    "NewName": "BotObserveVertical",
+  },
+  "GClass504": {
+    "NewName": "BotPointControl",
+  },
+  "GClass505": {
+    "NewName": "PatrolFollowerPlayer",
+  },
+  "GClass506": {
+    "NewName": "PatrolLookAroundFollower",
+  },
+  "GClass507": {
+    "NewName": "PatrolLookAroundSimple",
+  },
+  "GClass508": {
+    "NewName": "PatrolLookAroundNoNextPoint",
+  },
+  "GClass509": {
+    "NewName": "PatrolPathControl",
+  },
+  "GClass510": {
+    "NewName": "PatrolMoveSimple",
+  },
+  "GClass511": {
+    "NewName": "PatrolMoveBossCovers",
+  },
+  "GClass512": {
+    "NewName": "PatrolMoveBossCoversStay",
+  },
+  "GClass513": {
+    "NewName": "PatrolMoveBossStayAtPlace",
+  },
+  "GClass514": {
+    "NewName": "PatrolMoveRoundBoss",
   },
   "GClass540": {
     "NewName": "AbstractBotPath",
@@ -606,9 +687,76 @@
   "GClass648": {
     "NewName": "JsonResponse",
   },
+  "GClass650": {
+    "NewName": "ResponseData",
+  },
+  "GClass651": {
+    "NewName": "SenderHelper",
+  },
+  "GClass652": {
+    "NewName": "UnparsedDataExtension",
+  },
+  "GClass653": {
+    "NewName": "WsBackendContract",
+  },
+  "GClass654": {
+    "NewName": "WsRequest",
+  },
+  "GClass655": {
+    "NewName": "WsRequestJson",
+  },
+  "GClass656": {
+    "NewName": "WsRequestsQueue",
+  },
+  "GClass657": {
+    "NewName": "WsResponseJson",
+    "NestedTypes": {
+      "GClass658": {
+        "NewName": "WsSenderReponseError"
+      }
+    }
+  },
+  "GClass659": {
+    "NewName": "ShotSharedMethods",
+  },
+  "GClass660": {
+    "NewName": "PlayerLoopSystemHelpers",
+  },
+  "GClass661": {
+    "NewName": "ScriptOrders",
+  },
+  "GClass662`1": {
+    "NewName": "SelfInitializedSingleton",
+  },
+  "GClass663": {
+    "NewName": "EditorItemService",
+    "NewNamespace": "EFT.Interactive"
+  },
+  "GClass664": {
+    "NewName": "LootPointService",
+    "NewNamespace": "EFT.Interactive"
+  },
+  "GClass665": {
+    "NewName": "TypesDictionary",
+  },
+  "GClass666": {
+    "NewName": "DebugLogWrapper",
+  },
+  "GClass667": {
+    "NewName": "EditorStatic",
+  },
   "GClass668": {
     // BossSpawnerClass
     "NewName": "BotBossSpawn",
+  },
+  "GClass670": {
+    "NewName": "BaseBotsEvent",
+  },
+  "GClass671": {
+    "NewName": "BotEventsPriority",
+  },
+  "GClass672": {
+    "NewName": "BotHalloweenCrowdSpawn",
   },
   "GClass676": {
     // BotsClass
@@ -633,6 +781,12 @@
   "GClass825": {
     // LayerMaskClass
     "NewName": "LayerMaskController",
+  },
+  "GClass846": {
+    "NewName": "UnparsedData",
+  },
+  "GClass847": {
+    "NewName": "JsonExtensions",
   },
   "GClass848`1": {
     "NewName": "Compute",
@@ -1059,6 +1213,10 @@
   },
   "GClass1827": {
     "NewName": "SkillLevelingBoostBonus",
+    "NewNamespace": "EFT"
+  },
+  "GClass1858": {
+    "NewName": "EftJsonConverters",
     "NewNamespace": "EFT"
   },
   "GClass1879": {

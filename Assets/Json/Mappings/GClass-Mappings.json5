@@ -820,7 +820,7 @@
   },
   "GClass861": {
     "NewName": "UnityResourcesProxy",
-	"NestedTypes": {
+    "NestedTypes": {
       "Class390": {
         "NewName": "UnityResourcesProxyLogger"
       }
@@ -849,7 +849,7 @@
   },
   "GClass873": {
     "NewName": "FloatPlugin",
-	"NewNamespace": "DG.Tweening.Plugins"
+    "NewNamespace": "DG.Tweening.Plugins"
   },
   "GClass875": {
     "NewName": "GuidManager",
@@ -901,11 +901,11 @@
   },
   "GClass899": {
     "NewName": "PlayerVoiceLoader",
-	"NestedTypes": {
+    "NestedTypes": {
       "Struct99": {
         "NewName": "BringVoice"
-      }
-    }
+      },
+    },
   },
   "GClass900": {
     "NewName": "SavWav",
@@ -981,10 +981,11 @@
   },
   "GClass933": {
     "NewName": "ShaderReplacer",
-	"NestedTypes": {
+    "NestedTypes": {
       "Struct133": {
         "NewName": "MaterialPath"
       }
+    }
   },
   "GClass934": {
     "NewName": "RoadSplineMaterialsPool",
@@ -1081,7 +1082,7 @@
   "GClass964": {
     "NewName": "TextureTreeQuadrant"
   },
-    "GClass965`2": {
+  "GClass965`2": {
     "NewName": "QuadTree"
   },
   "GClass966": {
@@ -1349,14 +1350,14 @@
   "GClass1061": {
     "NewName": "ChatMessagesList",
     "NewNamespace": "ChatShared",
-	"NestedTypes": {
+    "NestedTypes": {
       "GClass1062": {
         "NewName": "ChatMessageParamsSerializer"
       },
-	  "GClass1063": {
+      "GClass1063": {
         "NewName": "ChatMessageAttachmentSerializer"
       },
-	  "GClass1064": {
+      "GClass1064": {
         "NewName": "DialogueChatMessageSerializer"
       }
     }
@@ -2424,3 +2425,4 @@
     "NewNamespace": "AmplifyImpostors",
   }
 }
+

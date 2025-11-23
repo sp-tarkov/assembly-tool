@@ -60,13 +60,13 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
 
     public void RenameCompilerGeneratedTypes()
     {
-        if (renamers.FirstOrDefault(r => r is ClassRenamer) is not ClassRenamer classRenamer)
+        if (renamers.FirstOrDefault(r => r is TypeRenamer) is not TypeRenamer classRenamer)
         {
             Log.Error("Failed to find ClassRenamer type");
             return;
         }
 
-        classRenamer.RenameCompilerGeneratedClasses();
+        classRenamer.RenameCompilerGeneratedTypes();
     }
 
     private void RenameMapping(DirectMapModel model)
@@ -75,7 +75,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         {
             renamer.Rename(model);
 
-            if (renamer.Type is not ERenamerType.Class)
+            if (renamer.Type is not ERenamerType.Type)
             {
                 continue;
             }

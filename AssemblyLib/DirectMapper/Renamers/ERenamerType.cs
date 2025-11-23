@@ -5,7 +5,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 /// </summary>
 public enum ERenamerType
 {
-    Class,
+    Type,
     Methods,
     Fields,
     Properties,

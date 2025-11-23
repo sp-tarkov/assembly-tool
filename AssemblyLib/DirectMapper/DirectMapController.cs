@@ -1,7 +1,8 @@
 using AsmResolver.DotNet;
-using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
+using Serilog.Events;
+using Spectre.Console;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
@@ -68,12 +69,31 @@ public class DirectMapController(
             return;
         }
 
-        Log.Information("Renaming assembly...");
-
-        foreach (var (targetFullName, mapping) in mappings)
+        if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            renamerService.RenameMappingRecursive(targetFullName, mapping);
+            foreach (var (targetFullName, mapping) in mappings)
+            {
+                renamerService.RenameMappingRecursive(targetFullName, mapping);
+            }
+
+            return;
         }
+
+        AnsiConsole
+            .Progress()
+            .AutoClear(true)
+            .StartAsync(ctx =>
+            {
+                var task = ctx.AddTask("[green]Renaming[/]", maxValue: mappings.Count);
+
+                foreach (var (targetFullName, mapping) in mappings)
+                {
+                    renamerService.RenameMappingRecursive(targetFullName, mapping);
+                    task.Increment(1.0);
+                }
+
+                return Task.CompletedTask;
+            });
 
         // Make sure we don't do this until after renaming remaps
         renamerService.RenameCompilerGeneratedTypes();
@@ -81,11 +101,20 @@ public class DirectMapController(
 
     private void PublicizeObfuscatedTypes()
     {
-        Log.Information("Publicizing assembly...");
+        AnsiConsole
+            .Progress()
+            .AutoClear(true)
+            .StartAsync(ctx =>
+            {
+                var task = ctx.AddTask("[green]Publicizing[/]".PadLeft(25), maxValue: Types.Count);
 
-        foreach (var type in Types)
-        {
-            publicizer.PublicizeType(type);
-        }
+                foreach (var type in Types)
+                {
+                    publicizer.PublicizeType(type);
+                    task.Increment(1.0);
+                }
+
+                return Task.CompletedTask;
+            });
     }
 }

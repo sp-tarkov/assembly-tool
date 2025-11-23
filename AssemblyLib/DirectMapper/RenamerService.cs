@@ -66,8 +66,6 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
             return;
         }
 
-        Log.Information("Renaming compiler generated types...");
-
         classRenamer.RenameCompilerGeneratedClasses();
     }
 

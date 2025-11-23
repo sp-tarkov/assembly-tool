@@ -57,7 +57,7 @@ public class App
     {
         Log.Logger = new LoggerConfiguration()
 #if DEBUG
-            .MinimumLevel.Debug()
+            .MinimumLevel.Information()
 #else
             .MinimumLevel.Information()
 #endif

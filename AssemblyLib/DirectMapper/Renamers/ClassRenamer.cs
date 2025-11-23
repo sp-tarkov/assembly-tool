@@ -3,6 +3,7 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
+using Spectre.Console;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
@@ -53,12 +54,32 @@ public class ClassRenamer(DataProvider dataProvider) : IRenamer
         }
 
         var enumeratedTypes = dataProvider.LoadedModule!.GetAllTypes().Where(t => t.IsCompilerGenerated());
-        Log.Information("Found {count} compiler generated types", enumeratedTypes.Count());
 
-        foreach (var type in enumeratedTypes)
+        if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
         {
-            type.Name = GetNewCgClassName(type);
+            foreach (var type in enumeratedTypes)
+            {
+                type.Name = GetNewCgClassName(type);
+            }
+
+            return;
         }
+
+        AnsiConsole
+            .Progress()
+            .AutoClear(true)
+            .StartAsync(ctx =>
+            {
+                var task = ctx.AddTask("[green]Renaming CG[/]", maxValue: enumeratedTypes.Count());
+
+                foreach (var type in enumeratedTypes)
+                {
+                    type.Name = GetNewCgClassName(type);
+                    task.Increment(1.0);
+                }
+
+                return Task.CompletedTask;
+            });
     }
 
     /// <summary>

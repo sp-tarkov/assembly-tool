@@ -910,6 +910,10 @@
     "NewName": "LightStorage",
     "NewNamespace": "MultiFlare"
   },
+  "GClass1031": {
+    "NewName": "FlareBlindnessController",
+    "NewNamespace": "MultiFlare"
+  },
   "GClass1033": {
     "NewName": "DecalSystemUtils",
     "NewNamespace": "AbsolutDecals"
@@ -931,18 +935,94 @@
     "NewName": "TemporaryMesh",
     "NewNamespace": "AbsolutDecals"
   },
+  "GClass1038": {
+    // DecalMeshClass
+    "NewName": "DOTweenExtensions",
+    "NewNamespace": "DG.Tweening"
+  },
   "GClass1040": {
     "NewName": "PlayerIconCreatorMaterialChanger",
     "NewNamespace": "PlayerIcons"
+  },
+  "GClass1041": {
+    "NewName": "PlayerIconCreatorModelView",
+    "NewNamespace": "PlayerIcons"
+  },
+  "GClass1042": {
+    "NewName": "AdditiveMeshBakeManager",
+    "NewNamespace": "CW2"
+  },
+  "GClass1043": {
+    "NewName": "AnimMath",
+    "NewNamespace": "CW2"
+  },
+  "GClass1044": {
+    "NewName": "StateSerializer",
+    "NewNamespace": "CW2.Animations"
+  },
+  "GClass1045": {
+    "NewName": "BallisticCalculatorToolCore",
+    "NewNamespace": "Editor_Tools.BallisticCalculatorTool"
+  },
+  "GClass1046": {
+    "NewName": "EventDialogSoundscapeManager",
+    "NewNamespace": "DialogSystem.Sound"
+  },
+  "GClass1047": {
+    "NewName": "AnimatorStateTimeline",
+    "NewNamespace": "Cutscene"
+  },
+  "GClass1048": {
+    "NewName": "InGameCutsceneController",
+    "NewNamespace": "Cutscene"
   },
   "GClass1050": {
     // ChatServerClass
     "NewName": "ChatServerState",
     "NewNamespace": "ChatShared"
   },
+  "GClass1052": {
+    "NewName": "Proxy4IChatHandle",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1053": {
+    "NewName": "Proxy4IChatMember",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1054": {
+    "NewName": "Proxy4IChatsSession",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1059": {
+    "NewName": "ChatRoomInformation",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1060": {
+    "NewName": "ChatMessageSystemData",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1061": {
+    "NewName": "ChatMessagesList",
+    "NewNamespace": "ChatShared",
+	"NestedTypes": {
+      "GClass1061": {
+        "NewName": "ChatMessageParamsSerializer"
+      },
+	  "GClass1063": {
+        "NewName": "ChatMessageAttachmentSerializer"
+      },
+	  "GClass1064": {
+        "NewName": "DialogueChatMessageSerializer"
+      }
+    }
+  },
   "GClass1066": {
     // ChatMessageClass
     "NewName": "DialogueChatMessage",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1068": {
+    "NewName": "MessageQuote",
     "NewNamespace": "ChatShared"
   },
   "GClass1069": {
@@ -950,10 +1030,50 @@
     "NewName": "UpdatableChatDialogue",
     "NewNamespace": "ChatShared"
   },
+  "GClass1070": {
+    "NewName": "UpdatableFriendsInvitation",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1071": {
+    "NewName": "BaseSettingsController",
+    "NewNamespace": "Bsg.GameSettings"
+  },
+  "GClass1072": {
+    "NewName": "SoundSettingsController",
+    "NewNamespace": "EFT.Settings.Sound"
+  },
+  "GClass1073": {
+    "NewName": "PostFxSettingsController",
+    "NewNamespace": "EFT.Settings.PostFx"
+  },
+  "GClass1074": {
+    "NewName": "GraphicsSettingsCameraController",
+    "NewNamespace": "EFT.Settings.Graphics"
+  },
   "GClass1075": {
     // GameGraphicsClass
     "NewName": "GraphicsSettingsController",
     "NewNamespace": "EFT.Settings.Graphics"
+  },
+  "GClass1076": {
+    "NewName": "GameSettingsController",
+    "NewNamespace": "EFT.Settings.Game"
+  },
+  "GClass1077": {
+    "NewName": "ControlSettingsController",
+    "NewNamespace": "EFT.Settings.Game"
+  },
+  "GClass1078": {
+    "NewName": "GameSettingProxy",
+    "NewNamespace": "Bsg.GameSettings"
+  },
+  "GClass1080": {
+    "NewName": "SettingsPreset",
+    "NewNamespace": "Bsg.GameSettings"
+  },
+  "GClass1081": {
+    "NewName": "SettingsGroup",
+    "NewNamespace": "Bsg.GameSettings"
   },
   "GClass1087": {
     "NewName": "BaseJsonSettingsProvider",

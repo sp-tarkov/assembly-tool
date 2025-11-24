@@ -141,29 +141,24 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
         var declaringType = type.DeclaringType;
         if (declaringType is null)
         {
-            if (!_classCounters.TryGetValue("ROOT", out var count))
+            if (!_classCounters.TryGetValue("ROOT", out _))
             {
                 // This is our first in global scope
                 _classCounters["ROOT"] = 0;
-                return new Utf8String("CGClass");
+                return new Utf8String("CG_Class0");
             }
 
-            // Increment the count return the name
-            _classCounters["ROOT"]++;
-            return new Utf8String($"CGClass{count}");
+            return new Utf8String($"CG_Class{++_classCounters["ROOT"]}");
         }
 
-        var name = type.DeclaringType?.Name?.ToString();
-        if (!_classCounters.TryGetValue(declaringType.FullName, out var localCount))
+        if (!_classCounters.TryGetValue(declaringType.FullName, out _))
         {
             // This is our first class in the namespace
-            _classCounters[declaringType.FullName] = localCount = 0;
-            return new Utf8String($"CGClass{localCount}");
+            _classCounters[declaringType.FullName] = 0;
+            return new Utf8String("CG_Class0");
         }
 
-        // Increment the count return the name
-        _classCounters[declaringType.FullName]++;
-        return new Utf8String($"CGClass{localCount}");
+        return new Utf8String($"CG_Class{++_classCounters[declaringType.FullName]}");
     }
 
     /// <summary>
@@ -176,27 +171,23 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
         var declaringType = type.DeclaringType;
         if (declaringType is null)
         {
-            if (!_structCounters.TryGetValue("ROOT", out var count))
+            if (!_structCounters.TryGetValue("ROOT", out _))
             {
                 // This is our first in global scope
                 _structCounters["ROOT"] = 0;
-                return new Utf8String("CGStruct");
+                return new Utf8String("CG_Struct0");
             }
 
-            // Increment the count return the name
-            _structCounters["ROOT"]++;
-            return new Utf8String($"CGStruct{count}");
+            return new Utf8String($"CG_Struct{++_structCounters["ROOT"]}");
         }
 
-        if (!_structCounters.TryGetValue(declaringType.FullName, out var localCount))
+        if (!_structCounters.TryGetValue(declaringType.FullName, out _))
         {
             // This is our first class in the namespace
-            _structCounters[declaringType.FullName] = localCount = 0;
-            return new Utf8String($"CGStruct{localCount}");
+            _structCounters[declaringType.FullName] = 0;
+            return new Utf8String("CG_Struct0");
         }
 
-        // Increment the count return the name
-        _structCounters[declaringType.FullName]++;
-        return new Utf8String($"CGStruct{localCount}");
+        return new Utf8String($"CG_Struct{++_structCounters[declaringType.FullName]}");
     }
 }

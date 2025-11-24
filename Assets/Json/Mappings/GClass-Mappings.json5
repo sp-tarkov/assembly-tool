@@ -1952,6 +1952,18 @@
     "NewName": "BindableList",
 	"NewNamespace": "Diz.Binding"
   },
+  "GClass1629`2": {
+    "NewName": "ConvertedBindableList",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1630`1": {
+    "NewName": "UpdatableBindableList",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1631": {
+    "NewName": "ConditionCollection",
+	"NewNamespace": "EFT.Quests"
+  },
   "GClass1634`1": {
     "NewName": "ConditionalBook",
     "NewNamespace": "EFT.Quests",
@@ -1972,6 +1984,62 @@
     "NewName": "AchievementsBook",
     "NewNamespace": "EFT.Achievements",
   },
+  "GClass1640`1": {
+    "NewName": "BindableSortedList",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass1641": {
+    "NewName": "HashCodeHelper",
+    "NewNamespace": "UnityEngine.XR",
+  },
+  "GClass1642`1": {
+    "NewName": "BaseBindable",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1644`1": {
+    "NewName": "BaseBindableFilter",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1645`2": {
+    "NewName": "BindableFilter`2",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1646`3": {
+    "NewName": "BindableFilter`3",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1647`4": {
+    "NewName": "BindableFilter`4",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1648`5": {
+    "NewName": "BindableFilter`5",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1649`6": {
+    "NewName": "BindableFilter`6",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1650`7": {
+    "NewName": "BindableFilter`7",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1651`8": {
+    "NewName": "BindableFilter`8",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1652`9": {
+    "NewName": "BindableFilter`9",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1653`10": {
+    "NewName": "BindableFilter`10",
+    "NewNamespace": "Diz.Binding",
+  },
+  "GClass1655`2": {
+    "NewName": "CountedList",
+    "NewNamespace": "Diz.Binding",
+  },
   "GClass1657": {
     "NewName": "BundleLock",
     "NewNamespace": "Diz.Resources",
@@ -1979,6 +2047,30 @@
   "GClass1658`1": {
     "NewName": "DependencyGraph",
     "NewNamespace": "Diz.DependencyManager",
+  },
+  "GClass1662": {
+    "NewName": "Node",
+    "NewNamespace": "Diz.DependencyManager",
+  },
+  "GClass1663": {
+    "NewName": "TokenExtensions",
+    "NewNamespace": "Diz.DependencyManager",
+  },
+  "GClass1664": {
+    "NewName": "ChartCommon",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "GClass1665": {
+    "NewName": "DoubleVector4",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "GClass1666`1": {
+    "NewName": "ChartDataSourceBaseCollection",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "GClass1669": {
+    "NewName": "ChartMeshBase",
+    "NewNamespace": "ChartAndGraph",
   },
   "GClass1677": {
     "NewName": "BotMemory",

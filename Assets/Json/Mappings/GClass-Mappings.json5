@@ -1176,6 +1176,9 @@
     "NewName": "MBOITParticlesManager",
     "NewNamespace": "AbsolutDecals"
   },
+  "GClass1001": {
+    "NewName": ""
+  },
   "GClass1002": {
     "NewName": "Extensions"
   },
@@ -1191,9 +1194,20 @@
   "GClass1006": {
     "NewName": "VolumetricBounds"
   },
+  "GClass1007": {
+    "NewName": "VolumetricExplosion"
+  },
+  "GClass1008": {
+    "NewName": "Complex",
+    "NewNamespace": "CSML"
+  },
   "GClass1009": {
     "NewName": "Matrix",
     "NewNamespace": "CSML"
+  },
+  "GClass1010": {
+    "NewName": "IntArrayComparer",
+    "NewNamespace": "TerrainStitch"
   },
   "GClass1011": {
     "NewName": "DWindow",
@@ -1223,9 +1237,17 @@
     "NewName": "NValue",
     "NewNamespace": "RuntimeInspector"
   },
+  "GClass1018": {
+    "NewName": "ValueViewer",
+    "NewNamespace": "RuntimeInspector"
+  },
   "GClass1019": {
     "NewName": "ViewInfo",
     "NewNamespace": "RuntimeInspector"
+  },
+  "GClass1020": {
+    "NewName": "LightPool",
+    "NewNamespace": "Systems.Effects"
   },
   "GClass1021": {
     "NewName": "PerformanceMeter",
@@ -1253,6 +1275,14 @@
   },
   "GClass1027": {
     "NewName": "FlareBatch",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1028": {
+    "NewName": "FlashLightBatch",
+    "NewNamespace": "MultiFlare"
+  },
+  "GClass1029": {
+    "NewName": "FlareRenderer",
     "NewNamespace": "MultiFlare"
   },
   "GClass1030": {
@@ -1325,6 +1355,10 @@
     "NewName": "InGameCutsceneController",
     "NewNamespace": "Cutscene"
   },
+  "GClass1049": {
+    "NewName": "ChatCommunicatorFactory",
+    "NewNamespace": "ChatShared"
+  },
   "GClass1050": {
     // ChatServerClass
     "NewName": "ChatServerState",
@@ -1340,6 +1374,10 @@
   },
   "GClass1054": {
     "NewName": "Proxy4IChatsSession",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1056": {
+    "NewName": "FriendsInvitation",
     "NewNamespace": "ChatShared"
   },
   "GClass1059": {
@@ -1424,6 +1462,26 @@
     "NewName": "SettingsGroup",
     "NewNamespace": "Bsg.GameSettings"
   },
+  "GClass1082": {
+    "NewName": "SoundSettingsGroup",
+    "NewNamespace": "EFT.Settings.Sound"
+  },
+  "GClass1083": {
+    "NewName": "PostFxSettingsGroup",
+    "NewNamespace": "EFT.Settings.PostFx"
+  },
+  "GClass1084": {
+    "NewName": "GraphicsSettingsGroup",
+    "NewNamespace": "EFT.Settings.Graphics"
+  },
+  "GClass1085": {
+    "NewName": "GameSettingsGroup",
+    "NewNamespace": "EFT.Settings.Game"
+  },
+  "GClass1086": {
+    "NewName": "ControlSettingsGroup",
+    "NewNamespace": "EFT.Settings.Control"
+  },
   "GClass1087": {
     "NewName": "BaseJsonSettingsProvider",
     "NewNamespace": "Bsg.GameSettings.Json",
@@ -1433,6 +1491,30 @@
       }
     }
   },
+  "GClass1088": {
+    "NewName": "JsonDirectSettingsProvider",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
+  "GClass1089": {
+    "NewName": "JsonFileSettingsProvider",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
+  "GClass1090": {
+    "NewName": "JsonResourceSettingsProvider",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
+  "GClass1091": {
+    "NewName": "GameSettingsJsonConverter",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
+  "GClass1092": {
+    "NewName": "JsonMigrationUtils",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
+  "GClass1093": {
+    "NewName": "SimpleJsonSerializer",
+    "NewNamespace": "Bsg.GameSettings.Json"
+  },
   "GClass1094": {
     "NewName": "VersionJsonSerializer",
     "NewNamespace": "Bsg.GameSettings.Json",
@@ -1441,6 +1523,10 @@
         "NewName": "IVersion"
       }
     }
+  },
+  "GClass1095`1": {
+    "NewName": "LocalJsonPresetManager",
+    "NewNamespace": "Bsg.GameSettings.Json"
   },
   "GClass1096": {
     "NewName": "ClientAudioSettings",
@@ -1567,6 +1653,18 @@
   },
   "GClass1129": {
     "NewName": "ParallelSoundPropagationCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1131": {
+    "NewName": "AsyncSoundObstructionCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1132": {
+    "NewName": "FastSoundObstructionCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1133": {
+    "NewName": "SoundPropagationCalculator",
     "NewNamespace": "Audio.SpatialSystem"
   },
   "GClass1172": {
@@ -2393,6 +2491,10 @@
   "GClass4060": {
     // AchievementDataClass
     "NewName": "AchievementStatusData",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass4061": {
+    "NewName": "AchievementTemplate",
     "NewNamespace": "EFT.Achievements",
   },
   "GClass4075": {

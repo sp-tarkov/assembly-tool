@@ -1,2 +1,10 @@
 {
+  "Struct227": {
+    "NewName": "DistanceJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct263": {
+    "NewName": "JobContinuation",
+    "NewNamespace": "Diz.Jobs"
+  },
 }

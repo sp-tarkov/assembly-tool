@@ -1,9 +1,39 @@
 {
+  "Interface0": {
+    "NewName": "IDebugCoverSearchGraph"
+  },
   "Interface1": {
     "NewName": "IPatrolLook",
+  },
+  "Interface2": {
+    "NewName": "ISender"
+  },
+  "Interface5": {
+    "NewName": "IConditionExecutor"
+  },
+  "Interface6": {
+    "NewName": "IInternalItemEvents"
+  },
+  "Interface7": {
+    "NewName": "IChartMesh"
   },
   "Interface13": {
     "NewName": "INetworkGame",
     "NewNamespace": "EFT"
+  },
+  "Interface14": {
+    "NewName": "IImpostorsCameraContext"
+  },
+  "Interface15": {
+    "NewName": "IImpostorsMainCameraContext"
+  },
+  "Interface18": {
+    "NewName": "IOperationHandler"
+  },
+  "Interface19": {
+    "NewName": "IMagazineLoadingProcess"
+  },
+  "Interface21": {
+    "NewName": "IRestrictableZone"
   }
 }

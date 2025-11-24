@@ -1,4 +1,5 @@
 using AsmResolver.DotNet;
+using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
@@ -12,7 +13,8 @@ public class DirectMapController(
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     RenamerService renamerService,
-    Publicizer publicizer
+    Publicizer publicizer,
+    IEnumerable<IPatch> patches
 )
 {
     private ModuleDefinition? Module { get; set; }
@@ -32,6 +34,7 @@ public class DirectMapController(
 
         await RunRenamingProcess();
         await PublicizeObfuscatedTypes();
+        await ApplyPatches();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
 
         Log.Information("Direct map completed.");
@@ -104,6 +107,16 @@ public class DirectMapController(
 
         // Make sure we don't do this until after renaming remaps
         renamerService.RenameCompilerGeneratedTypes();
+    }
+
+    private Task ApplyPatches()
+    {
+        foreach (var patch in patches)
+        {
+            patch.Patch();
+        }
+
+        return Task.CompletedTask;
     }
 
     private async Task PublicizeObfuscatedTypes()

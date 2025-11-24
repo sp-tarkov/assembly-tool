@@ -2493,6 +2493,14 @@
   "GClass3058": {
     "NewName": "HealthHelper",
     "NewNamespace": "EFT.HealthSystem",
+    "NestedTypes": {
+      "GClass3059": {
+        "NewName": "EffectTypeCode"
+      },
+      "GClass3060`1": {
+        "NewName": "EffectActivator"
+      }
+    }
   },
   "GClass3061": {
     "NewName": "SyncHealthPacketSerialization",

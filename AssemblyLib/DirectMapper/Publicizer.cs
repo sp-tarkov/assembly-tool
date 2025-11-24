@@ -25,15 +25,9 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats, Fiel
     /// <returns>List of fields that should be renamed</returns>
     public Task PublicizeType(TypeDefinition type)
     {
-        if (
-            type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
-            && type.Interfaces.All(i => i.Interface?.Name != "IEffect")
-        )
-        {
-            type.Attributes &= ~TypeAttributes.VisibilityMask; // Remove all visibility mask attributes
-            type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
-            stats.TypePublicizedCount++;
-        }
+        type.Attributes &= ~TypeAttributes.VisibilityMask; // Remove all visibility mask attributes
+        type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
+        stats.TypePublicizedCount++;
 
         if (type.IsSealed)
         {

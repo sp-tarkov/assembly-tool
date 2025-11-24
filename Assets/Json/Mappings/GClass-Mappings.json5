@@ -2655,4 +2655,164 @@
   "GClass739": {
     "NewName": "OBBTrigger",
   },
+  "GClass1130": {
+    "NewName": "SoundObstructionCalculator",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1162": {
+    "NewName": "SoundOcclusionUtils",
+    "NewNamespace": "Audio.SpatialSystem.Utils",
+  },
+  "GClass1163": {
+    "NewName": "SpatialAudioCalculatorPoolFactory",
+    "NewNamespace": "Audio.SpatialSystem.Utils",
+  },
+  "GClass1164": {
+    "NewName": "SpatialAudioSystemPoolService",
+    "NewNamespace": "Audio.SpatialSystem.Utils",
+  },
+  "GClass1165": {
+    "NewName": "AudioModuleNames",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1166": {
+    "NewName": "DiffractionDebugData",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1167": {
+    "NewName": "EdgeDiffractionCalculator",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1168": {
+    "NewName": "ReflectionCalculator",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1169": {
+    "NewName": "ReflectionCalculatorUtils",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1170": {
+    "NewName": "TransmissionCalculator",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GClass1173": {
+    "NewName": "AudioSourceContainerData",
+    "NewNamespace": "Audio.SpatialSystem.AudioSourceContainers",
+  },
+  "GClass1174": {
+    "NewName": "AudioMixerDataContainer",
+    "NewNamespace": "Audio.Data",
+  },
+  "GClass1175": {
+    "NewName": "BtrDriverSoundDataContainer",
+    "NewNamespace": "Audio.Data",
+  },
+  "GClass1176": {
+    "NewName": "CrossfadeAudioPlayer",
+    "NewNamespace": "Audio.ConfiguredAudioPlayer",
+  },
+  "GClass1177": {
+    "NewName": "SingleSourceAudioPlayer",
+    "NewNamespace": "Audio.ConfiguredAudioPlayer",
+  },
+  "GClass1178": {
+    "NewName": "AudioFader",
+    "NewNamespace": "Audio.AuxiliaryAudioUtils",
+  },
+  "GClass1179": {
+    "NewName": "AudioMixerFader",
+    "NewNamespace": "Audio.AuxiliaryAudioUtils",
+  },
+  "GClass1180": {
+    "NewName": "AudioSourcePriorityCalculator",
+    "NewNamespace": "Audio.AuxiliaryAudioUtils",
+  },
+  "GClass1181": {
+    "NewName": "AudioSourcePanner",
+    "NewNamespace": "Audio.AutoPanner",
+  },
+  "GClass1182": {
+    "NewName": "AudioCullingController",
+    "NewNamespace": "Audio.AudioCulling",
+  },
+  "GClass1183": {
+    "NewName": "FakePlayerStepAudioController",
+    "NewNamespace": "Audio.AudioWeatherSystem",
+  },
+  "GClass1184": {
+    "NewName": "AudioMixerParamsController",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass1185": {
+    "NewName": "RoomToneController",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass3573": {
+    "NewName": "MyPlayerRoomChangedEvent",
+    "NewNamespace": "EFT.GlobalEvents.AudioEvents",
+  },
+  "GClass1186": {
+    "NewName": "AudioSourceCrossfader",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass1187": {
+    "NewName": "EnvironmentBlenderJobScheduler",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass1188": {
+    "NewName": "RoomPrecipitationCalculator",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass1189": {
+    "NewName": "PlayerStepLayerAudioController",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GClass1190": {
+    "NewName": "PathMovementStrategyBase",
+    "NewNamespace": "Audio.AmbientSubsystem.PathMoverStrategy",
+  },
+  "GClass1194": {
+    "NewName": "AudioEventsFactory",
+    "NewNamespace": "Audio.AmbientSubsystem.GameEvents",
+  },
+  "GClass1195": {
+    "NewName": "FakeEventAudioPlayer",
+    "NewNamespace": "Audio.AmbientSubsystem.GameEvents",
+  },
+  "GClass1196": {
+    "NewName": "HalloweenInfectedEventAudioPlayer",
+    "NewNamespace": "Audio.AmbientSubsystem.GameEvents",
+  },
+  "GClass1197": {
+    "NewName": "RunddansEventAudioPlayer",
+    "NewNamespace": "Audio.AmbientSubsystem.GameEvents",
+  },
+  "GClass1200": {
+    "NewName": "JsonHelper",
+    "NewNamespace": "Audio.ActiveHeadphones.Debug",
+  },
+  "GClass1207": {
+    "NewName": "IndexOnlySamplingTaskResult",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1209`1": {
+    "NewName": "IndexBuffer",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1210": {
+    "NewName": "BakedIndexBuffer",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1212": {
+    "NewName": "PerfectCullingBakeAllocator",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1216": {
+    "NewName": "PerfectCullingBakingManager",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1217": {
+    "NewName": "PerfectCullingSceneColor",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  }
 }

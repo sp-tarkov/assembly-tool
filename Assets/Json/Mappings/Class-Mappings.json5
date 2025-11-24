@@ -88,4 +88,214 @@
     "NewName": "NetPacket",
     "NewNamespace": "FlyingWormConsole3.LiteNetLib",
   },
+  "Class281": {
+    "NewName": "EftClientBackend",
+    "NewNamespace": "EFT",
+  },
+  "Class306": {
+    "NewName": "WaitPlayerRequest"
+  },
+  "Class310": {
+    "NewName": "BackendCache",
+    "NestedTypes": {
+      "Class387": {
+        "NewName": "BackendCacheLogger"
+      }
+    }
+  },
+  "Class311": {
+    "NewName": "BackendCacheExtension"
+  },
+  "Class319": {
+    "NewName": "HttpWebSender"
+  },
+  "Class320": {
+    "NewName": "UnityWebSender"
+  },
+  "Class321": {
+    "NewName": "WsTransportManager"
+  },
+  "Class3513": {
+    "NewName": "AssetBundleExtension"
+  },
+  "Class3646": {
+    "NewName": "JobReflectionRegistration"
+  },
+  "Class443": {
+    "NewName": "Seasons",
+    "NestedTypes": {
+      "Class388": {
+        "NewName": "SeasonsLogger"
+      }
+    }
+  },
+  "Class444": {
+    "NewName": "SeasonsController",
+    "NestedTypes": {
+      "Class445": {
+        "NewName": "AbstractState"
+      },
+      "Class446": {
+        "NewName": "StateSummer"
+      },
+      "Class447": {
+        "NewName": "StateSpring"
+      },
+      "Class448": {
+        "NewName": "StateSpringEarly"
+      },
+      "Class449": {
+        "NewName": "StateAutumn"
+      },
+      "Class450": {
+        "NewName": "StateAutumnLate"
+      },
+      "Class451": {
+        "NewName": "StateStorm"
+      },
+      "Class452": {
+        "NewName": "StateStormReconnect"
+      },
+      "Class453": {
+        "NewName": "StateWinter"
+      },
+      "Class454": {
+        "NewName": "StateUnknown"
+      },
+      "Class455": {
+        "NewName": "StateFactoryDefault"
+      },
+      "Class456": {
+        "NewName": "StateFactoryWinter"
+      },
+      "Interface3": {
+        "NewName": "IState"
+      }
+    }
+  },
+  "Class494": {
+    "NewName": "BuffersExtension"
+  },
+  "Class500": {
+    "NewName": "BokehRenderer"
+  },
+  "Class534": {
+    "NewName": "AnimationQueue"
+  },
+  "Class536": {
+    "NewName": "AudioQueue"
+  },
+  "Class587`1": {
+    "NewName": "CircularArray"
+  },
+  "Class591": {
+    "NewName": "GameObjectPathFinder"
+  },
+  "Class682": {
+    "NewName": "GUIMaskTex"
+  },
+  "Class685": {
+    "NewName": "GUIProgressBar"
+  },
+  "Class686": {
+    "NewName": "GUITextLabel"
+  },
+  "Class687": {
+    "NewName": "StateSwitcher"
+  },
+  "Class702": {
+    "NewName": "Extension"
+  },
+  "Class706": {
+    "NewName": "CameraRenderData",
+    "NewNamespace": "WindowsManagerUtilities"
+  },
+  "Class707": {
+    "NewName": "GeometryComputeBuffers",
+    "NewNamespace": "WindowsManagerUtilities"
+  },
+  "Class708": {
+    "NewName": "PieceOffsets",
+    "NewNamespace": "WindowsManagerUtilities"
+  },
+  "Class774": {
+    "NewName": "VehicleSoundAbstractState",
+    "NewNamespace": "Audio.Vehicles"
+  },
+  "Class775": {
+    "NewName": "VehicleSoundStartState",
+    "NewNamespace": "Audio.Vehicles"
+  },
+  "Class776": {
+    "NewName": "VehicleSoundStopState",
+    "NewNamespace": "Audio.Vehicles"
+  },
+  "Class777": {
+    "NewName": "VehicleSoundIdleState",
+    "NewNamespace": "Audio.Vehicles"
+  },
+  "Class778": {
+    "NewName": "VehicleSoundRunningState",
+    "NewNamespace": "Audio.Vehicles"
+  },
+  "Class780": {
+    "NewName": "AudioDebugGUIStyleFactory",
+    "NewNamespace": "Audio.DebugTools"
+  },
+  "Class781": {
+    "NewName": "GUIAudioDebugInfo",
+    "NewNamespace": "Audio.DebugTools"
+  },
+  "Class804": {
+    "NewName": "StairsOcclusionTransition",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "Class805": {
+    "NewName": "TransmissionCalculatorUtils",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+  },
+  "Class823": {
+    "NewName": "AmbientZoneMathfUtils",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter.Utils"
+  },
+  "Class839": {
+    "NewName": "LightVolumeGeometryUtility",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT"
+  },
+  "Class850": {
+    "NewName": "DeflateUtils",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT"
+  },
+  "Class933": {
+    "NewName": "BaseChannel",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class934": {
+    "NewName": "ReliableChannel",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class935": {
+    "NewName": "SequencedChannel",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class942": {
+    "NewName": "NetConnectRequestPacket",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class943": {
+    "NewName": "NetConnectAcceptPacket",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class944": {
+    "NewName": "NetPacketPool",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class946": {
+    "NewName": "NetSocket",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+  },
+  "Class983": {
+    "NewName": "NtpRequest",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+  }
 }

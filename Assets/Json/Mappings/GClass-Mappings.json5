@@ -785,6 +785,9 @@
     // LayerMaskClass
     "NewName": "LayerMaskController",
   },
+  "GClass835": {
+    "NewName": "ObjectPool",
+  },
   "GClass846": {
     "NewName": "UnparsedData",
   },
@@ -1784,6 +1787,118 @@
     // ExfiltrationControllerClass
     "NewName": "ExfiltrationController",
     "NewNamespace": "CommonAssets.Scripts.Game",
+  },
+  "GClass1508": {
+    "NewName": "ArtilleryAlarmLogic",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1509": {
+    "NewName": "PlayerAlarmStage",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1510": {
+    "NewName": "ArtilleryClientProjectilesPool",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1511": {
+    "NewName": "ShellingZoneState",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1512": {
+    "NewName": "ArtilleryShellingControllerClient",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1513": {
+    "NewName": "ArtilleryShellingSoundControllerClient",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client",
+  },
+  "GClass1514": {
+    "NewName": "ListExtensions",
+    "NewNamespace": "CommonAssets.Plugins.Comfort",
+  },
+  "GClass1515": {
+    "NewName": "BufferExtension",
+    "NewNamespace": "Comfort",
+  },
+  "GClass1516": {
+    "NewName": "TaskWorker",
+    "NewNamespace": "Diz.Utils",
+  },
+  "GClass1517": {
+    "NewName": "EnumerableExtensions",
+    "NewNamespace": "Diz.Utils",
+  },
+  "GClass1518": {
+    "NewName": "LinqExtensions",
+    "NewNamespace": "Diz.Utils",
+  },
+  "GClass1519`1": {
+    "NewName": "SimpleProgress",
+    "NewNamespace": "Diz.Utils",
+  },
+  "GClass1520": {
+    "NewName": "KeyProgress",
+    "NewNamespace": "Diz.Utils",
+  },
+  "GClass1522": {
+    "NewName": "StringError",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GClass1549": {
+    "NewName": "NoSpaceError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1550": {
+    "NewName": "NoPossibleActionsError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1551": {
+    "NewName": "TargetNotExaminedError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1555": {
+    "NewName": "NotRaidModdableError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1556": {
+    "NewName": "CannotModifyVitalInRaidError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1560": {
+    "NewName": "AutomaticSortNonFilteredItemError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1561": {
+    "NewName": "PlayerIsBusyError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1562": {
+    "NewName": "AmmoContainerIsEmptyError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1563": {
+    "NewName": "NonEmptyCompoundItemError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1564": {
+    "NewName": "ItemTransferError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1565": {
+    "NewName": "UnknownAddressError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1566": {
+    "NewName": "UnknownItemError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1567": {
+    "NewName": "ReachingBusyItemError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1568": {
+    "NewName": "ItemRestrictionsError",
+    "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass1618": {
     // JobPriorityClass

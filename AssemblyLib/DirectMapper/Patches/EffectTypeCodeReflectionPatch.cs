@@ -9,7 +9,7 @@ namespace AssemblyLib.DirectMapper.Patches;
 public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
 {
     /// <summary>
-    ///     Purpose of this patch is to set the BindingFlags to public
+    ///     Purpose of this patch is to set the BindingFlags to Public | NonPublic
     /// </summary>
     public void Patch()
     {
@@ -39,6 +39,7 @@ public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
                 continue;
             }
 
+            // 48 = Public | NonPublic
             instr.Operand = (sbyte)48;
             Log.Information("Patch of EffectTypeCode Successful");
             break;

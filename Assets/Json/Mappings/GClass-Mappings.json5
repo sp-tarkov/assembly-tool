@@ -2621,4 +2621,35 @@
     "NewName": "GrenadePacketSerializationExtensions",
     "NewNamespace": "EFT.NetworkPackets.Serialization",
   },
+  "GClass3071": {
+    "NewName": "NetworkConnection",
+    "NewNamespace": "EFT.Network",
+  },
+  "GClass1287": {
+    "NewName": "NetworkWriter",
+    "NewNamespace": "Mirror",
+  },
+  "GClass1282": {
+    "NewName": "NetworkReader",
+    "NewNamespace": "Mirror",
+  },
+  "GClass1483": {
+    "NewName": "NetPacketReader",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
+  "GClass1482": {
+    "NewName": "NetDataReader",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils",
+  },
+  "GClass1476": {
+    "NewName": "NetManager",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
+  "GClass1477": {
+    "NewName": "NetPeer",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
+  "GClass739": {
+    "NewName": "OBBTrigger",
+  },
 }

@@ -152,4 +152,560 @@
     "NewName": "UsableItemPacket",
     "NewNamespace": "EFT.NetworkPackets",
   },
+  "GStruct100": {
+    "NewName": "ProcessReflectionHitsJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct101": {
+    "NewName": "PathPointInfo",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct102": {
+    "NewName": "ReflectionPathResult",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct103": {
+    "NewName": "BatchProcessingOutput",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct104": {
+    "NewName": "ShortestPathResultData",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct105": {
+    "NewName": "ReflectionRayState",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct106": {
+    "NewName": "TransmissionPathResult",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator.Data",
+  },
+  "GStruct107": {
+    "NewName": "AggregateOcclusionResult",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator.CombinedOcclusionCalculator",
+  },
+  "GStruct108": {
+    "NewName": "PortalCalculatedData",
+    "NewNamespace": "Audio.AmbientSubsystem",
+  },
+  "GStruct109": {
+    "NewName": "SamplingTaskCellResult",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GStruct11": {
+    "NewName": "DebugBotSpawnStruct",
+  },
+  "GStruct110": {
+    "NewName": "BakeSessionParameters",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT",
+  },
+  "GStruct111": {
+    "NewName": "CullingGridVisibilityQueryResult",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT",
+  },
+  "GStruct113": {
+    "NewName": "TemporaryCullingCellData",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT",
+  },
+  "GStruct114": {
+    "NewName": "GrassPrefabStruct",
+    "NewNamespace": "GPUInstancer",
+  },
+  "GStruct115": {
+    "NewName": "GrassData",
+    "NewNamespace": "GPUInstancer",
+  },
+  "GStruct116": {
+    "NewName": "GrassPrefabData",
+    "NewNamespace": "GPUInstancer",
+  },
+  "GStruct117": {
+    "NewName": "MirrorConn",
+    "NewNamespace": "Dissonance.Integrations.MirrorIgnorance",
+  },
+  "GStruct119": {
+    "NewName": "TimeSnapshot",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct12": {
+    "NewName": "DebugAIDataStruct",
+  },
+  "GStruct120": {
+    "NewName": "Vector2Byte",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct121": {
+    "NewName": "Vector2Short",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct122": {
+    "NewName": "Vector3Byte",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct123": {
+    "NewName": "Vector3Short",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct124": {
+    "NewName": "ExponentialMovingAverage",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct125": {
+    "NewName": "TimeSample",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct126": {
+    "NewName": "Vector3Long",
+    "NewNamespace": "Mirror",
+  },
+  "GStruct127`1": {
+    "NewName": "InterpolateFrame",
+    "NewNamespace": "Interpolation",
+  },
+  "GStruct128`3": {
+    "NewName": "InterpolatorSpan",
+    "NewNamespace": "Interpolation",
+  },
+  "GStruct13": {
+    "NewName": "DebugBotCoverStruct",
+  },
+  "GStruct130": {
+    "NewName": "SpanBound",
+    "NewNamespace": "Interpolation",
+  },
+  "GStruct131`1": {
+    "NewName": "TimeStampedValue",
+    "NewNamespace": "Interpolation",
+  },
+  "GStruct132": {
+    "NewName": "MeasurementData",
+    "NewNamespace": "UnityDiagnostics",
+  },
+  "GStruct133": {
+    "NewName": "DoubleULong",
+    "NewNamespace": "BitPacking",
+  },
+  "GStruct134": {
+    "NewName": "FloatQuantizer",
+    "NewNamespace": "BitPacking",
+  },
+  "GStruct135": {
+    "NewName": "FloatUInt",
+    "NewNamespace": "BitPacking",
+  },
+  "GStruct136": {
+    "NewName": "LimitedFloatSerializationSettings",
+    "NewNamespace": "BitPacking",
+  },
+  "GStruct137": {
+    "NewName": "LimitedIntSerializationSettings",
+    "NewNamespace": "BitPacking",
+  },
+  "GStruct138": {
+    "NewName": "TransformSync",
+    "NewNamespace": "JsonType",
+  },
+  "GStruct14": {
+    "NewName": "DebugBotVisionStruct",
+  },
+  "GStruct15": {
+    "NewName": "DebugEnemyVisionData",
+  },
+  "GStruct16": {
+    "NewName": "DebugEnemyPartVisionData",
+  },
+  "GStruct140": {
+    "NewName": "ServerMapBTRSettings",
+    "NewNamespace": "JsonType",
+  },
+  "GStruct148": {
+    "NewName": "DisconnectInfo",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
+  "GStruct150": {
+    "NewName": "AlarmStage",
+    "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling",
+  },
+  "GStruct151": {
+    "NewName": "OperationCreationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct154`1": {
+    "NewName": "OperationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct155": {
+    "NewName": "Option",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct156`1": {
+    "NewName": "Option",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct158": {
+    "NewName": "DoubleVector2",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "GStruct161": {
+    "NewName": "DisconnectionReason",
+    "NewNamespace": "EFT",
+  },
+  "GStruct163": {
+    "NewName": "InitLevelProgress",
+    "NewNamespace": "EFT",
+  },
+  "GStruct164": {
+    "NewName": "GameWorldPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct165": {
+    "NewName": "InteractiveObjectsStatusPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct166": {
+    "NewName": "UpdateExfiltrationPointPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct167": {
+    "NewName": "LampChangeStatePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct168": {
+    "NewName": "WindowHitPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct169": {
+    "NewName": "LootSyncPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct17": {
+    "NewName": "DebugHeathsDataStructInner",
+  },
+  "GStruct170": {
+    "NewName": "CorpseSyncPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct171": {
+    "NewName": "ArtilleryProjectileSyncPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct172": {
+    "NewName": "GrenadeSyncPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct173": {
+    "NewName": "PlatformSyncPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct174": {
+    "NewName": "BorderZonePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct175": {
+    "NewName": "Oid",
+    "NewNamespace": "EFT",
+  },
+  "GStruct177": {
+    "NewName": "TrafficState",
+    "NewNamespace": "EFT",
+  },
+  "GStruct178": {
+    "NewName": "TransitionStatus",
+    "NewNamespace": "EFT",
+  },
+  "GStruct179": {
+    "NewName": "LighthouseTraderZoneData",
+    "NewNamespace": "EFT",
+  },
+  "GStruct434": {
+    "NewName": "LighthouseTraderZonePlayerData",
+    "NewNamespace": "EFT.Interactive",
+  },
+  "GStruct180": {
+    "NewName": "RadioTransmitterData",
+    "NewNamespace": "EFT",
+  },
+  "GStruct183": {
+    "NewName": "StopSearchContentPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct184": {
+    "NewName": "CancelApplyingItemPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct185": {
+    "NewName": "LootRayInfo",
+    "NewNamespace": "EFT",
+  },
+  "GStruct186": {
+    "NewName": "CutsceneInteractionPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct187": {
+    "NewName": "DevelopHealPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct188": {
+    "NewName": "DevelopTeleportPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct189": {
+    "NewName": "DevelopSetDamageCoeffPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct190": {
+    "NewName": "DevelopLighthouseKeeperServicesPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct191": {
+    "NewName": "DevelopBtrSupportServicePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct192": {
+    "NewName": "DevelopContainerHidePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct193": {
+    "NewName": "DevelopEnableServerHitDebuggingPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct194": {
+    "NewName": "DevelopKillAllAIsPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct195": {
+    "NewName": "DevelopSpawnAIPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct196": {
+    "NewName": "DevelopStartEvent",
+    "NewNamespace": "EFT",
+  },
+  "GStruct197": {
+    "NewName": "DevelopUnlockAllDoors",
+    "NewNamespace": "EFT",
+  },
+  "GStruct198": {
+    "NewName": "DevelopSnapshotAllPlayers",
+    "NewNamespace": "EFT",
+  },
+  "GStruct199": {
+    "NewName": "DevelopAirdrop",
+    "NewNamespace": "EFT",
+  },
+  "GStruct2": {
+    "NewName": "ProfilingRecorderConfig",
+  },
+  "GStruct200": {
+    "NewName": "DevelopKillMePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct201": {
+    "NewName": "DevelopResetDiscardLimitsPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct202": {
+    "NewName": "DevelopSetBufferZoneAccessPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct203": {
+    "NewName": "DevelopResetBufferZoneUsageTimePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct204": {
+    "NewName": "DevelopSetEncodedRadioTransmitterPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct205": {
+    "NewName": "DevelopSetActiveLighthouseTraderZoneDebugPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct206": {
+    "NewName": "PacketAuxiliaryData",
+    "NewNamespace": "EFT",
+  },
+  "GStruct207": {
+    "NewName": "DevelopSetArtilleryShellingPausePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct208": {
+    "NewName": "DevelopArtilleryImmediateShellingZonePacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct209": {
+    "NewName": "DevelopArtilleryCalledShellingPositionPacket",
+    "NewNamespace": "EFT",
+  },
+  "GStruct21": {
+    "NewName": "DebugGroupStruct",
+  },
+  "GStruct22": {
+    "NewName": "DebugZoneInfoStruct",
+  },
+  "GStruct24": {
+    "NewName": "BotRunDebug",
+  },
+  "GStruct25": {
+    "NewName": "FollowerPatrolTargetStruct",
+  },
+  "GStruct27": {
+    "NewName": "ArmorResistanceData",
+  },
+  "GStruct30": {
+    "NewName": "BoxOverlapCommand",
+  },
+  "GStruct31": {
+    "NewName": "BoxOverlapCommandResult",
+  },
+  "GStruct32": {
+    "NewName": "OBB",
+  },
+  "GStruct33": {
+    "NewName": "OverlapBoxJob",
+    "NestedTypes": {
+      "GClass741": {
+        "NewName": "OverlapBoxJobParameters"
+      }
+    }
+  },
+  "GStruct37": {
+    "NewName": "EPlayerStateComparer",
+  },
+  "GStruct38": {
+    "NewName": "AnimatorParam",
+  },
+  "GStruct42": {
+    "NewName": "AirdropDataPacket",
+  },
+  "GStruct43": {
+    "NewName": "AirplaneDataPacket",
+  },
+  "GStruct44": {
+    "NewName": "DevelopDataPacket",
+  },
+  "GStruct45": {
+    "NewName": "TripwireDataPacket",
+  },
+  "GStruct52": {
+    "NewName": "Vector3Serializer",
+  },
+  "GStruct53": {
+    "NewName": "Vector3NullableSerializer",
+  },
+  "GStruct54": {
+    "NewName": "BoundsSerializer",
+  },
+  "GStruct55`1": {
+    "NewName": "ClampValue",
+  },
+  "GStruct56": {
+    "NewName": "CustomRange",
+  },
+  "GStruct60": {
+    "NewName": "BodyRenderer",
+  },
+  "GStruct64": {
+    "NewName": "BloodDropData",
+  },
+  "GStruct76": {
+    "NewName": "FlareLightData",
+    "NewNamespace": "MultiFlare",
+  },
+  "GStruct77": {
+    "NewName": "GrabPositionsJob",
+    "NewNamespace": "MultiFlare",
+  },
+  "GStruct78": {
+    "NewName": "ManageFlareOverlap",
+    "NewNamespace": "MultiFlare",
+  },
+  "GStruct79": {
+    "NewName": "PrepareGpuData",
+    "NewNamespace": "MultiFlare",
+  },
+  "GStruct82": {
+    "NewName": "RaycastAllCommand",
+    "NewNamespace": "RaycastJobs",
+    "NestedTypes": {
+        "Struct180": {
+          "NewName": "CreateCommandsJob"
+        },
+        "Struct181": {
+          "NewName": "CombineResultsJob"
+        },
+        "Struct182": {
+          "NewName": "RestoreDistancesJob"
+        }
+    }
+  },
+  "GStruct83": {
+    "NewName": "SpherecastAllCommand",
+    "NewNamespace": "RaycastJobs",
+    "NestedTypes": {
+      "Struct183": {
+        "NewName": "CreateCommandsJob"
+      },
+      "Struct184": {
+        "NewName": "CombineResultsJob"
+      },
+      "Struct185": {
+        "NewName": "RestoreDistancesJob"
+      }
+    }
+  },
+  "GStruct87": {
+    "NewName": "ChatMessageProfileEvent",
+    "NewNamespace": "ChatShared",
+  },
+  "GStruct88": {
+    "NewName": "AudioNode",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GStruct89": {
+    "NewName": "DirectionalWeights",
+    "NewNamespace": "Audio.SpatialSystem.Utils",
+  },
+  "GStruct9": {
+    "NewName": "AILayerDebugStruct",
+  },
+  "GStruct90": {
+    "NewName": "DiffractionPathResult",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct91": {
+    "NewName": "EdgeCheckResult",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct92": {
+    "NewName": "FindEdgeCandidatesJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct93": {
+    "NewName": "ProcessEdgeSearchHitsJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct94": {
+    "NewName": "ProcessInitialHitsJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct95": {
+    "NewName": "SelectBestEdgeJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct96": {
+    "NewName": "ValidateCandidatesJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct97": {
+    "NewName": "AggregateAndPrepareNextBatchJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct98": {
+    "NewName": "FindAndAggregateNextBatchJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
+  "GStruct99": {
+    "NewName": "FindShortestPathJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+  },
 }

@@ -76,5 +76,13 @@
   "Class3642": {
     "NewName": "WorkerThreadPool",
     "NewNamespace": "AmplifyMotion",
-  }
+  },
+  "Class939": {
+    "NewName": "NetEvent",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
+  "Class941": {
+    "NewName": "NetPacket",
+    "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+  },
 }

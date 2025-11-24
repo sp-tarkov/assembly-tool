@@ -17,6 +17,9 @@
     "NewName": "EftClientBackendSession",
     "NewNamespace": "EFT"
   },
+  "Class312": {
+    "NewName": "BackendRequestParams"
+  },
   "Class313": {
     // DataHandlerClass
     "NewName": "HTTPTransportManager"

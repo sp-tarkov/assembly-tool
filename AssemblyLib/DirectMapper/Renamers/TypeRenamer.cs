@@ -102,7 +102,7 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
 
         var compilerStructs = dataProvider
             .LoadedModule!.GetAllTypes()
-            .Where(t => t.IsCompilerGenerated() && t.IsValueType && !t.IsEnum);
+            .Where(t => t.IsCompilerGenerated() && t.InheritsFrom("System.ValueType") && !t.IsEnum);
 
         if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
         {
@@ -124,6 +124,7 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
                 foreach (var type in compilerStructs)
                 {
                     type.Name = GetNewCgStructName(type);
+                    Log.Information("Renamed: {struct}", type.Name.ToString());
                     task.Increment(1.0);
                 }
 
@@ -145,12 +146,12 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
             {
                 // This is our first in global scope
                 _classCounters["ROOT"] = 0;
-                return new Utf8String("CGC_Global");
+                return new Utf8String("CGClass");
             }
 
             // Increment the count return the name
             _classCounters["ROOT"]++;
-            return new Utf8String($"CGC_Global_{count}");
+            return new Utf8String($"CGClass{count}");
         }
 
         var name = type.DeclaringType?.Name?.ToString();
@@ -158,12 +159,12 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
         {
             // This is our first class in the namespace
             _classCounters[declaringType.FullName] = localCount = 0;
-            return new Utf8String($"CGC_{name}_{localCount}");
+            return new Utf8String($"CGClass{localCount}");
         }
 
         // Increment the count return the name
         _classCounters[declaringType.FullName]++;
-        return new Utf8String($"CGC_{name}_{localCount}");
+        return new Utf8String($"CGClass{localCount}");
     }
 
     /// <summary>
@@ -180,24 +181,23 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
             {
                 // This is our first in global scope
                 _structCounters["ROOT"] = 0;
-                return new Utf8String("CGS_Global");
+                return new Utf8String("CGStruct");
             }
 
             // Increment the count return the name
             _structCounters["ROOT"]++;
-            return new Utf8String($"CGS_Global_{count}");
+            return new Utf8String($"CGStruct{count}");
         }
 
-        var name = type.DeclaringType?.Name?.ToString();
         if (!_structCounters.TryGetValue(declaringType.FullName, out var localCount))
         {
             // This is our first class in the namespace
             _structCounters[declaringType.FullName] = localCount = 0;
-            return new Utf8String($"CGS_{name}_{localCount}");
+            return new Utf8String($"CGStruct{localCount}");
         }
 
         // Increment the count return the name
         _structCounters[declaringType.FullName]++;
-        return new Utf8String($"CGS_{name}_{localCount}");
+        return new Utf8String($"CGStruct{localCount}");
     }
 }

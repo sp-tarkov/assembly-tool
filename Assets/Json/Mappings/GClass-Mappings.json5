@@ -766,6 +766,9 @@
     // ZoneLeaveControllerClass
     "NewName": "BotZonesLeaveController",
   },
+  "GClass683": {
+    "NewName": "BotCreationData",
+  },
   "GClass691": {
     // BotEventHandler
     "NewName": "GlobalEventDispatcher",

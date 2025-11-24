@@ -124,7 +124,6 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
                 foreach (var type in compilerStructs)
                 {
                     type.Name = GetNewCgStructName(type);
-                    Log.Information("Renamed: {struct}", type.Name.ToString());
                     task.Increment(1.0);
                 }
 

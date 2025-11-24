@@ -17,7 +17,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
     /// <param name="targetFullName">Target GCType to rename</param>
     /// <param name="model">model</param>
     /// <param name="parent">parent used in recursive call, leave null</param>
-    public void RenameMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
+    public Task RenameMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
     {
         var toolData = model.ToolData;
 
@@ -27,7 +27,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         if (toolData.Type is null)
         {
             Log.Error("Failed to find type: {target}", targetFullName);
-            return;
+            return Task.CompletedTask;
         }
 
         // Do children type's first so the parent can be used to find them
@@ -52,10 +52,11 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         // We're purely an entry for nested types. Do nothing else.
         if (model.NewName is null)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         RenameMapping(model);
+        return Task.CompletedTask;
     }
 
     public void RenameCompilerGeneratedTypes()

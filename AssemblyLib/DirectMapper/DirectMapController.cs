@@ -30,7 +30,7 @@ public class DirectMapController(
             return;
         }
 
-        RunRenamingProcess();
+        await RunRenamingProcess();
         PublicizeObfuscatedTypes();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
 
@@ -59,7 +59,7 @@ public class DirectMapController(
         return true;
     }
 
-    private void RunRenamingProcess()
+    private async Task RunRenamingProcess()
     {
         var mappings = dataProvider.DirectMapModels;
 
@@ -73,26 +73,33 @@ public class DirectMapController(
         {
             foreach (var (targetFullName, mapping) in mappings)
             {
-                renamerService.RenameMappingRecursive(targetFullName, mapping);
+                await renamerService.RenameMappingRecursive(targetFullName, mapping);
             }
 
             return;
         }
 
-        AnsiConsole
+        await AnsiConsole
             .Progress()
             .AutoClear(true)
             .StartAsync(ctx =>
             {
-                var task = ctx.AddTask("[green]Renaming[/]", maxValue: mappings.Count);
+                var ctxTask = ctx.AddTask("[green]Renaming[/]", maxValue: mappings.Count);
+
+                var tasks = new List<Task>(mappings.Count);
 
                 foreach (var (targetFullName, mapping) in mappings)
                 {
-                    renamerService.RenameMappingRecursive(targetFullName, mapping);
-                    task.Increment(1.0);
+                    var task = Task.Factory.StartNew(async () =>
+                    {
+                        await renamerService.RenameMappingRecursive(targetFullName, mapping);
+                        ctxTask.Increment(1.0);
+                    });
+
+                    tasks.Add(task);
                 }
 
-                return Task.CompletedTask;
+                return Task.WhenAll(tasks);
             });
 
         // Make sure we don't do this until after renaming remaps

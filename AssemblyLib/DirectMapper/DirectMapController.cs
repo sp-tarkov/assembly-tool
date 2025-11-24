@@ -31,7 +31,7 @@ public class DirectMapController(
         }
 
         await RunRenamingProcess();
-        PublicizeObfuscatedTypes();
+        await PublicizeObfuscatedTypes();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
 
         Log.Information("Direct map completed.");
@@ -106,22 +106,28 @@ public class DirectMapController(
         renamerService.RenameCompilerGeneratedTypes();
     }
 
-    private void PublicizeObfuscatedTypes()
+    private async Task PublicizeObfuscatedTypes()
     {
-        AnsiConsole
+        await AnsiConsole
             .Progress()
             .AutoClear(true)
             .StartAsync(ctx =>
             {
-                var task = ctx.AddTask("[green]Publicizing[/]".PadLeft(25), maxValue: Types.Count);
+                var ctxTask = ctx.AddTask("[green]Publicizing[/]".PadLeft(25), maxValue: Types.Count);
+                var tasks = new List<Task>(Types.Count);
 
                 foreach (var type in Types)
                 {
-                    publicizer.PublicizeType(type);
-                    task.Increment(1.0);
+                    var task = Task.Factory.StartNew(async () =>
+                    {
+                        await publicizer.PublicizeType(type);
+                        ctxTask.Increment(1.0);
+                    });
+
+                    tasks.Add(task);
                 }
 
-                return Task.CompletedTask;
+                return Task.WhenAll(tasks);
             });
     }
 }

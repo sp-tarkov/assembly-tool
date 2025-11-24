@@ -1,20 +1,21 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
-using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
+public sealed class Publicizer(DataProvider dataProvider, Statistics stats, FieldRenamer fieldRenamer)
 {
-    public void PublicizeType(DirectMapModel model)
+    public Task PublicizeType(DirectMapModel model)
     {
-        model.ToolData.FieldsToRename.AddRange(PublicizeType(model.ToolData.Type!));
+        PublicizeType(model.ToolData.Type!);
+        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -22,7 +23,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     /// </summary>
     /// <param name="type">Type to publicize</param>
     /// <returns>List of fields that should be renamed</returns>
-    public List<FieldDefinition> PublicizeType(TypeDefinition type)
+    public Task PublicizeType(TypeDefinition type)
     {
         if (
             type is { IsNested: false, IsPublic: false } or { IsNested: true, IsNestedPublic: false }
@@ -69,7 +70,8 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             stats.PropertyPublicizedCount++;
         }
 
-        return PublicizeFields(type);
+        PublicizeFields(type);
+        return Task.CompletedTask;
     }
 
     private void PublicizeMethod(MethodDefinition method)
@@ -104,7 +106,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         stats.MethodPublicizedCount++;
     }
 
-    private List<FieldDefinition> PublicizeFields(TypeDefinition type)
+    private void PublicizeFields(TypeDefinition type)
     {
         // We only publicize fields that are serialized on GameObjects
         if (type.IsGameObject())
@@ -118,8 +120,8 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
                 }
             }
 
-            // We don't rename anything on GameObjects, this breaks unity, return an empty list.
-            return [];
+            // We don't rename anything on GameObjects, this breaks unity.
+            return;
         }
 
         var fieldsToRename = new List<FieldDefinition>();
@@ -146,6 +148,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             field.Attributes |= FieldAttributes.NotSerialized;
         }
 
-        return fieldsToRename;
+        fieldRenamer.RenamePublicizedFields(fieldsToRename);
     }
 }

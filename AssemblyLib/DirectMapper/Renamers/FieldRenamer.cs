@@ -43,7 +43,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
                     continue;
                 }
 
-                var newFieldName = GetNewFieldName(field, newTypeName, fieldCount);
+                var newFieldName = GetNewFieldNameFromTypeRename(field, newTypeName, fieldCount);
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName)
@@ -72,7 +72,17 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
         }
     }
 
-    private Utf8String GetNewFieldName(FieldDefinition field, string newName, int fieldCount = 0)
+    public void RenamePublicizedFields(List<FieldDefinition> fieldsToRename)
+    {
+        foreach (var field in fieldsToRename.Where(f => !IsSerializedField(f)))
+        {
+            var newName = CapitalizeFieldName(field);
+            field.Name = newName;
+            UpdateMemberReferences(dataProvider.LoadedModule!, field, newName);
+        }
+    }
+
+    private Utf8String GetNewFieldNameFromTypeRename(FieldDefinition field, string newName, int fieldCount = 0)
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
@@ -80,6 +90,23 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
 
         stats.FieldRenamedCount++;
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
+    }
+
+    private static Utf8String CapitalizeFieldName(FieldDefinition field)
+    {
+        var strName = field.Name!.ToString();
+
+        if (strName.StartsWith('_'))
+        {
+            strName = strName[1..];
+        }
+
+        if (!char.IsUpper(strName[0]))
+        {
+            strName = $"{char.ToUpper(strName[0])}{strName[1..]}";
+        }
+
+        return new Utf8String(strName);
     }
 
     private static void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)

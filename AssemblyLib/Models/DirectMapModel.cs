@@ -24,6 +24,4 @@ public record ToolData
 
     public string? FullOldName { get; set; }
     public string? ShortOldName { get; set; }
-
-    public List<FieldDefinition> FieldsToRename { get; } = [];
 }

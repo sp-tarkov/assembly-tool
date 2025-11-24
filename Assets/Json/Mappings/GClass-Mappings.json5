@@ -1900,6 +1900,22 @@
     "NewName": "ItemRestrictionsError",
     "NewNamespace": "EFT.InventoryLogic",
   },
+  "GClass1569": {
+    "NewName": "InventoryBlockedError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1583": {
+    "NewName": "DiscardLimitsReachedError",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass1613": {
+    "NewName": "RestrictedOperationError",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass1617": {
+    "NewName": "OptionExtensions",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
   "GClass1618": {
     // JobPriorityClass
     "NewName": "JobYieldPriority",
@@ -1908,6 +1924,33 @@
   "GClass1620": {
     "NewName": "JobYield",
     "NewNamespace": "Diz.Jobs",
+  },
+  "GClass1621": {
+    "NewName": "SimpleAverage"
+  },
+  "GClass1623`2": {
+    "NewName": "BindableDictionaryToListAdapter",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1624`2": {
+    "NewName": "BindableDictionary",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1625": {
+    "NewName": "HandbookNodes",
+	"NewNamespace": "EFT.HandBook"
+  },
+  "GClass1626`1": {
+    "NewName": "BindableEvent",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1627": {
+    "NewName": "BindableExtensions",
+	"NewNamespace": "Diz.Binding"
+  },
+  "GClass1628`1": {
+    "NewName": "BindableList",
+	"NewNamespace": "Diz.Binding"
   },
   "GClass1634`1": {
     "NewName": "ConditionalBook",

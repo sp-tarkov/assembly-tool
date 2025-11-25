@@ -584,6 +584,12 @@
   "GClass309`1": {
     "NewName": "AICoreStrategy",
   },
+  "GClass360": {
+    "NewName": "SectantWarriorLayersStrategy",
+  },
+  "GClass365": {
+    "NewName": "SegmentPoints",
+  },
   "GClass372": {
     "NewName": "VectorExtension",
   },
@@ -636,6 +642,9 @@
   "GClass426": {
     "NewName": "AIGestusRequest",
   },
+  "GClass428": {
+    "NewName": "PlayerWarnData",
+  },
   "GClass429": {
     "NewName": "BotData",
   },
@@ -654,11 +663,17 @@
   "GClass446": {
     "NewName": "BigPipeBotWeaponSelector",
   },
+  "GClass448": {
+    "NewName": "BossSectantPriest",
+  },
   "GClass453`1": {
     "NewName": "BossFinder",
   },
   "GClass456": {
     "NewName": "BotBossFollowers",
+  },
+  "GClass459": {
+    "NewName": "BotMeleeAssaultData",
   },
   "GClass465": {
     "NewName": "BotWeaponPresetCollection",
@@ -729,6 +744,9 @@
   "GClass514": {
     "NewName": "PatrolMoveRoundBoss",
   },
+  "GClass515": {
+    "NewName": "BotMoveByReservWay",
+  },
   "GClass516": {
     "NewName": "BotArtillerySuppress",
   },
@@ -767,6 +785,12 @@
   },
   "GClass551": {
     "NewName": "DebugPathController",
+  },
+  "GClass563": {
+    "NewName": "PatrolFollowerAIBase",
+  },
+  "GClass570": {
+    "NewName": "AllFollowersPatrolInfo",
   },
   "GClass572": {
     // BotCurrentEnemiesClass
@@ -969,6 +993,9 @@
     // WeaponAnimationSpeedControllerClass
     "NewName": "AnimationControllersParametersTable",
   },
+  "GClass775": {
+    "NewName": "PhysicalBase",
+  },
   "GClass788": {
     "NewName": "AggressorStats",
   },
@@ -1142,6 +1169,12 @@
   },
   "GClass906": {
     "NewName": "ArmorRepairStrategy",
+  },
+  "GClass907": {
+    "NewName": "ValProcessor",
+  },
+  "GClass908": {
+    "NewName": "BetterValProcessor",
   },
   "GClass911": {
     "NewName": "StationaryStrategy",
@@ -2263,6 +2296,10 @@
     "NewName": "BaseBindable",
     "NewNamespace": "Diz.Binding",
   },
+  "GClass1643`1": {
+    "NewName": "BindableState",
+    "NewNamespace": "Diz.Binding",
+  },
   "GClass1644`1": {
     "NewName": "BaseBindableFilter",
     "NewNamespace": "Diz.Binding",
@@ -2458,6 +2495,10 @@
   },
   "GClass2073": {
     "NewName": "HeadLightsValidator",
+    "NewNamespace": "EFT"
+  },
+  "GClass2086": {
+    "NewName": "ObjectInHands",
     "NewNamespace": "EFT"
   },
   "GClass2087": {
@@ -3063,6 +3104,10 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass324": {
+    "NewName": "RepairKitTemplate",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3234": {
     "NewName": "RepairKitTemplate",
     "NewNamespace": "EFT.InventoryLogic",
   },
@@ -4133,6 +4178,10 @@
   },
   "GClass2900": {
     "NewName": "ObservedPlayerCommandsMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2953": {
+    "NewName": "AnimationStateHashDictionary",
     "NewNamespace": "EFT.NextObservedPlayer"
   },
   "GClass2958": {

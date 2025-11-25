@@ -3174,5 +3174,376 @@
   "GClass1217": {
     "NewName": "PerfectCullingSceneColor",
     "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass281": {
+    "NewName": "ShootSuppressNode"
+  },
+  "GClass2810": {
+    "NewName": "EffectOnPlayerStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2811": {
+    "NewName": "FlareShotFirearmCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2812": {
+    "NewName": "FoldCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2813": {
+    "NewName": "GestureCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2814": {
+    "NewName": "HeadDeviceStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2815": {
+    "NewName": "HeadGearToggleCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2816": {
+    "NewName": "HealthStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2817": {
+    "NewName": "InteractCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2818": {
+    "NewName": "InteractionCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2819": {
+    "NewName": "InventoryInteractionCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2820": {
+    "NewName": "LeftHandCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2821": {
+    "NewName": "MedEffectResourceCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2822": {
+    "NewName": "MedEffectStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2823": {
+    "NewName": "MountingCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2824": {
+    "NewName": "PhraseCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2825": {
+    "NewName": "PhysicalParametersCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2826": {
+    "NewName": "PickupCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2827": {
+    "NewName": "RocketLauncherShotCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2828": {
+    "NewName": "ScopeModeToggleCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2829": {
+    "NewName": "SetAnimatorLayerWeight",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2830": {
+    "NewName": "SetHandsCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2831": {
+    "NewName": "SetLeftStanceCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2832": {
+    "NewName": "SetStationaryWeaponCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2833": {
+    "NewName": "SetUnderRoofStatusMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2834": {
+    "NewName": "SetVoiceMuffledStatusMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2835": {
+    "NewName": "ShotFirearmCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2836": {
+    "NewName": "SkillsParamsCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2837": {
+    "NewName": "SoundDamageInfoCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2838": {
+    "NewName": "StartSearchContentMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2839": {
+    "NewName": "StopSearchContentMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2840": {
+    "NewName": "SwingGrenadeCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2841": {
+    "NewName": "ThrowGrenadeCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass1922": {
+    "NewName": "ItemDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2842": {
+    "NewName": "TacticalModeToggleCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2843": {
+    "NewName": "TemperatureCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2844": {
+    "NewName": "ThrowPatronAsLootCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2845": {
+    "NewName": "ToggleBipodCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2846": {
+    "NewName": "TripwireSoundInteractionCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2847": {
+    "NewName": "UnderbarrelShotCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2848": {
+    "NewName": "VaultingCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2849": {
+    "NewName": "VoIPCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2850": {
+    "NewName": "ZombieAlertUpdateCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2851": {
+    "NewName": "ZombieLostCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2852": {
+    "NewName": "ZombieSetTurnDeltaAngleMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2853": {
+    "NewName": "AbortReloadCylinderMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2854": {
+    "NewName": "AimingCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2855": {
+    "NewName": "BoltActionReloadAfterFireCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2856": {
+    "NewName": "BreakMeleeComboCombatMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2857": {
+    "NewName": "ChangeFireModeCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2858": {
+    "NewName": "CylinderCamoraIndexAndHammerStateCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2859": {
+    "NewName": "DischargeAmmoFromCamoraCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2860": {
+    "NewName": "DischargeAmmoFromChamberCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2861": {
+    "NewName": "DischargeAmmoFromUnderbarrelWeaponCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2862": {
+    "NewName": "ExamineWeaponCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2863": {
+    "NewName": "IdleStateSyncCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2864": {
+    "NewName": "InsertMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2865": {
+    "NewName": "InventoryOpenStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2866": {
+    "NewName": "LoadAmmoToCamoraCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2867": {
+    "NewName": "LoadAmmoToChamberCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2868": {
+    "NewName": "LoadAmmoToUnderbarrelWeaponCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2869": {
+    "NewName": "MagAndChamberStateCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2870": {
+    "NewName": "MalfunctionCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2871": {
+    "NewName": "MeleeAttackCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2872": {
+    "NewName": "PullOutMagCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2873": {
+    "NewName": "RadioTransmitterStatusCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2874": {
+    "NewName": "RechamberCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2875": {
+    "NewName": "ReloadCylinderMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2876": {
+    "NewName": "ReloadExternalMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2877": {
+    "NewName": "ReloadInternalMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2878": {
+    "NewName": "ReloadInternalMagWithOpenBoltMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2879": {
+    "NewName": "ReloadMultiBarrelWeaponCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2880": {
+    "NewName": "RepairMalfunctionCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2881": {
+    "NewName": "RollCylinderCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2882": {
+    "NewName": "SetAbortReloadInternalMagWithOpenBoltMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2883": {
+    "NewName": "SetChamberStateCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2884": {
+    "NewName": "SetExternalMagazineStateMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2885": {
+    "NewName": "SetFinishReloadInternalMagWithOpenBoltMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2886": {
+    "NewName": "StartReloadSingleBarrelCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2887": {
+    "NewName": "SyncCylinderMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2888": {
+    "NewName": "SyncStationaryMagazineCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2889": {
+    "NewName": "ToggleUnderbarrelCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2890": {
+    "NewName": "UnderbarrelRangeValueCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2891": {
+    "NewName": "UnderbarrelReloadCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2892": {
+    "NewName": "ZombieMeleeAttackCommandMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2893`1": {
+    "NewName": "BaseObservedPlayerListMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2894": {
+    "NewName": "ObservedPlayerListCommandsMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2895": {
+    "NewName": "ObservedPlayerListCommandsMessagePooled",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2896": {
+    "NewName": "ObservedPlayerListSnapshotMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2897": {
+    "NewName": "ObservedPlayerListSnapshotMessagePooled",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2898": {
+    "NewName": "ObservedPlayerListCommandsMessagePool",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2899": {
+    "NewName": "ObservedPlayerListSnapshotMessagePool",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2900": {
+    "NewName": "ObservedPlayerCommandsMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
   }
 }

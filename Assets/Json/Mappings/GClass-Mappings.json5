@@ -2576,7 +2576,7 @@
   },
   "GClass3536": {
     "NewName": "Handbook",
-    "NewNamespace": "EFT.Handbook",
+    "NewNamespace": "EFT.HandBook",
   },
   "GClass3540": {
     "NewName": "BtrController",

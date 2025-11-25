@@ -33,7 +33,7 @@ public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRen
             var propertyCount = 0;
             foreach (var property in properties)
             {
-                if (property.Signature!.ReturnType.Name != oldTypeName)
+                if (property.Signature!.ReturnType.Name != newTypeName)
                 {
                     continue;
                 }

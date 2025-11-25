@@ -223,5 +223,18 @@
         "NewName": "IAABB"
       }
     }
+  },
+  "Profile": {
+    "NestedTypes": {
+      "GClass2205": {
+        "NewName": "HealthInfo"
+      },
+      "GClass2208": {
+        "NewName": "UnlockedInfo"
+      },
+      "GClass2209": {
+        "NewName": "MoneyTransferLimitData"
+      },
+    }
   }
 }

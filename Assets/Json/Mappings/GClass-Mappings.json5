@@ -569,6 +569,15 @@
   "GClass188": {
     "NewName": "AimingFlashedNode",
   },
+  "GClass200`1": {
+    "NewName": "MoveNode",
+  },
+  "GClass205": {
+    "NewName": "AttackMoving",
+  },
+  "GClass22": {
+    "NewName": "MoveToEnemy",
+  },
   "GClass372": {
     "NewName": "VectorExtension",
   },
@@ -773,9 +782,23 @@
     // BotEventHandler
     "NewName": "GlobalEventDispatcher",
   },
+  "GClass718": {
+    "NewName": "ApplicationLogger",
+	"NewNamespace": "EFT"
+  },
+  "GClass723": {
+    "NewName": "SpawnsLogger",
+	"NewNamespace": "EFT"
+  },
   "GClass757": {
     // WeaponAnimationSpeedControllerClass
     "NewName": "AnimationControllersParametersTable",
+  },
+  "GClass788": {
+    "NewName": "AggressorStats",
+  },
+  "GClass789": {
+    "NewName": "ProfileStatsSeparator",
   },
   "GClass796": {
     // TimerClass
@@ -834,6 +857,9 @@
   },
   "GClass862": {
     "NewName": "ComponentHelper",
+  },
+  "GClass863": {
+    "NewName": "CompositeDisposable",
   },
   "GClass865": {
     "NewName": "DebugUtils",
@@ -1715,6 +1741,10 @@
     "NewName": "BitWriterStream",
     "NewNamespace": "BitPacking",
   },
+  "GClass1390": {
+    "NewName": "FlatItem",
+    "NewNamespace": "JsonType",
+  },
   "GClass1391": {
     // QuestItemClass
     "NewName": "QuestItem",
@@ -2072,6 +2102,10 @@
     "NewName": "ChartMeshBase",
     "NewNamespace": "ChartAndGraph",
   },
+  "GClass1672": {
+    "NewName": "DateTimeExtensions",
+    "NewNamespace": "EFT",
+  },
   "GClass1677": {
     "NewName": "BotMemory",
     "NewNamespace": "EFT",
@@ -2149,8 +2183,28 @@
     "NewName": "RadioTransmitterHandler",
     "NewNamespace": "EFT"
   },
+  "GClass1921": {
+    "NewName": "NestedItemDescriptor",
+    "NewNamespace": "EFT"
+  },
   "GClass1946": {
     "NewName": "JsonLootItemDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass1948": {
+    "NewName": "ItemBinarySerializer",
+    "NewNamespace": "EFT"
+  },
+  "GClass1950": {
+    "NewName": "ItemAddressDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass1954": {
+    "NewName": "GridItemAddressDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2067": {
+    "NewName": "WishlistManager",
     "NewNamespace": "EFT"
   },
   "GClass2073": {
@@ -2161,8 +2215,36 @@
     "NewName": "Firearms",
     "NewNamespace": "EFT"
   },
+  "GClass2146": {
+    "NewName": "BaseObservedPlayerState",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2174": {
+    "NewName": "DictionaryPlayerStateLimitsExtensions",
+    "NewNamespace": "EFT"
+  },
+  "GClass2175": {
+    "NewName": "SpeedLimiter",
+    "NewNamespace": "EFT"
+  },
+  "GClass2178": {
+    "NewName": "ClientPlayerEffectsPauseController",
+    "NewNamespace": "EFT"
+  },
+  "GClass2179": {
+    "NewName": "PlayerSideExtension",
+    "NewNamespace": "EFT"
+  },
   "GClass2184": {
     "NewName": "PlayerVisualRepresentation",
+    "NewNamespace": "EFT"
+  },
+  "GClass2185": {
+    "NewName": "DroppedItem",
+    "NewNamespace": "EFT"
+  },
+  "GClass2186": {
+    "NewName": "FoundInRaidItem",
     "NewNamespace": "EFT"
   },
   "GClass2188": {
@@ -2170,12 +2252,97 @@
     "NewName": "ProfileStatus",
     "NewNamespace": "EFT"
   },
+  "GClass2197": {
+    "NewName": "BodyCustomization",
+    "NewNamespace": "EFT"
+  },
+  "GClass2198": {
+    "NewName": "DamageHistory",
+    "NewNamespace": "EFT"
+  },
+  "GClass2199": {
+    "NewName": "DeathCause",
+    "NewNamespace": "EFT"
+  },
   "GClass2200": {
     "NewName": "DamageStats",
     "NewNamespace": "EFT"
   },
+  "GClass2201": {
+    "NewName": "VictimStats",
+    "NewNamespace": "EFT"
+  },
+  "GClass2202": {
+    "NewName": "HideoutInfo",
+    "NewNamespace": "EFT"
+  },
+  "GClass2203": {
+    "NewName": "HideoutCounters",
+    "NewNamespace": "EFT"
+  },
+  "GClass2204": {
+    "NewName": "AreaInfo",
+    "NewNamespace": "EFT"
+  },
+  "GClass2210": {
+    "NewName": "ProfileBan",
+    "NewNamespace": "EFT"
+  },
+  "GClass2211": {
+    "NewName": "InventoryEquipmentDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2213": {
+    "NewName": "OtherPlayerProfileDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2214": {
+    "NewName": "PlayerVisualRepresentationDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2216": {
+    "NewName": "DamageHistoryDescriptor",
+    "NewNamespace": "EFT"
+  },
   "GClass2217": {
     "NewName": "DamageStatsDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2219": {
+    "NewName": "CounterCollectionDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2220": {
+    "NewName": "ProfileStatsDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2221": {
+    "NewName": "ProfileStatsSeparatorDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2221": {
+    "NewName": "ProfileStatsSeparatorDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2223": {
+    "NewName": "ProfileInfoDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2224": {
+    "NewName": "SkillsDescriptor",
+    "NewNamespace": "EFT",
+	"NestedTypes": {
+      "GClass2225": {
+        "NewName": "SkillInfoDescriptor"
+	  },
+	  "GClass2226": {
+        "NewName": "MasteringInfoDescriptor"
+	  }
+	}
+  },
+  "GClass2230": {
+    // InfoClass
+    "NewName": "ProfileDescriptor",
     "NewNamespace": "EFT"
   },
   "GClass2231": {
@@ -2183,12 +2350,28 @@
     "NewName": "ProfileInfo",
     "NewNamespace": "EFT"
   },
+  "GClass2232": {
+    "NewName": "ProfileVariablesStorage",
+    "NewNamespace": "EFT",
+  },
   "GClass2245": {
     "NewName": "BaseSkill",
     "NewNamespace": "EFT"
   },
   "GClass2246": {
     "NewName": "Mastering",
+    "NewNamespace": "EFT"
+  },
+  "GClass2247": {
+    "NewName": "TaskConditionCounterDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2248": {
+    "NewName": "BonusDescriptor",
+    "NewNamespace": "EFT"
+  },
+  "GClass2249": {
+    "NewName": "TraderInfoDescriptor",
     "NewNamespace": "EFT"
   },
   "GClass2247": {
@@ -2203,6 +2386,10 @@
   "GClass2249": {
     "NewName": "WeaponSkill",
     "NewNamespace": "EFT",
+  },
+  "GClass2275": {
+    "NewName": "VoipSettings",
+    "NewNamespace": "EFT"
   },
   "GClass2279": {
     // PoolManagerClass
@@ -2241,15 +2428,83 @@
     "NewName": "SocialNetwork",
     "NewNamespace": "EFT",
   },
+  "GClass2342": {
+    "NewName": "VendorScenePresets",
+    "NewNamespace": "EFT",
+  },
+  "GClass2343": {
+    "NewName": "NarrateScene",
+    "NewNamespace": "EFT",
+  },
+  "GClass2345": {
+    "NewName": "Net",
+    "NewNamespace": "EFT",
+  },
+  "GClass2348": {
+    "NewName": "LocalizationExtensions",
+    "NewNamespace": "EFT",
+  },
+  "GClass2349": {
+    "NewName": "LocalizationKeyExtensions",
+    "NewNamespace": "EFT",
+  },
   "GClass2350": {
     // LocaleManagerClass
     "NewName": "LocalizationManager",
+    "NewNamespace": "EFT",
+  },
+  "GClass2353": {
+    "NewName": "DummyPlayerInputTranslator",
     "NewNamespace": "EFT",
   },
   "GClass2354": {
     // GetActionsClass
     "NewName": "InteractionContextHelper",
     "NewNamespace": "EFT",
+  },
+  "GClass2356": {
+    "NewName": "RagfairRequirementSerializer",
+	"NewNamespace": "EFT",
+  },
+  "GClass2357": {
+    "NewName": "RagfairOfferSerializer",
+	"NewNamespace": "EFT",
+  },
+  "GClass2358": {
+    "NewName": "ItemReference",
+	"NewNamespace": "EFT",
+  },
+  "GClass2359": {
+    "NewName": "ProfileRagfairInfo",
+	"NewNamespace": "EFT",
+  },
+  "GClass2361": {
+    "NewName": "SettingsConverter",
+	"NewNamespace": "EFT",
+  },
+  "GClass2362": {
+    "NewName": "CommodityToPurchase",
+	"NewNamespace": "EFT",
+  },
+  "GClass2368": {
+    "NewName": "AnswerTemplate",
+	"NewNamespace": "EFT",
+  },
+  "GClass2372": {
+    "NewName": "BaseSurveyQuestion",
+	"NewNamespace": "EFT",
+  },
+  "GClass2375": {
+    "NewName": "TextQuestion",
+	"NewNamespace": "EFT",
+  },
+  "GClass2376": {
+    "NewName": "KeyTools",
+	"NewNamespace": "EFT",
+  },
+  "GClass2377": {
+    "NewName": "CommonPrefs",
+	"NewNamespace": "EFT",
   },
   "GClass2378": {
     "NewName": "LoggerFactoryClass",
@@ -2331,6 +2586,10 @@
     "NewName": "ServerMetricsCollector",
     "NewNamespace": "EFT.Utilities",
   },
+  "GClass2630": {
+    "NewName": "ClientMetricsCollector",
+    "NewNamespace": "EFT.Utilities",
+  },
   "GClass2633": {
     // CacheResourcesPopAbstractClass
     "NewName": "ResourceCache",
@@ -2389,6 +2648,10 @@
   "GClass2657": {
     "NewName": "ClientAirdrop",
     "NewNamespace": "EFT.Airdrop",
+  },
+  "GClass2660": {
+    "NewName": "PrestigeStatusData",
+    "NewNamespace": "EFT.Prestige",
   },
   "GClass2658": {
     "NewName": "ClientAirPlane",
@@ -2543,6 +2806,10 @@
     "NewName": "ItemContext",
     "NewNamespace": "EFT.InventoryLogic",
   },
+  "GClass3388": {
+    "NewName": "OfflineInventoryController",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
   "GClass3395": {
     // InteractionsHandlerClass
     "NewName": "ItemManipulator",
@@ -2590,6 +2857,10 @@
   "GClass3591": {
     "NewName": "ProfileStorage",
     "NewNamespace": "EFT.Development",
+  },
+  "GClass3619": {
+    "NewName": "ClientDialogController",
+    "NewNamespace": "EFT.Dialogs",
   },
   "GClass3686": {
     // CameraClass
@@ -2719,10 +2990,23 @@
     "NewName": "QuestController",
     "NewNamespace": "EFT.Quests",
   },
+  "GClass4006": {
+    // AbstractQuestControllerClass
+    "NewName": "QuestControllerClientBackend",
+    "NewNamespace": "EFT.Quests",
+  },
   "GClass4009": {
     // AbstractAchievementControllerClass
     "NewName": "AchievementsController",
     "NewNamespace": "EFT.Achievements",
+  },
+  "GClass4011": {
+    "NewName": "AchievementsControllerTODO",
+    "NewNamespace": "EFT.Achievements",
+  },
+  "GClass4020": {
+    "NewName": "TaskConditionCounter",
+    "NewNamespace": "EFT.Quests",
   },
   "GClass4023`1": {
     // QuestControllerAbstractClass
@@ -3545,5 +3829,17 @@
   "GClass2900": {
     "NewName": "ObservedPlayerCommandsMessage",
     "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2958": {
+    "NewName": "ObservedPlayerControllers",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2977": {
+    "NewName": "ObservedPlayerMessageReceiver",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass3541": {
+    "NewName": "VehicleMessageReceiver",
+    "NewNamespace": "EFT.Vehicle"
   }
 }

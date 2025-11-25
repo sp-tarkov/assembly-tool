@@ -80,6 +80,28 @@ internal static class FieldDefExtensions
 
             return false;
         }
+
+        public bool IsBackingField()
+        {
+            var declaringType = field.DeclaringType;
+            if (declaringType is null)
+            {
+                return false;
+            }
+
+            foreach (var property in declaringType.Properties)
+            {
+                if (
+                    property.GetMethod != null && ReferencesField(property.GetMethod, field)
+                    || property.SetMethod != null && ReferencesField(property.SetMethod, field)
+                )
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     /// <summary>
@@ -93,6 +115,31 @@ internal static class FieldDefExtensions
         foreach (var instr in instructions)
         {
             if (instr.Operand is FieldDefinition fieldDefinition && fieldDefinition.Name == memberName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool ReferencesField(MethodDefinition method, FieldDefinition field)
+    {
+        if (method.CilMethodBody == null)
+        {
+            return false;
+        }
+
+        foreach (var instruction in method.CilMethodBody.Instructions)
+        {
+            if (instruction.Operand is FieldDefinition fd && fd == field)
+            {
+                return true;
+            }
+
+            if (instruction.Operand is MemberReference mr &&
+                mr.Name == field.Name &&
+                mr.DeclaringType?.FullName == field.DeclaringType?.FullName)
             {
                 return true;
             }

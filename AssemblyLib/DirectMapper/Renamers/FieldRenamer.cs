@@ -86,7 +86,8 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
     {
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
-        var firstChar = field.IsPublic ? char.ToUpper(newName[0]) : char.ToLower(newName[0]);
+        // Prefix backing fields with an underscore
+        var firstChar = field.IsBackingField() ? '_' : char.ToUpper(newName[0]);
 
         stats.FieldRenamedCount++;
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
@@ -95,6 +96,18 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
     private static Utf8String CapitalizeFieldName(FieldDefinition field)
     {
         var strName = field.Name!.ToString();
+
+        // Prefix backing fields with an underscore
+        switch (field.IsBackingField())
+        {
+            // Already a backing field denoted by the compiler or already prefixed with an underscore
+            case true when strName.StartsWith('<'):
+            case true when strName.StartsWith('_'):
+                return new Utf8String(strName);
+
+            case true when !strName.StartsWith('_'):
+                return new Utf8String($"_{strName}");
+        }
 
         if (strName.StartsWith('_'))
         {

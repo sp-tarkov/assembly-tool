@@ -238,7 +238,7 @@
       }
     }
   },
-  "Profile": {
+  "EFT.Profile": {
     "NestedTypes": {
       "GClass2205": {
         "NewName": "HealthInfo"

@@ -708,4 +708,60 @@
     "NewName": "FindShortestPathJob",
     "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
   },
+  "GStruct437": {
+    "NewName": "RelationParameters",
+    "NewNamespace": "EFT.Interactive"
+  },
+  "GStruct438": {
+    "NewName": "BrokenWindowPiece",
+    "NewNamespace": "EFT.Interactive"
+  },
+  "GStruct439": {
+    "NewName": "VisualAmmoInfo",
+    "NewNamespace": "EFT.Ballistics"
+  },
+  "GStruct440": {
+    "NewName": "ShotId",
+    "NewNamespace": "EFT.Ballistics"
+  },
+  "GStruct443": {
+    "NewName": "BallisticCoefficientValues",
+    "NewNamespace": "EFT.Ballistics"
+  },
+  "GStruct446": {
+    "NewName": "AcceptQuestChangeArgs",
+    "NewNamespace": "EFT.UI"
+  },
+  "GStruct453": {
+    "NewName": "AssetsManagerSettings",
+    "NewNamespace": "EFT.AssetsManager"
+  },
+  "GStruct444": {
+    "NewName": "ShotInfo",
+    "NewNamespace": "EFT.Ballistics"
+  },
+  "GStruct445": {
+    "NewName": "MoneyString",
+    "NewNamespace": "EFT.UI"
+  },
+  "GStruct451": {
+    "NewName": "OffersData",
+    "NewNamespace": "EFT.UI.Ragfair"
+  },
+  "GStruct455": {
+    "NewName": "ComputableUnit",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GStruct459": {
+    "NewName": "QuestChangeRequirement",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GStruct461": {
+    "NewName": "AchievementsListDTO",
+    "NewNamespace": "EFT.Achievements"
+  },
+  "GStruct462": {
+    "NewName": "AchievementsGlobalProgressDTO",
+    "NewNamespace": "EFT.Achievements"
+  }
 }

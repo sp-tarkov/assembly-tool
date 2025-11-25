@@ -2,6 +2,9 @@
   "Class304": {
     "NewName": "Backend",
   },
+  "Class101": {
+    "NewName": "InfectedTargetLayer",
+  },
   "Class305`1": {
     // BackendAbstractClass
     "NewName": "ClientBackend",

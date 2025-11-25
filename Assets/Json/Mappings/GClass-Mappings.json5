@@ -3140,8 +3140,7 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass324": {
-    "NewName": "RepairKitTemplate",
-    "NewNamespace": "EFT.InventoryLogic",
+    "NewName": "InfectedLayersStrategy",
   },
   "GClass327": {
     "NewName": "BossKnightLayersStrategy",

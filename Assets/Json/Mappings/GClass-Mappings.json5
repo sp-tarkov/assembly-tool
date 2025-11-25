@@ -1180,7 +1180,7 @@
     "NewNamespace": "AbsolutDecals"
   },
   "GClass1001": {
-    "NewName": ""
+    "NewName": "CommandBufferManager"
   },
   "GClass1002": {
     "NewName": "Extensions"

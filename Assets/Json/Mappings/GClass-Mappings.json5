@@ -575,8 +575,14 @@
   "GClass205": {
     "NewName": "AttackMoving",
   },
+  "GClass275": {
+    "NewName": "Shoot",
+  },
   "GClass22": {
     "NewName": "MoveToEnemy",
+  },
+  "GClass309`1": {
+    "NewName": "AICoreStrategy",
   },
   "GClass372": {
     "NewName": "VectorExtension",
@@ -592,22 +598,55 @@
     // CoverSearchDefenceDataClass
     "NewName": "CoverSearchDefenceData",
   },
+  "GClass386": {
+    "NewName": "DeadBody",
+  },
   "GClass389": {
     // EditorsCoverPointDebugDataClass
     "NewName": "EditorsCoverPointDebugData",
+  },
+  "GClass392": {
+    "NewName": "PointAtCounter",
+  },
+  "GClass411": {
+    "NewName": "AICoversDataCache",
+  },
+  "GClass412": {
+    "NewName": "BotsConnections",
+  },
+  "GClass414": {
+    "NewName": "FoliageGroupPoint",
   },
   "GClass419": {
     // ReachableClass
     "NewName": "NavGraphEditorPointReachable",
   },
+  "GClass426": {
+    "NewName": "AIGestusRequest",
+  },
   "GClass429": {
     "NewName": "BotData",
+  },
+  "GClass440": {
+    "NewName": "BossKnight",
   },
   "GClass443": {
     "NewName": "BotWavesOptimization",
   },
   "GClass445`2": {
     "NewName": "BossWithStayFollowersPosition",
+  },
+  "GClass446": {
+    "NewName": "BigPipeBotWeaponSelector",
+  },
+  "GClass456": {
+    "NewName": "BotBossFollowers",
+  },
+  "GClass474": {
+    "NewName": "BotEnemiesMissController",
+  },
+  "GClass483": {
+    "NewName": "BotFindPlaceToShoot",
   },
   "GClass500": {
     "NewName": "BotPathController",
@@ -654,6 +693,9 @@
   "GClass514": {
     "NewName": "PatrolMoveRoundBoss",
   },
+  "GClass528": {
+    "NewName": "BotDistCheck",
+  },
   "GClass540": {
     "NewName": "AbstractBotPath",
   },
@@ -665,9 +707,24 @@
     // BotSettingsClass
     "NewName": "BotGroupEnemyInfo",
   },
+  "GClass581": {
+    "NewName": "GrenadeDangerPoint",
+  },
+  "GClass587": {
+    "NewName": "AIData",
+  },
   "GClass613": {
     // ScatteringSettingsClass
     "NewName": "BotCurrentScatteringSetting",
+  },
+  "GClass614": {
+    "NewName": "BotSettingsInGameModif",
+  },
+  "GClass616": {
+    "NewName": "BotGlobalsCoreSettings",
+  },
+  "GClass617": {
+    "NewName": "BotInternalSettingsController",
   },
   "GClass618": {
     // BotDifficultySettingsClass
@@ -679,6 +736,9 @@
   "GClass637": {
     // BackendConfigAbstractClass
     "NewName": "AppEnvironment",
+  },
+  "GClass639": {
+    "NewName": "GitVersion",
   },
   "GClass641": {
     "NewName": "TimerManager",
@@ -757,6 +817,11 @@
   "GClass668": {
     // BossSpawnerClass
     "NewName": "BotBossSpawn",
+	"NestedTypes": {
+      "GClass669": {
+        "NewName": "BossSpawnProcess"
+      }
+    }
   },
   "GClass670": {
     "NewName": "BaseBotsEvent",
@@ -781,6 +846,9 @@
   "GClass691": {
     // BotEventHandler
     "NewName": "GlobalEventDispatcher",
+  },
+  "GClass708": {
+    "NewName": "AbstractLogger",
   },
   "GClass718": {
     "NewName": "ApplicationLogger",
@@ -807,6 +875,14 @@
   "GClass825": {
     // LayerMaskClass
     "NewName": "LayerMaskController",
+  },
+  "GClass833": {
+    "NewName": "ObjectVisibility",
+	"NestedTypes": {
+      "GStruct51": {
+        "NewName": "Settings"
+      }
+    }
   },
   "GClass835`1": {
     "NewName": "ObjectPool",
@@ -1030,6 +1106,11 @@
   },
   "GClass937": {
     "NewName": "AutoExchange",
+	"NestedTypes": {
+      "GStruct62": {
+        "NewName": "AutoExchangeData"
+      }
+    }
   },
   "GClass938": {
     "NewName": "DebugGraph",
@@ -1725,6 +1806,12 @@
     "NewName": "AnimatorParameter",
     "NewNamespace": "FastAnimatorSystem",
   },
+  "GClass1328": {
+    "NewName": "FastStateBehavior",
+  },
+  "GClass1329": {
+    "NewName": "FastAnimatorStateDebugger",
+  },
   "GClass1330": {
     "NewName": "FastAnimationEventsStateBehaviour",
     "NewNamespace": "AnimationEventSystem",
@@ -1732,6 +1819,41 @@
   "GClass1331": {
     "NewName": "FastAnimationPlayerStateContainerBehaviour",
     "NewNamespace": "AnimationEventSystem",
+  },
+  "GClass1332`2": {
+    "NewName": "AbstractFastStateConverter"
+  },
+  "GClass1333": {
+    "NewName": "AnimatorStateDebuggerConverter"
+  },
+  "GClass1356": {
+    "NewName": "NetworkQuality",
+    "NewNamespace": "UnityDiagnostics",
+  },
+  "GClass1357": {
+    "NewName": "FrameMeasurer",
+	"NestedTypes": {
+      "GClass714": {
+        "NewName": "FrameMeasurerLogger",
+		"NestedTypes": {
+		  "GClass1358": {
+			"NewName": "Config"
+		  }
+		}
+      }
+    }
+  },
+  "GClass1359": {
+    "NewName": "IncrementalMeasurer",
+    "NewNamespace": "UnityDiagnostics",
+  },
+  "GClass1361": {
+    "NewName": "TimeMeasurer",
+    "NewNamespace": "UnityDiagnostics",
+  },
+  "GClass1362": {
+    "NewName": "ValueDiffStatisticsMeasurer",
+    "NewNamespace": "UnityDiagnostics",
   },
   "GClass1367": {
     "NewName": "BitWriter",
@@ -1760,6 +1882,10 @@
   },
   "GClass1401": {
     "NewName": "JsonLootItem",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1404": {
+    "NewName": "LootData",
     "NewNamespace": "JsonType",
   },
   "GClass1412": {
@@ -2106,6 +2232,10 @@
     "NewName": "DateTimeExtensions",
     "NewNamespace": "EFT",
   },
+  "GClass1676": {
+    "NewName": "CommandLine",
+    "NewNamespace": "EFT",
+  },
   "GClass1677": {
     "NewName": "BotMemory",
     "NewNamespace": "EFT",
@@ -2158,9 +2288,17 @@
     "NewName": "CountTypeBotWave",
     "NewNamespace": "EFT"
   },
+  "GClass1875": {
+    "NewName": "ShellingZoneBotData",
+    "NewNamespace": "EFT"
+  },
   "GClass1880": {
     // BotWaveDataClass
     "NewName": "SpawnWave",
+    "NewNamespace": "EFT"
+  },
+  "GClass1881`1": {
+    "NewName": "WDictionary",
     "NewNamespace": "EFT"
   },
   "GClass1892": {
@@ -2213,6 +2351,10 @@
   },
   "GClass2087": {
     "NewName": "Firearms",
+    "NewNamespace": "EFT"
+  },
+  "GClass2092": {
+    "NewName": "PlayerHitInfo",
     "NewNamespace": "EFT"
   },
   "GClass2146": {
@@ -2572,6 +2714,15 @@
     "NewName": "Trader",
     "NewNamespace": "EFT.Trading",
   },
+  "GClass2575": {
+    "NewName": "RepairController",
+    "NewNamespace": "EFT.Repairing",
+	"NestedTypes": {
+      "Class2073": {
+        "NewName": "RepairParameters"
+		}
+	}
+  },
   "GClass2576": {
     "NewName": "MagBuildStorage",
     "NewNamespace": "EFT.Builds",
@@ -2782,6 +2933,10 @@
     "NewName": "NotesManager",
     "NewNamespace": "EFT.Notes",
   },
+  "GClass3155": {
+    "NewName": "HeadphonesTemplate",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
   "GClass3110": {
     // AmmoPackReloadingClass
     "NewName": "AmmoPack",
@@ -2792,9 +2947,21 @@
     "NewName": "Grid",
     "NewNamespace": "EFT.InventoryLogic",
   },
+  "GClass324": {
+    "NewName": "RepairKitTemplate",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3337": {
+    "NewName": "FoodDrink",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
   "GClass3368": {
     // TemplateIdToObjectMappingsClass
     "NewName": "JsonTypes",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass3352": {
+    "NewName": "RepairKit",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3375": {
@@ -2889,6 +3056,14 @@
     // RagdollClass
     "NewName": "CorpseRagdoll",
     "NewNamespace": "EFT.Interactive",
+  },
+  "GClass3726`1": {
+    "NewName": "PrecalculatedRandom",
+    "NewNamespace": "EFT.GameRandoms",
+  },
+  "GClass3727": {
+    "NewName": "PrecalculatedFloatRandoms",
+    "NewNamespace": "EFT.GameRandoms",
   },
   "GClass3733": {
     "NewName": "BallisticCalculatorConstants",

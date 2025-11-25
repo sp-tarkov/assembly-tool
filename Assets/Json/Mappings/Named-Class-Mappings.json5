@@ -224,6 +224,20 @@
       }
     }
   },
+  "CoverPointMaster": {
+    "NestedTypes": {
+      "GStruct10": {
+        "NewName": "FriendCloseCoverData"
+      }
+    }
+  },
+  "AITaskManager": {
+    "NestedTypes": {
+      "GClass607": {
+        "NewName": "AISimpleTaskData"
+      }
+    }
+  },
   "Profile": {
     "NestedTypes": {
       "GClass2205": {

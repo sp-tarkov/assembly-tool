@@ -7,4 +7,8 @@
     "NewName": "JobContinuation",
     "NewNamespace": "Diz.Jobs"
   },
+  "Struct440": {
+    "NewName": "ShotId",
+    "NewNamespace": "EFT.Ballistics"
+  },
 }

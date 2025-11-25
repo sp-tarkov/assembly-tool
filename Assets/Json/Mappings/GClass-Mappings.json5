@@ -584,6 +584,15 @@
   "GClass309`1": {
     "NewName": "AICoreStrategy",
   },
+  "GClass333": {
+    "NewName": "FollowerSanitarLayersStrategy",
+  },
+  "GClass357": {
+    "NewName": "BossKojaniyLayersStrategy",
+  },
+  "GClass358": {
+    "NewName": "FollowerKojaniyLayersStrategy",
+  },
   "GClass360": {
     "NewName": "SectantWarriorLayersStrategy",
   },
@@ -592,6 +601,9 @@
   },
   "GClass372": {
     "NewName": "VectorExtension",
+  },
+  "GClass377": {
+    "NewName": "AISegmentGroup",
   },
   "GClass378": {
     "NewName": "BotWavesOptimization",
@@ -661,7 +673,7 @@
     "NewName": "BossWithStayFollowersPosition",
   },
   "GClass446": {
-    "NewName": "BigPipeBotWeaponSelector",
+    "NewName": "BossKojaniy",
   },
   "GClass448": {
     "NewName": "BossSectantPriest",
@@ -776,6 +788,9 @@
   },
   "GClass546": {
     "NewName": "BotMoverLogicCollector",
+  },
+  "GClass547": {
+    "NewName": "BotMoverState",
   },
   "GClass548": {
     "NewName": "BotMoverStateMachine",
@@ -951,9 +966,17 @@
   },
   "GClass672": {
     "NewName": "BotHalloweenCrowdSpawn",
+	"NestedTypes": {
+      "Class337": {
+        "NewName": "PlayerCrowdSpawnInfo"
+      }
+	}
   },
   "GClass673": {
     "NewName": "BotHalloweenDistributions",
+  },
+  "GClass674": {
+    "NewName": "BotHalloweenEventPursuit",
   },
   "GClass676": {
     // BotsClass
@@ -962,6 +985,9 @@
   "GClass677": {
     // ZoneLeaveControllerClass
     "NewName": "BotZonesLeaveController",
+  },
+  "GClass682": {
+    "NewName": "PositionNote",
   },
   "GClass683": {
     "NewName": "BotCreationData",
@@ -1201,7 +1227,7 @@
     "NewName": "PlayerClippingRules",
   },
   "GClass924`2": {
-    "NewName": "GClass924",
+    "NewName": "IconCreatorBase",
   },
   "GClass925": {
     "NewName": "ClothingIconCreator",
@@ -2351,6 +2377,11 @@
   "GClass1658`1": {
     "NewName": "DependencyGraph",
     "NewNamespace": "Diz.DependencyManager",
+	"NestedTypes": {
+      "GClass1659": {
+        "NewName": "TokenBase"
+      }
+    }
   },
   "GClass1662`1": {
     "NewName": "Node",
@@ -2711,6 +2742,11 @@
     // BackendDummyClass
     "NewName": "ClientBackEndEmulator",
     "NewNamespace": "EFT",
+	"NestedTypes": {
+      "GClass2321": {
+        "NewName": "ClientBackendSessionEmulator"
+		}
+	}
   },
   "GClass2324": {
     // ProfileChangesPocoClass
@@ -3106,6 +3142,9 @@
   "GClass324": {
     "NewName": "RepairKitTemplate",
     "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass327": {
+    "NewName": "BossKnightLayersStrategy",
   },
   "GClass3234": {
     "NewName": "RepairKitTemplate",
@@ -4192,8 +4231,66 @@
     "NewName": "ObservedPlayerMessageReceiver",
     "NewNamespace": "EFT.NextObservedPlayer"
   },
+  "GClass3347": {
+    "NewName": "Meds",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
   "GClass3541": {
     "NewName": "VehicleMessageReceiver",
     "NewNamespace": "EFT.Vehicle"
+  },
+  "GClass3566": {
+    "NewName": "AmbientAudioSystemInitializedEvent",
+    "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+  },
+  "GClass3677": {
+    "NewName": "CustomizationClothing",
+    "NewNamespace": "EFT.Customization"
+  },
+  "GClass3685": {
+    "NewName": "ClothingIcon",
+    "NewNamespace": "EFT.Customization"
+  },
+  "GClass552": {
+    "NewName": "DebugPathElement",
+  },
+  "GClass435": {
+    "NewName": "BossGluhar",
+  },
+  "GClass1434": {
+    "NewName": "MetricDataEntity",
+  },
+  "GClass442": {
+    "NewName": "BossPartisan",
+  },
+  "GClass260": {
+    "NewName": "SeasonsSettings",
+  },
+  "GClass1380": {
+    "NewName": "GameServerPing",
+  },
+  "GClass3954": {
+    "NewName": "EquipmentBuildsStorage",
+  },
+  "GClass3956": {
+    "NewName": "WeaponBuildsStorage",
+  },
+  "GClass3669": {
+    "NewName": "MediaAnimationController",
+  },
+  "GClass807": {
+    "NewName": "ClassStateStorage",
+  },
+  "GClass1138": {
+    "NewName": "SpatialAudioDataContainer",
+	"NewNamespace": "Audio.SpatialSystem",
+	"NestedTypes": {
+      "Struct208": {
+        "NewName": "PendingRoutes"
+	  },
+	  "Struct207": {
+        "NewName": "RouteRange"
+	  }
+	}
   }
 }

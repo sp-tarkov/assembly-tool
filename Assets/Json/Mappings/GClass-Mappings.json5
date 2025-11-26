@@ -2599,7 +2599,7 @@
   },
   "GClass1919": {
     // RadioTransmitterHandlerClass
-    "NewName": "RadioTransmitterHandler",
+    "NewName": "GridDescriptor",
     "NewNamespace": "EFT"
   },
   "GClass1921": {
@@ -4686,6 +4686,193 @@
   "GClass2335": {
     "NewName": "BarterTemplate",
 	"NewNamespace": "EFT"
+  },
+  "GClass2072": {
+    "NewName": "DeferredNetworkMessage",
+	"NewNamespace": "EFT"
+  },
+  "GClass1364": {
+    "NewName": "BitReaderStream",
+	"NewNamespace": "BitPacking"
+  },
+  "GClass2077": {
+    "NewName": "Pedometer",
+	"NewNamespace": "EFT"
+  },
+  "GClass2681": {
+    "NewName": "BaseVaultingAudioController",
+	"NewNamespace": "EFT.Vaulting"
+  },
+  "GClass1502": {
+    "NewName": "PlayerSelfInflictedDamageThresholdAudioChecker",
+	"NewNamespace": "CommonAssets.Scripts.Audio"
+  },
+  "GClass3257": {
+    "NewName": "Visors",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3251": {
+    "NewName": "ArmoredEquipment",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3154": {
+    "NewName": "VisorsTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3149": {
+    "NewName": "ArmoredEquipmentTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3147": {
+    "NewName": "EquipmentTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3146": {
+    "NewName": "CompoundItemTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3617": {
+    "NewName": "BaseTraderDialogController",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass3620": {
+    "NewName": "BaseTraderDialog",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass3625": {
+    "NewName": "BaseTraderDialogLine",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass3665": {
+    "NewName": "TraderDialogTemplate",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass3666": {
+    "NewName": "DialogLineTemplate",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass4067": {
+    "NewName": "CombinedAnimationData",
+	"NewNamespace": "EFT.AnimationSequencePlayer"
+  },
+  "GClass4071": {
+    "NewName": "AnimationParams",
+	"NewNamespace": "EFT.AnimationSequencePlayer"
+  },
+  "GClass4072": {
+    "NewName": "LipSyncParams",
+	"NewNamespace": "EFT.AnimationSequencePlayer"
+  },
+  "GClass4068": {
+    "NewName": "MediaData",
+	"NewNamespace": "EFT.AnimationSequencePlayer"
+  },
+  "GClass3629": {
+    "NewName": "DialogAction",
+	"NewNamespace": "EFT.AnimationSequencePlayer"
+  },
+  "GClass3667": {
+    "NewName": "TraderDialogHistory",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass918": {
+    "NewName": "OfflinePlayerCulling"
+  },
+  "GClass1439": {
+    "NewName": "TransitSettings",
+	"NewNamespace": "JsonType"
+  },
+  "GClass2062": {
+    "NewName": "MongoIDConverter",
+	"NewNamespace": "EFT"
+  },
+  "GClass1917": {
+    "NewName": "MalfunctionDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass2063": {
+    "NewName": "MongoIdTypeConverter",
+	"NewNamespace": "EFT"
+  },
+  "GClass1405": {
+    "NewName": "ItemPreset",
+	"NewNamespace": "JsonType"
+  },
+  "GClass1408": {
+    "NewName": "ItemTemplates",
+	"NewNamespace": "JsonType"
+  },
+  "GClass1923": {
+    "NewName": "ItemComponentDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass1924": {
+    "NewName": "ItemInfoDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass3336": {
+    "NewName": "CultistAmulet",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3355": {
+    "NewName": "MarkOfUnknown",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass1851": {
+    "NewName": "AvailableCustomizationsResponse",
+	"NewNamespace": "EFT"
+  },
+  "GClass1852": {
+    "NewName": "AvailableCustomization",
+	"NewNamespace": "EFT"
+  },
+  "Class3238": {
+    "NewName": "MarkOfUnknownTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3337": {
+    "NewName": "CultistAmuletTemplat",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3353": {
+    "NewName": "SpecItem",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass1923": {
+    "NewName": "ItemComponentDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass1923": {
+    "NewName": "ItemInfo",
+	"NewNamespace": "EFT"
+  },
+  "GClass1915": {
+    "NewName": "SlotDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass1398": {
+    "NewName": "MatchingData",
+	"NewNamespace": "JsonType"
+  },
+  "GClass1916": {
+    "NewName": "ShellTemplateDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass1920": {
+    "NewName": "StackSlotDescriptor",
+	"NewNamespace": "EFT"
+  },
+  "GClass1802": {
+    "NewName": "ItemInfo",
+	"NewNamespace": "EFT"
+  },
+  "GClass3934": {
+    "NewName": "FriendsRequestResponse",
+	"NewNamespace": "EFT.UI.Chat"
+  },
+  "GClass1443": {
+    "NewName": "DamageEffectSpecification",
+	"NewNamespace": "JsonType"
   },
   "GClass2305": {
     "NewName": "CreateProfileOperation",

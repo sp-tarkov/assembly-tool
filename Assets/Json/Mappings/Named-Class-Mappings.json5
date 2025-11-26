@@ -302,5 +302,22 @@
         "NewName": "ProgressReport"
       }
     }
+  },
+  "EFT.Interactive.WorldInteractiveObject": {
+	"NestedTypes": {
+      "GStruct435": {
+        "NewName": "InteractiveObjectStatusInfo"
+      },
+	  "GStruct436": {
+        "NewName": "InteractionParameters"
+      }
+    }
+  },
+  "EFT.UI.Matchmaker.MatchmakerOfflineRaidScreen": {
+	"NestedTypes": {
+      "GClass3917": {
+        "NewName": "OfflineRaidScreenController"
+      }
+    }
   }
 }

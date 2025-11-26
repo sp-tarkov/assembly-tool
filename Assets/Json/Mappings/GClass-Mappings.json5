@@ -72,7 +72,7 @@
   "GClass24": {
     "NewName": "ReleaseProfilerSpikeAnalyser",
 	"NestedTypes": {
-      "GStruct5": {
+      "GStruct6": {
         "NewName": "SpikeSample"
       }
     }
@@ -2067,10 +2067,49 @@
     "NewName": "RaidPlayer",
     "NewNamespace": "EFT.UI.Matchmaker",
   },
+  "GClass1498": {
+    "NewName": "LocationLabyrinthTrapsData",
+    "NewNamespace": "CommonAssets.Scripts.Game.LabyrinthEvent",
+  },
+  "GClass1431": {
+    "NewName": "BackendExitTriggerSettings",
+    "NewNamespace": "JsonType",
+  },
+  "GClass1432": {
+    "NewName": "BackendSecretExitTriggerSettings",
+    "NewNamespace": "JsonType",
+  },
   "GClass1418": {
     // LocationSettingsClass
     "NewName": "LocationSettings",
     "NewNamespace": "JsonType",
+	"NestedTypes": {
+	  "GClass1419": {
+	    "NewName": "LocationInfo"
+	  },
+	  "GClass1429": {
+		"NewName": "LocationPath"
+	  },
+      "Location": {
+		"NestedTypes": {
+		  "GClass1420": {
+			"NewName": "Limit"
+		  },
+		  "GClass1421": {
+			"NewName": "LootContainer"
+		  },
+		  "GClass1423": {
+			"NewName": "AirdropParameters"
+		  },
+		  "GClass1424": {
+			"NewName": "BotLocationEvents"
+		  },
+		  "GClass1428": {
+			"NewName": "LocationBanner"
+		  }
+		}
+      }
+    }
   },
   "GClass1438": {
     // BackendConfigClass
@@ -3066,6 +3105,11 @@
     // SessionCountersClass
     "NewName": "CountersCollection",
     "NewNamespace": "EFT.Counters",
+	"NestedTypes": {
+      "GClass2264": {
+        "NewName": "Identifier"
+      }
+    }
   },
   "GClass2793": {
     "NewName": "AnimValProcessor",
@@ -4550,5 +4594,94 @@
   "GClass1900": {
     "NewName": "BtrTransferItemsController",
 	"NewNamespace": "EFT"
+  },
+  "GClass2655": {
+    "NewName": "ProjectilesCollector",
+	"NewNamespace": "EFT.Airdrop"
+  },
+  "GClass3813": {
+    "NewName": "RagfairNewOfferContext",
+	"NewNamespace": "EFT.UI"
+  },
+  "GClass3465": {
+    "NewName": "NewOfferItemContext",
+	"NewNamespace": "EFT.UI.DragAndDrop"
+  },
+  "GClass2574": {
+    "NewName": "PriceCalculator",
+	"NewNamespace": "EFT.Trading"
+  },
+  "GClass2241": {
+    "NewName": "VisualsOnlySearchController",
+	"NewNamespace": "EFT"
+  },
+  "GClass2267": {
+    "NewName": "BaseStatisticsManager",
+	"NewNamespace": "EFT"
+  },
+  "GClass2266": {
+    "NewName": "HealthStatisticsManager",
+	"NewNamespace": "EFT"
+  },
+  "GClass4001": {
+    "NewName": "PrestigeControllerClient",
+	"NewNamespace": "EFT.Prestige"
+  },
+  "GClass4002": {
+    "NewName": "PrestigeControllerClientGame",
+	"NewNamespace": "EFT.Prestige"
+  },
+  "GClass680": {
+    "NewName": "ABotProfileCreator"
+  },
+  "GClass681": {
+    "NewName": "BotProfileClient"
+  },
+  "GClass684": {
+    "NewName": "BotProfileBackuploader"
+  },
+  "GClass406": {
+    "NewName": "DebugBotProfilesStructContainer"
+  },
+  "GClass2191": {
+    "NewName": "SessionResult",
+	"NewNamespace": "EFT"
+  },
+  "GClass1399": {
+    "NewName": "WeatherResponse",
+	"NewNamespace": "JsonType"
+  },
+  "GClass2604": {
+    "NewName": "SeasonsSettings",
+	"NewNamespace": "EFT.Weather"
+  },
+  "GClass2239": {
+    "NewName": "FakeSearchController",
+	"NewNamespace": "EFT"
+  },
+  "GClass2240": {
+    "NewName": "FullySearchedSearchController",
+	"NewNamespace": "EFT"
+  },
+  "GClass3299": {
+    "NewName": "SearchableItem",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass2306": {
+    "NewName": "EftCreateProfileOperation",
+	"NewNamespace": "EFT"
+  },
+  "GClass2303": {
+    "NewName": "AFKMonitor",
+	"NewNamespace": "EFT"
+  },
+  "GClass2305": {
+    "NewName": "CreateProfileOperation",
+	"NewNamespace": "EFT",
+	"NestedTypes": {
+      "GClass230": {
+        "NewName": "PreliminaryProfileData"
+      }
+    }
   }
 }

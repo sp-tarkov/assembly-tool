@@ -1,21 +1,10 @@
 ﻿using AsmResolver;
+using AssemblyLib.Shared;
 
 namespace AssemblyLib.Extensions;
 
 internal static class Utf8Extensions
 {
-    private static readonly HashSet<string> _typesToMatch =
-    [
-        "Class",
-        "GClass",
-        // TODO: Do we even need GControl?
-        "GControl",
-        "Struct",
-        "GStruct",
-        "Interface",
-        "GInterface",
-    ];
-
     /// <param name="utf8"></param>
     extension(Utf8String utf8)
     {
@@ -67,7 +56,7 @@ internal static class Utf8Extensions
                 realString = realString.Replace("_", "");
             }
 
-            var result = _typesToMatch.Any(item => realString.StartsWith(item, StringComparison.CurrentCultureIgnoreCase));
+            var result = DataProvider.ObfuscatedNames.Any(item => realString.Contains(item, StringComparison.CurrentCultureIgnoreCase));
 
             return result;
         }

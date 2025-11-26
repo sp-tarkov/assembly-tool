@@ -18,9 +18,12 @@ public class DirectMap : ICommand
     )]
     public required string TargetAssemblyPath { get; init; }
 
+    [CommandParameter(1, IsRequired = false, Description = "The absolute path to the dummy dll")]
+    public string? DummyDllPath { get; init; }
+
     public async ValueTask ExecuteAsync(IConsole console)
     {
         var app = new App();
-        await app.RunDirectMapProcess(TargetAssemblyPath);
+        await app.RunDirectMapProcess(TargetAssemblyPath, DummyDllPath);
     }
 }

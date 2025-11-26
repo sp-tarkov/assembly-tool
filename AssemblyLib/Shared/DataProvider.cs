@@ -20,12 +20,34 @@ public class DataProvider
 
     public Settings Settings { get; }
     public ModuleDefinition? LoadedModule { get; private set; }
+    public ModuleDefinition? DummyDllModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }
+
+    public bool IsDummyDllLoaded
+    {
+        get { return DummyDllModule != null; }
+    }
 
     public Dictionary<string, DirectMapModel> DirectMapModels { get; } = [];
 
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
     private static readonly string _directMappingPath = Path.Combine(_assetsPath, "Json", "Mappings");
+
+    public static readonly HashSet<string> ObfuscatedNames =
+    [
+        "Class",
+        "Delegate",
+        "GAttribute",
+        "GException",
+        "GDelegate",
+        "Exception",
+        "GClass",
+        "GControl",
+        "Struct",
+        "GStruct",
+        "Interface",
+        "GInterface",
+    ];
 
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
@@ -39,6 +61,14 @@ public class DataProvider
         }
 
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");
+        return module;
+    }
+
+    public ModuleDefinition LoadDummyDllModule(string path)
+    {
+        var module = ModuleDefinition.FromFile(path);
+
+        DummyDllModule = module ?? throw new NullReferenceException("Dummy Module is null...");
         return module;
     }
 

@@ -1,0 +1,113 @@
+using AsmResolver.DotNet;
+using AssemblyLib.DirectMapper.SignatureComparers;
+using AssemblyLib.Extensions;
+using AssemblyLib.Shared;
+using Serilog;
+using SPTarkov.DI.Annotations;
+
+namespace AssemblyLib.DirectMapper.Renamers;
+
+[Injectable]
+public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer methodSignatureComparer)
+{
+    // Key - Target :: Val - Dummy
+    private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
+
+    public void RenameMembersBySignature()
+    {
+        if (!dataProvider.IsDummyDllLoaded)
+        {
+            return;
+        }
+
+        var targetTypes = dataProvider
+            .LoadedModule!.GetAllTypes()
+            .Where(t => !t.FullName.IsObfuscatedName() && !t.IsCompilerGenerated())
+            .ToList();
+
+        var dummyTargetTypes = GetTargetTypesInDummy(targetTypes);
+        BuildTargetToDummyMap(targetTypes, dummyTargetTypes);
+        RenameAllTypes();
+    }
+
+    private List<TypeDefinition> GetTargetTypesInDummy(IEnumerable<TypeDefinition> targetTypes)
+    {
+        var targetTypeNameList = targetTypes.Select(t => t.FullName).ToList();
+        return dataProvider
+            .DummyDllModule!.GetAllTypes()
+            .Where(type => targetTypeNameList.Contains(type.FullName))
+            .ToList();
+    }
+
+    private void BuildTargetToDummyMap(
+        IEnumerable<TypeDefinition> targetTypes,
+        IEnumerable<TypeDefinition> dummyTargetTypes
+    )
+    {
+        foreach (var target in targetTypes)
+        {
+            var dummyType = dummyTargetTypes.FirstOrDefault(t => t.FullName == target.FullName);
+            if (dummyType is null)
+            {
+                Log.Error("Could not find dummy type {dummy} when building target to dummy map", target.FullName);
+                continue;
+            }
+
+            _targetToDummyMap.Add(target, dummyType);
+        }
+
+        Log.Information("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
+    }
+
+    private void RenameAllTypes()
+    {
+        foreach (var (targetType, dummyType) in _targetToDummyMap)
+        {
+            RenameMethodsOnType(targetType, dummyType);
+        }
+    }
+
+    private void RenameMethodsOnType(TypeDefinition targetType, TypeDefinition dummyType)
+    {
+        var targetMethods = targetType.Methods.Where(FilterMethods);
+        var dummyMethods = dummyType.Methods.Where(FilterMethods).ToList();
+
+        var dummyMethodNames = dummyMethods.Select(m => m.Name).ToHashSet();
+
+        foreach (var targetMethod in targetMethods)
+        {
+            // Already a named method, or is a void type method with no parameters
+            if (
+                dummyMethodNames.Contains(targetMethod.Name)
+                || methodSignatureComparer.IsVoidMethodWithNoParameters(targetMethod)
+            )
+            {
+                continue;
+            }
+
+            foreach (var dummyMethod in dummyMethods.ToArray())
+            {
+                if (!methodSignatureComparer.IsSame(targetMethod, dummyMethod))
+                {
+                    continue;
+                }
+
+                Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                targetMethod.Name = dummyMethod.Name;
+                dummyMethods.Remove(dummyMethod);
+                break;
+            }
+        }
+    }
+
+    private static bool FilterMethods(MethodDefinition m)
+    {
+        return !m.IsCompilerControlled
+            && !m.IsGetMethod
+            && !m.IsSetMethod
+            && !m.IsConstructor
+            && !m.IsAddMethod
+            && !m.IsRemoveMethod
+            && !m.IsFireMethod;
+    }
+}

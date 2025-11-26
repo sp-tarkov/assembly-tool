@@ -15,10 +15,10 @@ public class App
         ConfigureApplication();
     }
 
-    public async Task RunDirectMapProcess(string targetAssemblyPath)
+    public async Task RunDirectMapProcess(string targetAssemblyPath, string? dummyDllPath)
     {
         var controller = _provider?.GetService<DirectMapController>();
-        await controller?.Run(targetAssemblyPath)!;
+        await controller?.Run(targetAssemblyPath, dummyDllPath)!;
     }
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)

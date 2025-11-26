@@ -1,5 +1,6 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.Patches;
+using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
@@ -13,6 +14,7 @@ public class DirectMapController(
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     RenamerService renamerService,
+    SigBasedMemberRenamer sigBasedMemberRenamer,
     Publicizer publicizer,
     IEnumerable<IPatch> patches
 )
@@ -22,7 +24,7 @@ public class DirectMapController(
 
     private string _targetAssemblyPath = string.Empty;
 
-    public async Task Run(string assemblyPath)
+    public async Task Run(string assemblyPath, string? dummyDllPath)
     {
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
@@ -33,6 +35,14 @@ public class DirectMapController(
         }
 
         await RunRenamingProcess();
+
+        if (!string.IsNullOrEmpty(dummyDllPath))
+        {
+            dataProvider.LoadDummyDllModule(dummyDllPath);
+            Log.Information("Dummy DLL loaded.");
+            await RenameBySignature();
+        }
+
         await PublicizeObfuscatedTypes();
         await ApplyPatches();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
@@ -116,6 +126,12 @@ public class DirectMapController(
             patch.Patch();
         }
 
+        return Task.CompletedTask;
+    }
+
+    private Task RenameBySignature()
+    {
+        sigBasedMemberRenamer.RenameMembersBySignature();
         return Task.CompletedTask;
     }
 

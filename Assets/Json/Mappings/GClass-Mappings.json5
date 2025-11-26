@@ -2878,6 +2878,10 @@
     "NewName": "ImprovementController",
     "NewNamespace": "EFT.Hideout",
   },
+  "GClass2545": {
+    "NewName": "BufferZoneAccessDeniedNotification",
+    "NewNamespace": "EFT.Communications",
+  },
   "GClass2450": {
     // HideoutClass
     "NewName": "FuelConsumption",

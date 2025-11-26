@@ -87,7 +87,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
         var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
         // Prefix backing fields with an underscore
-        var firstChar = field.IsBackingField() ? '_' : char.ToUpper(newName[0]);
+        var firstChar = field.IsBackingField() ? $"_{newName[0]}" : $"{char.ToUpper(newName[0])}";
 
         stats.FieldRenamedCount++;
         return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");

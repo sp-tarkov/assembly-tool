@@ -2888,11 +2888,6 @@
     "NewName": "Notification",
     "NewNamespace": "EFT.Communications",
   },
-  "GClass2545": {
-    // SpawnSystemClass
-    "NewName": "SpawnSystem",
-    "NewNamespace": "EFT.Game.Spawning",
-  },
   "GClass2566": {
     // NotificationManagerClass
     "NewName": "NotificationManager",

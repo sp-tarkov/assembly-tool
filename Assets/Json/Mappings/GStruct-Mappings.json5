@@ -763,5 +763,13 @@
   "GStruct462": {
     "NewName": "AchievementsGlobalProgressDTO",
     "NewNamespace": "EFT.Achievements"
+  },
+  "GStruct429": {
+    "NewName": "SpawnSystemSettings",
+    "NewNamespace": "EFT.Game.Spawning"
+  },
+  "GStruct309": {
+    "NewName": "WindParamsSet",
+    "NewNamespace": "EFT.Weather"
   }
 }

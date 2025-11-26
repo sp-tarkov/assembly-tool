@@ -2380,6 +2380,12 @@
 	"NestedTypes": {
       "GClass1659": {
         "NewName": "TokenBase"
+      },
+	  "GClass1661": {
+        "NewName": "Token"
+      },
+	  "GClass1660": {
+        "NewName": "TokenContainer"
       }
     }
   },
@@ -4432,5 +4438,29 @@
   "GClass1221": {
     "NewName": "SamplingTask",
     "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GClass3502": {
+    "NewName": "ToggleOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GClass3430": {
+    "NewName": "ToggleResult",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GClass3475`1": {
+    "NewName": "AbstractAsyncOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GClass3472": {
+    "NewName": "CommandWithOwner",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GClass3104": {
+    "NewName": "NetworkQualityParam",
+    "NewNamespace": "EFT.Network.Quality"
+  },
+  "GClass2384": {
+    "NewName": "CloudRenderer",
+    "NewNamespace": "EFT.Rendering.Clouds"
   }
 }

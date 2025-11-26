@@ -300,5 +300,84 @@
   "Class983": {
     "NewName": "NtpRequest",
     "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+  },
+  "Class822": {
+    "NewName": "AverageAttenuatedDirectionJobScheduler",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Class679": {
+    "NewName": "SnowRenderer"
+  },
+  "Class683": {
+    "NewName": "GUIScreenTex"
+  },
+  "Class684": {
+    "NewName": "GUITiledTex"
+  },
+  "Class280": {
+    "NewName": "GetInCoverRequest"
+  },
+  "Class2559": {
+    "NewName": "LoggerExtension",
+    "NewNamespace": "EFT.Game.Spawning"
+  },
+  "Class2500": {
+    "NewName": "PlayerToggleOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "Class2275": {
+    "NewName": "NetworkQualityWatcher",
+    "NewNamespace": "EFT.Network.Quality"
+  },
+  "Class2117": {
+    "NewName": "WindCalculator",
+    "NewNamespace": "EFT.Weather"
+  },
+  "Class2100": {
+    "NewName": "ImpostorsDrawInstance",
+    "NewNamespace": "EFT.Impostors"
+  },
+  "Class2097": {
+    "NewName": "ImpostorsCameraContextAbstract",
+    "NewNamespace": "EFT.Impostors"
+  },
+  "Class2105": {
+    "NewName": "ImpostorsMaterialLoader",
+    "NewNamespace": "EFT.Impostors",
+	"NestedTypes": {
+      "Class2106": {
+        "NewName": "State"
+      }
+    }
+  },
+  "Class2098": {
+    "NewName": "ImpostorsMainCameraContext",
+    "NewNamespace": "EFT.Impostors",
+  },
+  "Class1826": {
+    "NewName": "EFTDisplayHelper",
+    "NewNamespace": "EFT.Settings.Graphics",
+  },
+  "Class1821": {
+    "NewName": "CloudLayerRenderer",
+    "NewNamespace": "EFT.Rendering.Clouds",
+  },
+  "Class2545": {
+    "NewName": "SpawnSystem",
+    "NewNamespace": "EFT.Game.Spawning",
+	"NestedTypes": {
+      "Class408": {
+        "NewName": "Logger"
+      }
+    }
+  },
+  "Class2275": {
+    "NewName": "NetworkQualityWatcher",
+    "NewNamespace": "EFT.Network.Quality",
+	"NestedTypes": {
+      "Class2277": {
+        "NewName": "Core"
+      }
+    }
   }
 }

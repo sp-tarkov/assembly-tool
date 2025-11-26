@@ -4675,6 +4675,18 @@
     "NewName": "AFKMonitor",
 	"NewNamespace": "EFT"
   },
+  "GClass3107": {
+    "NewName": "Note",
+	"NewNamespace": "EFT.Notes"
+  },
+  "GClass2426": {
+    "NewName": "HideoutSlot",
+	"NewNamespace": "EFT"
+  },
+  "GClass2335": {
+    "NewName": "BarterTemplate",
+	"NewNamespace": "EFT"
+  },
   "GClass2305": {
     "NewName": "CreateProfileOperation",
 	"NewNamespace": "EFT",

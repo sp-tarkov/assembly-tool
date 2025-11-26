@@ -4679,7 +4679,7 @@
     "NewName": "CreateProfileOperation",
 	"NewNamespace": "EFT",
 	"NestedTypes": {
-      "GClass230": {
+      "GClass2307": {
         "NewName": "PreliminaryProfileData"
       }
     }

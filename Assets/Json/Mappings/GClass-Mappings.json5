@@ -72,7 +72,7 @@
   "GClass24": {
     "NewName": "ReleaseProfilerSpikeAnalyser",
 	"NestedTypes": {
-      "GStruct5": {
+      "GStruct6": {
         "NewName": "SpikeSample"
       }
     }

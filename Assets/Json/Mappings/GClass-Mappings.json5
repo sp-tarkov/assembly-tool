@@ -3163,7 +3163,7 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3361": {
-    "NewName": "AmmoTemplate",
+    "NewName": "Ammo",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3364": {
@@ -4461,5 +4461,9 @@
   "GClass2384": {
     "NewName": "CloudRenderer",
     "NewNamespace": "EFT.Rendering.Clouds"
+  },
+  "GClass3360": {
+    "NewName": "StackableItem",
+	"NewNamespace": "EFT.InventoryLogic"
   }
 }

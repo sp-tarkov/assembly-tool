@@ -70,7 +70,7 @@
     "NewName": "SimpleProfiler",
   },
   "GClass24": {
-    "NewName": "ReleaseProfileSpikeAnalyser",
+    "NewName": "ReleaseProfilerSpikeAnalyser",
 	"NestedTypes": {
       "GStruct5": {
         "NewName": "SpikeSample"
@@ -93,7 +93,7 @@
     "NewName": "CoreActionResultParamsFlankMove",
   },
   "GClass30": {
-    "NewName": "CoreActionGoToPoint",
+    "NewName": "CoreActionResultGoToPoint",
   },
   "GClass31": {
     "NewName": "MoveToCoverActionResultData",
@@ -173,7 +173,7 @@
     "NewName": "BossBoarPatrolLayer",
   },
   "GClass55": {
-    "NewName": "BoarFightAbstractLayer",
+    "NewName": "BoarBossFightLayer",
   },
   "GClass56": {
     "NewName": "BoarFightAbstractLayer",
@@ -218,7 +218,7 @@
     "NewName": "BaseBTRLayer",
   },
   "GClass70": {
-    "NewName": "SupressEnemiesBTRLayer",
+    "NewName": "SuppressEnemiesBTRLayer",
   },
   "GClass71": {
     "NewName": "DebugLogicLayer",
@@ -1022,7 +1022,7 @@
   },
   "GClass757": {
     // WeaponAnimationSpeedControllerClass
-    "NewName": "AnimationControllersParametersTable",
+    "NewName": "AnimationControllerParametersTable",
   },
   "GClass775": {
     "NewName": "PhysicalBase",
@@ -2430,6 +2430,10 @@
     "NewName": "BotMemory",
     "NewNamespace": "EFT",
   },
+  "GClass1714": {
+    "NewName": "HandbookSettings",
+    "NewNamespace": "EFT",
+  },
   "GClass1715": {
     // BackendConfigSettingsClass
     "NewName": "GlobalConfiguration",
@@ -2437,7 +2441,55 @@
     "NestedTypes": {
       "GInterface168": {
         "NewName": "ITraderInfo"
-      }
+      },
+	  "GClass1717": {
+        "NewName": "RepairKitSettings"
+      },
+	  "GClass1720": {
+        "NewName": "ExperienceSettings"
+      },
+	  "GClass1728": {
+        "NewName": "HealthSettings"
+      },
+	  "GClass1732": {
+        "NewName": "ArmorSettings"
+      },
+	  "GClass1734": {
+        "NewName": "MasteringGroup"
+      },
+	  "GClass1735": {
+        "NewName": "StaminaPolygonalGraph"
+      },
+	  "GClass1736": {
+        "NewName": "StaminaParameters"
+      },
+	  "GClass1738": {
+        "NewName": "MalfunctionSettings"
+      },
+	  "GClass1739": {
+        "NewName": "OverheatSettings"
+      },
+	  "GClass1740": {
+        "NewName": "BallisticSettings"
+      },
+	  "GClass1741": {
+        "NewName": "AirdropSettings"
+      },
+	  "GClass1744": {
+        "NewName": "CoopSettings"
+      },
+	  "GClass1745": {
+        "NewName": "PveGlobalSettings"
+      },
+	  "GClass1746": {
+        "NewName": "EventGlobalSettings"
+      },
+	  "GClass1747": {
+        "NewName": "TransitGlobalSettings"
+      },
+	  "GClass1748": {
+        "NewName": "RunddansGlobalSettings"
+      },
     }
   },
   "GClass1792": {
@@ -4470,5 +4522,33 @@
   "GClass3360": {
     "NewName": "StackableItem",
 	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass1894": {
+    "NewName": "TimeFlowTypeExtensions",
+	"NewNamespace": "EFT"
+  },
+  "GClass1895": {
+    "NewName": "BotAmountExtensions",
+	"NewNamespace": "EFT"
+  },
+  "GClass1896": {
+    "NewName": "BotDifficultyExtensions",
+	"NewNamespace": "EFT"
+  },
+  "GClass1897": {
+    "NewName": "Thermobaric",
+	"NewNamespace": "EFT"
+  },
+  "GClass1898": {
+    "NewName": "TrafficData",
+	"NewNamespace": "EFT"
+  },
+  "GClass1899": {
+    "NewName": "TransferItemsController",
+	"NewNamespace": "EFT"
+  },
+  "GClass1900": {
+    "NewName": "BtrTransferItemsController",
+	"NewNamespace": "EFT"
   }
 }

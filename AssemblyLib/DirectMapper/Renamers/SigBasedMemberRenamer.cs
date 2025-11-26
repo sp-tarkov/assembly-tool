@@ -92,7 +92,7 @@ public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer 
                     continue;
                 }
 
-                Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                //Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
                 targetMethod.Name = dummyMethod.Name;
                 dummyMethods.Remove(dummyMethod);
                 break;

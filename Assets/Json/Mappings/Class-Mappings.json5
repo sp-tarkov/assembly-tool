@@ -382,5 +382,12 @@
         "NewName": "Core"
       }
     }
+  },
+  "EFT.UI.Matchmaker.MachmakerOfflineRaidScreen": {
+	"NestedTypes": {
+      "GClass3917": {
+        "NewName": "OfflineRaidScreenController"
+      }
+    }
   }
 }

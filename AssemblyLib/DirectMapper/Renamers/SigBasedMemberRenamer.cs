@@ -1,3 +1,4 @@
+using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
@@ -8,7 +9,12 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer methodSignatureComparer)
+public class SigBasedMemberRenamer(
+    DataProvider dataProvider,
+    MethodSigComparer methodSignatureComparer,
+    FieldSigComparer fieldSignatureComparer,
+    MemberReferenceCache memberReferenceCache
+)
 {
     // Key - Target :: Val - Dummy
     private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
@@ -64,6 +70,7 @@ public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer 
         foreach (var (targetType, dummyType) in _targetToDummyMap)
         {
             RenameMethodsOnType(targetType, dummyType);
+            RenameFieldsOnType(targetType, dummyType);
         }
     }
 
@@ -92,9 +99,41 @@ public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer 
                     continue;
                 }
 
-                Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                //Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
                 targetMethod.Name = dummyMethod.Name;
                 dummyMethods.Remove(dummyMethod);
+                break;
+            }
+        }
+    }
+
+    private void RenameFieldsOnType(TypeDefinition targetType, TypeDefinition dummyType)
+    {
+        var targetFields = targetType.Fields.Where(FilterFields);
+        var dummyFields = dummyType.Fields.Where(FilterFields).ToList();
+
+        var dummyFieldNames = dummyFields.Select(f => f.Name).ToHashSet();
+
+        foreach (var targetField in targetFields)
+        {
+            if (dummyFieldNames.Contains(targetField.Name))
+            {
+                continue;
+            }
+
+            foreach (var dummyField in dummyFields.ToArray())
+            {
+                if (!fieldSignatureComparer.IsSame(targetField, dummyField))
+                {
+                    continue;
+                }
+
+                //Log.Information("Renaming field: {old} -> {new}", targetField.FullName, dummyField.FullName);
+
+                UpdateFieldMemberReferences(targetField, targetField.Name!);
+                targetField.Name = dummyField.Name;
+
+                dummyFields.Remove(dummyField);
                 break;
             }
         }
@@ -110,5 +149,20 @@ public class SigBasedMemberRenamer(DataProvider dataProvider, MethodSigComparer 
             && !m.IsAddMethod
             && !m.IsRemoveMethod
             && !m.IsFireMethod;
+    }
+
+    private static bool FilterFields(FieldDefinition f)
+    {
+        return !f.IsCompilerGenerated();
+    }
+
+    private void UpdateFieldMemberReferences(FieldDefinition target, Utf8String newName)
+    {
+        var cachedReferences = memberReferenceCache.GetFieldReferences(target);
+
+        foreach (var reference in cachedReferences)
+        {
+            reference.Name = newName;
+        }
     }
 }

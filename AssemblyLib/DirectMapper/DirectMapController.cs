@@ -16,6 +16,7 @@ public class DirectMapController(
     RenamerService renamerService,
     SigBasedMemberRenamer sigBasedMemberRenamer,
     Publicizer publicizer,
+    MemberReferenceCache memberReferenceCache,
     IEnumerable<IPatch> patches
 )
 {
@@ -28,6 +29,8 @@ public class DirectMapController(
     {
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
+
+        memberReferenceCache.Hydrate();
 
         if (!TryDeobfuscateAssembly())
         {

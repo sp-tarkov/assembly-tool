@@ -10,7 +10,8 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRenamer
+public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberReferenceCache memberReferenceCache)
+    : IRenamer
 {
     public int Priority { get; } = 1;
 
@@ -66,7 +67,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
 
                 fieldCount++;
 
-                UpdateMemberReferences(module, field, newFieldName);
+                UpdateFieldReferences(field, newFieldName);
                 field.Name = newFieldName;
             }
         }
@@ -78,7 +79,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
         {
             var newName = CapitalizeFieldName(field);
             field.Name = newName;
-            UpdateMemberReferences(dataProvider.LoadedModule!, field, newName);
+            UpdateFieldReferences(field, newName);
         }
     }
 
@@ -122,21 +123,12 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats) : IRename
         return new Utf8String(strName);
     }
 
-    private static void UpdateMemberReferences(ModuleDefinition module, FieldDefinition target, Utf8String newName)
+    private void UpdateFieldReferences(FieldDefinition field, Utf8String newName)
     {
-        foreach (var reference in module.GetImportedMemberReferences().Where(r => r.Resolve() == target))
-        {
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                Log.Debug(
-                    "Updating Field Reference to [{TargetDeclaringType}::{TargetName}] to [{TypeDefinition}::{Utf8String}]",
-                    target.DeclaringType,
-                    target.Name?.ToString(),
-                    target.DeclaringType,
-                    newName.ToString()
-                );
-            }
+        var references = memberReferenceCache.GetFieldReferences(field);
 
+        foreach (var reference in references)
+        {
             reference.Name = newName;
         }
     }

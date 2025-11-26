@@ -71,6 +71,11 @@
   },
   "GClass24": {
     "NewName": "ReleaseProfileSpikeAnalyser",
+	"NestedTypes": {
+      "GStruct5": {
+        "NewName": "SpikeSample"
+      }
+    }
   },
   "GClass25": {
     "NewName": "AIPeriodAction",
@@ -1034,7 +1039,7 @@
   },
   "GClass825": {
     // LayerMaskClass
-    "NewName": "LayerMaskController",
+    "NewName": "LayersMaskController",
   },
   "GClass833": {
     "NewName": "ObjectVisibility",
@@ -2936,7 +2941,7 @@
   },
   "GClass2633": {
     // CacheResourcesPopAbstractClass
-    "NewName": "ResourceCache",
+    "NewName": "ResourcesCache",
     "NewNamespace": "EFT.Utilities",
   },
   "GClass2640": {

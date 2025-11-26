@@ -4882,5 +4882,126 @@
         "NewName": "PreliminaryProfileData"
       }
     }
+  },
+  "GClass3100": {
+    "NewName": "NetworkLoseStatistics",
+    "NewNamespace": "EFT.Network.Statistics"
+  },
+  "GClass3101": {
+    "NewName": "NetworkValueStatistics",
+    "NewNamespace": "EFT.Network.Statistics"
+  },
+  "GClass3102": {
+    "NewName": "NetworkAverageIntStatistics",
+    "NewNamespace": "EFT.Network.Statistics"
+  },
+  "GClass3103": {
+    "NewName": "NetworkAverageFloatStatistics",
+    "NewNamespace": "EFT.Network.Statistics"
+  },
+  "GClass3105": {
+    "NewName": "NetworkQualityParams",
+    "NewNamespace": "EFT.Network.Quality"
+  },
+  "GClass3106": {
+    "NewName": "NetworkQualityUnionWatcher",
+    "NewNamespace": "EFT.Network.Quality",
+    "NestedTypes": {
+      "GDelegate78": {
+        "NewName": "KickDelegate"
+      }
+    }
+  },
+  "GClass3107": {
+    "NewName": "Note",
+    "NewNamespace": "EFT.Notes"
+  },
+  "GClass3112": {
+    "NewName": "ContainerCollectionExtension",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3113": {
+    "NewName": "ContainerExtensions",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3115": {
+    "NewName": "CornucopiaGrid",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3413": {
+    "NewName": "ContainerRemoveResult",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3116": {
+    "NewName": "ReferenceGrid",
+    "NewNamespace": "EFT.InventoryLogic",
+    "NestedTypes": {
+      "Class2317": {
+        "NewName": "GridItemReferenceCollection"
+      },
+      "Class2459": {
+        "NewName": "ReferenceItemAddress"
+      }
+    }
+  },
+  "GClass3117": {
+    "NewName": "SearchableGrid",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3118": {
+    "NewName": "ObservedPlayerTempGrid",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3119": {
+    "NewName": "GridExtensions",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3120": {
+    "NewName": "GridItemCollection",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3121": {
+    "NewName": "GridSerializer",
+    "NewNamespace": "EFT.InventoryLogic",
+    "NestedTypes": {
+      "Class3122": {
+        "NewName": "GridProps"
+      }
+    }
+  },
+  "GClass3123": {
+    "NewName": "FailedInventoryResult",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3124": {
+    "NewName": "ItemFilterExtension",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3125": {
+    "NewName": "ArmorSlot",
+  },
+  "GClass3126": {
+    "NewName": "SlotSerializer",
+    "NestedTypes": {
+      "Class3127": {
+        "NewName": "SlotProps"
+      }
+    }
+  },
+  "GClass3128": {
+    "NewName": "StackSlotSerializer",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3130": {
+    "NewName": "CurrencyUtil",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3132": {
+    "NewName": "ArmorPlatesFormatter",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3133": {
+    "NewName": "BarterItemTemplate",
+    "NewNamespace": "EFT.InventoryLogic"
   }
 }

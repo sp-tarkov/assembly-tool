@@ -4291,5 +4291,146 @@
         "NewName": "RouteRange"
 	  }
 	}
+  },
+  "GClass1051": {
+    "NewName": "ChatRoomState",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1055": {
+    "NewName": "ChatContacts",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1057": {
+    "NewName": "FriendsInvitationSerializer",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1058": {
+    "NewName": "UpdatableChatMemberSerializer",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass1065": {
+    "NewName": "ChatMessageItems",
+    "NewNamespace": "ChatShared"
+  },
+  "GClass3321": {
+    "NewName": "Stash",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass1079`1": {
+    "NewName": "Accessor",
+    "NewNamespace": "Bsg.GameSettings"
+  },
+  "GClass1134": {
+    "NewName": "SpatialAudioOcclusionCombinedCalculator",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1135": {
+    "NewName": "FakeSpatialAudioCalculator",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+  },
+  "GClass1136": {
+    "NewName": "AsyncRaycaster",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1137": {
+    "NewName": "SoundPropagationJobScheduler",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1139": {
+    "NewName": "SpatialAudioDataLoader",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1140": {
+    "NewName": "InteractiveObjectOccluder",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1141": {
+    "NewName": "SpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1148": {
+    "NewName": "SpatialAudioOccluderFactory",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1149": {
+    "NewName": "EmptyAudioRoom",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1150": {
+    "NewName": "SpatialAudioPortalLogger",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1151": {
+    "NewName": "SpatialAudioRoomLogger",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1152": {
+    "NewName": "SoundOcclusionVolumeDependentChecker",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "GClass1153": {
+    "NewName": "DirectionalWeightCalculator",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1154": {
+    "NewName": "DistancePercentageCalculator",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1155": {
+    "NewName": "FilterCutoffCalculator",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1156": {
+    "NewName": "FloorHeightCalculator",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1158": {
+    "NewName": "GUIUtils",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1159`1": {
+    "NewName": "Octree",
+    "NewNamespace": "Audio.SpatialSystem.Utils",
+    "NestedTypes": {
+      "Class797": {
+        "NewName": "Node"
+      }
+    }
+  },
+  "GClass1160": {
+    "NewName": "PositionChangeChecker",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1161": {
+    "NewName": "ResonanceCalculator",
+    "NewNamespace": "Audio.SpatialSystem.Utils"
+  },
+  "GClass1171": {
+    "NewName": "FakeAudioOcclusionCalculator",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator.CombinedOcclusionCalculator"
+  },
+  "GClass1191": {
+    "NewName": "PathMovementBackwardStrategy",
+    "NewNamespace": "Audio.AmbientSubsystem.PathMoverStrategy"
+  },
+  "GClass1192": {
+    "NewName": "PathMovementForwardStrategy",
+    "NewNamespace": "Audio.AmbientSubsystem.PathMoverStrategy"
+  },
+  "GClass1193": {
+    "NewName": "PathMovementRandomStrategy",
+    "NewNamespace": "Audio.AmbientSubsystem.PathMoverStrategy"
+  },
+  "GClass1218": {
+    "NewName": "PixelDataObjectSampleSet",
+    "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GClass1219": {
+    "NewName": "PixelDataSamplingTaskResult",
+    "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GClass1221": {
+    "NewName": "SamplingTask",
+    "NewNamespace": "Koenigz.PerfectCulling"
   }
 }

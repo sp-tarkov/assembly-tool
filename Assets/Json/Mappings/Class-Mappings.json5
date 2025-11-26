@@ -366,7 +366,10 @@
     "NewName": "SpawnSystem",
     "NewNamespace": "EFT.Game.Spawning",
 	"NestedTypes": {
-      "Class408": {
+      "Class2546": {
+        "NewName": "SpawnPointsFilteredCollection"
+		},
+	  "Class408": {
         "NewName": "Logger"
       }
     }

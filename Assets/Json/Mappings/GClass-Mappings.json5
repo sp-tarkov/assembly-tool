@@ -71,6 +71,11 @@
   },
   "GClass24": {
     "NewName": "ReleaseProfileSpikeAnalyser",
+	"NestedTypes": {
+      "GStruct5": {
+        "NewName": "SpikeSample"
+      }
+    }
   },
   "GClass25": {
     "NewName": "AIPeriodAction",
@@ -1034,7 +1039,7 @@
   },
   "GClass825": {
     // LayerMaskClass
-    "NewName": "LayerMaskController",
+    "NewName": "LayersMaskController",
   },
   "GClass833": {
     "NewName": "ObjectVisibility",
@@ -2878,6 +2883,10 @@
     "NewName": "ImprovementController",
     "NewNamespace": "EFT.Hideout",
   },
+  "GClass2545": {
+    "NewName": "BufferZoneAccessDeniedNotification",
+    "NewNamespace": "EFT.Communications",
+  },
   "GClass2450": {
     // HideoutClass
     "NewName": "FuelConsumption",
@@ -2932,7 +2941,7 @@
   },
   "GClass2633": {
     // CacheResourcesPopAbstractClass
-    "NewName": "ResourceCache",
+    "NewName": "ResourcesCache",
     "NewNamespace": "EFT.Utilities",
   },
   "GClass2640": {
@@ -3159,7 +3168,7 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3361": {
-    "NewName": "AmmoTemplate",
+    "NewName": "Ammo",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3364": {
@@ -4457,5 +4466,9 @@
   "GClass2384": {
     "NewName": "CloudRenderer",
     "NewNamespace": "EFT.Rendering.Clouds"
+  },
+  "GClass3360": {
+    "NewName": "StackableItem",
+	"NewNamespace": "EFT.InventoryLogic"
   }
 }

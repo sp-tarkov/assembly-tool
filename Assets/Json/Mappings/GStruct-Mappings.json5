@@ -771,5 +771,17 @@
   "GStruct309": {
     "NewName": "WindParamsSet",
     "NewNamespace": "EFT.Weather"
+  },
+  "GStruct330": {
+    "NewName": "ObservedPlayerSpawnMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GStruct328": {
+    "NewName": "ArenaObservedPlayerSpawnMessage",
+    "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GStruct342": {
+    "NewName": "ObservedPlayerMovementModel",
+    "NewNamespace": "EFT.NextObservedPlayer"
   }
 }

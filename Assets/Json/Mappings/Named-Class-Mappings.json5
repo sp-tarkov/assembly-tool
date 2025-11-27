@@ -327,5 +327,19 @@
         "NewName": "OfflineRaidScreenController"
       }
     }
+  },
+  "EFT.HealthSystem.ActiveHealthController": {
+	"NestedTypes": {
+      "GClass3008": {
+        "NewName": "Effect"
+      }
+    }
+  },
+  "EFT.BonusController": {
+	"NestedTypes": {
+      "Class1131": {
+        "NewName": "BonusCollection"
+      }
+    }
   }
 }

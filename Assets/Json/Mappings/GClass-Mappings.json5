@@ -5005,5 +5005,305 @@
   "GClass3133": {
     "NewName": "BarterItemTemplate",
     "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass2613": {
+    "NewName": "BinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2614": {
+    "NewName": "FixedUpdateBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2616": {
+    "NewName": "FrameWithoutFixedUpdatesBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2617": {
+    "NewName": "GameUpdateBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2618": {
+    "NewName": "MaxClientServerTimeDiffBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2619": {
+    "NewName": "MaxClientServerTimeDiffByPlayerBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2620": {
+    "NewName": "MaxLossBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2621": {
+    "NewName": "MaxPacketsQueueCountBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2622": {
+    "NewName": "MaxPacketsQueueTimeBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2623": {
+    "NewName": "MaxRttBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2624": {
+    "NewName": "ReceivedPacketsCountBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2625": {
+    "NewName": "RenderBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2626": {
+    "NewName": "UnprocessedPacketsCountBinMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2627": {
+    "NewName": "MemoryMetricCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2628": {
+    "NewName": "MetricsCollector",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2631": {
+    "NewName": "ServerMetrics",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2634": {
+    "NewName": "ExceptionHelper",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2639": {
+    "NewName": "SharedSettingsClientMetricsInfo",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2643": {
+    "NewName": "BenchmarkScreenshot",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2644": {
+    "NewName": "CpuAffinityHelper",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2645": {
+    "NewName": "GetDriveTypeUtility",
+	"NewNamespace": "EFT.Utilities"
+  },
+  "GClass2649": {
+    "NewName": "TripwireManager",
+	"NewNamespace": "EFT.SyncronizableObjects"
+  },
+  "GClass2652": {
+    "NewName": "ClientAirdropManager",
+	"NewNamespace": "EFT.Airdrop"
+  },
+  "GClass2659": {
+    "NewName": "RandomXORShift",
+	"NewNamespace": "EFT.PseudoRandom"
+  },
+  "GClass2661": {
+    "NewName": "PrestigeTemplate",
+	"NewNamespace": "EFT.Prestige",
+	"NestedTypes": {
+      "GClass2662": {
+        "NewName": "ItemsTransferConfig",
+		"NestedTypes": {
+		  "GClass2663": {
+			"NewName": "TransferStashConfig"
+		  },
+		  "GClass2665": {
+			"NewName": "AbilitiesConfig"
+		  }
+		  }
+		}
+      }
+  },
+  "GClass2293": {
+    "NewName": "ServerHardwareDescription",
+	"NewNamespace": "EFT"
+  },
+  "GClass4050": {
+    "NewName": "PrestigeReward",
+	"NewNamespace": "EFT.Prestige"
+  },
+  "GClass2666": {
+    "NewName": "MountingPointDetectionSystem",
+	"NewNamespace": "EFT.WeaponMounting"
+  },
+  "GClass2667": {
+    "NewName": "WeaponMountingComponent",
+	"NewNamespace": "EFT.WeaponMounting"
+  },
+  "GClass2669": {
+    "NewName": "MountingGridOptionsPage",
+	"NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
+  },
+  "GClass2672": {
+    "NewName": "BaseVaultingMoveModel",
+	"NewNamespace": "EFT.Vaulting"
+  },
+  "GClass2675": {
+    "NewName": "BaseVaultingMoveRestrictions",
+	"NewNamespace": "EFT.Vaulting"
+  },
+  "GClass2679": {
+    "NewName": "VaultingComponent",
+	"NewNamespace": "EFT.Vaulting"
+  },
+  "GClass2684": {
+    "NewName": "ApproximationPageView",
+	"NewNamespace": "EFT.Vaulting.Debug.View"
+  },
+  "GClass2727": {
+    "NewName": "AnimatedInteractionsView",
+	"NewNamespace": "EFT.AnimatedInteractionsSubsystem.View"
+  },
+  "GClass2725": {
+    "NewName": "LeftHandController",
+	"NewNamespace": "EFT.ItemInHandSubsystem"
+  },
+  "GClass2726": {
+    "NewName": "AnimatedInteractions",
+	"NewNamespace": "EFT.ItemInHandSubsystem"
+  },
+  "GClass276": {
+    "NewName": "ShootFromPlace",
+  },
+  "GClass277": {
+    "NewName": "ShootFromCover",
+  },
+  "GClass2792": {
+    "NewName": "ValProcessor",
+  },
+  "GClass2729": {
+    "NewName": "BaseInteractionsModel",
+	"NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+  },
+  "GClass2786": {
+    "NewName": "CollisionCalculatorModel",
+	"NewNamespace": "EFT.ObstacleCollision.Models"
+  },
+  "GClass2787": {
+    "NewName": "ObstacleCollisionModel",
+	"NewNamespace": "EFT.ObstacleCollision.Models"
+  },
+  "GClass2799": {
+    "NewName": "ArmorDurabilityChangedCommandMessage",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2800": {
+    "NewName": "ArmorFullChangeInfoCommandMessage",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2801": {
+    "NewName": "BtrGoInInteractionMessage",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2903": {
+    "NewName": "ObservedPlayerArmorInfo",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2957": {
+    "NewName": "ObservedPlayerController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2980": {
+    "NewName": "ObservedPlayerMovementController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass3076": {
+    "NewName": "ObservedPlayerInterpolator",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2974": {
+    "NewName": "ObservedPlayerInfoContainer",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2955": {
+    "NewName": "ObservedPlayerArmorInfoController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2961": {
+    "NewName": "ObservedPlayerEquipmentViewController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass3386": {
+    "NewName": "ObservedPlayerInventoryController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2962": {
+    "NewName": "ObservedPlayerGestureController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2956": {
+    "NewName": "ObservedPlayerBodyAnimatorController",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2960": {
+    "NewName": "ObservedPlayerDeadBodyCulling",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2981": {
+    "NewName": "ObservedPlayerStateContext",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2978": {
+    "NewName": "ObservedVaultingParameters",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2903": {
+    "NewName": "ObservedPlayerArmorInfo",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2974": {
+    "NewName": "ObservedPlayerInfoContainer",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass2975": {
+    "NewName": "ObservedPlayerInventoryInfo",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass408": {
+    "NewName": "DebugBotStructWrapper",
+  },
+  "GClass2905`2": {
+    "NewName": "BaseHandsOperation",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass3624": {
+    "NewName": "DialogStorage",
+	"NewNamespace": "EFT.Dialogs"
+  },
+  "GClass1874": {
+    "NewName": "BotArtilleryZonesController",
+	"NewNamespace": "EFT"
+  },
+  "GClass1888": {
+    "NewName": "SpawnedWave",
+	"NewNamespace": "EFT"
+  },
+  "GClass636": {
+    "NewName": "NavMeshCutController"
+  },
+  "GClass678": {
+    "NewName": "WavesCountControlScenario"
+  },
+  "GClass2954": {
+    "NewName": "BundleAnimationBones",
+	"NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GClass3597": {
+    "NewName": "BotOnlineDependenceSettings",
+	"NewNamespace": "EFT.Bots"
+  },
+  "GClass2611": {
+    "NewName": "Metrics",
+	"NewNamespace": "EFT.Utilities",
+	"NestedTypes": {
+      "GClass2612": {
+        "NewName": "Timing"
+      }
+    }
   }
 }

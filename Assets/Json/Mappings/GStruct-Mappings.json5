@@ -783,5 +783,13 @@
   "GStruct342": {
     "NewName": "ObservedPlayerMovementModel",
     "NewNamespace": "EFT.NextObservedPlayer"
+  },
+  "GStruct213": {
+    "NewName": "MovementInfoPacket",
+    "NewNamespace": "EFT"
+  },
+  "GStruct321": {
+    "NewName": "GridSurfaceCalculatorDataTransferModel",
+    "NewNamespace": "EFT.Vaulting.Models"
   }
 }

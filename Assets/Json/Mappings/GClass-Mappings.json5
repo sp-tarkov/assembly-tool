@@ -610,8 +610,14 @@
   "GClass377": {
     "NewName": "AISegmentGroup",
   },
+  "GClass575": {
+    "NewName": "BotZoneGroups",
+  },
   "GClass378": {
-    "NewName": "BotWavesOptimization",
+    "NewName": "BossSanitar",
+  },
+  "GClass317": {
+    "NewName": "BossSanitarLayersStrategy",
   },
   "GClass380": {
     "NewName": "CoverFindGraphFunc",
@@ -896,11 +902,22 @@
   "GClass648": {
     "NewName": "JsonResponse",
   },
+  "GClass274": {
+    "NewName": "ShallThrowGrenade",
+  },
   "GClass650": {
     "NewName": "ResponseData",
   },
+  "GClass1466": {
+    "NewName": "IKSolverFastTrigonometric",
+  },
   "GClass651": {
     "NewName": "SenderHelper",
+	"NestedTypes": {
+      "GClass711": {
+        "NewName": "SenderLogger"
+      }
+    }
   },
   "GClass652": {
     "NewName": "UnparsedDataExtension",
@@ -1008,9 +1025,18 @@
     "NewName": "ApplicationLogger",
 	"NewNamespace": "EFT"
   },
+  "GClass2380": {
+    "NewName": "BoundingFrustum",
+	"NewNamespace": "EFT"
+  },
   "GClass723": {
     "NewName": "SpawnsLogger",
-	"NewNamespace": "EFT"
+	"NewNamespace": "EFT",
+	"NestedTypes": {
+      "GClass1886": {
+        "NewName": "PlayerSpawnData"
+      }
+	}
   },
   "GClass743": {
     "NewName": "PhysicsExtensions",
@@ -2107,6 +2133,12 @@
 		  },
 		  "GClass1428": {
 			"NewName": "LocationBanner"
+		  },
+		  "GClass1425": {
+			"NewName": "BotHalloween2024"
+		  },
+		  "GClass1427": {
+			"NewName": "CrowdAttackSpawnParam"
 		  }
 		}
       }
@@ -3161,6 +3193,11 @@
     // HealthControllerClass
     "NewName": "OfflineHealthController",
     "NewNamespace": "EFT.HealthSystem",
+	"NestedTypes": {
+      "GClass3015": {
+        "NewName": "Effect"
+      }
+    }
   },
   "GClass3017": {
     "NewName": "MedEffectHelper",
@@ -4352,6 +4389,10 @@
     "NewName": "CustomizationClothing",
     "NewNamespace": "EFT.Customization"
   },
+  "GClass3672": {
+    "NewName": "BaseCustomizationItem",
+    "NewNamespace": "EFT.Customization"
+  },
   "GClass3685": {
     "NewName": "ClothingIcon",
     "NewNamespace": "EFT.Customization"
@@ -4420,8 +4461,21 @@
     "NewName": "ChatMessageItems",
     "NewNamespace": "ChatShared"
   },
+  "GClass742": {
+    "NewName": "OverlapBoxSearcher",
+  },
   "GClass3321": {
     "NewName": "Stash",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass774": {
+    "NewName": "Stamina",
+  },
+  "GClass444": {
+    "NewName": "BossSectactPriestEvent",
+  },
+  "GClass3287": {
+    "NewName": "Launcher",
     "NewNamespace": "EFT.InventoryLogic"
   },
   "GClass1079`1": {
@@ -5296,6 +5350,140 @@
   "GClass3597": {
     "NewName": "BotOnlineDependenceSettings",
 	"NewNamespace": "EFT.Bots"
+  },
+  "GClass1908": {
+    "NewName": "WeatherEventSettings",
+	"NewNamespace": "EFT"
+  },
+  "GClass2720": {
+    "NewName": "VaultingStateController",
+	"NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GClass2717": {
+    "NewName": "GridMoverController",
+	"NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GClass2718": {
+    "NewName": "GridSurfaceCalculatorController",
+	"NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GClass2719": {
+    "NewName": "HitPointsApproximatorController",
+	"NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GClass2721": {
+    "NewName": "WeightCalculatorController",
+	"NewNamespace": "EFT.Vaulting.Controllers"
+  },
+  "GClass4024`1": {
+    "NewName": "ConditionsConnectorsManagerClient",
+	"NewNamespace": "EFT.Quests"
+  },
+  "GClass1679": {
+    "NewName": "FoliageIntersectionSystem",
+	"NewNamespace": "EFT"
+  },
+  "GClass1885": {
+    "NewName": "SpawnDelaysService",
+	"NewNamespace": "EFT"
+  },
+  "GClass407": {
+    "NewName": "DebugBotProfilesStruct"
+  },
+  "GClass1378": {
+    "NewName": "Vector3Quantizer"
+  },
+  "GClass1375": {
+    "NewName": "Vector2Quantizer"
+  },
+  "GClass430": {
+    "NewName": "BossBoar"
+  },
+  "GClass404": {
+    "NewName": "DebugCoverDataInfo"
+  },
+  "GClass630": {
+    "NewName": "SightStat"
+  },
+  "GClass356": {
+    "NewName": "StrategyLayersWithCorePositions"
+  },
+  "GClass542": {
+    "NewName": "EnemyPartVision"
+  },
+  "GClass3379": {
+    "NewName": "ItemComponent",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3237": {
+    "NewName": "CultistAmuletTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3235": {
+    "NewName": "SpecItemTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass2278": {
+    "NewName": "ObjectsFactoryConfig",
+	"NewNamespace": "EFT"
+  },
+  "GClass2587": {
+    "NewName": "ActiveHeadphonesController",
+	"NewNamespace": "EFT.ActiveHeadphones"
+  },
+  "GClass356": {
+    "NewName": "StrategyLayersWithCorePositions",
+  },
+  "GClass391": {
+    "NewName": "NearCoverGroupsCache",
+  },
+  "GClass381": {
+    "NewName": "CoverFindGraphSearchData",
+  },
+  "GClass379": {
+    "NewName": "CoverFindLibrary",
+  },
+  "GClass368`1": {
+    "NewName": "NetCalcSortedList",
+  },
+  "GClass379": {
+    "NewName": "CoverFindLibrary",
+  },
+  "GClass485": {
+    "NewName": "BotAbstractMedsToPart",
+  },
+  "GClass586": {
+    "NewName": "AIDataRoomLogic",
+  },
+  "GClass466": {
+    "NewName": "BigPipeBotWeaponSelector",
+  },
+  "GClass356": {
+    "NewName": "StrategyLayersWithCorePositions",
+  },
+  "GClass675": {
+    "NewName": "BossSpawnsByQuests",
+  },
+  "GClass425": {
+    "NewName": "AIPeaceRequestAnswer",
+  },
+  "GClass374": {
+    "NewName": "AIPointsCounterSegment",
+  },
+  "GClass484": {
+    "NewName": "BotAbstractMeds",
+  },
+  "GClass3351": {
+    "NewName": "Stimulator",
+  },
+  "GClass519": {
+    "NewName": "BotSuppressData",
+  },
+  "GClass485": {
+    "NewName": "BotAbstractMedsToPart",
+  },
+  "GClass533": {
+    "NewName": "BotTraderServiceFriendlyBase",
   },
   "GClass2611": {
     "NewName": "Metrics",

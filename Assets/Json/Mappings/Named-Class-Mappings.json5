@@ -335,6 +335,34 @@
       }
     }
   },
+  "LActionState": {
+	"NestedTypes": {
+      "GClass915": {
+        "NewName": "LActionStateContext"
+      }
+    }
+  },
+  "StaticDeferredDecalRenderer": {
+	"NestedTypes": {
+      "GClass970": {
+        "NewName": "DecalsData"
+      }
+    }
+  },
+  "SonicBulletSoundPlayer": {
+	"NestedTypes": {
+      "Class522": {
+        "NewName": "SonicTimeQueueItem"
+      }
+    }
+  },
+  "SimpleCharacterController": {
+	"NestedTypes": {
+      "GClass755": {
+        "NewName": "CollidersArray"
+      }
+    }
+  },
   "EFT.TarkovApplication": {
 	"NestedTypes": {
       "GClass2301": {
@@ -343,6 +371,13 @@
 	  "GClass2302": {
         "NewName": "NarrateController"
       }
+    }
+  },
+  "CirclePacker": {
+	"NestedTypes": {
+      "GClass959": {
+        "NewName": "Circle"
+      },
     },
 	"MethodRenames":{
 		  "method_0": "TryLoadHideout",

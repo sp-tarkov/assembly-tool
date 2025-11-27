@@ -335,6 +335,39 @@
       }
     }
   },
+  "EFT.TarkovApplication": {
+	"NestedTypes": {
+      "GClass2301": {
+        "NewName": "HideoutController"
+      },
+	  "GClass2302": {
+        "NewName": "NarrateController"
+      }
+    },
+	"MethodRenames":{
+		  "method_0": "TryLoadHideout",
+		  "method_1": "StartLoadHideoutBundles",
+		  "method_2": "LoadHideout",
+		  "method_3": "LoadMapAndDataForHideout",
+		  "method_4": "PrepareProductionSchemesBundles",
+		  "method_5": "LoadHideoutBundles",
+		  "method_6": "SetProfile",
+		  "method_7": "LocalGameCreateForHideout",
+		  "method_8": "HideHideout",
+		  "method_9": "ShowProfileLoadingScreen",
+		  "method_10": "ShowCriticalBackendErrorDialog",
+		  "method_13": "ShowLegacyLoginScreen",
+		  "method_16": "InitNotificationManager",
+		  "method_17": "DestroyNotificationManager",
+		  "method_32": "RunProfile",
+		  "method_35": "ShowTimeHasComeScreen",
+		  "method_36": "MainMenu",
+		  "method_38": "OnApplicationLoaded",
+		  "method_43": "LoadMapAndData",
+		  "method_49": "LocalGameCreate",
+		  "method_51": "TryUnloadGame"
+	  }
+  },
   "EFT.BonusController": {
 	"NestedTypes": {
       "Class1131": {

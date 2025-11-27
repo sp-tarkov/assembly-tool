@@ -97,5 +97,9 @@
   "GAttribute31": {
     "NewName": "IgnoreBinarySerializationAttribute",
     "NewNamespace": "EFT.BinarySerialization"
+  },
+  "GDelegate62": {
+    "NewName": "YieldDelegate",
+    "NewNamespace": "Diz.Jobs"
   }
 }

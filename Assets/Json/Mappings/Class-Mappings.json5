@@ -119,7 +119,8 @@
     "NewName": "WsTransportManager"
   },
   "Class3513": {
-    "NewName": "AssetBundleExtension"
+    "NewName": "AssetBundleExtension",
+	"NewNamespace": "EFT.AssetsManager",
   },
   "Class3646": {
     "NewName": "JobReflectionRegistration"

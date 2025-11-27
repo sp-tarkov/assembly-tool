@@ -9,31 +9,38 @@
     "NewName": "ISender"
   },
   "Interface5": {
-    "NewName": "IConditionExecutor"
+    "NewName": "IConditionExecutor",
+    "NewNamespace": "Diz.Jobs"
   },
   "Interface6": {
-    "NewName": "IInternalItemEvents"
+    "NewName": "InternalItemEvents",
+	"NewNamespace": "ChartAndGraph"
   },
   "Interface7": {
-    "NewName": "IChartMesh"
+    "NewName": "IChartMesh",
+    "NewNamespace": "ChartAndGraph"
   },
   "Interface13": {
     "NewName": "INetworkGame",
     "NewNamespace": "EFT"
   },
   "Interface14": {
-    "NewName": "IImpostorsCameraContext"
+    "NewName": "IImpostorsCameraContext",
+    "NewNamespace": "EFT.Impostors"
   },
   "Interface15": {
-    "NewName": "IImpostorsMainCameraContext"
+    "NewName": "IImpostorsMainCameraContext",
+	"NewNamespace": "EFT.Impostors"
   },
   "Interface18": {
-    "NewName": "IOperationHandler"
+    "NewName": "IOperationHandler",
+    "NewNamespace": "EFT.InventoryLogic"
   },
   "Interface19": {
     "NewName": "IMagazineLoadingProcess"
   },
   "Interface21": {
-    "NewName": "IRestrictableZone"
+    "NewName": "IRestrictableZone",
+    "NewNamespace": "EFT.Interactive"
   }
 }

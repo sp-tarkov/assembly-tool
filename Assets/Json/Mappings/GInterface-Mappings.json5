@@ -150,16 +150,20 @@
     "NewName": "IDisablerCullingObjectEditor"
   },
   "GInterface57": {
-    "NewName": "ITextureMaskHolder"
+    "NewName": "ITextureMaskHolder",
+	"NewNamespace": "BSG.CameraEffects"
   },
   "GInterface58": {
-    "NewName": "IFlareBatch"
+    "NewName": "IFlareBatch",
+	"NewNamespace": "MultiFlare"
   },
   "GInterface59": {
-    "NewName": "IFlareRenderer"
+    "NewName": "IFlareRenderer",
+	"NewNamespace": "MultiFlare"
   },
   "GInterface60": {
-    "NewName": "ILightStorage"
+    "NewName": "ILightStorage",
+	"NewNamespace": "MultiFlare"
   },
   "GInterface61": {
     "NewName": "IDialogSoundscapeManager",
@@ -214,7 +218,7 @@
     "NewNamespace": "Audio.Vehicles"
   },
   "GInterface76": {
-    "NewName": "ISoundsSuspensionController",
+    "NewName": "ISoundSuspensionController",
     "NewNamespace": "Audio.Vehicles"
   },
   "GInterface77": {
@@ -1877,7 +1881,7 @@
     "NewNamespace": "EFT.AssetsManager"
   },
   "GInterface505": {
-    "NewName": "ICollisionHandler",
+    "NewName": "ICollisionsHandler",
     "NewNamespace": "EFT.RocketLauncher.Explosion"
   },
   "GInterface506": {

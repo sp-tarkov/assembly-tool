@@ -13,6 +13,14 @@
       }
     }
   },
+  "LabelContentRow": {
+	"NewName": "LabelContentRow",
+    "NewNamespace": "EFT.UI"
+  },
+  "WishlistCategoryView": {
+	"NewName": "WishlistCategoryView",
+    "NewNamespace": "EFT.UI"
+  },
   "BodyPartCollider": {
     "NestedTypes": {
       "GInterface20": {
@@ -280,25 +288,25 @@
       "Class1099": {
         "NewName": "TraceMessageBase"
       },
-      "GClass1100": {
+      "Class1100": {
         "NewName": "TraceMessage"
       },
-      "GClass1102": {
+      "Class1102": {
         "NewName": "TraceMessageWithCode"
       },
-      "GClass1103": {
+      "Class1103": {
         "NewName": "AcceptReject"
       },
-      "GClass1104": {
+      "Class1104": {
         "NewName": "TotalProgressReport"
       },
-      "GClass1105": {
+      "Class1105": {
         "NewName": "BattlEyeAnticheatPacket"
       },
-      "GClass1106": {
+      "Class1106": {
         "NewName": "ProfileResources"
       },
-      "GClass1107": {
+      "Class1107": {
         "NewName": "ProgressReport"
       }
     }

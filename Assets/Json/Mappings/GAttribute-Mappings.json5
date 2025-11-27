@@ -15,7 +15,7 @@
     "NewName": "UberDrawAttribute"
   },
   "GAttribute8": {
-    "NewName": "ScriptOrderAttribute"
+    "NewName": "ScriptOrder"
   },
   "GAttribute9": {
     "NewName": "ClassStateStorageIgnoreAttribute"
@@ -52,7 +52,7 @@
     "NewNamespace": "FastAnimatorSystem"
   },
   "GAttribute20": {
-    "NewName": "LargeHeaderAttribute",
+    "NewName": "LargeHeader",
     "NewNamespace": "RootMotion"
   },
   "GAttribute21": {

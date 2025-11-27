@@ -4466,7 +4466,12 @@
   },
   "GClass3321": {
     "NewName": "Stash",
-    "NewNamespace": "EFT.InventoryLogic"
+    "NewNamespace": "EFT.InventoryLogic",
+	"NestedTypes": {
+      "Class2312": {
+        "NewName": "StashGrid"
+	  }
+	}
   },
   "GClass774": {
     "NewName": "Stamina",
@@ -4598,6 +4603,46 @@
   "GClass3502": {
     "NewName": "ToggleOperation",
     "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GClass3332": {
+    "NewName": "BarterOther",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3369": {
+    "NewName": "ExplosionSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3370": {
+    "NewName": "ComputableUnitSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3371": {
+    "NewName": "PhysicalSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3372": {
+    "NewName": "InventoryEquipmentExtension",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3989": {
+    "NewName": "VisualSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3985": {
+    "NewName": "BackBlastSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3345": {
+    "NewName": "Knife",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3359": {
+    "NewName": "RadioTransmitter",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3323": {
+    "NewName": "BarterItem",
+    "NewNamespace": "EFT.InventoryLogic"
   },
   "GClass3430": {
     "NewName": "ToggleResult",
@@ -5423,6 +5468,167 @@
     "NewName": "SpecItemTemplate",
 	"NewNamespace": "EFT.InventoryLogic"
   },
+  "GClass3158": {
+    "NewName": "AuxiliaryModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3159": {
+    "NewName": "FunctionalModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3160": {
+    "NewName": "BipodTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3165": {
+    "NewName": "MuzzleModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3185": {
+    "NewName": "MagazineTemplate",
+	"NewNamespace": "EFT.InventoryLogic",
+	"NestedTypes": {
+      "GStruct421": {
+        "NewName": "VisibleRange"
+      }
+    }
+  },
+  "GClass3184": {
+    "NewName": "LauncherTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3182": {
+    "NewName": "GearModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3172": {
+    "NewName": "SightModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3180": {
+    "NewName": "ThermalVisionTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3178": {
+    "NewName": "SpecialScopeTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3196": {
+    "NewName": "SearchableItemTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3179": {
+    "NewName": "NightVisionTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3199": {
+    "NewName": "MobContainerTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3196": {
+    "NewName": "SearchableItemTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3197": {
+    "NewName": "BackpackTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3201": {
+    "NewName": "VestTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3220": {
+    "NewName": "FoodDrinkTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3225": {
+    "NewName": "KeyTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3227": {
+    "NewName": "KnifeTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3228": {
+    "NewName": "MapTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3242": {
+    "NewName": "RadioTransmitterTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3244": {
+    "NewName": "RocketTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3245": {
+    "NewName": "MoneyTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3246": {
+    "NewName": "ThrowWeapTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3248": {
+    "NewName": "ContainerCollection",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3243": {
+    "NewName": "StackableItemTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3253": {
+    "NewName": "ArmorPlate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3260": {
+    "NewName": "LockableContainer",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass1444": {
+    "NewName": "HealthEffectSpecification",
+	"NewNamespace": "JsonType"
+  },
+  "GClass3229": {
+    "NewName": "MedsTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3191": {
+    "NewName": "MasterModTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3192": {
+    "NewName": "BarrelTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3157": {
+    "NewName": "LockableContainerTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3152": {
+    "NewName": "FaceCoverTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3318": {
+    "NewName": "StashTemplate",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3322": {
+    "NewName": "SortingTable",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3282": {
+    "NewName": "NightVision",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3283": {
+    "NewName": "ThermalVision",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3281": {
+    "NewName": "SpecialScope",
+	"NewNamespace": "EFT.InventoryLogic"
+  },
   "GClass2278": {
     "NewName": "ObjectsFactoryConfig",
 	"NewNamespace": "EFT"
@@ -5475,6 +5681,12 @@
   },
   "GClass3351": {
     "NewName": "Stimulator",
+  },
+  "GClass326": {
+    "NewName": "ExUsecAbstractStrategy",
+  },
+  "GClass328": {
+    "NewName": "ExUsecLayersStrategy",
   },
   "GClass519": {
     "NewName": "BotSuppressData",

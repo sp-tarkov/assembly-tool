@@ -17,7 +17,7 @@
 	"NewName": "LabelContentRow",
     "NewNamespace": "EFT.UI"
   },
-  "WishlistCategoryView": {
+  "UI.Trading_UI.Ragfair.NodeView.WishlistCategoryView": {
 	"NewName": "WishlistCategoryView",
     "NewNamespace": "EFT.UI"
   },

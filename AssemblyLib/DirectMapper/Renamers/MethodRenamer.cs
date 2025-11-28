@@ -34,22 +34,25 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
             return;
         }
 
-        foreach (var method in toolData.Type?.Methods ?? [])
+        foreach (var method in toolData.Type.Methods)
         {
-            if (method.Name is null || method.IsCompilerControlled || method.IsGetMethod || method.IsSetMethod)
+            Log.Information("{type}::{name}", method.DeclaringType.Name.ToString(), method.Name.ToString());
+
+            if (method.IsCompilerGenerated() || method.IsGetMethod || method.IsSetMethod)
             {
                 continue;
             }
 
-            if (methodsToRename.TryGetValue(method.Name, out var newName))
+            if (methodsToRename.TryGetValue(method.Name.ToString(), out var newName))
             {
                 if (Log.IsEnabled(LogEventLevel.Debug))
                 {
                     Log.Debug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
                 }
 
+                Log.Information("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
+
                 method.Name = new Utf8String(newName);
-                return;
             }
         }
     }

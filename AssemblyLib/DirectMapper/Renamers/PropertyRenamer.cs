@@ -12,7 +12,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 [Injectable]
 public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRenamer
 {
-    public int Priority { get; } = int.MinValue;
+    public int Priority { get; } = 0;
 
     public ERenamerType Type
     {

@@ -2841,9 +2841,7 @@
     "NewName": "Skill",
     "NewNamespace": "EFT",
     "MethodRenames": {
-      "method_2": "CalculateLevelExp",
       "method_3": "UpdateRules",
-      "method_4": "CalculateRealEarnedXpForLobby"
     }
   },
   "GClass2249": {

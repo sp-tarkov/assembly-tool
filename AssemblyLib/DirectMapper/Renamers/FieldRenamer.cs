@@ -13,7 +13,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberReferenceCache memberReferenceCache)
     : IRenamer
 {
-    public int Priority { get; } = 1;
+    public int Priority { get; } = 0;
 
     public ERenamerType Type
     {

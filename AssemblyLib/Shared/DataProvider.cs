@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Immutable;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
@@ -33,7 +34,7 @@ public class DataProvider
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
     private static readonly string _directMappingPath = Path.Combine(_assetsPath, "Json", "Mappings");
 
-    public static readonly HashSet<string> ObfuscatedNames =
+    public static readonly ImmutableHashSet<string> ObfuscatedNames =
     [
         "Class",
         "Delegate",

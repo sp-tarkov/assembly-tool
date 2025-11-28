@@ -1,5 +1,6 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.Renamers;
+using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
@@ -16,13 +17,12 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
     /// </summary>
     /// <param name="targetFullName">Target GCType to rename</param>
     /// <param name="model">model</param>
-    /// <param name="parent">parent used in recursive call, leave null</param>
+    /// <param name="parent">parent used in recursive call</param>
     public Task RenameMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
     {
         var toolData = model.ToolData;
 
-        toolData.Type =
-            parent ?? dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.FullName == targetFullName);
+        SetupToolData(targetFullName, model, parent);
 
         if (toolData.Type is null)
         {
@@ -49,12 +49,6 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
             }
         }
 
-        // We're purely an entry for nested types. Do nothing else.
-        if (model.NewName is null)
-        {
-            return Task.CompletedTask;
-        }
-
         RenameMapping(model);
         return Task.CompletedTask;
     }
@@ -75,17 +69,24 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         foreach (var renamer in renamers.OrderByDescending(r => r.Priority))
         {
             renamer.Rename(model);
-
-            if (renamer.Type is not ERenamerType.Type)
-            {
-                continue;
-            }
-
-            if (Log.IsEnabled(LogEventLevel.Debug))
-            {
-                var toolData = model.ToolData;
-                Log.Debug("Type: {old} -> {new}", toolData.FullOldName, toolData.Type?.FullName);
-            }
         }
+    }
+
+    private void SetupToolData(string targetFullName, DirectMapModel model, TypeDefinition? type = null)
+    {
+        var toolData = model.ToolData;
+
+        toolData.Type =
+            type ?? dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.FullName == targetFullName);
+
+        if (toolData.Type is null)
+        {
+            throw new FailedToFindTypeException(
+                $"Failed to find type: `{targetFullName}` in target assembly, names must be quantified by fullname including namespace or this is the wrong type."
+            );
+        }
+
+        toolData.FullOldName = model.ToolData.Type?.FullName;
+        toolData.ShortOldName = toolData.Type!.Name!.ToString();
     }
 }

@@ -1,6 +1,5 @@
 using AsmResolver;
 using AsmResolver.DotNet;
-using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
@@ -12,7 +11,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 [Injectable]
 public class TypeRenamer(DataProvider dataProvider) : IRenamer
 {
-    public int Priority { get; } = 2;
+    public int Priority { get; } = -1;
 
     public ERenamerType Type
     {
@@ -26,12 +25,15 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
     {
         var toolData = model.ToolData;
 
-        toolData.FullOldName = model.ToolData.Type?.FullName;
-        toolData.ShortOldName = toolData.Type!.Name!.ToString();
-
         if (!string.IsNullOrEmpty(model.NewNamespace))
         {
             toolData.Type?.Namespace = new Utf8String(model.NewNamespace);
+        }
+
+        // Not setting a new name
+        if (model.NewName is null)
+        {
+            return;
         }
 
         var genericParametersCount = toolData.Type!.GenericParameters.Count;

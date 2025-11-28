@@ -2509,6 +2509,130 @@
     "NewName": "HandbookSettings",
     "NewNamespace": "EFT",
   },
+  "GClass1902": {
+    "NewName": "Transit",
+    "NewNamespace": "EFT",
+  },
+  "GClass2193": {
+    "NewName": "LocationTransit",
+    "NewNamespace": "EFT",
+  },
+  "GClass1903": {
+    "NewName": "TransitController",
+    "NewNamespace": "EFT",
+  },
+  "GClass2283": {
+    "NewName": "RunddansController",
+    "NewNamespace": "EFT",
+  },
+  "GClass2282": {
+    "NewName": "EventObjectController",
+    "NewNamespace": "EFT",
+  },
+  "GClass3592": {
+    "NewName": "TriggersEmitter",
+    "NewNamespace": "EFT",
+  },
+  "GClass2272": {
+    "NewName": "TraderServicesHandler",
+    "NewNamespace": "EFT",
+  },
+  "GClass3488": {
+    "NewName": "EditMapMarkerOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations",
+  },
+  "GClass3489": {
+    "NewName": "EditMapMarkerResult",
+    "NewNamespace": "EFT.InventoryLogic",
+  },
+  "GClass2229": {
+    "NewName": "TraderInfoDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1914": {
+    "NewName": "InventoryDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass2227": {
+    "NewName": "TaskConditionCounterDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass1914": {
+    "NewName": "FlatItem",
+    "NewNamespace": "EFT",
+  },
+  "GClass2367": {
+    "NewName": "QuestionTemplate",
+    "NewNamespace": "EFT",
+  },
+  "GClass1794": {
+    "NewName": "RagfairItemRestrictions",
+    "NewNamespace": "EFT",
+  },
+  "GClass2228": {
+    "NewName": "BonusDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass2229": {
+    "NewName": "TraderInfoDescriptor",
+    "NewNamespace": "EFT",
+  },
+  "GClass2189": {
+    "NewName": "ProfileSettings",
+    "NewNamespace": "EFT",
+  },
+  "GClass2244": {
+    "NewName": "CommonPacket",
+    "NewNamespace": "EFT",
+  },
+  "GClass2636": {
+    "NewName": "GlobalsArray",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass2638": {
+    "NewName": "GlobalsDictionary",
+    "NewNamespace": "EFT.Utilities",
+  },
+  "GClass1410": {
+    "NewName": "PlayerInfo",
+    "NewNamespace": "JsonType",
+  },
+  "GClass702": {
+    "NewName": "SyncModule",
+  },
+  "GClass1306`1": {
+    "NewName": "DiscreteInterpolationStrategy",
+  },
+  "GClass801": {
+    "NewName": "AverageDouble",
+  },
+  "GClass837": {
+    "NewName": "RangeTrend",
+  },
+  "GClass3440": {
+    "NewName": "DeleteMapMarkerResult",
+  },
+  "GClass644": {
+    "NewName": "ZoneShellingProcess",
+  },
+  "GClass645": {
+    "NewName": "ZoneEventShellingProcess",
+  },
+  "GClass643": {
+    "NewName": "ArtilleryShellingControllerServer",
+  },
+  "GClass824": {
+    "NewName": "HardwareTime",
+  },
+  "GClass818": {
+    "NewName": "DictionaryListHydra",
+  },
+  "GClass705": {
+    "NewName": "MineDirectionalManager",
+  },
+  "GClass770": {
+    "NewName": "GrenadeFactory",
+  },
   "GClass1715": {
     // BackendConfigSettingsClass
     "NewName": "GlobalConfiguration",
@@ -2571,6 +2695,11 @@
     // RagfairSettingsClass
     "NewName": "RagfairSettings",
     "NewNamespace": "EFT",
+	"NestedTypes": {
+      "GClass1793": {
+        "NewName": "OfferCount"
+	  }
+	}
   },
   "GClass1804": {
     // AssetsManagerSingletonClass

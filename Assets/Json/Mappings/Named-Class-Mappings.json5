@@ -234,6 +234,41 @@
       }
     }
   },
+  "EFT.UI.SessionEnd.SessionResultKillList": {
+    "NestedTypes": {
+      "GClass3910": {
+        "NewName": "KillListScreenController"
+      }
+    }
+  },
+  "EFT.UI.SessionEnd.ScavengerInventoryScreen": {
+    "NestedTypes": {
+      "GClass3887": {
+        "NewName": "ScavengerInventoryScreenController"
+      }
+    }
+  },
+  "EFT.UI.SessionEnd.SessionResultStatistics": {
+    "NestedTypes": {
+      "GClass3911": {
+        "NewName": "SessionStatisticsScreenController"
+      }
+    }
+  },
+  "EFT.UI.SessionEnd.SessionResultExperienceCount": {
+    "NestedTypes": {
+      "GClass3909": {
+        "NewName": "SessionExperienceScreenController"
+      }
+    }
+  },
+  "EFT.UI.SessionEnd.HealthTreatmentScreen": {
+    "NestedTypes": {
+      "GClass3898": {
+        "NewName": "HealthTreatmentScreenController"
+      }
+    }
+  },
   "EFT.Interactive.WindowBreakerManager": {
     "NestedTypes": {
       "GInterface469": {
@@ -401,6 +436,49 @@
 		  "method_43": "LoadMapAndData",
 		  "method_49": "LocalGameCreate",
 		  "method_51": "TryUnloadGame"
+	  }
+  },
+  "EFT.GameWorld": {
+	"NestedTypes": {
+      "GStruct162": {
+        "NewName": "ItemOwnerWorldData"
+      },
+	  "GClass1524": {
+        "NewName": "ItemOwnerNotFoundError"
+      },
+	  "GClass1525": {
+        "NewName": "ItemAddressNotFoundError"
+      },
+	  "GClass1526": {
+        "NewName": "ItemNotFoundError"
+      },
+	  "GClass1527": {
+        "NewName": "ItemTooFarError"
+      },
+	  "GClass1528": {
+        "NewName": "TransferBetweenAlivePlayersError"
+      },
+	  "GClass1529": {
+        "NewName": "InventoryTransferError"
+      },
+	  "GClass1530": {
+        "NewName": "TryToPickUpOneOffBreakWeaponError"
+      },
+	  "GClass1531": {
+        "NewName": "ItemOwnerCandidateTooFarError"
+      },
+	  "GClass1532": {
+        "NewName": "ItemOwnerCandidateWallHackError"
+      },
+	  "GClass1533": {
+        "NewName": "ItemOwnerCandidateCantFindLootError"
+      },
+	  "GClass1534": {
+        "NewName": "ItemOwnerNullError"
+      },
+    },
+	"MethodRenames":{
+		  "method_11": "DisposePlayersLists"
 	  }
   },
   "EFT.BonusController": {

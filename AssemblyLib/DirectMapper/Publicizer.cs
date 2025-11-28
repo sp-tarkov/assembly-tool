@@ -2,7 +2,6 @@
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Extensions;
-using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -12,12 +11,6 @@ namespace AssemblyLib.DirectMapper;
 [Injectable]
 public sealed class Publicizer(DataProvider dataProvider, Statistics stats, FieldRenamer fieldRenamer)
 {
-    public Task PublicizeType(DirectMapModel model)
-    {
-        PublicizeType(model.ToolData.Type!);
-        return Task.CompletedTask;
-    }
-
     /// <summary>
     /// Publicize the provided type
     /// </summary>
@@ -142,6 +135,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats, Fiel
             field.Attributes |= FieldAttributes.NotSerialized;
         }
 
-        fieldRenamer.RenamePublicizedFields(fieldsToRename);
+        //fieldRenamer.RenamePublicizedFields(fieldsToRename);
     }
 }

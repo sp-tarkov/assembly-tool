@@ -4,7 +4,6 @@ using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
-using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;

@@ -21,9 +21,29 @@ public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRen
 
     public void Rename(DirectMapModel model)
     {
-        RenameObfuscatedProperties(dataProvider.LoadedModule!, model.ToolData.ShortOldName!, model.NewName!);
+        var toolData = model.ToolData;
+
+        var propsToRename = model.PropertyRenames;
+        if (propsToRename is null || propsToRename.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var prop in toolData.Type!.Properties)
+        {
+            if (propsToRename.TryGetValue(prop.Name!.ToString(), out var newName))
+            {
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("\t\tProperty: {old} -> {new}", prop.Name.ToString(), newName);
+                }
+
+                prop.Name = new Utf8String(newName);
+            }
+        }
     }
 
+    [Obsolete("Using BSG named properties now")]
     private void RenameObfuscatedProperties(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())

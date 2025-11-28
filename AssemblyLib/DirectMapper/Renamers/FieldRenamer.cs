@@ -22,9 +22,30 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
 
     public void Rename(DirectMapModel model)
     {
-        RenameObfuscatedFields(dataProvider.LoadedModule!, model.ToolData.ShortOldName!, model.NewName!);
+        var toolData = model.ToolData;
+
+        var fieldsToRename = model.FieldRenames;
+        if (fieldsToRename is null || fieldsToRename.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var field in toolData.Type!.Fields)
+        {
+            if (fieldsToRename.TryGetValue(field.Name!.ToString(), out var newName))
+            {
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("\t\tField: {old} -> {new}", field.Name.ToString(), newName);
+                }
+
+                field.Name = new Utf8String(newName);
+                UpdateFieldReferences(field, field.Name);
+            }
+        }
     }
 
+    [Obsolete("Using BSG named fields now")]
     private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
     {
         foreach (var type in module.GetAllTypes())
@@ -73,6 +94,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         }
     }
 
+    [Obsolete("Using BSG named fields now")]
     public void RenamePublicizedFields(List<FieldDefinition> fieldsToRename)
     {
         foreach (var field in fieldsToRename.Where(f => !IsSerializedField(f)))

@@ -13,6 +13,7 @@ public class SigBasedMemberRenamer(
     DataProvider dataProvider,
     MethodSigComparer methodSignatureComparer,
     FieldSigComparer fieldSignatureComparer,
+    PropertySigComparer propertySigComparer,
     MemberReferenceCache memberReferenceCache
 )
 {
@@ -71,6 +72,7 @@ public class SigBasedMemberRenamer(
         {
             RenameMethodsOnType(targetType, dummyType);
             RenameFieldsOnType(targetType, dummyType);
+            RenamePropertiesOnType(targetType, dummyType);
         }
     }
 
@@ -134,6 +136,34 @@ public class SigBasedMemberRenamer(
                 targetField.Name = dummyField.Name;
 
                 dummyFields.Remove(dummyField);
+                break;
+            }
+        }
+    }
+
+    private void RenamePropertiesOnType(TypeDefinition targetType, TypeDefinition dummyType)
+    {
+        var targetProperties = targetType.Properties;
+        var dummyProperties = dummyType.Properties;
+
+        var dummyPropertiesNames = dummyProperties.Select(p => p.Name).ToHashSet();
+
+        foreach (var targetProperty in targetProperties)
+        {
+            if (dummyPropertiesNames.Contains(targetProperty.Name))
+            {
+                continue;
+            }
+
+            foreach (var dummyProperty in dummyProperties.ToArray())
+            {
+                if (!propertySigComparer.IsSame(targetProperty, dummyProperty))
+                {
+                    continue;
+                }
+
+                targetProperty.Name = dummyProperty.Name;
+                dummyProperties.Remove(dummyProperty);
                 break;
             }
         }

@@ -54,7 +54,7 @@ public class MethodSigComparer
             && target.SentinelParameterTypes.Count == dummy.SentinelParameterTypes.Count;
     }
 
-    private bool CompareMethodParameters(MethodDefinition target, MethodDefinition dummy)
+    private static bool CompareMethodParameters(MethodDefinition target, MethodDefinition dummy)
     {
         var targetParms = target.Parameters;
         var dummyParms = dummy.Parameters;

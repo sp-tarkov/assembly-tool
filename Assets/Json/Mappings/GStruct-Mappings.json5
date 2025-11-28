@@ -78,7 +78,7 @@
   },
   "GStruct239": {
     // FirearmLightStateStruct
-    "NewName": "LightState",
+    "NewName": "TacticalComboStatus",
     "NewNamespace": "EFT"
   },
   "GStruct255": {
@@ -121,7 +121,7 @@
   "GStruct428": {
     // BTRDataPacketStruct
     "NewName": "ShapshotBTRMessage",
-    "NewNamespace": "EFT.Network.Transport"
+    "NewNamespace": "EFT.Vehicle"
   },
   "GStruct441": {
     // DamageInfoStruct

@@ -37,7 +37,8 @@
     "NewNamespace": "EFT.InventoryLogic"
   },
   "Interface19": {
-    "NewName": "IMagazineLoadingProcess"
+    "NewName": "IMagazineLoadingProcess",
+    "NewNamespace": "EFT.InventoryLogic",
   },
   "Interface21": {
     "NewName": "IRestrictableZone",

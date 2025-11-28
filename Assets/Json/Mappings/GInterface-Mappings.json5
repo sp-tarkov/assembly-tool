@@ -410,7 +410,7 @@
     "NewNamespace": "FastAnimatorSystem"
   },
   "GInterface124": {
-    "NewName": "IPlayerAnimatorCuller",
+    "NewName": "IPlayableAnimatorCuller",
     "NewNamespace": "FastAnimatorSystem"
   },
   "GInterface125": {
@@ -702,7 +702,7 @@
     "NewNamespace": "EFT"
   },
   "GInterface200": {
-    "NewName": "IFirearmAnimatorDataRepresenter",
+    "NewName": "IFirearmAnimationDataRepresenter",
     "NewNamespace": "EFT"
   },
   "GInterface201": {
@@ -722,7 +722,7 @@
     "NewNamespace": "EFT"
   },
   "GInterface205`1": {
-    "NewName": "IQuckUseHandsController",
+    "NewName": "IQuickUseHandsController",
     "NewNamespace": "EFT"
   },
   "GInterface206": {
@@ -730,7 +730,7 @@
     "NewNamespace": "EFT"
   },
   "GInterface207": {
-    "NewName": "IQuckKnifeKickController",
+    "NewName": "IQuickKnifeKickController",
     "NewNamespace": "EFT"
   },
   "GInterface208": {
@@ -778,7 +778,7 @@
     "NewNamespace": "EFT"
   },
   "GInterface220": {
-    "NewName": "ICapchaHandler",
+    "NewName": "ICaptchaHandler",
     "NewNamespace": "EFT"
   },
   "GInterface221": {
@@ -1191,7 +1191,7 @@
     "NewNamespace": "EFT.HealthSystem"
   },
   "GInterface327": {
-    "NewName": "IQuickHealthEffect",
+    "NewName": "IQuickHealHealthEffect",
     "NewNamespace": "EFT.HealthSystem"
   },
   "GInterface328": {
@@ -1320,7 +1320,7 @@
     "NewNamespace": "EFT.HealthSystem"
   },
   "GInterface359": {
-    "NewName": "IStandingScreen",
+    "NewName": "ISandingScreen",
     "NewNamespace": "EFT.HealthSystem"
   },
   "GInterface360": {

@@ -938,7 +938,7 @@
     "NewName": "WsResponseJson",
     "NestedTypes": {
       "GClass658": {
-        "NewName": "WsSenderReponseError"
+        "NewName": "WsSenderResponseError"
       }
     }
   },
@@ -1247,6 +1247,7 @@
   },
   "GClass919": {
     "NewName": "ObserverPlayerCulling",
+    "NewNamespace": "EFT.NextObservedPlayer",
   },
   "GClass920": {
     "NewName": "BotCreatorClient",
@@ -1268,6 +1269,7 @@
   },
   "GClass927": {
     "NewName": "PlayerIconCreator",
+    "NewNamespace": "EFT.PlayerIcons",
   },
   "GClass928": {
     "NewName": "IconsHash",
@@ -1755,7 +1757,7 @@
   },
   "GClass1077": {
     "NewName": "ControlSettingsController",
-    "NewNamespace": "EFT.Settings.Game"
+    "NewNamespace": "EFT.Settings.Control"
   },
   "GClass1078`2": {
     "NewName": "GameSettingProxy",
@@ -2023,7 +2025,8 @@
     "NewNamespace": "AnimationEventSystem",
   },
   "GClass1332`2": {
-    "NewName": "AbstractFastStateConverter"
+    "NewName": "AbstractFastStateConverter",
+    "NewNamespace": "FastAnimatorSystem"
   },
   "GClass1333": {
     "NewName": "AnimatorStateDebuggerConverter"
@@ -2034,14 +2037,15 @@
   },
   "GClass1357": {
     "NewName": "FrameMeasurer",
-	"NestedTypes": {
+    "NewNamespace": "UnityDiagnostics",
+    "NestedTypes": {
       "GClass714": {
         "NewName": "FrameMeasurerLogger",
-		"NestedTypes": {
-		  "GClass1358": {
-			"NewName": "Config"
-		  }
-		}
+	      "NestedTypes": {
+          "GClass1358": {
+            "NewName": "Config"
+          }
+        }
       }
     }
   },
@@ -2178,7 +2182,7 @@
     "NewNamespace": "AnimationSystem.RootMotionTable",
   },
   "GClass1452": {
-    "NewName": "ComputedBlendTree",
+    "NewName": "CustomBlendTree",
     "NewNamespace": "AnimationSystem.RootMotionTable",
   },
   "GClass1453": {
@@ -2247,7 +2251,7 @@
     "NewNamespace": "Diz.LanguageExtensions",
   },
   "GClass1549": {
-    "NewName": "NoSpaceError",
+    "NewName": "NoFreeSpaceError",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass1550": {
@@ -2387,12 +2391,12 @@
     "NewNamespace": "EFT.Achievements",
   },
   "GClass1640`1": {
-    "NewName": "BindableSortedList`1",
-    "NewNamespace": "EFT.Achievements",
+    "NewName": "BindableSortedList",
+    "NewNamespace": "Diz.Binding",
   },
   "GClass1641": {
-    "NewName": "HashCodeHelper",
-    "NewNamespace": "UnityEngine.XR",
+    "NewName": "Binding",
+    "NewNamespace": "Diz.Binding",
   },
   "GClass1642`1": {
     "NewName": "BaseBindable",
@@ -2407,39 +2411,39 @@
     "NewNamespace": "Diz.Binding",
   },
   "GClass1645`2": {
-    "NewName": "BindableFilter`2",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1646`3": {
-    "NewName": "BindableFilter`3",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1647`4": {
-    "NewName": "BindableFilter`4",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1648`5": {
-    "NewName": "BindableFilter`5",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1649`6": {
-    "NewName": "BindableFilter`6",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1650`7": {
-    "NewName": "BindableFilter`7",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1651`8": {
-    "NewName": "BindableFilter`8",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1652`9": {
-    "NewName": "BindableFilter`9",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1653`10": {
-    "NewName": "BindableFilter`10",
+    "NewName": "BindableFilter",
     "NewNamespace": "Diz.Binding",
   },
   "GClass1655`2": {
@@ -2547,7 +2551,7 @@
         "NewName": "AirdropSettings"
       },
 	  "GClass1744": {
-        "NewName": "CoopSettings"
+        "NewName": "CoopGlobalSettings"
       },
 	  "GClass1745": {
         "NewName": "PveGlobalSettings"
@@ -2852,7 +2856,7 @@
   },
   "GClass2279": {
     // PoolManagerClass
-    "NewName": "ObjectFactory",
+    "NewName": "ObjectsFactory",
     "NewNamespace": "EFT"
   },
   "GClass2290": {
@@ -3045,7 +3049,7 @@
 	}
   },
   "GClass2576": {
-    "NewName": "MagBuildStorage",
+    "NewName": "MagBuildsStorage",
     "NewNamespace": "EFT.Builds",
   },
   "GClass2605": {
@@ -3085,17 +3089,17 @@
     "NewNamespace": "EFT.Utilities",
   },
   "GClass2646": {
-    "NewName": "BaseTripWire",
-    "NewNamespace": "EFT.SyncronizableObjects",
+    "NewName": "BaseTripwire",
+    "NewNamespace": "EFT.SynchronizableObjects",
   },
   "GClass2647": {
     "NewName": "SynchronizableObjectLogicProcessor",
-    "NewNamespace": "EFT.SyncronizableObjects",
+    "NewNamespace": "EFT.SynchronizableObjects",
   },
   "GClass2648": {
     // SynchronizableObjectLogicProcessorClass
     "NewName": "ClientSynchronizableObjectLogicProcessor",
-    "NewNamespace": "EFT.SyncronizableObjects",
+    "NewNamespace": "EFT.SynchronizableObjects",
   },
   "GClass2650": {
     "NewName": "AirdropManager",
@@ -3106,7 +3110,7 @@
     "NewNamespace": "EFT.Airdrop",
   },
   "GClass2653": {
-    "NewName": "ServerAirdrop",
+    "NewName": "ServerAirDrop",
     "NewNamespace": "EFT.Airdrop",
   },
   "GClass2654": {
@@ -3118,7 +3122,7 @@
     "NewNamespace": "EFT.Airdrop",
   },
   "GClass2657": {
-    "NewName": "ClientAirdrop",
+    "NewName": "ClientAirDrop",
     "NewNamespace": "EFT.Airdrop",
   },
   "GClass2660": {
@@ -3208,7 +3212,7 @@
     "NewNamespace": "EFT.HealthSystem",
   },
   "GClass3019": {
-    "NewName": "EffectSettings",
+    "NewName": "EffectsSettings",
     "NewNamespace": "EFT.HealthSystem",
   },
   "GClass3051": {
@@ -3236,7 +3240,7 @@
     "NewNamespace": "EFT.HealthSystem",
   },
   "GClass3057": {
-    "NewName": "BodyPartWithEffects",
+    "NewName": "BodyPartsWithEffects",
     "NewNamespace": "EFT.HealthSystem",
   },
   "GClass3058": {
@@ -3419,7 +3423,7 @@
     "NewNamespace": "EFT.GameRandoms",
   },
   "GClass3733": {
-    "NewName": "BallisticCalculatorConstants",
+    "NewName": "BallisticsCalculatorConstants",
     "NewNamespace": "EFT.Ballistics",
   },
   "GClass3734": {
@@ -3463,7 +3467,7 @@
   },
   "GClass3938": {
     // RagFairClass
-    "NewName": "Ragfair",
+    "NewName": "RagFair",
     "NewNamespace": "EFT.UI.Ragfair",
   },
   "GClass3951": {
@@ -3529,8 +3533,8 @@
     "NewNamespace": "EFT.Achievements",
   },
   "GClass4011": {
-    "NewName": "AchievementsControllerTODO",
-    "NewNamespace": "EFT.Achievements",
+    "NewName": "AchievementsControllerClientBackend",
+    "NewNamespace": "EFT.Quests",
   },
   "GClass4020": {
     "NewName": "TaskConditionCounter",
@@ -3546,11 +3550,11 @@
     "NewNamespace": "EFT.Quests",
   },
   "GClass4053": {
-    "NewName": "RepeatableQuestTemplate",
+    "NewName": "QuestTemplate",
     "NewNamespace": "EFT.Quests",
   },
   "GClass4054": {
-    "NewName": "QuestTemplate",
+    "NewName": "RepeatableQuestTemplate",
     "NewNamespace": "EFT.Quests",
   },
   "GClass4058": {
@@ -3592,7 +3596,7 @@
     "NewNamespace": "AmplifyImpostors",
   },
   "GClass4081": {
-    "NewName": "ImposterBakingTools",
+    "NewName": "ImpostorBakingTools",
     "NewNamespace": "AmplifyImpostors",
   },
   "GClass4082": {
@@ -4626,11 +4630,11 @@
   },
   "GClass3989": {
     "NewName": "VisualSettings",
-    "NewNamespace": "EFT.InventoryLogic"
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
   },
   "GClass3985": {
     "NewName": "BackBlastSettings",
-    "NewNamespace": "EFT.InventoryLogic"
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
   },
   "GClass3345": {
     "NewName": "Knife",
@@ -4646,7 +4650,7 @@
   },
   "GClass3430": {
     "NewName": "ToggleResult",
-    "NewNamespace": "EFT.InventoryLogic.Operations"
+    "NewNamespace": "EFT.InventoryLogic"
   },
   "GClass3475`1": {
     "NewName": "AbstractAsyncOperation",
@@ -4782,7 +4786,7 @@
   },
   "GClass2426": {
     "NewName": "HideoutSlot",
-	"NewNamespace": "EFT"
+	"NewNamespace": "EFT.Hideout"
   },
   "GClass2335": {
     "NewName": "BarterTemplate",
@@ -4870,7 +4874,7 @@
   },
   "GClass3629": {
     "NewName": "DialogAction",
-	"NewNamespace": "EFT.AnimationSequencePlayer"
+	"NewNamespace": "EFT.Dialogs"
   },
   "GClass3667": {
     "NewName": "TraderDialogHistory",
@@ -4932,7 +4936,7 @@
 	"NewNamespace": "EFT.InventoryLogic"
   },
   "GClass3337": {
-    "NewName": "CultistAmuletTemplat",
+    "NewName": "FoodDrink",
 	"NewNamespace": "EFT.InventoryLogic"
   },
   "GClass3353": {
@@ -5083,6 +5087,7 @@
   },
   "GClass3126": {
     "NewName": "SlotSerializer",
+    "NewNamespace": "EFT.InventoryLogic",
     "NestedTypes": {
       "GClass3127": {
         "NewName": "SlotProps"
@@ -5191,7 +5196,7 @@
   },
   "GClass2649": {
     "NewName": "TripwireManager",
-	"NewNamespace": "EFT.SyncronizableObjects"
+	"NewNamespace": "EFT.SynchronizableObjects"
   },
   "GClass2652": {
     "NewName": "ClientAirdropManager",
@@ -5264,7 +5269,7 @@
   },
   "GClass2726": {
     "NewName": "AnimatedInteractions",
-	"NewNamespace": "EFT.ItemInHandSubsystem"
+	"NewNamespace": "EFT.AnimatedInteractionsSubsystem"
   },
   "GClass276": {
     "NewName": "ShootFromPlace",
@@ -5347,9 +5352,9 @@
     "NewName": "ObservedPlayerStateContext",
 	"NewNamespace": "EFT.NextObservedPlayer"
   },
-  "GClass2978": {
+  "GClass2678": {
     "NewName": "ObservedVaultingParameters",
-	"NewNamespace": "EFT.NextObservedPlayer"
+    "NewNamespace": "EFT.Vaulting"
   },
   "GClass2903": {
     "NewName": "ObservedPlayerArmorInfo",
@@ -5436,10 +5441,12 @@
     "NewName": "DebugBotProfilesStruct"
   },
   "GClass1378": {
-    "NewName": "Vector3Quantizer"
+    "NewName": "Vector3Quantizer",
+    "NewNamespace": "BitPacking"
   },
   "GClass1375": {
-    "NewName": "Vector2Quantizer"
+    "NewName": "Vector2Quantizer",
+    "NewNamespace": "BitPacking"
   },
   "GClass430": {
     "NewName": "BossBoar"
@@ -5681,6 +5688,7 @@
   },
   "GClass3351": {
     "NewName": "Stimulator",
+    "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass326": {
     "NewName": "ExUsecAbstractStrategy",
@@ -5705,5 +5713,9 @@
         "NewName": "Timing"
       }
     }
+  },
+  "GClass3233": {
+    "NewName": "StimulatorTemplate",
+    "NewNamespace": "EFT.InventoryLogic",
   }
 }

@@ -23,7 +23,7 @@
     "NewNamespace": "EFT.InventoryLogic"
   },
   "GEventArgs6": {
-    "NewName": "ExamineEventArgs",
+    "NewName": "ExamineItemEventArgs",
     "NewNamespace": "EFT.InventoryLogic"
   },
   "GEventArgs7": {

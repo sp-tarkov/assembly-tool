@@ -36,8 +36,6 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
 
         foreach (var method in toolData.Type.Methods)
         {
-            Log.Information("{type}::{name}", method.DeclaringType.Name.ToString(), method.Name.ToString());
-
             if (method.IsCompilerGenerated() || method.IsGetMethod || method.IsSetMethod)
             {
                 continue;
@@ -49,8 +47,6 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
                 {
                     Log.Debug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
                 }
-
-                Log.Information("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
 
                 method.Name = new Utf8String(newName);
             }

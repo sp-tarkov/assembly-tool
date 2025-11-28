@@ -5715,5 +5715,262 @@
   "GClass3233": {
     "NewName": "StimulatorTemplate",
     "NewNamespace": "EFT.InventoryLogic",
-  }
+  },
+  "GClass4062": {
+    "NewName": "Profiler",
+    "NewNamespace": "EFT.UnityProfilerWrapper",
+	"NestedTypes": {
+      "Struct1306": {
+        "NewName": "Marker"
+      }
+    }
+  },
+  "GClass402": {
+    "NewName": "BotDebugMemory",
+  },
+  "GClass403": {
+    "NewName": "BotOwnerGizmos",
+  },
+  "GClass2270": {
+    "NewName": "OfflineStatisticManager",
+    "NewNamespace": "EFT"
+  },
+  "GClass3943": {
+    "NewName": "RagfairSearch",
+    "NewNamespace": "EFT.UI.Ragfair"
+  },
+  "GClass3971`1": {
+    "NewName": "AssetPool",
+    "NewNamespace": "EFT.AssetsManager"
+  },
+  "GClass3972": {
+    "NewName": "PlayerAssetPool",
+    "NewNamespace": "EFT.AssetsManager"
+  },
+  "GClass3973": {
+    "NewName": "PlayerZombieAssetPool",
+    "NewNamespace": "EFT.AssetsManager"
+  },
+  "GClass3974`1": {
+    "NewName": "AssetsPool",
+    "NewNamespace": "EFT.AssetsManager"
+  },
+  "GClass3975": {
+    "NewName": "AssetsPoolStaticConfig",
+    "NewNamespace": "EFT.AssetsManager",
+	"NestedTypes": {
+      "GStruct454": {
+        "NewName": "ComponentConfig"
+      }
+    }
+  },
+  "GClass3976": {
+    "NewName": "BackblastModel",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3977": {
+    "NewName": "ArmingModel",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3978": {
+    "NewName": "CollisionsHandlerModel",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3980": {
+    "NewName": "ExplosionModel",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3982": {
+    "NewName": "ParticleRenderer",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3983": {
+    "NewName": "ExplosionPropagationModel",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3984": {
+    "NewName": "RocketSoundPlayer",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3986": {
+    "NewName": "ComputableUnitSettings",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3987": {
+    "NewName": "ExplosionSettings",
+    "NewNamespace": "EFT.RocketLauncher.Explosion"
+  },
+  "GClass3988": {
+    "NewName": "PhysicalSettings",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GClass3991": {
+    "NewName": "AchievementsGlobalProgressStorage",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass3992": {
+    "NewName": "BackendCounter",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass3996": {
+    "NewName": "DailyQuest",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass3998": {
+    "NewName": "ConditionalExtensions",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass4003": {
+    "NewName": "ConditionsConnectorsManagerClientGame",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass4005": {
+    "NewName": "QuestControllerClient",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass4013": {
+    "NewName": "ConditionalHelper",
+    "NewNamespace": "EFT.Quests"
+  },
+  "GClass4014": {
+    "NewName": "ConditionalTemplatesStorage",
+    "NewNamespace": "EFT.Quests",
+	"NestedTypes": {
+      "GStruct457": {
+        "NewName": "FreeChangesCount"
+      }
+    }
+  },
+  "GClass4015": {
+    "NewName": "HitConditionCheck",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4016": {
+    "NewName": "LogicalCompareCollectionExtensions",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4017": {
+    "NewName": "CompareMethodExtensions",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4018": {
+    "NewName": "ConditionComparer",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4019": {
+    "NewName": "ConditionTimeComparer",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4021": {
+    "NewName": "WeaponAssemblyParameter",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4022": {
+    "NewName": "QuestConditionsListSerialized",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4025`1": {
+    "NewName": "ConditionsConnectorsManagerClientBackend",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4029": {
+    "NewName": "ConditionsConnectorsManagerQuestClientBackend",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4030`1": {
+    "NewName": "ConditionsConnectorsManagerClientGame",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4033": {
+    "NewName": "ConditionsConnectorsManagerQuestClientGame",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4037": {
+    "NewName": "ConditionEquipmentProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4038": {
+    "NewName": "ConditionExitNameProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4040": {
+    "NewName": "ConditionHealthEffectProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4042": {
+    "NewName": "ConditionHitProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4043": {
+    "NewName": "ConditionInZoneProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4044": {
+    "NewName": "ConditionLaunchFlareProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4046": {
+    "NewName": "ConditionTransitionLocationProgressChecker",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4048": {
+    "NewName": "ConditionProgressCheckersFactory",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4049": {
+    "NewName": "QuestReward",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4051": {
+    "NewName": "ConditionExtensions",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4055`1": {
+    "NewName": "ConditionalTemplatesCollection",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4056": {
+    "NewName": "RepeatableQuestTemplatesCollection",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4057": {
+    "NewName": "AchievementTemplatesCollection",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4059": {
+    "NewName": "RepeatableQuestUpdater",
+    "NewNamespace": "EFT.Quests",
+  },
+  "GClass4063": {
+    "NewName": "NPCElement",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4064": {
+    "NewName": "NPCDictionary",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4065": {
+    "NewName": "SequencePlayer",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4066": {
+    "NewName": "Validation",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4069": {
+    "NewName": "SequenceParams",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4070": {
+    "NewName": "SequenceKeyWithParams",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4073": {
+    "NewName": "SubtitleParams",
+    "NewNamespace": "EFT.AnimationSequencePlayer",
+  },
+  "GClass4074": {
+    "NewName": "BackendSubtitleParams",
+    "NewNamespace": "EFT.Dialogs",
+  },
 }

@@ -363,6 +363,132 @@
     "NewName": "CloudLayerRenderer",
     "NewNamespace": "EFT.Rendering.Clouds",
   },
+  "Class1028": {
+    "NewName": "JobAwaitable",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "Class1029": {
+    "NewName": "JobAwaiter",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "Class1030": {
+    "NewName": "ContinuationProfiler",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "Class1031": {
+    "NewName": "ExecuteConditionGeneral",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "Class1032": {
+    "NewName": "ExecuteConditionJobFinish",
+    "NewNamespace": "Diz.Jobs",
+  },
+  "Class1072": {
+    "NewName": "ChartDateUtility",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "Class1073": {
+    "NewName": "ChartColumnCollection",
+    "NewNamespace": "ChartAndGraph.DataSource",
+  },
+  "Class1074": {
+    "NewName": "ChartRowCollection",
+    "NewNamespace": "ChartAndGraph.DataSource",
+  },
+  "Class1082": {
+    "NewName": "CanvasChartMesh",
+    "NewNamespace": "ChartAndGraph",
+  },
+  "Class1084": {
+    "NewName": "ChartDataItemBase",
+    "NewNamespace": "ChartAndGraph.DataSource",
+  },
+  "Class1087": {
+    "NewName": "ChartDataSourceBase",
+    "NewNamespace": "ChartAndGraph.DataSource",
+  },
+  "Class1128": {
+    "NewName": "UrlsExtension",
+    "NewNamespace": "EFT",
+  },
+  "Class1394": {
+    "NewName": "LeftHandInteractionsEventConsumer",
+    "NewNamespace": "EFT",
+  },
+  "Class1466": {
+    "NewName": "NetworkConnectionExtension",
+    "NewNamespace": "EFT",
+  },
+  "Class1467": {
+    "NewName": "SystemInfoExtension",
+    "NewNamespace": "EFT",
+  },
+  "Class1481": {
+    "NewName": "LoginStore",
+    "NewNamespace": "EFT",
+  },
+  "Class1513": {
+    "NewName": "DataPrepareOperation",
+    "NewNamespace": "EFT",
+  },
+  "Class1523": {
+    "NewName": "MatchingOperation",
+    "NewNamespace": "EFT",
+  },
+  "Class2097": {
+    "NewName": "BaseEventConsumer",
+    "NewNamespace": "EFT",
+  },
+  "Class1716": {
+    "NewName": "HideoutGrenadeInputTranslator",
+    "NewNamespace": "EFT",
+  },
+  "Class1725": {
+    "NewName": "PlayerInputTranslator",
+    "NewNamespace": "EFT",
+  },
+  "Class1728": {
+    "NewName": "MoveInputTranslator",
+    "NewNamespace": "EFT",
+  },
+  "Class1820": {
+    "NewName": "HDShaderIDs",
+    "NewNamespace": "EFT.Rendering.Clouds",
+  },
+  "Class1824": {
+    "NewName": "EFTAspectHelper",
+    "NewNamespace": "EFT.Settings.Graphics",
+  },
+  "Class2099": {
+    "NewName": "ImpostorsOpticCameraContext",
+    "NewNamespace": "EFT.Impostors",
+  },
+  "Class2112": {
+    "NewName": "ImpostorTextureParams",
+    "NewNamespace": "EFT.Impostors",
+  },
+  "Class2116": {
+    "NewName": "WindParamsHelper",
+    "NewNamespace": "EFT.Weather",
+  },
+  "Class1650": {
+    "NewName": "ConnectionClient",
+    "NewNamespace": "EFT",
+	"NestedTypes": {
+      "Interface12": {
+        "NewName": "ISession"
+		}
+    }
+  },
+  "Class1088": {
+    "NewName": "ChartSparseDataSource",
+    "NewNamespace": "ChartAndGraph",
+	"NestedTypes": {
+      "Struct272": {
+        "NewName": "KeyElement"
+		}
+    }
+  },
   "Class2545": {
     "NewName": "SpawnSystem",
     "NewNamespace": "EFT.Game.Spawning",

@@ -132,8 +132,8 @@ public class SigBasedMemberRenamer(
 
                 //Log.Information("Renaming field: {old} -> {new}", targetField.FullName, dummyField.FullName);
 
-                UpdateFieldMemberReferences(targetField, targetField.Name!);
                 targetField.Name = dummyField.Name;
+                UpdateFieldMemberReferences(targetField, targetField.Name!);
 
                 dummyFields.Remove(dummyField);
                 break;

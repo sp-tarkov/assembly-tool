@@ -6350,6 +6350,104 @@
   "GClass871": {
     "NewName": "InGameMemoryManagement",
   },
+  "GClass1273`1": {
+    "NewName": "GPUInstancerSpatialPartitioningData",
+  },
+  "GClass1275`1": {
+    "NewName": "PrefabVariationData",
+  },
+  "GClass1284`1": {
+    "NewName": "Reader",
+	"NewNamespace": "Mirror",
+  },
+  "GClass1289`1": {
+    "NewName": "Writer",
+	"NewNamespace": "Mirror",
+  },
+  "GClass1286`1": {
+    "NewName": "ConcurrentPool",
+	"NewNamespace": "Mirror",
+  },
+  "GClass1301`3": {
+    "NewName": "AbstractInterpolator",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1302`2": {
+    "NewName": "InterpolatorBase",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1303`1": {
+    "NewName": "Interpolator",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1304`1": {
+    "NewName": "DynamicArray",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1305": {
+    "NewName": "InterpolationFunctions",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1310": {
+    "NewName": "InterpolatorConstants",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1311": {
+    "NewName": "EBoundTypeExtensions",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1313": {
+    "NewName": "AbstractStateMachine",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1315": {
+    "NewName": "AbstractInnerStateMachine",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1307`1": {
+    "NewName": "ImpulseInterpolationStrategy",
+	"NewNamespace": "Interpolation",
+  },
+  "GClass1318": {
+    "NewName": "AnimatorControllerTransition",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1319": {
+    "NewName": "AbstractAnimatorControllerState",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1320": {
+    "NewName": "AbstractBlendTreeState",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1341": {
+    "NewName": "FastAnimatorProcessor",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1343": {
+    "NewName": "FastControllerInfo",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1344": {
+    "NewName": "FastLayerInfo",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1345": {
+    "NewName": "TransitionCondition",
+	"NewNamespace": "FastAnimatorSystem",
+  },
+  "GClass1346": {
+    "NewName": "FastAnimatorControllerJsonSerializator",
+	"NewNamespace": "FastAnimatorSystem.JsonSerialization",
+  },
+  "GClass1353": {
+    "NewName": "AvarageMeasureStatistics",
+	"NewNamespace": "UnityDiagnostics",
+  },
+  "GClass1354": {
+    "NewName": "MaxMeasurer",
+	"NewNamespace": "UnityDiagnostics",
+  },
   "GClass736": {
     "NewName": "AsyncRaycastsBatchManager",
 	"NestedTypes": {

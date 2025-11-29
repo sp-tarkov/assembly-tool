@@ -2621,10 +2621,109 @@
   "GClass643": {
     "NewName": "ArtilleryShellingControllerServer",
   },
+  "GClass768": {
+    "NewName": "ContainerCollectionView",
+  },
+  "GClass771": {
+    "NewName": "NetworkClientGrenadeFactory",
+  },
+  "GClass772": {
+    "NewName": "AmmoActivenessData",
+  },
+  "GClass776": {
+    "NewName": "Physical",
+  },
   "GClass824": {
     "NewName": "HardwareTime",
   },
-  "GClass818": {
+  "GClass777": {
+    "NewName": "IdlePlayerInertia",
+  },
+  "GClass779": {
+    "NewName": "CharacterControllerCommonMethods",
+  },
+  "GClass780": {
+    "NewName": "CollidersHelper",
+  },
+  "GClass781": {
+    "NewName": "PlayerConstants",
+  },
+  "GClass784": {
+    "NewName": "PoseTypeExtensions",
+  },
+  "GClass786": {
+    "NewName": "ChangeNicknameStatus",
+  },
+  "GClass790": {
+    "NewName": "WildSpawnTypeSettings",
+  },
+  "GClass791": {
+    "NewName": "WildSpawnTypeExtension",
+  },
+  "GClass792": {
+    "NewName": "Skinner",
+  },
+  "GClass793": {
+    "NewName": "SynchronizableObjectPacketExtensions",
+  },
+  "GClass794": {
+    "NewName": "TemplatesDownloader",
+  },
+  "GClass795": {
+    "NewName": "TerrainTextureMixData",
+  },
+  "GClass797`1": {
+    "NewName": "AbstractAverage",
+  },
+  "GClass798`1": {
+    "NewName": "AbstractMinMaxAverage",
+  },
+  "GClass799": {
+    "NewName": "MinMaxAverageDouble",
+  },
+  "GClass800": {
+    "NewName": "MinMaxAverageFloat",
+  },
+  "GClass802": {
+    "NewName": "AverageFloat",
+  },
+  "GClass803": {
+    "NewName": "AverageVector3",
+  },
+  "GClass813": {
+    "NewName": "DebugOnceInRelease",
+  },
+  "GClass804": {
+    "NewName": "FloatExponentialMovingAverageCalculator",
+  },
+  "GClass805": {
+    "NewName": "SmoothDampCalculator",
+  },
+  "GClass806": {
+    "NewName": "BotConfigurationDataStore",
+  },
+  "GClass808": {
+    "NewName": "ColorUtilities",
+  },
+  "GClass809": {
+    "NewName": "ComponentExtensions",
+  },
+  "GClass810": {
+    "NewName": "DebugExtension",
+  },
+  "GClass811": {
+    "NewName": "CDebug",
+  },
+  "GClass812": {
+    "NewName": "DebugOnce",
+  },
+  "GClass816": {
+    "NewName": "InfOrNonChecker",
+  },
+  "GClass817": {
+    "NewName": "DebugLogHelper",
+  },
+  "GClass818`2": {
     "NewName": "DictionaryListHydra",
   },
   "GClass705": {
@@ -6101,5 +6200,145 @@
   "GClass4074": {
     "NewName": "BackendSubtitleParams",
     "NewNamespace": "EFT.Dialogs",
+  },
+  "GClass1222`1": {
+    "NewName": "FastArray",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1223`1": {
+    "NewName": "LockableQueue",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1213": {
+    "NewName": "PerfectCullingBakeGroupComparer",
+    "NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1142": {
+    "NewName": "CombinedSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1143": {
+    "NewName": "ContinuousPropagatedSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1144": {
+    "NewName": "ContinuousSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1145": {
+    "NewName": "FastSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1147": {
+    "NewName": "RegularSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass1146": {
+    "NewName": "MultiSourceSpatialAudioOccluder",
+    "NewNamespace": "Audio.SpatialSystem",
+  },
+  "GClass2109": {
+    "NewName": "ClientPlayerMovementContext",
+    "NewNamespace": "EFT",
+  },
+  "GClass3822": {
+    "NewName": "AsyncViewList",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass864": {
+    "NewName": "UIParent",
+    "NewNamespace": "EFT.UI",
+  },
+  "GClass819": {
+    "NewName": "DigitsToColorExtension",
+  },
+  "GClass827": {
+    "NewName": "MemoryInfo",
+  },
+  "GClass820`1": {
+    "NewName": "DropManager",
+  },
+  "GClass821": {
+    "NewName": "FloatingSpeed",
+  },
+  "GClass822": {
+    "NewName": "FloatingSum",
+  },
+  "GClass826`1": {
+    "NewName": "LoopedQueue",
+  },
+  "GClass823": {
+    "NewName": "GeometryUtilityExtensions",
+  },
+  "GClass829": {
+    "NewName": "ExponentiallySmoothedMovingAverage",
+  },
+  "GClass840": {
+    "NewName": "TransformTools",
+  },
+  "GClass830": {
+    "NewName": "DoubleExponentiallySmoothedMovingAverage",
+  },
+  "GClass832": {
+    "NewName": "NativeArrayExtensions",
+  },
+  "GClass839": {
+    "NewName": "StringBuilderExtension",
+  },
+  "GClass83`1": {
+    "NewName": "ListPool",
+  },
+  "GClass836": {
+    "NewName": "QueueSum",
+  },
+  "GClass841": {
+    "NewName": "UnityAsyncOperationsExtensions",
+  },
+  "GClass836": {
+    "NewName": "QueueSum",
+  },
+  "GClass857": {
+    "NewName": "UtilsCos",
+  },
+  "GClass850": {
+    "NewName": "GizmoUtils",
+  },
+  "GClass844": {
+    "NewName": "ManualCoroutine",
+  },
+  "GClass845": {
+    "NewName": "JsonWebClient",
+  },
+  "GClass852": {
+    "NewName": "SingleMonoBehaviour",
+  },
+  "GClass782": {
+    "NewName": "ImpostorCharacterController",
+  },
+  "GClass828": {
+    "NewName": "MovingAverage",
+  },
+  "GClass842": {
+    "NewName": "UnityUtils",
+  },
+  "GClass961`1": {
+    "NewName": "QuadNode",
+  },
+  "GClass889": {
+    "NewName": "SuperBetterAudioQueue",
+  },
+  "GClass877": {
+    "NewName": "pc_renderer",
+  },
+  "GClass871": {
+    "NewName": "InGameMemoryManagement",
+  },
+  "GClass736": {
+    "NewName": "AsyncRaycastsBatchManager",
+	"NestedTypes": {
+      "GClass737": {
+        "NewName": "RaycastJobContainer"
+      }
+    }
   },
 }

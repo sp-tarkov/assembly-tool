@@ -2630,6 +2630,24 @@
   "GClass772": {
     "NewName": "AmmoActivenessData",
   },
+  "GClass1206": {
+    "NewName": "IndexOnlyObjectSampleSetFactory",
+  },
+  "GClass1220": {
+    "NewName": "PixelObjectSampleSetFactory",
+  },
+  "GClass1224": {
+    "NewName": "PerfectCullingConstants",
+	"NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1225": {
+    "NewName": "PerfectCullingMath",
+	"NewNamespace": "Koenigz.PerfectCulling",
+  },
+  "GClass1226": {
+    "NewName": "PerfectCullingMeshSplitting",
+	"NewNamespace": "Koenigz.PerfectCulling",
+  },
   "GClass776": {
     "NewName": "Physical",
   },

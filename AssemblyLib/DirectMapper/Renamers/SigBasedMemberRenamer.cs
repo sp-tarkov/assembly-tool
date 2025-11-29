@@ -144,7 +144,7 @@ public class SigBasedMemberRenamer(
     private void RenamePropertiesOnType(TypeDefinition targetType, TypeDefinition dummyType)
     {
         var targetProperties = targetType.Properties;
-        var dummyProperties = dummyType.Properties;
+        var dummyProperties = dummyType.Properties.ToList();
 
         var dummyPropertiesNames = dummyProperties.Select(p => p.Name).ToHashSet();
 
@@ -152,6 +152,7 @@ public class SigBasedMemberRenamer(
         {
             if (dummyPropertiesNames.Contains(targetProperty.Name))
             {
+                dummyProperties.RemoveAll(p => p.Name == targetProperty.Name);
                 continue;
             }
 

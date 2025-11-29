@@ -58,7 +58,7 @@ public class DataProvider
 
         if (loadMscorlib)
         {
-            Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "MsCorLib.dll"));
+            Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "mscorlib.dll"));
         }
 
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");

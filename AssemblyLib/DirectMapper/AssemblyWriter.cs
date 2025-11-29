@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
@@ -43,8 +44,9 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         }
 
         var fileName = Path.GetFileNameWithoutExtension(assemblyPath);
+        var fileExtension = Path.GetExtension(assemblyPath);
         var managedPath = Path.GetDirectoryName(assemblyPath);
-        var cleanedPath = Path.Combine(managedPath!, $"{fileName}-cleaned.dll");
+        var cleanedPath = Path.Combine(managedPath!, $"{fileName}-cleaned{fileExtension}");
 
         result.Success = true;
         result.DeObfuscatedAssemblyPath = cleanedPath;
@@ -233,7 +235,8 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
     private void StartHDiffz(string outPath)
     {
-        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "HDiffz", "hdiffz.exe");
+        var hdiffExecutable = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "hdiffz.elf" : "hdiffz.exe";
+        var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "Hdiffz", hdiffExecutable);
 
         var outDir = Path.GetDirectoryName(outPath);
 

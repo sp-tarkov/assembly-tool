@@ -3571,7 +3571,7 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3383": {
-    "NewName": "ItemContext",
+    "NewName": "ItemController",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3388": {
@@ -3584,8 +3584,7 @@
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3449": {
-    // TraderControllerClass
-    "NewName": "ItemController",
+    "NewName": "ItemContext",
     "NewNamespace": "EFT.InventoryLogic",
   },
   "GClass3454": {

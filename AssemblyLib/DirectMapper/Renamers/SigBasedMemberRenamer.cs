@@ -103,6 +103,8 @@ public class SigBasedMemberRenamer(
 
                 //Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
                 targetMethod.Name = dummyMethod.Name;
+                UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
+
                 dummyMethods.Remove(dummyMethod);
                 break;
             }
@@ -190,6 +192,16 @@ public class SigBasedMemberRenamer(
     private void UpdateFieldMemberReferences(FieldDefinition target, Utf8String newName)
     {
         var cachedReferences = memberReferenceCache.GetFieldReferences(target);
+
+        foreach (var reference in cachedReferences)
+        {
+            reference.Name = newName;
+        }
+    }
+
+    private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)
+    {
+        var cachedReferences = memberReferenceCache.GetMethodReferences(target);
 
         foreach (var reference in cachedReferences)
         {

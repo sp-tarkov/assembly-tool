@@ -92,11 +92,11 @@
     "NewNamespace": "FlyingWormConsole3.LiteNetLib",
   },
   "Class281": {
-    "NewName": "EftClientBackend",
-    "NewNamespace": "EFT",
+    "NewName": "WaitPlayerRequest",
   },
   "Class306": {
-    "NewName": "WaitPlayerRequest"
+    "NewName": "EftClientBackend",
+    "NewNamespace": "EFT"
   },
   "Class310": {
     "NewName": "BackendCache",

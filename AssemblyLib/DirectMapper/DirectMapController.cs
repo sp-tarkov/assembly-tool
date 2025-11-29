@@ -30,7 +30,7 @@ public class DirectMapController(
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
 
-        memberReferenceCache.Hydrate();
+        await memberReferenceCache.Hydrate();
 
         if (!TryDeobfuscateAssembly())
         {

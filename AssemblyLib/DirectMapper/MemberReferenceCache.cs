@@ -142,7 +142,7 @@ public class MemberReferenceCache(DataProvider dataProvider)
 
     private async Task CacheMethodOverrides()
     {
-        var allMethods = dataProvider.LoadedModule!.GetAllTypes().SelectMany(t => t.Methods);
+        var allMethods = dataProvider.LoadedModule!.GetAllTypes().SelectMany(t => t.Methods.Where(m => m.IsNewSlot));
 
         await AnsiConsole
             .Progress()
@@ -172,11 +172,6 @@ public class MemberReferenceCache(DataProvider dataProvider)
 
     private Task FindAllMethodOverrides(MethodDefinition method)
     {
-        if (!method.IsNewSlot || !method.IsVirtual)
-        {
-            return Task.CompletedTask;
-        }
-
         var baseType = method.DeclaringType;
         var overrides = dataProvider
             .LoadedModule!.GetAllTypes()

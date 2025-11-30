@@ -180,13 +180,7 @@ public class AttributeFactory(DataProvider dataProvider)
             }
 
             // Try to find and update the attribute
-            var newAttr = TryCreateUpdatedAttribute(
-                attr,
-                referencedTypeName,
-                renameMap,
-                CreateJsonConverterAttribute,
-                CreateJsonConverterAttributeWithGeneric
-            );
+            var newAttr = TryCreateUpdatedAttribute(attr, referencedTypeName, renameMap);
 
             if (newAttr != null)
             {
@@ -298,33 +292,30 @@ public class AttributeFactory(DataProvider dataProvider)
         }
     }
 
-    private static CustomAttribute? TryCreateUpdatedAttribute(
+    private CustomAttribute? TryCreateUpdatedAttribute(
         CustomAttribute originalAttr,
         string referencedTypeName,
-        Dictionary<string, TypeDefinition> renameMap,
-        Func<TypeDefinition, CustomAttribute> simpleCreator,
-        Func<TypeDefinition, TypeSignature[], CustomAttribute> genericCreator
+        Dictionary<string, TypeDefinition> renameMap
     )
     {
         // Check if it's a generic type
         if (referencedTypeName.Contains('<'))
         {
-            return TryCreateGenericAttribute(originalAttr, renameMap, genericCreator);
+            return TryCreateGenericAttribute(originalAttr, renameMap);
         }
 
         // Simple type - direct lookup
         if (renameMap.TryGetValue(referencedTypeName, out var newTypeDef))
         {
-            return simpleCreator(newTypeDef);
+            return CreateJsonConverterAttribute(newTypeDef);
         }
 
         return null;
     }
 
-    private static CustomAttribute? TryCreateGenericAttribute(
+    private CustomAttribute? TryCreateGenericAttribute(
         CustomAttribute originalAttr,
-        Dictionary<string, TypeDefinition> renameMap,
-        Func<TypeDefinition, TypeSignature[], CustomAttribute> genericCreator
+        Dictionary<string, TypeDefinition> renameMap
     )
     {
         // Extract the original type signature from the attribute
@@ -387,7 +378,7 @@ public class AttributeFactory(DataProvider dataProvider)
         var finalArguments = updatedArguments ?? genericSig.TypeArguments.ToArray();
 
         Log.Debug("Creating updated generic attribute with {ArgCount} arguments", finalArguments.Length);
-        return genericCreator(newGenericTypeDef!, finalArguments);
+        return CreateJsonConverterAttributeWithGeneric(newGenericTypeDef!, finalArguments);
     }
 
     /// <summary>

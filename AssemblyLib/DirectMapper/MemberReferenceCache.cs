@@ -79,6 +79,16 @@ public class MemberReferenceCache(DataProvider dataProvider)
             : throw new KeyNotFoundException($"Property {property.FullName} does not exist in cache");
     }
 
+    public List<MethodDefinition> GetMethodOverrides(MethodDefinition method)
+    {
+        if (!_hydrated)
+        {
+            throw new InvalidOperationException("MemberReferenceCache has not been hydrated");
+        }
+
+        return _methodOverrides.TryGetValue(method, out var value) ? value : [];
+    }
+
     private void CacheMethodReferences()
     {
         foreach (var type in dataProvider.LoadedModule!.GetAllTypes())

@@ -105,6 +105,16 @@ public class SigBasedMemberRenamer(
                 targetMethod.Name = dummyMethod.Name;
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
+                var overrides = memberReferenceCache.GetMethodOverrides(targetMethod);
+                if (overrides.Count != 0)
+                {
+                    foreach (var method in overrides)
+                    {
+                        method.Name = dummyMethod.Name;
+                        UpdateMethodMemberReferences(method, method.Name!);
+                    }
+                }
+
                 dummyMethods.Remove(dummyMethod);
                 break;
             }

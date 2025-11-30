@@ -841,6 +841,66 @@
   "GClass587": {
     "NewName": "AIData",
   },
+  "GClass588": {
+    "NewName": "AIVoxelChecker",
+  },
+  "GClass589": {
+    "NewName": "PlayerVoxelChecker",
+  },
+  "GClass590": {
+    "NewName": "StubAIDataRoomLogic",
+  },
+  "GClass591": {
+    "NewName": "StubAIData",
+  },
+  "GClass592": {
+    "NewName": "FollowMeRequest",
+  },
+  "GClass595": {
+    "NewName": "HoldPositionRequest",
+  },
+  "GClass596": {
+    "NewName": "OpenDoorRequest",
+  },
+  "GClass597": {
+    "NewName": "SuppressionFireRequest",
+  },
+  "GClass598": {
+    "NewName": "ThrowGrenadeRequest",
+  },
+  "GClass599": {
+    "NewName": "ThrowGrenadePlaceRequest",
+  },
+  "GClass600": {
+    "NewName": "ThrowGrenadePlayerRequest",
+  },
+  "GClass601": {
+    "NewName": "ThrowGrenadePointRequest",
+  },
+  "GClass602": {
+    "NewName": "SuppressionData",
+  },
+  "GClass603": {
+    "NewName": "AimingAffection",
+  },
+  "GClass604": {
+    "NewName": "BotAimingData",
+  },
+  "GClass605": {
+    "NewName": "UnderbarrelLauncherBotAiming",
+  },
+  "GClass606": {
+    "NewName": "PointToCheck",
+  },
+  "GClass608": {
+    "NewName": "LookAllData",
+  },
+  "GClass609": {
+    "NewName": "LookSensorShootPosition",
+  },
+  "GClass610": {
+    "NewName": "LookSensorShootPositionBtr",
+  },
   "GClass611": {
     "NewName": "BotCoreSettings",
   },
@@ -867,8 +927,14 @@
     // BotDifficultySettingsClass
     "NewName": "BotSettings",
   },
+  "GClass619": {
+    "NewName": "BotSettingsComponentsMerger",
+  },
   "GClass620": {
     "NewName": "BotSettingsController",
+  },
+  "GClass621": {
+    "NewName": "BotSettingsDebug",
   },
   "GClass624`3": {
     "NewName": "TwoDimensionalDictionary",
@@ -894,6 +960,12 @@
       }
     }
   },
+  "GClass642": {
+    "NewName": "PlayerAlertState",
+  },
+  "GClass646": {
+    "NewName": "ClientBackendExtension",
+  },
   "GClass647`1": {
     // GenericParsedJsonResponseClass
     // JsonResponse<T>
@@ -901,6 +973,44 @@
   },
   "GClass648": {
     "NewName": "JsonResponse",
+  },
+  "GClass649": {
+    "NewName": "Crc32",
+  },
+  "GClass685": {
+    "NewName": "GetProfileDataParams",
+  },
+  "GClass686": {
+    "NewName": "GetProfileDataSide",
+  },
+  "GClass687": {
+    "NewName": "GetProfileParams",
+  },
+  "GClass688": {
+    "NewName": "LocalDebugProfileDataParams",
+  },
+  "GClass689": {
+    "NewName": "ServerDebugProfileDataParams",
+  },
+  "GClass690": {
+    "NewName": "EllipseCalculator",
+  },
+  "GClass693": {
+    "NewName": "CheckPoisitonDataCarePlayers",
+  },
+  "GClass696": {
+    "NewName": "ScavsTogetherDebug",
+	"NestedTypes": {
+      "GClass697": {
+        "NewName": "ScavsTogetherDebugPointCheck"
+      }
+    }
+  },
+  "GClass698": {
+    "NewName": "SpawnPointDebugStruct",
+  },
+  "GClass699": {
+    "NewName": "SpawnSystemDebugCollector",
   },
   "GClass274": {
     "NewName": "ShallThrowGrenade",
@@ -1018,12 +1128,105 @@
     // BotEventHandler
     "NewName": "GlobalEventDispatcher",
   },
+  "GClass622`3": {
+    "NewName": "MultiKeyDictionary",
+  },
+  "GClass623`3": {
+    "NewName": "TriplPair",
+  },
+  "GClass626": {
+    "NewName": "BotMapStats",
+  },
+  "GClass627": {
+    "NewName": "KillInfo",
+  },
+  "GClass628": {
+    "NewName": "BotsGlobalStaistics",
+  },
+  "GClass629": {
+    "NewName": "BotsProfilesAskingStats",
+  },
+  "GClass632": {
+    "NewName": "RequestsStats",
+  },
+  "GClass633": {
+    "NewName": "BotDistanceStat",
+  },
+  "GClass634": {
+    "NewName": "TargetStats",
+  },
+  "GClass635": {
+    "NewName": "ZigZagWayBuilder",
+  },
+  "GClass638": {
+    "NewName": "ApplicationFlags",
+  },
+  "GClass640": {
+    "NewName": "PerformanceLogger",
+  },
+  "GClass700": {
+    "NewName": "FarestListDebug",
+  },
+  "GClass701": {
+    "NewName": "SpawnSystemFarestPointLogsCollector",
+  },
+  "GClass703": {
+    "NewName": "GripBlender",
+  },
+  "GClass706": {
+    "NewName": "DiffMachine",
+  },
+  "GClass707": {
+    "NewName": "ItemRotationExtensions",
+  },
   "GClass708": {
     "NewName": "AbstractLogger",
+  },
+  "GClass709": {
+    "NewName": "AIDecisionLogger",
+  },
+  "GClass710": {
+	  // No matching 1.0 class
+    "NewName": "BotProfilesLogger",
+  },
+  "GClass712": {
+    "NewName": "PerfectCullingLog",
+	"NewNamespace": "Koenigz.PerfectCulling.EFT"
+  },
+  "GClass713": {
+    "NewName": "AnimatorSystemLogger",
+	"NewNamespace": "FastAnimatorSystem"
+  },
+  "GClass716": {
+    "NewName": "AssetBundleLogger",
+  },
+  "GClass717": {
+	  // No matching 1.0 class
+    "NewName": "NetworkSendMessagesLogger",
   },
   "GClass718": {
     "NewName": "ApplicationLogger",
 	"NewNamespace": "EFT"
+  },
+  "GClass719": {
+	  // No matching 1.0 class
+    "NewName": "CILogger",
+  },
+  "GClass720": {
+	  // No matching 1.0 class
+    "NewName": "DefaultLogger",
+  },
+  "GClass721": {
+	  // No matching 1.0 class
+    "NewName": "ExportLogger",
+  },
+  "GClass726": {
+	  // No matching 1.0 class
+    "NewName": "NetworkMessagesLogger",
+  },
+  "GClass727": {
+	  // No matching 1.0 class
+    "NewName": "NetworkConnectionLogger",
   },
   "GClass2380": {
     "NewName": "BoundingFrustum",
@@ -1052,6 +1255,9 @@
   },
   "GClass775": {
     "NewName": "PhysicalBase",
+  },
+  "GClass728": {
+    "NewName": "ExfiltrationLogger",
   },
   "GClass788": {
     "NewName": "AggressorStats",
@@ -3421,6 +3627,14 @@
     "NewName": "ObservedPlayerHandsController",
     "NewNamespace": "EFT.NextObservedPlayer",
   },
+  "GClass2978": {
+    "NewName": "ReceiveMessageStatistics",
+    "NewNamespace": "EFT.NextObservedPlayer",
+  },
+  "GClass2979": {
+    "NewName": "TimeSpanStatistics",
+    "NewNamespace": "EFT.NextObservedPlayer",
+  },
   "GClass3009`1": {
     "NewName": "BaseHealthController",
     "NewNamespace": "EFT.HealthSystem",
@@ -3672,6 +3886,10 @@
     // RagdollClass
     "NewName": "CorpseRagdoll",
     "NewNamespace": "EFT.Interactive",
+  },
+  "GClass3721": {
+    "NewName": "SecretExfilitranionController",
+    "NewNamespace": "EFT.Interactive.SecretExfiltrations",
   },
   "GClass3726`1": {
     "NewName": "PrecalculatedRandom",
@@ -4087,11 +4305,79 @@
     "NewName": "NetPeer",
     "NewNamespace": "FlyingWormConsole3.LiteNetLib",
   },
+  "GClass731": {
+    "NewName": "QuestLogger",
+  },
+  "GClass732": {
+	  // No matching 1.0 class
+    "NewName": "LogConfigurer",
+  },
   "GClass735`1": {
     "NewName": "BadValueLogTracker",
   },
   "GClass739": {
     "NewName": "OBBTrigger",
+  },
+  "GClass740": {
+    "NewName": "OverlapBoxCollider",
+  },
+  "GClass753": {
+    "NewName": "PhysicsMath",
+  },
+  "GClass754": {
+    "NewName": "RigidbodyExtentions",
+  },
+  "GClass756": {
+    "NewName": "AnimationControllerEventsTable",
+  },
+  "GClass758": {
+    "NewName": "AnimationControllerStatesTable",
+  },
+  "GClass759": {
+    "NewName": "MeleeAnimator",
+  },
+  "GClass760": {
+    "NewName": "AnimatorParamsExtension",
+  },
+  "GClass761": {
+    "NewName": "PlayerFrame",
+  },
+  "GClass762": {
+    "NewName": "ObservedPlayerFrame",
+  },
+  "GClass763": {
+    "NewName": "PlayerFrameExtension",
+  },
+  "GClass764": {
+    "NewName": "ObservedPlayerFrameExtension",
+  },
+  "GClass766": {
+    "NewName": "PlayerStateInfo",
+  },
+  "GClass767": {
+    "NewName": "PlayerStateInfoExtension",
+  },
+  "GClass783": {
+    "NewName": "BotAISteeringImpostorCharacterController",
+  },
+  "GClass909": {
+    "NewName": "FirstPersonStrategy",
+	"NestedTypes": {
+      "Struct106": {
+        "NewName": "StoredWorldPosition"
+	  }
+	}
+  },
+  "GClass912": {
+    "NewName": "MountingStrategy",
+	"NestedTypes": {
+      "Struct107": {
+        "NewName": "StoredWorldPosition"
+	  }
+	}
+  },
+  "GClass923": {
+    "NewName": "EmptyShaderReplacer",
   },
   "GClass1130": {
     "NewName": "SoundObstructionCalculator",
@@ -6287,6 +6573,11 @@
   },
   "GClass827": {
     "NewName": "MemoryInfo",
+	"NestedTypes": {
+      "GStruct50": {
+        "NewName": "ProcessMemoryCounters"
+      }
+    }
   },
   "GClass820`1": {
     "NewName": "DropManager",

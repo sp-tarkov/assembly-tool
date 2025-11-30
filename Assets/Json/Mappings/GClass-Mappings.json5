@@ -2531,7 +2531,7 @@
   },
   "GClass3592": {
     "NewName": "TriggersEmitter",
-    "NewNamespace": "EFT",
+    "NewNamespace": "EFT.GameTriggers",
   },
   "GClass2272": {
     "NewName": "TraderServicesHandler",
@@ -2555,10 +2555,6 @@
   },
   "GClass2227": {
     "NewName": "TaskConditionCounterDescriptor",
-    "NewNamespace": "EFT",
-  },
-  "GClass1914": {
-    "NewName": "FlatItem",
     "NewNamespace": "EFT",
   },
   "GClass2367": {
@@ -2602,6 +2598,7 @@
   },
   "GClass1306`1": {
     "NewName": "DiscreteInterpolationStrategy",
+	"NewNamespace": "Interpolation",
   },
   "GClass801": {
     "NewName": "AverageDouble",
@@ -2611,6 +2608,7 @@
   },
   "GClass3440": {
     "NewName": "DeleteMapMarkerResult",
+	"NewNamespace": "EFT.InventoryLogic",
   },
   "GClass644": {
     "NewName": "ZoneShellingProcess",
@@ -2632,9 +2630,11 @@
   },
   "GClass1206": {
     "NewName": "IndexOnlyObjectSampleSetFactory",
+	"NewNamespace": "Koenigz.PerfectCulling",
   },
   "GClass1220": {
     "NewName": "PixelObjectSampleSetFactory",
+	"NewNamespace": "Koenigz.PerfectCulling",
   },
   "GClass1224": {
     "NewName": "PerfectCullingConstants",
@@ -3625,9 +3625,25 @@
     "NewName": "ProfileStorage",
     "NewNamespace": "EFT.Development",
   },
+  "GClass3601": {
+    "NewName": "BackendDialogNodeData",
+    "NewNamespace": "EFT.Dialogs",
+  },
+  "GClass3601": {
+    "NewName": "BackendDialogData",
+    "NewNamespace": "EFT.Dialogs",
+  },
   "GClass3619": {
     "NewName": "ClientDialogController",
     "NewNamespace": "EFT.Dialogs",
+  },
+  "GClass3601": {
+    "NewName": "BackendDialogData",
+    "NewNamespace": "EFT.Dialogs",
+  },
+  "GClass2550": {
+    "NewName": "FireFlareForExitNotification",
+    "NewNamespace": "EFT.Communications",
   },
   "GClass3686": {
     // CameraClass
@@ -6352,9 +6368,11 @@
   },
   "GClass1273`1": {
     "NewName": "GPUInstancerSpatialPartitioningData",
+	"NewNamespace": "GPUInstancer",
   },
   "GClass1275`1": {
     "NewName": "PrefabVariationData",
+	"NewNamespace": "GPUInstancer",
   },
   "GClass1284`1": {
     "NewName": "Reader",

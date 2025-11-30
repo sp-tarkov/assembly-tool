@@ -11,6 +11,7 @@ namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
 public class DirectMapController(
+    AttributeFactory attributeFactory,
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     RenamerService renamerService,
@@ -118,6 +119,8 @@ public class DirectMapController(
                 return Task.WhenAll(tasks);
             });
 
+        await UpdateAttributes();
+
         // Make sure we don't do this until after renaming remaps
         renamerService.RenameCompilerGeneratedTypes();
     }
@@ -161,5 +164,21 @@ public class DirectMapController(
 
                 return Task.WhenAll(tasks);
             });
+    }
+
+    private Task UpdateAttributes()
+    {
+        attributeFactory.UpdateAsyncAttributes();
+
+        var mappingDict = new Dictionary<string, TypeDefinition>();
+        foreach (var (fullName, mapping) in dataProvider.DirectMapModels)
+        {
+            mappingDict.Add(fullName, mapping.ToolData.Type!);
+        }
+
+        attributeFactory.UpdateAllJsonConverterAttributes(mappingDict);
+        attributeFactory.UpdateAllTypeConverterAttributes(mappingDict);
+
+        return Task.CompletedTask;
     }
 }

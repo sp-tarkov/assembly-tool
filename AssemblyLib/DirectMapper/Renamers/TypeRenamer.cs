@@ -43,6 +43,8 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
                 ? new Utf8String($"{model.NewName!}`{genericParametersCount}")
                 : new Utf8String(model.NewName!);
 
+        var module = dataProvider.LoadedModule;
+
         toolData.Type?.Name = utf8Name;
     }
 

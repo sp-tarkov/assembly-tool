@@ -29,7 +29,7 @@ public class SigBasedMemberRenamer(
 
         var targetTypes = dataProvider
             .LoadedModule!.GetAllTypes()
-            .Where(t => !t.FullName.IsObfuscatedName() && !t.IsCompilerGenerated())
+            .Where(t => !t.FullName.IsObfuscatedName() && !t.IsCompilerGenerated() && !t.IsEnum)
             .ToList();
 
         var dummyTargetTypes = GetTargetTypesInDummy(targetTypes);

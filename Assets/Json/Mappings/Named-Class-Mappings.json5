@@ -120,9 +120,6 @@
       "GClass2059`1": {
         "NewName": "SlotObserver"
       },
-      "GClass2029": {
-        "NewName": "AutomaticFireOperation"
-      },
       "GClass2060": {
         "NewName": "GrenadeThrowResult"
       },
@@ -162,6 +159,9 @@
 		  "GClass2014": {
 			"NewName": "DischargeAmmoFromUnderbarrelWeapon"
 		  },
+          "GClass2029": {
+            "NewName": "AutomaticFireOperation"
+          },
 		  "Class1264": {
 			"NewName": "AddModOperation"
 		  }

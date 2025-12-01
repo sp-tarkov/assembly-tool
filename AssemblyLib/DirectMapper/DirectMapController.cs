@@ -48,6 +48,7 @@ public class DirectMapController(
         }
 
         await PublicizeObfuscatedTypes();
+        await UpdateAttributes();
         await ApplyPatches();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
 
@@ -119,7 +120,7 @@ public class DirectMapController(
                 return Task.WhenAll(tasks);
             });
 
-        await UpdateAttributes();
+        attributeFactory.UpdateAsyncAttributes();
 
         // Make sure we don't do this until after renaming remaps
         renamerService.RenameCompilerGeneratedTypes();
@@ -168,8 +169,6 @@ public class DirectMapController(
 
     private Task UpdateAttributes()
     {
-        attributeFactory.UpdateAsyncAttributes();
-
         var mappingDict = new Dictionary<string, TypeDefinition>();
         foreach (var (fullName, mapping) in dataProvider.DirectMapModels)
         {

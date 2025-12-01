@@ -6,6 +6,20 @@
       }
     }
   },
+	"EFT.UI.OtherPlayerProfileScreen": {
+		"NestedTypes": {
+			"GClass3883": {
+				"NewName": "OtherPlayerProfileScreenController"
+			}
+		}
+	},
+  "SortingTableWindow": {
+    "NestedTypes": {
+      "GClass3832": {
+        "NewName": "SortingTableWindowContext"
+      }
+    }
+  },
   "BetterSource": {
     "NestedTypes": {
       "GInterface35": {

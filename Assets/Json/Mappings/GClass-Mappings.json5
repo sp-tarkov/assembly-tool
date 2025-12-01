@@ -952,11 +952,19 @@
     "GClass125": {
         "NewName": "PartisanFightBaseLayer"
     },
+    "GClass1258": {
+        "NewName": "GPUInstancerCell",
+        "NewNamespace": "GPUInstancer"
+    },
     "GClass126": {
         "NewName": "PartisanFightLayer"
     },
     "GClass127": {
         "NewName": "PartisanFightManyLayer"
+    },
+    "GClass1270": {
+        "NewName": "GPUInstancerRuntimeData",
+        "NewNamespace": "GPUInstancer"
     },
     "GClass1272": {
         "NewName": "GPUInstancerRenderer",
@@ -966,12 +974,36 @@
         "NewName": "GPUInstancerSpatialPartitioningData",
         "NewNamespace": "GPUInstancer"
     },
+    "GClass1274": {
+        "NewName": "GPUInstancerUtility",
+        "NewNamespace": "GPUInstancer"
+    },
     "GClass1275`1": {
         "NewName": "PrefabVariationData",
         "NewNamespace": "GPUInstancer"
     },
+    "GClass1276": {
+        "NewName": "MirrorIgnoranceClient",
+        "NewNamespace": "Dissonance.Integrations.MirrorIgnorance"
+    },
+    "GClass1277": {
+        "NewName": "MirrorIgnoranceServer",
+        "NewNamespace": "Dissonance.Integrations.MirrorIgnorance"
+    },
+    "GClass1278": {
+        "NewName": "VoiceClient",
+        "NewNamespace": "Dissonance.Integrations.MirrorIgnorance"
+    },
+    "GClass1279": {
+        "NewName": "CreateLUT",
+        "NewNamespace": "MirzaBeig.Scripting.Effects"
+    },
     "GClass128": {
         "NewName": "PartisanZeroSavageLayer"
+    },
+    "GClass1280": {
+        "NewName": "Bezier",
+        "NewNamespace": "BezierSplineTools"
     },
     "GClass1282": {
         "NewName": "NetworkReader",
@@ -1247,16 +1279,21 @@
         "NewName": "ItemTemplates",
         "NewNamespace": "JsonType"
     },
-    "GClass141": {
-        "NewName": "PmcBearLayer"
-    },
     "GClass1410": {
         "NewName": "PlayerInfo",
         "NewNamespace": "JsonType"
     },
+    "GClass1411": {
+        "NewName": "GroupPlayer",
+        "NewNamespace": "EFT"
+    },
     "GClass1412": {
         "NewName": "RaidPlayer",
         "NewNamespace": "EFT.UI.Matchmaker"
+    },
+    "GClass1413": {
+        "NewName": "GroupInvite",
+        "NewNamespace": "EFT"
     },
     "GClass1418": {
         "NestedTypes": {
@@ -2960,11 +2997,32 @@
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2426": {
-        "NewName": "HideoutSlot",
+        "NewName": "HideoutSkillManager",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2428": {
         "NewName": "ImprovementController",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2431": {
+        "NewName": "ItemsProducerBase",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2438": {
+        "NestedTypes": {
+            "Class1951": {
+                "NewName": "ProducingProcess"
+            }
+        },
+        "NewName": "ProducingItemController",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2448": {
+        "NewName": "AreaDetailsData",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2449": {
+        "NewName": "AreaDetailsGroup",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2450": {
@@ -2977,6 +3035,10 @@
     },
     "GClass25": {
         "NewName": "AIPeriodAction"
+    },
+    "GClass2531": {
+        "NewName": "ItemsProducerBase",
+        "NewNamespace": "EFT.Hideout"
     },
     "GClass2545": {
         "NewName": "BufferZoneAccessDeniedNotification",
@@ -3013,6 +3075,15 @@
     },
     "GClass2576": {
         "NewName": "MagBuildsStorage",
+        "NewNamespace": "EFT.Builds"
+    },
+    "GClass2577": {
+        "NestedTypes": {
+            "GClass2578": {
+                "NewName": "MagPresetItem"
+            }
+        },
+        "NewName": "MagPreset",
         "NewNamespace": "EFT.Builds"
     },
     "GClass2587": {
@@ -4516,6 +4587,10 @@
         "NewName": "ObservedPlayerInventoryController",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass3387": {
+        "NewName": "BackEndInventoryController",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3388": {
         "NewName": "OfflineInventoryController",
         "NewNamespace": "EFT.InventoryLogic"
@@ -4534,12 +4609,20 @@
         "NewName": "ContainerRemoveResult",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3414": {
+        "NewName": "ContainerAddResult",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3430": {
         "NewName": "ToggleResult",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3440": {
         "NewName": "DeleteMapMarkerResult",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3445": {
+        "NewName": "SetDialogProgressResult",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3449": {
@@ -4557,6 +4640,10 @@
             }
         },
         "NewName": "ModdingSelectableItemContext",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3458": {
+        "NewName": "InventorySelectableItemContext",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3459": {
@@ -4590,6 +4677,10 @@
     "GClass3489": {
         "NewName": "EditMapMarkerResult",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3496": {
+        "NewName": "SetDialogProgressOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
     },
     "GClass3502": {
         "NewName": "ToggleOperation",
@@ -4768,6 +4859,10 @@
         "NewName": "BufferZoneController",
         "NewNamespace": "EFT.BufferZone"
     },
+    "GClass3694": {
+        "NewName": "BinaryCloneExtensions",
+        "NewNamespace": "EFT.BinarySerialization"
+    },
     "GClass3695": {
         "NewName": "BinarySerializationMirrorExtensions",
         "NewNamespace": "EFT.BinarySerialization"
@@ -4813,12 +4908,20 @@
     "GClass374": {
         "NewName": "AIPointsCounterSegment"
     },
+    "GClass3751": {
+        "NewName": "SpawnedInSessionItemComparer",
+        "NewNamespace": "EFT.UI"
+    },
     "GClass3752": {
         "NewName": "BaseContextInteractions",
         "NewNamespace": "EFT.UI"
     },
     "GClass3753`1": {
         "NewName": "ContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3754": {
+        "NewName": "BaseItemContextInteractions",
         "NewNamespace": "EFT.UI"
     },
     "GClass377": {
@@ -4830,6 +4933,10 @@
     "GClass3783": {
         "NewName": "RaidGroupContextInteractions",
         "NewNamespace": "EFT.UI.Matchmaker"
+    },
+    "GClass3789": {
+        "NewName": "ItemContextInteractionsSwitcher",
+        "NewNamespace": "EFT.UI"
     },
     "GClass379": {
         "NewName": "CoverFindLibrary"
@@ -4853,6 +4960,26 @@
     "GClass3822": {
         "NewName": "AsyncViewList",
         "NewNamespace": "EFT.UI"
+    },
+    "GClass3829": {
+        "NewName": "WindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3831": {
+        "NewName": "GridWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3834": {
+        "NewName": "DialogWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3836": {
+        "NewName": "PlayerEquipmentWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3838": {
+        "NewName": "EditBuildNameWindowContext",
+        "NewNamespace": "EFT.UI.Builds"
     },
     "GClass385": {
         "NewName": "CoverSearchDefenceData"

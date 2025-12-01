@@ -70,6 +70,8 @@ public class SigBasedMemberRenamer(
     {
         foreach (var (targetType, dummyType) in _targetToDummyMap)
         {
+            Log.Information("Renaming members on: {type}", targetType.FullName);
+
             RenameMethodsOnType(targetType, dummyType);
             RenameFieldsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
@@ -101,7 +103,7 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                //Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
                 targetMethod.Name = dummyMethod.Name;
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
@@ -126,6 +128,9 @@ public class SigBasedMemberRenamer(
         var targetFields = targetType.Fields.Where(FilterFields);
         var dummyFields = dummyType.Fields.Where(FilterFields).ToList();
 
+        // Removes fields that already exist
+        dummyFields.RemoveAll(f => targetFields.Any(t => t.Name == f.Name));
+
         var dummyFieldNames = dummyFields.Select(f => f.Name).ToHashSet();
 
         foreach (var targetField in targetFields)
@@ -142,7 +147,7 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                //Log.Information("Renaming field: {old} -> {new}", targetField.FullName, dummyField.FullName);
+                Log.Information("Renaming field: {old} -> {new}", targetField.FullName, dummyField.FullName);
 
                 targetField.Name = dummyField.Name;
                 UpdateFieldMemberReferences(targetField, targetField.Name!);
@@ -158,13 +163,15 @@ public class SigBasedMemberRenamer(
         var targetProperties = targetType.Properties;
         var dummyProperties = dummyType.Properties.ToList();
 
+        // Removes properties that already exist
+        dummyProperties.RemoveAll(f => targetProperties.Any(t => t.Name == f.Name));
+
         var dummyPropertiesNames = dummyProperties.Select(p => p.Name).ToHashSet();
 
         foreach (var targetProperty in targetProperties)
         {
             if (dummyPropertiesNames.Contains(targetProperty.Name))
             {
-                dummyProperties.RemoveAll(p => p.Name == targetProperty.Name);
                 continue;
             }
 
@@ -174,6 +181,8 @@ public class SigBasedMemberRenamer(
                 {
                     continue;
                 }
+
+                Log.Information("Renaming property: {old} -> {new}", targetProperty.FullName, dummyProperty.FullName);
 
                 targetProperty.Name = dummyProperty.Name;
                 dummyProperties.Remove(dummyProperty);

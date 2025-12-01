@@ -1410,6 +1410,10 @@
         "NewName": "LocationLabyrinthTrapsData",
         "NewNamespace": "CommonAssets.Scripts.Game.LabyrinthEvent"
     },
+    "GClass1499": {
+        "NewName": "GlobalAudioSettings",
+        "NewNamespace": "CommonAssets.Scripts.Audio"
+    },
     "GClass15": {
         "NewName": "PauseReasonExtension"
     },
@@ -1815,15 +1819,66 @@
     "GClass1715": {
         "NestedTypes": {
             "GClass1717": {
+                "NestedTypes": {
+                    "GClass1718": {
+                        "NewName": "RepairKitStrategy"
+                    },
+                    "GClass1719": {
+                        "NewName": "ItemEnhancementValues"
+                    }
+                },
                 "NewName": "RepairKitSettings"
             },
             "GClass1720": {
+                "NestedTypes": {
+                    "GClass1721": {
+                        "NewName": "LootAttemptSettings"
+                    },
+                    "GClass1722": {
+                        "NestedTypes": {
+                            "GClass1723": {
+                                "NewName": "ComboSettings"
+                            }
+                        },
+                        "NewName": "KillSettings"
+                    },
+                    "GClass1724": {
+                        "NewName": "LevelSettings"
+                    },
+                    "GClass1725": {
+                        "NewName": "HealSettings"
+                    },
+                    "GClass1726": {
+                        "NestedTypes": {
+                            "GClass1727": {
+                                "NewName": "TransitMult"
+                            }
+                        },
+                        "NewName": "MatchEndSettings"
+                    }
+                },
                 "NewName": "ExperienceSettings"
             },
             "GClass1728": {
+                "NestedTypes": {
+                    "GClass1729": {
+                        "NewName": "FallingSettings"
+                    },
+                    "GClass1730": {
+                        "NewName": "HealPriceSettings"
+                    }
+                },
                 "NewName": "HealthSettings"
             },
+            "GClass1731": {
+                "NewName": "ArmorMaterialValues"
+            },
             "GClass1732": {
+                "NestedTypes": {
+                    "GClass1733": {
+                        "NewName": "ArmorClassSettings"
+                    }
+                },
                 "NewName": "ArmorSettings"
             },
             "GClass1734": {
@@ -1834,6 +1889,9 @@
             },
             "GClass1736": {
                 "NewName": "StaminaParameters"
+            },
+            "GClass1737": {
+                "NewName": "RestrictionInRaid"
             },
             "GClass1738": {
                 "NewName": "MalfunctionSettings"
@@ -1846,6 +1904,12 @@
             },
             "GClass1741": {
                 "NewName": "AirdropSettings"
+            },
+            "GClass1742": {
+                "NewName": "TriggerSettings"
+            },
+            "GClass1743": {
+                "NewName": "BufferZoneSettings"
             },
             "GClass1744": {
                 "NewName": "CoopGlobalSettings"
@@ -1893,6 +1957,10 @@
     "GClass179": {
         "NewName": "AimingDebugShoot"
     },
+    "GClass1791": {
+        "NewName": "PrestigeSettings",
+        "NewNamespace": "EFT"
+    },
     "GClass1792": {
         "NestedTypes": {
             "GClass1793": {
@@ -1904,6 +1972,10 @@
     },
     "GClass1794": {
         "NewName": "RagfairItemRestrictions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1795": {
+        "NewName": "ArenaEftTransferGlobalSettings",
         "NewNamespace": "EFT"
     },
     "GClass180": {
@@ -2073,6 +2145,10 @@
         "NewName": "MalfunctionDescriptor",
         "NewNamespace": "EFT"
     },
+    "GClass1918": {
+        "NewName": "ItemInGridDescriptor",
+        "NewNamespace": "EFT"
+    },
     "GClass1919": {
         "NewName": "GridDescriptor",
         "NewNamespace": "EFT"
@@ -2097,16 +2173,116 @@
         "NewName": "ItemInfoDescriptor",
         "NewNamespace": "EFT"
     },
+    "GClass1925": {
+        "NewName": "FoodDrinkComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1926": {
+        "NewName": "PoisonComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1927": {
+        "NewName": "ResourceItemComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1928": {
+        "NewName": "LightComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1929": {
+        "NewName": "LockableComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1930": {
+        "NewName": "MapComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1931": {
+        "NewName": "MedKitComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1932": {
+        "NewName": "RepairableComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1933": {
+        "NewName": "SightComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1934": {
+        "NewName": "TogglableComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1935": {
+        "NewName": "FaceShieldComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1936": {
+        "NewName": "FoldableComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1938": {
+        "NewName": "DogTagComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1939": {
+        "NewName": "TagComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1940": {
+        "NewName": "KeyComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1941": {
+        "NewName": "RepairKitComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1942": {
+        "NewName": "RepairEnhancementComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1943": {
+        "NewName": "RecodableComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1944": {
+        "NewName": "CultistAmuletComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1945": {
+        "NewName": "JsonLootItemDescriptor",
+        "NewNamespace": "EFT"
+    },
     "GClass1946": {
         "NewName": "JsonLootItemDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1947": {
+        "NewName": "LootDataDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass1948": {
         "NewName": "ItemBinarySerializer",
         "NewNamespace": "EFT"
     },
+    "GClass1949": {
+        "NewName": "ContainerDescriptor",
+        "NewNamespace": "EFT"
+    },
     "GClass1950": {
         "NewName": "ItemAddressDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1951": {
+        "NewName": "OwnerItselfDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1952": {
+        "NewName": "SlotItemAddressDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1953": {
+        "NewName": "StackSlotItemAddressDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass1954": {
@@ -2452,12 +2628,20 @@
         "NewName": "PlayerVisualRepresentationDescriptor",
         "NewNamespace": "EFT"
     },
+    "GClass2215": {
+        "NewName": "BodyPartDamageHistoryDescriptor",
+        "NewNamespace": "EFT"
+    },
     "GClass2216": {
         "NewName": "DamageHistoryDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass2217": {
         "NewName": "DamageStatsDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass2218": {
+        "NewName": "CounterCollectionItemDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass2219": {
@@ -2561,6 +2745,10 @@
     },
     "GClass2270": {
         "NewName": "OfflineStatisticManager",
+        "NewNamespace": "EFT"
+    },
+    "GClass2271": {
+        "NewName": "TraderServiceAvailabilityData",
         "NewNamespace": "EFT"
     },
     "GClass2272": {
@@ -2935,11 +3123,11 @@
         "NewName": "ExceptionHelper",
         "NewNamespace": "EFT.Utilities"
     },
-    "GClass2636": {
+    "GClass2636`1": {
         "NewName": "GlobalsArray",
         "NewNamespace": "EFT.Utilities"
     },
-    "GClass2638": {
+    "GClass2638`1": {
         "NewName": "GlobalsDictionary",
         "NewNamespace": "EFT.Utilities"
     },
@@ -3613,6 +3801,14 @@
         "NewName": "ObservedPlayerGestureController",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass2963": {
+        "NewName": "BaseObservedPlayerHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2965": {
+        "NewName": "ObservedPlayerFirearmHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
     "GClass2971": {
         "NewName": "ObservedPlayerHandsController",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -3689,6 +3885,86 @@
         "NewNamespace": "EFT.HealthSystem"
     },
     "GClass3019": {
+        "NestedTypes": {
+            "GClass3020": {
+                "NewName": "ExistenceSettings"
+            },
+            "GClass3021": {
+                "NewName": "DehydrationSettings"
+            },
+            "GClass3022": {
+                "NewName": "BleedingSettings"
+            },
+            "GClass3023": {
+                "NewName": "FractureSettings"
+            },
+            "GClass3024": {
+                "NewName": "ContusionSettings"
+            },
+            "GClass3025": {
+                "NewName": "DisorientationSettings"
+            },
+            "GClass3026": {
+                "NewName": "ExhaustionSettings"
+            },
+            "GClass3027": {
+                "NewName": "LowEdgeHealthSettings"
+            },
+            "GClass3028": {
+                "NewName": "RadExposureSettings"
+            },
+            "GClass3029": {
+                "NewName": "StunSettings"
+            },
+            "GClass3030": {
+                "NewName": "IntoxicationSettings"
+            },
+            "GClass3031": {
+                "NewName": "LethalIntoxicationSettings"
+            },
+            "GClass3033": {
+                "NewName": "RegenerationSettings"
+            },
+            "GClass3036": {
+                "NewName": "WoundSettings"
+            },
+            "GClass3037": {
+                "NewName": "ChronicStaminaFatigueSettings"
+            },
+            "GClass3038": {
+                "NewName": "BerserkSettings"
+            },
+            "GClass3039": {
+                "NewName": "FlashSettings"
+            },
+            "GClass3040": {
+                "NewName": "MedEffectSettings"
+            },
+            "GClass3041": {
+                "NewName": "PainSettings"
+            },
+            "GClass3042": {
+                "NewName": "PainKillerSettings"
+            },
+            "GClass3043": {
+                "NewName": "SandingScreenSettings"
+            },
+            "GClass3044": {
+                "NewName": "StimulatorSettings"
+            },
+            "GClass3046": {
+                "NewName": "TremorSettings"
+            },
+            "GClass3047": {
+                "NewName": "BodyTemperatureSettings"
+            },
+            "GClass3048": {
+                "NewName": "HealthBoostSettings"
+            },
+            "GClass3050": {
+                "NewName": "ZombieInfectionSettings"
+            }
+        },
         "NewName": "EffectsSettings",
         "NewNamespace": "EFT.HealthSystem"
     },
@@ -3796,6 +4072,11 @@
         "NewNamespace": "EFT.Notes"
     },
     "GClass3108": {
+        "NestedTypes": {
+            "GClass3109": {
+                "NewName": "NotesDescriptor"
+            }
+        },
         "NewName": "NotesManager",
         "NewNamespace": "EFT.Notes"
     },
@@ -4085,6 +4366,10 @@
         "NewName": "LockableContainer",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3263": {
+        "NewName": "Bipod",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass327": {
         "NewName": "BossKnightLayersStrategy"
     },
@@ -4101,6 +4386,10 @@
     },
     "GClass3283": {
         "NewName": "ThermalVision",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3284": {
+        "NewName": "TacticalCombo",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3287": {
@@ -4376,6 +4665,14 @@
         "NewName": "BaseTraderDialog",
         "NewNamespace": "EFT.Dialogs"
     },
+    "GClass3621": {
+        "NewName": "DynamicTraderDialog",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3623": {
+        "NewName": "RandomLineCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
     "GClass3624": {
         "NewName": "DialogStorage",
         "NewNamespace": "EFT.Dialogs"
@@ -4384,12 +4681,40 @@
         "NewName": "BaseTraderDialogLine",
         "NewNamespace": "EFT.Dialogs"
     },
+    "GClass3626": {
+        "NewName": "TraderDialogTextLine",
+        "NewNamespace": "EFT.Dialogs"
+    },
     "GClass3629": {
         "NewName": "DialogAction",
         "NewNamespace": "EFT.Dialogs"
     },
+    "GClass3630": {
+        "NewName": "DialogNotifiedAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3632": {
+        "NewName": "DialogQuestAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3633": {
+        "NewName": "DialogAcceptQuestAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3635": {
+        "NewName": "DialogFinishQuestAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3638": {
+        "NewName": "DialogHandoverItemAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
     "GClass365": {
         "NewName": "SegmentPoints"
+    },
+    "GClass3653": {
+        "NewName": "DialogMainConditionGroup",
+        "NewNamespace": "EFT.Dialogs"
     },
     "GClass3665": {
         "NewName": "TraderDialogTemplate",
@@ -4442,6 +4767,10 @@
     "GClass3693": {
         "NewName": "BufferZoneController",
         "NewNamespace": "EFT.BufferZone"
+    },
+    "GClass3695": {
+        "NewName": "BinarySerializationMirrorExtensions",
+        "NewNamespace": "EFT.BinarySerialization"
     },
     "GClass37": {
         "NewName": "BaseLogicLayer"

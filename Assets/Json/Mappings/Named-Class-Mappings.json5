@@ -82,7 +82,6 @@
       "Class1312": {
         "NewName": "RemoveFromHandsOperation"
       },
-
       "GClass724": {
         "NewName": "PlayerLogger"
       },
@@ -107,25 +106,24 @@
       "GClass2059`1": {
         "NewName": "SlotObserver"
       },
+      "GClass2029": {
+        "NewName": "AutomaticFireOperation"
+      },
       "GClass2060": {
         "NewName": "GrenadeThrowResult"
       },
-
       "GInterface193": {
         "NewName": "IGrenadeOperation"
       },
-
       "GDelegate65": {
         "NewName": "DamageDelegate"
       },
       "GDelegate66": {
         "NewName": "DeltaTimeDelegate"
       },
-
       "GStruct182": {
         "NewName": "KnifeRaycastHit"
       },
-
       "Interface9": {
         "NewName": "IQuickUsOperation"
       },
@@ -143,7 +141,16 @@
           },
           "GClass2037": {
             "NewName": "Idling"
-          }
+          },
+		  "GClass2015": {
+			"NewName": "BaseReloadOperation"
+		  },
+		  "GClass2014": {
+			"NewName": "DischargeAmmoFromUnderbarrelWeapon"
+		  },
+		  "Class1264": {
+			"NewName": "AddModOperation"
+		  }
         }
       }
     }

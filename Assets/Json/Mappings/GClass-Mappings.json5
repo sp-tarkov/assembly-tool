@@ -2593,6 +2593,14 @@
     "GClass183": {
         "NewName": "AimingToGoalTarget"
     },
+    "GClass1833": {
+        "NewName": "SumBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1838": {
+        "NewName": "AdditionalSlotsBonus",
+        "NewNamespace": "EFT"
+    },
     "GClass184": {
         "NewName": "AimingToReservWay"
     },
@@ -2702,6 +2710,10 @@
     },
     "GClass1908": {
         "NewName": "WeatherEventSettings",
+        "NewNamespace": "EFT"
+    },
+    "GClass1910": {
+        "NewName": "RadioTransmitterHandler",
         "NewNamespace": "EFT"
     },
     "GClass1912": {
@@ -3687,6 +3699,38 @@
         "NewName": "Reaction",
         "NewNamespace": "EFT.NPC"
     },
+    "GClass2401": {
+        "NewName": "RTLightIndicator",
+        "NewNamespace": "EFT.ClientItems.ClientSpecItems.RT"
+    },
+    "GClass2402": {
+        "NewName": "RTProcessor",
+        "NewNamespace": "EFT.ClientItems.ClientSpecItems.RT"
+    },
+    "GClass2403": {
+        "NewName": "RTSoundIndicator",
+        "NewNamespace": "EFT.ClientItems.ClientSpecItems.RT"
+    },
+    "GClass2404": {
+        "NewName": "AxisUpdater",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2405": {
+        "NewName": "AxisUpdaterFactory",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2406": {
+        "NewName": "ECommandExtension",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2407": {
+        "NewName": "InputAxis",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2408": {
+        "NewName": "InputCombination",
+        "NewNamespace": "EFT.InputSystem"
+    },
     "GClass2409": {
         "NewName": "InputAxisCombination",
         "NewNamespace": "EFT.InputSystem"
@@ -3695,16 +3739,69 @@
         "NewName": "InputKeyCombination",
         "NewNamespace": "EFT.InputSystem"
     },
+    "GClass2411": {
+        "NewName": "ToggleInputKeyCombination",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2412": {
+        "NewName": "InputKey",
+        "NewNamespace": "EFT.InputSystem"
+    },
     "GClass2413": {
         "NewName": "InputPreset",
         "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2414": {
+        "NestedTypes": {
+            "GStruct295": {
+                "NewName": "POINT"
+            }
+        },
+        "NewName": "RemoteAxisUpdater",
+        "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass2415": {
+        "NewName": "ControlledObject",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2416": {
+        "NewName": "AreaEffectsPool",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2417": {
+        "NewName": "ConsumptionTimer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2418": {
+        "NewName": "ResourceConsumer",
+        "NewNamespace": "EFT.Hideout"
     },
     "GClass2419": {
         "NewName": "EnergyController",
         "NewNamespace": "EFT.Hideout"
     },
+    "GClass2420": {
+        "NewName": "SupplyItem",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2421": {
+        "NewName": "HideoutCustomizationController",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2422": {
+        "NewName": "HideoutEventSystemSender",
+        "NewNamespace": "EFT.Hideout"
+    },
     "GClass2423": {
         "NewName": "HideoutRepresentation",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2424": {
+        "NewName": "HideoutSettings",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2425": {
+        "NewName": "HideoutSkillManager",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2426": {
@@ -3719,6 +3816,10 @@
         "NewName": "ItemsProducerBase",
         "NewNamespace": "EFT.Hideout"
     },
+    "GClass2437": {
+        "NewName": "ProductionController",
+        "NewNamespace": "EFT.Hideout"
+    },
     "GClass2438": {
         "NestedTypes": {
             "Class1951": {
@@ -3726,6 +3827,42 @@
             }
         },
         "NewName": "ProducingItemController",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2439": {
+        "NewName": "BaseHideoutScheme",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2440": {
+        "NewName": "ProductionScheme",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2441": {
+        "NewName": "ScavCaseScheme",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2442": {
+        "NewName": "CultistsScheme",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2443": {
+        "NewName": "ProductionSchemesCollection",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2444": {
+        "NewName": "ScavProduct",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2445": {
+        "NewName": "SingleSchemeStorage",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2446": {
+        "NewName": "ProductionData",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2447": {
+        "NewName": "AreaBehaviour",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2448": {
@@ -3738,6 +3875,34 @@
     },
     "GClass2450": {
         "NewName": "FuelConsumption",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2451": {
+        "NewName": "CircleOfCultistsAreaStashController",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2452": {
+        "NewName": "HideoutLocalData",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2453": {
+        "NewName": "InventoryEquipmentStashLoader",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2454": {
+        "NewName": "EmptyRelatedData",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2455": {
+        "NewName": "TraderRequirement",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2456": {
+        "NewName": "Constants",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2457": {
+        "NewName": "FreeSpaceCameraMover",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2480": {
@@ -3757,6 +3922,14 @@
     },
     "GClass2550": {
         "NewName": "FireFlareForExitNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2558": {
+        "NewName": "HideoutNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2559": {
+        "NewName": "HideoutAreaNotification",
         "NewNamespace": "EFT.Communications"
     },
     "GClass2566": {

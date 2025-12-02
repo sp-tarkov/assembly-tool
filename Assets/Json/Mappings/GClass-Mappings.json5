@@ -3905,8 +3905,64 @@
         "NewName": "FreeSpaceCameraMover",
         "NewNamespace": "EFT.Hideout"
     },
+    "GClass2458": {
+        "NewName": "QTEResult",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2459": {
+        "NewName": "RailCameraMover",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2460": {
+        "NewName": "TargetScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2461": {
+        "NewName": "PopperPhaseTraining",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2462": {
+        "NewName": "PopperTargetFoldScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2463": {
+        "NewName": "PopperTargetStandScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2465": {
+        "NewName": "RailPhaseTraining",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2474": {
+        "NewName": "ProductionCommands",
+        "NewNamespace": "EFT.Console.Commands"
+    },
+    "GClass2475": {
+        "NewName": "Shared",
+        "NewNamespace": "EFT.Console.Commands"
+    },
+    "GClass2476": {
+        "NewName": "WaitCommand",
+        "NewNamespace": "EFT.Console.Commands"
+    },
+    "GClass2477": {
+        "NewName": "WaitScreenCommand",
+        "NewNamespace": "EFT.Console.Commands"
+    },
+    "GClass2478": {
+        "NewName": "DLSSCommands",
+        "NewNamespace": "EFT.Console.Commands"
+    },
+    "GClass2479": {
+        "NewName": "UnparsedNotification",
+        "NewNamespace": "EFT.Communications"
+    },
     "GClass2480": {
         "NewName": "Notification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2482": {
+        "NewName": "ProfileChangeEventNotification",
         "NewNamespace": "EFT.Communications"
     },
     "GClass25": {

@@ -3411,12 +3411,73 @@
         "NewName": "ProfileChanges",
         "NewNamespace": "EFT"
     },
+    "GClass2325`1": {
+        "NewName": "AbstractSessionOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2326`1": {
+        "NewName": "TradingAbstractOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2327": {
+        "NewName": "TradingGetAssortmentOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2328": {
+        "NewName": "TradingGetMarketPricesOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2329`1": {
+        "NewName": "RagfairAbstractOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2330": {
+        "NewName": "RagfairGetOffersOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2331": {
+        "NewName": "ProfileUpdatesHandler",
+        "NewNamespace": "EFT"
+    },
     "GClass2332": {
         "NewName": "SocialNetwork",
         "NewNamespace": "EFT"
     },
+    "GClass2333": {
+        "NewName": "ChatMemberSideExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass2334": {
+        "NewName": "ArenaEftTransferItem",
+        "NewNamespace": "EFT"
+    },
     "GClass2335": {
         "NewName": "BarterTemplate",
+        "NewNamespace": "EFT"
+    },
+    "GClass2336": {
+        "NewName": "CaptchaValidation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2337": {
+        "NewName": "StashChangesResponse",
+        "NewNamespace": "EFT"
+    },
+    "GClass2338": {
+        "NestedTypes": {
+            "GClass2339": {
+                "NewName": "Sum"
+            }
+        },
+        "NewName": "TradeOperationResult",
+        "NewNamespace": "EFT"
+    },
+    "GClass2340": {
+        "NewName": "InGameStatus",
+        "NewNamespace": "EFT"
+    },
+    "GClass2341": {
+        "NewName": "LocationDownloader",
         "NewNamespace": "EFT"
     },
     "GClass2342": {
@@ -3427,8 +3488,20 @@
         "NewName": "NarrateScene",
         "NewNamespace": "EFT"
     },
+    "GClass2344": {
+        "NewName": "NarrateSceneInfo",
+        "NewNamespace": "EFT"
+    },
     "GClass2345": {
         "NewName": "Net",
+        "NewNamespace": "EFT"
+    },
+    "GClass2346": {
+        "NewName": "KarmaClientController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2347": {
+        "NewName": "Locale",
         "NewNamespace": "EFT"
     },
     "GClass2348": {
@@ -3475,6 +3548,22 @@
         "NewName": "CommodityToPurchase",
         "NewNamespace": "EFT"
     },
+    "GClass2363": {
+        "NewName": "CommoditiesToPurchase",
+        "NewNamespace": "EFT"
+    },
+    "GClass2364": {
+        "NewName": "CommodityReferences",
+        "NewNamespace": "EFT"
+    },
+    "GClass2365": {
+        "NewName": "SurveyData",
+        "NewNamespace": "EFT"
+    },
+    "GClass2366": {
+        "NewName": "SurveyTemplate",
+        "NewNamespace": "EFT"
+    },
     "GClass2367": {
         "NewName": "QuestionTemplate",
         "NewNamespace": "EFT"
@@ -3483,8 +3572,28 @@
         "NewName": "AnswerTemplate",
         "NewNamespace": "EFT"
     },
+    "GClass2369": {
+        "NewName": "SingleOptionAnswer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2370": {
+        "NewName": "MultiOptionAnswer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2371": {
+        "NewName": "TextAnswer",
+        "NewNamespace": "EFT"
+    },
     "GClass2372": {
         "NewName": "BaseSurveyQuestion",
+        "NewNamespace": "EFT"
+    },
+    "GClass2373": {
+        "NewName": "SingleOptionQuestion",
+        "NewNamespace": "EFT"
+    },
+    "GClass2374": {
+        "NewName": "MultiOptionQuestion",
         "NewNamespace": "EFT"
     },
     "GClass2375": {
@@ -3502,17 +3611,69 @@
     "GClass2378": {
         "NewName": "LoggerFactoryClass"
     },
+    "GClass2379": {
+        "NewName": "TweenExtensions",
+        "NewNamespace": "EFT"
+    },
     "GClass2380": {
         "NewName": "BoundingFrustum",
         "NewNamespace": "EFT"
+    },
+    "GClass2381": {
+        "NewName": "AmbientBuffer",
+        "NewNamespace": "EFT.Rendering.Clouds"
+    },
+    "GClass2382": {
+        "NewName": "CloudRemapRecordExtensions",
+        "NewNamespace": "EFT.Rendering.Clouds"
+    },
+    "GClass2383": {
+        "NewName": "BuiltinSkyParameters",
+        "NewNamespace": "EFT.Rendering.Clouds"
     },
     "GClass2384": {
         "NewName": "CloudRenderer",
         "NewNamespace": "EFT.Rendering.Clouds"
     },
+    "GClass2385": {
+        "NewName": "RenderingUtils",
+        "NewNamespace": "EFT.Rendering.Clouds"
+    },
+    "GClass2387": {
+        "NewName": "ControlPressTypeOverride",
+        "NewNamespace": "EFT.Settings"
+    },
     "GClass2388": {
         "NewName": "SettingsManager",
         "NewNamespace": "EFT.Settings"
+    },
+    "GClass2391": {
+        "NewName": "PostFxSettingsFactory",
+        "NewNamespace": "EFT.Settings.PostFx"
+    },
+    "GClass2392": {
+        "NewName": "FullScreenModeConverter",
+        "NewNamespace": "EFT.Settings.Graphics"
+    },
+    "GClass2393": {
+        "NewName": "FullScreenModeJsonConverter",
+        "NewNamespace": "EFT.Settings.Graphics"
+    },
+    "GClass2394": {
+        "NewName": "GraphicsPreset",
+        "NewNamespace": "EFT.Settings.Graphics"
+    },
+    "GClass2395": {
+        "NewName": "GraphicsSettingsVersions",
+        "NewNamespace": "EFT.Settings.Graphics"
+    },
+    "GClass2396": {
+        "NewName": "StoredDisplaySettings",
+        "NewNamespace": "EFT.Settings.Graphics"
+    },
+    "GClass2399": {
+        "NewName": "NPCEventWithActionManager",
+        "NewNamespace": "EFT.NPC"
     },
     "GClass24": {
         "NestedTypes": {
@@ -3521,6 +3682,10 @@
             }
         },
         "NewName": "ReleaseProfilerSpikeAnalyser"
+    },
+    "GClass2400": {
+        "NewName": "Reaction",
+        "NewNamespace": "EFT.NPC"
     },
     "GClass2409": {
         "NewName": "InputAxisCombination",

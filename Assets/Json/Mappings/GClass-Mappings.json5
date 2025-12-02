@@ -888,6 +888,10 @@
         "NewName": "BakedIndexBuffer",
         "NewNamespace": "Koenigz.PerfectCulling"
     },
+    "GClass1211": {
+        "NewName": "ExchangeBuffer",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
     "GClass1212": {
         "NewName": "PerfectCullingBakeAllocator",
         "NewNamespace": "Koenigz.PerfectCulling"
@@ -943,27 +947,156 @@
         "NewName": "PerfectCullingMeshSplitting",
         "NewNamespace": "Koenigz.PerfectCulling"
     },
+    "GClass1227": {
+        "NewName": "PerfectCullingTemp",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
+    "GClass1228": {
+        "NewName": "PerfectCullingUtil",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
+    "GClass1229": {
+        "NewName": "RendererExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
     "GClass123": {
         "NewName": "PartisanPlantingTargetLayer"
+    },
+    "GClass1230": {
+        "NewName": "DefaultActiveSamplingProvider",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
+    "GClass1231": {
+        "NewName": "BitStreamReader",
+        "NewNamespace": "Koenigz.PerfectCulling.IO"
+    },
+    "GClass1232": {
+        "NewName": "BitStreamWriter",
+        "NewNamespace": "Koenigz.PerfectCulling.IO"
+    },
+    "GClass1233": {
+        "NewName": "AdaptiveBVH",
+        "NewNamespace": "Koenigz.PerfectCulling.IO"
+    },
+    "GClass1234": {
+        "NewName": "LightParameters",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1236": {
+        "NewName": "BakeGroupContentFilter",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1237": {
+        "NewName": "CullingGridContentSwitcher",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1238": {
+        "NewName": "CullingGridVisibilitySampler",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1239": {
+        "NewName": "PerfectCullingSharedOccluderGenerator",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
     },
     "GClass124": {
         "NewName": "PartisanPlantingTargetManyLayer"
     },
+    "GClass1240": {
+        "NewName": "LODGroupExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1241": {
+        "NewName": "TreeProxyGenerator",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1242": {
+        "NewName": "BoundsExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1243": {
+        "NewName": "ListExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1244": {
+        "NewName": "LODGroupCameraExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1245": {
+        "NewName": "PerfectCullingSamplingBuffer",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1247": {
+        "NewName": "StreamingVolumeBakeDataGrid",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1248": {
+        "NewName": "StreamingVolumeBakeDataUtil",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1249": {
+        "NewName": "CullingGroupDataExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
     "GClass125": {
         "NewName": "PartisanFightBaseLayer"
+    },
+    "GClass1250": {
+        "NestedTypes": {
+            "GClass1251": {
+                "NewName": "IndexDataDecompressor"
+            }
+        },
+        "NewName": "PackedCullingGridData",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1252": {
+        "NewName": "PackedCullingGroupData",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1255": {
+        "NestedTypes": {
+            "Class863": {
+                "NewName": "ReflectionData"
+            }
+        },
+        "NewName": "RaycastHitExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1256": {
+        "NewName": "MouseLook"
+    },
+    "GClass1257": {
+        "NewName": "GPUInstancerAPI",
+        "NewNamespace": "GPUInstancer"
     },
     "GClass1258": {
         "NewName": "GPUInstancerCell",
         "NewNamespace": "GPUInstancer"
     },
+    "GClass1259": {
+        "NewName": "GPUInstancerDetailCell",
+        "NewNamespace": "GPUInstancer"
+    },
     "GClass126": {
         "NewName": "PartisanFightLayer"
+    },
+    "GClass1260": {
+        "NewName": "GPUInstancerPrefabCell",
+        "NewNamespace": "GPUInstancer"
+    },
+    "GClass1262": {
+        "NewName": "GPUInstancerConstants",
+        "NewNamespace": "GPUInstancer"
     },
     "GClass127": {
         "NewName": "PartisanFightManyLayer"
     },
     "GClass1270": {
         "NewName": "GPUInstancerRuntimeData",
+        "NewNamespace": "GPUInstancer"
+    },
+    "GClass1271": {
+        "NewName": "GPUInstancerPrototypeLOD",
         "NewNamespace": "GPUInstancer"
     },
     "GClass1272": {
@@ -1005,12 +1138,28 @@
         "NewName": "Bezier",
         "NewNamespace": "BezierSplineTools"
     },
+    "GClass1281": {
+        "NewName": "DriveAnalyzer",
+        "NewNamespace": "DriveAnalyzing"
+    },
     "GClass1282": {
         "NewName": "NetworkReader",
         "NewNamespace": "Mirror"
     },
+    "GClass1283": {
+        "NewName": "NetworkReaderPooled",
+        "NewNamespace": "Mirror"
+    },
     "GClass1284`1": {
         "NewName": "Reader",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1285": {
+        "NewName": "NetworkReaderExtensions",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1286": {
+        "NewName": "NetworkReaderPool",
         "NewNamespace": "Mirror"
     },
     "GClass1286`1": {
@@ -1028,11 +1177,51 @@
     "GClass129": {
         "NewName": "PartisanPersuitLayer"
     },
+    "GClass1290": {
+        "NewName": "NetworkWriterExtensions",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1292": {
+        "NewName": "SortedListExtensions",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1293": {
+        "NewName": "SnapshotInterpolation",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1294": {
+        "NewName": "AccurateInterval",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1295": {
+        "NewName": "Compression",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1296`1": {
+        "NewName": "ConcurrentPool`1",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1297": {
+        "NewName": "DeltaCompression",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1298": {
+        "NewName": "Extensions",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1299": {
+        "NewName": "Mathd",
+        "NewNamespace": "Mirror"
+    },
     "GClass13": {
         "NewName": "EmbeddedProfiler"
     },
     "GClass130": {
         "NewName": "PartisanStalkeringLayer"
+    },
+    "GClass1300`1": {
+        "NewName": "Pool",
+        "NewNamespace": "Mirror"
     },
     "GClass1301`3": {
         "NewName": "AbstractInterpolator",
@@ -1062,6 +1251,19 @@
         "NewName": "ImpulseInterpolationStrategy",
         "NewNamespace": "Interpolation"
     },
+    "GClass1308`1": {
+        "NestedTypes": {
+            "GDelegate43": {
+                "NewName": "LinearInterpolationDelegate"
+            }
+        },
+        "NewName": "LinearInterpolationStrategy",
+        "NewNamespace": "Interpolation"
+    },
+    "GClass1309": {
+        "NewName": "PlayerRotationLinearInterpolationStrategy",
+        "NewNamespace": "Interpolation"
+    },
     "GClass131": {
         "NewName": "PartisanStalkeringManyLayer"
     },
@@ -1089,6 +1291,14 @@
         "NewName": "AbstractInnerStateMachine",
         "NewNamespace": "FastAnimatorSystem"
     },
+    "GClass1316": {
+        "NewName": "LayerStateMachine",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1317": {
+        "NewName": "StateMachine",
+        "NewNamespace": "FastAnimatorSystem"
+    },
     "GClass1318": {
         "NewName": "AnimatorControllerTransition",
         "NewNamespace": "FastAnimatorSystem"
@@ -1104,8 +1314,32 @@
         "NewName": "AbstractBlendTreeState",
         "NewNamespace": "FastAnimatorSystem"
     },
+    "GClass1321": {
+        "NewName": "OneDBlendTreeState",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1322": {
+        "NewName": "AnimatedState",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1323": {
+        "NewName": "AnimatorStatesManager",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1324": {
+        "NewName": "AnimatorValue",
+        "NewNamespace": "FastAnimatorSystem"
+    },
     "GClass1325": {
         "NewName": "AnimatorParameter",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1326": {
+        "NewName": "AbstractMotion",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1327": {
+        "NewName": "AnimationClipInfo",
         "NewNamespace": "FastAnimatorSystem"
     },
     "GClass1328": {
@@ -1133,8 +1367,33 @@
     "GClass1333": {
         "NewName": "AnimatorStateDebuggerConverter"
     },
+    "GClass1334": {
+        "NewName": "AnimationEventsStateBehaviourConverter"
+    },
+    "GClass1335": {
+        "NewName": "PlayerStateContainerBehaviourConverter"
+    },
+    "GClass1336": {
+        "NewName": "AnimationClipPlayableExtensions"
+    },
+    "GClass1337": {
+        "NewName": "PlayableClipBlender",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1338": {
+        "NewName": "PlayableLayerProcessor",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1339": {
+        "NewName": "PlayableNodeConnector",
+        "NewNamespace": "FastAnimatorSystem"
+    },
     "GClass134": {
         "NewName": "FullMapPatrolLayer"
+    },
+    "GClass1340": {
+        "NewName": "PlayableAnimatorCuller",
+        "NewNamespace": "FastAnimatorSystem"
     },
     "GClass1341": {
         "NewName": "FastAnimatorProcessor",
@@ -1167,6 +1426,10 @@
         "NewName": "MaxMeasurer",
         "NewNamespace": "UnityDiagnostics"
     },
+    "GClass1355": {
+        "NewName": "DiagnosticsManager",
+        "NewNamespace": "UnityDiagnostics"
+    },
     "GClass1356": {
         "NewName": "NetworkQuality",
         "NewNamespace": "UnityDiagnostics"
@@ -1192,6 +1455,10 @@
     "GClass136": {
         "NewName": "StayAtGeneratorPositionLayer"
     },
+    "GClass1360": {
+        "NewName": "MaxMeasurer",
+        "NewNamespace": "UnityDiagnostics"
+    },
     "GClass1361": {
         "NewName": "TimeMeasurer",
         "NewNamespace": "UnityDiagnostics"
@@ -1200,8 +1467,16 @@
         "NewName": "ValueDiffStatisticsMeasurer",
         "NewNamespace": "UnityDiagnostics"
     },
+    "GClass1363": {
+        "NewName": "BitReader",
+        "NewNamespace": "BitPacking"
+    },
     "GClass1364": {
         "NewName": "BitReaderStream",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1365": {
+        "NewName": "BitsHelper",
         "NewNamespace": "BitPacking"
     },
     "GClass1367": {
@@ -1212,22 +1487,68 @@
         "NewName": "BitWriterStream",
         "NewNamespace": "BitPacking"
     },
+    "GClass1369": {
+        "NewName": "ExceptionsHelper"
+    },
     "GClass137": {
         "NewName": "InfectedPatrolStayAtPositionLayer"
     },
+    "GClass1370": {
+        "NewName": "FloatQuantizerExtensions"
+    },
+    "GClass1371": {
+        "NewName": "HexHelper",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1372": {
+        "NewName": "BitStreamExtensions",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1373": {
+        "NewName": "QuaternionQuantizer",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1374": {
+        "NewName": "SerializationHelpers",
+        "NewNamespace": "BitPacking"
+    },
     "GClass1375": {
         "NewName": "Vector2Quantizer",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1376": {
+        "NewName": "SerializationHelpersVector2Quantizer",
+        "NewNamespace": "BitPacking"
+    },
+    "GClass1377": {
+        "NewName": "SerializationHelpersVector3Quantizer",
         "NewNamespace": "BitPacking"
     },
     "GClass1378": {
         "NewName": "Vector3Quantizer",
         "NewNamespace": "BitPacking"
     },
+    "GClass1379": {
+        "NewName": "GameServer",
+        "NewNamespace": "JsonType"
+    },
     "GClass138": {
         "NewName": "PatrolStayAtPositionLayerWithIndoor"
     },
     "GClass1380": {
         "NewName": "GameServerPing",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1381": {
+        "NewName": "Summon",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1382": {
+        "NewName": "SummonedProfile",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1383": {
+        "NewName": "SummonedGroup",
         "NewNamespace": "JsonType"
     },
     "GClass139": {

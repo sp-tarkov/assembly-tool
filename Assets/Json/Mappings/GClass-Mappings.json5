@@ -1551,6 +1551,30 @@
         "NewName": "SummonedGroup",
         "NewNamespace": "JsonType"
     },
+    "GClass1384": {
+        "NewName": "PlayersResponse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1385": {
+        "NewName": "GameSettingsData",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1386": {
+        "NewName": "AirdropContainerData",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1387": {
+        "NewName": "HalloweenEventResponse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1388": {
+        "NewName": "SeasonChangedEvent",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1389": {
+        "NewName": "AirdropEventResponse",
+        "NewNamespace": "JsonType"
+    },
     "GClass139": {
         "NewName": "PeacefulRequestLayer"
     },
@@ -1562,8 +1586,24 @@
         "NewName": "QuestItem",
         "NewNamespace": "JsonType"
     },
+    "GClass1392": {
+        "NewName": "BackendUrls",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1393": {
+        "NewName": "RegenerateTokenResponse",
+        "NewNamespace": "JsonType"
+    },
     "GClass1394": {
         "NewName": "LoginDataResponse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1395": {
+        "NewName": "ClientQueueCallback",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1396": {
+        "NewName": "ProfileInsurance",
         "NewNamespace": "JsonType"
     },
     "GClass1397": {
@@ -1584,8 +1624,20 @@
     "GClass140": {
         "NewName": "InfectedPeacefulRequestLayer"
     },
+    "GClass1400": {
+        "NewName": "LocationResponse",
+        "NewNamespace": "JsonType"
+    },
     "GClass1401": {
         "NewName": "JsonLootItem",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1402": {
+        "NewName": "JsonCorpse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1403": {
+        "NewName": "JsonCorpse",
         "NewNamespace": "JsonType"
     },
     "GClass1404": {
@@ -1596,8 +1648,20 @@
         "NewName": "ItemPreset",
         "NewNamespace": "JsonType"
     },
+    "GClass1406": {
+        "NewName": "ItemPresetSerializer",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1407": {
+        "NewName": "RegisterMatchData",
+        "NewNamespace": "JsonType"
+    },
     "GClass1408": {
         "NewName": "ItemTemplates",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1409": {
+        "NewName": "TaxonomyColorExtension",
         "NewNamespace": "JsonType"
     },
     "GClass1410": {
@@ -1614,6 +1678,23 @@
     },
     "GClass1413": {
         "NewName": "GroupInvite",
+        "NewNamespace": "EFT"
+    },
+    "GClass1414": {
+        "NewName": "MatchmakerPlayersStatus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1415": {
+        "NewName": "MatchmakerGroupStatus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1416": {
+        "NestedTypes": {
+            "GClass1417": {
+                "NewName": "OtherPlayerInfo"
+            }
+        },
+        "NewName": "OtherPlayerProfile",
         "NewNamespace": "EFT"
     },
     "GClass1418": {
@@ -1659,6 +1740,10 @@
     "GClass143": {
         "NewName": "FollowerBullyProtectLayer"
     },
+    "GClass1430": {
+        "NewName": "LocationParams",
+        "NewNamespace": "JsonType"
+    },
     "GClass1431": {
         "NewName": "BackendExitTriggerSettings",
         "NewNamespace": "JsonType"
@@ -1667,8 +1752,24 @@
         "NewName": "BackendSecretExitTriggerSettings",
         "NewNamespace": "JsonType"
     },
+    "GClass1433": {
+        "NewName": "ItemToHandover",
+        "NewNamespace": "JsonType"
+    },
     "GClass1434": {
         "NewName": "MetricDataEntity",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1435": {
+        "NewName": "SelectProfileResponse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1436": {
+        "NewName": "IssueTokenResponse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1437": {
+        "NewName": "NotifierParams",
         "NewNamespace": "JsonType"
     },
     "GClass1438": {
@@ -1681,6 +1782,14 @@
     },
     "GClass144": {
         "NewName": "FollowerGluharFightProtectLayer"
+    },
+    "GClass1440": {
+        "NewName": "LocalServerSettings",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1441": {
+        "NewName": "ClientSettingsResponse",
+        "NewNamespace": "JsonType"
     },
     "GClass1442": {
         "NewName": "BotPreset",
@@ -1701,6 +1810,10 @@
     "GClass1446": {
         "NewName": "UnityAnimatorWrapper",
         "NewNamespace": "AnimationSystem"
+    },
+    "GClass1447": {
+        "NewName": "ImpostorAnimator",
+        "NewNamespace": "EFT"
     },
     "GClass1448": {
         "NewName": "ComputedNode",
@@ -1729,14 +1842,94 @@
         "NewName": "EAnimationEventParamTypeExtension",
         "NewNamespace": "AnimationEventSystem"
     },
+    "GClass1454": {
+        "NewName": "StateMachine",
+        "NewNamespace": "Assets.Scripts.Utils"
+    },
+    "GClass1455": {
+        "NewName": "StateSwitcher",
+        "NewNamespace": "Assets.Scripts.Utils"
+    },
+    "GClass1456": {
+        "NewName": "Zlib",
+        "NewNamespace": "Assets.Scripts.Utils"
+    },
+    "GClass1457": {
+        "NewName": "ColliderExtendedDebug",
+        "NewNamespace": "Assets.CommonAssets.Scripts.Utilities"
+    },
+    "GClass1458": {
+        "NewName": "LayerMaskExtensions",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1459": {
+        "NewName": "AxisTools",
+        "NewNamespace": "RootMotion"
+    },
     "GClass146": {
         "NewName": "AbstractSanitarFightLayer"
+    },
+    "GClass1460": {
+        "NewName": "BipedNaming",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1461": {
+        "NewName": "Hierarchy",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1462": {
+        "NewName": "Interp",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1463": {
+        "NewName": "QuaTools",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1464": {
+        "NewName": "V3Tools",
+        "NewNamespace": "RootMotion"
+    },
+    "GClass1465": {
+        "NewName": "Warning",
+        "NewNamespace": "RootMotion"
     },
     "GClass1466": {
         "NewName": "IKSolverFastTrigonometric"
     },
+    "GClass1469": {
+        "NewName": "SimpleTraceMarkers",
+        "NewNamespace": "Unity.NativeProfiling"
+    },
     "GClass147": {
         "NewName": "BossSanitarFightLayer"
+    },
+    "GClass1470": {
+        "NewName": "ConnectionRequest",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1471": {
+        "NewName": "EventBasedNetListener",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1472": {
+        "NestedTypes": {
+            "GDelegate60": {
+                "NewName": "OnNatIntroductionRequest"
+            },
+            "GDelegate61": {
+                "NewName": "OnNatIntroductionSuccess"
+            }
+        },
+        "NewName": "EventBasedNatPunchListener",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1473": {
+        "NewName": "NatPunchModule",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1474": {
+        "NewName": "NetConstants",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
     },
     "GClass1476": {
         "NewName": "NetManager",
@@ -1744,6 +1937,10 @@
     },
     "GClass1477": {
         "NewName": "NetPeer",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1478": {
+        "NewName": "NetConstants",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib"
     },
     "GClass148": {
@@ -2019,6 +2216,10 @@
         "NewName": "AchievementsBook",
         "NewNamespace": "EFT.Achievements"
     },
+    "GClass1639`1": {
+        "NewName": "BindableList",
+        "NewNamespace": "Diz.Binding"
+    },
     "GClass164": {
         "NewName": "TestLayer"
     },
@@ -2081,6 +2282,10 @@
         "NewName": "BindableFilter",
         "NewNamespace": "Diz.Binding"
     },
+    "GClass1654`1": {
+        "NewName": "Counted",
+        "NewNamespace": "Diz.Binding"
+    },
     "GClass1655`2": {
         "NewName": "CountedList",
         "NewNamespace": "Diz.Binding"
@@ -2134,8 +2339,20 @@
     "GClass167": {
         "NewName": "ZryachiyBaseLayer"
     },
+    "GClass1670": {
+        "NewName": "WorldSpaceChartMesh",
+        "NewNamespace": "ChartAndGraph"
+    },
+    "GClass1671": {
+        "NewName": "PathMultiplier",
+        "NewNamespace": "ChartAndGraph"
+    },
     "GClass1672": {
         "NewName": "DateTimeExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1673": {
+        "NewName": "StringExtensions",
         "NewNamespace": "EFT"
     },
     "GClass1676": {
@@ -2345,6 +2562,10 @@
     },
     "GClass1804": {
         "NewName": "Assets",
+        "NewNamespace": "EFT"
+    },
+    "GClass1808": {
+        "NewName": "DailyZoneData",
         "NewNamespace": "EFT"
     },
     "GClass181": {
@@ -2976,6 +3197,10 @@
     },
     "GClass2211": {
         "NewName": "InventoryEquipmentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass2212": {
+        "NewName": "HideoutData",
         "NewNamespace": "EFT"
     },
     "GClass2213": {

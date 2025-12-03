@@ -2656,6 +2656,9 @@
         "NewName": "SpawnedWave",
         "NewNamespace": "EFT"
     },
+    "GClass189": {
+        "NewName": "AimingNearPlayer"
+    },
     "GClass1892": {
         "NewName": "GameTimer",
         "NewNamespace": "EFT"
@@ -2712,6 +2715,9 @@
         "NewName": "WeatherEventSettings",
         "NewNamespace": "EFT"
     },
+    "GClass191": {
+        "NewName": "BotKhorovodNode"
+    },
     "GClass1910": {
         "NewName": "RadioTransmitterHandler",
         "NewNamespace": "EFT"
@@ -2743,6 +2749,9 @@
     "GClass1919": {
         "NewName": "GridDescriptor",
         "NewNamespace": "EFT"
+    },
+    "GClass192": {
+        "NewName": "GiftNode"
     },
     "GClass1920": {
         "NewName": "StackSlotDescriptor",
@@ -2783,6 +2792,9 @@
     "GClass1929": {
         "NewName": "LockableComponentDescriptor",
         "NewNamespace": "EFT"
+    },
+    "GClass193": {
+        "NewName": "SummonNode"
     },
     "GClass1930": {
         "NewName": "MapComponentDescriptor",
@@ -2936,6 +2948,9 @@
         "NewName": "FaceshieldMarkOperationDescriptor",
         "NewNamespace": "EFT"
     },
+    "GClass197": {
+        "NewName": "HealNode"
+    },
     "GClass1970": {
         "NewName": "FoldOperationDescriptor",
         "NewNamespace": "EFT"
@@ -2975,6 +2990,9 @@
     "GClass1979": {
         "NewName": "SetupItemOperationDescriptor",
         "NewNamespace": "EFT"
+    },
+    "GClass198": {
+        "NewName": "LayNode"
     },
     "GClass1980": {
         "NewName": "SetVariableOperationDescriptor",
@@ -3074,8 +3092,14 @@
     "GClass200`1": {
         "NewName": "MoveNode"
     },
+    "GClass203": {
+        "NewName": "DogFightNode"
+    },
     "GClass205": {
         "NewName": "AttackMoving"
+    },
+    "GClass206": {
+        "NewName": "AttackMovingWithSuppress"
     },
     "GClass2062": {
         "NewName": "MongoIDConverter",
@@ -3119,6 +3143,12 @@
     "GClass2109": {
         "NewName": "ClientPlayerMovementContext",
         "NewNamespace": "EFT"
+    },
+    "GClass212": {
+        "NewName": "GoToCoverPoint"
+    },
+    "GClass214": {
+        "NewName": "GoToDoorOpen"
     },
     "GClass2146": {
         "NewName": "BaseObservedPlayerState",
@@ -3243,6 +3273,9 @@
         "NewName": "CounterCollectionDescriptor",
         "NewNamespace": "EFT"
     },
+    "GClass222": {
+        "NewName": "MoveToEnemy"
+    },
     "GClass2220": {
         "NewName": "ProfileStatsDescriptor",
         "NewNamespace": "EFT"
@@ -3278,6 +3311,9 @@
     "GClass2229": {
         "NewName": "TraderInfoDescriptor",
         "NewNamespace": "EFT"
+    },
+    "GClass223": {
+        "NewName": "GoToEnemy"
     },
     "GClass2230": {
         "NewName": "ProfileDescriptor",
@@ -3361,6 +3397,9 @@
     "GClass2279": {
         "NewName": "ObjectsFactory",
         "NewNamespace": "EFT"
+    },
+    "GClass228": {
+        "NewName": "RunToCover"
     },
     "GClass2282": {
         "NewName": "EventObjectController",
@@ -3552,6 +3591,9 @@
         "NewName": "ProfileRagfairInfo",
         "NewNamespace": "EFT"
     },
+    "GClass236": {
+        "NewName": "TaclicalMoveNode"
+    },
     "GClass2361": {
         "NewName": "SettingsConverter",
         "NewNamespace": "EFT"
@@ -3627,6 +3669,9 @@
         "NewName": "TweenExtensions",
         "NewNamespace": "EFT"
     },
+    "GClass238": {
+        "NewName": "GoToCoverTactical"
+    },
     "GClass2380": {
         "NewName": "BoundingFrustum",
         "NewNamespace": "EFT"
@@ -3658,6 +3703,9 @@
     "GClass2388": {
         "NewName": "SettingsManager",
         "NewNamespace": "EFT.Settings"
+    },
+    "GClass239": {
+        "NewName": "GoToPointTacticalNode"
     },
     "GClass2391": {
         "NewName": "PostFxSettingsFactory",
@@ -3734,6 +3782,9 @@
     "GClass2409": {
         "NewName": "InputAxisCombination",
         "NewNamespace": "EFT.InputSystem"
+    },
+    "GClass241": {
+        "NewName": "DebugAttackMovingTactical"
     },
     "GClass2410": {
         "NewName": "InputKeyCombination",
@@ -3832,6 +3883,9 @@
     "GClass2439": {
         "NewName": "BaseHideoutScheme",
         "NewNamespace": "EFT.Hideout"
+    },
+    "GClass244": {
+        "NewName": "GoToExfiltrationPointNode"
     },
     "GClass2440": {
         "NewName": "ProductionScheme",
@@ -3968,6 +4022,9 @@
     "GClass25": {
         "NewName": "AIPeriodAction"
     },
+    "GClass251": {
+        "NewName": "WarnPlayerRequestGoNode"
+    },
     "GClass2531": {
         "NewName": "ItemsProducerBase",
         "NewNamespace": "EFT.Hideout"
@@ -4030,6 +4087,9 @@
         "NewName": "ActiveHeadphonesController",
         "NewNamespace": "EFT.ActiveHeadphones"
     },
+    "GClass259": {
+        "NewName": "OpenDoorRequestDecision"
+    },
     "GClass26": {
         "NewName": "CoreActionResultParams"
     },
@@ -4040,6 +4100,9 @@
     "GClass2605": {
         "NewName": "WeatherNode",
         "NewNamespace": "EFT.Weather"
+    },
+    "GClass261": {
+        "NewName": "EatDrinkNode"
     },
     "GClass2611": {
         "NestedTypes": {
@@ -4335,6 +4398,9 @@
         "NewName": "BaseInteractionsModel",
         "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
     },
+    "GClass273": {
+        "NewName": "RepairMalfunctionNode"
+    },
     "GClass274": {
         "NewName": "ShallThrowGrenade"
     },
@@ -4346,6 +4412,9 @@
     },
     "GClass277": {
         "NewName": "ShootFromCover"
+    },
+    "GClass278": {
+        "NewName": "HoldPosition"
     },
     "GClass2786": {
         "NewName": "CollisionCalculatorModel",
@@ -4440,6 +4509,9 @@
     "GClass2819": {
         "NewName": "InventoryInteractionCommandMessage",
         "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass282": {
+        "NewName": "StandByNode"
     },
     "GClass2820": {
         "NewName": "LeftHandCommandMessage",
@@ -4721,6 +4793,9 @@
         "NewName": "ToggleUnderbarrelCommandMessage",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass289": {
+        "NewName": "WarnPlayerDecision"
+    },
     "GClass2890": {
         "NewName": "UnderbarrelRangeValueCommandMessage",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -4764,6 +4839,9 @@
     "GClass29": {
         "NewName": "CoreActionResultParamsFlankMove"
     },
+    "GClass290": {
+        "NewName": "WarnPlayerAttentionNode"
+    },
     "GClass2900": {
         "NewName": "ObservedPlayerCommandsMessage",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -4775,6 +4853,43 @@
     "GClass2905`2": {
         "NewName": "BaseHandsOperation",
         "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2945": {
+        "NestedTypes": {
+            "GStruct363": {
+                "NewName": "OperationCallbacks"
+            }
+        },
+        "NewName": "RepairMalfunctionHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2946": {
+        "NewName": "SetChamberStateHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2947": {
+        "NewName": "SetExternalMagazineStateHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2948": {
+        "NewName": "SetFinishReloadInternalMagWithOpenBoltHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2949": {
+        "NewName": "SpawnHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2950": {
+        "NewName": "UnderbarrelRangeValueHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2951": {
+        "NewName": "UnderbarrelReloadHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2952": {
+        "NewName": "ZombieMeleeAttackOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
     },
     "GClass2953": {
         "NewName": "AnimationStateHashDictionary",
@@ -4800,6 +4915,10 @@
         "NewName": "ObservedPlayerControllers",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass2959": {
+        "NewName": "ObservedPlayerControllerFactory",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
     "GClass2960": {
         "NewName": "ObservedPlayerDeadBodyCulling",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -4816,12 +4935,40 @@
         "NewName": "BaseObservedPlayerHandsController",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass2964": {
+        "NewName": "ObservedPlayerEmptyHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
     "GClass2965": {
         "NewName": "ObservedPlayerFirearmHandsController",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass2966": {
+        "NewName": "ObservedPlayerGrenadeHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2967": {
+        "NewName": "ObservedPlayerKnifeHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2968": {
+        "NewName": "ObservedPlayerMedsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2969": {
+        "NewName": "ObservedPlayerQuickUseItemController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2970": {
+        "NewName": "ObservedPlayerUsableItemController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
     "GClass2971": {
         "NewName": "ObservedPlayerHandsController",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2972": {
+        "NewName": "ObservedRadioTrasmitter",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
     "GClass2974": {
@@ -4830,6 +4977,10 @@
     },
     "GClass2975": {
         "NewName": "ObservedPlayerInventoryInfo",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2976": {
+        "NewName": "ObservedPlayerMessageJobs",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
     "GClass2977": {
@@ -4844,6 +4995,9 @@
         "NewName": "TimeSpanStatistics",
         "NewNamespace": "EFT.NextObservedPlayer"
     },
+    "GClass298": {
+        "NewName": "DebugMedsNode"
+    },
     "GClass2980": {
         "NewName": "ObservedPlayerMovementController",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -4851,6 +5005,78 @@
     "GClass2981": {
         "NewName": "ObservedPlayerStateContext",
         "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2982": {
+        "NewName": "ObservedPlayerStepsImitator",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2983": {
+        "NewName": "SafeTaskCompleteSource",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2984": {
+        "NewName": "OneAndListExtensions",
+        "NewNamespace": "EFT.NetworkPackets"
+    },
+    "GClass2985": {
+        "NewName": "SerializationConstants",
+        "NewNamespace": "EFT.NetworkPackets"
+    },
+    "GClass2986": {
+        "NewName": "EnableInventoryPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2987": {
+        "NewName": "HideWeaponPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2988": {
+        "NewName": "CompassPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2989": {
+        "NewName": "KnifeHitInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2990": {
+        "NewName": "KnifePacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2991": {
+        "NewName": "KnifePacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2992": {
+        "NewName": "EmptyHandPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2993": {
+        "NewName": "LauncherReloadInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2994": {
+        "NewName": "ShotTrajectoryPartSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2995": {
+        "NewName": "FlareShotInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2996": {
+        "NewName": "RocketShotInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2997": {
+        "NewName": "PhraseCommandPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2998": {
+        "NewName": "ShotInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2999": {
+        "NewName": "GrenadeThrowDataSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
     },
     "GClass3": {
         "NewName": "qb_TemplateSignature"
@@ -4860,6 +5086,38 @@
     },
     "GClass3000": {
         "NewName": "GrenadePacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3001": {
+        "NewName": "DeathPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3002": {
+        "NewName": "CorpseImpulseSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3003": {
+        "NewName": "ArmorUpdateSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3004": {
+        "NewName": "PoisonUpdateSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3005": {
+        "NewName": "HitInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3006": {
+        "NewName": "InventoryOperationStatusSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3007": {
+        "NewName": "DetailedHitInfoSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass3008": {
+        "NewName": "",
         "NewNamespace": "EFT.NetworkPackets.Serialization"
     },
     "GClass3009`1": {
@@ -5027,12 +5285,64 @@
         "NewName": "RelativeHealthValue",
         "NewNamespace": "EFT.HealthSystem"
     },
+    "GClass3063": {
+        "NewName": "AbstractNetwork",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3064": {
+        "NewName": "NetworkClient",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3065": {
+        "NewName": "NetworkServer",
+        "NewNamespace": "EFT.Network"
+    },
     "GClass3066": {
         "NewName": "BaseNetworkCryptography",
         "NewNamespace": "EFT.Network"
     },
+    "GClass3067": {
+        "NewName": "ClientNetworkCryptography",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3068": {
+        "NewName": "BytesSegmentPool",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3069": {
+        "NewName": "BytesSerialization",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass307": {
+        "NewName": "DebugWeaponChangeNode"
+    },
+    "GClass3070": {
+        "NewName": "NetworkConnectConfiguration",
+        "NewNamespace": "EFT.Network"
+    },
     "GClass3071": {
         "NewName": "NetworkConnection",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3072": {
+        "NewName": "NetworkConstants",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3073": {
+        "NewName": "NetworkMessageHandlers",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3074": {
+        "NestedTypes": {
+            "GStruct417": {
+                "NewName": "SnapshotInterpolatorOptions"
+            }
+        },
+        "NewName": "SnapshotInterpolator",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3075`1": {
+        "NewName": "SnapshotInterpolator",
         "NewNamespace": "EFT.Network"
     },
     "GClass3076": {
@@ -5044,6 +5354,9 @@
     },
     "GClass31": {
         "NewName": "MoveToCoverActionResultData"
+    },
+    "GClass310": {
+        "NewName": "ArenaFighterLayersStrategy"
     },
     "GClass3100": {
         "NewName": "NetworkLoseStatistics",
@@ -5091,6 +5404,9 @@
         "NewName": "NotesManager",
         "NewNamespace": "EFT.Notes"
     },
+    "GClass311": {
+        "NewName": ""
+    },
     "GClass3110": {
         "NewName": "AmmoPack",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5135,6 +5451,9 @@
         "NewName": "GridExtensions",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass312": {
+        "NewName": "BossBoarLayersStrategy"
+    },
     "GClass3120": {
         "NewName": "GridItemCollection",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5172,6 +5491,9 @@
         "NewName": "StackSlotSerializer",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass313": {
+        "NewName": "BossBoarSniperLayersStrategy"
+    },
     "GClass3130": {
         "NewName": "CurrencyUtil",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5184,6 +5506,9 @@
         "NewName": "BarterItemTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass314": {
+        "NewName": "BossBullyLayersStrategy"
+    },
     "GClass3146": {
         "NewName": "CompoundItemTemplate",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5195,6 +5520,9 @@
     "GClass3149": {
         "NewName": "ArmoredEquipmentTemplate",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass315": {
+        "NewName": "BossKillaAgroLayersStrategy"
     },
     "GClass3152": {
         "NewName": "FaceCoverTemplate",
@@ -5220,6 +5548,9 @@
         "NewName": "FunctionalModTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass316": {
+        "NewName": "BossPartisanLayersStrategy"
+    },
     "GClass3160": {
         "NewName": "BipodTemplate",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5243,6 +5574,9 @@
         "NewName": "NightVisionTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass318": {
+        "NewName": "BossTagillaAgroLayersStrategy"
+    },
     "GClass3180": {
         "NewName": "ThermalVisionTemplate",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5263,6 +5597,9 @@
         },
         "NewName": "MagazineTemplate",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass319": {
+        "NewName": "BossTagillaLayersStrategy"
     },
     "GClass3191": {
         "NewName": "MasterModTemplate",
@@ -5287,9 +5624,18 @@
     "GClass32": {
         "NewName": "AICoreAgentBase"
     },
+    "GClass320": {
+        "NewName": "BossTestLayersStrategy"
+    },
     "GClass3201": {
         "NewName": "VestTemplate",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass321": {
+        "NewName": "BossZryachiyLayersStrategy"
+    },
+    "GClass322": {
+        "NewName": "CursedAssaultLayersStrategy"
     },
     "GClass3220": {
         "NewName": "FoodDrinkTemplate",
@@ -5358,6 +5704,9 @@
         "NewName": "ContainerCollection",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass325": {
+        "NewName": "CursedAssaultLayersStrategy"
+    },
     "GClass3251": {
         "NewName": "ArmoredEquipment",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5375,6 +5724,10 @@
     },
     "GClass3260": {
         "NewName": "LockableContainer",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3262": {
+        "NewName": "FunctionalMod",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3263": {
@@ -5411,13 +5764,25 @@
         "NewName": "Magazine",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass329": {
+        "NewName": "FollowerBigPipeLayersStrategy"
+    },
     "GClass3299": {
         "NewName": "SearchableItem",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass330": {
+        "NewName": "FollowerBirdEyeLayersStrategy"
+    },
+    "GClass331": {
+        "NewName": "BoarClosePatrolLayer"
+    },
     "GClass3318": {
         "NewName": "StashTemplate",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass332": {
+        "NewName": "FollowerBullyLayersStrategy"
     },
     "GClass3321": {
         "NestedTypes": {
@@ -5451,6 +5816,9 @@
         "NewName": "FoodDrink",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass334": {
+        "NewName": "FollowerTagillaLayersStrategy"
+    },
     "GClass3345": {
         "NewName": "Knife",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5458,6 +5826,9 @@
     "GClass3347": {
         "NewName": "Meds",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass335": {
+        "NewName": "FollowerZryachiyLayersStrategy"
     },
     "GClass3351": {
         "NewName": "Stimulator",
@@ -5478,6 +5849,9 @@
     "GClass3359": {
         "NewName": "RadioTransmitter",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass336": {
+        "NewName": "GifterLayersStrategy"
     },
     "GClass3360": {
         "NewName": "StackableItem",
@@ -5519,6 +5893,9 @@
         "NewName": "ItemComponent",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass338": {
+        "NewName": "BossGluharLayersStrategy"
+    },
     "GClass3383": {
         "NewName": "ItemController",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5545,6 +5922,12 @@
     "GClass34": {
         "NewName": "AICoreController"
     },
+    "GClass340": {
+        "NewName": ""
+    },
+    "GClass341": {
+        "NewName": ""
+    },
     "GClass3413": {
         "NewName": "ContainerRemoveResult",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5553,9 +5936,18 @@
         "NewName": "ContainerAddResult",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass342": {
+        "NewName": "KillaLayersStrategy"
+    },
+    "GClass343": {
+        "NewName": "BossKolontayLayersStrategy"
+    },
     "GClass3430": {
         "NewName": "ToggleResult",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass344": {
+        "NewName": "FollowerKolontayAssaultStrategy"
     },
     "GClass3440": {
         "NewName": "DeleteMapMarkerResult",
@@ -5568,6 +5960,9 @@
     "GClass3449": {
         "NewName": "ItemContext",
         "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass345": {
+        "NewName": "FollowerKolontaySecutiryLayersStrategy"
     },
     "GClass3454": {
         "NewName": "OtherPlayerProfileItemContext",
@@ -5590,6 +5985,9 @@
         "NewName": "AreaStashItemContext",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass346": {
+        "NewName": "MarksmanLayersStrategy"
+    },
     "GClass3463": {
         "NewName": "DragItemContext",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5610,6 +6008,9 @@
         "NewName": "AbstractAsyncOperation",
         "NewNamespace": "EFT.InventoryLogic.Operations"
     },
+    "GClass348": {
+        "NewName": "PmcBearLayersStrategy"
+    },
     "GClass3488": {
         "NewName": "EditMapMarkerOperation",
         "NewNamespace": "EFT.InventoryLogic.Operations"
@@ -5618,9 +6019,15 @@
         "NewName": "EditMapMarkerResult",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass349": {
+        "NewName": "PmcLayersStrategy"
+    },
     "GClass3496": {
         "NewName": "SetDialogProgressOperation",
         "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass350": {
+        "NewName": "PmcUsecLayersStrategy"
     },
     "GClass3502": {
         "NewName": "ToggleOperation",
@@ -5629,6 +6036,9 @@
     "GClass3536": {
         "NewName": "Handbook",
         "NewNamespace": "EFT.HandBook"
+    },
+    "GClass354": {
+        "NewName": "ShooterBTRLayersStrategy"
     },
     "GClass3540": {
         "NewName": "BtrController",
@@ -5692,6 +6102,9 @@
         "NewName": "ClientDialogController",
         "NewNamespace": "EFT.Dialogs"
     },
+    "GClass362": {
+        "NewName": "SectactPriestEventStrategy"
+    },
     "GClass3620": {
         "NewName": "BaseTraderDialog",
         "NewNamespace": "EFT.Dialogs"
@@ -5739,6 +6152,9 @@
     "GClass3638": {
         "NewName": "DialogHandoverItemAction",
         "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass364": {
+        "NewName": "TagillaHelperAgroStrategy"
     },
     "GClass365": {
         "NewName": "SegmentPoints"
@@ -6623,6 +7039,9 @@
     },
     "GClass537": {
         "NewName": "DeferredDecision"
+    },
+    "GClass538": {
+        "NewName": "AIActionsList"
     },
     "GClass54": {
         "NewName": "BossBoarPatrolLayer"

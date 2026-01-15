@@ -5774,7 +5774,7 @@
     "GClass330": {
         "NewName": "FollowerBirdEyeLayersStrategy"
     },
-    "GClass331": {
+    "GClass52": {
         "NewName": "BoarClosePatrolLayer"
     },
     "GClass3318": {
@@ -7018,9 +7018,6 @@
     },
     "GClass519": {
         "NewName": "BotSuppressData"
-    },
-    "GClass52": {
-        "NewName": "BoarClosePatrolLayer"
     },
     "GClass528": {
         "NewName": "BotDistCheck"

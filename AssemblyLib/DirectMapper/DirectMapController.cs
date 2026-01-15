@@ -31,13 +31,12 @@ public class DirectMapController(
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
 
-        await memberReferenceCache.Hydrate();
-
         if (!TryDeobfuscateAssembly())
         {
             return;
         }
 
+        await memberReferenceCache.Hydrate();
         await RunRenamingProcess();
 
         if (!string.IsNullOrEmpty(dummyDllPath))
@@ -63,9 +62,20 @@ public class DirectMapController(
             return false;
         }
 
-        _targetAssemblyPath =
-            result.DeObfuscatedAssemblyPath ?? throw new NullReferenceException("Deobfuscated assembly path is null");
-        Module = result.DeObfuscatedModule ?? throw new NullReferenceException("Deobfuscated module is null");
+        // ReSharper disable once JoinNullCheckWithUsage
+        if (result.DeObfuscatedAssemblyPath is null)
+        {
+            throw new NullReferenceException("Deobfuscated assembly path is null");
+        }
+
+        // ReSharper disable once JoinNullCheckWithUsage - changing this fixed the deobfuscation bug
+        if (result.DeObfuscatedModule is null)
+        {
+            throw new NullReferenceException("Deobfuscated module is null");
+        }
+
+        _targetAssemblyPath = result.DeObfuscatedAssemblyPath;
+        Module = result.DeObfuscatedModule;
 
         Types.AddRange(Module?.GetAllTypes() ?? []);
 

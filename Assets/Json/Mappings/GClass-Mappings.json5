@@ -6112,10 +6112,10 @@
     "GClass3621": {
         "NewName": "DynamicTraderDialog",
         "NewNamespace": "EFT.Dialogs"
-    },
-    "GClass3623": {
-        "NewName": "RandomLineCondition",
-        "NewNamespace": "EFT.Dialogs"
+//    },
+//    "GClass3623": {
+//        "NewName": "RandomLineCondition",
+//        "NewNamespace": "EFT.Dialogs"
     },
     "GClass3624": {
         "NewName": "DialogStorage",

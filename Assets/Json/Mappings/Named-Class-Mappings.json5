@@ -42,20 +42,6 @@
 	"NewName": "WishlistCategoryView",
     "NewNamespace": "EFT.UI"
   },
-  "BodyPartCollider": {
-    "NestedTypes": {
-      "GInterface20": {
-        "NewName": "IObserverToPlayerBridge"
-      }
-    }
-  },
-  "CommonAssets.Scripts.Game.EndByExitTrigerScenario": {
-    "NestedTypes": {
-      "GInterface146": {
-        "NewName": "IGame"
-      }
-    }
-  },
   "EFT.ClientPlayer": {
     "NestedTypes": {
       "GInterface230": {
@@ -107,9 +93,6 @@
       },
       "GClass1539": {
         "NewName": "WrongComponentStateError"
-      },
-      "GClass2003": {
-        "NewName": "Constants"
       },
       "GClass2004": {
         "NewName": "Garbage"
@@ -388,13 +371,6 @@
 	"NestedTypes": {
       "GClass3917": {
         "NewName": "OfflineRaidScreenController"
-      }
-    }
-  },
-  "EFT.HealthSystem.ActiveHealthController": {
-	"NestedTypes": {
-      "GClass3008": {
-        "NewName": "Effect"
       }
     }
   },

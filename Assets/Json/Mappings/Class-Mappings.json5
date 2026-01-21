@@ -436,9 +436,6 @@
     "Class686": {
         "NewName": "GUITextLabel"
     },
-    "Class687": {
-        "NewName": "StateSwitcher"
-    },
     "Class688": {
         "NewName": "SnowFlakesMeshFactory"
     },

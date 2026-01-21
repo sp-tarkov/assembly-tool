@@ -63,21 +63,15 @@
     "NewName": "MotionInfo",
     "NewNamespace": "AnimationSystem.RootMotionTable"
   },
-  "GStruct153": {
-    "NewName": "OperationResult",
-    "NewNamespace": "Diz.LanguageExtensions"
-  },
   "GStruct159": {
     "NewName": "DoubleVector3",
     "NewNamespace": "ChartAndGraph"
   },
   "GStruct217": {
-    // PlayerInteractPacket
     "NewName": "InteractWithBtrPacket",
     "NewNamespace": "EFT"
   },
   "GStruct239": {
-    // FirearmLightStateStruct
     "NewName": "TacticalComboStatus",
     "NewNamespace": "EFT"
   },
@@ -86,7 +80,6 @@
     "NewNamespace": "EFT"
   },
   "GStruct258": {
-    // CharacterStruct
     "NewName": "CharacterControllerFootprint",
     "NewNamespace": "EFT"
   },
@@ -119,18 +112,12 @@
     "NewNamespace": "EFT.Network.Transport"
   },
   "GStruct428": {
-    // BTRDataPacketStruct
     "NewName": "ShapshotBTRMessage",
     "NewNamespace": "EFT.Vehicle"
   },
   "GStruct441": {
-    // DamageInfoStruct
     "NewName": "DamageInfo",
     "NewNamespace": "EFT.Ballistics"
-  },
-  "GStruct152`1": {
-    "NewName": "OperationCreationResult",
-    "NewNamespace": "Diz.LanguageExtensions"
   },
   "GStruct210": {
     "NewName": "Client2ServerPacket",
@@ -325,22 +312,6 @@
   "GStruct150": {
     "NewName": "AlarmStage",
     "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling",
-  },
-  "GStruct151": {
-    "NewName": "OperationCreationResult",
-    "NewNamespace": "Diz.LanguageExtensions",
-  },
-  "GStruct154`1": {
-    "NewName": "OperationResult",
-    "NewNamespace": "Diz.LanguageExtensions",
-  },
-  "GStruct155": {
-    "NewName": "Option",
-    "NewNamespace": "Diz.LanguageExtensions",
-  },
-  "GStruct156`1": {
-    "NewName": "Option",
-    "NewNamespace": "Diz.LanguageExtensions",
   },
   "GStruct158": {
     "NewName": "DoubleVector2",
@@ -980,10 +951,6 @@
     "NewName": "ChangeMasteringExperiencePacket",
     "NewNamespace": "EFT",
   },
-  "GStruct263": {
-    "NewName": "SwitchRenderersPacket",
-    "NewNamespace": "EFT",
-  },
   "GStruct264": {
     "NewName": "TraderInfoPacket",
     "NewNamespace": "EFT",
@@ -1302,10 +1269,6 @@
   },
   "GStruct386": {
     "NewName": "SideEffectUpdate",
-    "NewNamespace": "EFT.NetworkPackets",
-  },
-  "GStruct388": {
-    "NewName": "SwitchRenderersPacket",
     "NewNamespace": "EFT.NetworkPackets",
   },
   "GStruct389": {

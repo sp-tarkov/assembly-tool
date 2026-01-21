@@ -18,9 +18,6 @@
     "GClass1001": {
         "NewName": "CommandBufferManager"
     },
-    "GClass1002": {
-        "NewName": "Extensions"
-    },
     "GClass1003": {
         "NewName": "PhotoManager"
     },
@@ -208,9 +205,6 @@
         "NewName": "ChatCommunicatorFactory",
         "NewNamespace": "ChatShared"
     },
-    "GClass105": {
-        "NewName": "FollowerKojaniyLayer"
-    },
     "GClass1050": {
         "NewName": "ChatServerState",
         "NewNamespace": "ChatShared"
@@ -250,9 +244,6 @@
     "GClass1059": {
         "NewName": "ChatRoomInformation",
         "NewNamespace": "ChatShared"
-    },
-    "GClass106": {
-        "NewName": "FollowerKojaniyLayer"
     },
     "GClass1060": {
         "NewName": "ChatMessageSystemData",
@@ -955,10 +946,6 @@
         "NewName": "PerfectCullingUtil",
         "NewNamespace": "Koenigz.PerfectCulling"
     },
-    "GClass1229": {
-        "NewName": "RendererExtensions",
-        "NewNamespace": "Koenigz.PerfectCulling"
-    },
     "GClass123": {
         "NewName": "PartisanPlantingTargetLayer"
     },
@@ -1011,10 +998,6 @@
     },
     "GClass1242": {
         "NewName": "BoundsExtensions",
-        "NewNamespace": "Koenigz.PerfectCulling.EFT"
-    },
-    "GClass1243": {
-        "NewName": "ListExtensions",
         "NewNamespace": "Koenigz.PerfectCulling.EFT"
     },
     "GClass1244": {
@@ -1205,10 +1188,6 @@
         "NewName": "DeltaCompression",
         "NewNamespace": "Mirror"
     },
-    "GClass1298": {
-        "NewName": "Extensions",
-        "NewNamespace": "Mirror"
-    },
     "GClass1299": {
         "NewName": "Mathd",
         "NewNamespace": "Mirror"
@@ -1283,20 +1262,12 @@
         "NewName": "AbstractStateMachine",
         "NewNamespace": "FastAnimatorSystem"
     },
-    "GClass1314": {
-        "NewName": "FastAnimatorProcessor",
-        "NewNamespace": "FastAnimatorSystem"
-    },
     "GClass1315": {
         "NewName": "AbstractInnerStateMachine",
         "NewNamespace": "FastAnimatorSystem"
     },
     "GClass1316": {
         "NewName": "LayerStateMachine",
-        "NewNamespace": "FastAnimatorSystem"
-    },
-    "GClass1317": {
-        "NewName": "StateMachine",
         "NewNamespace": "FastAnimatorSystem"
     },
     "GClass1318": {
@@ -1395,10 +1366,6 @@
         "NewName": "PlayableAnimatorCuller",
         "NewNamespace": "FastAnimatorSystem"
     },
-    "GClass1341": {
-        "NewName": "FastAnimatorProcessor",
-        "NewNamespace": "FastAnimatorSystem"
-    },
     "GClass1343": {
         "NewName": "FastControllerInfo",
         "NewNamespace": "FastAnimatorSystem"
@@ -1420,10 +1387,6 @@
     },
     "GClass1353": {
         "NewName": "AvarageMeasureStatistics",
-        "NewNamespace": "UnityDiagnostics"
-    },
-    "GClass1354": {
-        "NewName": "MaxMeasurer",
         "NewNamespace": "UnityDiagnostics"
     },
     "GClass1355": {
@@ -1454,10 +1417,6 @@
     },
     "GClass136": {
         "NewName": "StayAtGeneratorPositionLayer"
-    },
-    "GClass1360": {
-        "NewName": "MaxMeasurer",
-        "NewNamespace": "UnityDiagnostics"
     },
     "GClass1361": {
         "NewName": "TimeMeasurer",
@@ -1630,14 +1589,6 @@
     },
     "GClass1401": {
         "NewName": "JsonLootItem",
-        "NewNamespace": "JsonType"
-    },
-    "GClass1402": {
-        "NewName": "JsonCorpse",
-        "NewNamespace": "JsonType"
-    },
-    "GClass1403": {
-        "NewName": "JsonCorpse",
         "NewNamespace": "JsonType"
     },
     "GClass1404": {
@@ -1842,14 +1793,6 @@
         "NewName": "EAnimationEventParamTypeExtension",
         "NewNamespace": "AnimationEventSystem"
     },
-    "GClass1454": {
-        "NewName": "StateMachine",
-        "NewNamespace": "Assets.Scripts.Utils"
-    },
-    "GClass1455": {
-        "NewName": "StateSwitcher",
-        "NewNamespace": "Assets.Scripts.Utils"
-    },
     "GClass1456": {
         "NewName": "Zlib",
         "NewNamespace": "Assets.Scripts.Utils"
@@ -1927,20 +1870,12 @@
         "NewName": "NatPunchModule",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib"
     },
-    "GClass1474": {
-        "NewName": "NetConstants",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
-    },
     "GClass1476": {
         "NewName": "NetManager",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib"
     },
     "GClass1477": {
         "NewName": "NetPeer",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
-    },
-    "GClass1478": {
-        "NewName": "NetConstants",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib"
     },
     "GClass148": {
@@ -2005,10 +1940,6 @@
     "GClass1513": {
         "NewName": "ArtilleryShellingSoundControllerClient",
         "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling.Client.Audio"
-    },
-    "GClass1514": {
-        "NewName": "ListExtensions",
-        "NewNamespace": "CommonAssets.Plugins.Comfort"
     },
     "GClass1515": {
         "NewName": "BufferExtension",
@@ -2177,10 +2108,6 @@
         "NewName": "BindableExtensions",
         "NewNamespace": "Diz.Binding"
     },
-    "GClass1628`1": {
-        "NewName": "BindableList",
-        "NewNamespace": "Diz.Binding"
-    },
     "GClass1629`2": {
         "NewName": "ConvertedBindableList",
         "NewNamespace": "Diz.Binding"
@@ -2216,10 +2143,6 @@
         "NewName": "AchievementsBook",
         "NewNamespace": "EFT.Achievements"
     },
-    "GClass1639`1": {
-        "NewName": "BindableList",
-        "NewNamespace": "Diz.Binding"
-    },
     "GClass164": {
         "NewName": "TestLayer"
     },
@@ -2243,44 +2166,8 @@
         "NewName": "BaseBindableFilter",
         "NewNamespace": "Diz.Binding"
     },
-    "GClass1645`2": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1646`3": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1647`4": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1648`5": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1649`6": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
     "GClass165": {
         "NewName": "TestSecondLayer"
-    },
-    "GClass1650`7": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1651`8": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1652`9": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
-    },
-    "GClass1653`10": {
-        "NewName": "BindableFilter",
-        "NewNamespace": "Diz.Binding"
     },
     "GClass1654`1": {
         "NewName": "Counted",
@@ -2517,12 +2404,6 @@
     "GClass174": {
         "NewName": "StandByLogicLayer"
     },
-    "GClass175": {
-        "NewName": "AICoreNode"
-    },
-    "GClass176`1": {
-        "NewName": "AICoreNode"
-    },
     "GClass177`1": {
         "NewName": "BaseNode"
     },
@@ -2556,10 +2437,6 @@
     "GClass180": {
         "NewName": "AimingFromStationary"
     },
-    "GClass1802": {
-        "NewName": "ItemInfo",
-        "NewNamespace": "EFT"
-    },
     "GClass1804": {
         "NewName": "Assets",
         "NewNamespace": "EFT"
@@ -2567,9 +2444,6 @@
     "GClass1808": {
         "NewName": "DailyZoneData",
         "NewNamespace": "EFT"
-    },
-    "GClass181": {
-        "NewName": "AimingNearPlayer"
     },
     "GClass1813": {
         "NewName": "Version",
@@ -2655,9 +2529,6 @@
     "GClass1888": {
         "NewName": "SpawnedWave",
         "NewNamespace": "EFT"
-    },
-    "GClass189": {
-        "NewName": "AimingNearPlayer"
     },
     "GClass1892": {
         "NewName": "GameTimer",
@@ -2765,10 +2636,6 @@
         "NewName": "ItemDescriptor",
         "NewNamespace": "EFT"
     },
-    "GClass1923": {
-        "NewName": "ItemInfo",
-        "NewNamespace": "EFT"
-    },
     "GClass1924": {
         "NewName": "ItemInfoDescriptor",
         "NewNamespace": "EFT"
@@ -2850,14 +2717,6 @@
     },
     "GClass1944": {
         "NewName": "CultistAmuletComponentDescriptor",
-        "NewNamespace": "EFT"
-    },
-    "GClass1945": {
-        "NewName": "JsonLootItemDescriptor",
-        "NewNamespace": "EFT"
-    },
-    "GClass1946": {
-        "NewName": "JsonLootItemDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass1947": {
@@ -3210,9 +3069,6 @@
         "NewName": "DeathCause",
         "NewNamespace": "EFT"
     },
-    "GClass22": {
-        "NewName": "MoveToEnemy"
-    },
     "GClass2200": {
         "NewName": "DamageStats",
         "NewNamespace": "EFT"
@@ -3304,10 +3160,6 @@
         "NewName": "TaskConditionCounterDescriptor",
         "NewNamespace": "EFT"
     },
-    "GClass2228": {
-        "NewName": "BonusDescriptor",
-        "NewNamespace": "EFT"
-    },
     "GClass2229": {
         "NewName": "TraderInfoDescriptor",
         "NewNamespace": "EFT"
@@ -3356,10 +3208,6 @@
             "method_3": "UpdateRules"
         },
         "NewName": "Skill",
-        "NewNamespace": "EFT"
-    },
-    "GClass2248": {
-        "NewName": "BonusDescriptor",
         "NewNamespace": "EFT"
     },
     "GClass2249": {
@@ -3851,20 +3699,8 @@
         "NewName": "HideoutSettings",
         "NewNamespace": "EFT.Hideout"
     },
-    "GClass2425": {
-        "NewName": "HideoutSkillManager",
-        "NewNamespace": "EFT.Hideout"
-    },
-    "GClass2426": {
-        "NewName": "HideoutSkillManager",
-        "NewNamespace": "EFT.Hideout"
-    },
     "GClass2428": {
         "NewName": "ImprovementController",
-        "NewNamespace": "EFT.Hideout"
-    },
-    "GClass2431": {
-        "NewName": "ItemsProducerBase",
         "NewNamespace": "EFT.Hideout"
     },
     "GClass2437": {
@@ -3951,10 +3787,6 @@
         "NewName": "TraderRequirement",
         "NewNamespace": "EFT.Hideout"
     },
-    "GClass2456": {
-        "NewName": "Constants",
-        "NewNamespace": "EFT.Hideout"
-    },
     "GClass2457": {
         "NewName": "FreeSpaceCameraMover",
         "NewNamespace": "EFT.Hideout"
@@ -4024,10 +3856,6 @@
     },
     "GClass251": {
         "NewName": "WarnPlayerRequestGoNode"
-    },
-    "GClass2531": {
-        "NewName": "ItemsProducerBase",
-        "NewNamespace": "EFT.Hideout"
     },
     "GClass2545": {
         "NewName": "BufferZoneAccessDeniedNotification",
@@ -4423,9 +4251,6 @@
     "GClass2787": {
         "NewName": "ObstacleCollisionModel",
         "NewNamespace": "EFT.ObstacleCollision.Models"
-    },
-    "GClass2792": {
-        "NewName": "ValProcessor"
     },
     "GClass2793": {
         "NewName": "AnimValProcessor",
@@ -5038,14 +4863,6 @@
         "NewName": "KnifeHitInfoSerializationExtensions",
         "NewNamespace": "EFT.NetworkPackets.Serialization"
     },
-    "GClass2990": {
-        "NewName": "KnifePacketSerializationExtensions",
-        "NewNamespace": "EFT.NetworkPackets.Serialization"
-    },
-    "GClass2991": {
-        "NewName": "KnifePacketSerializationExtensions",
-        "NewNamespace": "EFT.NetworkPackets.Serialization"
-    },
     "GClass2992": {
         "NewName": "EmptyHandPacketSerializationExtensions",
         "NewNamespace": "EFT.NetworkPackets.Serialization"
@@ -5114,10 +4931,6 @@
     },
     "GClass3007": {
         "NewName": "DetailedHitInfoSerializationExtensions",
-        "NewNamespace": "EFT.NetworkPackets.Serialization"
-    },
-    "GClass3008": {
-        "NewName": "",
         "NewNamespace": "EFT.NetworkPackets.Serialization"
     },
     "GClass3009`1": {
@@ -5332,19 +5145,6 @@
         "NewName": "NetworkMessageHandlers",
         "NewNamespace": "EFT.Network"
     },
-    "GClass3074": {
-        "NestedTypes": {
-            "GStruct417": {
-                "NewName": "SnapshotInterpolatorOptions"
-            }
-        },
-        "NewName": "SnapshotInterpolator",
-        "NewNamespace": "EFT.Network"
-    },
-    "GClass3075`1": {
-        "NewName": "SnapshotInterpolator",
-        "NewNamespace": "EFT.Network"
-    },
     "GClass3076": {
         "NewName": "ObservedPlayerInterpolator",
         "NewNamespace": "EFT.NextObservedPlayer"
@@ -5403,9 +5203,6 @@
         },
         "NewName": "NotesManager",
         "NewNamespace": "EFT.Notes"
-    },
-    "GClass311": {
-        "NewName": ""
     },
     "GClass3110": {
         "NewName": "AmmoPack",
@@ -5634,9 +5431,6 @@
     "GClass321": {
         "NewName": "BossZryachiyLayersStrategy"
     },
-    "GClass322": {
-        "NewName": "CursedAssaultLayersStrategy"
-    },
     "GClass3220": {
         "NewName": "FoodDrinkTemplate",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5703,9 +5497,6 @@
     "GClass3248": {
         "NewName": "ContainerCollection",
         "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass325": {
-        "NewName": "CursedAssaultLayersStrategy"
     },
     "GClass3251": {
         "NewName": "ArmoredEquipment",
@@ -5869,18 +5660,6 @@
         "NewName": "JsonTypes",
         "NewNamespace": "EFT.InventoryLogic"
     },
-    "GClass3369": {
-        "NewName": "ExplosionSettings",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass3370": {
-        "NewName": "ComputableUnitSettings",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass3371": {
-        "NewName": "PhysicalSettings",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
     "GClass3372": {
         "NewName": "InventoryEquipmentExtension",
         "NewNamespace": "EFT.InventoryLogic"
@@ -5921,12 +5700,6 @@
     },
     "GClass34": {
         "NewName": "AICoreController"
-    },
-    "GClass340": {
-        "NewName": ""
-    },
-    "GClass341": {
-        "NewName": ""
     },
     "GClass3413": {
         "NewName": "ContainerRemoveResult",
@@ -6112,10 +5885,6 @@
     "GClass3621": {
         "NewName": "DynamicTraderDialog",
         "NewNamespace": "EFT.Dialogs"
-//    },
-//    "GClass3623": {
-//        "NewName": "RandomLineCondition",
-//        "NewNamespace": "EFT.Dialogs"
     },
     "GClass3624": {
         "NewName": "DialogStorage",
@@ -6470,18 +6239,6 @@
         "NewName": "BackBlastSettings",
         "NewNamespace": "EFT.RocketLauncher.Explosion"
     },
-    "GClass3986": {
-        "NewName": "ComputableUnitSettings",
-        "NewNamespace": "EFT.RocketLauncher.Explosion"
-    },
-    "GClass3987": {
-        "NewName": "ExplosionSettings",
-        "NewNamespace": "EFT.RocketLauncher.Explosion"
-    },
-    "GClass3988": {
-        "NewName": "PhysicalSettings",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
     "GClass3989": {
         "NewName": "VisualSettings",
         "NewNamespace": "EFT.RocketLauncher.Explosion"
@@ -6539,10 +6296,6 @@
     "GClass4002": {
         "NewName": "PrestigeControllerClientGame",
         "NewNamespace": "EFT.Prestige"
-    },
-    "GClass4003": {
-        "NewName": "ConditionsConnectorsManagerClientGame",
-        "NewNamespace": "EFT.Quests"
     },
     "GClass4004": {
         "NewName": "QuestController",
@@ -6630,10 +6383,6 @@
     },
     "GClass403": {
         "NewName": "BotOwnerGizmos"
-    },
-    "GClass4030`1": {
-        "NewName": "ConditionsConnectorsManagerClientGame",
-        "NewNamespace": "EFT.Quests"
     },
     "GClass4033": {
         "NewName": "ConditionsConnectorsManagerQuestClientGame",
@@ -7043,9 +6792,6 @@
     "GClass54": {
         "NewName": "BossBoarPatrolLayer"
     },
-    "GClass540": {
-        "NewName": "AbstractBotPath"
-    },
     "GClass542": {
         "NewName": "EnemyPartVision"
     },
@@ -7060,9 +6806,6 @@
     },
     "GClass548": {
         "NewName": "BotMoverStateMachine"
-    },
-    "GClass549": {
-        "NewName": "AbstractBotPath"
     },
     "GClass55": {
         "NewName": "BoarBossFightLayer"
@@ -7308,12 +7051,6 @@
     },
     "GClass646": {
         "NewName": "ClientBackendExtension"
-    },
-    "GClass647`1": {
-        "NewName": "JsonResponse"
-    },
-    "GClass648": {
-        "NewName": "JsonResponse"
     },
     "GClass649": {
         "NewName": "Crc32"
@@ -7950,9 +7687,6 @@
     "GClass86": {
         "NewName": "FollowerPatrolLayer"
     },
-    "GClass860": {
-        "NewName": "RendererExtensions"
-    },
     "GClass861": {
         "NestedTypes": {
             "Class390": {
@@ -8031,14 +7765,8 @@
     "GClass888": {
         "NewName": "BetterAudioQueue"
     },
-    "GClass889": {
-        "NewName": "SuperBetterAudioQueue"
-    },
     "GClass89": {
         "NewName": "GifterLayer"
-    },
-    "GClass890": {
-        "NewName": "SuperBetterAudioQueue"
     },
     "GClass891": {
         "NewName": "AudioSample"
@@ -8092,9 +7820,6 @@
     },
     "GClass906": {
         "NewName": "ArmorRepairStrategy"
-    },
-    "GClass907": {
-        "NewName": "ValProcessor"
     },
     "GClass908": {
         "NewName": "BetterValProcessor"
@@ -8398,5 +8123,8 @@
     },
     "GClass999": {
         "NewName": "ObservedCullingObject"
+    },
+    "GClass22": {
+        "NewName": "CounterCreatorAbstractClass"
     }
 }

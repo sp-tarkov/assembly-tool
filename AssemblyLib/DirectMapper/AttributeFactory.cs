@@ -1,6 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
 using AsmResolver.DotNet.Signatures.Types;
+using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -12,13 +13,7 @@ public class AttributeFactory(DataProvider dataProvider)
 {
     public void UpdateAsyncAttributes()
     {
-        var types = dataProvider.DirectMapModels.Select(r => r.Value.ToolData.Type).ToList();
-        var nestedTypes = new List<TypeDefinition>();
-        foreach (var type in types)
-        {
-            nestedTypes.AddRange(type?.NestedTypes ?? []);
-        }
-        types.AddRange(nestedTypes);
+        var types = dataProvider.LoadedModule.GetAllTypes();
 
         foreach (var type in types)
         {
@@ -100,9 +95,7 @@ public class AttributeFactory(DataProvider dataProvider)
             }
 
             // Find the argument target in the nested types
-            var typeDefTarget = nestedTypes.FirstOrDefault(t =>
-                t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name
-            );
+            var typeDefTarget = nestedTypes.FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name);
 
             if (typeDefTarget is null)
             {

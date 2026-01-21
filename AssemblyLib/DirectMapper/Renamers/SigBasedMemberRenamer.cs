@@ -1,5 +1,6 @@
 using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Serialized;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
@@ -144,6 +145,15 @@ public class SigBasedMemberRenamer(
             {
                 if (!fieldSignatureComparer.IsSame(targetField, dummyField))
                 {
+                    continue;
+                }
+
+                if (targetType.BaseType is SerializedTypeDefinition baseType &&
+                    baseType.Fields.Any(f => f.Name == dummyField.Name))
+                {
+                    Log.Information(
+                        "Ignoring rename of field as Super class has a field with the same name. Dummy: {dummy} -> Target: {target}",
+                        dummyField.FullName, targetField.FullName);
                     continue;
                 }
 

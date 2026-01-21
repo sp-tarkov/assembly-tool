@@ -148,7 +148,7 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                if (targetType.BaseType is SerializedTypeDefinition baseType &&
+                if (targetType.BaseType is TypeDefinition baseType &&
                     baseType.Fields.Any(f => f.Name == dummyField.Name))
                 {
                     Log.Information(

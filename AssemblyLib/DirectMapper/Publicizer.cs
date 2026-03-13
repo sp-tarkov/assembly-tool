@@ -1,5 +1,5 @@
 ﻿using AsmResolver.DotNet;
-using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AsmResolver.PE.DotNet.Metadata.Tables;
 using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;

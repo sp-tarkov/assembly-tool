@@ -20,6 +20,7 @@ public class DataProvider
     }
 
     public Settings Settings { get; }
+    public RuntimeContext Context { get; private set;  }
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? DummyDllModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }
@@ -62,6 +63,7 @@ public class DataProvider
         }
 
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");
+        Context = module.RuntimeContext ?? throw new NullReferenceException("Could not get runtime context!");
         return module;
     }
 

@@ -111,8 +111,16 @@ public class MemberReferenceCache(DataProvider dataProvider)
 
         foreach (var reference in dataProvider.LoadedModule!.GetImportedMemberReferences())
         {
-            var resolved = reference.Resolve();
-            AddMetadataMemberToCache(resolved, reference);
+            var canResolve = reference.TryResolve(dataProvider.Context, out var resolved);
+
+            if(canResolve)
+            {
+                AddMetadataMemberToCache(resolved, reference);
+            }
+            else
+            {
+                Log.Warning($"Could not resolve {reference.FullName}");
+            }
         }
     }
 

@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
-using AsmResolver.DotNet.Signatures.Types;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
@@ -125,11 +124,11 @@ public class AttributeFactory(DataProvider dataProvider)
         var sysTypeRef = factory
             .CorLibScope.CreateTypeReference("System", "Type")
             .ImportWith(module.DefaultImporter)
-            .ToTypeSignature();
+            .ToTypeSignature(false);
 
         var asyncAttrRef = factory
             .CorLibScope.CreateTypeReference("System.Runtime.CompilerServices", "AsyncStateMachineAttribute")
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(module.CorLibTypeFactory.Void, sysTypeRef))
+            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(module.CorLibTypeFactory.Void, [sysTypeRef]))
             .ImportWith(module.DefaultImporter);
 
         // Create a custom attribute.
@@ -323,7 +322,17 @@ public class AttributeFactory(DataProvider dataProvider)
             return null;
         }
 
-        var finalBaseType = baseTypeRenamed ? newGenericTypeDef! : genericTypeDef.Resolve();
+        TypeDefinition? finalBaseType;
+
+        if (baseTypeRenamed)
+        {
+            finalBaseType = newGenericTypeDef;
+        }
+        else
+        {
+            genericTypeDef.Resolve(dataProvider.Context, out finalBaseType);
+        }
+
         if (finalBaseType == null)
         {
             Log.Error("Could not resolve base generic type");
@@ -357,7 +366,7 @@ public class AttributeFactory(DataProvider dataProvider)
         return result;
     }
 
-    private static TypeSignature? FindReplacementForArgument(
+    private TypeSignature? FindReplacementForArgument(
         TypeSignature arg,
         string argFullName,
         Dictionary<string, TypeDefinition> renameMap
@@ -366,7 +375,8 @@ public class AttributeFactory(DataProvider dataProvider)
         // Try to resolve normally first
         if (arg is TypeDefOrRefSignature typeDefOrRef)
         {
-            var typeDef = typeDefOrRef.Type?.Resolve();
+            typeDefOrRef.Type.Resolve(dataProvider.Context, out var typeDef);
+
             if (typeDef != null)
             {
                 // Type is resolvable - check if it's in rename map
@@ -551,7 +561,7 @@ public class AttributeFactory(DataProvider dataProvider)
         var sysTypeRef = factory
             .CorLibScope.CreateTypeReference("System", "Type")
             .ImportWith(module.DefaultImporter)
-            .ToTypeSignature();
+            .ToTypeSignature(false);
 
         // Find the Newtonsoft.Json assembly reference
         var newtonsoftAssembly = module.AssemblyReferences.FirstOrDefault(a => a.Name == "Newtonsoft.Json");
@@ -563,7 +573,7 @@ public class AttributeFactory(DataProvider dataProvider)
             "Newtonsoft.Json",
             "JsonConverterAttribute"
         )
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, sysTypeRef))
+            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, [sysTypeRef]))
             .ImportWith(module.DefaultImporter);
 
         var customAttribute = new CustomAttribute(jsonConverterAttrRef)
@@ -587,7 +597,7 @@ public class AttributeFactory(DataProvider dataProvider)
         var sysTypeRef = factory
             .CorLibScope.CreateTypeReference("System", "Type")
             .ImportWith(module.DefaultImporter)
-            .ToTypeSignature();
+            .ToTypeSignature(false);
 
         var newtonsoftAssembly = module.AssemblyReferences.FirstOrDefault(a => a.Name == "Newtonsoft.Json");
 
@@ -597,7 +607,7 @@ public class AttributeFactory(DataProvider dataProvider)
             "Newtonsoft.Json",
             "JsonConverterAttribute"
         )
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, sysTypeRef))
+            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, [sysTypeRef]))
             .ImportWith(module.DefaultImporter);
 
         var scope =
@@ -666,7 +676,7 @@ public class AttributeFactory(DataProvider dataProvider)
         var sysTypeRef = factory
             .CorLibScope.CreateTypeReference("System", "Type")
             .ImportWith(module.DefaultImporter)
-            .ToTypeSignature();
+            .ToTypeSignature(false);
 
         // TypeConverterAttribute is in System.ComponentModel which is part of System
         // Find the System assembly reference (or System.ComponentModel if it's separate)
@@ -688,7 +698,7 @@ public class AttributeFactory(DataProvider dataProvider)
             "System.ComponentModel",
             "TypeConverterAttribute"
         )
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, sysTypeRef))
+            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, [sysTypeRef]))
             .ImportWith(module.DefaultImporter);
 
         var customAttribute = new CustomAttribute(typeConverterAttrRef)

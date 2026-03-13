@@ -5,7 +5,7 @@ using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
-using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
+using AsmResolver.PE.DotNet.Metadata.Tables;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
@@ -134,7 +134,8 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         foreach (var method in type.Methods.Where(m => m.HasMethodBody))
         {
             // Create a new empty CIL body
-            var newBody = new CilMethodBody(method);
+            var newBody = new CilMethodBody();
+            method.CilMethodBody = newBody;
 
             // If the method returns something, return default value
             if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)

@@ -135,7 +135,6 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         {
             // Create a new empty CIL body
             var newBody = new CilMethodBody();
-            method.CilMethodBody = newBody;
 
             // If the method returns something, return default value
             if (method.Signature?.ReturnType != null && method.Signature.ReturnType.ElementType != ElementType.Void)

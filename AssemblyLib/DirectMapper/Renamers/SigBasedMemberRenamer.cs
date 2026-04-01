@@ -74,7 +74,6 @@ public class SigBasedMemberRenamer(
             Log.Information("Renaming members on: {type}", targetType.FullName);
 
             RenameMethodsOnType(targetType, dummyType);
-            //RenameFieldsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
         }
     }
@@ -127,54 +126,6 @@ public class SigBasedMemberRenamer(
         }
     }
 
-    private void RenameFieldsOnType(TypeDefinition targetType, TypeDefinition dummyType)
-    {
-        var targetFields = targetType.Fields.Where(FilterFields);
-        var dummyFields = dummyType.Fields.Where(FilterFields).ToList();
-
-        // Removes fields that already exist
-        dummyFields.RemoveAll(f => targetFields.Any(t => t.Name == f.Name));
-
-        var dummyFieldNames = dummyFields.Select(f => f.Name).ToHashSet();
-
-        foreach (var targetField in targetFields)
-        {
-            if (dummyFieldNames.Contains(targetField.Name))
-            {
-                continue;
-            }
-
-            foreach (var dummyField in dummyFields.ToArray())
-            {
-                if (!fieldSignatureComparer.IsSame(targetField, dummyField))
-                {
-                    continue;
-                }
-
-                if (
-                    targetType.BaseType is TypeDefinition baseType
-                    && baseType.Fields.Any(f => f.Name == dummyField.Name)
-                )
-                {
-                    Log.Information(
-                        "Ignoring rename of field as Super class has a field with the same name. Dummy: {dummy} -> Target: {target}",
-                        dummyField.FullName,
-                        targetField.FullName
-                    );
-                    continue;
-                }
-
-                Log.Information("Renaming field: {old} -> {new}", targetField.FullName, dummyField.FullName);
-
-                targetField.Name = dummyField.Name;
-                UpdateFieldMemberReferences(targetField, targetField.Name!);
-
-                dummyFields.Remove(dummyField);
-                break;
-            }
-        }
-    }
-
     private void RenamePropertiesOnType(TypeDefinition targetType, TypeDefinition dummyType)
     {
         var targetProperties = targetType.Properties;
@@ -219,21 +170,6 @@ public class SigBasedMemberRenamer(
             && !m.IsRemoveMethod
             && !m.IsFireMethod
             && !m.IsVirtual; // TODO: figure out empty VTable slots
-    }
-
-    private static bool FilterFields(FieldDefinition f)
-    {
-        return !f.IsCompilerGenerated();
-    }
-
-    private void UpdateFieldMemberReferences(FieldDefinition target, Utf8String newName)
-    {
-        var cachedReferences = memberReferenceCache.GetFieldReferences(target);
-
-        foreach (var reference in cachedReferences)
-        {
-            reference.Name = newName;
-        }
     }
 
     private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)

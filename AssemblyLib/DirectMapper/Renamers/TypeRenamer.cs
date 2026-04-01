@@ -12,6 +12,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 public class TypeRenamer(DataProvider dataProvider) : IRenamer
 {
     public int Priority { get; } = -1;
+    public bool Enabled { get; } = true;
 
     public ERenamerType Type
     {
@@ -42,8 +43,6 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
             genericParametersCount > 0
                 ? new Utf8String($"{model.NewName!}`{genericParametersCount}")
                 : new Utf8String(model.NewName!);
-
-        var module = dataProvider.LoadedModule;
 
         toolData.Type?.Name = utf8Name;
     }
@@ -106,7 +105,7 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
 
         var compilerStructs = dataProvider
             .LoadedModule!.GetAllTypes()
-            .Where(t => t.IsCompilerGenerated() && t.InheritsFrom("System.ValueType") && !t.IsEnum);
+            .Where(t => t.IsCompilerGenerated() && t.IsValueType && !t.IsEnum);
 
         if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
         {

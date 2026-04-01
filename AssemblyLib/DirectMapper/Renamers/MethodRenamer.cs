@@ -13,6 +13,7 @@ namespace AssemblyLib.DirectMapper.Renamers;
 public class MethodRenamer(DataProvider dataProvider) : IRenamer
 {
     public int Priority { get; } = 0;
+    public bool Enabled { get; } = false;
 
     public ERenamerType Type
     {

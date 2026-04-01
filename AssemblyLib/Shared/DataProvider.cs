@@ -20,7 +20,8 @@ public class DataProvider
     }
 
     public Settings Settings { get; }
-    public RuntimeContext Context { get; private set;  }
+    public RuntimeContext Context { get; private set; }
+    public AssemblyDefinition LoadedAssembly { get; private set; }
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? DummyDllModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }
@@ -55,7 +56,8 @@ public class DataProvider
     {
         var directory = Path.GetDirectoryName(path)!;
 
-        var module = ModuleDefinition.FromFile(path);
+        var asm = AssemblyDefinition.FromFile(path);
+        var module = asm.Modules.FirstOrDefault();
 
         if (loadMscorlib)
         {
@@ -63,7 +65,21 @@ public class DataProvider
         }
 
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");
-        Context = module.RuntimeContext ?? throw new NullReferenceException("Could not get runtime context!");
+        Context = asm.RuntimeContext ?? throw new NullReferenceException("Could not get runtime context!");
+
+        Log.Information("Loaded target module: {moduleName}", module.Name?.ToString() ?? "NULL");
+
+        foreach (var dll in Directory.GetFiles(directory, "*.dll"))
+        {
+            if (dll.Contains("Assembly-CSharp"))
+            {
+                continue;
+            }
+
+            Context.LoadAssembly(dll);
+            Log.Information("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
+        }
+
         return module;
     }
 
@@ -101,7 +117,7 @@ public class DataProvider
             {
                 if (!DirectMapModels.TryAdd(name, model))
                 {
-                    Log.Error("Duplicate Found, {name}:{value}", name,  model.NewName);
+                    Log.Error("Duplicate Found, {name}:{value}", name, model.NewName);
                     continue;
                 }
 
@@ -134,7 +150,13 @@ public class DataProvider
             if (dupe.Any())
             {
                 // Only Log and deal with, this is a bad mapping issue
-                Log.Error("Duplicate Found, {name}:{value}, Dupe: {name2}:{value2}", name,  mapping.NewName, dupe.First().Key, dupe.First().Value.NewName);
+                Log.Error(
+                    "Duplicate Found, {name}:{value}, Dupe: {name2}:{value2}",
+                    name,
+                    mapping.NewName,
+                    dupe.First().Key,
+                    dupe.First().Value.NewName
+                );
             }
         }
 

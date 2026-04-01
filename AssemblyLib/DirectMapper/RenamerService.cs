@@ -65,7 +65,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
 
     private void RenameMapping(DirectMapModel model)
     {
-        foreach (var renamer in renamers.OrderByDescending(r => r.Priority))
+        foreach (var renamer in renamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))
         {
             renamer.Rename(model);
         }

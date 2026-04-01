@@ -14,6 +14,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
     : IRenamer
 {
     public int Priority { get; } = 0;
+    public bool Enabled { get; } = false;
 
     public ERenamerType Type
     {

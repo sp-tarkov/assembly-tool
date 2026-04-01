@@ -73,8 +73,8 @@ public class SigBasedMemberRenamer(
         {
             Log.Information("Renaming members on: {type}", targetType.FullName);
 
-            RenameMethodsOnType(targetType, dummyType);
-            RenameFieldsOnType(targetType, dummyType);
+            //RenameMethodsOnType(targetType, dummyType);
+            //RenameFieldsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
         }
     }
@@ -148,12 +148,16 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                if (targetType.BaseType is TypeDefinition baseType &&
-                    baseType.Fields.Any(f => f.Name == dummyField.Name))
+                if (
+                    targetType.BaseType is TypeDefinition baseType
+                    && baseType.Fields.Any(f => f.Name == dummyField.Name)
+                )
                 {
                     Log.Information(
                         "Ignoring rename of field as Super class has a field with the same name. Dummy: {dummy} -> Target: {target}",
-                        dummyField.FullName, targetField.FullName);
+                        dummyField.FullName,
+                        targetField.FullName
+                    );
                     continue;
                 }
 

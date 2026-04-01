@@ -27,7 +27,7 @@ public class MemberReferenceCache(DataProvider dataProvider)
         Log.Information("Hydrating MemberReferenceCache");
 
         CacheMethodReferences();
-        await CacheMethodOverrides();
+        //await CacheMethodOverrides();
 
         Log.Information("Field definition cache hydrated with {count} field definitions", _fieldReferences.Count);
         Log.Information("Method definition cache hydrated with {count} method definitions", _methodReferences.Count);
@@ -113,7 +113,7 @@ public class MemberReferenceCache(DataProvider dataProvider)
         {
             var canResolve = reference.TryResolve(dataProvider.Context, out var resolved);
 
-            if(canResolve)
+            if (canResolve)
             {
                 AddMetadataMemberToCache(resolved, reference);
             }

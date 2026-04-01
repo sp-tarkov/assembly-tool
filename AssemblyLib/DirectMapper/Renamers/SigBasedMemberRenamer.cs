@@ -73,7 +73,7 @@ public class SigBasedMemberRenamer(
         {
             Log.Information("Renaming members on: {type}", targetType.FullName);
 
-            //RenameMethodsOnType(targetType, dummyType);
+            RenameMethodsOnType(targetType, dummyType);
             //RenameFieldsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
         }
@@ -108,6 +108,8 @@ public class SigBasedMemberRenamer(
                 targetMethod.Name = dummyMethod.Name;
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
+                // TODO: Figure out why all overrides are not being found
+                /*
                 var overrides = memberReferenceCache.GetMethodOverrides(targetMethod);
                 if (overrides.Count != 0)
                 {
@@ -117,6 +119,7 @@ public class SigBasedMemberRenamer(
                         UpdateMethodMemberReferences(method, method.Name!);
                     }
                 }
+                */
 
                 dummyMethods.Remove(dummyMethod);
                 break;
@@ -214,7 +217,8 @@ public class SigBasedMemberRenamer(
             && !m.IsConstructor
             && !m.IsAddMethod
             && !m.IsRemoveMethod
-            && !m.IsFireMethod;
+            && !m.IsFireMethod
+            && !m.IsVirtual; // TODO: figure out empty VTable slots
     }
 
     private static bool FilterFields(FieldDefinition f)

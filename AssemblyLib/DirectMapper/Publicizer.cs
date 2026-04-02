@@ -86,12 +86,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats, Fiel
             return;
         }
 
-        // Workaround to not publicize a specific method so the game doesn't crash
-        if (method.Name == "TryGetScreen")
-        {
-            return;
-        }
-
         method.Attributes &= ~MethodAttributes.MemberAccessMask;
         method.Attributes |= MethodAttributes.Public;
 

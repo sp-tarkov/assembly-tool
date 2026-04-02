@@ -19,13 +19,13 @@ public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
 
         if (type is null)
         {
-            throw new NullReferenceException("Could not find EffectTypeCode when patching");
+            throw new NullReferenceException("Could not find `EffectTypeCode` when patching");
         }
 
         var staticCtor = type.GetStaticConstructor();
         if (staticCtor is null)
         {
-            throw new NullReferenceException("Could not find static constructor for EffectTypeCode");
+            throw new NullReferenceException("Could not find static constructor for `EffectTypeCode`");
         }
 
         foreach (var instr in staticCtor.CilMethodBody!.Instructions)

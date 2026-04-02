@@ -3,6 +3,7 @@ using AsmResolver.DotNet.Signatures;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
@@ -94,7 +95,9 @@ public class AttributeFactory(DataProvider dataProvider)
             }
 
             // Find the argument target in the nested types
-            var typeDefTarget = nestedTypes.FirstOrDefault(t => t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name);
+            var typeDefTarget = nestedTypes.FirstOrDefault(t =>
+                t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name
+            );
 
             if (typeDefTarget is null)
             {
@@ -163,15 +166,22 @@ public class AttributeFactory(DataProvider dataProvider)
 
             if (newAttr != null)
             {
-                Log.Information("Successfully created updated attribute for: {TypeName}", referencedTypeName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Successfully created updated attribute for: {TypeName}", referencedTypeName);
+                }
+
                 replacements.Add((attr, newAttr));
             }
             else
             {
-                Log.Warning(
-                    "No update needed or failed to create updated attribute for: {TypeName}",
-                    referencedTypeName
-                );
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug(
+                        "No update needed or failed to create updated attribute for: {TypeName}",
+                        referencedTypeName
+                    );
+                }
             }
         }
 
@@ -252,21 +262,19 @@ public class AttributeFactory(DataProvider dataProvider)
 
         if (argument?.Element is not GenericInstanceTypeSignature genericSig)
         {
-            Log.Debug(
-                "Argument is not a GenericInstanceTypeSignature, it's: {Type}",
-                argument?.Element?.GetType().Name
-            );
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug(
+                    "Argument is not a GenericInstanceTypeSignature, it's: {Type}",
+                    argument?.Element?.GetType().Name
+                );
+            }
+
             return null;
         }
 
         var genericTypeDef = genericSig.GenericType;
         var baseTypeName = genericTypeDef.FullName;
-
-        Log.Information(
-            "Processing generic: {BaseType}<{Args}>",
-            baseTypeName,
-            string.Join(", ", genericSig.TypeArguments.Select(GetFullTypeName))
-        );
 
         // Check if the base generic type needs renaming
         var baseTypeRenamed = renameMap.TryGetValue(baseTypeName, out var newGenericTypeDef);

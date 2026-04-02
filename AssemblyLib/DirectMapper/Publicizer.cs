@@ -4,6 +4,7 @@ using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
@@ -73,11 +74,15 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats, Fiel
             && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
-            Log.Information(
-                "Not publicizing {FullName}::{MethodName} due to it being ignored",
-                method.DeclaringType!.FullName,
-                method.Name.ToString()
-            );
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug(
+                    "Not publicizing {FullName}::{MethodName} due to it being ignored",
+                    method.DeclaringType!.FullName,
+                    method.Name.ToString()
+                );
+            }
+
             return;
         }
 

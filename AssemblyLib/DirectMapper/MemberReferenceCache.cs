@@ -119,7 +119,7 @@ public class MemberReferenceCache(DataProvider dataProvider)
             }
             else
             {
-                Log.Warning("Could not resolve {ReferenceFullName}", reference.FullName);
+                //Log.Warning("Could not resolve {ReferenceFullName}", reference.FullName);
             }
         }
     }

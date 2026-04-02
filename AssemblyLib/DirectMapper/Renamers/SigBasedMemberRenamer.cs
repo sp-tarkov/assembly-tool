@@ -1,10 +1,10 @@
 using AsmResolver;
 using AsmResolver.DotNet;
-using AsmResolver.DotNet.Serialized;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
@@ -13,7 +13,6 @@ namespace AssemblyLib.DirectMapper.Renamers;
 public class SigBasedMemberRenamer(
     DataProvider dataProvider,
     MethodSigComparer methodSignatureComparer,
-    FieldSigComparer fieldSignatureComparer,
     PropertySigComparer propertySigComparer,
     MemberReferenceCache memberReferenceCache
 )
@@ -64,14 +63,20 @@ public class SigBasedMemberRenamer(
             _targetToDummyMap.Add(target, dummyType);
         }
 
-        Log.Information("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
+        if (Log.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Debug("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
+        }
     }
 
     private void RenameAllTypes()
     {
         foreach (var (targetType, dummyType) in _targetToDummyMap)
         {
-            Log.Information("Renaming members on: {type}", targetType.FullName);
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Renaming members on: {type}", targetType.FullName);
+            }
 
             RenameMethodsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
@@ -103,7 +108,11 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                Log.Information("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                }
+
                 targetMethod.Name = dummyMethod.Name;
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
@@ -150,7 +159,10 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                Log.Information("Renaming property: {old} -> {new}", targetProperty.FullName, dummyProperty.FullName);
+                if (Log.IsEnabled(LogEventLevel.Debug))
+                {
+                    Log.Debug("Renaming property: {old} -> {new}", targetProperty.FullName, dummyProperty.FullName);
+                }
 
                 targetProperty.Name = dummyProperty.Name;
                 dummyProperties.Remove(dummyProperty);

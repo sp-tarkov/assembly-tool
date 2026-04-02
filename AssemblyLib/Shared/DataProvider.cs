@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using Serilog;
+using Serilog.Events;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -77,7 +78,11 @@ public class DataProvider
             }
 
             Context.LoadAssembly(dll);
-            Log.Information("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
+
+            if (Log.IsEnabled(LogEventLevel.Debug))
+            {
+                Log.Debug("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
+            }
         }
 
         return module;

@@ -20,7 +20,6 @@ public class SigBasedMemberRenamer(
 {
     // Key - Target :: Val - Dummy
     private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
-    private readonly List<MethodDefinition> _renamedMethods = [];
 
     public void RenameMembersBySignature()
     {
@@ -142,22 +141,26 @@ public class SigBasedMemberRenamer(
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
                 dummyMethods.Remove(dummyMethod);
-                _renamedMethods.Add(targetMethod);
                 break;
             }
         }
     }
 
+    /// <summary>
+    ///     Renames all methods in a virtual method chain
+    /// </summary>
+    /// <param name="targetMethod">base `newslot` method</param>
+    /// <param name="dummyMethod">matching dummy method</param>
     private void RenameVirtualMethodChain(MethodDefinition targetMethod, MethodDefinition dummyMethod)
     {
-        if (Log.IsEnabled(LogEventLevel.Information))
+        if (Log.IsEnabled(LogEventLevel.Debug))
         {
-            Log.Information(
+            Log.Debug(
                 "Renaming base virtual method: {type1}::{old} -> {type2}::{new}",
-                targetMethod.DeclaringType.Name.ToString(),
-                targetMethod.Name.ToString(),
-                dummyMethod.DeclaringType.Name.ToString(),
-                dummyMethod.Name.ToString()
+                targetMethod.DeclaringType?.Name?.ToString(),
+                targetMethod.Name?.ToString(),
+                dummyMethod.DeclaringType?.Name?.ToString(),
+                dummyMethod.Name?.ToString()
             );
         }
 
@@ -182,33 +185,31 @@ public class SigBasedMemberRenamer(
                 continue;
             }
 
-            if (Log.IsEnabled(LogEventLevel.Information))
+            if (Log.IsEnabled(LogEventLevel.Debug))
             {
-                Log.Information(
+                Log.Debug(
                     "Renaming override method: {type3}::{old} -> {type4}::{new}",
-                    type.Name.ToString(),
-                    impl.Name.ToString(),
-                    type.Name.ToString(),
-                    dummyMethod.Name.ToString()
+                    type.Name?.ToString(),
+                    impl.Name?.ToString(),
+                    type.Name?.ToString(),
+                    dummyMethod.Name?.ToString()
                 );
             }
 
             impl.Name = dummyMethod.Name;
             UpdateMethodMemberReferences(impl, impl.Name!);
-            _renamedMethods.Add(targetMethod);
         }
 
         targetMethod.Name = dummyMethod.Name;
         UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
-        _renamedMethods.Add(targetMethod);
     }
 
     /// <summary>
-    ///
+    ///     Finds method implementations for a virtual base method in the provided type
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="baseMethod"></param>
-    /// <returns></returns>
+    /// <param name="type">type to search</param>
+    /// <param name="baseMethod">base method to search for an impl of</param>
+    /// <returns>def of impl or null</returns>
     private static MethodDefinition? FindMethodImplementationInType(TypeDefinition type, MethodDefinition baseMethod)
     {
         foreach (var method in type.Methods.Where(m => m.IsVirtual && m.IsReuseSlot))

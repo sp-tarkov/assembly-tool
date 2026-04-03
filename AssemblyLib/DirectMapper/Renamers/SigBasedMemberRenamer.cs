@@ -1,5 +1,6 @@
 using AsmResolver;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
@@ -19,6 +20,7 @@ public class SigBasedMemberRenamer(
 {
     // Key - Target :: Val - Dummy
     private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
+    private readonly List<MethodDefinition> _renamedMethods = [];
 
     public void RenameMembersBySignature()
     {
@@ -85,7 +87,7 @@ public class SigBasedMemberRenamer(
 
     private void RenameMethodsOnType(TypeDefinition targetType, TypeDefinition dummyType)
     {
-        var targetMethods = targetType.Methods.Where(FilterMethods);
+        var targetMethods = targetType.Methods.Where(FilterMethods).Where(m => m.Name!.IsObfuscatedName());
         var dummyMethods = dummyType.Methods.Where(FilterMethods).ToList();
 
         var dummyMethodNames = dummyMethods.Select(m => m.Name).ToHashSet();
@@ -101,11 +103,34 @@ public class SigBasedMemberRenamer(
                 continue;
             }
 
+            // Skip anything here that is virtual and isn't the new slot
+            // virtual methods are handled separate
+            if (targetMethod.IsVirtual && !targetMethod.IsNewSlot)
+            {
+                continue;
+            }
+
             foreach (var dummyMethod in dummyMethods.ToArray())
             {
-                if (!methodSignatureComparer.IsSame(targetMethod, dummyMethod))
+                if (
+                    !methodSignatureComparer.IsSame(targetMethod, dummyMethod)
+                    || targetMethod.Name!.Equals(dummyMethod.Name)
+                )
                 {
                     continue;
+                }
+
+                if (targetMethod.IsNewSlot)
+                {
+                    // TODO: Skip renaming virtual method chains on generic types for now, because its fucking hard.
+                    if (targetMethod.DeclaringType!.HasGenericParameters)
+                    {
+                        break;
+                    }
+
+                    RenameVirtualMethodChain(targetMethod, dummyMethod);
+                    dummyMethods.Remove(dummyMethod);
+                    break;
                 }
 
                 if (Log.IsEnabled(LogEventLevel.Debug))
@@ -116,23 +141,88 @@ public class SigBasedMemberRenamer(
                 targetMethod.Name = dummyMethod.Name;
                 UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
 
-                // TODO: Figure out why all overrides are not being found
-                /*
-                var overrides = memberReferenceCache.GetMethodOverrides(targetMethod);
-                if (overrides.Count != 0)
-                {
-                    foreach (var method in overrides)
-                    {
-                        method.Name = dummyMethod.Name;
-                        UpdateMethodMemberReferences(method, method.Name!);
-                    }
-                }
-                */
-
                 dummyMethods.Remove(dummyMethod);
+                _renamedMethods.Add(targetMethod);
                 break;
             }
         }
+    }
+
+    private void RenameVirtualMethodChain(MethodDefinition targetMethod, MethodDefinition dummyMethod)
+    {
+        if (Log.IsEnabled(LogEventLevel.Information))
+        {
+            Log.Information(
+                "Renaming base virtual method: {type1}::{old} -> {type2}::{new}",
+                targetMethod.DeclaringType.Name.ToString(),
+                targetMethod.Name.ToString(),
+                dummyMethod.DeclaringType.Name.ToString(),
+                dummyMethod.Name.ToString()
+            );
+        }
+
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        {
+            if (type.FullName == dummyMethod.DeclaringType?.FullName)
+            {
+                continue;
+            }
+
+            // TODO: This doesn't fucking handle generics, because why would it.
+            // So now we have to go write some bullshit code to resolve all the places BSG loves
+            // to use parametric polymorphism so we can rename those
+            if (!type.InheritsFrom(targetMethod.DeclaringType?.FullName ?? string.Empty))
+            {
+                continue;
+            }
+
+            var impl = FindMethodImplementationInType(type, targetMethod);
+            if (impl == null)
+            {
+                continue;
+            }
+
+            if (Log.IsEnabled(LogEventLevel.Information))
+            {
+                Log.Information(
+                    "Renaming override method: {type3}::{old} -> {type4}::{new}",
+                    type.Name.ToString(),
+                    impl.Name.ToString(),
+                    type.Name.ToString(),
+                    dummyMethod.Name.ToString()
+                );
+            }
+
+            impl.Name = dummyMethod.Name;
+            UpdateMethodMemberReferences(impl, impl.Name!);
+            _renamedMethods.Add(targetMethod);
+        }
+
+        targetMethod.Name = dummyMethod.Name;
+        UpdateMethodMemberReferences(targetMethod, targetMethod.Name!);
+        _renamedMethods.Add(targetMethod);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="baseMethod"></param>
+    /// <returns></returns>
+    private static MethodDefinition? FindMethodImplementationInType(TypeDefinition type, MethodDefinition baseMethod)
+    {
+        foreach (var method in type.Methods.Where(m => m.IsVirtual && m.IsReuseSlot))
+        {
+            if (
+                SignatureComparer.Default.Equals(method.Signature, baseMethod.Signature)
+                && method.Name == baseMethod.Name
+            )
+            {
+                return method;
+            }
+        }
+
+        return null;
     }
 
     private void RenamePropertiesOnType(TypeDefinition targetType, TypeDefinition dummyType)
@@ -180,8 +270,7 @@ public class SigBasedMemberRenamer(
             && !m.IsConstructor
             && !m.IsAddMethod
             && !m.IsRemoveMethod
-            && !m.IsFireMethod
-            && !m.IsVirtual; // TODO: figure out empty VTable slots
+            && !m.IsFireMethod;
     }
 
     private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)

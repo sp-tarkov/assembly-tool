@@ -51,6 +51,9 @@ public class DataProvider
         "GStruct",
         "Interface",
         "GInterface",
+        "method",
+        "smethod",
+        "vmethod",
     ];
 
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)

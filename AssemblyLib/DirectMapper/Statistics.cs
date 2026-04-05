@@ -23,60 +23,6 @@ public sealed class Statistics(DataProvider dataProvider)
 
     public readonly Stopwatch Stopwatch = new();
 
-    public void DisplayStatistics(bool validate = false, string hollowedPath = "", string outPath = "")
-    {
-        _hollowedPath = hollowedPath;
-
-        if (validate)
-        {
-            return;
-        }
-
-        if (
-            dataProvider.Settings.CopyToGame
-            && !string.IsNullOrEmpty(dataProvider.Settings.GamePath)
-            && File.Exists(outPath)
-        )
-        {
-            var gameDest = Path.Combine(
-                dataProvider.Settings.GamePath,
-                "EscapeFromTarkov_Data",
-                "Managed",
-                "Assembly-CSharp.dll"
-            );
-
-            if (File.Exists(gameDest))
-            {
-                File.Copy(outPath, gameDest, true);
-                Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
-            }
-        }
-
-        if (
-            dataProvider.Settings.CopyToModules
-            && !string.IsNullOrEmpty(dataProvider.Settings.ModulesProjectPath)
-            && Directory.Exists(dataProvider.Settings.ModulesProjectPath)
-            && File.Exists(hollowedPath)
-        )
-        {
-            var hollowedDest = Path.Combine(
-                dataProvider.Settings.ModulesProjectPath,
-                "project",
-                "Shared",
-                "Hollowed",
-                "hollowed.dll"
-            );
-
-            File.Copy(hollowedPath, hollowedDest, true);
-
-            Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
-        }
-
-        Log.Information("Remap took {ElapsedTotalSeconds:F1} seconds", Stopwatch.Elapsed.TotalSeconds);
-        // In-case a thread is hanging
-        Environment.Exit(0);
-    }
-
     public void DisplayAssemblyStatistics(string assemblyPath)
     {
         var module = dataProvider.LoadModule(assemblyPath, false);

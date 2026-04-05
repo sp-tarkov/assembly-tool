@@ -99,7 +99,51 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
         Log.Information("Hollowed written to: {outPath}", hollowedPath);
 
+        CopyToDevelopmentEnvironment(outPath, hollowedPath);
         StartHDiffz(outPath);
+    }
+
+    private void CopyToDevelopmentEnvironment(string asmPath, string hollowedPath)
+    {
+        if (
+            dataProvider.Settings.CopyToGame
+            && !string.IsNullOrEmpty(dataProvider.Settings.GamePath)
+            && File.Exists(asmPath)
+        )
+        {
+            var gameDest = Path.Combine(
+                dataProvider.Settings.GamePath,
+                "EscapeFromTarkov_Data",
+                "Managed",
+                "Assembly-CSharp.dll"
+            );
+
+            if (File.Exists(gameDest))
+            {
+                File.Copy(asmPath, gameDest, true);
+                Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
+            }
+        }
+
+        if (
+            dataProvider.Settings.CopyToModules
+            && !string.IsNullOrEmpty(dataProvider.Settings.ModulesProjectPath)
+            && Directory.Exists(dataProvider.Settings.ModulesProjectPath)
+            && File.Exists(hollowedPath)
+        )
+        {
+            var hollowedDest = Path.Combine(
+                dataProvider.Settings.ModulesProjectPath,
+                "project",
+                "Shared",
+                "Hollowed",
+                "hollowed.dll"
+            );
+
+            File.Copy(hollowedPath, hollowedDest, true);
+
+            Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
+        }
     }
 
     /// <summary>

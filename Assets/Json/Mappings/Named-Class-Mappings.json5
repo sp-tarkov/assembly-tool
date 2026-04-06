@@ -27,21 +27,6 @@
       }
     }
   },
-  "LabelContentRow": {
-	"NewName": "LabelContentRow",
-    "NewNamespace": "EFT.UI"
-  },
-  "WaterRenderer": {
-    "NewNamespace": "EFT.Water"
-  },
-  "Audio.ConfiguredAudioPlayer.AudioClipDataConfigurator": {
-	"NewName": "AudioClipConfigDictionary",
-    "NewNamespace": "Audio.ConfiguredAudioPlayer"
-  },
-  "UI.Trading_UI.Ragfair.NodeView.WishlistCategoryView": {
-	"NewName": "WishlistCategoryView",
-    "NewNamespace": "EFT.UI"
-  },
   "EFT.ClientPlayer": {
     "NestedTypes": {
       "GInterface230": {

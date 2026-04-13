@@ -79,8 +79,8 @@ public class SigBasedMemberRenamer(
                 Log.Debug("Renaming members on: {type}", targetType.FullName);
             }
 
-            //RenameMethodsOnType(targetType, dummyType);
-            //RenamePropertiesOnType(targetType, dummyType);
+            RenameMethodsOnType(targetType, dummyType);
+            RenamePropertiesOnType(targetType, dummyType);
         }
     }
 

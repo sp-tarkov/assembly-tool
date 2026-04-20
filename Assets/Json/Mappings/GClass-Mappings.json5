@@ -1181,7 +1181,7 @@
         "NewNamespace": "Mirror"
     },
     "GClass1296`1": {
-        "NewName": "ConcurrentPool`1",
+        "NewName": "ConcurrentPool",
         "NewNamespace": "Mirror"
     },
     "GClass1297": {
@@ -8126,5 +8126,813 @@
     },
     "GClass22": {
         "NewName": "CounterCreatorAbstractClass"
+    },
+    "GClass105": {
+        "NewName": "FollowerKojaniyLayer"
+    },
+    "GClass106": {
+        "NewName": "KojaniyTargetLogicLayer"
+    },
+    "GClass1229": {
+        "NewName": "RendererExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling"
+    },
+    "GClass1243": {
+        "NewName": "ListExtensions",
+        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+    },
+    "GClass1288": {
+        "NewName": "NetworkWriterPooled",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1291": {
+        "NewName": "NetworkWriterPool",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1298": {
+        "NewName": "Extensions",
+        "NewNamespace": "Mirror"
+    },
+    "GClass1314": {
+        "NewName": "FastAnimatorController",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1317": {
+        "NewName": "StateMachine",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1341": {
+        "NewName": "FastAnimatorProcessor",
+        "NewNamespace": "FastAnimatorSystem"
+    },
+    "GClass1354": {
+        "NewName": "AvgMeasurer",
+        "NewNamespace": "UnityDiagnostics"
+    },
+    "GClass1360": {
+        "NewName": "MaxMeasurer",
+        "NewNamespace": "UnityDiagnostics"
+    },
+    "GClass1402": {
+        "NewName": "JsonCorpse",
+        "NewNamespace": "JsonType"
+    },
+    "GClass1403": {
+        "NewName": "LootItemSerializer",
+        "NewNamespace": "JsonType"
+    },
+    "GClass141": {
+        "NewName": "PmcBearLayer"
+    },
+    "GClass1415`1": {
+        "NewName": "MatchmakerGroupStatus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1454": {
+        "NewName": "StateMachine",
+        "NewNamespace": "Assets.Scripts.Utils"
+    },
+    "GClass1455": {
+        "NewName": "StateSwitcher",
+        "NewNamespace": "Assets.Scripts.Utils"
+    },
+    "GClass1474": {
+        "NewName": "NetConstants",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1475": {
+        "NewName": "NetDebug",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1478": {
+        "NewName": "NetStatistics",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1479": {
+        "NewName": "NetUtils",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+    },
+    "GClass1480": {
+        "NewName": "CRC32C",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1481": {
+        "NewName": "FastBitConverter",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1484": {
+        "NewName": "NetDataWriter",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1485": {
+        "NewName": "NetPacketProcessor",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1486": {
+        "NewName": "NetSerializer",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1487": {
+        "NewName": "NtpPacket",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    "GClass1488": {
+        "NewName": "PacketLayerBase",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Layers"
+    },
+    "GClass1489": {
+        "NewName": "Crc32cLayer",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Layers"
+    },
+    "GClass1490": {
+        "NewName": "XorEncryptLayer",
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Layers"
+    },
+    "GClass1491": {
+        "NewName": "Locker",
+        "NewNamespace": "CommonAssets.Scripts.Utilities"
+    },
+    "GClass1492": {
+        "NewName": "PlayerDebugSnapshotCreator",
+        "NewNamespace": "CommonAssets.Scripts.Utilities"
+    },
+    "GClass1493": {
+        "NewName": "ThresholdCounter",
+        "NewNamespace": "CommonAssets.Scripts.Utilities"
+    },
+    "GClass1494": {
+        "NewName": "BaseLampSoundController",
+        "NewNamespace": "CommonAssets.Scripts.Interactive.Sound"
+    },
+    "GClass1495": {
+        "NewName": "LoopLampSoundController",
+        "NewNamespace": "CommonAssets.Scripts.Interactive.Sound"
+    },
+    "GClass1497": {
+        "NewName": "LabyrinthSyncableTraps",
+        "NewNamespace": "CommonAssets.Scripts.Game.LabyrinthEvent"
+    },
+    "GClass1503`1": {
+        "NewName": "ExclusiveObjectsRandomizer",
+        "NewNamespace": "CommonAssets.Scripts.Audio.RadioSystem"
+    },
+    "GClass1504": {
+        "NewName": "ServerRadioStation",
+        "NewNamespace": "CommonAssets.Scripts.Audio.RadioSystem"
+    },
+    "GClass1505": {
+        "NewName": "ArtilleryProjectileExplosiveItem",
+        "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling"
+    },
+    "GClass1506": {
+        "NewName": "ArtilleryProjectileServer",
+        "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling"
+    },
+    "GClass1507": {
+        "NewName": "ArtilleryServerProjectilesPool",
+        "NewNamespace": "CommonAssets.Scripts.ArtilleryShelling"
+    },
+    "GClass1514": {
+        "NewName": "ListExtensions",
+        "NewNamespace": "CommonAssets.Plugins.Comfort"
+    },
+    "GClass1521": {
+        "NewName": "ProgressExtensions",
+        "NewNamespace": "Diz.Utils"
+    },
+    "GClass1523": {
+        "NewName": "SkipError",
+        "NewNamespace": "Diz.LanguageExtensions"
+    },
+    "GClass1540": {
+        "NewName": "LocalizedError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1552": {
+        "NewName": "TargetNotExaminedError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1553": {
+        "NewName": "ItemNotApplicable",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1554": {
+        "NewName": "NotRaidModdableError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1557": {
+        "NewName": "ItemNotApplicable",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1558": {
+        "NewName": "CannotSortItemError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1559": {
+        "NewName": "AutomaticSortFailedError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1582": {
+        "NewName": "DiscardLimitsDesyncError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1584": {
+        "NewName": "ItemAlreadyInStackSlotError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1585": {
+        "NewName": "ItemFiltersWontAllowError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1586": {
+        "NewName": "TooLargeStackError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1587": {
+        "NewName": "ItemNotInStackSlotError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1612": {
+        "NewName": "MissingItemsError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1614": {
+        "NewName": "ServerOnlyOperationError",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass1615": {
+        "NewName": "ClientOnlyOperationError",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass1616": {
+        "NewName": "None",
+        "NewNamespace": "Diz.LanguageExtensions"
+    },
+    "GClass1622": {
+        "NewName": "MovingAverage",
+        "NewNamespace": "Diz.Jobs"
+    },
+    "GClass1628`1": {
+        "NewName": "BindableList",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1632": {
+        "NewName": "OffersWithNodes",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3940": {
+        "NewName": "CancellableFilter",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass1633": {
+        "NewName": "BindableFilterList",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass1639": {
+        "NewName": "BindableListGroup",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1645`2": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1646`3": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1647`4": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1648`5": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1649`6": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1650`7": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1651`8": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1652`9": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1653`10": {
+        "NewName": "BindableFilter",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1656": {
+        "NewName": "FilteredList",
+        "NewNamespace": "Diz.Binding"
+    },
+    "GClass1674": {
+        "NewName": "TimeSpanExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1675": {
+        "NewName": "VectorExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1678": {
+        "NewName": "GamePersonArgs",
+        "NewNamespace": "EFT"
+    },
+    "GClass1680": {
+        "NewName": "SizeOf",
+        "NewNamespace": "EFT"
+    },
+    "GClass1681": {
+        "NewName": "CmdSpawnConfirmMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1682": {
+        "NewName": "CmdPlayerEffectsPauseMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1683": {
+        "NewName": "CmdOnPlayerKeeperStatisticsChangedMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1684": {
+        "NewName": "CmdGetRadiotransmitterDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1685": {
+        "NewName": "CmdGetTraderServicesDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1686": {
+        "NewName": "CmdRequestProfileMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1687": {
+        "NewName": "RpcGameMatchingMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1688": {
+        "NewName": "RpcGameStartingMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1689": {
+        "NewName": "RpcGameStartingWithTeleportMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1690": {
+        "NewName": "RpcGameStartedMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1691": {
+        "NewName": "RpcGameStoppedMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1692": {
+        "NewName": "RpcSyncGameTimeMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1693": {
+        "NewName": "RpcSendBinaryDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1694": {
+        "NewName": "RpcSoftStopNotificationMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1695": {
+        "NewName": "RpcStartDisconnectionProcedureMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1696": {
+        "NewName": "RpcVoipAbuseNotificationMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1697": {
+        "NewName": "RpcSuccessAirdropFlareEventMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1698": {
+        "NestedTypes": {
+            "GStruct160": {
+                "NewName": "LeftHandData"
+            }
+        },
+        "NewName": "RpcSendLeftHandDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1699": {
+        "NewName": "RpcSendClientRadioTransmitterDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1700": {
+        "NewName": "RpcSyncLighthouseTraderZoneDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1701": {
+        "NewName": "RpcSendCompletedAchievementsDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1702": {
+        "NewName": "RpcReceiveProfileMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1703": {
+        "NewName": "RpcSendArtilleryShellingDataMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1705": {
+        "NewName": "ErrorMessage",
+        "NewNamespace": "EFT"
+    },
+    "GClass1706": {
+        "NewName": "ClientSettingsConfig",
+        "NewNamespace": "EFT"
+    },
+    "GClass1710": {
+        "NewName": "PlayerBridge",
+        "NewNamespace": "EFT"
+    },
+    "GClass1711": {
+        "NewName": "ObserverBridge",
+        "NewNamespace": "EFT"
+    },
+    "GClass1712": {
+        "NewName": "GameWorldPacketExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass1713": {
+        "NewName": "GameWorldPacketPools",
+        "NewNamespace": "EFT"
+    },
+    "GClass834`1": {
+        "NewName": "ListPool"
+    },
+    "GClass175": {
+        "NewName": "AICoreNode"
+    },
+    "GClass176`1": {
+        "NewName": "AICoreNode"
+    },
+    "GClass1796": {
+        "NewName": "WeaponsSettingExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass1797": {
+        "NewName": "MenuBundles",
+        "NewNamespace": "EFT"
+    },
+    "GClass1798": {
+        "NewName": "InGameResources",
+        "NewNamespace": "EFT"
+    },
+    "GClass1799": {
+        "NewName": "InGameBundles",
+        "NewNamespace": "EFT"
+    },
+    "GClass1800": {
+        "NewName": "JitWarmUpper",
+        "NewNamespace": "EFT"
+    },
+    "GClass1802": {
+        "NewName": "ItemInfo",
+        "NewNamespace": "EFT"
+    },
+    "GClass1803": {
+        "NewName": "SerializationContext",
+        "NewNamespace": "EFT"
+    },
+    "GClass1805": {
+        "NewName": "AssetsEnvironment",
+        "NewNamespace": "EFT"
+    },
+    "GClass1806": {
+        "NewName": "AssetsManagerExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass1807": {
+        "NewName": "BackendMenuLocale",
+        "NewNamespace": "EFT"
+    },
+    "GClass1809": {
+        "NewName": "DnsUtils",
+        "NewNamespace": "EFT"
+    },
+    "GClass181": {
+        "NewName": "AimingToAnyEnemy"
+    },
+    "GClass1810": {
+        "NewName": "ErrorHandlingUtils",
+        "NewNamespace": "EFT"
+    },
+    "GClass1811": {
+        "NewName": "CustomizationLoadOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass1812": {
+        "NewName": "ItemFactoryCreateOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass1815": {
+        "NewName": "SpecialBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass2228": {
+        "NewName": "BonusDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1816": {
+        "NewName": "StashSizeBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1818": {
+        "NewName": "RegenerationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1819": {
+        "NewName": "EnergyRegenerationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1820": {
+        "NewName": "HydrationRegenerationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1821": {
+        "NewName": "HealthRegenerationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1822": {
+        "NewName": "DebuffEndDelayBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1823": {
+        "NewName": "QuestMoneyRewardBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1824": {
+        "NewName": "MinusInsuranceReturnBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1825": {
+        "NewName": "ScavCooldownTimerBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1826": {
+        "NewName": "RagFairCommissionBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1828": {
+        "NewName": "SkillLevelingBoostBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1829": {
+        "NewName": "ExperienceRateBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1830": {
+        "NewName": "FuelConsumptionBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1831": {
+        "NewName": "RepairWeaponBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1832": {
+        "NewName": "RepairArmorBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1834": {
+        "NewName": "MaximumEnergyReserveBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1835": {
+        "NewName": "AdditionalStashRowsBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1836": {
+        "NewName": "ReceiveItemBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1837": {
+        "NewName": "IncreaseCanisterSlotsBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1839": {
+        "NewName": "UnlockBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1840": {
+        "NewName": "UnlockScavPlayBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1841": {
+        "NewName": "UnlockModificationBonus?",
+        "NewNamespace": "EFT"
+    },
+    "GClass1842": {
+        "NewName": "UnlockAddOfferBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1843": {
+        "NewName": "UnlockUniqueIdBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1844": {
+        "NewName": "UnlockItemCraftBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1845": {
+        "NewName": "UnlockItemPassiveCreationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1846": {
+        "NewName": "UnlockRandomItemCreationBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1847": {
+        "NewName": "UnlockItemChargeBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1848": {
+        "NewName": "UnlockWeaponRepair",
+        "NewNamespace": "EFT"
+    },
+    "GClass1849": {
+        "NewName": "UnlockArmorRepair",
+        "NewNamespace": "EFT"
+    },
+    "GClass1850": {
+        "NewName": "TextBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1853": {
+        "NewName": "CustomizationSolver",
+        "NewNamespace": "EFT"
+    },
+    "GClass1854": {
+        "NewName": "BaseCustomizationFilter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1855": {
+        "NewName": "PlayerCustomizationFilter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1856": {
+        "NewName": "ThirdPersonCustomizationFilter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1857": {
+        "NewName": "EasyAssetsExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1859`1": {
+        "NewName": "EnumIntFlagsConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1860`1": {
+        "NewName": "EnumIntJsonConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1861`2": {
+        "NewName": "JsonConverterAdapter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1862": {
+        "NewName": "DictionaryConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1863": {
+        "NewName": "UnparsedDataConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1864`1": {
+        "NewName": "MaskToStringList",
+        "NewNamespace": "EFT"
+    },
+    "GClass1865`1": {
+        "NewName": "EnumWithFlagsConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1867`2": {
+        "NewName": "PolymorphicSerializer",
+        "NewNamespace": "EFT"
+    },
+    "GClass1869": {
+        "NewName": "SpawnColliderParamsSerializer",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass1870": {
+        "NewName": "CustomizationItemSerializer",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass1871": {
+        "NewName": "ConditionSerializer",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass1872`3": {
+        "NewName": "PolymorphicConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass1873": {
+        "NewName": "GameStatusExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass1876": {
+        "NewName": "NonWaveGroupScenario",
+        "NewNamespace": "EFT"
+    },
+    "GClass1877": {
+        "NewName": "SpawnPointInfo",
+        "NewNamespace": "EFT"
+    },
+    "GClass1878": {
+        "NewName": "SpawnPointSerializer",
+        "NewNamespace": "EFT"
+    },
+    "GClass1882`1": {
+        "NewName": "SpawnDelayModel",
+        "NewNamespace": "EFT"
+    },
+    "GClass1883": {
+        "NewName": "BossSpawnDelayModel",
+        "NewNamespace": "EFT"
+    },
+    "GClass1884": {
+        "NewName": "SimpleBotSpawnDelayModel",
+        "NewNamespace": "EFT"
+    },
+    "GClass1889": {
+        "NewName": "LocalBotSpawner"
+    },
+    "GClass189": {
+        "NewName": "AimingNearPlayer"
+    },
+    "GClass1890": {
+        "NewName": "OnlineBotSpawner"
+    },
+    "GClass1891": {
+        "NewName": "GameHelper",
+        "NewNamespace": "EFT"
+    },
+    "GClass1893": {
+        "NewName": "GameTimerExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass1901": {
+        "NewName": "TransitTransferItemsController",
+        "NewNamespace": "EFT"
+    },
+    "GClass1904": {
+        "NewName": "ClientTransitController",
+        "NewNamespace": "EFT"
+    },
+    "GClass1905": {
+        "NewName": "LocalTransitController",
+        "NewNamespace": "EFT"
+    },
+    "GClass1906": {
+        "NewName": "NetworkTransitController",
+        "NewNamespace": "EFT"
+    },
+    "GClass1909": {
+        "NewName": "BaseRecodableItemHandler",
+        "NewNamespace": "EFT"
+    },
+    "GClass1911": {
+        "NewName": "ItemDeserializer",
+        "NewNamespace": "EFT"
+    },
+    "GClass1913": {
+        "NewName": "ItemRelatedViewExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass1937": {
+        "NewName": "FireModeComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass194": {
+        "NewName": "GrenadeSuicideNode"
+    },
+    "GClass1945": {
+        "NewName": "JsonLootItemDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass1946": {
+        "NewName": "JsonCorpseDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass195": {
+        "NewName": "GrenadeSuppressNode"
+    },
+    "GClass1955": {
+        "NewName": "DestroyedItem",
+        "NewNamespace": "EFT"
+    },
+    "GClass196": {
+        "NewName": "HealAnotherNode"
     }
 }

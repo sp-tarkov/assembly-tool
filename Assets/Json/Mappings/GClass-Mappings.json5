@@ -8248,7 +8248,7 @@
         "NewName": "XorEncryptLayer",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib.Layers"
     },
-    "GClass1491": {
+    "GClass1491`1": {
         "NewName": "Locker",
         "NewNamespace": "CommonAssets.Scripts.Utilities"
     },
@@ -8388,7 +8388,7 @@
         "NewName": "BindableFilterList",
         "NewNamespace": "EFT.UI.Ragfair"
     },
-    "GClass1639": {
+    "GClass1639`1": {
         "NewName": "BindableListGroup",
         "NewNamespace": "Diz.Binding"
     },
@@ -8428,7 +8428,7 @@
         "NewName": "BindableFilter",
         "NewNamespace": "Diz.Binding"
     },
-    "GClass1656": {
+    "GClass1656`1": {
         "NewName": "FilteredList",
         "NewNamespace": "Diz.Binding"
     },
@@ -8910,6 +8910,10 @@
         "NewName": "ItemRelatedViewExtensions",
         "NewNamespace": "EFT"
     },
+    "GClass1923": {
+        "NewName": "ItemComponentDescriptor",
+        "NewNamespace": "EFT"
+    },
     "GClass1937": {
         "NewName": "FireModeComponentDescriptor",
         "NewNamespace": "EFT"
@@ -8934,5 +8938,182 @@
     },
     "GClass196": {
         "NewName": "HealAnotherNode"
+    },
+    "GClass201": {
+        "NewName": "DeactivateMineNode"
+    },
+    "GClass202": {
+        "NewName": "DeadBodiesWorkNode"
+    },
+    "GClass204": {
+        "NewName": "PlayerFollowNode"
+    },
+    "GClass207": {
+        "NewName": "CrawlNode"
+    },
+    "GClass208": {
+        "NewName": "FlankMove"
+    },
+    "GClass209": {
+        "NewName": "AttackMovingFlank"
+    },
+    "GClass210": {
+        "NewName": "MoveStealthy"
+    },
+    "GClass215": {
+        "NewName": "GoToFollowRequest"
+    },
+    "GClass218": {
+        "NewName": "GoToResrevPlace"
+    },
+    "GClass219": {
+        "NewName": "GoToSomePoint"
+    },
+    "GClass224": {
+        "NewName": "MoveToEnemyZigZag"
+    },
+    "GClass225": {
+        "NewName": "GoToEnemyZigZag"
+    },
+    "GClass226": {
+        "NewName": "RunToEnemyZigZag"
+    },
+    "GClass227": {
+        "NewName": "RunToEnemy"
+    },
+    "GClass229": {
+        "NewName": "RunToCoverZigZag"
+    },
+    "GClass230": {
+        "NewName": "RunAwayArtillery"
+    },
+    "GClass231": {
+        "NewName": "RunAwayBTR"
+    },
+    "GClass232": {
+        "NewName": "RunAwayGrenade"
+    },
+    "GClass234": {
+        "NewName": "RunToStationary"
+    },
+    "GClass235": {
+        "NewName": "SearchInvisibleEnemy"
+    },
+    "GClass240": {
+        "NewName": "DebugMoveShuttleTacticalNode"
+    },
+    "GClass242": {
+        "NewName": "OneMeleeAttackNode"
+    },
+    "GClass243": {
+        "NewName": "GoLeaveNode"
+    },
+    "GClass245": {
+        "NewName": "GoToLootPointNode"
+    },
+    "GClass246": {
+        "NewName": "PatrolAxeTarget"
+    },
+    "GClass247": {
+        "NewName": "PatrollingAlternative"
+    },
+    "GClass248": {
+        "NewName": "PatrollingFollower"
+    },
+    "GClass250": {
+        "NewName": "PatrolSimpleNode"
+    },
+    "GClass252": {
+        "NewName": "DebugMoveNode"
+    },
+    "GClass253": {
+        "NewName": "DebugMoveShuttleNode"
+    },
+    "GClass254": {
+        "NewName": "DebugRunToCloseCoverNode"
+    },
+    "GClass255": {
+        "NewName": "DebugRunToCover"
+    },
+    "GClass256": {
+        "NewName": "DebugRunToPointNode"
+    },
+    "GClass257": {
+        "NewName": "DebugZigZagRunNode"
+    },
+    "GClass258": {
+        "NewName": "TeleportNode"
+    },
+    "GClass260": {
+        "NewName": "PanicSitNode"
+    },
+    "GClass262": {
+        "NewName": "FriendlyTiltNode"
+    },
+    "GClass263": {
+        "NewName": "GestureNode"
+    },
+    "GClass264": {
+        "NewName": "PatrolDropItemsNode"
+    },
+    "GClass265": {
+        "NewName": "PatrolTakeItemsNode"
+    },
+    "GClass266": {
+        "NewName": "PeacefulNode"
+    },
+    "GClass267": {
+        "NewName": "PeaceHardAimNode"
+    },
+    "GClass268": {
+        "NewName": "PeaceLookNode"
+    },
+    "GClass270": {
+        "NewName": "StayNode"
+    },
+    "GClass271": {
+        "NewName": "WatchSecondWeaponNode"
+    },
+    "GClass272": {
+        "NewName": "PlantMineNode"
+    },
+    "GClass280": {
+        "NewName": "ShootFromStationary"
+    },
+    "GClass283": {
+        "NewName": "StimulatorsNode"
+    },
+    "GClass284": {
+        "NewName": "SuppressStationaryNode"
+    },
+    "GClass286": {
+        "NewName": "ThrowGrenadeFromPlaceNode"
+    },
+    "GClass287": {
+        "NewName": "ThrowGrenadeRequestNode"
+    },
+    "GClass288": {
+        "NewName": "TurnAwayNode"
+    },
+    "GClass291": {
+        "NewName": "DebugBotDropItemNode"
+    },
+    "GClass292": {
+        "NewName": "DebugBotTakeItemNode"
+    },
+    "GClass295": {
+        "NewName": "DebugGetMeleeNode"
+    },
+    "GClass296": {
+        "NewName": "DebugGrenadeNode"
+    },
+    "GClass297": {
+        "NewName": "DebugLayNode"
+    },
+    "GClass299": {
+        "NewName": "DebugMeleeAttackNode"
+    },
+    "GClass395": {
+        "NewName": "LookAround"
     }
 }

@@ -1145,10 +1145,6 @@
         "NewName": "NetworkReaderPool",
         "NewNamespace": "Mirror"
     },
-    "GClass1286`1": {
-        "NewName": "ConcurrentPool",
-        "NewNamespace": "Mirror"
-    },
     "GClass1287": {
         "NewName": "NetworkWriter",
         "NewNamespace": "Mirror"

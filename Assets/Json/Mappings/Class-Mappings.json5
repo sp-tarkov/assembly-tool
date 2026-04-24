@@ -2,6 +2,9 @@
     "Class101": {
         "NewName": "InfectedTargetLayer"
     },
+    "Class103": {
+        "NewName": "LeaveMapLayer"
+    },
     "Class1028": {
         "NewName": "JobAwaitable",
         "NewNamespace": "Diz.Jobs"

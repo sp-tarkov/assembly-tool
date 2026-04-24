@@ -1141,6 +1141,10 @@
         "NewName": "NetworkReaderExtensions",
         "NewNamespace": "Mirror"
     },
+    "GClass1286": {
+        "NewName": "NetworkReaderPool",
+        "NewNamespace": "Mirror"
+    },
     "GClass1287": {
         "NewName": "NetworkWriter",
         "NewNamespace": "Mirror"
@@ -6070,6 +6074,10 @@
     "GClass382": {
         "NewName": "ShootToPoint"
     },
+    "GClass3822`2": {
+        "NewName": "ViewList",
+        "NewNamespace": "EFT.UI"
+    },
     "GClass3829": {
         "NewName": "WindowContext",
         "NewNamespace": "EFT.UI"
@@ -9094,7 +9102,308 @@
     "GClass299": {
         "NewName": "DebugMeleeAttackNode"
     },
+    "GClass300": {
+        "NewName": "DebugRotateHeadNode"
+    },
+    "GClass301": {
+        "NewName": "DebugRotateNode"
+    },
+    "GClass302": {
+        "NewName": "DebugRotateLayNode"
+    },
+    "GClass304": {
+        "NewName": "DebugShootNode"
+    },
+    "GClass305": {
+        "NewName": "DebugStationaryNode"
+    },
+    "GClass306": {
+        "NewName": "DebugStationaryInstantNode"
+    },
+    "GClass308": {
+        "NewName": "DebugUnderbarrelLauncherNode",
+        "NewNamespace": "CommonAssets.Scripts.AI.CustomBehaviourNodes.Debug"
+    },
+    "GClass311": {
+        "NewName": "AssaultGroupLayersStrategy"
+    },
+    "GClass322": {
+        "NewName": "CursedAssaultLayersStrategy"
+    },
+    "GClass323": {
+        "NewName": "InfectedAssaultLayersStrategy"
+    },
+    "GClass325": {
+        "NewName": "ObdolbosLayersStrategy"
+    },
+    "GClass331": {
+        "NewName": "FollowerBoarLayersStrategy"
+    },
+    "GClass337": {
+        "NewName": "GluharAbstractLayersStrategy"
+    },
+    "GClass339": {
+        "NewName": "FollowerGluharAssaultLayersStrategy"
+    },
+    "GClass340": {
+        "NewName": "FollowerGluharProtectLayersStrategy"
+    },
+    "GClass341": {
+        "NewName": "FollowerGluharScoutLayersStrategy"
+    },
+    "GClass347": {
+        "NewName": "PeacefullZryachiyEventLayersStrategy"
+    },
+    "GClass351": {
+        "NewName": "RavangeZryachiyEventLayersStrategy"
+    },
+    "GClass352": {
+        "NewName": "SectactPriestEventStrategy"
+    },
+    "GClass353": {
+        "NewName": "SectantOniLayersStrategy"
+    },
+    "GClass355": {
+        "NewName": "StandardAssaultLayersStrategy"
+    },
+    "GClass359": {
+        "NewName": "SectantCoreLayersStrategy"
+    },
+    "GClass361": {
+        "NewName": "SectantPredvestnikLayersStrategy"
+    },
+    "GClass363": {
+        "NewName": "SectantPrizrakLayersStrategy"
+    },
+    "GClass366": {
+        "NewName": "Point"
+    },
+    "GClass367": {
+        "NewName": "CoverPointSaveData"
+    },
+    "GClass369": {
+        "NewName": "AIUtility"
+    },
+    "GClass371": {
+        "NewName": "NavMeshPathExtension"
+    },
+    "GClass373": {
+        "NewName": "SerializablePathExtension"
+    },
+    "GClass375": {
+        "NewName": "PairSegmentsWithAng"
+    },
+    "GClass376": {
+        "NewName": "PointWithSegment"
+    },
+    "GClass383": {
+        "NewName": "CoverPointMasterHelper"
+    },
+    "GClass384": {
+        "NewName": "CoverSearchDataWithPrefDist"
+    },
+    "GClass387": {
+        "NewName": "ActiveSet"
+    },
+    "GClass390": {
+        "NewName": "NavGraphFindDebugSerializer"
+    },
+    "GClass394": {
+        "NewName": "PointsSearchHelper"
+    },
     "GClass395": {
         "NewName": "LookAround"
+    },
+    "GClass396": {
+        "NewName": "AICoversLogger"
+    },
+    "GClass397": {
+        "NewName": "AIDebugMain"
+    },
+    "GClass398": {
+        "NewName": "AILogger"
+    },
+    "GClass399": {
+        "NewName": "AIMapSettingsLogger"
+    },
+    "GClass400": {
+        "NewName": "AIMoveLogger"
+    },
+    "GClass401": {
+        "NewName": "LastCoversSearchData"
+    },
+    "GClass405": {
+        "NewName": "DebugBotDataStore"
+    },
+    "GClass409": {
+        "NewName": "DebugCoversChecker"
+    },
+    "GClass410": {
+        "NewName": "DecisionProxy"
+    },
+    "GClass415": {
+        "NewName": "NavGraphAStarDebuggerStepData"
+    },
+    "GClass416": {
+        "NewName": "NavGraphAStarDebugger"
+    },
+    "GClass417": {
+        "NewName": "NavGraphBuilderCachePathes"
+    },
+    "GClass418": {
+        "NewName": "BaseReachablEditor"
+    },
+    "GClass420": {
+        "NewName": "NavGraphWayAstar"
+    },
+    "GClass421": {
+        "NewName": "NavGraphWayCalc"
+    },
+    "GClass422`1": {
+        "NewName": "PriorityQueue"
+    },
+    "GClass423": {
+        "NewName": "CoverWithPath"
+    },
+    "GClass424": {
+        "NewName": "BotCurrentCoverInfo"
+    },
+    "GClass427": {
+        "NewName": "SanitarHealTarget"
+    },
+    "GClass431": {
+        "NewName": "BossBoarSniper"
+    },
+    "GClass432": {
+        "NewName": "BossDecider"
+    },
+    "GClass433": {
+        "NewName": "BossDeciderFollower"
+    },
+    "GClass434": {
+        "NewName": "BossTagillaHelper"
+    },
+    "GClass436": {
+        "NewName": "BossKilla"
+    },
+    "GClass437": {
+        "NewName": "BossTagilla"
+    },
+    "GClass438": {
+        "NewName": "BossTagillaAgro"
+    },
+    "GClass439": {
+        "NewName": "FollowerTagilla"
+    },
+    "GClass447": {
+        "NewName": "BossSectantPriestCrossSanitar"
+    },
+    "GClass449": {
+        "NewName": "BossZryachiy"
+    },
+    "GClass450": {
+        "NewName": "BossZryachiyPeacefull"
+    },
+    "GClass451": {
+        "NewName": "BossZryachiyRavange"
+    },
+    "GClass452": {
+        "NewName": "DefaultBoss"
+    },
+    "GClass454": {
+        "NewName": "FollowerGluhar"
+    },
+    "GClass457": {
+        "NewName": "GluhalBossFollowers"
+    },
+    "GClass458": {
+        "NewName": "BotGoalTarget"
+    },
+    "GClass461": {
+        "NewName": "BotReloadMagazine"
+    },
+    "GClass462": {
+        "NewName": "BotReloadMelee"
+    },
+    "GClass463": {
+        "NewName": "BotReloadOnlyBarrel"
+    },
+    "GClass464": {
+        "NewName": "BotReloadRevolver"
+    },
+    "GClass467": {
+        "NewName": "InfectedBotWeaponSelector"
+    },
+    "GClass468": {
+        "NewName": "BaseDecisionLogic"
+    },
+    "GClass469": {
+        "NewName": "AlwaysSearchData"
+    },
+    "GClass470": {
+        "NewName": "BossGluharFollowersSearchData"
+    },
+    "GClass471": {
+        "NewName": "BossKillaSearchData"
+    },
+    "GClass472": {
+        "NewName": "BoarEnemyController"
+    },
+    "GClass473": {
+        "NewName": "ZryachiyEnemyController"
+    },
+    "GClass475": {
+        "NewName": "FollowerZryachiyEnemyChooser"
+    },
+    "GClass476": {
+        "NewName": "GluharFollowerEnemyChooser"
+    },
+    "GClass477": {
+        "NewName": "RavangeZryachiyEnemiesChooser"
+    },
+    "GClass478": {
+        "NewName": "ArenaFighterEnemyChooser"
+    },
+    "GClass479": {
+        "NewName": "BigPipeEnemyChooser"
+    },
+    "GClass480": {
+        "NewName": "KillaEnemyChooser"
+    },
+    "GClass481": {
+        "NewName": "TagillaEnemyChooser"
+    },
+    "GClass482": {
+        "NewName": "TestEnemyChooser"
+    },
+    "GClass487": {
+        "NewName": "SanitarFirstAid"
+    },
+    "GClass488": {
+        "NewName": "ZryachiyFirstAid"
+    },
+    "GClass490": {
+        "NewName": "SanitarSurgialKit"
+    },
+    "GClass493": {
+        "NewName": "BotMoverBTR"
+    },
+    "GClass494": {
+        "NewName": "BotMoverImpostor"
+    },
+    "GClass495": {
+        "NewName": "BotMoverSimple"
+    },
+    "GClass497": {
+        "NewName": "BotMoverInertion"
+    },
+    "GClass498": {
+        "NewName": "BotSteeringWithConstrains"
+    },
+    "GClass499": {
+        "NewName": "InfectedLookData"
+    },
+    "GClass541": {
+        "NewName": "ZryachiyEnemyInfo"
     }
 }

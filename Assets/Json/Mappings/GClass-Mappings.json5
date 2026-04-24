@@ -50,7 +50,12 @@
     },
     "GClass1011": {
         "NewName": "DWindow",
-        "NewNamespace": "RuntimeInspector"
+        "NewNamespace": "RuntimeInspector",
+        "NestedTypes": {
+            "GStruct72": {
+                "NewName": "FieldObject"
+            }
+        }
     },
     "GClass1012": {
         "NewName": "EditorGUIImitation",
@@ -187,7 +192,18 @@
     },
     "GClass1045": {
         "NewName": "BallisticCalculatorToolCore",
-        "NewNamespace": "Editor_Tools.BallisticCalculatorTool"
+        "NewNamespace": "Editor_Tools.BallisticCalculatorTool",
+        "NestedTypes": {
+            "GStruct84": {
+                "NewName": "AmmoData"
+            },
+            "GStruct85": {
+                "NewName": "BallisticData"
+            },
+            "GStruct86": {
+                "NewName": "MeasurementData"
+            }
+        }
     },
     "GClass1046": {
         "NewName": "EventDialogSoundscapeManager",
@@ -1791,7 +1807,12 @@
     },
     "GClass1457": {
         "NewName": "ColliderExtendedDebug",
-        "NewNamespace": "Assets.CommonAssets.Scripts.Utilities"
+        "NewNamespace": "Assets.CommonAssets.Scripts.Utilities",
+        "NestedTypes": {
+            "GStruct143": {
+                "NewName": "Box"
+            }
+        }
     },
     "GClass1458": {
         "NewName": "LayerMaskExtensions",
@@ -3514,7 +3535,15 @@
     },
     "GClass2380": {
         "NewName": "BoundingFrustum",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GStruct287": {
+                "NewName": "CullingBox"
+            },
+            "GStruct288": {
+                "NewName": "CullingSphere"
+            }
+        }
     },
     "GClass2381": {
         "NewName": "AmbientBuffer",
@@ -7196,7 +7225,12 @@
         "NewName": "BaseBTRLayer"
     },
     "GClass690": {
-        "NewName": "EllipseCalculator"
+        "NewName": "EllipseCalculator",
+        "NestedTypes": {
+            "GStruct28": {
+                "NewName": "Ellipse"
+            }
+        }
     },
     "GClass691": {
         "NewName": "GlobalEventDispatcher"
@@ -7538,7 +7572,12 @@
         "NewName": "DebugLogHelper"
     },
     "GClass818`2": {
-        "NewName": "DictionaryListHydra"
+        "NewName": "DictionaryListHydra",
+        "NestedTypes": {
+            "GStruct48": {
+                "NewName": "ValuesEnumerator"
+            }
+        }
     },
     "GClass819": {
         "NewName": "DigitsToColorExtension"
@@ -7547,7 +7586,12 @@
         "NewName": "FollowerBoarStationaryLayer"
     },
     "GClass820`1": {
-        "NewName": "DropManager"
+        "NewName": "DropManager",
+        "NestedTypes": {
+            "GStruct49`2": {
+                "NewName": "Tuple"
+            }
+        }
     },
     "GClass821": {
         "NewName": "FloatingSpeed"
@@ -8114,7 +8158,12 @@
         "NewName": "ObservedCullingObject"
     },
     "GClass22": {
-        "NewName": "CounterCreatorAbstractClass"
+        "NewName": "DebugTimeMeasurer",
+        "NestedTypes": {
+            "GStruct3": {
+                "NewName": "Token"
+            }
+        }
     },
     "GClass105": {
         "NewName": "FollowerKojaniyLayer"

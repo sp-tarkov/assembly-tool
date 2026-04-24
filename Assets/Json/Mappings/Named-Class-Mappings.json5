@@ -476,5 +476,63 @@
                 "NewName": "BonusCollection"
             }
         }
+    },
+    "AnimationEventSystem.AnimationEventsSequenceData": {
+        "NestedTypes": {
+            "GStruct142": {
+                "NewName": "DebugQueueData"
+            }
+        }
+    },
+    "EFT.Hideout.AreaDetailsGroup": {
+        "NestedTypes": {
+            "GStruct298": {
+                "NewName": "DetailsEnumerator"
+            }
+        }
+    },
+    "EFT.AudioSequence": {
+        "NestedTypes": {
+            "GStruct283": {
+                "NewName": "SequenceSettings"
+            }
+        }
+    },
+    "RootMotion.BipedReferences": {
+        "NestedTypes": {
+            "GStruct144": {
+                "NewName": "AutoDetectParams"
+            }
+        }
+    },
+    "RootMotion.Demos.CharacterThirdPerson": {
+        "NestedTypes": {
+            "GStruct145": {
+                "NewName": "AnimState"
+            }
+        }
+    },
+    "CullingManager": {
+        "NestedTypes": {
+            "GClass996": {
+                "NewName": "CullingJobParameters"
+            },
+            "GStruct69": {
+                "NewName": "CullingObjectData"
+            },
+            "GStruct70": {
+                "NewName": "VisibilityData"
+            },
+            "Struct163": {
+                "NewName": "CullingJob"
+            }
+        }
+    },
+    "Systems.Effects.Effects": {
+        "NestedTypes": {
+            "GStruct73": {
+                "NewName": "EffectEmitDescription"
+            },
+        }
     }
 }

@@ -3,8 +3,6 @@ using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Shared;
 using Serilog;
-using Serilog.Events;
-using Spectre.Console;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
@@ -97,38 +95,10 @@ public class DirectMapController(
             return;
         }
 
-        if (Log.IsEnabled(LogEventLevel.Debug))
+        foreach (var (targetFullName, mapping) in mappings)
         {
-            foreach (var (targetFullName, mapping) in mappings)
-            {
-                await renamerService.RenameMappingRecursive(targetFullName, mapping);
-            }
-
-            return;
+            await renamerService.RenameMappingRecursive(targetFullName, mapping);
         }
-
-        await AnsiConsole
-            .Progress()
-            .AutoClear(true)
-            .StartAsync(ctx =>
-            {
-                var ctxTask = ctx.AddTask("[green]Renaming[/]", maxValue: mappings.Count);
-
-                var tasks = new List<Task>(mappings.Count);
-
-                foreach (var (targetFullName, mapping) in mappings)
-                {
-                    var task = Task.Factory.StartNew(async () =>
-                    {
-                        await renamerService.RenameMappingRecursive(targetFullName, mapping);
-                        ctxTask.Increment(1.0);
-                    });
-
-                    tasks.Add(task);
-                }
-
-                return Task.WhenAll(tasks);
-            });
 
         attributeFactory.UpdateAsyncAttributes();
 
@@ -154,27 +124,10 @@ public class DirectMapController(
 
     private async Task PublicizeObfuscatedTypes()
     {
-        await AnsiConsole
-            .Progress()
-            .AutoClear(true)
-            .StartAsync(ctx =>
-            {
-                var ctxTask = ctx.AddTask("[green]Publicizing[/]".PadLeft(25), maxValue: Types.Count);
-                var tasks = new List<Task>(Types.Count);
-
-                foreach (var type in Types)
-                {
-                    var task = Task.Factory.StartNew(async () =>
-                    {
-                        await publicizer.PublicizeType(type);
-                        ctxTask.Increment(1.0);
-                    });
-
-                    tasks.Add(task);
-                }
-
-                return Task.WhenAll(tasks);
-            });
+        foreach (var type in Types)
+        {
+            await publicizer.PublicizeType(type);
+        }
     }
 
     private Task UpdateAttributes()

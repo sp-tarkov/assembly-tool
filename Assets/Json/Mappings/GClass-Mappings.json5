@@ -1141,10 +1141,6 @@
         "NewName": "NetworkReaderExtensions",
         "NewNamespace": "Mirror"
     },
-    "GClass1286": {
-        "NewName": "NetworkReaderPool",
-        "NewNamespace": "Mirror"
-    },
     "GClass1287": {
         "NewName": "NetworkWriter",
         "NewNamespace": "Mirror"
@@ -1629,10 +1625,6 @@
     },
     "GClass1414": {
         "NewName": "MatchmakerPlayersStatus",
-        "NewNamespace": "EFT"
-    },
-    "GClass1415": {
-        "NewName": "MatchmakerGroupStatus",
         "NewNamespace": "EFT"
     },
     "GClass1416": {
@@ -6078,10 +6070,6 @@
     "GClass382": {
         "NewName": "ShootToPoint"
     },
-    "GClass3822": {
-        "NewName": "AsyncViewList",
-        "NewNamespace": "EFT.UI"
-    },
     "GClass3829": {
         "NewName": "WindowContext",
         "NewNamespace": "EFT.UI"
@@ -7613,9 +7601,6 @@
     },
     "GClass839": {
         "NewName": "StringBuilderExtension"
-    },
-    "GClass83`1": {
-        "NewName": "ListPool"
     },
     "GClass84": {
         "NewName": "FightRequestLayer"

@@ -13,13 +13,6 @@
 			}
 		}
 	},
-  "SortingTableWindow": {
-    "NestedTypes": {
-      "GClass3832": {
-        "NewName": "SortingTableWindowContext"
-      }
-    }
-  },
   "BetterSource": {
     "NestedTypes": {
       "GInterface35": {
@@ -237,7 +230,7 @@
       }
     }
   },
-  "EFT.UI.SessionEnd.ScavengerInventoryScreen": {
+  "EFT.UI.ScavengerInventoryScreen": {
     "NestedTypes": {
       "GClass3887": {
         "NewName": "ScavengerInventoryScreenController"

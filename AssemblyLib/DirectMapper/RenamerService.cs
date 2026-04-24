@@ -21,7 +21,15 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
     {
         var toolData = model.ToolData;
 
-        SetupToolData(targetFullName, model, parent);
+        try
+        {
+            SetupToolData(targetFullName, model, parent);
+        }
+        catch (Exception ex)
+        {
+            Log.Error("Error setting up tool data: {message}", ex.Message);
+            return Task.CompletedTask;
+        }
 
         if (toolData.Type is null)
         {

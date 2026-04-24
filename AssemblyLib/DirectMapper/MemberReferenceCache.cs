@@ -2,7 +2,6 @@ using System.Collections.Concurrent;
 using AsmResolver.DotNet;
 using AssemblyLib.Shared;
 using Serilog;
-using Spectre.Console;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
@@ -27,7 +26,6 @@ public class MemberReferenceCache(DataProvider dataProvider)
         Log.Information("Hydrating MemberReferenceCache");
 
         CacheMethodReferences();
-        //await CacheMethodOverrides();
 
         Log.Information("Field definition cache hydrated with {count} field definitions", _fieldReferences.Count);
         Log.Information("Method definition cache hydrated with {count} method definitions", _methodReferences.Count);
@@ -112,14 +110,9 @@ public class MemberReferenceCache(DataProvider dataProvider)
         foreach (var reference in dataProvider.LoadedModule!.GetImportedMemberReferences())
         {
             var canResolve = reference.TryResolve(dataProvider.Context, out var resolved);
-
             if (canResolve)
             {
                 AddMetadataMemberToCache(resolved, reference);
-            }
-            else
-            {
-                //Log.Warning("Could not resolve {ReferenceFullName}", reference.FullName);
             }
         }
     }
@@ -156,58 +149,5 @@ public class MemberReferenceCache(DataProvider dataProvider)
                 break;
             }
         }
-    }
-
-    private async Task CacheMethodOverrides()
-    {
-        var allMethods = dataProvider.LoadedModule!.GetAllTypes().SelectMany(t => t.Methods.Where(m => m.IsNewSlot));
-
-        await AnsiConsole
-            .Progress()
-            .AutoClear(true)
-            .StartAsync(ctx =>
-            {
-                var ctxTask = ctx.AddTask(
-                    "[green]Finding method overrides[/]".PadLeft(25),
-                    maxValue: allMethods.Count()
-                );
-                var tasks = new List<Task>(allMethods.Count());
-
-                foreach (var method in allMethods)
-                {
-                    tasks.Add(
-                        Task.Factory.StartNew(async () =>
-                        {
-                            await FindAllMethodOverrides(method);
-                            ctxTask.Increment(1.0);
-                        })
-                    );
-                }
-
-                return Task.WhenAll(tasks);
-            });
-    }
-
-    private Task FindAllMethodOverrides(MethodDefinition method)
-    {
-        var baseType = method.DeclaringType;
-        var overrides = dataProvider
-            .LoadedModule!.GetAllTypes()
-            // Only look at types that inherit from this methods base type
-            .Where(t => t.InheritsFrom(baseType!.FullName))
-            .SelectMany(t => t.Methods)
-            // New slot indicates that a method is inserted into the VTable, therefore not an override
-            // Overrides are also virtual, so look for those
-            .Where(m => !m.IsNewSlot && m.IsVirtual && m.Name == method.Name)
-            .ToList();
-
-        if (overrides.Count == 0)
-        {
-            return Task.CompletedTask;
-        }
-
-        _methodOverrides.TryAdd(method, overrides);
-
-        return Task.CompletedTask;
     }
 }

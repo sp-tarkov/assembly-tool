@@ -3,7 +3,6 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
-using Spectre.Console;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
@@ -65,31 +64,10 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
         }
 
         var compilerClasses = dataProvider.LoadedModule!.GetAllTypes().Where(t => t.IsCompilerGenerated() && t.IsClass);
-        if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
+        foreach (var type in compilerClasses)
         {
-            foreach (var type in compilerClasses)
-            {
-                type.Name = GetNewCgClassName(type);
-            }
-
-            return;
+            type.Name = GetNewCgClassName(type);
         }
-
-        AnsiConsole
-            .Progress()
-            .AutoClear(true)
-            .StartAsync(ctx =>
-            {
-                var task = ctx.AddTask("[green]Renaming CG Classes[/]", maxValue: compilerClasses.Count());
-
-                foreach (var type in compilerClasses)
-                {
-                    type.Name = GetNewCgClassName(type);
-                    task.Increment(1.0);
-                }
-
-                return Task.CompletedTask;
-            });
     }
 
     /// <summary>
@@ -107,31 +85,10 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
             .LoadedModule!.GetAllTypes()
             .Where(t => t.IsCompilerGenerated() && t.IsValueType && !t.IsEnum);
 
-        if (Log.IsEnabled(Serilog.Events.LogEventLevel.Debug))
+        foreach (var type in compilerStructs)
         {
-            foreach (var type in compilerStructs)
-            {
-                type.Name = GetNewCgStructName(type);
-            }
-
-            return;
+            type.Name = GetNewCgStructName(type);
         }
-
-        AnsiConsole
-            .Progress()
-            .AutoClear(true)
-            .StartAsync(ctx =>
-            {
-                var task = ctx.AddTask("[green]Renaming CG Structs[/]", maxValue: compilerStructs.Count());
-
-                foreach (var type in compilerStructs)
-                {
-                    type.Name = GetNewCgStructName(type);
-                    task.Increment(1.0);
-                }
-
-                return Task.CompletedTask;
-            });
     }
 
     /// <summary>

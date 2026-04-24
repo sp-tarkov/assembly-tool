@@ -1,473 +1,480 @@
 {
-  "BetterAudio": {
-    "NestedTypes": {
-      "GInterface34": {
-        "NewName": "ISourceGroup"
-      }
-    }
-  },
-	"EFT.UI.OtherPlayerProfileScreen": {
-		"NestedTypes": {
-			"GClass3883": {
-				"NewName": "OtherPlayerProfileScreenController"
-			}
-		}
-	},
-  "BetterSource": {
-    "NestedTypes": {
-      "GInterface35": {
-        "NewName": "IReleaseListener"
-      }
-    }
-  },
-  "EFT.ClientPlayer": {
-    "NestedTypes": {
-      "GInterface230": {
-        "NewName": "IClientPlayerDataSender",
-      }
-    }
-  },
-  "EFT.Player": {
-	  "MethodRenames":{
-		  "method_0": "RecalculateMouseSensitivityModifier",
-		  "method_1": "InitMovementController",
-		  "method_6": "RestorePose",
-		  "method_7": "TogglePose",
-		  "method_8": "RestoreSpeed",
-		  "method_9": "ToggleMinSpeed",
-		  "method_10": "EnableVaulting",
-		  "method_11": "DisableVaulting",
-		  "method_12": "ToggleVaulting",
-		  "method_14": "ResetHeightInterpolation",
-		  "method_15": "ToggleGoggles",
-		  "method_18": "InitHandsContainer",
-		  "method_21": "TryToSetOverrideAnimatorController",
-		  "method_22": "CreatePlayerAnimator"
-	  },
-    "NestedTypes": {
-      "Class1271`1": {
-        "NewName": "GrenadeOperation"
-      },
-      "Class1282`1": {
-        "NewName": "BaseKnifeOperation"
-      },
-      "Class1310": {
-        "NewName": "InventoryOperation"
-      },
-      "Class1311": {
-        "NewName": "SetInHandsOperation"
-      },
-      "Class1312": {
-        "NewName": "RemoveFromHandsOperation"
-      },
-      "GClass724": {
-        "NewName": "PlayerLogger"
-      },
-      "GClass1537": {
-        "NewName": "ItemComponentNotFoundError"
-      },
-      "GClass1538": {
-        "NewName": "ItemParentIsWrongError"
-      },
-      "GClass1539": {
-        "NewName": "WrongComponentStateError"
-      },
-      "GClass2004": {
-        "NewName": "Garbage"
-      },
-      "GClass2012": {
-        "NewName": "ObjectInHandsOperation"
-      },
-      "GClass2059`1": {
-        "NewName": "SlotObserver"
-      },
-      "GClass2060": {
-        "NewName": "GrenadeThrowResult"
-      },
-      "GInterface193": {
-        "NewName": "IGrenadeOperation"
-      },
-      "GDelegate65": {
-        "NewName": "DamageDelegate"
-      },
-      "GDelegate66": {
-        "NewName": "DeltaTimeDelegate"
-      },
-      "GStruct182": {
-        "NewName": "KnifeRaycastHit"
-      },
-      "Interface9": {
-        "NewName": "IQuickUsOperation"
-      },
-      "Interface10": {
-        "NewName": "IBaseKnifeOperation"
-      },
-      "Interface11": {
-        "NewName": "IBaseUsableItemOperation"
-      },
-
-      "FirearmController": {
+    "BetterAudio": {
         "NestedTypes": {
-          "GClass2013": {
-            "NewName": "FirearmOperation"
-          },
-          "GClass2037": {
-            "NewName": "Idling"
-          },
-		  "GClass2015": {
-			"NewName": "BaseReloadOperation"
-		  },
-		  "GClass2014": {
-			"NewName": "DischargeAmmoFromUnderbarrelWeapon"
-		  },
-          "GClass2029": {
-            "NewName": "AutomaticFireOperation"
-          },
-		  "Class1264": {
-			"NewName": "AddModOperation"
-		  }
+            "GInterface34": {
+                "NewName": "ISourceGroup"
+            }
         }
-      }
-    }
-  },
-  "EFT.PlayerBody": {
-    "NestedTypes": {
-      "GInterface233": {
-        "NewName": "ISlotModelPositionTuner"
-      },
-      "GClass2355": {
-        "NewName": "SlotView"
-      }
-    }
-  },
-  "EFT.SkillManager": {
-    "NestedTypes": {
-      "GClass2250": {
-        "NewName": "WeaponBuffsInfo"
-      },
-      "GClass2251": {
-        "NewName": "ShotParams"
-      },
-      "GClass2252": {
-        "NewName": "Buff"
-      },
-      "GClass2253": {
-        "NewName": "FloatBuff"
-      },
-      "GClass2254": {
-        "NewName": "ProbabilityBuff"
-      },
-      "GClass2255": {
-        "NewName": "GainBuff"
-      },
-      "GClass2256": {
-        "NewName": "LossBuff"
-      },
-      "GClass2257": {
-        "NewName": "BooleanBuff"
-      },
-      "GClass2258`1": {
-        // Buff<T>
-        "NewName": "Buff"
-      },
-      "GClass2259": {
-        "NewName": "SkillAction"
-      },
-      "GClass2260`1": {
-        "NewName": "SkillAction"
-      },
-      "GClass2261`1": {
-        "NewName": "SkillDependency"
-      }
-    }
-  },
-  "EFT.MovingPlatforms.MovingPlatform": {
-    "NestedTypes": {
-      "GInterface459": {
-        "NewName": "IPlatformTransportee"
-      }
-    }
-  },
-  "EFT.UI.ClothingItem": {
-    "NestedTypes": {
-      "GClass3815": {
-        "NewName": "FullOffer"
-      }
-    }
-  },
-  "EFT.UI.Gestures.PredefinedLayoutGroup": {
-    "NestedTypes": {
-      "GInterface500": {
-        "NewName": "ICanChangeAlignment"
-      }
-    }
-  },
-  "EFT.UI.ItemSelectionCell": {
-    "NestedTypes": {
-      "GInterface478": {
-        "NewName": "IItemSelectionHandler"
-      }
-    }
-  },
-  "EFT.UI.NotifierView": {
-    "NestedTypes": {
-      "GInterface484": {
-        "NewName": "IProfileChangeHandler"
-      }
-    }
-  },
-  "EFT.UI.SessionEnd.SessionResultExitStatus": {
-    "NestedTypes": {
-      "GClass3899": {
-        "NewName": "ExitStatusScreenController"
-      }
-    }
-  },
-  "EFT.UI.SessionEnd.SessionResultKillList": {
-    "NestedTypes": {
-      "GClass3910": {
-        "NewName": "KillListScreenController"
-      }
-    }
-  },
-  "EFT.UI.ScavengerInventoryScreen": {
-    "NestedTypes": {
-      "GClass3887": {
-        "NewName": "ScavengerInventoryScreenController"
-      }
-    }
-  },
-  "EFT.UI.SessionEnd.SessionResultStatistics": {
-    "NestedTypes": {
-      "GClass3911": {
-        "NewName": "SessionStatisticsScreenController"
-      }
-    }
-  },
-  "EFT.UI.SessionEnd.SessionResultExperienceCount": {
-    "NestedTypes": {
-      "GClass3909": {
-        "NewName": "SessionExperienceScreenController"
-      }
-    }
-  },
-  "EFT.UI.SessionEnd.HealthTreatmentScreen": {
-    "NestedTypes": {
-      "GClass3898": {
-        "NewName": "HealthTreatmentScreenController"
-      }
-    }
-  },
-  "EFT.Interactive.WindowBreakerManager": {
-    "NestedTypes": {
-      "GInterface469": {
-        "NewName": "IBreakable"
-      }
-    }
-  },
-  "EnvironmentManagerBase": {
-    "NestedTypes": {
-      "GInterface24": {
-        "NewName": "IAABB"
-      }
-    }
-  },
-  "CoverPointMaster": {
-    "NestedTypes": {
-      "GStruct10": {
-        "NewName": "FriendCloseCoverData"
-      }
-    }
-  },
-  "AITaskManager": {
-    "NestedTypes": {
-      "GClass607": {
-        "NewName": "AISimpleTaskData"
-      }
-    }
-  },
-  "EFT.BaseLocalGame`1": {
-    "MethodRenames": {
-      "method_11": "InitiateGameStopping"
-    }
-  },
-  "EFT.Profile": {
-    "NestedTypes": {
-      "GClass2205": {
-        "NewName": "HealthInfo"
-      },
-      "GClass2208": {
-        "NewName": "UnlockedInfo"
-      },
-      "GClass2209": {
-        "NewName": "MoneyTransferLimitData"
-      },
-    }
-  },
-  "EFT.AbstractGameSession": {
-    "NestedTypes": {
-      "Class1098": {
-        "NewName": "AcceptRequest"
-      },
-      "Class1099": {
-        "NewName": "TraceMessageBase"
-      },
-      "Class1100": {
-        "NewName": "TraceMessage"
-      },
-      "Class1102": {
-        "NewName": "TraceMessageWithCode"
-      },
-      "Class1103": {
-        "NewName": "AcceptReject"
-      },
-      "Class1104": {
-        "NewName": "TotalProgressReport"
-      },
-      "Class1105": {
-        "NewName": "BattlEyeAnticheatPacket"
-      },
-      "Class1106": {
-        "NewName": "ProfileResources"
-      },
-      "Class1107": {
-        "NewName": "ProgressReport"
-      }
-    }
-  },
-  "EFT.Interactive.WorldInteractiveObject": {
-	"NestedTypes": {
-      "GStruct435": {
-        "NewName": "InteractiveObjectStatusInfo"
-      },
-	  "GStruct436": {
-        "NewName": "InteractionParameters"
-      }
-    }
-  },
-  "EFT.UI.Matchmaker.MatchmakerOfflineRaidScreen": {
-	"NestedTypes": {
-      "GClass3917": {
-        "NewName": "OfflineRaidScreenController"
-      }
-    }
-  },
-  "LActionState": {
-	"NestedTypes": {
-      "GClass915": {
-        "NewName": "LActionStateContext"
-      }
-    }
-  },
-  "StaticDeferredDecalRenderer": {
-	"NestedTypes": {
-      "GClass970": {
-        "NewName": "DecalsData"
-      }
-    }
-  },
-  "SonicBulletSoundPlayer": {
-	"NestedTypes": {
-      "Class522": {
-        "NewName": "SonicTimeQueueItem"
-      }
-    }
-  },
-  "SimpleCharacterController": {
-	"NestedTypes": {
-      "GClass755": {
-        "NewName": "CollidersArray"
-      }
-    }
-  },
-  "EFT.TarkovApplication": {
-	"NestedTypes": {
-      "GClass2301": {
-        "NewName": "HideoutController"
-      },
-	  "GClass2302": {
-        "NewName": "NarrateController"
-      }
-    }
-  },
-  "CirclePacker": {
-	"NestedTypes": {
-      "GClass959": {
-        "NewName": "Circle"
-      },
     },
-	"MethodRenames":{
-		  "method_0": "TryLoadHideout",
-		  "method_1": "StartLoadHideoutBundles",
-		  "method_2": "LoadHideout",
-		  "method_3": "LoadMapAndDataForHideout",
-		  "method_4": "PrepareProductionSchemesBundles",
-		  "method_5": "LoadHideoutBundles",
-		  "method_6": "SetProfile",
-		  "method_7": "LocalGameCreateForHideout",
-		  "method_8": "HideHideout",
-		  "method_9": "ShowProfileLoadingScreen",
-		  "method_10": "ShowCriticalBackendErrorDialog",
-		  "method_13": "ShowLegacyLoginScreen",
-		  "method_16": "InitNotificationManager",
-		  "method_17": "DestroyNotificationManager",
-		  "method_32": "RunProfile",
-		  "method_35": "ShowTimeHasComeScreen",
-		  "method_36": "MainMenu",
-		  "method_38": "OnApplicationLoaded",
-		  "method_43": "LoadMapAndData",
-		  "method_49": "LocalGameCreate",
-		  "method_51": "TryUnloadGame"
-	  }
-  },
-  "EFT.GameWorld": {
-	"NestedTypes": {
-      "GStruct162": {
-        "NewName": "ItemOwnerWorldData"
-      },
-	  "GClass1524": {
-        "NewName": "ItemOwnerNotFoundError"
-      },
-	  "GClass1525": {
-        "NewName": "ItemAddressNotFoundError"
-      },
-	  "GClass1526": {
-        "NewName": "ItemNotFoundError"
-      },
-	  "GClass1527": {
-        "NewName": "ItemTooFarError"
-      },
-	  "GClass1528": {
-        "NewName": "TransferBetweenAlivePlayersError"
-      },
-	  "GClass1529": {
-        "NewName": "InventoryTransferError"
-      },
-	  "GClass1530": {
-        "NewName": "TryToPickUpOneOffBreakWeaponError"
-      },
-	  "GClass1531": {
-        "NewName": "ItemOwnerCandidateTooFarError"
-      },
-	  "GClass1532": {
-        "NewName": "ItemOwnerCandidateWallHackError"
-      },
-	  "GClass1533": {
-        "NewName": "ItemOwnerCandidateCantFindLootError"
-      },
-	  "GClass1534": {
-        "NewName": "ItemOwnerNullError"
-      },
+    "EFT.UI.OtherPlayerProfileScreen": {
+        "NestedTypes": {
+            "GClass3883": {
+                "NewName": "OtherPlayerProfileScreenController"
+            }
+        }
     },
-	"MethodRenames":{
-		  "method_11": "DisposePlayersLists"
-	  }
-  },
-  "EFT.BonusController": {
-	"NestedTypes": {
-      "Class1131": {
-        "NewName": "BonusCollection"
-      }
+    "EFT.UI.SortingTableWindow": {
+        "NestedTypes": {
+            "GClass3832": {
+                "NewName": "SortingTableWindowContext"
+            }
+        }
+    },
+    "BetterSource": {
+        "NestedTypes": {
+            "GInterface35": {
+                "NewName": "IReleaseListener"
+            }
+        }
+    },
+    "EFT.ClientPlayer": {
+        "NestedTypes": {
+            "GInterface230": {
+                "NewName": "IClientPlayerDataSender"
+            }
+        }
+    },
+    "EFT.Player": {
+        "MethodRenames": {
+            "method_0": "RecalculateMouseSensitivityModifier",
+            "method_1": "InitMovementController",
+            "method_6": "RestorePose",
+            "method_7": "TogglePose",
+            "method_8": "RestoreSpeed",
+            "method_9": "ToggleMinSpeed",
+            "method_10": "EnableVaulting",
+            "method_11": "DisableVaulting",
+            "method_12": "ToggleVaulting",
+            "method_14": "ResetHeightInterpolation",
+            "method_15": "ToggleGoggles",
+            "method_18": "InitHandsContainer",
+            "method_21": "TryToSetOverrideAnimatorController",
+            "method_22": "CreatePlayerAnimator"
+        },
+        "NestedTypes": {
+            "Class1271`1": {
+                "NewName": "GrenadeOperation"
+            },
+            "Class1282`1": {
+                "NewName": "BaseKnifeOperation"
+            },
+            "Class1310": {
+                "NewName": "InventoryOperation"
+            },
+            "Class1311": {
+                "NewName": "SetInHandsOperation"
+            },
+            "Class1312": {
+                "NewName": "RemoveFromHandsOperation"
+            },
+            "GClass724": {
+                "NewName": "PlayerLogger"
+            },
+            "GClass1537": {
+                "NewName": "ItemComponentNotFoundError"
+            },
+            "GClass1538": {
+                "NewName": "ItemParentIsWrongError"
+            },
+            "GClass1539": {
+                "NewName": "WrongComponentStateError"
+            },
+            "GClass2004": {
+                "NewName": "Garbage"
+            },
+            "GClass2012": {
+                "NewName": "ObjectInHandsOperation"
+            },
+            "GClass2059`1": {
+                "NewName": "SlotObserver"
+            },
+            "GClass2060": {
+                "NewName": "GrenadeThrowResult"
+            },
+            "GInterface193": {
+                "NewName": "IGrenadeOperation"
+            },
+            "GDelegate65": {
+                "NewName": "DamageDelegate"
+            },
+            "GDelegate66": {
+                "NewName": "DeltaTimeDelegate"
+            },
+            "GStruct182": {
+                "NewName": "KnifeRaycastHit"
+            },
+            "Interface9": {
+                "NewName": "IQuickUsOperation"
+            },
+            "Interface10": {
+                "NewName": "IBaseKnifeOperation"
+            },
+            "Interface11": {
+                "NewName": "IBaseUsableItemOperation"
+            },
+
+            "FirearmController": {
+                "NestedTypes": {
+                    "GClass2013": {
+                        "NewName": "FirearmOperation"
+                    },
+                    "GClass2037": {
+                        "NewName": "Idling"
+                    },
+                    "GClass2015": {
+                        "NewName": "BaseReloadOperation"
+                    },
+                    "GClass2014": {
+                        "NewName": "DischargeAmmoFromUnderbarrelWeapon"
+                    },
+                    "GClass2029": {
+                        "NewName": "AutomaticFireOperation"
+                    },
+                    "Class1264": {
+                        "NewName": "AddModOperation"
+                    }
+                }
+            }
+        }
+    },
+    "EFT.PlayerBody": {
+        "NestedTypes": {
+            "GInterface233": {
+                "NewName": "ISlotModelPositionTuner"
+            },
+            "GClass2355": {
+                "NewName": "SlotView"
+            }
+        }
+    },
+    "EFT.SkillManager": {
+        "NestedTypes": {
+            "GClass2250": {
+                "NewName": "WeaponBuffsInfo"
+            },
+            "GClass2251": {
+                "NewName": "ShotParams"
+            },
+            "GClass2252": {
+                "NewName": "Buff"
+            },
+            "GClass2253": {
+                "NewName": "FloatBuff"
+            },
+            "GClass2254": {
+                "NewName": "ProbabilityBuff"
+            },
+            "GClass2255": {
+                "NewName": "GainBuff"
+            },
+            "GClass2256": {
+                "NewName": "LossBuff"
+            },
+            "GClass2257": {
+                "NewName": "BooleanBuff"
+            },
+            "GClass2258`1": {
+                // Buff<T>
+                "NewName": "Buff"
+            },
+            "GClass2259": {
+                "NewName": "SkillAction"
+            },
+            "GClass2260`1": {
+                "NewName": "SkillAction"
+            },
+            "GClass2261`1": {
+                "NewName": "SkillDependency"
+            }
+        }
+    },
+    "EFT.MovingPlatforms.MovingPlatform": {
+        "NestedTypes": {
+            "GInterface459": {
+                "NewName": "IPlatformTransportee"
+            }
+        }
+    },
+    "EFT.UI.ClothingItem": {
+        "NestedTypes": {
+            "GClass3815": {
+                "NewName": "FullOffer"
+            }
+        }
+    },
+    "EFT.UI.Gestures.PredefinedLayoutGroup": {
+        "NestedTypes": {
+            "GInterface500": {
+                "NewName": "ICanChangeAlignment"
+            }
+        }
+    },
+    "EFT.UI.ItemSelectionCell": {
+        "NestedTypes": {
+            "GInterface478": {
+                "NewName": "IItemSelectionHandler"
+            }
+        }
+    },
+    "EFT.UI.NotifierView": {
+        "NestedTypes": {
+            "GInterface484": {
+                "NewName": "IProfileChangeHandler"
+            }
+        }
+    },
+    "EFT.UI.SessionEnd.SessionResultExitStatus": {
+        "NestedTypes": {
+            "GClass3899": {
+                "NewName": "ExitStatusScreenController"
+            }
+        }
+    },
+    "EFT.UI.SessionEnd.SessionResultKillList": {
+        "NestedTypes": {
+            "GClass3910": {
+                "NewName": "KillListScreenController"
+            }
+        }
+    },
+    "EFT.UI.ScavengerInventoryScreen": {
+        "NestedTypes": {
+            "GClass3887": {
+                "NewName": "ScavengerInventoryScreenController"
+            }
+        }
+    },
+    "EFT.UI.SessionEnd.SessionResultStatistics": {
+        "NestedTypes": {
+            "GClass3911": {
+                "NewName": "SessionStatisticsScreenController"
+            }
+        }
+    },
+    "EFT.UI.SessionEnd.SessionResultExperienceCount": {
+        "NestedTypes": {
+            "GClass3909": {
+                "NewName": "SessionExperienceScreenController"
+            }
+        }
+    },
+    "EFT.UI.SessionEnd.HealthTreatmentScreen": {
+        "NestedTypes": {
+            "GClass3898": {
+                "NewName": "HealthTreatmentScreenController"
+            }
+        }
+    },
+    "EFT.Interactive.WindowBreakerManager": {
+        "NestedTypes": {
+            "GInterface469": {
+                "NewName": "IBreakable"
+            }
+        }
+    },
+    "EnvironmentManagerBase": {
+        "NestedTypes": {
+            "GInterface24": {
+                "NewName": "IAABB"
+            }
+        }
+    },
+    "CoverPointMaster": {
+        "NestedTypes": {
+            "GStruct10": {
+                "NewName": "FriendCloseCoverData"
+            }
+        }
+    },
+    "AITaskManager": {
+        "NestedTypes": {
+            "GClass607": {
+                "NewName": "AISimpleTaskData"
+            }
+        }
+    },
+    "EFT.BaseLocalGame`1": {
+        "MethodRenames": {
+            "method_11": "InitiateGameStopping"
+        }
+    },
+    "EFT.Profile": {
+        "NestedTypes": {
+            "GClass2205": {
+                "NewName": "HealthInfo"
+            },
+            "GClass2208": {
+                "NewName": "UnlockedInfo"
+            },
+            "GClass2209": {
+                "NewName": "MoneyTransferLimitData"
+            }
+        }
+    },
+    "EFT.AbstractGameSession": {
+        "NestedTypes": {
+            "Class1098": {
+                "NewName": "AcceptRequest"
+            },
+            "Class1099": {
+                "NewName": "TraceMessageBase"
+            },
+            "Class1100": {
+                "NewName": "TraceMessage"
+            },
+            "Class1102": {
+                "NewName": "TraceMessageWithCode"
+            },
+            "Class1103": {
+                "NewName": "AcceptReject"
+            },
+            "Class1104": {
+                "NewName": "TotalProgressReport"
+            },
+            "Class1105": {
+                "NewName": "BattlEyeAnticheatPacket"
+            },
+            "Class1106": {
+                "NewName": "ProfileResources"
+            },
+            "Class1107": {
+                "NewName": "ProgressReport"
+            }
+        }
+    },
+    "EFT.Interactive.WorldInteractiveObject": {
+        "NestedTypes": {
+            "GStruct435": {
+                "NewName": "InteractiveObjectStatusInfo"
+            },
+            "GStruct436": {
+                "NewName": "InteractionParameters"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerOfflineRaidScreen": {
+        "NestedTypes": {
+            "GClass3917": {
+                "NewName": "OfflineRaidScreenController"
+            }
+        }
+    },
+    "LActionState": {
+        "NestedTypes": {
+            "GClass915": {
+                "NewName": "LActionStateContext"
+            }
+        }
+    },
+    "StaticDeferredDecalRenderer": {
+        "NestedTypes": {
+            "GClass970": {
+                "NewName": "DecalsData"
+            }
+        }
+    },
+    "SonicBulletSoundPlayer": {
+        "NestedTypes": {
+            "Class522": {
+                "NewName": "SonicTimeQueueItem"
+            }
+        }
+    },
+    "SimpleCharacterController": {
+        "NestedTypes": {
+            "GClass755": {
+                "NewName": "CollidersArray"
+            }
+        }
+    },
+    "EFT.TarkovApplication": {
+        "NestedTypes": {
+            "GClass2301": {
+                "NewName": "HideoutController"
+            },
+            "GClass2302": {
+                "NewName": "NarrateController"
+            }
+        }
+    },
+    "CirclePacker": {
+        "NestedTypes": {
+            "GClass959": {
+                "NewName": "Circle"
+            }
+        },
+        "MethodRenames": {
+            "method_0": "TryLoadHideout",
+            "method_1": "StartLoadHideoutBundles",
+            "method_2": "LoadHideout",
+            "method_3": "LoadMapAndDataForHideout",
+            "method_4": "PrepareProductionSchemesBundles",
+            "method_5": "LoadHideoutBundles",
+            "method_6": "SetProfile",
+            "method_7": "LocalGameCreateForHideout",
+            "method_8": "HideHideout",
+            "method_9": "ShowProfileLoadingScreen",
+            "method_10": "ShowCriticalBackendErrorDialog",
+            "method_13": "ShowLegacyLoginScreen",
+            "method_16": "InitNotificationManager",
+            "method_17": "DestroyNotificationManager",
+            "method_32": "RunProfile",
+            "method_35": "ShowTimeHasComeScreen",
+            "method_36": "MainMenu",
+            "method_38": "OnApplicationLoaded",
+            "method_43": "LoadMapAndData",
+            "method_49": "LocalGameCreate",
+            "method_51": "TryUnloadGame"
+        }
+    },
+    "EFT.GameWorld": {
+        "NestedTypes": {
+            "GStruct162": {
+                "NewName": "ItemOwnerWorldData"
+            },
+            "GClass1524": {
+                "NewName": "ItemOwnerNotFoundError"
+            },
+            "GClass1525": {
+                "NewName": "ItemAddressNotFoundError"
+            },
+            "GClass1526": {
+                "NewName": "ItemNotFoundError"
+            },
+            "GClass1527": {
+                "NewName": "ItemTooFarError"
+            },
+            "GClass1528": {
+                "NewName": "TransferBetweenAlivePlayersError"
+            },
+            "GClass1529": {
+                "NewName": "InventoryTransferError"
+            },
+            "GClass1530": {
+                "NewName": "TryToPickUpOneOffBreakWeaponError"
+            },
+            "GClass1531": {
+                "NewName": "ItemOwnerCandidateTooFarError"
+            },
+            "GClass1532": {
+                "NewName": "ItemOwnerCandidateWallHackError"
+            },
+            "GClass1533": {
+                "NewName": "ItemOwnerCandidateCantFindLootError"
+            },
+            "GClass1534": {
+                "NewName": "ItemOwnerNullError"
+            }
+        },
+        "MethodRenames": {
+            "method_11": "DisposePlayersLists"
+        }
+    },
+    "EFT.BonusController": {
+        "NestedTypes": {
+            "Class1131": {
+                "NewName": "BonusCollection"
+            }
+        }
     }
-  }
 }

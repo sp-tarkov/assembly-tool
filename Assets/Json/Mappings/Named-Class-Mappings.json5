@@ -534,5 +534,57 @@
                 "NewName": "EffectEmitDescription"
             },
         }
+    },
+    "EFT.UI.Gestures.GestureBaseItem": {
+        "NestedTypes": {
+            "GStruct449": {
+                "NewName": "PointerClick"
+            }
+        }
+    },
+    "EFT.UI.Gestures.GesturesMenu": {
+        "NestedTypes": {
+            "GStruct450": {
+                "NewName": "UpdatedGestureBind"
+            }
+        }
+    },
+    "GraphManager": {
+        "NestedTypes": {
+            "GStruct0": {
+                "NewName": "Matrix4x4Wrapper"
+            },
+            "GStruct1": {
+                "NewName": "GPUDataPair"
+            }
+        }
+    },
+    "RootMotion.FinalIK.GrounderQuadruped": {
+        "NestedTypes": {
+            "GStruct147": {
+                "NewName": "Foot"
+            }
+        }
+    },
+    "EFT.UI.DragAndDrop.ModSlotView": {
+        "NestedTypes": {
+            "GStruct448": {
+                "NewName": "TooltipData"
+            }
+        }
+    },
+    "MuzzleParticleContainer": {
+        "NestedTypes": {
+            "GStruct68": {
+                "NewName": "MuzzleParticlePlayerData"
+            }
+        }
+    },
+    "EFT.CameraControl.OpticSight": {
+        "NestedTypes": {
+            "GStruct432": {
+                "NewName": "OpticSightStatus"
+            }
+        }
     }
 }

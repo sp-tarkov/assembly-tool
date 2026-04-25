@@ -105,7 +105,68 @@
   },
   "GStruct396": {
     "NewName": "SyncHealthPacket",
-    "NewNamespace": "EFT.HealthSystem"
+    "NewNamespace": "EFT.HealthSystem",
+    "NestedTypes": {
+      "GStruct397": {
+        "NewName": "SyncAddEffect",
+        "NestedTypes": {
+          "GStruct398": {
+            "NewName": "ExtraDataUnion"
+          }
+        }
+      },
+      "GStruct399": {
+        "NewName": "SyncRemoveEffect"
+      },
+      "GStruct400": {
+        "NewName": "SyncEffectNextState"
+      },
+      "GStruct401": {
+        "NewName": "SyncEffectStateTime"
+      },
+      "GStruct402": {
+        "NewName": "SyncEffectStrength"
+      },
+      "GStruct403": {
+        "NewName": "SyncEffectMedResource"
+      },
+      "GStruct404": {
+        "NewName": "SyncEffectStimulatorBuff"
+      },
+      "GStruct405": {
+        "NewName": "SyncIsAlive"
+      },
+      "GStruct406": {
+        "NewName": "SyncBodyHealth"
+      },
+      "GStruct407": {
+        "NewName": "SyncHealthFactor"
+      },
+      "GStruct408": {
+        "NewName": "SyncDamageCoeff"
+      },
+      "GStruct409": {
+        "NewName": "SyncStaminaCoeff"
+      },
+      "GStruct410": {
+        "NewName": "SyncApplyDamage"
+      },
+      "GStruct411": {
+        "NewName": "SyncDestroyedBodyPart"
+      },
+      "GStruct412": {
+        "NewName": "SyncHealthRates"
+      },
+      "GStruct413": {
+        "NewName": "SyncHealerDone"
+      },
+      "GStruct414": {
+        "NewName": "SyncBurnEyes"
+      },
+      "GStruct415": {
+        "NewName": "NetworkSyncHealthDataUnion"
+      }
+    }
   },
   "GStruct418": {
     "NewName": "DisconnectionInformation",
@@ -1338,5 +1399,33 @@
   "GStruct460": {
     "NewName": "QuestChangeCost",
     "NewNamespace": "EFT.Quests",
+  },
+  "GStruct151": {
+    "NewName": "OperationCreationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct152`1": {
+    "NewName": "OperationCreationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct153": {
+    "NewName": "OperationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct154`1": {
+    "NewName": "OperationResult",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct155": {
+    "NewName": "Option",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct156`1": {
+    "NewName": "Option",
+    "NewNamespace": "Diz.LanguageExtensions",
+  },
+  "GStruct263": {
+    "NewName": "SwitchRenderersPacket",
+    "NewNamespace": "EFT",
   },
 }

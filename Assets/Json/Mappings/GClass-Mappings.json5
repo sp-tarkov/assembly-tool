@@ -1885,7 +1885,12 @@
     },
     "GClass1476": {
         "NewName": "NetManager",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+        "NestedTypes": {
+            "GStruct149": {
+                "NewName": "NetPeerEnumerator"
+            },
+        }
     },
     "GClass1477": {
         "NewName": "NetPeer",
@@ -2096,7 +2101,12 @@
     },
     "GClass1620": {
         "NewName": "JobYield",
-        "NewNamespace": "Diz.Jobs"
+        "NewNamespace": "Diz.Jobs",
+        "NestedTypes": {
+            "GStruct157": {
+                "NewName": "Token"
+            }
+        }
     },
     "GClass1621": {
         "NewName": "SimpleAverage"
@@ -2608,7 +2618,15 @@
     },
     "GClass1912": {
         "NewName": "ItemFactory",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GStruct181": {
+                "NewName": "FlatItemsToResultTree"
+            },
+            "Struct306": {
+                "NewName": "ItemCachedName"
+            }
+        }
     },
     "GClass1914": {
         "NewName": "InventoryDescriptor",
@@ -3257,7 +3275,21 @@
     },
     "GClass2279": {
         "NewName": "ObjectsFactory",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GStruct281": {
+                "NewName": "PoolResourceInfo"
+            },
+            "Class1448": {
+                "NewName": "Pools"
+            },
+            "GClass2280": {
+                "NewName": "ResourceTypeComparer"
+            },
+            "GClass725": {
+                "NewName": "PoolLogger"
+            }
+        }
     },
     "GClass228": {
         "NewName": "RunToCover"
@@ -6177,7 +6209,12 @@
     },
     "GClass3951": {
         "NewName": "InsuranceCompany",
-        "NewNamespace": "EFT.UI.Insurance"
+        "NewNamespace": "EFT.UI.Insurance",
+        "NestedTypes": {
+            "GStruct452": {
+                "NewName": "PriceData"
+            }
+        }
     },
     "GClass3952": {
         "NewName": "InsuredItem",

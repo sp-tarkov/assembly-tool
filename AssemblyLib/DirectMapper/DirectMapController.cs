@@ -48,7 +48,7 @@ public class DirectMapController(
 
         // We need the publication to be complete before renaming fields
         // due to the differences in conventions between public and private
-        renamerService.RenameObfuscatedFields();
+        renamerService.PostPublicizeRenameStage();
 
         await UpdateAttributes();
         await ApplyPatches();

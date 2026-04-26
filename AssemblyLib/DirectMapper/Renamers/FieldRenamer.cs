@@ -60,14 +60,9 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
                 field.Name!.IsObfuscatedName() && !(field.Signature?.FieldType.Name?.IsObfuscatedName() ?? true)
             );
 
-            foreach (var field in fields)
+            // Skip these dirty serialized bastards, this will 100% break the game, bad.
+            foreach (var field in fields.Where(f => !f.IsUnitySerializedField()))
             {
-                // Skip these dirty serialized bastards, this will 100% break the game, bad.
-                if (IsSerializedField(field))
-                {
-                    continue;
-                }
-
                 if (field.Signature?.FieldType.Name is null)
                 {
                     Log.Warning(
@@ -115,6 +110,29 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         }
     }
 
+    public void FixCapitalizationOnPublicizedFields()
+    {
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        {
+            if (type.IsEnum)
+            {
+                continue;
+            }
+
+            foreach (var field in type.Fields.Where(f => !f.IsUnitySerializedField()))
+            {
+                var newName = FieldNameToUpper(field);
+                if (newName is null)
+                {
+                    continue;
+                }
+
+                UpdateFieldReferences(field, newName);
+                field.Name = newName;
+            }
+        }
+    }
+
     private Utf8String GetNewFieldNameFromTypeRename(FieldDefinition field, string newName)
     {
         var genericSplit = newName.Split('`');
@@ -157,6 +175,35 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         return new Utf8String($"{first}{newName[1..]}{countPostfix}");
     }
 
+    private static Utf8String? FieldNameToUpper(FieldDefinition field)
+    {
+        var fieldName = field.Name!.ToString();
+
+        if (
+            // Min length to rename
+            fieldName.Length < 2
+            || char.IsUpper(fieldName[0])
+            // Don't bother with obfuscated names
+            || fieldName.IsObfuscatedName()
+            // No special names
+            || fieldName.Contains('<')
+            || fieldName.Contains('>')
+            || field.IsPrivate
+            || (field.DeclaringType?.IsGameObject() ?? false)
+            || (field.Name!.StartsWith("_") && field.IsBackingField())
+        )
+        {
+            return null;
+        }
+
+        if (fieldName[0] == '_')
+        {
+            fieldName = fieldName[1..];
+        }
+
+        return new Utf8String($"{char.ToUpper(fieldName[0])}{fieldName[1..]}");
+    }
+
     private void UpdateFieldReferences(FieldDefinition field, Utf8String newName)
     {
         var references = memberReferenceCache.GetFieldReferences(field);
@@ -165,13 +212,5 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         {
             reference.Name = newName;
         }
-    }
-
-    private static bool IsSerializedField(FieldDefinition field)
-    {
-        // DO NOT RENAME SERIALIZED FIELDS, IT BREAKS UNITY
-        return field
-            .CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
-            .Contains("UnityEngine.SerializeField");
     }
 }

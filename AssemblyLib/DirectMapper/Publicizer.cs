@@ -94,23 +94,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
     private void PublicizeFields(TypeDefinition type)
     {
-        // We only publicize fields that are serialized on GameObjects
-        if (type.IsGameObject())
-        {
-            foreach (var field in type.Fields)
-            {
-                if (!field.IsPublic && !field.IsEventField() && field.IsUnitySerializedField())
-                {
-                    field.PublicizeField();
-                    stats.FieldPublicizedCount++;
-                }
-            }
-
-            // We don't rename anything on GameObjects, this breaks unity.
-            return;
-        }
-
-        var fieldsToRename = new List<FieldDefinition>();
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || field.IsEventField())
@@ -119,7 +102,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             }
 
             field.PublicizeField();
-            fieldsToRename.Add(field);
             stats.FieldPublicizedCount++;
 
             if (
@@ -131,9 +113,10 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             }
 
             // This field isn't meant to be serialized, make sure we don't serialize it
-            field.Attributes |= FieldAttributes.NotSerialized;
+            if (type.IsGameObject())
+            {
+                field.Attributes |= FieldAttributes.NotSerialized;
+            }
         }
-
-        //fieldRenamer.RenamePublicizedFields(fieldsToRename);
     }
 }

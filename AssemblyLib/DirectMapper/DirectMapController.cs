@@ -83,7 +83,7 @@ public class DirectMapController(
     {
         Log.Information("Post direct map stage");
 
-        renamerService.PostDirectMapStage();
+        //renamerService.PostDirectMapStage();
         UpdateAttributes();
         ApplyPatches();
     }

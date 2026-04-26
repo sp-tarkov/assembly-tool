@@ -45,6 +45,11 @@ public class DirectMapController(
         }
 
         await PublicizeObfuscatedTypes();
+
+        // We need the publication to be complete before renaming fields
+        // due to the differences in conventions between public and private
+        renamerService.RenameObfuscatedFields();
+
         await UpdateAttributes();
         await ApplyPatches();
         await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);

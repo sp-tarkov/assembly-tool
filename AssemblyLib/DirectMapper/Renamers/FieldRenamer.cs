@@ -21,6 +21,8 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         get { return ERenamerType.Fields; }
     }
 
+    private readonly Dictionary<TypeDefinition, List<FieldDefinition>> _fieldsRenamed = [];
+
     public void Rename(DirectMapModel model)
     {
         var toolData = model.ToolData;
@@ -46,27 +48,51 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         }
     }
 
-    [Obsolete("Using BSG named fields now")]
-    private void RenameObfuscatedFields(ModuleDefinition module, Utf8String oldTypeName, Utf8String newTypeName)
+    public void RenameObfuscatedFields()
     {
-        foreach (var type in module.GetAllTypes())
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
         {
-            var fields = type.Fields.Where(field => field.Name!.IsObfuscatedName());
+            if (type.IsEnum)
+            {
+                continue;
+            }
 
-            var fieldCount = 0;
+            // We only want fields that have obfuscated names where their declaring type isn't obfuscated
+            var fields = type.Fields.Where(field =>
+                field.Name!.IsObfuscatedName() && !(field.Signature?.FieldType.Name?.IsObfuscatedName() ?? true)
+            );
+
             foreach (var field in fields)
             {
+                // Skip these dirty serialized bastards, this will 100% break the game, bad.
                 if (IsSerializedField(field))
                 {
                     continue;
                 }
 
-                if (field.Signature?.FieldType.Name != newTypeName)
+                if (field.Signature?.FieldType.Name is null)
                 {
+                    Log.Warning(
+                        "Found a null field signature: {dclName}::{fName} when renaming obfuscated fields. Skipping.",
+                        field.DeclaringType?.Name?.ToString(),
+                        field.Name?.ToString()
+                    );
+
                     continue;
                 }
 
-                var newFieldName = GetNewFieldNameFromTypeRename(field, newTypeName, fieldCount);
+                var newFieldName = GetNewFieldNameFromTypeRename(field, field.Signature.FieldType.Name);
+
+                if (field.DeclaringType?.Fields.Any(f => f.Name == newFieldName) ?? false)
+                {
+                    Log.Warning(
+                        "Trying to set duplicate field name: {fName} in class {cName}. Skipping.",
+                        newFieldName.ToString(),
+                        field.DeclaringType.Name?.ToString()
+                    );
+
+                    continue;
+                }
 
                 // Dont need to do extra work
                 if (field.Name == newFieldName)
@@ -74,20 +100,16 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
                     continue;
                 }
 
-                var oldName = field.Name;
-
                 if (Log.IsEnabled(LogEventLevel.Debug))
                 {
                     Log.Debug(
                         "Renaming field [{FieldDeclaringType}::{Utf8String}] to [{TypeDefinition}::{NewFieldName}]",
                         field.DeclaringType,
-                        oldName?.ToString(),
+                        field.Name?.ToString(),
                         field.DeclaringType,
                         newFieldName.ToString()
                     );
                 }
-
-                fieldCount++;
 
                 UpdateFieldReferences(field, newFieldName);
                 field.Name = newFieldName;
@@ -95,55 +117,46 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         }
     }
 
-    [Obsolete("Using BSG named fields now")]
-    public void RenamePublicizedFields(List<FieldDefinition> fieldsToRename)
+    private Utf8String GetNewFieldNameFromTypeRename(FieldDefinition field, string newName)
     {
-        foreach (var field in fieldsToRename.Where(f => !IsSerializedField(f)))
+        var genericSplit = newName.Split('`');
+        if (genericSplit.Length > 1)
         {
-            var newName = CapitalizeFieldName(field);
-            field.Name = newName;
-            UpdateFieldReferences(field, newName);
+            newName = genericSplit[0];
         }
-    }
 
-    private Utf8String GetNewFieldNameFromTypeRename(FieldDefinition field, string newName, int fieldCount = 0)
-    {
-        var newFieldCount = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
+        if (field.IsPrivate)
+        {
+            newName = $"{char.ToLower(newName[0])}{newName[1..]}";
+        }
 
-        // Prefix backing fields with an underscore
-        var firstChar = field.IsBackingField() ? $"_{newName[0]}" : $"{char.ToUpper(newName[0])}";
+        var first = newName[0].ToString();
+        if (field.IsBackingField())
+        {
+            // Remove 'i' from interfaces that are backing fields
+            if (
+                newName.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)
+                && (field.Signature?.FieldType.TryResolve(dataProvider.Context, out var typeDef) ?? false)
+                && typeDef.IsInterface
+            )
+            {
+                newName = newName[1..];
+            }
+
+            // ToLower() again in the rare event this might be a public backing field? -- 10 mins later, yup they exist.
+            first = $"_{char.ToLower(newName[0])}";
+        }
+
+        var fieldCount =
+            field.DeclaringType?.Fields.Count(f =>
+                f.Name!.StartsWith(newName, StringComparison.CurrentCultureIgnoreCase)
+                || f.Name!.StartsWith($"_{newName}", StringComparison.CurrentCultureIgnoreCase)
+            ) ?? 0;
+
+        var countPostfix = fieldCount > 0 ? $"_{fieldCount}" : string.Empty;
 
         stats.FieldRenamedCount++;
-        return new Utf8String($"{firstChar}{newName[1..]}{newFieldCount}");
-    }
-
-    private static Utf8String CapitalizeFieldName(FieldDefinition field)
-    {
-        var strName = field.Name!.ToString();
-
-        // Prefix backing fields with an underscore
-        switch (field.IsBackingField())
-        {
-            // Already a backing field denoted by the compiler or already prefixed with an underscore
-            case true when strName.StartsWith('<'):
-            case true when strName.StartsWith('_'):
-                return new Utf8String(strName);
-
-            case true when !strName.StartsWith('_'):
-                return new Utf8String($"_{strName}");
-        }
-
-        if (strName.StartsWith('_'))
-        {
-            strName = strName[1..];
-        }
-
-        if (!char.IsUpper(strName[0]))
-        {
-            strName = $"{char.ToUpper(strName[0])}{strName[1..]}";
-        }
-
-        return new Utf8String(strName);
+        return new Utf8String($"{first}{newName[1..]}{countPostfix}");
     }
 
     private void UpdateFieldReferences(FieldDefinition field, Utf8String newName)

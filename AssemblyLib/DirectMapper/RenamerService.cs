@@ -71,6 +71,17 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         classRenamer.RenameCompilerGeneratedTypes();
     }
 
+    public void RenameObfuscatedFields()
+    {
+        if (renamers.FirstOrDefault(r => r is FieldRenamer) is not FieldRenamer fieldRenamer)
+        {
+            Log.Error("Failed to find FieldRenamer type");
+            return;
+        }
+
+        fieldRenamer.RenameObfuscatedFields();
+    }
+
     private void RenameMapping(DirectMapModel model)
     {
         foreach (var renamer in renamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))

@@ -99,11 +99,11 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
         Log.Information("Hollowed written to: {outPath}", hollowedPath);
 
-        CopyToDevelopmentEnvironment(outPath, hollowedPath);
-        StartHDiffz(outPath);
+        var deltaPath = StartHDiffz(outPath);
+        CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath);
     }
 
-    private void CopyToDevelopmentEnvironment(string asmPath, string hollowedPath)
+    private void CopyToDevelopmentEnvironment(string asmPath, string hollowedPath, string deltaPath)
     {
         if (
             dataProvider.Settings.CopyToGame
@@ -143,6 +143,31 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
             File.Copy(hollowedPath, hollowedDest, true);
 
             Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
+        }
+
+        if (
+            dataProvider.Settings.CopyToLauncher
+            && !string.IsNullOrEmpty(dataProvider.Settings.LauncherProjectPath)
+            && Directory.Exists(dataProvider.Settings.LauncherProjectPath)
+            && File.Exists(hollowedPath)
+        )
+        {
+            var deltaDest = Path.Combine(
+                dataProvider.Settings.LauncherProjectPath,
+                "project",
+                "SPTarkov.Core",
+                "SPT_Data",
+                "Launcher",
+                "Patches",
+                "SPT-core",
+                "EscapeFromTarkov_Data",
+                "Managed",
+                "Assembly-CSharp.dll.delta"
+            );
+
+            File.Copy(deltaPath, deltaDest, true);
+
+            Log.Information("Delta has been copied to the launcher project: {HollowedDest}", deltaDest);
         }
     }
 
@@ -277,7 +302,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         return true;
     }
 
-    private void StartHDiffz(string outPath)
+    private string StartHDiffz(string outPath)
     {
         var hdiffExecutable = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "hdiffz.elf" : "hdiffz.exe";
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "Hdiffz", hdiffExecutable);
@@ -317,9 +342,11 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         if (error.Length > 0)
         {
             Log.Error("Error: {Error}", error);
-            return;
+            return string.Empty;
         }
 
         Log.Information("Delta written to: {outPath}", deltaFile);
+
+        return outPath;
     }
 }

@@ -10,7 +10,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public sealed class Publicizer(DataProvider dataProvider, Statistics stats, FieldRenamer fieldRenamer)
+public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 {
     /// <summary>
     /// Publicize the provided type

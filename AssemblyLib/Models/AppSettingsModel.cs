@@ -26,6 +26,16 @@ public class Settings
     public bool CopyToModules { get; set; }
 
     /// <summary>
+    /// Should we copy the delta patch to the launcher project
+    /// </summary>
+    public bool CopyToLauncher { get; set; }
+
+    /// <summary>
+    /// Root of the launcher project
+    /// </summary>
+    public string LauncherProjectPath { get; set; } = string.Empty;
+
+    /// <summary>
     /// The re-mapper will look for these classes, otherwise they will be skipped
     /// </summary>
     public required List<string> TypeNamesToMatch { get; set; }

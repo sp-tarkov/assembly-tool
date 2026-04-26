@@ -93,6 +93,21 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
 
     private void PublicizeFields(TypeDefinition type)
     {
+        if (type.IsGameObject())
+        {
+            foreach (var field in type.Fields)
+            {
+                if (!field.IsPublic && !field.IsEventField() && field.IsUnitySerializedField())
+                {
+                    field.PublicizeField();
+                    stats.FieldPublicizedCount++;
+                }
+            }
+
+            // We don't rename anything on GameObjects, this breaks unity.
+            return;
+        }
+
         foreach (var field in type.Fields)
         {
             if (field.IsPublic || field.IsEventField())

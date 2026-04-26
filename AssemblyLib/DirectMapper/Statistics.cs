@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
@@ -26,21 +27,16 @@ public sealed class Statistics(DataProvider dataProvider)
     public void DisplayAssemblyStatistics(string assemblyPath)
     {
         var module = dataProvider.LoadModule(assemblyPath, false);
-        var types = module.GetAllTypes();
+        var types = module.GetAllTypes().Where(t => !t.IsCompilerGenerated());
 
         var totalTypes = types.Count();
         var totalClasses = types.Count(t => t.IsClass);
-        var totalStructs = types.Count(t => t.InheritsFrom("System.ValueType"));
+        var totalStructs = types.Count(t => t.IsStruct());
         var totalEnums = types.Count(t => t.IsEnum);
         var totalInterfaces = types.Count(t => t.IsInterface);
 
-        var totalObfuscatedClasses = types.Count(t =>
-            t.Name is not null && t.Name.StartsWith("GClass") || (t.Name?.StartsWith("Class") ?? false)
-        );
-
-        var totalObfuscatedStructs = types.Count(t =>
-            t.Name is not null && t.Name.StartsWith("GStruct") || (t.Name?.StartsWith("Struct") ?? false)
-        );
+        var totalObfuscatedClasses = types.Count(t => t.Name is not null && t.IsClass && t.Name.IsObfuscatedName());
+        var totalObfuscatedStructs = types.Count(t => t.Name is not null && t.IsStruct() && t.Name.IsObfuscatedName());
 
         var totalObfuscatedInterfaces = types.Count(t =>
             t.Name is not null && t.IsInterface && t.Name.StartsWith("GInterface")
@@ -60,7 +56,7 @@ public sealed class Statistics(DataProvider dataProvider)
 
         Log.Information("---------- De-Obfuscation Statistics -------------");
         Log.Information("Total obfuscated classes:     {Total}", totalObfuscatedClasses);
-        Log.Information("Total obfuscated structs:     {Total}", totalNamedStructs);
+        Log.Information("Total obfuscated structs:     {Total}", totalObfuscatedStructs);
         Log.Information("Total obfuscated enums:       Cannot be obfuscated");
         Log.Information("Total obfuscated interfaces:  {total}", totalObfuscatedInterfaces);
 
@@ -68,6 +64,9 @@ public sealed class Statistics(DataProvider dataProvider)
         Log.Information("Total named structs:          {Total}", totalNamedStructs);
         Log.Information("Total named interfaces:       {Total}", totalNamedInterfaces);
         Log.Information("Total named enums:            {total}", totalEnums);
+
+        Log.Information("------------------ Coverage ----------------------");
         Log.Information("Named class coverage:         {coverage}%", totalNamedClasses / (float)totalClasses * 100f);
+        Log.Information("Named struct coverage:        {coverage}%", totalNamedStructs / (float)totalStructs * 100f);
     }
 }

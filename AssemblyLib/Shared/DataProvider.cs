@@ -91,12 +91,11 @@ public class DataProvider
         return module;
     }
 
-    public ModuleDefinition LoadDummyDllModule(string path)
+    public void LoadDummyDllModule(string path)
     {
         var module = ModuleDefinition.FromFile(path);
 
         DummyDllModule = module ?? throw new NullReferenceException("Dummy Module is null...");
-        return module;
     }
 
     private void LoadDirectMappingFile()

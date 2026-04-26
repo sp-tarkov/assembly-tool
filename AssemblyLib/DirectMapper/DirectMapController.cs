@@ -24,39 +24,74 @@ public class DirectMapController(
 
     private string _targetAssemblyPath = string.Empty;
 
-    public async Task Run(string assemblyPath, string? dummyDllPath)
+    public async Task Run(string assemblyPath, string dummyDllPath)
     {
+        if (!await PrepareStage(assemblyPath, dummyDllPath))
+        {
+            return;
+        }
+
+        await DirectMapStage();
+        PostDirectMapStage();
+
+        await assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
+
+        Log.Information("Direct map completed.");
+    }
+
+    /// <summary>
+    ///     Handles preparing the tool for use including; loading the dlls, deobfuscating and hydrating the cache
+    /// </summary>
+    /// <param name="assemblyPath">Path to the target assembly</param>
+    /// <param name="dummyDllPath">Path to the dummy dll from 1.0</param>
+    /// <returns>true if tool is ready for use</returns>
+    private async Task<bool> PrepareStage(string assemblyPath, string dummyDllPath)
+    {
+        Log.Information("Prepare data stage");
+
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
 
         if (!TryDeobfuscateAssembly())
         {
-            return;
+            return false;
         }
+
+        dataProvider.LoadDummyDllModule(dummyDllPath);
 
         await memberReferenceCache.Hydrate();
-        await RunRenamingProcess();
-
-        if (!string.IsNullOrEmpty(dummyDllPath))
-        {
-            dataProvider.LoadDummyDllModule(dummyDllPath);
-            Log.Information("Dummy DLL loaded.");
-            await RenameBySignature();
-        }
-
-        await PublicizeObfuscatedTypes();
-
-        // We need the publication to be complete before renaming fields
-        // due to the differences in conventions between public and private
-        renamerService.PostPublicizeRenameStage();
-
-        await UpdateAttributes();
-        await ApplyPatches();
-        await assemblyWriter.WriteAssembly(Module, _targetAssemblyPath);
-
-        Log.Information("Direct map completed.");
+        return true;
     }
 
+    /// <summary>
+    ///     Handles all actions relating directly to the direct mapping process including; direct mappings, signature mappings, and publication
+    /// </summary>
+    private async Task DirectMapStage()
+    {
+        Log.Information("Direct map stage");
+
+        await RunDirectMappingProcess();
+        sigBasedMemberRenamer.RenameMembersBySignature();
+        RunPublicizer();
+    }
+
+    /// <summary>
+    ///     Handles all actions after completing the direct mapping process including; Renaming obfuscated fields by on type name,
+    /// fixing capitalization post publication, updating attributes and applying patches.
+    /// </summary>
+    private void PostDirectMapStage()
+    {
+        Log.Information("Post direct map stage");
+
+        renamerService.PostDirectMapStage();
+        UpdateAttributes();
+        ApplyPatches();
+    }
+
+    /// <summary>
+    ///     Deobfuscates the assembly
+    /// </summary>
+    /// <returns>true if deobfuscation was successful</returns>
     private bool TryDeobfuscateAssembly()
     {
         var result = assemblyWriter.Deobfuscate(Module, _targetAssemblyPath);
@@ -90,7 +125,10 @@ public class DirectMapController(
         return true;
     }
 
-    private async Task RunRenamingProcess()
+    /// <summary>
+    ///     Runs the direct mapping process
+    /// </summary>
+    private async Task RunDirectMappingProcess()
     {
         var mappings = dataProvider.DirectMapModels;
 
@@ -111,31 +149,33 @@ public class DirectMapController(
         renamerService.RenameCompilerGeneratedTypes();
     }
 
-    private Task ApplyPatches()
+    /// <summary>
+    ///     Applies any existing patches
+    /// </summary>
+    /// <returns></returns>
+    private void ApplyPatches()
     {
         foreach (var patch in patches)
         {
             patch.Patch();
         }
-
-        return Task.CompletedTask;
     }
 
-    private Task RenameBySignature()
-    {
-        sigBasedMemberRenamer.RenameMembersBySignature();
-        return Task.CompletedTask;
-    }
-
-    private async Task PublicizeObfuscatedTypes()
+    /// <summary>
+    ///     Runs the publicizer over all types
+    /// </summary>
+    private void RunPublicizer()
     {
         foreach (var type in Types)
         {
-            await publicizer.PublicizeType(type);
+            publicizer.PublicizeType(type);
         }
     }
 
-    private Task UpdateAttributes()
+    /// <summary>
+    ///     Updates all attribute that need replaced
+    /// </summary>
+    private void UpdateAttributes()
     {
         var mappingDict = new Dictionary<string, TypeDefinition>();
         foreach (var (fullName, mapping) in dataProvider.DirectMapModels)
@@ -145,7 +185,5 @@ public class DirectMapController(
 
         attributeFactory.UpdateAllJsonConverterAttributes(mappingDict);
         attributeFactory.UpdateAllTypeConverterAttributes(mappingDict);
-
-        return Task.CompletedTask;
     }
 }

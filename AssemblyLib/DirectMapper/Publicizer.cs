@@ -17,7 +17,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
     /// </summary>
     /// <param name="type">Type to publicize</param>
     /// <returns>List of fields that should be renamed</returns>
-    public Task PublicizeType(TypeDefinition type)
+    public void PublicizeType(TypeDefinition type)
     {
         type.Attributes &= ~TypeAttributes.VisibilityMask; // Remove all visibility mask attributes
         type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
@@ -59,7 +59,6 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
         }
 
         PublicizeFields(type);
-        return Task.CompletedTask;
     }
 
     private void PublicizeMethod(MethodDefinition method)

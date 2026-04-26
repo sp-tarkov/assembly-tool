@@ -71,7 +71,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         classRenamer.RenameCompilerGeneratedTypes();
     }
 
-    public void PostPublicizeRenameStage()
+    public void PostDirectMapStage()
     {
         if (renamers.FirstOrDefault(r => r is FieldRenamer) is not FieldRenamer fieldRenamer)
         {

@@ -150,7 +150,6 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         if (arrIdx != -1)
         {
             newName = newName[..arrIdx];
-            Log.Information("Removed arrIdx:  {arrIdx}", newName);
         }
 
         var first = newName[0].ToString();

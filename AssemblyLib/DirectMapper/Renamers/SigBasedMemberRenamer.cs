@@ -57,7 +57,11 @@ public class SigBasedMemberRenamer(
             var dummyType = dummyTargetTypes.FirstOrDefault(t => t.FullName == target.FullName);
             if (dummyType is null)
             {
-                Log.Error("Could not find dummy type {dummy} when building target to dummy map", target.FullName);
+                Log.Warning(
+                    "Type: {typeName} does not exist in the dummy dll. Sig based renaming will not happen.",
+                    target.FullName
+                );
+
                 continue;
             }
 

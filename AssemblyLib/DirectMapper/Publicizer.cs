@@ -127,10 +127,7 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             }
 
             // This field isn't meant to be serialized, make sure we don't serialize it
-            if (type.IsGameObject())
-            {
-                field.Attributes |= FieldAttributes.NotSerialized;
-            }
+            field.Attributes |= FieldAttributes.NotSerialized;
         }
     }
 }

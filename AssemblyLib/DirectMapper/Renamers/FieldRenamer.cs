@@ -21,8 +21,6 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         get { return ERenamerType.Fields; }
     }
 
-    private readonly Dictionary<TypeDefinition, List<FieldDefinition>> _fieldsRenamed = [];
-
     public void Rename(DirectMapModel model)
     {
         var toolData = model.ToolData;

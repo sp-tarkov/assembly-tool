@@ -183,10 +183,7 @@
         "NewName": "LongPollingWebSocketRequest",
         "NewNamespace": "EFT.Communications"
     },
-    "Class2097": {
-        "NewName": "BaseEventConsumer",
-        "NewNamespace": "EFT"
-    },
+
     "Class2098": {
         "NewName": "ImpostorsMainCameraContext",
         "NewNamespace": "EFT.Impostors"

@@ -9491,5 +9491,433 @@
     },
     "GClass541": {
         "NewName": "ZryachiyEnemyInfo"
+    },
+    "GClass190": {
+        "NewName": "AimingToDeadBody"
+    },
+    "GClass199": {
+        "NewName": "LookoutBody"
+    },
+    "GClass211": {
+        "NewName": "GoToBody"
+    },
+    "GClass216": {
+        "NewName": "GoToGrenadeRequestNode"
+    },
+    "GClass217": {
+        "NewName": "GoToPointRequestNode"
+    },
+    "GClass220": {
+        "NewName": "GoToSuppressionFire"
+    },
+    "GClass221": {
+        "NewName": "GoToSuppressionFireRequest"
+    },
+    "GClass233": {
+        "NewName": "RunToSuppressionFire"
+    },
+    "GClass237": {
+        "NewName": "AttackMovingTactical"
+    },
+    "GClass279": {
+        "NewName": "HoldPositionByRequest"
+    },
+    "GClass285": {
+        "NewName": "TakeInPlaceForChecking"
+    },
+    "GClass293": {
+        "NewName": "DebugCanThrowFromCover"
+    },
+    "GClass294": {
+        "NewName": "DebugGestusNode"
+    },
+    "GClass455": {
+        "NewName": "FollowerKolontay"
+    },
+    "GClass522": {
+        "NewName": "BossKillaSubTactic"
+    },
+    "GClass523": {
+        "NewName": "BossStormtrooperSubTactic"
+    },
+    "GClass525": {
+        "NewName": "FollowerStormtrooperSubTactic"
+    },
+    "GClass526": {
+        "NewName": "BotPatrolItemDrop"
+    },
+    "GClass527": {
+        "NewName": "SanitarBotRandomPlanItemDropper"
+    },
+    "GClass529": {
+        "NewName": "BotScatteringData"
+    },
+    "GClass530": {
+        "NewName": "BotTargeting"
+    },
+    "GClass532": {
+        "NewName": "BotReceiverGestus"
+    },
+    "GClass534": {
+        "NewName": "BotLighthouseKeeperFriendlySectantsLogic"
+    },
+    "GClass536": {
+        "NewName": "DangerData"
+    },
+    "GClass539": {
+        "NewName": "GoalTargetSearchPoint"
+    },
+    "GClass540": {
+        "NewName": "BoarEnemyInfo"
+    },
+    "GClass544": {
+        "NewName": "PartLineOfSightCheckResult"
+    },
+    "GClass545": {
+        "NewName": "BotFrameMoveContext"
+    },
+    "GClass549": {
+        "NewName": "AbstractBotPath"
+    },
+    "GClass550": {
+        "NewName": "VectorTargetBotPath"
+    },
+    "GClass553": {
+        "NewName": "PlaceTargetPoint"
+    },
+    "GClass554": {
+        "NewName": "VectorTargetPoint"
+    },
+    "GClass555": {
+        "NewName": "PatrolPointChooseByName"
+    },
+    "GClass556": {
+        "NewName": "PatrolPointChooseGluhar"
+    },
+    "GClass557": {
+        "NewName": "PatrolPointChooserBoss"
+    },
+    "GClass558": {
+        "NewName": "PatrolPointChooserBossGluhar"
+    },
+    "GClass559": {
+        "NewName": "PatrolPointChooserBossKilla"
+    },
+    "GClass560": {
+        "NewName": "PatrolPointChooserByData"
+    },
+    "GClass561": {
+        "NewName": "PatrolPointChooserFollower"
+    },
+    "GClass562": {
+        "NewName": "PatrolPointChooserGroup"
+    },
+    "GClass564": {
+        "NewName": "FollowerClose"
+    },
+    "GClass2061": {
+        "NewName": "LocationDescription",
+        "NewNamespace": "EFT"
+    },
+    "GClass2064": {
+        "NewName": "MongoIdBinaryConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass2065`2": {
+        "NewName": "EmptyDictionary",
+        "NewNamespace": "EFT"
+    },
+    "GClass2066": {
+        "NewName": "EnumerableExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass2068": {
+        "NewName": "TradingLocales",
+        "NewNamespace": "EFT"
+    },
+    "GClass2070`1": {
+        "NewName": "SnapshotExtrapolator",
+        "NewNamespace": "EFT"
+    },
+    "GClass2071": {
+        "NewName": "Client2ServerPacketArrayPoolCreationPolicy",
+        "NewNamespace": "EFT"
+    },
+    "GClass2074": {
+        "NewName": "HandsControllerTypeConvert",
+        "NewNamespace": "EFT"
+    },
+    "GClass2075": {
+        "NewName": "EGestureCache",
+        "NewNamespace": "EFT"
+    },
+    "GClass2076": {
+        "NewName": "MovementDirectionExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2078": {
+        "NewName": "PointOfViewExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2079": {
+        "NewName": "OperationStatusExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass2080": {
+        "NewName": "FirearmControllerSharedMethods",
+        "NewNamespace": "EFT"
+    },
+    "GClass2081": {
+        "NewName": "ShottypeExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2082": {
+        "NewName": "ShotExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2083": {
+        "NewName": "KnifePacketExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass2084": {
+        "NewName": "BitStreamExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2085": {
+        "NewName": "ExplosionSharedMethods",
+        "NewNamespace": "EFT"
+    },
+    "GClass2088": {
+        "NewName": "MagazineInHandsVisual",
+        "NewNamespace": "EFT"
+    },
+    "GClass2089": {
+        "NewName": "BeltMagazineInHandsVisual",
+        "NewNamespace": "EFT"
+    },
+    "GClass2090": {
+        "NewName": "ObservedBeltMagazineInHands",
+        "NewNamespace": "EFT"
+    },
+    "GClass2091": {
+        "NewName": "SpringMagazineVisual",
+        "NewNamespace": "EFT"
+    },
+    "GClass2093": {
+        "NewName": "InvalidCustomRotator",
+        "NewNamespace": "EFT"
+    },
+    "GClass2094": {
+        "NewName": "CameraContainerRotator",
+        "NewNamespace": "EFT"
+    },
+    "GClass2095": {
+        "NewName": "BtrSideRotator",
+        "NewNamespace": "EFT"
+    },
+    "GClass2096": {
+        "NewName": "PlayerAnimatorControllerEventsTable",
+        "NewNamespace": "EFT"
+    },
+    "GClass2097": {
+        "NewName": "BaseEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2098": {
+        "NewName": "BipodToggleEvents",
+        "NewNamespace": "EFT"
+    },
+    "GClass2099": {
+        "NewName": "ClimbSoundsEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2100": {
+        "NewName": "DropBackpackEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2101": {
+        "NewName": "SprintVaultSoundEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2102": {
+        "NewName": "VaultSoundsEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2103": {
+        "NewName": "ZombieFireBulletEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2104": {
+        "NewName": "ZombieFireEndEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2105": {
+        "NewName": "DoorInteractSubState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2106": {
+        "NewName": "LayHand",
+        "NewNamespace": "EFT"
+    },
+    "GClass2107": {
+        "NewName": "HandAway",
+        "NewNamespace": "EFT"
+    },
+    "GClass2108": {
+        "NewName": "ObservedPlayerLeftStanceController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2110": {
+        "NewName": "ApproachState"
+    },
+    "GClass2111": {
+        "NewName": "ApproachStateAI"
+    },
+    "GClass2112": {
+        "NewName": "BreachDoorState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2113": {
+        "NewName": "BreachDoorStateAI",
+        "NewNamespace": "EFT"
+    },
+    "GClass2114": {
+        "NewName": "DoorInteractState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2115": {
+        "NewName": "DoorInteractStateAI",
+        "NewNamespace": "EFT"
+    },
+    "GClass2116": {
+        "NewName": "IdlePlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2117": {
+        "NewName": "Prone2StandState"
+    },
+    "GClass2118": {
+        "NewName": "SideStepPlayerState"
+    },
+    "GClass2119": {
+        "NewName": "Transit2ProneState"
+    },
+    "GClass2120": {
+        "NewName": "BlindeFireState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2121": {
+        "NewName": "PronePlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2122": {
+        "NewName": "PronePlayerStateAI",
+        "NewNamespace": "EFT"
+    },
+    "GClass2123": {
+        "NewName": "RollPlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2124": {
+        "NewName": "StationaryPlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2125": {
+        "NewName": "JumpLandingState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2126": {
+        "NewName": "VaultingLandingState"
+    },
+    "GClass2127": {
+        "NewName": "JumpPlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2128": {
+        "NewName": "FallDown",
+        "NewNamespace": "EFT"
+    },
+    "GClass2129": {
+        "NewName": "MovePlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2130": {
+        "NewName": "ProneMovePlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2131": {
+        "NewName": "ProneMovePlayerStateAI"
+    },
+    "GClass2132": {
+        "NewName": "SprintPlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2133": {
+        "NewName": "PickUpState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2134": {
+        "NewName": "PlantPlayerState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2135": {
+        "NewName": "SprintToIdleTransitionState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2136": {
+        "NewName": "VaultingFallDownState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2137": {
+        "NewName": "VaultingMovementState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2138": {
+        "NewName": "ClimbState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2139": {
+        "NewName": "VaultState",
+        "NewNamespace": "EFT"
+    },
+    "GClass2140": {
+        "NewName": "IdleZombieState",
+        "NewNamespace": "EFT.ZombieMovementStates"
+    },
+    "GClass2141": {
+        "NewName": "TurnZombieState",
+        "NewNamespace": "EFT.ZombieMovementStates"
+    },
+    "GClass2142": {
+        "NewName": "MoveZombieState",
+        "NewNamespace": "EFT.ZombieMovementStates"
+    },
+    "GClass2143": {
+        "NewName": "EndMoveZombieState",
+        "NewNamespace": "EFT.ZombieMovementStates"
+    },
+    "GClass2144": {
+        "NewName": "StartMoveZombieState",
+        "NewNamespace": "EFT.ZombieMovementStates"
+    },
+    "GClass2145": {
+        "NewName": "IdleWeaponMountingState",
+        "NewNamespace": "EFT.WeaponMountingStates"
+    },
+    "GClass2147": {
+        "NewName": "ObservedVaultingFallDownMovementState",
+        "NewNamespace": "EFT.NextObserver"
+    },
+    "GClass2148": {
+        "NewName": "ObservedVaultingLandingState",
+        "NewNamespace": "EFT.NextObserver"
+    },
+    "GClass2190": {
+        "NewName": "ProfileSettingsExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2518": {
+        "NewName": "NotificationFriendRequestCanceled",
+        "NewNamespace": "EFT.Communications"
     }
 }

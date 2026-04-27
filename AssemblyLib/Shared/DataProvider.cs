@@ -159,7 +159,9 @@ public class DataProvider
             var dupe = DirectMapModels.Where(x => x.Value.NewName == mapping.NewName);
             if (dupe.Any())
             {
-                throw new DuplicateDirectMapException($"Duplicate direct mapping found: {name} in: {file}");
+                throw new DuplicateDirectMapException(
+                    $"Duplicate direct mapping new name found: {dupe.FirstOrDefault().Value.NewName ?? "NewName is null"} in: {file}"
+                );
             }
         }
 

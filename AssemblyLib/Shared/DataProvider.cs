@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
+using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using Serilog;
 using Serilog.Events;
@@ -121,14 +122,13 @@ public class DataProvider
             var jsonText = File.ReadAllText(file);
             var tmp = JsonSerializer.Deserialize<Dictionary<string, DirectMapModel>>(jsonText, settings)!;
 
-            count += CountMappingsRecursively(tmp);
+            count += CountMappingsRecursively(tmp, file);
             var localCount = 0;
             foreach (var (name, model) in tmp)
             {
                 if (!DirectMapModels.TryAdd(name, model))
                 {
-                    Log.Error("Duplicate Found, {name}:{value}", name, model.NewName);
-                    continue;
+                    throw new DuplicateDirectMapException($"Duplicate direct mapping found, {name}");
                 }
 
                 localCount++;
@@ -144,7 +144,7 @@ public class DataProvider
         Log.Information("Total Count: {Count}", count);
     }
 
-    private int CountMappingsRecursively(Dictionary<string, DirectMapModel> models)
+    private int CountMappingsRecursively(Dictionary<string, DirectMapModel> models, string file)
     {
         // Don't count things we aren't renaming
         var count = models.Count(kvp => kvp.Value.NewName is not null);
@@ -153,20 +153,13 @@ public class DataProvider
         {
             if (mapping.NestedTypes?.Count > 0)
             {
-                count += CountMappingsRecursively(mapping.NestedTypes);
+                count += CountMappingsRecursively(mapping.NestedTypes, file);
             }
 
             var dupe = DirectMapModels.Where(x => x.Value.NewName == mapping.NewName);
             if (dupe.Any())
             {
-                // Only Log and deal with, this is a bad mapping issue
-                Log.Error(
-                    "Duplicate Found, {name}:{value}, Dupe: {name2}:{value2}",
-                    name,
-                    mapping.NewName,
-                    dupe.First().Key,
-                    dupe.First().Value.NewName
-                );
+                throw new DuplicateDirectMapException($"Duplicate direct mapping found: {name} in: {file}");
             }
         }
 

@@ -18,11 +18,14 @@ public class DataProvider
         Settings = LoadAppSettings();
 
         LoadDirectMappingFile();
+
+        Instance = this;
     }
 
+    public static DataProvider Instance { get; private set; } = null!;
+
     public Settings Settings { get; }
-    public RuntimeContext Context { get; private set; }
-    public AssemblyDefinition LoadedAssembly { get; private set; }
+    public RuntimeContext Context { get; private set; } = null!;
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? DummyDllModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }

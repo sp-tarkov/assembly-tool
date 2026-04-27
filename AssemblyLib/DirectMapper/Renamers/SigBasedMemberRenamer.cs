@@ -76,6 +76,7 @@ public class SigBasedMemberRenamer(
 
     private void RenameAllTypes()
     {
+        // First pass, handles actions that require both the target and the dummy
         foreach (var (targetType, dummyType) in _targetToDummyMap)
         {
             if (Log.IsEnabled(LogEventLevel.Debug))
@@ -86,6 +87,12 @@ public class SigBasedMemberRenamer(
             RenameMethodsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
             //RenameGenericParametersOnType(targetType, dummyType);
+        }
+
+        // Second pass, handles actions that only require the target
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        {
+            //RenameInterfacePrependedMethods(type);
         }
     }
 
@@ -325,6 +332,40 @@ public class SigBasedMemberRenamer(
                     oldName,
                     targetGenericParameter.Name?.ToString()
                 );
+            }
+        }
+    }
+
+    private void RenameInterfacePrependedMethods(TypeDefinition typeDef)
+    {
+        foreach (var method in typeDef.Methods.Where(m => m.IsExplicitInterfaceImplementation()))
+        {
+            var splitName = method.Name?.Split('.');
+            if (splitName is null || splitName.Length < 2)
+            {
+                continue;
+            }
+
+            var changedToken = false;
+            for (var i = 0; i < splitName.Length; i++)
+            {
+                if (
+                    splitName[i].IsObfuscatedName()
+                    && dataProvider.DirectMapModels.TryGetValue(splitName[i], out var model)
+                    && model.NewName != null
+                )
+                {
+                    splitName[i] = model.NewName;
+                    changedToken = true;
+                }
+            }
+
+            if (changedToken)
+            {
+                var newName = string.Join(".", splitName);
+
+                Log.Information("Renaming explicit interface method {old} -> {new}", method.Name?.ToString(), newName);
+                method.Name = new Utf8String(newName);
             }
         }
     }

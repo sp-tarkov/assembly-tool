@@ -314,47 +314,24 @@ public class AttributeFactory(DataProvider dataProvider)
         foreach (var arg in genericSig.TypeArguments)
         {
             var argFullName = GetFullTypeName(arg);
-            //Log.Information("  Processing argument: {ArgName}", argFullName);
 
-            // THE KEY: Try to match the OLD name from the string representation
+            // Try to match the OLD name from the string representation
             var updatedArg = FindReplacementForArgument(arg, argFullName, renameMap);
 
             if (updatedArg != null)
             {
-                /*
-                Log.Information("    -> Updated to: {NewName}", GetFullTypeName(updatedArg));
-                Log.Information("    -> Type details: {Details}", updatedArg.FullName);
-
-
-                // Debug: Check what the TypeDefinition looks like
-                if (updatedArg is TypeDefOrRefSignature tdr)
-                {
-                    var resolved = tdr.Type?.Resolve();
-                    if (resolved != null)
-                    {
-                        Log.Information(
-                            "    -> Resolved type name: {Name}, DeclaringType: {Declaring}",
-                            resolved.Name.ToString(),
-                            resolved.DeclaringType?.Name.ToString()
-                        );
-
-                    }
-                }
-                */
-
                 updatedArguments.Add(updatedArg);
                 anyArgumentUpdated = true;
             }
             else
             {
-                //Log.Information("    -> No update needed");
                 updatedArguments.Add(arg);
             }
         }
 
+        // No changes needed
         if (!baseTypeRenamed && !anyArgumentUpdated)
         {
-            //Log.Information("No changes needed for this generic attribute");
             return null;
         }
 
@@ -375,30 +352,7 @@ public class AttributeFactory(DataProvider dataProvider)
             return null;
         }
 
-        /*
-        Log.Information("Creating new attribute with updated generic type");
-        Log.Information("  Base type: {BaseType}", finalBaseType.FullName);
-        Log.Information("  Arguments: {Args}", string.Join(", ", updatedArguments.Select(GetFullTypeName)));
-        */
-
         var result = CreateJsonConverterAttributeWithGeneric(finalBaseType, updatedArguments.ToArray());
-
-        /*
-        // Verify what we created
-        if (result.Signature?.FixedArguments.Count > 0)
-        {
-            var createdArg = result.Signature.FixedArguments[0];
-            if (createdArg.Element is GenericInstanceTypeSignature createdGeneric)
-            {
-                Log.Information(
-                    "  CREATED attribute with: {BaseType}<{Args}>",
-                    createdGeneric.GenericType.FullName,
-                    string.Join(", ", createdGeneric.TypeArguments.Select(GetFullTypeName))
-                );
-            }
-        }
-        */
-
         return result;
     }
 
@@ -428,15 +382,11 @@ public class AttributeFactory(DataProvider dataProvider)
                     // If not found, STILL return typeDef.ToTypeSignature() to replace
                     // any stale TypeReference in the blob with the current TypeDefinition.
                     // Without this, a TypeReference with the old declaring-type name
-                    // (e.g. GClass3629+EActionType) is kept even after DialogAction is renamed.
+                    // (e.g. GClass3629+EActionType) is kept even after its renamed.
                     return HandleNestedType(typeDef, renameMap) ?? typeDef.ToTypeSignature();
                 }
             }
         }
-
-        // Type couldn't be resolved - it's probably already renamed
-        // Parse the string name to extract the old declaring type name
-        //Log.Information("    Type not resolvable, parsing string: {Name}", argFullName);
 
         // Handle nested types like "GClass3666+EDialogLineIconType"
         if (argFullName.Contains('+'))
@@ -454,25 +404,9 @@ public class AttributeFactory(DataProvider dataProvider)
                     declaringTypeName = declaringTypeName.Substring(lastDot + 1);
                 }
 
-                /*
-                Log.Information(
-                    "    Parsed nested: declaring={Declaring}, nested={Nested}",
-                    declaringTypeName,
-                    nestedTypeName
-                );
-                */
-
                 // Look for the declaring type in rename map
                 if (renameMap.TryGetValue(declaringTypeName, out var renamedDeclaringType))
                 {
-                    /*
-                    Log.Information(
-                        "    Found OLD declaring type in renameMap: {Old} -> {New}",
-                        declaringTypeName,
-                        renamedDeclaringType.Name.ToString()
-                    );
-                    */
-
                     // Find the nested type
                     var newNestedType = renamedDeclaringType.NestedTypes.FirstOrDefault(nt =>
                         nt.Name == nestedTypeName
@@ -483,33 +417,15 @@ public class AttributeFactory(DataProvider dataProvider)
                         //Log.Information("    Found nested type in renamed parent: {Nested}", nestedTypeName);
                         return newNestedType.ToTypeSignature();
                     }
-
-                    /*
-                    Log.Warning(
-                        "    Nested type {Nested} not found in {Parent}. Available: {Available}",
-                        nestedTypeName,
-                        renamedDeclaringType.Name,
-                        string.Join(", ", renamedDeclaringType.NestedTypes.Select(nt => nt.Name?.ToString()))
-                    );
-                    */
                 }
                 else
                 {
-                    //Log.Warning("    Declaring type {Declaring} not found in renameMap", declaringTypeName);
-
                     // Show what keys exist that might match
                     var similarKeys = renameMap
                         .Keys.Where(k =>
                             k.Contains(declaringTypeName.Substring(0, Math.Min(declaringTypeName.Length, 8)))
                         )
                         .ToList();
-
-                    /*
-                    if (similarKeys.Any())
-                    {
-                        Log.Information("    Similar keys: {Keys}", string.Join(", ", similarKeys.Take(5)));
-                    }
-                    */
                 }
             }
         }
@@ -517,7 +433,6 @@ public class AttributeFactory(DataProvider dataProvider)
         // Try direct lookup by full name
         if (renameMap.TryGetValue(argFullName, out var directMatch))
         {
-            //Log.Information("    Found direct string match: {Name}", argFullName);
             return directMatch.ToTypeSignature();
         }
 
@@ -528,14 +443,6 @@ public class AttributeFactory(DataProvider dataProvider)
     {
         var declaringTypeName = typeDef.DeclaringType!.Name?.ToString();
         var declaringTypeFullName = typeDef.DeclaringType.FullName;
-
-        /*
-        Log.Information(
-            "    Nested type - declaring: {DeclaringName} (full: {DeclaringFull})",
-            declaringTypeName,
-            declaringTypeFullName
-        );
-        */
 
         // Try simple name first
         if (declaringTypeName != null && renameMap.TryGetValue(declaringTypeName, out var renamedDeclaringType))
@@ -551,14 +458,6 @@ public class AttributeFactory(DataProvider dataProvider)
         // Try full name
         if (renameMap.TryGetValue(declaringTypeFullName, out renamedDeclaringType))
         {
-            /*
-            Log.Information(
-                "    Found declaring type by FULLNAME: {Old} -> {New}",
-                declaringTypeFullName,
-                renamedDeclaringType.Name
-            );
-            */
-
             return FindNestedInParent(typeDef, renamedDeclaringType);
         }
 
@@ -658,12 +557,6 @@ public class AttributeFactory(DataProvider dataProvider)
         var converterTypeRef = new TypeReference(module, scope, converterType.Namespace, converterType.Name).ImportWith(
             module.DefaultImporter
         );
-
-        /*
-        Log.Information("  Creating GenericInstanceTypeSignature:");
-        Log.Information("    Base: {Base}", converterTypeRef.FullName);
-        Log.Information("    Args: {Args}", string.Join(", ", genericArguments.Select(a => a.FullName)));
-        */
 
         var genericTypeSig = new GenericInstanceTypeSignature(
             converterTypeRef,

@@ -31,6 +31,9 @@
         "NestedTypes": {
             "GInterface230": {
                 "NewName": "IClientPlayerDataSender"
+            },
+            "Class2443": {
+                "NewName": "ClientPlayerInventoryController"
             }
         }
     },
@@ -584,6 +587,13 @@
         "NestedTypes": {
             "GStruct432": {
                 "NewName": "OpticSightStatus"
+            }
+        }
+    },
+    "ProfileStats": {
+        "NestedTypes": {
+            "GClass787": {
+                "NewName": "StatInfo"
             }
         }
     }

@@ -9919,5 +9919,527 @@
     "GClass2518": {
         "NewName": "NotificationFriendRequestCanceled",
         "NewNamespace": "EFT.Communications"
+    },
+    "GClass2233": {
+        "NewName": "SessionStatistics",
+        "NewNamespace": "EFT"
+    },
+    "GClass1866`1": {
+        "NewName": "EnumConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass565": {
+        "NewName": "FollowerCloseCoverBoss"
+    },
+    "GClass566": {
+        "NewName": "FollowerCloseCoverBossWide"
+    },
+    "GClass567": {
+        "NewName": "FollowerCloseCoverBossWithStop"
+    },
+    "GClass568": {
+        "NewName": "FollowerScout"
+    },
+    "GClass569": {
+        "NewName": "FollowerStayAtPlace"
+    },
+    "GClass576": {
+        "NewName": "TrigonometryAngs"
+    },
+    "GClass577": {
+        "NewName": "AIGrenadeHelper"
+    },
+    "GClass579": {
+        "NewName": "BotDamageData"
+    },
+    "GClass583": {
+        "NewName": "PointForCheck"
+    },
+    "GClass584": {
+        "NewName": "ReportAiData"
+    },
+    "GClass585": {
+        "NewName": "SuspetionPlace"
+    },
+    "GClass593": {
+        "NewName": "GoToPointRequest"
+    },
+    "GClass594": {
+        "NewName": "HideRequest"
+    },
+    "GClass647`1": {
+        "NewName": "JsonResponse"
+    },
+    "GClass648": {
+        "NewName": "JsonResponse"
+    },
+    "GClass679": {
+        "NewName": "IntContainer"
+    },
+    "GClass722": {
+        "NewName": "AudioLogger",
+        "NewNamespace": "EFT"
+    },
+    "GClass778": {
+        "NewName": "PlayerCharacterController"
+    },
+    "GClass785": {
+        "NewName": "PlayerSpiritCharacterController"
+    },
+    "GClass831": {
+        "NewName": "MovingMaximum"
+    },
+    "GClass860": {
+        "NewName": "RendererExtensions"
+    },
+    "GClass869": {
+        "NewName": "MathUtil"
+    },
+    "GClass882": {
+        "NewName": "ErrorHandler"
+    },
+    "GClass889": {
+        "NewName": "SimpleBetterAudioQueue"
+    },
+    "GClass890": {
+        "NewName": "SuperBetterAudioQueue"
+    },
+    "GClass907": {
+        "NewName": "ValProcessor"
+    },
+    "GClass910": {
+        "NewName": "ThirdPersonStrategy"
+    },
+    "GClass1002": {
+        "NewName": "Extensions"
+    },
+    "GClass1199": {
+        "NewName": "HeadphonesEqView",
+        "NewNamespace": "Audio.ActiveHeadphones.Debug"
+    },
+    "GClass2149": {
+        "NewName": "ObservedVaultingMovementState",
+        "NewNamespace": "EFT.NextObserver"
+    },
+    "GClass2150": {
+        "NewName": "ObservedClimbUpMovementState",
+        "NewNamespace": "EFT.NextObserver"
+    },
+    "GClass2151": {
+        "NewName": "ObservedVaultMovementState",
+        "NewNamespace": "EFT.NextObserver"
+    },
+    "GClass2152": {
+        "NewName": "ObservedPlayerApproachState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2154": {
+        "NewName": "ObservedPlayerDoorBreachState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2155": {
+        "NewName": "ObservedPlayerDoorInteractionState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2156": {
+        "NewName": "ObservedPlayerIdleState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2157": {
+        "NewName": "ObservedPlayerBlindFireState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2159": {
+        "NewName": "ObservedPlayerJumpLandingState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2160": {
+        "NewName": "ObservedPlayerJumpState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2161": {
+        "NewName": "ObservedPlayerProneMoveState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2162": {
+        "NewName": "ObservedPlayerProneState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2163": {
+        "NewName": "ObservedPlayerProneToStandState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2164": {
+        "NewName": "ObservedPlayerRunState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2165": {
+        "NewName": "ObservedPlayerSprintState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2166": {
+        "NewName": "ObservedPlayerStationaryState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2167": {
+        "NewName": "ObservedPlayerTransitionToProneState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2168": {
+        "NewName": "ObservedZombieDoorInteractionState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2169": {
+        "NewName": "ObservedZombieEndMoveState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2170": {
+        "NewName": "ObservedZombieIdleState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2171": {
+        "NewName": "ObservedZombieMoveState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2172": {
+        "NewName": "ObservedZombieStartMoveState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2173": {
+        "NewName": "ObservedZombieTurnState",
+        "NewNamespace": "EFT.NextObservedPlayer.ZombieObservedVaultingStates"
+    },
+    "GClass2176": {
+        "NewName": "SpeedLimiterWithCooldown",
+        "NewNamespace": "EFT"
+    },
+    "GClass2177": {
+        "NewName": "PlayerEffectsPauseController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2180": {
+        "NewName": "PlayerGroupExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2181": {
+        "NewName": "FavoriteItemsStorage",
+        "NewNamespace": "EFT"
+    },
+    "GClass2182": {
+        "NewName": "HealthInfoAdapter",
+        "NewNamespace": "EFT"
+    },
+    "GClass2183": {
+        "NewName": "WishlistItem",
+        "NewNamespace": "EFT"
+    },
+    "GClass2187": {
+        "NewName": "ProfileStatusData",
+        "NewNamespace": "EFT"
+    },
+    "GClass2192": {
+        "NewName": "ProfileSlice",
+        "NewNamespace": "EFT"
+    },
+    "GClass2195": {
+        "NewName": "LoadingTimeout",
+        "NewNamespace": "EFT"
+    },
+    "GClass2196": {
+        "NewName": "SpawnInfo",
+        "NewNamespace": "EFT"
+    },
+    "GClass2222": {
+        "NewName": "ProfileBanDescriptor",
+        "NewNamespace": "EFT"
+    },
+    "GClass2234": {
+        "NewName": "SearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2235": {
+        "NewName": "PlayerSearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2236": {
+        "NewName": "ActiveSearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2237": {
+        "NewName": "NetworkSearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2238": {
+        "NewName": "ObservedPlayerSearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2242": {
+        "NewName": "BotSearchController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2243": {
+        "NewName": "NestableExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2248": {
+        "NewName": "ClientAuthorizedSkill",
+        "NewNamespace": "EFT"
+    },
+    "GClass2262": {
+        "NewName": "MasteringLevelComparer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2263`1": {
+        "NewName": "ComparableHashSet",
+        "NewNamespace": "EFT"
+    },
+    "GClass2265": {
+        "NewName": "DumbStatisticsManager",
+        "NewNamespace": "EFT"
+    },
+    "GClass2268": {
+        "NewName": "LocalStatisticManager",
+        "NewNamespace": "EFT"
+    },
+    "GClass2269": {
+        "NewName": "ServerStatisticManager",
+        "NewNamespace": "EFT"
+    },
+    "GClass2273": {
+        "NewName": "TraderServicesItemPaymaster",
+        "NewNamespace": "EFT"
+    },
+    "GClass2274": {
+        "NewName": "TraderServiceAffordabilityChecker",
+        "NewNamespace": "EFT"
+    },
+    "GClass2276": {
+        "NewName": "VoipQualitySettings",
+        "NewNamespace": "EFT"
+    },
+    "GClass2277": {
+        "NewName": "PushToTalkSettings",
+        "NewNamespace": "EFT"
+    },
+    "GClass2281": {
+        "NewName": "ResourceKeyExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass2284": {
+        "NewName": "ClientRunddansController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2285": {
+        "NewName": "LocalRunddansController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2286": {
+        "NewName": "NetworkRunddansController",
+        "NewNamespace": "EFT"
+    },
+    "GClass2287": {
+        "NewName": "LoadScenesFromPresetOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2288": {
+        "NewName": "ModernLoadScenesFromPreset",
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GClass2289": {
+                "NewName": "SceneToken"
+            }
+        }
+    },
+    "GClass2291": {
+        "NewName": "VirtualGroup",
+        "NewNamespace": "EFT"
+    },
+    "GClass2292": {
+        "NewName": "ClientHardwareDescription",
+        "NewNamespace": "EFT"
+    },
+    "GClass2294": {
+        "NewName": "BufferExtension",
+        "NewNamespace": "EFT"
+    },
+    "GClass2295": {
+        "NewName": "JobsScattering",
+        "NewNamespace": "EFT"
+    },
+    "GClass2296": {
+        "NewName": "JobScattering",
+        "NewNamespace": "EFT"
+    },
+    "GClass2298": {
+        "NewName": "VectorTools",
+        "NewNamespace": "EFT"
+    },
+    "GClass2299`2": {
+        "NewName": "UnitySerializedDictionary",
+        "NewNamespace": "EFT"
+    },
+    "GClass2300": {
+        "NewName": "CommandLineArgs",
+        "NewNamespace": "EFT"
+    },
+    "GClass2304": {
+        "NewName": "ClientApplicationInitOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2308`1": {
+        "NewName": "LoginShowOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2309": {
+        "NewName": "EftLoginShowOperation",
+        "NewNamespace": "EFT"
+    },
+    "GClass2312": {
+        "NewName": "Scenes",
+        "NewNamespace": "EFT"
+    },
+    "GClass2313": {
+        "NewName": "AudioUtils",
+        "NewNamespace": "EFT"
+    },
+    "GClass2314": {
+        "NewName": "Subtitles",
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GClass2315": {
+                "NewName": "ActiveCCLine"
+            }
+        }
+    },
+    "GClass2316": {
+        "NewName": "AreaStageSerializer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2317": {
+        "NewName": "AreaTemplateSerializer",
+        "NewNamespace": "EFT"
+    },
+    "GClass2318": {
+        "NewName": "RequirementsConverter",
+        "NewNamespace": "EFT"
+    },
+    "GClass2319": {
+        "NewName": "CheckVersionData",
+        "NewNamespace": "EFT"
+    },
+    "GClass2322": {
+        "NewName": "BuildsResponse",
+        "NewNamespace": "EFT"
+    },
+    "GClass2323": {
+        "NewName": "ClientRequestErrorHandler",
+        "NewNamespace": "EFT"
+    },
+    "GClass2397": {
+        "NewName": "GameSettingsVersions",
+        "NewNamespace": "EFT.Settings.Game",
+        "NestedTypes": {
+            "Class1842": {
+                "NewName": "Version1"
+            }
+        }
+    },
+    "GClass2398": {
+        "NewName": "ControlSettingsVersions",
+        "NewNamespace": "EFT.Settings.Control",
+        "NestedTypes": {
+            "Class1844": {
+                "NewName": "Version1"
+            },
+            "Class1846": {
+                "NewName": "Version2"
+            },
+            "Class1848": {
+                "NewName": "Version3"
+            },
+            "Class1849": {
+                "NewName": "Version4"
+            }
+        }
+    },
+    "GClass2425": {
+        "NewName": "HideoutSkillManager",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2426": {
+        "NewName": "HideoutSlot",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2427": {
+        "NewName": "Improvement",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2429": {
+        "NewName": "ImprovementData",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2430": {
+        "NewName": "DefaultProductionStorage",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2431": {
+        "NewName": "ItemsProducerBase",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2432": {
+        "NewName": "CultistsProducer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2433": {
+        "NewName": "ItemsProducer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2434": {
+        "NewName": "PermanentProducer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2435": {
+        "NewName": "BitcoinProducer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2436": {
+        "NewName": "ScavCaseProducer",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2456": {
+        "NewName": "Constants",
+        "NewNamespace": "EFT.Hideout"
+    },
+    "GClass2464": {
+        "NewName": "PopperTargetUnfoldScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2466": {
+        "NewName": "RailSpeedPhaseTraining",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2467": {
+        "NewName": "RailTargetFoldScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2468": {
+        "NewName": "RailTargetInspectScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2470": {
+        "NewName": "RailTargetStopScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2469": {
+        "NewName": "RailTargetShootingScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2471": {
+        "NewName": "ShootTrainingScenario",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    },
+    "GClass2472": {
+        "NewName": "TargetControl",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
     }
 }

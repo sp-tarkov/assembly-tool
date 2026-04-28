@@ -1,5 +1,6 @@
 using AsmResolver.DotNet;
 using AssemblyLib.Shared;
+using Serilog;
 
 namespace AssemblyLib.Extensions;
 
@@ -46,6 +47,24 @@ internal static class MethodDefExtensions
             }
 
             return false;
+        }
+        
+        public void DumpMethodInstructions()
+        {
+            var instructions = methodDef.CilMethodBody!.Instructions;
+
+            Log.Information("=== {method} IL Dump ===", methodDef.Name);
+            for (var i = 0; i < instructions.Count; i++)
+            {
+                Log.Information(
+                    "[{I}] {Offset:X4}: {CilOpCode} {Operand} (type: {Name})",
+                    i,
+                    instructions[i].Offset,
+                    instructions[i].OpCode,
+                    instructions[i].Operand,
+                    instructions[i].Operand?.GetType().Name
+                );
+            }
         }
     }
     

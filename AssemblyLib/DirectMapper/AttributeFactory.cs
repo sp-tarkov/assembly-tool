@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
-using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Serilog;
 using Serilog.Events;
@@ -45,7 +44,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
         foreach (var type in types)
         {
-            if (type is null || type.NestedTypes.Count == 0)
+            if (type.NestedTypes.Count == 0)
             {
                 continue;
             }
@@ -194,22 +193,15 @@ public class AttributeFactory(DataProvider dataProvider)
 
             if (newAttr != null)
             {
-                if (Log.IsEnabled(LogEventLevel.Debug))
-                {
-                    Log.Debug("Successfully created updated attribute for: {TypeName}", referencedTypeName);
-                }
-
+                Log.Information("Successfully created updated attribute for: {TypeName}", referencedTypeName);
                 replacements.Add((attr, newAttr));
             }
             else
             {
-                if (Log.IsEnabled(LogEventLevel.Debug))
-                {
-                    Log.Debug(
-                        "No update needed or failed to create updated attribute for: {TypeName}",
-                        referencedTypeName
-                    );
-                }
+                Log.Warning(
+                    "No update needed or failed to create updated attribute for: {TypeName}",
+                    referencedTypeName
+                );
             }
         }
 
@@ -414,18 +406,8 @@ public class AttributeFactory(DataProvider dataProvider)
 
                     if (newNestedType != null)
                     {
-                        //Log.Information("    Found nested type in renamed parent: {Nested}", nestedTypeName);
                         return newNestedType.ToTypeSignature();
                     }
-                }
-                else
-                {
-                    // Show what keys exist that might match
-                    var similarKeys = renameMap
-                        .Keys.Where(k =>
-                            k.Contains(declaringTypeName.Substring(0, Math.Min(declaringTypeName.Length, 8)))
-                        )
-                        .ToList();
                 }
             }
         }
@@ -447,11 +429,6 @@ public class AttributeFactory(DataProvider dataProvider)
         // Try simple name first
         if (declaringTypeName != null && renameMap.TryGetValue(declaringTypeName, out var renamedDeclaringType))
         {
-            Log.Information(
-                "    Found declaring type by NAME: {Old} -> {New}",
-                declaringTypeName,
-                renamedDeclaringType.Name
-            );
             return FindNestedInParent(typeDef, renamedDeclaringType);
         }
 
@@ -474,20 +451,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
         var newNestedType = newParent.NestedTypes.FirstOrDefault(nt => nt.Name == nestedTypeName);
 
-        if (newNestedType != null)
-        {
-            Log.Information("    Found nested type: {NestedName}", nestedTypeName);
-            return newNestedType.ToTypeSignature();
-        }
-
-        Log.Warning(
-            "    Nested type {NestedName} not found in {DeclaringType}. Available: {Available}",
-            nestedTypeName,
-            newParent.Name,
-            string.Join(", ", newParent.NestedTypes.Select(nt => nt.Name?.ToString()))
-        );
-
-        return null;
+        return newNestedType?.ToTypeSignature();
     }
 
     private CustomAttribute CreateJsonConverterAttribute(TypeDefinition converterType)
@@ -550,6 +514,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
         var scope =
             converterType.DeclaringType == null
+                // IDE says we don't need this cast, but this is a lie. DO NOT REMOVE
                 ? (IResolutionScope)module
                 : (IResolutionScope)converterType.DeclaringType.ToTypeReference();
 
@@ -563,8 +528,6 @@ public class AttributeFactory(DataProvider dataProvider)
             converterType.IsValueType,
             genericArguments
         );
-
-        //Log.Information("  GenericInstanceTypeSignature created: {Sig}", genericTypeSig.FullName);
 
         var customAttribute = new CustomAttribute(jsonConverterAttrRef)
         {

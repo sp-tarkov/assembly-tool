@@ -10779,4 +10779,8 @@
         "NewName": "ShootTrainingScenario",
         "NewNamespace": "EFT.Hideout.ShootingRange"
     },
+    "GClass2472": {
+        "NewName": "TargetControl",
+        "NewNamespace": "EFT.Hideout.ShootingRange"
+    }
 }

@@ -2571,7 +2571,15 @@
     },
     "GClass1897": {
         "NewName": "Thermobaric",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Struct302": {
+                "NewName": "ThermobaricData"
+            },
+            "GStruct176": {
+                "NewName": "Cell"
+            }
+        }
     },
     "GClass1898": {
         "NewName": "TrafficData",
@@ -5211,7 +5219,7 @@
     },
     "GClass3076": {
         "NewName": "ObservedPlayerInterpolator",
-        "NewNamespace": "EFT.NextObservedPlayer"
+        "NewNamespace": "EFT.Network"
     },
     "GClass3077": {
         "NewName": "ConnectionState",
@@ -5255,7 +5263,21 @@
     },
     "GClass3087": {
         "NewName": "NetworkHostThread",
-        "NewNamespace": "EFT.Network.Transport"
+        "NewNamespace": "EFT.Network.Transport",
+        "NestedTypes": {
+            "Struct887": {
+                "NewName": "ConnectQueueData"
+            },
+            "Struct888": {
+                "NewName": "DisconnectQueueData"
+            },
+            "Struct889": {
+                "NewName": "ReceiveQueueData"
+            },
+            "Struct890": {
+                "NewName": "SendQueueData"
+            },
+        }
     },
     "GClass3088": {
         "NewName": "NetworkMessageFIXMELATER",
@@ -5287,7 +5309,12 @@
     },
     "GClass3095`1": {
         "NewName": "ConcurrentQueueNonAlloc",
-        "NewNamespace": "EFT.Network.Tools"
+        "NewNamespace": "EFT.Network.Tools",
+        "NestedTypes": {
+            "Struct891": {
+                "NewName": "VolatileBool"
+            },
+        }
     },
     "GClass3097": {
         "NewName": "NetworkStatistics",
@@ -6322,7 +6349,12 @@
     },
     "GClass3667": {
         "NewName": "TraderDialogHistory",
-        "NewNamespace": "EFT.Dialogs"
+        "NewNamespace": "EFT.Dialogs",
+        "NestedTypes": {
+            "GStruct430": {
+                "NewName": "DialogHistoryLine"
+            }
+        }
     },
     "GClass3669": {
         "NewName": "MediaAnimationController",
@@ -7807,7 +7839,12 @@
         "NewName": "Stamina"
     },
     "GClass775": {
-        "NewName": "PhysicalBase"
+        "NewName": "PhysicalBase",
+        "NestedTypes": {
+            "GStruct40": {
+                "NewName": "StaminaStruct"
+            }
+        }
     },
     "GClass776": {
         "NewName": "Physical"
@@ -8420,10 +8457,20 @@
         "NewName": "Quadrant"
     },
     "GClass963": {
-        "NewName": "StaticDeferredDecalQuadrant"
+        "NewName": "StaticDeferredDecalQuadrant",
+        "NestedTypes": {
+            "GStruct65": {
+                "NewName": "TextureMaxSize"
+            },
+        }
     },
     "GClass964": {
-        "NewName": "TextureTreeQuadrant"
+        "NewName": "TextureTreeQuadrant",
+        "NestedTypes": {
+            "GStruct66": {
+                "NewName": "TextureMaxSize"
+            },
+        }
     },
     "GClass965`2": {
         "NewName": "QuadTree"

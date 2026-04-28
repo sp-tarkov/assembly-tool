@@ -596,5 +596,115 @@
                 "NewName": "StatInfo"
             }
         }
-    }
+    },
+    "EFT.Dialogs.TraderDialogHistory": {
+        "NestedTypes": {
+            "GStruct430": {
+                "NewName": "DialogHistoryLine"
+            }
+        }
+    },
+    "SynchronizableObjectPacket": {
+        "NestedTypes": {
+            "GStruct47": {
+                "NewName": "Data"
+            }
+        }
+    },
+    "PhysicalBase": {
+        "NestedTypes": {
+            "GStruct40": {
+                "NewName": "StaminaStruct"
+            }
+        }
+    },
+    "EFT.Thermobaric": {
+        "NestedTypes": {
+            "Struct302": {
+                "NewName": "ThermobaricData"
+            },
+            "GStruct176": {
+                "NewName": "Cell"
+            }
+        }
+    },
+    "EFT.ThermobaricRenderer": {
+        "NestedTypes": {
+            "GStruct285": {
+                "NewName": "ParticleData"
+            },
+        }
+    },
+    "RootMotion.Demos.UserControlThirdPerson": {
+        "NestedTypes": {
+            "GStruct146": {
+                "NewName": "State"
+            },
+        }
+    },
+    "PlayerBones": {
+        "NestedTypes": {
+            "GStruct41": {
+                "NewName": "TransitStruct"
+            },
+        }
+    },
+    "StaticDeferredDecalQuadrant": {
+        "NestedTypes": {
+            "GStruct65": {
+                "NewName": "TextureMaxSize"
+            },
+        }
+    },
+    "TextureDecalsPainter": {
+        "NestedTypes": {
+            "GStruct67": {
+                "NewName": "DecalDescription"
+            },
+        }
+    },
+    "TextureTreeQuadrant": {
+        "NestedTypes": {
+            "GStruct66": {
+                "NewName": "TextureMaxSize"
+            },
+        }
+    },
+    "EFT.Trading.Trader": {
+        "NestedTypes": {
+            "GStruct300": {
+                "NewName": "ItemPrice"
+            },
+        }
+    },
+    "EFT.Network.SnapshotInterpolator": {
+        "NestedTypes": {
+            "GStruct417": {
+                "NewName": "SnapshotInterpolatorOptions"
+            },
+        }
+    },
+    "EFT.Network.Transport.NetworkHostThread": {
+        "NestedTypes": {
+            "Struct887": {
+                "NewName": "ConnectQueueData"
+            },
+            "Struct888": {
+                "NewName": "DisconnectQueueData"
+            },
+            "Struct889": {
+                "NewName": "ReceiveQueueData"
+            },
+            "Struct890": {
+                "NewName": "SendQueueData"
+            },
+        }
+    },
+    "EFT.Network.Tools.ConcurrentQueueNonAlloc`1": {
+        "NestedTypes": {
+            "Struct891": {
+                "NewName": "VolatileBool"
+            },
+        }
+    },
 }

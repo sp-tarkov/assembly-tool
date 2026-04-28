@@ -5198,9 +5198,108 @@
         "NewName": "NetworkMessageHandlers",
         "NewNamespace": "EFT.Network"
     },
+    "GClass3073": {
+        "NewName": "NetworkMessageHandlers",
+    },
+    "GClass3074": {
+        "NewName": "SnapshotInterpolator",
+        "NewNamespace": "EFT.Network"
+    },
+    "GClass3075`1": {
+        "NewName": "SnapshotInterpolator",
+        "NewNamespace": "EFT.Network"
+    },
     "GClass3076": {
         "NewName": "ObservedPlayerInterpolator",
         "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass3077": {
+        "NewName": "ConnectionState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3078": {
+        "NewName": "ConnectionConnectedState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3079": {
+        "NewName": "ConnectionConnectingState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3080": {
+        "NewName": "ConnectionDisconnectedState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3081": {
+        "NewName": "ConnectionInitialState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3082": {
+        "NewName": "ConnectionWaitingState",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3083": {
+        "NewName": "IPEndPointNonAlloc",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3084": {
+        "NewName": "IPEndPointNonAllocExtensions",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3085": {
+        "NewName": "NetworkConnection",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3086": {
+        "NewName": "NetworkHost",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3087": {
+        "NewName": "NetworkHostThread",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3088": {
+        "NewName": "NetworkMessageFIXMELATER",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3089": {
+        "NewName": "NetworkMessagePooled",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3090": {
+        "NewName": "NetworkMessagePool",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3091": {
+        "NewName": "NetworkTransport",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3092": {
+        "NewName": "UdpSocket",
+        "NewNamespace": "EFT.Network.Transport"
+    },
+    "GClass3093": {
+        "NewName": "ArrayPoolExtensions",
+        "NewNamespace": "EFT.Network.Tools"
+    },
+    "GClass3094`1": {
+        "NewName": "CircularBuffer",
+        "NewNamespace": "EFT.Network.Tools"
+    },
+    "GClass3095`1": {
+        "NewName": "ConcurrentQueueNonAlloc",
+        "NewNamespace": "EFT.Network.Tools"
+    },
+    "GClass3097": {
+        "NewName": "NetworkStatistics",
+        "NewNamespace": "EFT.Network.Statistics"
+    },
+    "GClass3098": {
+        "NewName": "NetworkMessageStatistics",
+        "NewNamespace": "EFT.Network.Statistics"
+    },
+    "GClass3099": {
+        "NewName": "NetworkCountStatistics",
+        "NewNamespace": "EFT.Network.Statistics"
     },
     "GClass309`1": {
         "NewName": "AICoreStrategy"
@@ -5259,6 +5358,10 @@
     },
     "GClass3110": {
         "NewName": "AmmoPack",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3111": {
+        "NewName": "ExplosiveAmmoComponent",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3112": {
@@ -5341,6 +5444,10 @@
         "NewName": "StackSlotSerializer",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3129": {
+        "NewName": "VirtualContainer",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass313": {
         "NewName": "BossBoarSniperLayersStrategy"
     },
@@ -5359,12 +5466,64 @@
     "GClass314": {
         "NewName": "BossBullyLayersStrategy"
     },
+    "GClass3134": {
+        "NewName": "BatteryTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3135": {
+        "NewName": "BuildingMaterialTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3136": {
+        "NewName": "ElectronicsTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3137": {
+        "NewName": "HouseholdGoodsTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3138": {
+        "NewName": "JewelryTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3139": {
+        "NewName": "LubricantTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3140": {
+        "NewName": "MedicalSuppliesTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3141": {
+        "NewName": "ToolTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3142": {
+        "NewName": "BarterOtherTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3143": {
+        "NewName": "FuelTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3144": {
+        "NewName": "FlyerTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3145": {
+        "NewName": "ChemLightTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3146": {
         "NewName": "CompoundItemTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3147": {
         "NewName": "EquipmentTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3148": {
+        "NewName": "ArmBandTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3149": {
@@ -5374,8 +5533,20 @@
     "GClass315": {
         "NewName": "BossKillaAgroLayersStrategy"
     },
+    "GClass3150": {
+        "NewName": "ArmorTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3151": {
+        "NewName": "ArmorPlateTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3152": {
         "NewName": "FaceCoverTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3153": {
+        "NewName": "HeadwearTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3154": {
@@ -5384,6 +5555,10 @@
     },
     "GClass3155": {
         "NewName": "HeadphonesTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3156": {
+        "NewName": "HideoutAreaContainerTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3157": {
@@ -5405,15 +5580,75 @@
         "NewName": "BipodTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3161": {
+        "NewName": "FlashlightTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3162": {
+        "NewName": "ForegripTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3163": {
+        "NewName": "GasblockTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3164": {
+        "NewName": "LightLaserTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3165": {
         "NewName": "MuzzleModTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3166": {
+        "NewName": "CompensatorTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3167": {
+        "NewName": "FlashHiderTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3168": {
+        "NewName": "MuzzleComboTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3169": {
+        "NewName": "PmsTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass317": {
         "NewName": "BossSanitarLayersStrategy"
     },
+    "GClass3170": {
+        "NewName": "SilencerTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3171": {
+        "NewName": "RailCoversTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3172": {
         "NewName": "SightModTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3173": {
+        "NewName": "AssaultScopeTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3174": {
+        "NewName": "CollimatorTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3175": {
+        "NewName": "CompactCollimatorTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3176": {
+        "NewName": "IronSightTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3177": {
+        "NewName": "OpticScopeTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3178": {
@@ -5431,8 +5666,16 @@
         "NewName": "ThermalVisionTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3181": {
+        "NewName": "TacticalComboTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3182": {
         "NewName": "GearModTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3183": {
+        "NewName": "ChargeTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3184": {
@@ -5448,8 +5691,28 @@
         "NewName": "MagazineTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3186": {
+        "NewName": "CylinderMagazineTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3187": {
+        "NewName": "SpringDrivenCylinderTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3188": {
+        "NewName": "MountTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3189": {
+        "NewName": "ShaftTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass319": {
         "NewName": "BossTagillaLayersStrategy"
+    },
+    "GClass3190": {
+        "NewName": "StockTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3191": {
         "NewName": "MasterModTemplate",
@@ -5459,12 +5722,28 @@
         "NewName": "BarrelTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3193": {
+        "NewName": "HandguardTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3194": {
+        "NewName": "PistolGripTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3195": {
+        "NewName": "ReceiverTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3196": {
         "NewName": "SearchableItemTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3197": {
         "NewName": "BackpackTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3198": {
+        "NewName": "LootContainerTemplate",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3199": {
@@ -5476,6 +5755,10 @@
     },
     "GClass320": {
         "NewName": "BossTestLayersStrategy"
+    },
+    "GClass3200": {
+        "NewName": "PocketsTemplate",
+        "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3201": {
         "NewName": "VestTemplate",
@@ -5645,11 +5928,55 @@
         "NewName": "BarterItem",
         "NewNamespace": "EFT.InventoryLogic"
     },
+    "GClass3324": {
+        "NewName": "Battery",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3325": {
+        "NewName": "BuildingMaterial",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3326": {
+        "NewName": "Electronics",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3327": {
+        "NewName": "HouseholdGoods",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3328": {
+        "NewName": "Jewelry",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3329": {
+        "NewName": "Lubricant",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass333": {
         "NewName": "FollowerSanitarLayersStrategy"
     },
+    "GClass3330": {
+        "NewName": "MedicalSupplies",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3331": {
+        "NewName": "Tool",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
     "GClass3332": {
         "NewName": "BarterOther",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3333": {
+        "NewName": "Fuel",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3334": {
+        "NewName": "Flyer",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3335": {
+        "NewName": "ChemLight",
         "NewNamespace": "EFT.InventoryLogic"
     },
     "GClass3336": {

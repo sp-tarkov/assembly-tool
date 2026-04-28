@@ -5219,7 +5219,7 @@
     },
     "GClass3076": {
         "NewName": "ObservedPlayerInterpolator",
-        "NewNamespace": "EFT.Network"
+        "NewNamespace": "EFT.NextObservedPlayer"
     },
     "GClass3077": {
         "NewName": "ConnectionState",

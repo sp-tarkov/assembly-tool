@@ -5,5 +5,6 @@ namespace AssemblyLib.DirectMapper.Patches;
 /// </summary>
 public interface IPatch
 {
+    bool Enabled { get; }
     void Patch();
 }

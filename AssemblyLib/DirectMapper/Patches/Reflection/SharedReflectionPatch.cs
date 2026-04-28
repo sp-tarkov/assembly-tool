@@ -3,11 +3,13 @@ using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches;
+namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
 public class SharedReflectionPatch(DataProvider dataProvider) : IPatch
 {
+    public bool Enabled => true;
+
     public void Patch()
     {
         var type = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "Shared");

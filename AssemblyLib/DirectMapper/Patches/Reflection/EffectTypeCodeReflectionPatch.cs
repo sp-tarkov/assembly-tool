@@ -3,11 +3,13 @@ using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches;
+namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
 public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
 {
+    public bool Enabled => true;
+
     /// <summary>
     ///     Purpose of this patch is to set the BindingFlags to Public | NonPublic
     /// </summary>

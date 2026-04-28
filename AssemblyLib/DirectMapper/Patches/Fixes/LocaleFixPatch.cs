@@ -6,11 +6,13 @@ using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches;
+namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
 public class LocaleFixPatch(DataProvider dataProvider) : IPatch
 {
+    public bool Enabled => true;
+
     /// <summary>
     ///     There are times when the locale handling code is called while there is already
     /// partial locale data in place. This patch removes a check that stops

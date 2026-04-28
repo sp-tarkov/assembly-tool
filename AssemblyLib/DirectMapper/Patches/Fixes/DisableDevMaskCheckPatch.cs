@@ -22,9 +22,7 @@ public class DisableDevMaskCheckPatch(DataProvider dataProvider) : IPatch
 
         if (body is null)
         {
-            throw new FailedToFindTypeException(
-                "Could not find `Eft.CreateProfileOperation.CG_Struct0.MoveNext()` when patching"
-            );
+            throw new FailedToFindTypeException("Could not find `Eft.LocalPlayer.CG_Struct0.MoveNext()` when patching");
         }
 
         var instructions = body.Instructions;
@@ -40,7 +38,9 @@ public class DisableDevMaskCheckPatch(DataProvider dataProvider) : IPatch
         );
 
         if (handlerToRemove is not null)
+        {
             body.ExceptionHandlers.Remove(handlerToRemove);
+        }
 
         Log.Information("DeveloperCheckPatch Successful");
     }

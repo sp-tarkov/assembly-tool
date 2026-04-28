@@ -157,7 +157,7 @@ public class DirectMapController(
     /// <returns></returns>
     private void ApplyPatches()
     {
-        foreach (var patch in patches)
+        foreach (var patch in patches.Where(p => p.Enabled))
         {
             patch.Patch();
         }

@@ -1,6 +1,7 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Shared;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Performance;
@@ -34,5 +35,7 @@ public class CoverPointMasterRemoveStopWatchPatch(DataProvider dataProvider) : I
         instructions[10].OpCode = CilOpCodes.Nop;
 
         instructions.OptimizeMacros();
+
+        Log.Information("CoverPointMasterRemoveStopWatchPatch Successful");
     }
 }

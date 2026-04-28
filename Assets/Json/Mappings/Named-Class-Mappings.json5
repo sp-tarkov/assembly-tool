@@ -596,5 +596,33 @@
                 "NewName": "StatInfo"
             }
         }
+    },
+    "EFT.ThermobaricRenderer": {
+        "NestedTypes": {
+            "GStruct285": {
+                "NewName": "ParticleData"
+            },
+        }
+    },
+    "RootMotion.Demos.UserControlThirdPerson": {
+        "NestedTypes": {
+            "GStruct146": {
+                "NewName": "State"
+            },
+        }
+    },
+    "PlayerBones": {
+        "NestedTypes": {
+            "GStruct41": {
+                "NewName": "TransitStruct"
+            },
+        }
+    },
+    "TextureDecalsPainter": {
+        "NestedTypes": {
+            "GStruct67": {
+                "NewName": "DecalDescription"
+            },
+        }
     }
 }

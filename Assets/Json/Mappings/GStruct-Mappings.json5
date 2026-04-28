@@ -29,7 +29,12 @@
     "NewName": "SmokeGrenadeNetworkData"
   },
   "GStruct46": {
-    "NewName": "SynchronizableObjectPacket"
+    "NewName": "SynchronizableObjectPacket",
+    "NestedTypes": {
+      "GStruct47": {
+        "NewName": "Data"
+      }
+    }
   },
   "GStruct63": {
     "NewName": "MarginsRect"

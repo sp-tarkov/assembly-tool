@@ -415,18 +415,21 @@ public class AttributeFactory(DataProvider dataProvider)
 
             if (typeDef != null)
             {
-                // Type is resolvable - check if it's in rename map
+                // Type is resolvable - check if it's directly renamed
                 var fullName = typeDef.FullName;
                 if (renameMap.TryGetValue(fullName, out var renamedType))
                 {
-                    Log.Information("    Found direct match (resolvable): {Old} -> {New}", fullName, renamedType.Name);
                     return renamedType.ToTypeSignature();
                 }
 
-                // Check for nested types
                 if (typeDef.IsNested && typeDef.DeclaringType != null)
                 {
-                    return HandleNestedType(typeDef, renameMap);
+                    // Try to find a rename-map-based replacement first.
+                    // If not found, STILL return typeDef.ToTypeSignature() to replace
+                    // any stale TypeReference in the blob with the current TypeDefinition.
+                    // Without this, a TypeReference with the old declaring-type name
+                    // (e.g. GClass3629+EActionType) is kept even after DialogAction is renamed.
+                    return HandleNestedType(typeDef, renameMap) ?? typeDef.ToTypeSignature();
                 }
             }
         }

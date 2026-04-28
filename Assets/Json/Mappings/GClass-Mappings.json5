@@ -2007,14 +2007,6 @@
         "NewName": "NoPossibleActionsError",
         "NewNamespace": "EFT.InventoryLogic"
     },
-    "GClass1551": {
-        "NewName": "TargetNotExaminedError",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass1555": {
-        "NewName": "NotRaidModdableError",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
     "GClass1556": {
         "NewName": "CannotModifyVitalInRaidError",
         "NewNamespace": "EFT.InventoryLogic"
@@ -2482,10 +2474,6 @@
     },
     "GClass182": {
         "NewName": "AimingToFlash"
-    },
-    "GClass1827": {
-        "NewName": "SkillLevelingBoostBonus",
-        "NewNamespace": "EFT"
     },
     "GClass183": {
         "NewName": "AimingToGoalTarget"
@@ -5285,7 +5273,7 @@
         }
     },
     "GClass3088": {
-        "NewName": "NetworkMessageFIXMELATER",
+        "NewName": "NetworkMessage",
         "NewNamespace": "EFT.Network.Transport"
     },
     "GClass3089": {
@@ -6286,9 +6274,6 @@
     "GClass3619": {
         "NewName": "ClientDialogController",
         "NewNamespace": "EFT.Dialogs"
-    },
-    "GClass362": {
-        "NewName": "SectactPriestEventStrategy"
     },
     "GClass3620": {
         "NewName": "BaseTraderDialog",
@@ -8762,22 +8747,6 @@
         "NewName": "LocalizedError",
         "NewNamespace": "EFT.InventoryLogic"
     },
-    "GClass1552": {
-        "NewName": "TargetNotExaminedError",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass1553": {
-        "NewName": "ItemNotApplicable",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass1554": {
-        "NewName": "NotRaidModdableError",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
-    "GClass1557": {
-        "NewName": "ItemNotApplicable",
-        "NewNamespace": "EFT.InventoryLogic"
-    },
     "GClass1558": {
         "NewName": "CannotSortItemError",
         "NewNamespace": "EFT.InventoryLogic"
@@ -9137,10 +9106,6 @@
     },
     "GClass1826": {
         "NewName": "RagFairCommissionBonus",
-        "NewNamespace": "EFT"
-    },
-    "GClass1828": {
-        "NewName": "SkillLevelingBoostBonus",
         "NewNamespace": "EFT"
     },
     "GClass1829": {
@@ -9621,9 +9586,6 @@
     },
     "GClass351": {
         "NewName": "RavangeZryachiyEventLayersStrategy"
-    },
-    "GClass352": {
-        "NewName": "SectactPriestEventStrategy"
     },
     "GClass353": {
         "NewName": "SectantOniLayersStrategy"
@@ -10817,8 +10779,4 @@
         "NewName": "ShootTrainingScenario",
         "NewNamespace": "EFT.Hideout.ShootingRange"
     },
-    "GClass2472": {
-        "NewName": "TargetControl",
-        "NewNamespace": "EFT.Hideout.ShootingRange"
-    }
 }

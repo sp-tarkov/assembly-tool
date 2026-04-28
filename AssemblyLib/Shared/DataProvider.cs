@@ -141,31 +141,55 @@ public class DataProvider
             );
         }
 
+        ValidateDuplicateNewNames(DirectMapModels);
         Log.Information("Total Count: {Count}", count);
     }
 
-    private int CountMappingsRecursively(Dictionary<string, DirectMapModel> models, string file)
+    private static int CountMappingsRecursively(Dictionary<string, DirectMapModel> models, string file)
     {
         // Don't count things we aren't renaming
         var count = models.Count(kvp => kvp.Value.NewName is not null);
 
-        foreach (var (name, mapping) in models)
+        foreach (var (_, mapping) in models)
         {
             if (mapping.NestedTypes?.Count > 0)
             {
                 count += CountMappingsRecursively(mapping.NestedTypes, file);
             }
-
-            var dupe = DirectMapModels.Where(x => x.Value.NewName == mapping.NewName);
-            if (dupe.Any())
-            {
-                throw new DuplicateDirectMapException(
-                    $"Duplicate direct mapping new name found: {dupe.FirstOrDefault().Value.NewName ?? "NewName is null"} in: {file}"
-                );
-            }
         }
 
         return count;
+    }
+
+    private static void ValidateDuplicateNewNames(
+        Dictionary<string, DirectMapModel> models,
+        string? parentName = null,
+        HashSet<string>? seenNames = null
+    )
+    {
+        seenNames ??= [];
+
+        foreach (var (originalName, mapping) in models)
+        {
+            var currentName =
+                parentName != null ? $"{parentName}.{mapping.NewName}"
+                : mapping.NewNamespace != null ? $"{mapping.NewNamespace}.{mapping.NewName}"
+                : mapping.NewName;
+
+            // Generics with the same name but different arity are distinct types and allowed
+            var arity = originalName.Contains('`') ? originalName.Split('`')[1] : null;
+            var seenKey = arity != null ? $"{currentName}`{arity}" : currentName;
+
+            if (seenKey is not null && !seenNames.Add(seenKey))
+            {
+                throw new DuplicateDirectMapException($"Duplicate direct mapping new name found: {currentName}");
+            }
+
+            if (mapping.NestedTypes?.Count > 0)
+            {
+                ValidateDuplicateNewNames(mapping.NestedTypes, currentName, seenNames);
+            }
+        }
     }
 
     private static Settings LoadAppSettings()

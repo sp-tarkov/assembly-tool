@@ -1,4 +1,5 @@
 ﻿using AssemblyLib.DirectMapper;
+using AssemblyLib.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using SPTarkov.DI;
@@ -17,6 +18,23 @@ public class App
 
     public async Task RunDirectMapProcess(string targetAssemblyPath, string? dummyDllPath)
     {
+        var controller = _provider?.GetService<DirectMapController>();
+        await controller?.Run(targetAssemblyPath, dummyDllPath)!;
+    }
+
+    public async Task RunDirectMapTest(
+        string targetAssemblyPath,
+        string dummyDllPath,
+        string targetType,
+        DirectMapModel testModel
+    )
+    {
+        Console.Clear();
+
+        var dataProvider = _provider?.GetService<DataProvider>();
+        dataProvider!.DirectMapModels.Clear();
+        dataProvider.DirectMapModels.Add(targetType, testModel);
+
         var controller = _provider?.GetService<DirectMapController>();
         await controller?.Run(targetAssemblyPath, dummyDllPath)!;
     }

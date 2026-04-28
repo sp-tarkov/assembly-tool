@@ -59,6 +59,8 @@ public class DirectMapController(
 
         dataProvider.LoadDummyDllModule(dummyDllPath);
 
+        attributeFactory.PreInitializeAllAttributeSignatures();
+
         await memberReferenceCache.Hydrate();
         return true;
     }

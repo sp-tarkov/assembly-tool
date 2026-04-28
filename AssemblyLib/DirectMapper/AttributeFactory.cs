@@ -11,9 +11,37 @@ namespace AssemblyLib.DirectMapper;
 [Injectable]
 public class AttributeFactory(DataProvider dataProvider)
 {
+    /// <summary>
+    ///     Force-initializes all custom attribute signatures before any renaming occurs.
+    /// AsmResolver deserializes blobs lazily; if a type is renamed first, the blob
+    /// parser can no longer resolve the old type name and throws.
+    /// </summary>
+    public void PreInitializeAllAttributeSignatures()
+    {
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        {
+            ForceInitAttributes(type);
+
+            foreach (var method in type.Methods)
+            {
+                ForceInitAttributes(method);
+            }
+
+            foreach (var property in type.Properties)
+            {
+                ForceInitAttributes(property);
+            }
+
+            foreach (var field in type.Fields)
+            {
+                ForceInitAttributes(field);
+            }
+        }
+    }
+
     public void UpdateAsyncAttributes()
     {
-        var types = dataProvider.LoadedModule.GetAllTypes();
+        var types = dataProvider.LoadedModule!.GetAllTypes();
 
         foreach (var type in types)
         {
@@ -717,6 +745,26 @@ public class AttributeFactory(DataProvider dataProvider)
         };
 
         return customAttribute;
+    }
+
+    private static void ForceInitAttributes(IHasCustomAttribute target)
+    {
+        foreach (var attr in target.CustomAttributes)
+        {
+            try
+            {
+                // Accessing FixedArguments triggers lazy blob deserialization.
+                _ = attr.Signature?.FixedArguments.Count;
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(
+                    "Could not pre-initialize attribute {Attr}: {Message}",
+                    attr.Constructor?.DeclaringType?.FullName,
+                    ex.Message
+                );
+            }
+        }
     }
 
     private static bool IsAsyncMethod(MethodDefinition method)

@@ -3944,7 +3944,12 @@
     },
     "GClass2572": {
         "NewName": "Trader",
-        "NewNamespace": "EFT.Trading"
+        "NewNamespace": "EFT.Trading",
+        "NestedTypes": {
+            "GStruct300": {
+                "NewName": "ItemPrice"
+            },
+        }
     },
     "GClass2574": {
         "NewName": "PriceCalculator",

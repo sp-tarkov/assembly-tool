@@ -624,12 +624,5 @@
                 "NewName": "DecalDescription"
             },
         }
-    },
-    "EFT.Trading.Trader": {
-        "NestedTypes": {
-            "GStruct300": {
-                "NewName": "ItemPrice"
-            },
-        }
-    },
+    }
 }

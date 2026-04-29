@@ -4,7 +4,7 @@ using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib.DirectMapper.Helpers;
 
 [Injectable(InjectionType.Singleton)]
 public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProvider dataProvider)

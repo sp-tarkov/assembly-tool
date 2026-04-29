@@ -1,5 +1,4 @@
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.NameFactory;
 using AssemblyLib.DirectMapper.NameFactory.Renamers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
@@ -7,7 +6,7 @@ using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib.DirectMapper.NameFactory;
 
 [Injectable]
 public class RenamerService(ILogger<RenamerService> logger, DataProvider dataProvider, IEnumerable<IRenamer> renamers)

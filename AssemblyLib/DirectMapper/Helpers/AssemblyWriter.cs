@@ -11,7 +11,7 @@ using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib.DirectMapper.Helpers;
 
 [Injectable]
 public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider dataProvider)

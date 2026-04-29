@@ -1,5 +1,6 @@
 using AsmResolver;
 using AsmResolver.DotNet;
+using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;

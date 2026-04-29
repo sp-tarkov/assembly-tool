@@ -1,5 +1,6 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.AttributeFactory;
+using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.DirectMapper.NameFactory;
 using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.Shared;

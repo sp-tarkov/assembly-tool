@@ -1,70 +1,26 @@
-﻿using AsmResolver.DotNet;
+using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
+using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
-using Serilog;
-using Serilog.Events;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib.DirectMapper.AttributeFactory.Builders;
 
 [Injectable]
-public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dataProvider)
+public class JsonConverterAttributeBuilder(ILogger<JsonConverterAttributeBuilder> logger, DataProvider dataProvider)
+    : IAttributeBuilder
 {
-    /// <summary>
-    ///     Force-initializes all custom attribute signatures before any renaming occurs.
-    /// AsmResolver deserializes blobs lazily; if a type is renamed first, the blob
-    /// parser can no longer resolve the old type name and throws.
-    /// </summary>
-    public void PreInitializeAllAttributeSignatures()
+    public bool Enabled => true;
+
+    public void Build()
     {
-        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        var renameMap = new Dictionary<string, TypeDefinition>();
+        foreach (var (fullName, mapping) in dataProvider.DirectMapModels)
         {
-            ForceInitAttributes(type);
-
-            foreach (var method in type.Methods)
-            {
-                ForceInitAttributes(method);
-            }
-
-            foreach (var property in type.Properties)
-            {
-                ForceInitAttributes(property);
-            }
-
-            foreach (var field in type.Fields)
-            {
-                ForceInitAttributes(field);
-            }
+            renameMap.Add(fullName, mapping.ToolData.Type!);
         }
-    }
 
-    public void UpdateAsyncAttributes()
-    {
-        var types = dataProvider.LoadedModule!.GetAllTypes();
-
-        foreach (var type in types)
-        {
-            if (type.NestedTypes.Count == 0)
-            {
-                continue;
-            }
-
-            foreach (var method in type.Methods)
-            {
-                if (IsAsyncMethod(method))
-                {
-                    UpdateAsyncAttribute(method, type.NestedTypes);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Updates all JsonConverter attributes in a module based on a rename mapping
-    /// </summary>
-    public void UpdateAllJsonConverterAttributes(Dictionary<string, TypeDefinition> renameMap)
-    {
         var module = dataProvider.LoadedModule!;
         foreach (var type in module.GetAllTypes())
         {
@@ -85,105 +41,18 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         }
     }
 
-    /// <summary>
-    ///     Updates all TypeConverter attributes in a module based on a rename mapping
-    /// </summary>
-    public void UpdateAllTypeConverterAttributes(Dictionary<string, TypeDefinition> renameMap)
-    {
-        var module = dataProvider.LoadedModule!;
-        foreach (var type in module.GetAllTypes())
-        {
-            // Update attributes on the type itself
-            UpdateTypeConvertersInTarget(type, renameMap);
-
-            // Update attributes on properties
-            foreach (var property in type.Properties)
-            {
-                UpdateTypeConvertersInTarget(property, renameMap);
-            }
-
-            // Update attributes on fields
-            foreach (var field in type.Fields)
-            {
-                UpdateTypeConvertersInTarget(field, renameMap);
-            }
-        }
-    }
-
-    private void UpdateAsyncAttribute(MethodDefinition method, IList<TypeDefinition> nestedTypes)
-    {
-        // Key - Old :: Val - New
-        Dictionary<CustomAttribute, CustomAttribute> attrReplacements = [];
-
-        foreach (var attr in method.CustomAttributes.ToArray())
-        {
-            if (!IsAsyncStateMachineAttribute(attr))
-            {
-                continue;
-            }
-
-            // Find the argument target in the nested types
-            var typeDefTarget = nestedTypes.FirstOrDefault(t =>
-                t.Name == ((TypeDefOrRefSignature)attr.Signature?.FixedArguments[0].Element!).Name
-            );
-
-            if (typeDefTarget is null)
-            {
-                logger.LogError(
-                    "Failed to locate AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}",
-                    method.DeclaringType?.Name?.ToString(),
-                    method.Name?.ToString()
-                );
-                continue;
-            }
-
-            attrReplacements.Add(attr, CreateNewAsyncAttribute(typeDefTarget));
-        }
-
-        foreach (var replacement in attrReplacements)
-        {
-            method.CustomAttributes.Remove(replacement.Key);
-            method.CustomAttributes.Add(replacement.Value);
-        }
-    }
-
-    private CustomAttribute CreateNewAsyncAttribute(TypeDefinition targetTypeDef)
-    {
-        var module = dataProvider.LoadedModule;
-        var factory = module!.CorLibTypeFactory;
-
-        var sysTypeRef = factory
-            .CorLibScope.CreateTypeReference("System", "Type")
-            .ImportWith(module.DefaultImporter)
-            .ToTypeSignature(false);
-
-        var asyncAttrRef = factory
-            .CorLibScope.CreateTypeReference("System.Runtime.CompilerServices", "AsyncStateMachineAttribute")
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(module.CorLibTypeFactory.Void, [sysTypeRef]))
-            .ImportWith(module.DefaultImporter);
-
-        // Create a custom attribute.
-        var customAttribute = new CustomAttribute(asyncAttrRef);
-
-        var targetSig = targetTypeDef.ToTypeSignature();
-
-        customAttribute.Signature?.FixedArguments.Add(new CustomAttributeArgument(sysTypeRef, targetSig));
-
-        return customAttribute;
-    }
-
     private void UpdateJsonConvertersInTarget(IHasCustomAttribute target, Dictionary<string, TypeDefinition> renameMap)
     {
         List<(CustomAttribute oldAttr, CustomAttribute newAttr)> replacements = [];
 
         foreach (var attr in target.CustomAttributes)
         {
-            if (!IsJsonConverterAttribute(attr))
+            if (!attr.IsJsonConverterAttribute())
             {
                 continue;
             }
 
-            var referencedTypeName = ExtractTypeNameFromAttribute(attr);
+            var referencedTypeName = attr.ExtractTypeNameFromAttribute();
             if (referencedTypeName is null)
             {
                 continue;
@@ -210,40 +79,6 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         {
             target.CustomAttributes.Remove(oldAttr);
             target.CustomAttributes.Add(newAttr);
-        }
-    }
-
-    private static string? ExtractTypeNameFromAttribute(CustomAttribute attr)
-    {
-        if (attr.Signature?.FixedArguments.Count == 0)
-        {
-            return null;
-        }
-
-        var argument = attr.Signature?.FixedArguments[0];
-
-        return argument?.Element switch
-        {
-            TypeDefOrRefSignature typeSig => GetFullTypeName(typeSig),
-            ITypeDescriptor typeDesc => typeDesc.FullName,
-            _ => null,
-        };
-    }
-
-    private static string GetFullTypeName(TypeSignature typeSig)
-    {
-        switch (typeSig)
-        {
-            case GenericInstanceTypeSignature genericSig:
-            {
-                var baseTypeName = genericSig.GenericType.FullName;
-                var genericArgs = string.Join(", ", genericSig.TypeArguments.Select(GetFullTypeName));
-                return $"{baseTypeName}<{genericArgs}>";
-            }
-            case TypeDefOrRefSignature typeDefOrRef:
-                return typeDefOrRef.FullName;
-            default:
-                return typeSig.FullName;
         }
     }
 
@@ -304,12 +139,12 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         var updatedArguments = new List<TypeSignature>();
         var anyArgumentUpdated = false;
 
-        foreach (var arg in genericSig.TypeArguments)
+        foreach (var typeSig in genericSig.TypeArguments)
         {
-            var argFullName = GetFullTypeName(arg);
+            var argFullName = typeSig.GetFullTypeName();
 
             // Try to match the OLD name from the string representation
-            var updatedArg = FindReplacementForArgument(arg, argFullName, renameMap);
+            var updatedArg = FindReplacementForArgument(typeSig, argFullName, renameMap);
 
             if (updatedArg != null)
             {
@@ -318,7 +153,7 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
             }
             else
             {
-                updatedArguments.Add(arg);
+                updatedArguments.Add(typeSig);
             }
         }
 
@@ -455,40 +290,6 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         return newNestedType?.ToTypeSignature();
     }
 
-    private CustomAttribute CreateJsonConverterAttribute(TypeDefinition converterType)
-    {
-        var module = dataProvider.LoadedModule;
-        var factory = module!.CorLibTypeFactory;
-
-        // Get System.Type reference
-        var sysTypeRef = factory
-            .CorLibScope.CreateTypeReference("System", "Type")
-            .ImportWith(module.DefaultImporter)
-            .ToTypeSignature(false);
-
-        // Find the Newtonsoft.Json assembly reference
-        var newtonsoftAssembly = module.AssemblyReferences.FirstOrDefault(a => a.Name == "Newtonsoft.Json");
-
-        // Create JsonConverterAttribute constructor reference from the correct assembly
-        var jsonConverterAttrRef = new TypeReference(
-            module,
-            newtonsoftAssembly,
-            "Newtonsoft.Json",
-            "JsonConverterAttribute"
-        )
-            .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, [sysTypeRef]))
-            .ImportWith(module.DefaultImporter);
-
-        var customAttribute = new CustomAttribute(jsonConverterAttrRef)
-        {
-            Signature = new CustomAttributeSignature(
-                new CustomAttributeArgument(sysTypeRef, converterType.ToTypeSignature())
-            ),
-        };
-
-        return customAttribute;
-    }
-
     private CustomAttribute CreateJsonConverterAttributeWithGeneric(
         TypeDefinition converterType,
         TypeSignature[] genericArguments
@@ -538,32 +339,7 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         return customAttribute;
     }
 
-    private void UpdateTypeConvertersInTarget(IHasCustomAttribute target, Dictionary<string, TypeDefinition> renameMap)
-    {
-        List<(CustomAttribute oldAttr, CustomAttribute newAttr)> replacements = [];
-
-        foreach (var attr in target.CustomAttributes)
-        {
-            if (!IsTypeConverterAttribute(attr))
-            {
-                continue;
-            }
-
-            var referencedTypeName = ExtractTypeNameFromAttribute(attr);
-            if (referencedTypeName != null && renameMap.TryGetValue(referencedTypeName, out var newTypeDef))
-            {
-                replacements.Add((attr, CreateTypeConverterAttribute(newTypeDef)));
-            }
-        }
-
-        foreach (var (oldAttr, newAttr) in replacements)
-        {
-            target.CustomAttributes.Remove(oldAttr);
-            target.CustomAttributes.Add(newAttr);
-        }
-    }
-
-    private CustomAttribute CreateTypeConverterAttribute(TypeDefinition converterType)
+    private CustomAttribute CreateJsonConverterAttribute(TypeDefinition converterType)
     {
         var module = dataProvider.LoadedModule;
         var factory = module!.CorLibTypeFactory;
@@ -574,30 +350,20 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
             .ImportWith(module.DefaultImporter)
             .ToTypeSignature(false);
 
-        // TypeConverterAttribute is in System.ComponentModel which is part of System
-        // Find the System assembly reference (or System.ComponentModel if it's separate)
-        var systemAssembly = module.AssemblyReferences.FirstOrDefault(a =>
-            a.Name == "System" || a.Name == "System.ComponentModel" || a.Name == "System.ComponentModel.TypeConverter"
-        );
+        // Find the Newtonsoft.Json assembly reference
+        var newtonsoftAssembly = module.AssemblyReferences.FirstOrDefault(a => a.Name == "Newtonsoft.Json");
 
-        if (systemAssembly == null)
-        {
-            // Fallback to creating System reference
-            systemAssembly = new AssemblyReference("System", new Version(4, 0, 0, 0));
-            module.AssemblyReferences.Add(systemAssembly);
-        }
-
-        // Create TypeConverterAttribute constructor reference from the correct assembly
-        var typeConverterAttrRef = new TypeReference(
+        // Create JsonConverterAttribute constructor reference from the correct assembly
+        var jsonConverterAttrRef = new TypeReference(
             module,
-            systemAssembly,
-            "System.ComponentModel",
-            "TypeConverterAttribute"
+            newtonsoftAssembly,
+            "Newtonsoft.Json",
+            "JsonConverterAttribute"
         )
             .CreateMemberReference(".ctor", MethodSignature.CreateInstance(factory.Void, [sysTypeRef]))
             .ImportWith(module.DefaultImporter);
 
-        var customAttribute = new CustomAttribute(typeConverterAttrRef)
+        var customAttribute = new CustomAttribute(jsonConverterAttrRef)
         {
             Signature = new CustomAttributeSignature(
                 new CustomAttributeArgument(sysTypeRef, converterType.ToTypeSignature())
@@ -605,50 +371,5 @@ public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dat
         };
 
         return customAttribute;
-    }
-
-    private void ForceInitAttributes(IHasCustomAttribute target)
-    {
-        foreach (var attr in target.CustomAttributes)
-        {
-            try
-            {
-                // Accessing FixedArguments triggers lazy blob deserialization.
-                _ = attr.Signature?.FixedArguments.Count;
-            }
-            catch (Exception ex)
-            {
-                logger.LogWarning(
-                    "Could not pre-initialize attribute {Attr}: {Message}",
-                    attr.Constructor?.DeclaringType?.FullName,
-                    ex.Message
-                );
-            }
-        }
-    }
-
-    private static bool IsAsyncMethod(MethodDefinition method)
-    {
-        return method
-            .CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
-            .Contains("System.Runtime.CompilerServices.AsyncStateMachineAttribute");
-    }
-
-    private static bool IsAsyncStateMachineAttribute(CustomAttribute attr)
-    {
-        return attr.Constructor?.DeclaringType?.FullName
-            == "System.Runtime.CompilerServices.AsyncStateMachineAttribute";
-    }
-
-    private static bool IsJsonConverterAttribute(CustomAttribute attr)
-    {
-        var fullName = attr.Constructor?.DeclaringType?.FullName;
-        return fullName == "Newtonsoft.Json.JsonConverterAttribute";
-    }
-
-    private static bool IsTypeConverterAttribute(CustomAttribute attr)
-    {
-        var fullName = attr.Constructor?.DeclaringType?.FullName;
-        return fullName == "System.ComponentModel.TypeConverterAttribute";
     }
 }

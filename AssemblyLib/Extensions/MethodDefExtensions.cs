@@ -66,6 +66,13 @@ internal static class MethodDefExtensions
                 );
             }
         }
+        
+        public bool IsAsyncMethod()
+        {
+            return methodDef
+                .CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
+                .Contains("System.Runtime.CompilerServices.AsyncStateMachineAttribute");
+        }
     }
     
     private static bool SignaturesMatch(MethodDefinition a, MethodDefinition b)

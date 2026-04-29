@@ -71,7 +71,6 @@ public class App
             .MinimumLevel.Information()
 #endif
             .Enrich.FromLogContext()
-            .Filter.ByIncludingOnly(Matching.FromSource<AttributeFactory>())
             .WriteTo.Console()
             .WriteTo.File(
                 "logs/assembly-tool-.log",

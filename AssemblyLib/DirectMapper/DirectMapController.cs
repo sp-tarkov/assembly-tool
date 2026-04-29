@@ -1,4 +1,5 @@
 using AsmResolver.DotNet;
+using AssemblyLib.DirectMapper.AttributeFactory;
 using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Shared;
@@ -10,7 +11,7 @@ namespace AssemblyLib.DirectMapper;
 [Injectable(InjectionType.Singleton)]
 public class DirectMapController(
     ILogger<DirectMapController> logger,
-    AttributeFactory attributeFactory,
+    AttributeFactoryService attributeFactory,
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     RenamerService renamerService,
@@ -87,7 +88,7 @@ public class DirectMapController(
         logger.LogInformation("Post direct map stage");
 
         //renamerService.PostDirectMapStage();
-        UpdateAttributes();
+        attributeFactory.UpdateConverterAttributes();
         ApplyPatches();
     }
 
@@ -173,20 +174,5 @@ public class DirectMapController(
         {
             publicizer.PublicizeType(type);
         }
-    }
-
-    /// <summary>
-    ///     Updates all attribute that need replaced
-    /// </summary>
-    private void UpdateAttributes()
-    {
-        var mappingDict = new Dictionary<string, TypeDefinition>();
-        foreach (var (fullName, mapping) in dataProvider.DirectMapModels)
-        {
-            mappingDict.Add(fullName, mapping.ToolData.Type!);
-        }
-
-        attributeFactory.UpdateAllJsonConverterAttributes(mappingDict);
-        attributeFactory.UpdateAllTypeConverterAttributes(mappingDict);
     }
 }

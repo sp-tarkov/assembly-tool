@@ -2,13 +2,14 @@ using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
 public class DirectMapController(
+    ILogger<DirectMapController> logger,
     AttributeFactory attributeFactory,
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
@@ -36,7 +37,7 @@ public class DirectMapController(
 
         await assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
 
-        Log.Information("Direct map completed.");
+        logger.LogInformation("Direct map completed.");
     }
 
     /// <summary>
@@ -47,7 +48,7 @@ public class DirectMapController(
     /// <returns>true if tool is ready for use</returns>
     private bool PrepareStage(string assemblyPath, string dummyDllPath)
     {
-        Log.Information("Prepare data stage");
+        logger.LogInformation("Prepare data stage");
 
         Module = dataProvider.LoadModule(assemblyPath);
         _targetAssemblyPath = assemblyPath;
@@ -70,7 +71,7 @@ public class DirectMapController(
     /// </summary>
     private async Task DirectMapStage()
     {
-        Log.Information("Direct map stage");
+        logger.LogInformation("Direct map stage");
 
         await RunDirectMappingProcess();
         sigBasedMemberRenamer.RenameMembersBySignature();
@@ -83,7 +84,7 @@ public class DirectMapController(
     /// </summary>
     private void PostDirectMapStage()
     {
-        Log.Information("Post direct map stage");
+        logger.LogInformation("Post direct map stage");
 
         //renamerService.PostDirectMapStage();
         UpdateAttributes();
@@ -136,7 +137,7 @@ public class DirectMapController(
 
         if (mappings.Count == 0)
         {
-            Log.Error("No direct-mappings loaded.");
+            logger.LogError("No direct-mappings loaded.");
             return;
         }
 

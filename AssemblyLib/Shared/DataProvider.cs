@@ -1,11 +1,9 @@
 ﻿using System.Collections.Immutable;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -14,8 +12,9 @@ namespace AssemblyLib.Shared;
 [Injectable(InjectionType.Singleton)]
 public class DataProvider
 {
-    public DataProvider()
+    public DataProvider(ILogger<DataProvider> logger)
     {
+        _logger = logger;
         Settings = LoadAppSettings();
 
         LoadDirectMappingFile();
@@ -31,10 +30,7 @@ public class DataProvider
     public ModuleDefinition? DummyDllModule { get; private set; }
     public ModuleDefinition? Mscorlib { get; private set; }
 
-    public bool IsDummyDllLoaded
-    {
-        get { return DummyDllModule != null; }
-    }
+    public bool IsDummyDllLoaded => DummyDllModule != null;
 
     public Dictionary<string, DirectMapModel> DirectMapModels { get; } = [];
 
@@ -60,6 +56,8 @@ public class DataProvider
         "vmethod",
     ];
 
+    private ILogger<DataProvider> _logger;
+
     public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
     {
         var directory = Path.GetDirectoryName(path)!;
@@ -75,7 +73,7 @@ public class DataProvider
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");
         Context = asm.RuntimeContext ?? throw new NullReferenceException("Could not get runtime context!");
 
-        Log.Information("Loaded target module: {moduleName}", module.Name?.ToString() ?? "NULL");
+        _logger.LogInformation("Loaded target module: {moduleName}", module.Name?.ToString() ?? "NULL");
 
         foreach (var dll in Directory.GetFiles(directory, "*.dll"))
         {
@@ -86,9 +84,9 @@ public class DataProvider
 
             Context.LoadAssembly(dll);
 
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            if (_logger.IsEnabled(LogLevel.Debug))
             {
-                Log.Debug("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
+                _logger.LogDebug("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
             }
         }
 
@@ -106,7 +104,7 @@ public class DataProvider
     {
         if (!Directory.Exists(_directMappingPath))
         {
-            Log.Information("Cannot find mappings at: {Path}", _directMappingPath);
+            _logger.LogInformation("Cannot find mappings at: {Path}", _directMappingPath);
             return;
         }
 
@@ -134,7 +132,7 @@ public class DataProvider
                 localCount++;
             }
 
-            Log.Information(
+            _logger.LogInformation(
                 "Direct Mapping file loaded {Count} mappings from: {Path}",
                 localCount,
                 Path.GetFileName(file)
@@ -142,7 +140,7 @@ public class DataProvider
         }
 
         ValidateDuplicateNewNames(DirectMapModels);
-        Log.Information("Total Count: {Count}", count);
+        _logger.LogInformation("Total Count: {Count}", count);
     }
 
     private static int CountMappingsRecursively(Dictionary<string, DirectMapModel> models, string file)

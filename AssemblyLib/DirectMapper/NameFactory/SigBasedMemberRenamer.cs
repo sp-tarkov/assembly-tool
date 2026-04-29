@@ -109,7 +109,8 @@ public class SigBasedMemberRenamer(
             // Already a named method, or is a void type method with no parameters
             if (
                 dummyMethodNames.Contains(targetMethod.Name)
-                || methodSignatureComparer.IsVoidMethodWithNoParameters(targetMethod)
+                || targetMethod.IsVoidWithNoParameters()
+                || targetMethod.IsVoidWithOnlyGenericParameters()
             )
             {
                 continue;

@@ -1,4 +1,5 @@
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
 using AssemblyLib.Shared;
 using Serilog;
 
@@ -72,6 +73,22 @@ internal static class MethodDefExtensions
             return methodDef
                 .CustomAttributes.Select(s => s.Constructor?.DeclaringType?.FullName)
                 .Contains("System.Runtime.CompilerServices.AsyncStateMachineAttribute");
+        }
+        
+        public bool IsVoidWithNoParameters()
+        {
+            return !methodDef.Signature!.ReturnsValue && methodDef.Parameters.Count == 0;
+        }
+
+        public bool HasGenericParameters()
+        {
+            return methodDef.Parameters
+                .Any(p => p.ParameterType is GenericParameterSignature);
+        }
+
+        public bool IsVoidWithOnlyGenericParameters()
+        {
+            return !methodDef.Signature!.ReturnsValue && methodDef.Parameters.All(p => p.ParameterType is GenericParameterSignature);
         }
     }
     

@@ -4201,7 +4201,7 @@
         "NewNamespace": "EFT.WeaponMounting"
     },
     "GClass2669": {
-        "NewName": "MountingGridOptionsPage",
+        "NewName": "MountingPageViewer",
         "NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
     },
     "GClass2672": {
@@ -5198,9 +5198,6 @@
     "GClass3073": {
         "NewName": "NetworkMessageHandlers",
         "NewNamespace": "EFT.Network"
-    },
-    "GClass3073": {
-        "NewName": "NetworkMessageHandlers",
     },
     "GClass3074": {
         "NewName": "SnapshotInterpolator",
@@ -10782,5 +10779,1232 @@
     "GClass2472": {
         "NewName": "TargetControl",
         "NewNamespace": "EFT.Hideout.ShootingRange"
-    }
+    },
+    "GClass2481": {
+        "NewName": "NotificationCustomizationUpdateRequired",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass352": {
+        "NewName": "SectactPriestEventStrategy"
+    },
+    "GClass362": {
+        "NewName": "SectantPriestLayersStrategy"
+    },
+    "GClass1551": {
+        "NewName": "ItemNotExaminedError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1552": {
+        "NewName": "TargetNotExaminedError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1553": {
+        "NewName": "ItemNotApplicable",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1554": {
+        "NewName": "NotRaidModdableError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1555": {
+        "NewName": "NotModdableWithoutMultitoolError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1557": {
+        "NewName": "CannotApplyItemError",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass1827": {
+        "NewName": "SkillGroupLevelingBoostBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass1828": {
+        "NewName": "SkillLevelingBoostBonus",
+        "NewNamespace": "EFT"
+    },
+    "GClass2483": {
+        "NewName": "NotificationAdditionalStashRows",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2486": {
+        "NewName": "NotificationProfileExtDelta",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2487": {
+        "NewName": "NotificationSkillPoints",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2488": {
+        "NewName": "NotificationSkillPointsDelta",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2489": {
+        "NewName": "NotificationMasteringPoints",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2490": {
+        "NewName": "NotificationMasteringPointsDelta",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2491": {
+        "NewName": "NotificationHideoutAreaLevel",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2492": {
+        "NewName": "NotificationExamineItems",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2494": {
+        "NewName": "NotificationExamineAllItems",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2495": {
+        "NewName": "NotificationRagfairEventRating",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2496": {
+        "NewName": "NotificationUnlockTrader",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2484": {
+        "NewName": "NotificationProfileLockTimer",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2493": {
+        "NewName": "NotificationUnlockRule",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2497": {
+        "NewName": "NotificationTraderLoyalty",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2498": {
+        "NewName": "NotificationTraderStanding",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2499": {
+        "NewName": "NotificationTraderStandingDelta",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2500": {
+        "NewName": "NotificationTraderSalesSum",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2501": {
+        "NewName": "NotificationTraderSalesSumDelta",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2485": {
+        "NewName": "NotificationProfileLevel",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2502": {
+        "NewName": "NotificationWrongMajorVersion",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2503": {
+        "NewName": "NotificationUserStatusChanged",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2504": {
+        "NewName": "NotificationBackendMessagePopup",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2505": {
+        "NewName": "NotificationTournamentWarning",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2506": {
+        "NewName": "NotificationTraderSupply",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2507": {
+        "NewName": "NotificationInviteReceived",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2508": {
+        "NewName": "NotificationInviteCanceled",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2509": {
+        "NewName": "NotificationInviteExpired",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2510": {
+        "NewName": "NotificationInviteAccept",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2511": {
+        "NewName": "NotificationInviteDecline",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2512": {
+        "NewName": "NotificationGroupLeft",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2513": {
+        "NewName": "NotificationGroupMaxCountReached",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2514": {
+        "NewName": "NotificationChatMessageReceived",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2515": {
+        "NewName": "NotificationRemovedFromFriendsList",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2516": {
+        "NewName": "NotificationFriendsRequest",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2517": {
+        "NewName": "NotificationNewFriendsRequest",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2519": {
+        "NewName": "NotificationAcceptedFriendsRequest",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2520": {
+        "NewName": "NotificationYouWasKickedFromDialogue",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2521": {
+        "NewName": "NotificationAddedToIgnoreList",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2522": {
+        "NewName": "NotificationRemovedFromIgnoreList",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2523": {
+        "NewName": "NotificationDeclinedFriendsRequest",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2524": {
+        "NewName": "NotificationStartGame",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2525": {
+        "NewName": "NotificationMatchRaidSettings",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2526": {
+        "NewName": "NotificationGroupMatchRaidReady",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2527": {
+        "NewName": "NotificationGroupMatchRaidNotReady",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2528": {
+        "NewName": "NotificationGroupMatchAbort",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2529": {
+        "NewName": "NotificationLeaderChanged",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2530": {
+        "NewName": "NotificationGroupDisbanded",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2531": {
+        "NewName": "NotificationRagFair",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2532": {
+        "NewName": "NotificationRagfairNewRating",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2533": {
+        "NewName": "NotificationRagfairOfferSold",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2534": {
+        "NewName": "NotificationRagfairPurchased",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2535": {
+        "NewName": "NotificationRagfairExpired",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2536": {
+        "NewName": "NotificationForceLogout",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2537": {
+        "NewName": "NotificationInGameBan",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2538": {
+        "NewName": "NotificationInGameUnBan",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2539": {
+        "NewName": "NotificationWishlistItemPurchased",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2540": {
+        "NewName": "MalfunctionRepairRequiredNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2541": {
+        "NewName": "MalfunctionExamineTypeNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2542": {
+        "NewName": "MalfunctionOccurredNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2543": {
+        "NewName": "BufferZoneAlreadyHaveCustomerNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2544": {
+        "NewName": "BufferGateNotAvailableNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2546": {
+        "NewName": "BufferZoneUsageTimeEndedNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2547": {
+        "NewName": "BufferZoneTimerReminderNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2548": {
+        "NewName": "BufferZoneKickAlarmNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2549": {
+        "NewName": "SkillLevelUpNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2551": {
+        "NewName": "CustomNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2552": {
+        "NewName": "UnremovableItemNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2553": {
+        "NewName": "ContainUnremovableItemNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2554": {
+        "NewName": "NotificationWithText",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2555": {
+        "NewName": "NotificationQuest",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2556": {
+        "NewName": "NotificationAchievement",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2557": {
+        "NewName": "InteractiveNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2560": {
+        "NewName": "HideoutItemNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2561": {
+        "NewName": "RaidWishlistNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2562": {
+        "NewName": "StatisticNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2563": {
+        "NewName": "SingletonNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2564": {
+        "NewName": "SingletonWarningNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2565": {
+        "NewName": "SingletonMessageNotification",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2567": {
+        "NewName": "NotificationManagerSerializer",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2568": {
+        "NewName": "Notifications",
+        "NewNamespace": "EFT.Communications"
+    },
+    "GClass2570": {
+        "NewName": "FenceTrader",
+        "NewNamespace": "EFT.Trading"
+    },
+    "GClass2571": {
+        "NewName": "Requisite",
+        "NewNamespace": "EFT.Trading"
+    },
+    "GClass2573": {
+        "NewName": "LightkeeperDialogReaction",
+        "NewNamespace": "EFT.Trading"
+    },
+    "GClass2579": {
+        "NewName": "AudioWeaponUtils",
+        "NewNamespace": "EFT.Weapons"
+    },
+    "GClass2580": {
+        "NewName": "PlayerTripwireInteractionSoundController",
+        "NewNamespace": "EFT.Tripwire"
+    },
+    "GClass2581": {
+        "NewName": "TripwireSoundController",
+        "NewNamespace": "EFT.Tripwire"
+    },
+    "GClass2582": {
+        "NewName": "AbstractMovementContextAdapter",
+        "NewNamespace": "EFT.Character"
+    },
+    "GClass2583": {
+        "NewName": "ClientPlayerMovementContextAdapter",
+        "NewNamespace": "EFT.Character"
+    },
+    "GClass2584": {
+        "NewName": "ObservedPlayerMovementContextAdapter",
+        "NewNamespace": "EFT.Character"
+    },
+    "GClass2585": {
+        "NewName": "ObservedPlayerAudioSourceLimiter",
+        "NewNamespace": "EFT.Character"
+    },
+    "GClass2586": {
+        "NewName": "ActiveHeadphones",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2588": {
+        "NewName": "ActiveHeadphonesFactory",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2589": {
+        "NewName": "BaseActiveHeadphonesMixerDependentComponent",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2590": {
+        "NewName": "ActiveHeadphonesDefaultConfigurator",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2591": {
+        "NewName": "ActiveHeadphonesGunCompressor",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2592": {
+        "NewName": "ActiveHeadphonesEnvironmentCompressor",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2593": {
+        "NewName": "ActiveHeadphonesThreeBandEQ",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2594": {
+        "NewName": "EQBandExposedParameters",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2595": {
+        "NewName": "Extensions",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2596": {
+        "NewName": "HeadphonesLocalTemplatesContainer",
+        "NewNamespace": "EFT.ActiveHeadphones"
+    },
+    "GClass2597": {
+        "NewName": "ProfileEditorItemsSearcher",
+        "NewNamespace": "EFT.ProfileEditor"
+    },
+    "GClass2598": {
+        "NewName": "ImpostorCameraExtension",
+        "NewNamespace": "EFT.Impostors"
+    },
+    "GClass2599": {
+        "NewName": "ImpostorWindEqualityComparer",
+        "NewNamespace": "EFT.Impostors"
+    },
+    "GClass2600": {
+        "NewName": "CloudinessTypeExtensions",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2601": {
+        "NewName": "WindSpeedExtensions",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2602": {
+        "NewName": "RainTypeExtensions",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2603": {
+        "NewName": "FogTypeExtensions",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2606": {
+        "NewName": "WeatherSerializer",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2607": {
+        "NewName": "SphericalHarmonicsL2JobExtensions",
+        "NewNamespace": "EFT.Weather"
+    },
+    "GClass2608": {
+        "NewName": "FastRndom",
+        "NewNamespace": "EFT.Utilities",
+        "NestedTypes": {
+            "GClass2609": {
+                "NewName": "Unrepeated"
+            },
+            "GClass2610": {
+                "NewName": "OwnSeedRnd"
+            }
+        }
+    },
+    "GClass2615": {
+        "NewName": "FrameBinMetricCollector",
+        "NewNamespace": "EFT.Utilities"
+    },
+    "GClass2635": {
+        "NewName": "GlobalsArrayConverter",
+        "NewNamespace": "EFT.Utilities"
+    },
+    "GClass2637": {
+        "NewName": "GlobalsDictionaryConverter",
+        "NewNamespace": "EFT.Utilities"
+    },
+    "GClass2668": {
+        "NewName": "MountingGridOptionsPage",
+        "NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
+    },
+    "GClass2670": {
+        "NewName": "MountingRecoilAndStaminaPage",
+        "NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
+    },
+    "GClass2671": {
+        "NewName": "MountingStartPage",
+        "NewNamespace": "EFT.WeaponMounting.Debug.View.Pages"
+    },
+    "GClass2673": {
+        "NewName": "ClimbMoveModel",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2674": {
+        "NewName": "VaultMoveModel",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2676": {
+        "NewName": "MoveRestrictions",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2677": {
+        "NewName": "AutoMoveRestrictions",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2680": {
+        "NewName": "VaultingGameplayRestrictions",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2682": {
+        "NewName": "FirstPersonVaultingAudioController",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2683": {
+        "NewName": "ObservedVaultingAudioController",
+        "NewNamespace": "EFT.Vaulting"
+    },
+    "GClass2685": {
+        "NewName": "AutomaticVaultingPageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View"
+    },
+    "GClass2686": {
+        "NewName": "DiscreteSurfacePageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View"
+    },
+    "GClass2687": {
+        "NewName": "GridOptionsPageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View"
+    },
+    "GClass2688": {
+        "NewName": "MainInfoPageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View.Pages"
+    },
+    "GClass2689": {
+        "NewName": "RestrictionsPageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View.Pages"
+    },
+    "GClass2690": {
+        "NewName": "StartPageView",
+        "NewNamespace": "EFT.Vaulting.Debug.View.Pages"
+    },
+    "GClass2692": {
+        "NewName": "ApproximationPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2693": {
+        "NewName": "AutomaticVaultingPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2694": {
+        "NewName": "DiscreteSurfacePageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2695": {
+        "NewName": "GridOptionsPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2704": {
+        "NewName": "VaultingView",
+        "NewNamespace": "EFT.Vaulting.Views"
+    },
+    "GClass2741": {
+        "NewName": "BaseContainerInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2750": {
+        "NewName": "BaseDoorInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2759": {
+        "NewName": "BaseGearInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2765": {
+        "NewName": "BaseGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2777": {
+        "NewName": "BaseInventoryInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2776": {
+        "NewName": "ThereGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2770": {
+        "NewName": "HoldGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2768": {
+        "NewName": "FriendlyGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2769": {
+        "NewName": "GetOffGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2772": {
+        "NewName": "OkGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2771": {
+        "NewName": "NoGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2767": {
+        "NewName": "ComeWithMeGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2774": {
+        "NewName": "RockGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2773": {
+        "NewName": "PaperGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2775": {
+        "NewName": "ScissorGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2766": {
+        "NewName": "AllRightGestureInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2696": {
+        "NewName": "PageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2697": {
+        "NewName": "VaultingDebugToolController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller"
+    },
+    "GClass2698": {
+        "NewName": "MainInfoPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller.PageControllers"
+    },
+    "GClass2699": {
+        "NewName": "StartPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller.PageControllers"
+    },
+    "GClass2700": {
+        "NewName": "VaultingRestrictionsPageController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller.PageControllers"
+    },
+    "GClass2701": {
+        "NewName": "EditorGridController",
+        "NewNamespace": "EFT.Vaulting.Debug.Controller.EditorControllers"
+    },
+    "GClass2702": {
+        "NewName": "EditorApproximationController",
+        "NewNamespace": "EFT.Vaulting.Debug.EditorControllers"
+    },
+    "GClass2703": {
+        "NewName": "EditorController",
+        "NewNamespace": "EFT.Vaulting.Debug.EditorControllers"
+    },
+    "GClass2705": {
+        "NewName": "AutomaticVaultingRestrictionsModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2706": {
+        "NewName": "GridSettingsModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2707": {
+        "NewName": "VaultingRestrictionsModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2708": {
+        "NewName": "DouglasPeuckerSurfaceApproximator",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2709": {
+        "NewName": "GridPointsModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2710": {
+        "NewName": "GridRootMoverModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2711": {
+        "NewName": "ObstacleCalculatorModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2712": {
+        "NewName": "StairsCalculatorModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2713": {
+        "NewName": "VaultingMovesModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2714": {
+        "NewName": "VaultingStateModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2715": {
+        "NewName": "WeightCalculatorModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2716": {
+        "NewName": "VaultingModel",
+        "NewNamespace": "EFT.Vaulting.Models"
+    },
+    "GClass2728": {
+        "NewName": "AnimatedInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2730": {
+        "NewName": "BipodInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2731": {
+        "NewName": "ContainerInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2732": {
+        "NewName": "DoorInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2733": {
+        "NewName": "GearInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2734": {
+        "NewName": "GestureInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2735": {
+        "NewName": "InventoryInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2736": {
+        "NewName": "ItemInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2737": {
+        "NewName": "LeftHandInteractionsModel",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Models"
+    },
+    "GClass2739": {
+        "NewName": "BipodOffInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2740": {
+        "NewName": "BipodOnInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2742": {
+        "NewName": "ContainerCloseDefaultState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2743": {
+        "NewName": "ContainerCloseDownState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2744": {
+        "NewName": "ContainerClosePushState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2745": {
+        "NewName": "ContainerHingeUpCloseState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2746": {
+        "NewName": "ContainerHingeUpOpenState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2747": {
+        "NewName": "ContainerOpenDefaultState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2748": {
+        "NewName": "ContainerOpenPullState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2749": {
+        "NewName": "ContainerOpenUpState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2751": {
+        "NewName": "DoorCardOpenState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2752": {
+        "NewName": "DoorKeyOpenState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2753": {
+        "NewName": "DoorPullBackwardState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2754": {
+        "NewName": "DoorPullHingeLeftState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2755": {
+        "NewName": "DoorPullHingeRightState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2756": {
+        "NewName": "DoorPushForwardState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2757": {
+        "NewName": "DoorPushHingeLeftState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2758": {
+        "NewName": "DoorPushHingeRightState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2760": {
+        "NewName": "FaceshieldOffInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2761": {
+        "NewName": "FaceshieldOnInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2762": {
+        "NewName": "HelmetRailInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2763": {
+        "NewName": "NightVisionOffInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2764": {
+        "NewName": "NightVisionOnInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2778": {
+        "NewName": "DropBackpackInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2779": {
+        "NewName": "ThrowInventoryInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2781": {
+        "NewName": "DropItemInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2782": {
+        "NewName": "TakeItemInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2783": {
+        "NewName": "AnimatedInteractionsController",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.Controller"
+    },
+    "GClass2784": {
+        "NewName": "KinematicModel",
+        "NewNamespace": "EFT.ObstacleCollision"
+    },
+    "GClass2785": {
+        "NewName": "ObstacleCollisionFacade",
+        "NewNamespace": "EFT.ObstacleCollision"
+    },
+    "GClass2788": {
+        "NewName": "CollisionCalculatorController",
+        "NewNamespace": "EFT.ObstacleCollision.Controllers"
+    },
+    "GClass2789": {
+        "NewName": "KinematicController",
+        "NewNamespace": "EFT.ObstacleCollision.Controllers"
+    },
+    "GClass2790": {
+        "NewName": "ObstacleCollisionController",
+        "NewNamespace": "EFT.ObstacleCollision.Controllers"
+    },
+    "GClass2792": {
+        "NewName": "ValProcessor",
+        "NewNamespace": "EFT.Animations"
+    },
+    "GClass2802": {
+        "NewName": "BtrGoOutInteractionMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2803": {
+        "NewName": "ChangeEquipCommandMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2804": {
+        "NewName": "ChangeModOnItemCommandMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2805": {
+        "NewName": "CompassStateCommandMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2806": {
+        "NewName": "CreateCorpsePacket",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2807": {
+        "NewName": "DoorBreachInteractionMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2808": {
+        "NewName": "DoorUnlockInteractionMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2809": {
+        "NewName": "DryShotFirearmCommandMessage",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2901": {
+        "NewName": "ObservedPlayerCommandsMessagePool",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2902": {
+        "NewName": "ObservedPlayerCommandsPool",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2904": {
+        "NewName": "HandsOperationAnimatorCallbacks",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2906": {
+        "NewName": "DryShotFireHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer",
+        "NestedTypes": {
+            "GStruct335": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2907": {
+        "NewName": "ReloadCylinderMagazineHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2908": {
+        "NewName": "RollCylinderHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2909": {
+        "NewName": "SyncCylinderMagazineHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2910": {
+        "NewName": "BoltActionReloadAfterFireHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct343": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2911": {
+        "NewName": "BreakMeleeComboHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2912": {
+        "NewName": "ChangeFireModeHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2913": {
+        "NewName": "ChangeModOnWeaponOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2914": {
+        "NewName": "DisableUnderbarrelHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct344": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2915": {
+        "NewName": "DiscardSwingHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2916": {
+        "NewName": "DischargeAmmoFromCamoraHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct345": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2917": {
+        "NewName": "DischargeAmmoFromChamberHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct346": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2918": {
+        "NewName": "DischargeAmmoFromUnderbarrelHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct347": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2919": {
+        "NewName": "EnableUnderbarrelHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct348": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2920": {
+        "NewName": "ExamineWeaponHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2921": {
+        "NewName": "FoldHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct349": {
+                "NewName": "Input"
+            }
+        }
+    },
+    "GClass2922": {
+        "NewName": "HighSwingHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2923": {
+        "NewName": "LowSwingHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2924": {
+        "NewName": "HighThrowHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct350": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2925": {
+        "NewName": "LowThrowHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2926": {
+        "NewName": "IdleStateSyncHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2927": {
+        "NewName": "InsertMagazineHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct351": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2928": {
+        "NewName": "InventoryOpenStatusHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2929": {
+        "NewName": "LoadAmmoToCamoraHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct352": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2930": {
+        "NewName": "LoadAmmoToChamberHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct353": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2931": {
+        "NewName": "LoadAmmoToUnderbarrelHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct354": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2932": {
+        "NewName": "MagAndChamberStateHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2933": {
+        "NewName": "MalfunctionHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct355": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2934": {
+        "NewName": "MeleeAttackHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2935": {
+        "NewName": "PlantTripwireOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2936": {
+        "NewName": "PullOutMagazineHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct356": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2937": {
+        "NewName": "QuickUseItemHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct357": {
+                "NewName": "Input"
+            }
+        }
+    },
+    "GClass2938": {
+        "NewName": "RechamberHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct358": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2939": {
+        "NewName": "ReloadExternalMagazineHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct359": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2940": {
+        "NewName": "ReloadInternalMagHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2941": {
+        "NewName": "ReloadInternalMagWithOpenBoltHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+    },
+    "GClass2942": {
+        "NewName": "ReloadMultiBarrelWeaponHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct360": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2943": {
+        "NewName": "ReloadSingleBarrelHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct361": {
+                "NewName": "OperationCallbacks"
+            }
+        }
+    },
+    "GClass2944": {
+        "NewName": "RemoveHandsOperation",
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct362": {
+                "NewName": "Input"
+            }
+        }
+    },
+    "GClass2973": {
+        "NewName": "ObservedRangeFinder",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2990": {
+        "NewName": "KnifePacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2991": {
+        "NewName": "UsableItemPacketSerializationExtensions",
+        "NewNamespace": "EFT.NetworkPackets.Serialization"
+    },
+    "GClass2780": {
+        "NewName": "BaseItemInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
+    "GClass2738": {
+        "NewName": "BaseInteractionState",
+        "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
+    },
 }

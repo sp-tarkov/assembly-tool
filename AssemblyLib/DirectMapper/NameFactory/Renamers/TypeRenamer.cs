@@ -5,7 +5,7 @@ using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Renamers;
+namespace AssemblyLib.DirectMapper.NameFactory.Renamers;
 
 [Injectable]
 public class TypeRenamer(ILogger<TypeRenamer> logger, DataProvider dataProvider) : IRenamer

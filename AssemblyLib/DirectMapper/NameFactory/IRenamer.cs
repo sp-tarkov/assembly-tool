@@ -1,6 +1,6 @@
 using AssemblyLib.Models;
 
-namespace AssemblyLib.DirectMapper.Renamers;
+namespace AssemblyLib.DirectMapper.NameFactory;
 
 public interface IRenamer
 {

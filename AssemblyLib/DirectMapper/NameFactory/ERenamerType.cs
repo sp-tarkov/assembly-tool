@@ -1,4 +1,4 @@
-namespace AssemblyLib.DirectMapper.Renamers;
+namespace AssemblyLib.DirectMapper.NameFactory;
 
 /// <summary>
 ///     Sorted by level of importance

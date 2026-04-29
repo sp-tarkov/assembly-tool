@@ -1,5 +1,6 @@
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.Renamers;
+using AssemblyLib.DirectMapper.NameFactory;
+using AssemblyLib.DirectMapper.NameFactory.Renamers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;

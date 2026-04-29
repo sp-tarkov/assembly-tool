@@ -1,7 +1,10 @@
 ﻿using AssemblyLib.DirectMapper;
 using AssemblyLib.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Extensions.Logging;
+using Serilog.Filters;
 using SPTarkov.DI;
 
 namespace AssemblyLib.Shared;
@@ -12,7 +15,6 @@ public class App
 
     public App()
     {
-        ConfigureLogger();
         ConfigureApplication();
     }
 
@@ -62,17 +64,6 @@ public class App
 
     private void ConfigureApplication()
     {
-        var services = new ServiceCollection();
-        var diHandler = new DependencyInjectionHandler(services);
-
-        diHandler.AddInjectableTypesFromTypeAssembly(typeof(App));
-        diHandler.InjectAll();
-
-        _provider = services.BuildServiceProvider();
-    }
-
-    private static void ConfigureLogger()
-    {
         Log.Logger = new LoggerConfiguration()
 #if DEBUG
             .MinimumLevel.Debug()
@@ -80,6 +71,7 @@ public class App
             .MinimumLevel.Information()
 #endif
             .Enrich.FromLogContext()
+            .Filter.ByIncludingOnly(Matching.FromSource<AttributeFactory>())
             .WriteTo.Console()
             .WriteTo.File(
                 "logs/assembly-tool-.log",
@@ -89,5 +81,16 @@ public class App
                 retainedFileCountLimit: 50
             )
             .CreateLogger();
+
+        var services = new ServiceCollection();
+        var diHandler = new DependencyInjectionHandler(services);
+
+        services.AddSingleton<ILoggerFactory>(new SerilogLoggerFactory(Log.Logger, dispose: true));
+        services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+
+        diHandler.AddInjectableTypesFromTypeAssembly(typeof(App));
+        diHandler.InjectAll();
+
+        _provider = services.BuildServiceProvider();
     }
 }

@@ -2,21 +2,18 @@ using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class TypeRenamer(DataProvider dataProvider) : IRenamer
+public class TypeRenamer(ILogger<TypeRenamer> logger, DataProvider dataProvider) : IRenamer
 {
-    public int Priority { get; } = -1;
-    public bool Enabled { get; } = true;
+    public int Priority => -1;
+    public bool Enabled => true;
 
-    public ERenamerType Type
-    {
-        get { return ERenamerType.Type; }
-    }
+    public ERenamerType Type => ERenamerType.Type;
 
     private readonly Dictionary<string, int> _classCounters = [];
     private readonly Dictionary<string, int> _structCounters = [];
@@ -59,7 +56,7 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
     {
         if (_classCounters.Count != 0)
         {
-            Log.Error("Already renamed compiler generated classes.");
+            logger.LogError("Already renamed compiler generated classes.");
             return;
         }
 
@@ -77,7 +74,7 @@ public class TypeRenamer(DataProvider dataProvider) : IRenamer
     {
         if (_structCounters.Count != 0)
         {
-            Log.Error("Already renamed compiler generated structs.");
+            logger.LogError("Already renamed compiler generated structs.");
             return;
         }
 

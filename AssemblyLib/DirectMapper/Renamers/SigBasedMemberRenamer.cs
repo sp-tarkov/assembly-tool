@@ -4,14 +4,14 @@ using AsmResolver.DotNet.Signatures;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
 public class SigBasedMemberRenamer(
+    ILogger<SigBasedMemberRenamer> logger,
     DataProvider dataProvider,
     MethodSigComparer methodSignatureComparer,
     PropertySigComparer propertySigComparer,
@@ -57,7 +57,7 @@ public class SigBasedMemberRenamer(
             var dummyType = dummyTargetTypes.FirstOrDefault(t => t.FullName == target.FullName);
             if (dummyType is null)
             {
-                Log.Warning(
+                logger.LogWarning(
                     "Type: {typeName} does not exist in the dummy dll. Sig based renaming will not happen.",
                     target.FullName
                 );
@@ -68,9 +68,9 @@ public class SigBasedMemberRenamer(
             _targetToDummyMap.Add(target, dummyType);
         }
 
-        if (Log.IsEnabled(LogEventLevel.Debug))
+        if (logger.IsEnabled(LogLevel.Debug))
         {
-            Log.Debug("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
+            logger.LogDebug("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
         }
     }
 
@@ -79,9 +79,9 @@ public class SigBasedMemberRenamer(
         // First pass, handles actions that require both the target and the dummy
         foreach (var (targetType, dummyType) in _targetToDummyMap)
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            if (logger.IsEnabled(LogLevel.Debug))
             {
-                Log.Debug("Renaming members on: {type}", targetType.FullName);
+                logger.LogDebug("Renaming members on: {type}", targetType.FullName);
             }
 
             RenameMethodsOnType(targetType, dummyType);
@@ -144,9 +144,9 @@ public class SigBasedMemberRenamer(
                     break;
                 }
 
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
+                    logger.LogDebug("Renaming method: {old} -> {new}", targetMethod.FullName, dummyMethod.FullName);
                 }
 
                 targetMethod.Name = dummyMethod.Name;
@@ -165,9 +165,9 @@ public class SigBasedMemberRenamer(
     /// <param name="dummyMethod">matching dummy method</param>
     private void RenameVirtualMethodChain(MethodDefinition targetMethod, MethodDefinition dummyMethod)
     {
-        if (Log.IsEnabled(LogEventLevel.Debug))
+        if (logger.IsEnabled(LogLevel.Debug))
         {
-            Log.Debug(
+            logger.LogDebug(
                 "Renaming base virtual method: {type1}::{old} -> {type2}::{new}",
                 targetMethod.DeclaringType?.Name?.ToString(),
                 targetMethod.Name?.ToString(),
@@ -197,9 +197,9 @@ public class SigBasedMemberRenamer(
                 continue;
             }
 
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            if (logger.IsEnabled(LogLevel.Debug))
             {
-                Log.Debug(
+                logger.LogDebug(
                     "Renaming override method: {type3}::{old} -> {type4}::{new}",
                     type.Name?.ToString(),
                     impl.Name?.ToString(),
@@ -262,9 +262,13 @@ public class SigBasedMemberRenamer(
                     continue;
                 }
 
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug("Renaming property: {old} -> {new}", targetProperty.FullName, dummyProperty.FullName);
+                    logger.LogDebug(
+                        "Renaming property: {old} -> {new}",
+                        targetProperty.FullName,
+                        dummyProperty.FullName
+                    );
                 }
 
                 targetProperty.Name = dummyProperty.Name;
@@ -274,7 +278,7 @@ public class SigBasedMemberRenamer(
         }
     }
 
-    private static void RenameGenericParametersOnType(TypeDefinition targetType, TypeDefinition dummyType)
+    private void RenameGenericParametersOnType(TypeDefinition targetType, TypeDefinition dummyType)
     {
         RenameGenericParametersOnMethods(targetType, dummyType);
         if (!targetType.HasGenericParameters || targetType.GenericParameters.Count != dummyType.GenericParameters.Count)
@@ -295,11 +299,16 @@ public class SigBasedMemberRenamer(
             var oldName = targetGenericParameter.Name?.ToString();
 
             targetGenericParameter.Name = dummyGenericParameter.Name;
-            Log.Information("Renamed generic param: {old} -> {new}", oldName, targetGenericParameter.Name?.ToString());
+
+            logger.LogInformation(
+                "Renamed generic param: {old} -> {new}",
+                oldName,
+                targetGenericParameter.Name?.ToString()
+            );
         }
     }
 
-    private static void RenameGenericParametersOnMethods(TypeDefinition targetType, TypeDefinition dummyType)
+    private void RenameGenericParametersOnMethods(TypeDefinition targetType, TypeDefinition dummyType)
     {
         foreach (var targetMethod in targetType.Methods)
         {
@@ -327,7 +336,7 @@ public class SigBasedMemberRenamer(
                 var oldName = targetGenericParameter.Name?.ToString();
 
                 targetGenericParameter.Name = dummyGenericParameter.Name;
-                Log.Information(
+                logger.LogInformation(
                     "Renamed method generic param: {old} -> {new}",
                     oldName,
                     targetGenericParameter.Name?.ToString()
@@ -364,7 +373,11 @@ public class SigBasedMemberRenamer(
             {
                 var newName = string.Join(".", splitName);
 
-                Log.Information("Renaming explicit interface method {old} -> {new}", method.Name?.ToString(), newName);
+                logger.LogInformation(
+                    "Renaming explicit interface method {old} -> {new}",
+                    method.Name?.ToString(),
+                    newName
+                );
                 method.Name = new Utf8String(newName);
             }
         }

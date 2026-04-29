@@ -3,22 +3,18 @@ using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class MethodRenamer(DataProvider dataProvider) : IRenamer
+public class MethodRenamer(ILogger<MethodRenamer> logger, DataProvider dataProvider) : IRenamer
 {
-    public int Priority { get; } = 0;
-    public bool Enabled { get; } = false;
+    public int Priority => 0;
+    public bool Enabled => false;
 
-    public ERenamerType Type
-    {
-        get { return ERenamerType.Methods; }
-    }
+    public ERenamerType Type => ERenamerType.Methods;
 
     public void Rename(DirectMapModel model)
     {
@@ -35,18 +31,18 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
             return;
         }
 
-        foreach (var method in toolData.Type.Methods)
+        foreach (var method in toolData.Type!.Methods)
         {
             if (method.IsCompilerGenerated() || method.IsGetMethod || method.IsSetMethod)
             {
                 continue;
             }
 
-            if (methodsToRename.TryGetValue(method.Name.ToString(), out var newName))
+            if (methodsToRename.TryGetValue(method.Name!.ToString(), out var newName))
             {
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
+                    logger.LogDebug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
                 }
 
                 method.Name = new Utf8String(newName);
@@ -59,6 +55,7 @@ public class MethodRenamer(DataProvider dataProvider) : IRenamer
         var implementations = dataProvider
             .LoadedModule!.GetAllTypes()
             .Where(t => t.Implements(interfaceToRenameFor.FullName));
+
         if (!implementations.Any())
         {
             return;

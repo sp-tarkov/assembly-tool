@@ -26,7 +26,7 @@ public class DirectMapController(
 
     public async Task Run(string assemblyPath, string dummyDllPath)
     {
-        if (!await PrepareStage(assemblyPath, dummyDllPath))
+        if (!PrepareStage(assemblyPath, dummyDllPath))
         {
             return;
         }
@@ -45,7 +45,7 @@ public class DirectMapController(
     /// <param name="assemblyPath">Path to the target assembly</param>
     /// <param name="dummyDllPath">Path to the dummy dll from 1.0</param>
     /// <returns>true if tool is ready for use</returns>
-    private async Task<bool> PrepareStage(string assemblyPath, string dummyDllPath)
+    private bool PrepareStage(string assemblyPath, string dummyDllPath)
     {
         Log.Information("Prepare data stage");
 
@@ -61,7 +61,7 @@ public class DirectMapController(
 
         attributeFactory.PreInitializeAllAttributeSignatures();
 
-        await memberReferenceCache.Hydrate();
+        memberReferenceCache.Hydrate();
         return true;
     }
 

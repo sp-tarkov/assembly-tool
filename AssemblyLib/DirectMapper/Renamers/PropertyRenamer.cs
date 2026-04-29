@@ -3,22 +3,18 @@ using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRenamer
+public class PropertyRenamer(ILogger<PropertyRenamer> logger, DataProvider dataProvider, Statistics stats) : IRenamer
 {
-    public int Priority { get; } = 0;
-    public bool Enabled { get; } = false;
+    public int Priority => 0;
+    public bool Enabled => false;
 
-    public ERenamerType Type
-    {
-        get { return ERenamerType.Properties; }
-    }
+    public ERenamerType Type => ERenamerType.Properties;
 
     public void Rename(DirectMapModel model)
     {
@@ -34,9 +30,9 @@ public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRen
         {
             if (propsToRename.TryGetValue(prop.Name!.ToString(), out var newName))
             {
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug("\t\tProperty: {old} -> {new}", prop.Name.ToString(), newName);
+                    logger.LogDebug("\t\tProperty: {old} -> {new}", prop.Name.ToString(), newName);
                 }
 
                 prop.Name = new Utf8String(newName);
@@ -67,9 +63,9 @@ public class PropertyRenamer(DataProvider dataProvider, Statistics stats) : IRen
                     continue;
                 }
 
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug(
+                    logger.LogDebug(
                         "Renaming property [{PropertyDeclaringType}::{PropertyName}] to [{TypeDefinition}::{NewPropertyName}]",
                         property.DeclaringType,
                         property.Name?.ToString(),

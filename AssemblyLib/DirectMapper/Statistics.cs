@@ -1,15 +1,14 @@
 ﻿using System.Diagnostics;
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
-using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
-public sealed class Statistics(DataProvider dataProvider)
+public sealed class Statistics(ILogger<Statistics> logger, DataProvider dataProvider)
 {
     public int TypePublicizedCount;
     public int FieldPublicizedCount;
@@ -47,26 +46,32 @@ public sealed class Statistics(DataProvider dataProvider)
         var totalNamedStructs = totalStructs - totalObfuscatedStructs;
         var totalNamedInterfaces = totalInterfaces - totalObfuscatedInterfaces;
 
-        Log.Information("------------- Assembly Statistics ---------------");
-        Log.Information("Types:      {Total}", totalTypes);
-        Log.Information("Classes:    {Total}", totalClasses);
-        Log.Information("Structs:    {Total}", totalStructs);
-        Log.Information("Enums:      {Total}", totalEnums);
-        Log.Information("Interfaces: {Total}", totalInterfaces);
+        logger.LogInformation("------------- Assembly Statistics ---------------");
+        logger.LogInformation("Types:      {Total}", totalTypes);
+        logger.LogInformation("Classes:    {Total}", totalClasses);
+        logger.LogInformation("Structs:    {Total}", totalStructs);
+        logger.LogInformation("Enums:      {Total}", totalEnums);
+        logger.LogInformation("Interfaces: {Total}", totalInterfaces);
 
-        Log.Information("---------- De-Obfuscation Statistics -------------");
-        Log.Information("Total obfuscated classes:     {Total}", totalObfuscatedClasses);
-        Log.Information("Total obfuscated structs:     {Total}", totalObfuscatedStructs);
-        Log.Information("Total obfuscated enums:       Cannot be obfuscated");
-        Log.Information("Total obfuscated interfaces:  {total}", totalObfuscatedInterfaces);
+        logger.LogInformation("---------- De-Obfuscation Statistics -------------");
+        logger.LogInformation("Total obfuscated classes:     {Total}", totalObfuscatedClasses);
+        logger.LogInformation("Total obfuscated structs:     {Total}", totalObfuscatedStructs);
+        logger.LogInformation("Total obfuscated enums:       Cannot be obfuscated");
+        logger.LogInformation("Total obfuscated interfaces:  {total}", totalObfuscatedInterfaces);
 
-        Log.Information("Total named classes:          {Total}", totalNamedClasses);
-        Log.Information("Total named structs:          {Total}", totalNamedStructs);
-        Log.Information("Total named interfaces:       {Total}", totalNamedInterfaces);
-        Log.Information("Total named enums:            {total}", totalEnums);
+        logger.LogInformation("Total named classes:          {Total}", totalNamedClasses);
+        logger.LogInformation("Total named structs:          {Total}", totalNamedStructs);
+        logger.LogInformation("Total named interfaces:       {Total}", totalNamedInterfaces);
+        logger.LogInformation("Total named enums:            {total}", totalEnums);
 
-        Log.Information("------------------ Coverage ----------------------");
-        Log.Information("Named class coverage:         {coverage}%", totalNamedClasses / (float)totalClasses * 100f);
-        Log.Information("Named struct coverage:        {coverage}%", totalNamedStructs / (float)totalStructs * 100f);
+        logger.LogInformation("------------------ Coverage ----------------------");
+        logger.LogInformation(
+            "Named class coverage:         {coverage}%",
+            totalNamedClasses / (float)totalClasses * 100f
+        );
+        logger.LogInformation(
+            "Named struct coverage:        {coverage}%",
+            totalNamedStructs / (float)totalStructs * 100f
+        );
     }
 }

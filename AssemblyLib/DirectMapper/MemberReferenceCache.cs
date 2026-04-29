@@ -1,13 +1,13 @@
 using System.Collections.Concurrent;
 using AsmResolver.DotNet;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable(InjectionType.Singleton)]
-public class MemberReferenceCache(DataProvider dataProvider)
+public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProvider dataProvider)
 {
     private readonly ConcurrentDictionary<FieldDefinition, List<MemberReference>> _fieldReferences = [];
     private readonly ConcurrentDictionary<MethodDefinition, List<MemberReference>> _methodReferences = [];
@@ -16,24 +16,27 @@ public class MemberReferenceCache(DataProvider dataProvider)
 
     private bool _hydrated;
 
-    public async Task Hydrate()
+    public void Hydrate()
     {
         if (_hydrated)
         {
             return;
         }
 
-        Log.Information("Hydrating MemberReferenceCache");
+        logger.LogInformation("Hydrating MemberReferenceCache");
 
         CacheMethodReferences();
 
-        Log.Information("Field definition cache hydrated with {count} field definitions", _fieldReferences.Count);
-        Log.Information("Method definition cache hydrated with {count} method definitions", _methodReferences.Count);
-        Log.Information(
+        logger.LogInformation("Field definition cache hydrated with {count} field definitions", _fieldReferences.Count);
+        logger.LogInformation(
+            "Method definition cache hydrated with {count} method definitions",
+            _methodReferences.Count
+        );
+        logger.LogInformation(
             "Property definition cache hydrated with {count} property definitions",
             _propertyReferences.Count
         );
-        Log.Information(
+        logger.LogInformation(
             "Method override cache hydrated with {count} methods that are overriden",
             _methodOverrides.Count
         );

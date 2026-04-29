@@ -1,16 +1,14 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Tables;
-using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Shared;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
+public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProvider, Statistics stats)
 {
     /// <summary>
     /// Publicize the provided type
@@ -73,9 +71,9 @@ public sealed class Publicizer(DataProvider dataProvider, Statistics stats)
             && dataProvider.Settings.InterfaceMethodsToIgnore.Any(ignoredMethod => method.Name.EndsWith(ignoredMethod))
         )
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            if (logger.IsEnabled(LogLevel.Debug))
             {
-                Log.Debug(
+                logger.LogDebug(
                     "Not publicizing {FullName}::{MethodName} due to it being ignored",
                     method.DeclaringType!.FullName,
                     method.Name.ToString()

@@ -1,6 +1,7 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
 using AssemblyLib.Shared;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 using SPTarkov.DI.Annotations;
@@ -8,7 +9,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public class AttributeFactory(DataProvider dataProvider)
+public class AttributeFactory(ILogger<AttributeFactory> logger, DataProvider dataProvider)
 {
     /// <summary>
     ///     Force-initializes all custom attribute signatures before any renaming occurs.
@@ -128,7 +129,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
             if (typeDefTarget is null)
             {
-                Log.Error(
+                logger.LogError(
                     "Failed to locate AsyncStateMachineAttribute for method {DeclaringTypeName}::{MethodName}",
                     method.DeclaringType?.Name?.ToString(),
                     method.Name?.ToString()
@@ -193,12 +194,12 @@ public class AttributeFactory(DataProvider dataProvider)
 
             if (newAttr != null)
             {
-                Log.Information("Successfully created updated attribute for: {TypeName}", referencedTypeName);
+                logger.LogInformation("Successfully created updated attribute for: {TypeName}", referencedTypeName);
                 replacements.Add((attr, newAttr));
             }
             else
             {
-                Log.Warning(
+                logger.LogWarning(
                     "No update needed or failed to create updated attribute for: {TypeName}",
                     referencedTypeName
                 );
@@ -274,7 +275,7 @@ public class AttributeFactory(DataProvider dataProvider)
     {
         if (originalAttr.Signature?.FixedArguments.Count == 0)
         {
-            Log.Warning("No fixed arguments in attribute signature");
+            logger.LogWarning("No fixed arguments in attribute signature");
             return null;
         }
 
@@ -282,9 +283,9 @@ public class AttributeFactory(DataProvider dataProvider)
 
         if (argument?.Element is not GenericInstanceTypeSignature genericSig)
         {
-            if (Log.IsEnabled(LogEventLevel.Debug))
+            if (logger.IsEnabled(LogLevel.Debug))
             {
-                Log.Debug(
+                logger.LogDebug(
                     "Argument is not a GenericInstanceTypeSignature, it's: {Type}",
                     argument?.Element?.GetType().Name
                 );
@@ -340,7 +341,7 @@ public class AttributeFactory(DataProvider dataProvider)
 
         if (finalBaseType == null)
         {
-            Log.Error("Could not resolve base generic type");
+            logger.LogError("Could not resolve base generic type");
             return null;
         }
 
@@ -606,7 +607,7 @@ public class AttributeFactory(DataProvider dataProvider)
         return customAttribute;
     }
 
-    private static void ForceInitAttributes(IHasCustomAttribute target)
+    private void ForceInitAttributes(IHasCustomAttribute target)
     {
         foreach (var attr in target.CustomAttributes)
         {
@@ -617,7 +618,7 @@ public class AttributeFactory(DataProvider dataProvider)
             }
             catch (Exception ex)
             {
-                Log.Warning(
+                logger.LogWarning(
                     "Could not pre-initialize attribute {Attr}: {Message}",
                     attr.Constructor?.DeclaringType?.FullName,
                     ex.Message

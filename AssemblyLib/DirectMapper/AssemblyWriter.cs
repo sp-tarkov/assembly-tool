@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using AsmResolver;
 using AsmResolver.DotNet;
@@ -9,13 +8,13 @@ using AsmResolver.PE.DotNet.Metadata.Tables;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public sealed class AssemblyWriter(DataProvider dataProvider)
+public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider dataProvider)
 {
     internal DeObfuscationResult Deobfuscate(ModuleDefinition? module, string assemblyPath)
     {
@@ -24,7 +23,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
         if (module!.GetAllTypes().Any(t => t.Name?.Contains("GClass") ?? false))
         {
-            Log.Information("Assembly is not obfuscated.");
+            logger.LogInformation("Assembly is not obfuscated.");
 
             result.Success = true;
             result.DeObfuscatedAssemblyPath = assemblyPath;
@@ -33,13 +32,13 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
             return result;
         }
 
-        Log.Information("Assembly is obfuscated, running de-obfuscation...");
+        logger.LogInformation("Assembly is obfuscated, running de-obfuscation...");
 
         if (!Deobfuscate(assemblyPath))
         {
             result.Success = false;
 
-            Log.Error("Failed to deobfuscate assembly.");
+            logger.LogError("Failed to deobfuscate assembly.");
             return result;
         }
 
@@ -52,7 +51,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         result.DeObfuscatedAssemblyPath = cleanedPath;
         result.DeObfuscatedModule = dataProvider.LoadModule(cleanedPath);
 
-        Log.Information(
+        logger.LogInformation(
             "Deobfuscation completed. Took {time:F2} seconds. Deobfuscated assembly written to: {assemblyPath}",
             sw.ElapsedMilliseconds / 1000,
             result.DeObfuscatedAssemblyPath
@@ -76,11 +75,11 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         }
         catch (Exception e)
         {
-            Log.Fatal(e, "Failed to write assembly to: {outPath}", outPath);
+            logger.LogCritical(e, "Failed to write assembly to: {outPath}", outPath);
             throw;
         }
 
-        Log.Information("Assembly written to: {outPath}", outPath);
+        logger.LogInformation("Assembly written to: {outPath}", outPath);
 
         await StartHollow(module.GetAllTypes());
 
@@ -93,11 +92,11 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         }
         catch (Exception e)
         {
-            Log.Error("Exception during write hollow task:\n{Exception}", e.Message);
+            logger.LogCritical("Exception during write hollow task:\n{Exception}", e.Message);
             return;
         }
 
-        Log.Information("Hollowed written to: {outPath}", hollowedPath);
+        logger.LogInformation("Hollowed written to: {outPath}", hollowedPath);
 
         var deltaPath = StartHDiffz(outPath);
         CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath);
@@ -121,7 +120,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
             if (File.Exists(gameDest))
             {
                 File.Copy(asmPath, gameDest, true);
-                Log.Information("Assembly has been installed to the game: {GameDest}", gameDest);
+                logger.LogInformation("Assembly has been installed to the game: {GameDest}", gameDest);
             }
         }
 
@@ -142,7 +141,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
             File.Copy(hollowedPath, hollowedDest, true);
 
-            Log.Information("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
+            logger.LogInformation("Hollowed has been copied to the modules project: {HollowedDest}", hollowedDest);
         }
 
         if (
@@ -167,7 +166,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
             File.Copy(deltaPath, deltaDest, true);
 
-            Log.Information("Delta has been copied to the launcher project: {HollowedDest}", deltaDest);
+            logger.LogInformation("Delta has been copied to the launcher project: {HollowedDest}", deltaDest);
         }
     }
 
@@ -189,7 +188,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("Exception in task:\n{ExMessage}", ex.Message);
+                        logger.LogCritical("Exception in hollow task:\n{ExMessage}", ex.Message);
                     }
                 })
             );
@@ -258,7 +257,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
         if (potentialStringDelegates.Count != 1)
         {
-            Log.Error(
+            logger.LogError(
                 "Expected to find 1 potential string delegate method; found {Count}. Candidates: {Join}",
                 potentialStringDelegates.Count,
                 string.Join("\r\n", potentialStringDelegates.Select(x => x.FullName))
@@ -273,7 +272,7 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
         // Construct the token string (similar to Mono.Cecil's format)
         // Shift table index to the upper 8 bits
         var token = $"0x{((uint)deobfRid.Table << 24 | deobfRid.Rid):x4}";
-        Log.Information("Deobfuscated token: {Token}", token);
+        logger.LogInformation("Deobfuscated token: {Token}", token);
 
         var cmd = isLauncher
             ? $"--un-name \"!^<>[a-z0-9]$&!^<>[a-z0-9]__.*$&![A-Z][A-Z]\\$<>.*$&^[a-zA-Z_<{{$][a-zA-Z_0-9<>{{}}$.`-]*$\" \"{assemblyPath}\" --strtok \"{token}\""
@@ -341,11 +340,11 @@ public sealed class AssemblyWriter(DataProvider dataProvider)
 
         if (error.Length > 0)
         {
-            Log.Error("Error: {Error}", error);
+            logger.LogError("Error: {Error}", error);
             return string.Empty;
         }
 
-        Log.Information("Delta written to: {outPath}", deltaFile);
+        logger.LogInformation("Delta written to: {outPath}", deltaFile);
 
         return outPath;
     }

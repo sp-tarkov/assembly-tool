@@ -3,13 +3,13 @@ using AssemblyLib.DirectMapper.Renamers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;
 
 [Injectable]
-public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> renamers)
+public class RenamerService(ILogger<RenamerService> logger, DataProvider dataProvider, IEnumerable<IRenamer> renamers)
 {
     /// <summary>
     ///     Recursively rename the mapping file and all nested types
@@ -27,13 +27,13 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
         }
         catch (Exception ex)
         {
-            Log.Error("Error setting up tool data: {message}", ex.Message);
+            logger.LogError("Error setting up tool data: {message}", ex.Message);
             return Task.CompletedTask;
         }
 
         if (toolData.Type is null)
         {
-            Log.Error("Failed to find type: {target}", targetFullName);
+            logger.LogError("Failed to find type: {target}", targetFullName);
             return Task.CompletedTask;
         }
 
@@ -47,8 +47,12 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
                 {
                     var children = string.Join(", ", nestedType?.NestedTypes.Select(t => t.Name?.ToString()) ?? []);
 
-                    Log.Error("Failed to find nested type: {name} on parent {parent}", name, toolData.Type.FullName);
-                    Log.Error("Available children for {parent}: {children}", toolData.Type.FullName, children);
+                    logger.LogError(
+                        "Failed to find nested type: {name} on parent {parent}",
+                        name,
+                        toolData.Type.FullName
+                    );
+                    logger.LogError("Available children for {parent}: {children}", toolData.Type.FullName, children);
                     continue;
                 }
 
@@ -64,7 +68,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
     {
         if (renamers.FirstOrDefault(r => r is TypeRenamer) is not TypeRenamer classRenamer)
         {
-            Log.Error("Failed to find ClassRenamer type");
+            logger.LogError("Failed to find ClassRenamer type");
             return;
         }
 
@@ -75,7 +79,7 @@ public class RenamerService(DataProvider dataProvider, IEnumerable<IRenamer> ren
     {
         if (renamers.FirstOrDefault(r => r is FieldRenamer) is not FieldRenamer fieldRenamer)
         {
-            Log.Error("Failed to find FieldRenamer type");
+            logger.LogError("Failed to find FieldRenamer type");
             return;
         }
 

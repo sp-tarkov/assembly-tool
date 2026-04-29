@@ -3,23 +3,23 @@ using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using AssemblyLib.Shared;
-using Serilog;
-using Serilog.Events;
+using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Renamers;
 
 [Injectable]
-public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberReferenceCache memberReferenceCache)
-    : IRenamer
+public class FieldRenamer(
+    ILogger<FieldRenamer> logger,
+    DataProvider dataProvider,
+    Statistics stats,
+    MemberReferenceCache memberReferenceCache
+) : IRenamer
 {
-    public int Priority { get; } = 0;
-    public bool Enabled { get; } = false;
+    public int Priority => 0;
+    public bool Enabled => false;
 
-    public ERenamerType Type
-    {
-        get { return ERenamerType.Fields; }
-    }
+    public ERenamerType Type => ERenamerType.Fields;
 
     public void Rename(DirectMapModel model)
     {
@@ -35,9 +35,9 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
         {
             if (fieldsToRename.TryGetValue(field.Name!.ToString(), out var newName))
             {
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug("\t\tField: {old} -> {new}", field.Name.ToString(), newName);
+                    logger.LogDebug("\t\tField: {old} -> {new}", field.Name.ToString(), newName);
                 }
 
                 field.Name = new Utf8String(newName);
@@ -65,7 +65,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
             {
                 if (field.Signature?.FieldType.Name is null)
                 {
-                    Log.Warning(
+                    logger.LogWarning(
                         "Found a null field signature: {dclName}::{fName} when renaming obfuscated fields. Skipping.",
                         field.DeclaringType?.Name?.ToString(),
                         field.Name?.ToString()
@@ -78,7 +78,7 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
 
                 if (field.DeclaringType?.Fields.Any(f => f.Name == newFieldName) ?? false)
                 {
-                    Log.Warning(
+                    logger.LogWarning(
                         "Trying to set duplicate field name: {fName} in class {cName}. Skipping.",
                         newFieldName.ToString(),
                         field.DeclaringType.Name?.ToString()
@@ -93,9 +93,9 @@ public class FieldRenamer(DataProvider dataProvider, Statistics stats, MemberRef
                     continue;
                 }
 
-                if (Log.IsEnabled(LogEventLevel.Debug))
+                if (logger.IsEnabled(LogLevel.Debug))
                 {
-                    Log.Debug(
+                    logger.LogDebug(
                         "Renaming field [{FieldDeclaringType}::{Utf8String}] to [{TypeDefinition}::{NewFieldName}]",
                         field.DeclaringType,
                         field.Name?.ToString(),

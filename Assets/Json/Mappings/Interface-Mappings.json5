@@ -30,7 +30,11 @@
   },
   "Interface15": {
     "NewName": "IImpostorsMainCameraContext",
-	"NewNamespace": "EFT.Impostors"
+    "NewNamespace": "EFT.Impostors"
+  },
+  "Interface16": {
+    "NewName": "IImpostorsOpticCameraContext",
+    "NewNamespace": "EFT.Impostors"
   },
   "Interface18": {
     "NewName": "IOperationHandler",

@@ -1,29 +1,29 @@
+using System.Reflection;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
+using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Shared;
+using EFT.InventoryLogic;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider) : IPatch
+public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider, ModuleMemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var inventoryEquipmentType = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT.InventoryLogic" && t.Name == "InventoryEquipment");
-
+        var inventoryEquipmentType = lookup.Type<InventoryEquipment>();
         if (inventoryEquipmentType is null)
         {
             throw new FailedToFindTypeException("Could not find `Eft.InventoryEquipment` when patching");
         }
 
-        var paymentSlotsField = inventoryEquipmentType.Fields.FirstOrDefault(f => f.Name == "_paymentSlots");
+        var paymentSlotsField = lookup.Field<InventoryEquipment>(nameof(InventoryEquipment._paymentSlots));
         if (paymentSlotsField is null)
         {
             throw new FailedToFindTypeException("Could not find _paymentSlots field");
@@ -36,14 +36,15 @@ public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider) : IPa
         );
         inventoryEquipmentType.Fields.Add(throwingGrenadeSlotsField);
 
-        var grenadeGetter = inventoryEquipmentType.Methods.FirstOrDefault(m => m.Name == "get_GrenadeThrowingSlots");
+        var grenadeGetter = lookup
+            .Property<InventoryEquipment>(nameof(InventoryEquipment.GrenadeThrowingSlots))
+            ?.GetMethod;
         if (grenadeGetter is null)
         {
             throw new FailedToFindTypeException("Could not find get_GrenadeThrowingSlots");
         }
 
         var instructions = grenadeGetter.CilMethodBody!.Instructions;
-
         foreach (var instruction in instructions)
         {
             if (instruction.Operand is SerializedFieldDefinition field && field.Name == "_paymentSlots")

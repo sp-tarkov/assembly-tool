@@ -1,9 +1,27 @@
 {
+    "Class99": {
+        "NewName": "AdvAssaultTargetLayer"
+    },
+    "Class100": {
+        "NewName": "ObdolbosEventFightLayer"
+    },
     "Class101": {
         "NewName": "InfectedTargetLayer"
     },
+    "Class102": {
+        "NewName": "InfectedWaitLayer"
+    },
     "Class103": {
         "NewName": "LeaveMapLayer"
+    },
+    "Class104": {
+        "NewName": "PmcPveTargetLayer"
+    },
+    "Class105": {
+        "NewName": "PursuitLayer"
+    },
+    "Class687": {
+        "NewName": "StateSwitcher"
     },
     "Class1028": {
         "NewName": "JobAwaitable",
@@ -49,9 +67,22 @@
         "NewName": "ChartDataItemBase",
         "NewNamespace": "ChartAndGraph.DataSource"
     },
+    "Class1085": {
+        "NewName": "ChartDataColumn",
+        "NewNamespace": "ChartAndGraph.DataSource"
+    },
+    "Class1086": {
+        "NewName": "ChartDataRow",
+        "NewNamespace": "ChartAndGraph.DataSource"
+    },
     "Class1087": {
         "NewName": "ChartDataSourceBase",
-        "NewNamespace": "ChartAndGraph.DataSource"
+        "NewNamespace": "ChartAndGraph.DataSource",
+        "NestedTypes": {
+            "EventArgs0": {
+                "NewName": "DataValueChangedEventArgs"
+            }
+        },
     },
     "Class1088": {
         "NestedTypes": {
@@ -72,6 +103,10 @@
     },
     "Class1394": {
         "NewName": "LeftHandInteractionsEventConsumer",
+        "NewNamespace": "EFT"
+    },
+    "Class1400": {
+        "NewName": "LootPlayerState",
         "NewNamespace": "EFT"
     },
     "Class1466": {
@@ -183,7 +218,10 @@
         "NewName": "LongPollingWebSocketRequest",
         "NewNamespace": "EFT.Communications"
     },
-
+    "Class2097": {
+        "NewName": "ImpostorsCameraContextAbstract",
+        "NewNamespace": "EFT.Impostors"
+    },
     "Class2098": {
         "NewName": "ImpostorsMainCameraContext",
         "NewNamespace": "EFT.Impostors"

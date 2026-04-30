@@ -66,6 +66,10 @@
     "NewName": "JobContinuation",
     "NewNamespace": "Diz.Jobs"
   },
+  "Struct273": {
+    "NewName": "ChartItemIndex",
+    "NewNamespace": "ChartAndGraph.Common"
+  },
   "Struct987": {
     "NewName": "Diagnosis",
     "NewNamespace": "EFT.BackEnd"

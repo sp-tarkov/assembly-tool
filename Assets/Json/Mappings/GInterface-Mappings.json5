@@ -65,6 +65,9 @@
   "GInterface23": {
     "NewName": "IBotCreator"
   },
+  "GInterface25": {
+    "NewName": "IMoveByPath"
+  },
   "GInterface26": {
     "NewName": "IWeaponGripPose"
   },
@@ -184,6 +187,15 @@
   },
   "GInterface68": {
     "NewName": "IAudioLogger",
+    "NewNamespace": "Audio"
+  },
+  "GInterface69": {
+    // nice
+    "NewName": "IManualUpdated",
+    "NewNamespace": "Audio"
+  },
+  "GInterface70": {
+    "NewName": "ITab",
     "NewNamespace": "Audio"
   },
   "GInterface71": {
@@ -566,6 +578,10 @@
     "NewName": "IAbstractSession",
     "NewNamespace": "EFT"
   },
+  "GInterface167": {
+    "NewName": "IObserverToPlayerBridge",
+    "NewNamespace": "EFT"
+  },
   "GInterface169": {
     "NewName": "IGameLevel",
     "NewNamespace": "EFT"
@@ -584,6 +600,10 @@
   },
   "GInterface173": {
     "NewName": "ICustomizationFilter",
+    "NewNamespace": "EFT"
+  },
+  "GInterface174": {
+    "NewName": "IGame",
     "NewNamespace": "EFT"
   },
   "GInterface175": {
@@ -696,6 +716,14 @@
   },
   "GInterface203": {
     "NewName": "IMedsController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface204": {
+    "NewName": "IQuickUseHandsController",
+    "NewNamespace": "EFT"
+  },
+  "GInterface205`1": {
+    "NewName": "IQuickUseHandsController",
     "NewNamespace": "EFT"
   },
   "GInterface206": {
@@ -1027,6 +1055,10 @@
     "NewName": "IAutomaticVaultingModel",
     "NewNamespace": "EFT.Vaulting.Models"
   },
+  "GInterface292": {
+    "NewName": "IGridSettingsModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
   "GInterface293": {
     "NewName": "IVaultingRestrictionsModel",
     "NewNamespace": "EFT.Vaulting.Models"
@@ -1069,6 +1101,10 @@
   },
   "GInterface303": {
     "NewName": "IWeightCalculatorModel",
+    "NewNamespace": "EFT.Vaulting.Models"
+  },
+  "GInterface304": {
+    "NewName": "IVaultingModel",
     "NewNamespace": "EFT.Vaulting.Models"
   },
   "GInterface305": {
@@ -1492,6 +1528,14 @@
     "NewName": "IRecodableItemTemplate",
     "NewNamespace": "EFT.InventoryLogic"
   },
+  "GInterface411`1": {
+    "NewName": "IRecodableItem",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
+  "GInterface412": {
+    "NewName": "IRecodableItem",
+    "NewNamespace": "EFT.InventoryLogic"
+  },
   "GInterface413": {
     "NewName": "IResourceComponent",
     "NewNamespace": "EFT.InventoryLogic"
@@ -1619,6 +1663,10 @@
   },
   "GInterface445": {
     "NewName": "ISubOperation",
+    "NewNamespace": "EFT.InventoryLogic.Operations"
+  },
+  "GInterface446": {
+    "NewName": "IObservedOperation",
     "NewNamespace": "EFT.InventoryLogic.Operations"
   },
   "GInterface447": {

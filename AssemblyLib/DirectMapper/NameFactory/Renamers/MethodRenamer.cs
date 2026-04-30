@@ -12,7 +12,7 @@ namespace AssemblyLib.DirectMapper.NameFactory.Renamers;
 public class MethodRenamer(ILogger<MethodRenamer> logger, DataProvider dataProvider) : IRenamer
 {
     public int Priority => 0;
-    public bool Enabled => false;
+    public bool Enabled => true;
 
     public ERenamerType Type => ERenamerType.Methods;
 

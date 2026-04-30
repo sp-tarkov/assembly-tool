@@ -665,6 +665,16 @@
             }
         }
     },
+    "EFT.UI.Matchmaker.MatchmakerTimeHasCome": {
+        "NestedTypes": {
+            "GClass3925": {
+                "NewName": "ReconnectTimeHasComeScreenController"
+            },
+            "GClass3924": {
+                "NewName": "TimeHasComeScreenController"
+            }
+        }
+    },
     "EFT.UI.Matchmaker.MatchmakerOfflineRaidScreen": {
         "NestedTypes": {
             "GClass3917": {

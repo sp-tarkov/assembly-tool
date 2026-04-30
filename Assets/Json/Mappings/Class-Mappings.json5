@@ -583,5 +583,12 @@
     "Class983": {
         "NewName": "NtpRequest",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+    },
+    //Todo: Move to it's own file?
+    "GException0": {
+        "NewName": "BackendException",
+    },
+    "GException1": {
+        "NewName": "BackendWithCodeException",
     }
 }

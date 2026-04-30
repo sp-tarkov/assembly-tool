@@ -7423,6 +7423,15 @@
         "NewName": "ScreenManager",
         "NewNamespace": "EFT.UI.Screens"
     },
+    "GClass3859": {
+        "NewName": "EftScreenManager",
+        "NewNamespace": "EFT.UI.Screens",
+        "NestedTypes": {
+            "GClass3861`2": {
+                "NewName": "EftScreenController"
+            }
+        },
+    },
     "GClass386": {
         "NewName": "DeadBody"
     },

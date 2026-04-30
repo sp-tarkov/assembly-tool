@@ -30,7 +30,7 @@ public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider) : IPa
         }
 
         var throwingGrenadeSlotsField = new FieldDefinition(
-            "_throwingGrenadeSlots",
+            "_grenadeThrowingSlots",
             paymentSlotsField.Attributes,
             paymentSlotsField.Signature!
         );

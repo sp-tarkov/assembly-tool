@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(SolutionDir)Assets\Assemblies\Assembly-CSharp-hollowed.dll</HintPath>
+      <HintPath>$(SolutionDir)Assets\Assemblies\AssemblyCSharp\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="0Harmony">
       <HintPath>$(SolutionDir)Assets\Assemblies\0Harmony.dll</HintPath>

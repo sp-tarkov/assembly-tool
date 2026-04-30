@@ -171,18 +171,24 @@ public class DataProvider
 
         foreach (var (originalName, mapping) in models)
         {
+            // Use original name as fallback so nested paths are always well-formed
+            var effectiveName = mapping.NewName ?? originalName;
+
             var currentName =
-                parentName != null ? $"{parentName}.{mapping.NewName}"
-                : mapping.NewNamespace != null ? $"{mapping.NewNamespace}.{mapping.NewName}"
-                : mapping.NewName;
+                parentName != null ? $"{parentName}.{effectiveName}"
+                : mapping.NewNamespace != null ? $"{mapping.NewNamespace}.{effectiveName}"
+                : effectiveName;
 
-            // Generics with the same name but different arity are distinct types and allowed
-            var arity = originalName.Contains('`') ? originalName.Split('`')[1] : null;
-            var seenKey = arity != null ? $"{currentName}`{arity}" : currentName;
-
-            if (seenKey is not null && !seenNames.Add(seenKey))
+            // Only validate entries that actually declare a new name
+            if (mapping.NewName != null)
             {
-                throw new DuplicateDirectMapException($"Duplicate direct mapping new name found: {currentName}");
+                var arity = originalName.Contains('`') ? originalName.Split('`')[1] : null;
+                var seenKey = arity != null ? $"{currentName}`{arity}" : currentName;
+
+                if (!seenNames.Add(seenKey))
+                {
+                    throw new DuplicateDirectMapException($"Duplicate direct mapping new name found: {currentName}");
+                }
             }
 
             if (mapping.NestedTypes?.Count > 0)

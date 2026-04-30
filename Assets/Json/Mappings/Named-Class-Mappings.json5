@@ -181,12 +181,12 @@
                         "NewName": "DischargeOperation"
                     },
                     "GClass2026": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "DropBackpackOperation5"
+                        //Todo: Fix dupe detection
+                        "NewName": "DropBackpackOperation"
                     },
                     "GClass2027": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "ServerDropBackpackOperation5"
+                        //Todo: Fix dupe detection
+                        "NewName": "ServerDropBackpackOperation"
                     },
                     "GClass2028": {
                         "NewName": "FireOperationBase"
@@ -265,14 +265,14 @@
                     },
                     "GClass2053": {
                         //Todo: Fix after dupe fix
-                        "NewName": "Remove5"
+                        "NewName": "Remove"
                     },
                     "GClass2054": {
                         "NewName": "RollCylinderOperation"
                     },
                     "GClass2055": {
                         //Todo: Fix after dupe fix
-                        "NewName": "SpawnOperation5"
+                        "NewName": "SpawnOperation"
                     },
                     "Class1264": {
                         "NewName": "AddModOperation"
@@ -332,27 +332,27 @@
                         "NewName": "KnifeOperation"
                     },
                     "Class1284": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "DropBackpackOperation2"
+                        //Todo: Fix dupe detection
+                        "NewName": "DropBackpackOperation"
                     },
                     "Class1285": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "ServerDropBackpackOperation2"
+                        //Todo: Fix dupe detection
+                        "NewName": "ServerDropBackpackOperation"
                     },
                     "Class1286": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Idling2"
+                        //Todo: Fix dupe detection
+                        "NewName": "Idling"
                     },
                     "Class1287": {
                         "NewName": "Kick"
                     },
                     "Class1288": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Remove2"
+                        //Todo: Fix dupe detection
+                        "NewName": "Remove"
                     },
                     "Class1289": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "SpawnOperation2"
+                        //Todo: Fix dupe detection
+                        "NewName": "SpawnOperation"
                     },
                 }
             },
@@ -399,52 +399,52 @@
                         "NewName": "BaseUsableItemOperation"
                     },
                     "Class1293": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "DropBackpackOperation3"
+                        //Todo: Fix dupe detection
+                        "NewName": "DropBackpackOperation"
                     },
                     "Class1294": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "ServerDropBackpackOperation3"
+                        //Todo: Fix dupe detection
+                        "NewName": "ServerDropBackpackOperation"
                     },
                     "Class1299": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Idling3"
+                        //Todo: Fix dupe detection
+                        "NewName": "Idling"
                     },
                     "Class1302": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Remove3"
+                        //Todo: Fix dupe detection
+                        "NewName": "Remove"
                     },
                     "Class1305": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "SpawnOperation3"
+                        //Todo: Fix dupe detection
+                        "NewName": "SpawnOperation"
                     },
                 }
             },
             "EmptyHandsController": {
                 "NestedTypes": {
                     "Class1259": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "DropBackpackOperation4"
+                        //Todo: Fix dupe detection
+                        "NewName": "DropBackpackOperation"
                     },
                     "Class1258": {
                         "NewName": "EmptyHandsOperation"
                     }
                     ,
                     "Class1261": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Idling4"
+                        //Todo: Fix dupe detection
+                        "NewName": "Idling"
                     },
                     "Class1262": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "Remove4"
+                        //Todo: Fix dupe detection
+                        "NewName": "Remove"
                     },
                     "Class1260": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "ServerDropBackpackOperation4"
+                        //Todo: Fix dupe detection
+                        "NewName": "ServerDropBackpackOperation"
                     },
                     "Class1263": {
-                        //Todo: Fix after dupe fix
-                        "NewName": "SpawnOperation4"
+                        //Todo: Fix dupe detection
+                        "NewName": "SpawnOperation"
                     }
                 }
             },

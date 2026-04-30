@@ -36,9 +36,7 @@ public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider, Modul
         );
         inventoryEquipmentType.Fields.Add(throwingGrenadeSlotsField);
 
-        var grenadeGetter = lookup
-            .Property<InventoryEquipment>(nameof(InventoryEquipment.GrenadeThrowingSlots))
-            ?.GetMethod;
+        var grenadeGetter = lookup.Method<InventoryEquipment>("get_GrenadeThrowingSlots");
         if (grenadeGetter is null)
         {
             throw new FailedToFindTypeException("Could not find get_GrenadeThrowingSlots");

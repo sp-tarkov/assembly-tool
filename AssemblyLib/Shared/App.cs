@@ -1,4 +1,6 @@
-﻿using AssemblyLib.DirectMapper;
+﻿using System.Reflection;
+using System.Runtime.Loader;
+using AssemblyLib.DirectMapper;
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,9 +67,11 @@ public class App
 
     private void ConfigureApplication()
     {
+        RegisterAssemblyResolve();
+
         Log.Logger = new LoggerConfiguration()
 #if DEBUG
-            .MinimumLevel.Debug()
+            .MinimumLevel.Information()
 #else
             .MinimumLevel.Information()
 #endif
@@ -92,5 +96,51 @@ public class App
         diHandler.InjectAll();
 
         _provider = services.BuildServiceProvider();
+    }
+
+    private void RegisterAssemblyResolve()
+    {
+        AssemblyLoadContext.Default.Resolving += (context, assemblyName) =>
+        {
+            var baseDir = Path.Combine(AppContext.BaseDirectory, "Assets", "Assemblies");
+
+            if (assemblyName.Name != "0harmony")
+            {
+                baseDir = Path.Combine(baseDir, "AssemblyCSharp");
+            }
+
+            var candidate = Path.Combine(baseDir, assemblyName.Name + ".dll");
+
+            Console.WriteLine(
+                $"[ALC Resolving] {assemblyName.Name} -> checking {candidate} (exists: {File.Exists(candidate)})"
+            );
+
+            if (File.Exists(candidate))
+            {
+                return context.LoadFromAssemblyPath(candidate);
+            }
+
+            return null;
+        };
+
+        AppDomain.CurrentDomain.AssemblyResolve += (_, args) =>
+        {
+            var assemblyName = new AssemblyName(args.Name).Name;
+
+            var baseDir = Path.Combine(AppContext.BaseDirectory, "Assets", "Assemblies", "AssemblyCSharp");
+
+            var candidate = Path.Combine(baseDir, assemblyName + ".dll");
+
+            Console.WriteLine(
+                $"[AppDomain Resolving] {assemblyName} -> checking {candidate} (exists: {File.Exists(candidate)})"
+            );
+
+            if (File.Exists(candidate))
+            {
+                return Assembly.LoadFrom(candidate);
+            }
+
+            return null;
+        };
     }
 }

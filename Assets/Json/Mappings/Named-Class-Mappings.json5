@@ -115,9 +115,29 @@
             "Interface11": {
                 "NewName": "IBaseUsableItemOperation"
             },
-
             "FirearmController": {
                 "NestedTypes": {
+                    "GClass2005": {
+                        "NewName": "InsertMagResult"
+                    },
+                    "GClass2006": {
+                        "NewName": "ReloadExternalMagResult"
+                    },
+                    "GClass2007": {
+                        "NewName": "ChamberForReloading"
+                    },
+                    "GClass2008": {
+                        "NewName": "ReloadMultiBarrelResult"
+                    },
+                    "GClass2009": {
+                        "NewName": "ReloadSingleBarrelResult"
+                    },
+                    "GClass2010": {
+                        "NewName": "RepairFeedResult"
+                    },
+                    "GClass2011": {
+                        "NewName": "UnderbarrelContainer"
+                    },
                     "GClass2013": {
                         "NewName": "FirearmOperation"
                     },
@@ -127,17 +147,307 @@
                     "GClass2015": {
                         "NewName": "BaseReloadOperation"
                     },
+                    "GClass2016": {
+                        "NewName": "ReloadExternalMagOperation"
+                    },
+                    "GClass2017": {
+                        "NewName": "ReloadInternalMagBase"
+                    },
                     "GClass2014": {
                         "NewName": "DischargeAmmoFromUnderbarrelWeapon"
+                    },
+                    "GClass2018": {
+                        "NewName": "ReloadCylinderMagOperation"
+                    },
+                    "GClass2019": {
+                        "NewName": "ReloadInternalMagOperation"
+                    },
+                    "GClass2020": {
+                        "NewName": "ReloadInternalMagWithOpenBoltOperation"
+                    },
+                    "GClass2021": {
+                        "NewName": "ReloadMultiBarrelOperation"
+                    },
+                    "GClass2022": {
+                        "NewName": "ReloadSingleBarrelOperation"
+                    },
+                    "GClass2023": {
+                        "NewName": "DischargeAmmoFromCamoraOperation"
+                    },
+                    "GClass2025": {
+                        "NewName": "DischargeMultiBarrelWeaponOperation"
+                    },
+                    "GClass2024": {
+                        "NewName": "DischargeOperation"
+                    },
+                    "GClass2026": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "DropBackpackOperation5"
+                    },
+                    "GClass2027": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "ServerDropBackpackOperation5"
+                    },
+                    "GClass2028": {
+                        "NewName": "FireOperationBase"
                     },
                     "GClass2029": {
                         "NewName": "AutomaticFireOperation"
                     },
+                    "GClass2031": {
+                        "NewName": "BoltActionFireOperation"
+                    },
+                    "GClass2030": {
+                        "NewName": "FireOperation"
+                    },
+                    "GClass2032": {
+                        "NewName": "FireCylinderMagOperation"
+                    },
+                    "GClass2033": {
+                        "NewName": "FlareGunFire"
+                    },
+                    "GClass2034": {
+                        "NewName": "LauncherFire"
+                    },
+                    "GClass2035": {
+                        "NewName": "OneOffGunFire"
+                    },
+                    "GClass2036": {
+                        "NewName": "RocketLauncherFire"
+                    },
+                    "GClass2038": {
+                        "NewName": "UtilityOperation"
+                    },
+                    "GClass2039": {
+                        "NewName": "InsertMagOperation"
+                    },
+                    "GClass2040": {
+                        "NewName": "LauncherIdling"
+                    },
+                    "GClass2041": {
+                        "NewName": "LauncherUtilityOperation"
+                    },
+                    "GClass2042": {
+                        "NewName": "LauncherReload"
+                    },
+                    "GClass2043": {
+                        "NewName": "LoadAmmoToUnderbarrelWeapon"
+                    },
+                    "GClass2044": {
+                        "NewName": "LoadCartridgeToCamora"
+                    },
+                    "GClass2045": {
+                        "NewName": "LoadCartridgeToChamber"
+                    },
+                    "GClass2046": {
+                        "NewName": "MalfunctionOperation"
+                    },
+                    "GClass2047": {
+                        "NewName": "ExamineMalfunctionTypeOperation"
+                    },
+                    "GClass2048": {
+                        "NewName": "RepairMalfunction"
+                    },
+                    "GClass2049": {
+                        "NewName": "StartMalfunction"
+                    },
+                    "GClass2050": {
+                        "NewName": "PullOutMagOperation"
+                    },
+                    "GClass2051": {
+                        "NewName": "RechamberOperation"
+                    },
+                    "GClass2052": {
+                        "NewName": "RemoveModOperation"
+                    },
+                    "GClass2056": {
+                        "NewName": "ToggleLauncherOperation"
+                    },
+                    "GClass2053": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Remove5"
+                    },
+                    "GClass2054": {
+                        "NewName": "RollCylinderOperation"
+                    },
+                    "GClass2055": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "SpawnOperation5"
+                    },
                     "Class1264": {
                         "NewName": "AddModOperation"
+                    },
+                    "Class1269": {
+                        "NewName": "FoldStockOperation"
+                    },
+                    "Class1270": {
+                        "NewName": "ToggleBipodOperation"
                     }
                 }
-            }
+            },
+            "GClass2003": {
+                "NewName": "Constants"
+            },
+            "GrenadeHandsController": {
+                "NestedTypes": {
+                    "Class1272": {
+                        "NewName": "GrenadeHandsOperation"
+                    },
+                    "Class1273": {
+                        "NewName": "DropBackpackOperation"
+                    },
+                    "Class1274": {
+                        "NewName": "ServerDropBackpackOperation"
+                    },
+                    "Class1275": {
+                        "NewName": "HighThrowOperation"
+                    },
+                    "Class1277": {
+                        "NewName": "IdlingCjPlsFixGrenade"
+                    },
+                    "Class1276": {
+                        "NewName": "LowThrowOperation"
+                    },
+                    "Class1278": {
+                        "NewName": "PlantTripwireOperation"
+                    },
+                    "Class1279": {
+                        "NewName": "Remove"
+                    },
+                    "Class1280": {
+                        "NewName": "SpawnOperation"
+                    },
+                }
+            },
+            "MedsController": {
+                "NestedTypes": {
+                    "Class1291": {
+                        "NewName": "MedsInHandsOperation"
+                    }
+                }
+            },
+            "KnifeController": {
+                "NestedTypes": {
+                    "Class1283": {
+                        "NewName": "KnifeOperation"
+                    },
+                    "Class1284": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "DropBackpackOperation2"
+                    },
+                    "Class1285": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "ServerDropBackpackOperation2"
+                    },
+                    "Class1286": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Idling2"
+                    },
+                    "Class1287": {
+                        "NewName": "Kick"
+                    },
+                    "Class1288": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Remove2"
+                    },
+                    "Class1289": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "SpawnOperation2"
+                    },
+                }
+            },
+            "PlayerInventoryController": {
+                "NestedTypes": {
+                    "Class1202": {
+                        "NewName": "CheckMagazineProcess"
+                    },
+                    "Class1204": {
+                        "NewName": "LoadMagazineProcess"
+                    },
+                    "Class1207": {
+                        "NewName": "UnloadMagazineProcess"
+                    }
+                }
+            },
+            "QuickGrenadeThrowHandsController": {
+                "NestedTypes": {
+                    "Class1281": {
+                        "NewName": "QuickGrenadeThrowOperation"
+                    }
+                }
+            },
+            "QuickKnifeKickController": {
+                "NestedTypes": {
+                    "Class1290": {
+                        "NewName": "QuickKnifeKickOperation"
+                    }
+                }
+            },
+            "QuickUseItemController": {
+                "NestedTypes": {
+                    "GClass2057": {
+                        "NewName": "BaseQuickUseOperation"
+                    },
+                    "GClass2058": {
+                        "NewName": "QuickUseOperation"
+                    }
+                }
+            },
+            "UsableItemController": {
+                "NestedTypes": {
+                    "Class1292": {
+                        "NewName": "BaseUsableItemOperation"
+                    },
+                    "Class1293": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "DropBackpackOperation3"
+                    },
+                    "Class1294": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "ServerDropBackpackOperation3"
+                    },
+                    "Class1299": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Idling3"
+                    },
+                    "Class1302": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Remove3"
+                    },
+                    "Class1305": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "SpawnOperation3"
+                    },
+                }
+            },
+            "EmptyHandsController": {
+                "NestedTypes": {
+                    "Class1259": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "DropBackpackOperation4"
+                    },
+                    "Class1258": {
+                        "NewName": "EmptyHandsOperation"
+                    }
+                    ,
+                    "Class1261": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Idling4"
+                    },
+                    "Class1262": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "Remove4"
+                    },
+                    "Class1260": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "ServerDropBackpackOperation4"
+                    },
+                    "Class1263": {
+                        //Todo: Fix after dupe fix
+                        "NewName": "SpawnOperation4"
+                    }
+                }
+            },
         }
     },
     "EFT.PlayerBody": {
@@ -147,6 +457,25 @@
             },
             "GClass2355": {
                 "NewName": "SlotView"
+            }
+        }
+    },
+    "EFT.PortableRangeFinderController": {
+        "NestedTypes": {
+            "Class1297": {
+                "NewName": "PortableRangeFinderDropBackpackOperation"
+            },
+            "Class1295": {
+                "NewName": "ServerPortableRangeFinderDropBackpackOperation"
+            },
+            "Class1300": {
+                "NewName": "PortableRangeFinderIdling"
+            },
+            "Class1303": {
+                "NewName": "PortableRangeFinderRemove"
+            },
+            "Class1306": {
+                "NewName": "PortableRangeFinderSpawnOperation"
             }
         }
     },

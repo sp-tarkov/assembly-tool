@@ -2621,6 +2621,15 @@
             },
             "Struct306": {
                 "NewName": "ItemCachedName"
+            },
+            "Class1193": {
+                "NewName": "ItemNamedPreset"
+            },
+            "GClass1535": {
+                "NewName": "NoParentWithIdError"
+            },
+            "GClass1536": {
+                "NewName": "NoContainerWithIdError"
             }
         }
     },
@@ -10222,7 +10231,21 @@
     },
     "GClass1911": {
         "NewName": "ItemDeserializer",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class1184": {
+                "NewName": "AbstractMemberMetaInfo"
+            },
+            "Class1185`1": {
+                "NewName": "MemberMetaInfo"
+            },
+            "Class1187": {
+                "NewName": "PropertyMetaInfo"
+            },
+            "Class1188": {
+                "NewName": "TypeMetaInfo"
+            },
+        }
     },
     "GClass1913": {
         "NewName": "ItemRelatedViewExtensions",

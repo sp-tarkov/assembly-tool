@@ -10,6 +10,7 @@ public record DirectMapModel
 
     public string? NewName { get; init; }
     public string? NewNamespace { get; init; }
+    public bool? RemoveType { get; init; }
 
     public Dictionary<string, string>? MethodRenames { get; init; }
     public Dictionary<string, string>? PropertyRenames { get; init; }

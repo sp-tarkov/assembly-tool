@@ -3,6 +3,7 @@ using AssemblyLib.DirectMapper.AttributeFactory;
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.DirectMapper.NameFactory;
 using AssemblyLib.DirectMapper.Patches;
+using AssemblyLib.Models;
 using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
@@ -19,6 +20,7 @@ public class DirectMapController(
     SigBasedMemberRenamer sigBasedMemberRenamer,
     Publicizer publicizer,
     MemberReferenceCache memberReferenceCache,
+    PatchHelper patchHelper,
     IEnumerable<IPatch> patches
 )
 {
@@ -90,6 +92,8 @@ public class DirectMapController(
 
         //renamerService.PostDirectMapStage();
         attributeFactory.UpdateConverterAttributes();
+
+        FindAndRemoveTypesFromAssembly();
         ApplyPatches();
     }
 
@@ -175,5 +179,31 @@ public class DirectMapController(
         {
             publicizer.PublicizeType(type);
         }
+    }
+
+    private void FindAndRemoveTypesFromAssembly()
+    {
+        foreach (var (_, model) in dataProvider.DirectMapModels)
+        {
+            ParseModelForTypesToRemove(model);
+        }
+    }
+
+    private void ParseModelForTypesToRemove(DirectMapModel model)
+    {
+        if (model.NestedTypes is not null)
+        {
+            foreach (var (_, nestedModel) in model.NestedTypes)
+            {
+                ParseModelForTypesToRemove(nestedModel);
+            }
+        }
+
+        if (!(model.RemoveType ?? false) || model.ToolData.Type is null)
+        {
+            return;
+        }
+
+        patchHelper.NukeType(model.ToolData.Type);
     }
 }

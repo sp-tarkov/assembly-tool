@@ -1,6 +1,7 @@
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Shared;
+using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
@@ -34,5 +35,7 @@ public class RemoveHwInfoPatch(PatchHelper patchHelper, DataProvider dataProvide
         }
 
         patchHelper.NukeType(hwEchoType);
+
+        Log.Information("RemoveHwInfoPatch Successful");
     }
 }

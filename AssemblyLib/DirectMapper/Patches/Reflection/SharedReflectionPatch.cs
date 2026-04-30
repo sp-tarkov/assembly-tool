@@ -36,7 +36,7 @@ public class SharedReflectionPatch(DataProvider dataProvider) : IPatch
 
             // 52 = Public | NonPublic | Instance
             instr.Operand = (sbyte)52;
-            Log.Information("Patch of Shared Successful");
+            Log.Information("SharedReflectionPatch Successful");
             break;
         }
     }

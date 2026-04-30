@@ -43,7 +43,7 @@ public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
 
             // 48 = Public | NonPublic
             instr.Operand = (sbyte)48;
-            Log.Information("Patch of EffectTypeCode Successful");
+            Log.Information("SharedReflectionPatch Successful");
             break;
         }
     }

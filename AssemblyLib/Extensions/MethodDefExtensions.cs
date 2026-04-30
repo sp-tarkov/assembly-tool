@@ -54,7 +54,7 @@ internal static class MethodDefExtensions
         {
             var instructions = methodDef.CilMethodBody!.Instructions;
 
-            Log.Information("=== {method} IL Dump ===", methodDef.Name);
+            Log.Information("=== {method} IL Dump ===", methodDef.Name!.ToString());
             for (var i = 0; i < instructions.Count; i++)
             {
                 Log.Information(

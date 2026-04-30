@@ -39,6 +39,6 @@ public class DisableDevMaskCheckPatch(PatchHelper patchHelper, DataProvider data
             body.ExceptionHandlers.Remove(handlerToRemove);
         }
 
-        Log.Information("DeveloperCheckPatch Successful");
+        Log.Information("DisableDevMaskCheckPatch Successful");
     }
 }

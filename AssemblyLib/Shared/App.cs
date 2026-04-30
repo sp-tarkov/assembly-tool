@@ -111,10 +111,6 @@ public class App
 
             var candidate = Path.Combine(baseDir, assemblyName.Name + ".dll");
 
-            Console.WriteLine(
-                $"[ALC Resolving] {assemblyName.Name} -> checking {candidate} (exists: {File.Exists(candidate)})"
-            );
-
             if (File.Exists(candidate))
             {
                 return context.LoadFromAssemblyPath(candidate);
@@ -130,10 +126,6 @@ public class App
             var baseDir = Path.Combine(AppContext.BaseDirectory, "Assets", "Assemblies", "AssemblyCSharp");
 
             var candidate = Path.Combine(baseDir, assemblyName + ".dll");
-
-            Console.WriteLine(
-                $"[AppDomain Resolving] {assemblyName} -> checking {candidate} (exists: {File.Exists(candidate)})"
-            );
 
             if (File.Exists(candidate))
             {

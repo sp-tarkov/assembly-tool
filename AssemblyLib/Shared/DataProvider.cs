@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
@@ -112,6 +113,7 @@ public class DataProvider
         {
             AllowTrailingCommas = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
         };
 
         var count = 0;

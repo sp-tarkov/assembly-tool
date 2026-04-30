@@ -12909,4 +12909,479 @@
         "NewName": "BaseInteractionState",
         "NewNamespace": "EFT.AnimatedInteractionsSubsystem.States"
     },
+    "GClass2153": {
+        "NewName": "ObservedPlayerDefaultState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass2158": {
+        "NewName": "ObservedPlayerInteractState",
+        "NewNamespace": "EFT.NextObservedPlayer"
+    },
+    "GClass524": {
+        "NewName": "FollowerGluharScoutSubTactic"
+    },
+    "GClass249": {
+        "NewName": "PatrollingFollowerPlayer"
+    },
+    "GClass269": {
+        "NewName": "StayAndLookNode"
+    },
+    "GClass303": {
+        "NewName": "DebugShootFromCover"
+    },
+    "GClass520": {
+        "NewName": "BossDeciderSubTactic"
+    },
+    "GClass521": {
+        "NewName": "BossGluharSubTactic"
+    },
+    "GClass838": {
+        "NewName": "SimpleAverage",
+        "NewNamespace": "Diz.Jobs"
+    },
+    "GClass2194": {
+        "NewName": "Kick",
+        "NewNamespace": "EFT"
+    },
+    "GClass3538": {
+        "NewName": "HandbookExtensions",
+        "NewNamespace": "EFT.HandBook"
+    },
+    "GClass3564": {
+        //Custom, doesn't exist in the 1.0 client anymore
+        "NewName": "SubtitlesEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3551": {
+        //Custom, doesn't exist in the 1.0 client anymore
+        "NewName": "SubtitlesEndEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3447": {
+        "NewName": "Trasaction",
+        "NewNamespace": "EFT.InventoryLogic"
+    },
+    "GClass3503": {
+        "NewName": "TransferOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3504": {
+        "NewName": "UnbindItemOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3505": {
+        "NewName": "WeaponRechamberOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3506": {
+        "NewName": "RecodeOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3507": {
+        "NewName": "CheckMagazineOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3508": {
+        "NewName": "ExamineMalfTypeOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3509": {
+        "NewName": "ExamineMalfunctionOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3510": {
+        "NewName": "ExamineOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3511": {
+        "NewName": "FaceshieldMarkOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3512`1": {
+        "NewName": "AbstractMagOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3513": {
+        "NewName": "LoadMagOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3514": {
+        "NewName": "UnloadMagOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3515": {
+        "NewName": "ActiveSearchContentOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3516": {
+        "NewName": "SinglePlayerSearchContentOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3517": {
+        "NewName": "NetworkSearchContentOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3518": {
+        "NewName": "StationaryWeaponOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3519": {
+        "NewName": "BaseQuestOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3520": {
+        "NewName": "QuestAcceptOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3521": {
+        "NewName": "QuestFinishOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3522": {
+        "NewName": "QuestHandoverOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3523": {
+        "NewName": "ApplyInventoryChangesOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3524": {
+        "NewName": "ChangeItemsOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3525": {
+        "NewName": "SplitToNowhereOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3526": {
+        "NewName": "TransferFromNowhereOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3527": {
+        "NewName": "NetworkSearchSuboperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3528": {
+        "NewName": "EatOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3529": {
+        "NewName": "HealOperation",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3530": {
+        "NewName": "AddToWishlistOperationResult",
+        "NewNamespace": "EFT.InventoryLogic.Operations"
+    },
+    "GClass3535`1": {
+        "NewName": "BaseHandbook",
+        "NewNamespace": "EFT.HandBook"
+    },
+    "GClass3537`1": {
+        "NewName": "HandbookInfo",
+        "NewNamespace": "EFT.HandBook"
+    },
+    "GClass3539": {
+        "NewName": "HandbookNode",
+        "NewNamespace": "EFT.HandBook"
+    },
+    "GClass3542": {
+        "NewName": "BaseEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3543": {
+        "NewName": "RainIntensityChangedEvent",
+        "NewNamespace": "CommonAssets.Scripts.GlobalEventsSystem"
+    },
+    "GClass3544": {
+        "NewName": "BtrFirstPassengerGoInEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3545": {
+        "NewName": "BufferInnerZoneStatusEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3546": {
+        "NewName": "ClientPlayerEffectsPauseEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3547": {
+        "NewName": "CreatePlayerEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3548": {
+        "NewName": "CutsceneForMyPlayerStartedEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3549": {
+        "NewName": "DeadPlayerEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3550": {
+        "NewName": "DoorInteractionEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3552": {
+        "NewName": "FlareShootZoneEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3553": {
+        "NewName": "FlareSuccessEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3554": {
+        "NewName": "HeadphonesUpdateEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3555": {
+        "NewName": "InteractWithKeeperZoneEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3556": {
+        "NewName": "MyPlayerInBtrZoneEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3557": {
+        "NewName": "MyPlayerInBufferZoneStatusEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3558": {
+        "NewName": "ObservedPlayerChangedEquipEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3559": {
+        "NewName": "ObservedPlayerCullingChangedEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3560": {
+        "NewName": "OnNeedToSendSpawnCmdToServerEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3561": {
+        "NewName": "PlayerDisconnectedEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3562": {
+        "NewName": "PlayerInteractionWithBufferZoneEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3563": {
+        "NewName": "SendEndCutsceneOnServerEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3565": {
+        "NewName": "ToggleShowInGameCursorEvent",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3567": {
+        "NewName": "AudioOcclusionRequestEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3568": {
+        "NewName": "AudioPortalStateChangedEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3569": {
+        "NewName": "AudioWindSpeedChangedEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3570": {
+        "NewName": "ClientSeasonChangedEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3571": {
+        "NewName": "DayTimeSoundBlendEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3572": {
+        "NewName": "MetaXRPluginErrorEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3574": {
+        "NewName": "PlayerInteractionEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3575": {
+        "NewName": "PortalDataUpdateEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3576": {
+        "NewName": "SpatialAudioSystemInitializedEvent",
+        "NewNamespace": "EFT.GlobalEvents.AudioEvents"
+    },
+    "GClass3577": {
+        "NewName": "ShellProjectileCreateEvent",
+        "NewNamespace": "EFT.GlobalEvents.ArtilleryShellingEcents"
+    },
+    "GClass3578": {
+        "NewName": "ShellProjectileExplosionEvent",
+        "NewNamespace": "EFT.GlobalEvents.ArtilleryShellingEcents"
+    },
+    "GClass3580": {
+        "NewName": "GlobalEventsUpdater",
+        "NewNamespace": "EFT.GlobalEvents"
+    },
+    "GClass3581": {
+        "NewName": "Develop",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3582": {
+        "NewName": "SpawnCategoryExtension",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3583": {
+        "NewName": "GroundHelper",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3584": {
+        "NewName": "SpawnPointsArray",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3585": {
+        "NewName": "PlayersCollectionExtension",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3586": {
+        "NewName": "SpawnPointExtension",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3587": {
+        "NewName": "SpawnColliderHelper",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3588": {
+        "NewName": "SpawnPointParamsExtension",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3589": {
+        "NewName": "SpawnPointsCollection",
+        "NewNamespace": "EFT.Game.Spawning",
+        "NestedTypes": {
+            "Class407": {
+                "NewName": "Logger"
+            }
+        }
+    },
+    "GClass3590": {
+        "NewName": "SpawnSystemFactory",
+        "NewNamespace": "EFT.Game.Spawning"
+    },
+    "GClass3593": {
+        "NewName": "ServerTriggersEmitter",
+        "NewNamespace": "EFT.GameTriggers"
+    },
+    "GClass3594": {
+        "NewName": "LocalTriggersEmitter",
+        "NewNamespace": "EFT.GameTriggers"
+    },
+    "GClass3595": {
+        "NewName": "ClientTriggersEmitter",
+        "NewNamespace": "EFT.GameTriggers"
+    },
+    "GClass3598": {
+        "NewName": "EditorAnimatorHelperUtility",
+        "NewNamespace": "EFT.Tools.AnimationDebugging"
+    },
+    "GClass3599": {
+        "NewName": "AnimatorRebindUtility",
+        "NewNamespace": "EFT.Tools.AnimatorTools",
+        "NestedTypes": {
+            "Struct951": {
+                "NewName": "AnimatorParamData"
+            }
+        }
+    },
+    "GClass3600": {
+        "NewName": "BackendNodeConnectionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3603": {
+        "NewName": "BackendDialogNodeMainConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3604": {
+        "NewName": "BackendRandomConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3605": {
+        "NewName": "BackendDialogNodeLogicalGroupConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3606": {
+        "NewName": "BackendDialogNodeConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3607": {
+        "NewName": "BackendDialogVariableConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3608": {
+        "NewName": "BackendQuestStatusConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3609": {
+        "NewName": "BackendQuestConditionStatusConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3610": {
+        "NewName": "BackendTraderReputationConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3611": {
+        "NewName": "BackendServiceAvailableConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3612": {
+        "NewName": "BackendCurrentTraderConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3613": {
+        "NewName": "BackendHasNewQuestsConditionData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3614": {
+        "NewName": "BackendDialogNodeConditionsData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3615": {
+        "NewName": "BackendDialogNodeData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3616": {
+        "NewName": "BackendCombinedAnimationData",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3622": {
+        "NewName": "EmbeddedDynamicTraderDialog",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3627": {
+        "NewName": "PurchaseServicePlayerLine",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3628": {
+        "NewName": "SubServicePlayerLine",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3631": {
+        "NewName": "DialogPurchaseServiceAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3634": {
+        "NewName": "DialogDiaryNoteAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3602": {
+        "NewName": "BackendDialogNodeConditionJsonConverter",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3623": {
+        "NewName": "DialogLineTextConstructor",
+        "NewNamespace": "EFT.Dialogs",
+        "NestedTypes": {
+            "Interface20": {
+                "NewName": "IDialogLineConstructor"
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
 using AsmResolver.PE.DotNet.Cil;
+using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Shared;
 using Serilog;
@@ -7,7 +8,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class DisableDevMaskCheckPatch(DataProvider dataProvider) : IPatch
+public class DisableDevMaskCheckPatch(PatchHelper patchHelper, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
@@ -27,11 +28,7 @@ public class DisableDevMaskCheckPatch(DataProvider dataProvider) : IPatch
 
         var instructions = body.Instructions;
 
-        for (var i = 365; i <= 404; i++)
-        {
-            instructions[i].OpCode = CilOpCodes.Nop;
-            instructions[i].Operand = null;
-        }
+        patchHelper.NopRange(instructions, 365, 404);
 
         var handlerToRemove = body.ExceptionHandlers.FirstOrDefault(h =>
             h.TryStart?.Offset >= instructions[365].Offset && h.TryEnd?.Offset <= instructions[404].Offset + 1

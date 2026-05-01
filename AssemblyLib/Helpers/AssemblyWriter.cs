@@ -68,6 +68,12 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
             module.Name?.Replace(".dll", dllName) ?? Utf8String.Empty
         );
 
+        var deltaPath = Path.Combine(
+            Path.GetDirectoryName(targetAssemblyPath)
+                ?? throw new NullReferenceException("Target assembly path is null"),
+            module.Name?.Replace(".dll", ".dll.delta") ?? Utf8String.Empty
+        );
+
         try
         {
             module.Assembly!.Write(outPath);
@@ -97,7 +103,7 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
 
         logger.LogInformation("Hollowed written to: {outPath}", hollowedPath);
 
-        var deltaPath = StartHDiffz(outPath);
+        CreateDelta(targetAssemblyPath, outPath, deltaPath);
         CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath);
     }
 
@@ -300,24 +306,23 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         return true;
     }
 
-    private string StartHDiffz(string outPath)
+    /// <summary>
+    ///     Creates a delta patch for the provided paths
+    /// </summary>
+    /// <param name="originalFilePath">Original unpatched file path</param>
+    /// <param name="patchedFilePath">Patched file path</param>
+    /// <param name="deltaFilePath">Path to where the delta should be created</param>
+    public void CreateDelta(string originalFilePath, string patchedFilePath, string deltaFilePath)
     {
         var hdiffExecutable = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "hdiffz.elf" : "hdiffz.exe";
         var hdiffPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Binaries", "Hdiffz", hdiffExecutable);
 
-        var outDir = Path.GetDirectoryName(outPath);
-
-        var originalFile = Path.Combine(outDir!, "Assembly-CSharp.dll");
-        var patchedFile = Path.Combine(outDir!, "Assembly-CSharp-cleaned-direct-mapped-publicized.dll");
-        var deltaFile = Path.Combine(outDir!, "Assembly-CSharp.dll.delta");
-
-        if (File.Exists(deltaFile))
+        if (File.Exists(deltaFilePath))
         {
-            File.Delete(deltaFile);
+            File.Delete(deltaFilePath);
         }
 
-        var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFile}\" \"{patchedFile}\" \"{deltaFile}\"";
-
+        var arguments = $"-s-64 -c-zstd-21-24 -d \"{originalFilePath}\" \"{patchedFilePath}\" \"{deltaFilePath}\"";
         var startInfo = new ProcessStartInfo
         {
             FileName = hdiffPath,
@@ -340,11 +345,9 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         if (error.Length > 0)
         {
             logger.LogError("Error: {Error}", error);
-            return string.Empty;
+            return;
         }
 
-        logger.LogInformation("Delta written to: {outPath}", deltaFile);
-
-        return outPath;
+        logger.LogInformation("Delta written to: {outPath}", deltaFilePath);
     }
 }

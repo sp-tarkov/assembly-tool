@@ -2,11 +2,20 @@
   "GAttribute0": {
     "NewName": "TOD_MinAttribute"
   },
+  "GAttribute1": {
+    "NewName": "TOD_MaxAttribute"
+  },
   "GAttribute2": {
     "NewName": "TOD_RangeAttribute"
   },
+  "GAttribute3": {
+    "NewName": "EditorButtonAttribute"
+  },
   "GAttribute4": {
     "NewName": "CommentAttribute"
+  },
+  "GAttribute5": {
+    "NewName": "EnumFlagsAttribute"
   },
   "GAttribute6": {
     "NewName": "MinMaxVec2Attribute"
@@ -97,6 +106,72 @@
   "GAttribute31": {
     "NewName": "IgnoreBinarySerializationAttribute",
     "NewNamespace": "EFT.BinarySerialization"
+  },
+
+  "GDelegate0": {
+    "NewName": "OnSearchPointEnd"
+  },
+  "GDelegate1": {
+    "NewName": "OnSearchPointInner"
+  },
+  "GDelegate3": {
+    "NewName": "PlantedAIMineDelegate"
+  },
+  "GDelegate31": {
+    "NewName": "ReadyToDepartureEventHandler"
+  },
+  "GDelegate32": {
+    "NewName": "IncomingToDestinationEventHandler"
+  },
+  "GDelegate33": {
+    "NewName": "ChatSendDelegate"
+  },
+  "GDelegate38": {
+    "NewName": "IndexConvertDelegate",
+    "NewNamespace": "Koenigz.PerfectCulling"
+  },
+  "GDelegate39": {
+    "NewName": "ContentFilter",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT"
+  },
+  "GDelegate4": {
+    "NewName": "PatrolPointFilterDelegate"
+  },
+  "GDelegate40": {
+    "NewName": "CullingCellReadCallback",
+    "NewNamespace": "Koenigz.PerfectCulling.EFT"
+  },
+  "GDelegate5": {
+    "NewName": "FindNextPointDelegate"
+  },
+  "GDelegate6": {
+    "NewName": "OnReportEnemyDelegate"
+  },
+  "GDelegate64": {
+    "NewName": "ShotDelegate",
+    "NewNamespace": "EFT"
+  },
+  "GDelegate7": {
+    "NewName": "OnEnemySounHeardedDelegate"
+  },
+  "GDelegate70": {
+    "NewName": "OnPlayerDead",
+    "NewNamespace": "EFT"
+  },
+  "GDelegate71": {
+    "NewName": "OnPlayerDeadOrUnspawn",
+    "NewNamespace": "EFT"
+  },
+  "GDelegate77": {
+    "NewName": "TranslateDelegate",
+    "NewNamespace": "EFT.InputSystem"
+  },
+  "GDelegate8": {
+    "NewName": "RequestFailHandler"
+  },
+  "GDelegate83": {
+    "NewName": "WorldInteractiveObjectInteract",
+    "NewNamespace": "EFT.Interactive"
   },
   "GDelegate62": {
     "NewName": "YieldDelegate",

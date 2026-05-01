@@ -7618,6 +7618,10 @@
         "NewNamespace": "EFT.Prestige"
     },
     "GClass4002": {
+        "NewName": "PrestigeControllerClientBackend",
+        "NewNamespace": "EFT.Prestige"
+    },
+    "GClass4003": {
         "NewName": "PrestigeControllerClientGame",
         "NewNamespace": "EFT.Prestige"
     },
@@ -7724,7 +7728,7 @@
         "NewName": "DebugCoverDataInfo"
     },
     "GClass4040": {
-        "NewName": "ConditionHealthEffectProgressChecker",
+        "NewName": "ConditionHealthBuffProgressChecker",
         "NewNamespace": "EFT.Quests"
     },
     "GClass4042": {
@@ -8649,7 +8653,10 @@
         "NewName": "QuestLogger"
     },
     "GClass732": {
-        "NewName": "LogConfigurer"
+        "NewName": "AbstractLogConfigurator"
+    },
+    "GClass733": {
+        "NewName": "LogConfigurator"
     },
     "GClass735`1": {
         "NewName": "BadValueLogTracker"
@@ -13415,5 +13422,1028 @@
                 "NewName": "IDialogLineConstructor"
             }
         }
-    }
+    },
+    "GClass3856": {
+        "NewName": "SessionExperience",
+        "NewNamespace": "EFT.UI.SessionEnd"
+    },
+    "GClass4026": {
+        "NewName": "ConditionsConnectorsManagerPrestigeClientBackend",
+        "NewNamespace": "EFT.Prestige"
+    },
+    "GClass4027": {
+        "NewName": "ConditionsConnectorsManagerAchievementsClientBackend",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4028": {
+        "NewName": "ConditionsConnectorsManagerHideoutCustomizationOffersClientBackend",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4031": {
+        "NewName": "ConditionsConnectorsManagerPrestigeClientGame",
+        "NewNamespace": "EFT.Prestige"
+    },
+    "GClass4032": {
+        "NewName": "ConditionsConnectorsManagerAchievementsClientGame",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4041": {
+        "NewName": "ConditionHealthEffectProgressChecker",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass3636": {
+        "NewName": "GeneratedDialogFinishQuestAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3637": {
+        "NewName": "DialogQuestConditionAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3639": {
+        "NewName": "DialogQuestRewardAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3640": {
+        "NewName": "DialogSelectQuestAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3641": {
+        "NewName": "DialogEmbedQuestDialogAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3642": {
+        "NewName": "DialogQuestsScreenAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3643": {
+        "NewName": "DialogQuitAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3644": {
+        "NewName": "DialogSelectSubServiceAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3645": {
+        "NewName": "DialogSwitchDialogAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3646": {
+        "NewName": "DialogTradingScreenAction",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3647": {
+        "NewName": "DialogSetVariableAction",
+        "NewNamespace": "EFT.Dialogs",
+        "NestedTypes": {
+            "GClass3650": {
+                "NewName": "SaveStateData"
+            }
+        }
+    },
+    "GClass3648": {
+        "NewName": "DialogActionJsonConverter",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3649": {
+        "NewName": "VariableDataDto",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3651": {
+        "NewName": "DialogCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3652": {
+        "NewName": "BaseDialogConditionGroup",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3654": {
+        "NewName": "DialogConditionSubGroup",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3655": {
+        "NewName": "HasItemCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3656": {
+        "NewName": "HasNewQuestsCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3657": {
+        "NewName": "ServiceAvailableCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3658": {
+        "NewName": "QuestConditionStatusCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3659": {
+        "NewName": "QuestStatusCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3660": {
+        "NewName": "CurrentTraderCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3661": {
+        "NewName": "TraderReputation",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3662": {
+        "NewName": "VariableValueCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3663": {
+        "NewName": "DialogConditionConverter",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3664": {
+        "NewName": "RandomLineCondition",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3668": {
+        "NewName": "TraderAnimationController",
+        "NewNamespace": "EFT.Dialogs"
+    },
+    "GClass3670": {
+        "NewName": "DataProvider",
+        "NewNamespace": "EFT.DataProviding"
+    },
+    "GClass3671": {
+        "NewName": "DataProviderSynchronizationClient",
+        "NewNamespace": "EFT.DataProviding"
+    },
+    "GClass3673": {
+        "NewName": "CustomizationItem",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3674": {
+        "NewName": "CustomizationDogTag",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3675": {
+        "NewName": "CustomizationGesture",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3676": {
+        "NewName": "CustomizationEnvironmentUI",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3678": {
+        "NewName": "CustomizationHead",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3679": {
+        "NewName": "HideoutCustomizationItem",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3680": {
+        "NewName": "CustomizationHideoutMannequinPose",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3681": {
+        "NewName": "CustomizationPlayerVoice",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3682": {
+        "NewName": "CustomizationSuite",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3683": {
+        "NewName": "UpperBodySuit",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3684": {
+        "NewName": "LowerBodySuit",
+        "NewNamespace": "EFT.Customization"
+    },
+    "GClass3689": {
+        "NewName": "ThirdPersonCameraState",
+        "NewNamespace": "EFT.CameraControl"
+    },
+    "GClass3690": {
+        "NewName": "LockCameraState",
+        "NewNamespace": "EFT.CameraControl"
+    },
+    "GClass3691": {
+        "NewName": "FirstPersonCameraState",
+        "NewNamespace": "EFT.CameraControl"
+    },
+    "GClass3692": {
+        "NewName": "ReflexController",
+        "NewNamespace": "EFT.CameraControl"
+    },
+    "GClass3696": {
+        "NewName": "SecretExitTransferItemRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3697": {
+        "NewName": "TimerRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3698": {
+        "NewName": "TrainRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3699": {
+        "NewName": "SkillLevelRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3700": {
+        "NewName": "ScavCooperationRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3701": {
+        "NewName": "WorldEventRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3703": {
+        "NewName": "InventoryRequirements",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3704": {
+        "NewName": "EmptySlotRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3705": {
+        "NewName": "EmptyOrSmallerRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3706": {
+        "NewName": "HasItemRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3708": {
+        "NewName": "UnlockResult",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3709": {
+        "NewName": "ExtendedNodeReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3710": {
+        "NewName": "ExtendedLeafReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3711": {
+        "NewName": "ExtendedNonLeafReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3712": {
+        "NewName": "BoundExtension",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3713": {
+        "NewName": "MapEditableValidateIdProxy",
+        "NewNamespace": "EFT.Interactive",
+        "NestedTypes": {
+            "GDelegate82": {
+                "NewName": "UniqueIdRequestDelegate"
+            }
+        }
+    },
+    "GClass3714": {
+        "NewName": "LootPointNode",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3715": {
+        "NewName": "LootPointModeExtension",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3716": {
+        "NewName": "LootPointsUtils",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3717": {
+        "NewName": "NodeReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3702": {
+        "NewName": "AwaitsManualActivationRequirement",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3718": {
+        "NewName": "LeafReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3719": {
+        "NewName": "NonLeafReference",
+        "NewNamespace": "EFT.Interactive"
+    },
+    "GClass3722": {
+        "NewName": "ClientSecretExfilitranionController",
+        "NewNamespace": "EFT.Interactive.SecretExfiltrations"
+    },
+    "GClass3723": {
+        "NewName": "RandomsSetupInfo",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3724": {
+        "NewName": "RandomsSetupInfoExtension",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3725": {
+        "NewName": "PrecalculatedRandoms",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3728": {
+        "NewName": "PrecalculatedVector2Randoms",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3729": {
+        "NewName": "PrecalculatedVector3Randoms",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3730": {
+        "NewName": "PrecalculatedQaternionRandoms",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3731": {
+        "NewName": "PrecalculatedNormalDistributedRandoms",
+        "NewNamespace": "EFT.GameRandoms"
+    },
+    "GClass3732": {
+        "NewName": "BallisticHitReactor",
+        "NewNamespace": "EFT.Ballistics"
+    },
+    "GClass3735": {
+        "NewName": "TrajectoryCalculator",
+        "NewNamespace": "EFT.Ballistics"
+    },
+    "GClass3736": {
+        "NewName": "TrajectoryCalculatorHistory",
+        "NewNamespace": "EFT.Ballistics"
+    },
+    "GClass3737": {
+        "NewName": "TemporaryGrid",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3740": {
+        "NewName": "ErrorScreenData",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3741": {
+        "NewName": "RagfairIconsLoader",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3742": {
+        "NewName": "TextGameLocationData",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3743": {
+        "NewName": "TextGameMockData",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3744": {
+        "NewName": "QuickUseSelectorUtil",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3745": {
+        "NewName": "EftScreenState",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3746": {
+        "NewName": "CursorSwitcher",
+        "NewNamespace": "EFT.UI",
+        "NestedTypes": {
+            "Class2810": {
+                "NewName": "CursorData"
+            }
+        }
+    },
+    "GClass3747": {
+        "NewName": "EffectDescriptionFilter",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3748": {
+        "NewName": "BuildWrapper",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3749`1": {
+        "NewName": "BuildWrapper",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3750": {
+        "NewName": "HandoverExtensions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3755": {
+        "NewName": "HandbookContextInteractions",
+        "NewNamespace": "EFT.HandBook"
+    },
+    "GClass3756": {
+        "NewName": "ArenaEftTransferContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3757": {
+        "NewName": "BaseInventoryItemContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3758": {
+        "NewName": "InventoryItemContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3759": {
+        "NewName": "MatchingInventoryItemContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3760": {
+        "NewName": "EquipmentBuildContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3761": {
+        "NewName": "HideoutContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3762": {
+        "NewName": "ModdingContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3763": {
+        "NewName": "OtherPlayerProfileItemContextInteraction",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3764": {
+        "NewName": "OtherPlayerProfileSimpleItemContextInteraction",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3765": {
+        "NewName": "QuestItemContextInteraction",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3766": {
+        "NewName": "TradingContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3767": {
+        "NewName": "TradingPlayerContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3768": {
+        "NewName": "TransferFromScavContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3769": {
+        "NewName": "TransferItemHideoutAreaStashContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3770": {
+        "NewName": "TransferItemPlayerContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3771": {
+        "NewName": "TransferItemSenderContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3772": {
+        "NewName": "RagfairContextInteractions",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3773": {
+        "NewName": "NewOfferContextInteractions",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3774": {
+        "NewName": "InsuranceContextInteractions",
+        "NewNamespace": "EFT.UI.Insurance"
+    },
+    "GClass3775": {
+        "NewName": "BaseEmptyContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3776": {
+        "NewName": "ChatContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3777": {
+        "NewName": "EmptyContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3778": {
+        "NewName": "GesturesContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3779": {
+        "NewName": "LoadMagContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3780": {
+        "NewName": "MagPresetContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3781": {
+        "NewName": "PocketMapContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3782": {
+        "NewName": "WishlistContextInteractions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3784": {
+        "NewName": "ChatDialogueContextInteractions",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3785": {
+        "NewName": "ChatMemberContextInteractions",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3786": {
+        "NewName": "ChatMessagesContextInteractions",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3787": {
+        "NewName": "OfferIdContextInteractions",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3788": {
+        "NewName": "DynamicContextInteraction",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3790": {
+        "NewName": "ZombieEventLocationInfectionController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3791": {
+        "NewName": "StatInfoFactory",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3792": {
+        "NewName": "VoicePreviewSpeaker",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3793": {
+        "NewName": "StashMoneyController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3794": {
+        "NewName": "FavoriteQuestManager",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3795": {
+        "NewName": "QuestLocationComparer",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3796": {
+        "NewName": "QuestStatusComparer",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3797": {
+        "NewName": "QuestProgressComparer",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3798": {
+        "NewName": "QuestStringFieldComparer",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3799": {
+        "NewName": "SimpleTabController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3800`1": {
+        "NewName": "UIElementTabController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3806": {
+        "NewName": "SimpleUIElementTabController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3807`1": {
+        "NewName": "ScreenVisibilityTabController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3808": {
+        "NewName": "TabGroup",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3809": {
+        "NewName": "TraderTabGroup",
+        "NewNamespace": "EFT.UI",
+        "NestedTypes": {
+            "GClass3810": {
+                "NewName": "LoyaltyLevelTabsConverter"
+            }
+        }
+    },
+    "GClass3811": {
+        "NewName": "ConditionLocalizationGetter",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3812": {
+        "NewName": "TaskRewardValuesTextGetter",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3814": {
+        "NewName": "CategoriesComparer",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3817": {
+        "NewName": "ToggleTab",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3818`1": {
+        "NewName": "BindableScrollableListView",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3819`2": {
+        "NewName": "TemplateList",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3820`2": {
+        "NewName": "AsyncViewList",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3821`2": {
+        "NewName": "BindableAsyncViewList",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3823`2": {
+        "NewName": "BindableViewList",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3824`2": {
+        "NewName": "BindableOrderedViewList",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3825": {
+        "NewName": "UICanvasScalerController",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3826": {
+        "NewName": "UIExtensions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3827": {
+        "NewName": "WaitForLayoutRebuilding",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3828": {
+        "NewName": "WaitForGraphicsRebuild",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3830": {
+        "NewName": "EditTagWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3833`1": {
+        "NewName": "BaseWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3835": {
+        "NewName": "ErrorWindowContext",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3837": {
+        "NewName": "ProfileEventsWindowContext",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3839": {
+        "NewName": "VisualExtensions",
+        "NewNamespace": "EFT.UI",
+        "NestedTypes": {
+            "Class3167": {
+                "NewName": "CanvasGroupBlocker"
+            }
+        }
+    },
+    "GClass3840": {
+        "NewName": "UISetExtensions",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3841": {
+        "NewName": "CompoundTooltipTextBlockInfo",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3842": {
+        "NewName": "SingleLineInfo",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3843": {
+        "NewName": "MultiLineInfo",
+        "NewNamespace": "EFT.UI"
+    },
+    "GClass3844": {
+        "NewName": "Key",
+        "NewNamespace": "EFT.UI.Tutorial"
+    },
+    "GClass3845": {
+        "NewName": "KeyBinding",
+        "NewNamespace": "EFT.UI.Tutorial"
+    },
+    "GClass3846": {
+        "NewName": "HealthFactorObserver",
+        "NewNamespace": "EFT.UI.HealthTreatment"
+    },
+    "GClass3847": {
+        "NewName": "HealthObserver",
+        "NewNamespace": "EFT.UI.HealthTreatment"
+    },
+    "GClass3848": {
+        "NewName": "HydrationObserver",
+        "NewNamespace": "EFT.UI.HealthTreatment"
+    },
+    "GClass3849": {
+        "NewName": "EnergyObserver",
+        "NewNamespace": "EFT.UI.HealthTreatment"
+    },
+    "GClass3850": {
+        "NewName": "HealthEffectObserver",
+        "NewNamespace": "EFT.UI.HealthTreatment"
+    },
+    "GClass3851": {
+        "NewName": "TreatmentWrapper",
+        "NewNamespace": "EFT.UI.HealthTreatment",
+        "NestedTypes": {
+            "Class3194": {
+                "NewName": "TreatmentsComparer"
+            }
+        }
+    },
+    "GClass3852": {
+        "NewName": "ColorSchemeExtension",
+        "NewNamespace": "EFT.UI.Settings"
+    },
+    "GClass3854": {
+        "NewName": "ThousandsSeparatorExtensions",
+        "NewNamespace": "EFT"
+    },
+    "GClass3855": {
+        "NewName": "ExperienceSection",
+        "NewNamespace": "EFT.UI.SessionEnd"
+    },
+    "GClass3900`2": {
+        "NewName": "EftSequenceScreenController",
+        "NewNamespace": "EFT.UI.Screens"
+    },
+    "GClass3912`2": {
+        "NewName": "EftMatchmakerScreenController",
+        "NewNamespace": "EFT.UI.Screens"
+    },
+    "GClass3915": {
+        "NewName": "KeyAccessScreenController",
+        "NewNamespace": "EFT.UI.Matchmaker"
+    },
+    "GClass3920`2": {
+        "NewName": "EftAsyncScreenController",
+        "NewNamespace": "EFT.UI.Screens"
+    },
+    "GClass3928": {
+        "NewName": "MatchmakerUpdatableGroup",
+        "NewNamespace": "EFT.UI.Matchmaker"
+    },
+    "GClass3930": {
+        "NewName": "BannerWithToggle",
+        "NewNamespace": "EFT.UI.Matchmaker"
+    },
+    "GClass3931": {
+        "NewName": "StringTools",
+        "NewNamespace": "EFT.UI.DragAndDrop"
+    },
+    "GClass3932": {
+        "NewName": "GuiHelper",
+        "NewNamespace": "EFT.UI.DragAndDrop"
+    },
+    "GClass3933": {
+        "NewName": "DialogueData",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3935": {
+        "NewName": "MessageData",
+        "NewNamespace": "EFT.UI.Chat"
+    },
+    "GClass3936": {
+        "NewName": "GesturesCommandsStorage",
+        "NewNamespace": "EFT.UI.Gestures"
+    },
+    "GClass3937": {
+        "NewName": "GestureCommands",
+        "NewNamespace": "EFT.UI.Gestures"
+    },
+    "GClass3941": {
+        "NewName": "CancelableFilterUtil",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3942": {
+        "NewName": "CancellableFilters",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3944": {
+        "NewName": "Data",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3945": {
+        "NewName": "OfferData",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3946": {
+        "NewName": "UpdateData",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3947": {
+        "NewName": "AvailabilityWarning",
+        "NewNamespace": "EFT.UI.Ragfair"
+    },
+    "GClass3948": {
+        "NewName": "InsurePrice",
+        "NewNamespace": "EFT.UI.Insurance"
+    },
+    "GClass3949": {
+        "NewName": "InsurePrices",
+        "NewNamespace": "EFT.UI.Insurance"
+    },
+    "GClass3950": {
+        "NewName": "InsureSummary",
+        "NewNamespace": "EFT.UI.Insurance"
+    },
+    "GClass3953": {
+        "NewName": "EquipmentBuild",
+        "NewNamespace": "EFT.UI.Builds"
+    },
+    "GClass3955": {
+        "NewName": "WeaponBuild",
+        "NewNamespace": "EFT.UI.Builds"
+    },
+    "GClass3957": {
+        "NewName": "SelectEntryPointController",
+        "NewNamespace": "EFT.UI.Map"
+    },
+    "GClass3958": {
+        "NewName": "SimpleMapBundleLoader",
+        "NewNamespace": "EFT.UI.Map",
+        "NestedTypes": {
+            "GClass3959": {
+                "NewName": "LoadingBundle"
+            }
+        }
+    },
+    "GClass3960": {
+        "NewName": "BundlesManifestContainer",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3962": {
+        "NewName": "AssetsManagerCreateOperation",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3963": {
+        "NewName": "LoadBundleManifestWithUpdateOperation",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3964": {
+        "NewName": "LoadBundleManifestOperation",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3965": {
+        "NewName": "UpdateVersionOperation",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3968": {
+        "NewName": "LoadSceneOperation",
+        "NewNamespace": "EFT.AssetsManager"
+    },
+    "GClass3979": {
+        "NewName": "OptimizeComputableUnitComparer",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass3981": {
+        "NewName": "OptimizeVectorComparer",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass3986": {
+        "NewName": "ComputableUnitSettings",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass3987": {
+        "NewName": "ExplosionSettings",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass3988": {
+        "NewName": "PhysicalSettings",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass4007": {
+        "NewName": "QuestControllerClientLocalGame",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4008": {
+        "NewName": "QuestControllerClientGame",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4010": {
+        "NewName": "AchievementsControllerClient",
+        "NewNamespace": "EFT.Achievements"
+    },
+    "GClass4012": {
+        "NewName": "AchievementsControllerClientGame",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4030`1": {
+        "NewName": "ConditionsConnectorsManagerClientGame",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4034": {
+        "NewName": "ConditionHideoutAreaProgressChecker"
+    },
+    "GClass4035": {
+        "NewName": "ConditionProgressCheckerEmpty"
+    },
+    "GClass4036": {
+        "NewName": "CompleteConditionChecker",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4039": {
+        "NewName": "ConditionExitStatusProgressChecker",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4045": {
+        "NewName": "ConditionLocationProgressChecker",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass4047": {
+        "NewName": "ConditionUseItemProgressChecker",
+        "NewNamespace": "EFT.Quests"
+    },
+    "GClass3990": {
+        "NewName": "WeightCalculator",
+        "NewNamespace": "EFT.RocketLauncher.Explosion"
+    },
+    "GClass894": {
+        "NewName": "ReleaseListener",
+        "NewNamespace": "Audio"
+    },
+    "GClass2069": {
+        "NewName": "LogLevelExtensions",
+    },
+    "GClass814": {
+        "NewName": "PerformanceTestLogger"
+    },
+    "GClass1801": {
+        "NewName": "Validator"
+    },
+    "GClass1157": {
+        "NewName": "WorldDrawUtility"
+    },
+    "GClass213": {
+        "RemoveType": true
+    },
+    "GClass460": {
+        "RemoveType": true
+    },
+    "GClass571": {
+        "RemoveType": true
+    },
+    "GClass574": {
+        "RemoveType": true
+    },
+    "GClass734": {
+        "RemoveType": true
+    },
+    "GClass815": {
+        "RemoveType": true
+    },
+    "GClass1039": {
+        "RemoveType": true
+    },
+    "GClass1198": {
+        "RemoveType": true
+    },
+    "GClass1208": {
+        "RemoveType": true
+    },
+    "GClass1214": {
+        "RemoveType": true
+    },
+    "GClass1215": {
+        "RemoveType": true
+    },
+    "GClass1253": {
+        "RemoveType": true
+    },
+    "GClass1704": {
+        "RemoveType": true
+    },
+    "GClass2360": {
+        "RemoveType": true
+    },
+    "GClass2473": {
+        "RemoveType": true
+    },
+    "GClass2691": {
+        "RemoveType": true
+    },
+    "GClass2724": {
+        "RemoveType": true
+    },
+    "GClass3618": {
+        "RemoveType": true
+    },
+    "GClass1235": {
+        "RemoveType": true
+    },
+    "GClass1202": {
+        "RemoveType": true
+    },
+    "GClass884": {
+        "RemoveType": true
+    },
+    "GClass370": {
+        "RemoveType": true
+    },
 }

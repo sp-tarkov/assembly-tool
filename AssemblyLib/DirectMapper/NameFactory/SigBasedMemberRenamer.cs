@@ -381,11 +381,15 @@ public class SigBasedMemberRenamer(
             {
                 var newName = string.Join(".", splitName);
 
-                logger.LogInformation(
-                    "Renaming explicit interface method {old} -> {new}",
-                    method.Name?.ToString(),
-                    newName
-                );
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    logger.LogDebug(
+                        "Renaming explicit interface method {old} -> {new}",
+                        method.Name?.ToString(),
+                        newName
+                    );
+                }
+
                 method.Name = new Utf8String(newName);
             }
         }

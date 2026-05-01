@@ -8,6 +8,31 @@ namespace AssemblyLib.Helpers;
 public class ModuleMemberLookup(DataProvider dataProvider)
 {
     /// <summary>
+    /// Looks up a <see cref="TypeDefinition"/> by namespace and type name strings,
+    /// bypassing reflection entirely. Use this when typeof(T) would cause a
+    /// TypeLoadException due to problematic types in the same assembly.
+    /// Supports nested types using '+' as the separator, e.g. "Outer+Inner".
+    /// </summary>
+    public TypeDefinition? Type(string @namespace, string typeName)
+    {
+        var parts = typeName.Split('+');
+        var outerName = parts[0];
+
+        var current = dataProvider
+            .LoadedModule!.GetAllTypes()
+            .FirstOrDefault(t => t.Namespace == @namespace && t.Name == outerName);
+
+        foreach (var nestedName in parts.Skip(1))
+        {
+            if (current is null)
+                return null;
+            current = current.NestedTypes.FirstOrDefault(t => t.Name == nestedName);
+        }
+
+        return current;
+    }
+
+    /// <summary>
     /// Looks up a <see cref="TypeDefinition"/> by a reflected <see cref="Type"/>.
     /// Falls back to namespace+name search if the token doesn't match the loaded module.
     /// </summary>
@@ -30,6 +55,13 @@ public class ModuleMemberLookup(DataProvider dataProvider)
 
     /// <summary>Looks up a <see cref="TypeDefinition"/> by a generic type parameter.</summary>
     public TypeDefinition? Type<T>() => Type(typeof(T));
+
+    /// <summary>
+    /// Looks up a <see cref="FieldDefinition"/> by namespace, type name, and field name,
+    /// bypassing reflection entirely.
+    /// </summary>
+    public FieldDefinition? Field(string @namespace, string typeName, string fieldName) =>
+        Type(@namespace, typeName)?.Fields.FirstOrDefault(f => f.Name == fieldName);
 
     /// <summary>
     /// Looks up a <see cref="FieldDefinition"/> by a reflected <see cref="FieldInfo"/>.
@@ -63,6 +95,21 @@ public class ModuleMemberLookup(DataProvider dataProvider)
 
     /// <summary>Looks up a <see cref="FieldDefinition"/> by name on the given type parameter.</summary>
     public FieldDefinition? Field<TDeclaringType>(string fieldName) => Field(typeof(TDeclaringType), fieldName);
+
+    /// <summary>
+    /// Looks up a <see cref="MethodDefinition"/> by namespace, type name, and method name,
+    /// bypassing reflection entirely.
+    /// </summary>
+    public MethodDefinition? Method(string @namespace, string typeName, string methodName) =>
+        Type(@namespace, typeName)?.Methods.FirstOrDefault(m => m.Name == methodName);
+
+    /// <summary>
+    /// Looks up a <see cref="MethodDefinition"/> by namespace, type name, method name,
+    /// and parameter count to disambiguate overloads, bypassing reflection entirely.
+    /// </summary>
+    public MethodDefinition? Method(string @namespace, string typeName, string methodName, int parameterCount) =>
+        Type(@namespace, typeName)
+            ?.Methods.FirstOrDefault(m => m.Name == methodName && m.Parameters.Count == parameterCount);
 
     /// <summary>
     /// Looks up a <see cref="MethodDefinition"/> by a reflected <see cref="MethodBase"/>.
@@ -118,6 +165,13 @@ public class ModuleMemberLookup(DataProvider dataProvider)
     /// </summary>
     public MethodDefinition? Method<TDeclaringType>(string methodName, params Type[] parameterTypes) =>
         Method(typeof(TDeclaringType), methodName, parameterTypes);
+
+    /// <summary>
+    /// Looks up a <see cref="PropertyDefinition"/> by namespace, type name, and property name,
+    /// bypassing reflection entirely.
+    /// </summary>
+    public PropertyDefinition? Property(string @namespace, string typeName, string propertyName) =>
+        Type(@namespace, typeName)?.Properties.FirstOrDefault(p => p.Name == propertyName);
 
     /// <summary>
     /// Looks up a <see cref="PropertyDefinition"/> by a reflected <see cref="PropertyInfo"/>.

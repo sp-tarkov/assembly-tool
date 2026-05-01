@@ -33,7 +33,7 @@ public class LocaleFixPatch(ModuleMemberLookup lookup, DataProvider dataProvider
         if (containsCultureMethod is null)
         {
             throw new FailedToFindTypeException(
-                "Could not find `Eft.LocalizationManager.ContainsCulture()` when patching"
+                "Could not find `EFT.LocalizationManager.ContainsCulture()` when patching"
             );
         }
 

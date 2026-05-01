@@ -5,7 +5,7 @@ using AsmResolver.PE.DotNet.Cil;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable]
 public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)

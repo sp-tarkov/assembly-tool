@@ -1,8 +1,8 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.AttributeFactory;
-using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.DirectMapper.NameFactory;
 using AssemblyLib.DirectMapper.Patches;
+using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;

@@ -3,7 +3,7 @@ using AsmResolver.DotNet;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable(InjectionType.Singleton)]
 public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProvider dataProvider)

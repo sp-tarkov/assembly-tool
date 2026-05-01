@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Loader;
 using AssemblyLib.DirectMapper;
-using AssemblyLib.DirectMapper.Helpers;
+using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

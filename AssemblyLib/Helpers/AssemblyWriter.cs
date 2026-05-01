@@ -10,7 +10,7 @@ using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable]
 public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider dataProvider)

@@ -4,7 +4,7 @@ using AssemblyLib.Extensions;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable(InjectionType.Singleton)]
 public sealed class Statistics(ILogger<Statistics> logger, DataProvider dataProvider)

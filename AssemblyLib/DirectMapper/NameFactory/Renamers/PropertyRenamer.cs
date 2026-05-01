@@ -1,7 +1,7 @@
 using AsmResolver;
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Extensions;
+using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;

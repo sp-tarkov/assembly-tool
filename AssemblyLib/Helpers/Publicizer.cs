@@ -4,7 +4,7 @@ using AssemblyLib.Extensions;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable]
 public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProvider, Statistics stats)

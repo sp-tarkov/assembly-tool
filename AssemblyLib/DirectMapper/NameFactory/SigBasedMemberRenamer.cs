@@ -1,9 +1,9 @@
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
-using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Extensions;
+using AssemblyLib.Helpers;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 

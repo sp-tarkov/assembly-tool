@@ -2,7 +2,7 @@ using System.Reflection;
 using AsmResolver.DotNet;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Helpers;
+namespace AssemblyLib.Helpers;
 
 [Injectable]
 public class ModuleMemberLookup(DataProvider dataProvider)

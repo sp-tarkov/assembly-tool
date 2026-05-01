@@ -2,7 +2,6 @@ using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 

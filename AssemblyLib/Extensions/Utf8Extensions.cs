@@ -1,5 +1,4 @@
 ﻿using AsmResolver;
-using AssemblyLib.Shared;
 
 namespace AssemblyLib.Extensions;
 

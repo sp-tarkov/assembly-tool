@@ -1,5 +1,5 @@
+using AssemblyLib;
 using AssemblyLib.Models;
-using AssemblyLib.Shared;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;

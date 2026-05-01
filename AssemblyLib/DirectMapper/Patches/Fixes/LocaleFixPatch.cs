@@ -2,7 +2,6 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
-using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 

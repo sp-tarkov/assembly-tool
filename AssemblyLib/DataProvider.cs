@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace AssemblyLib.Shared;
+namespace AssemblyLib;
 
 [Injectable(InjectionType.Singleton)]
 public class DataProvider

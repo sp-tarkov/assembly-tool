@@ -1,6 +1,5 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
-using AssemblyLib.Shared;
 using Serilog;
 
 namespace AssemblyLib.Extensions;

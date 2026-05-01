@@ -1,6 +1,5 @@
 using System.Reflection;
 using AsmResolver.DotNet;
-using AssemblyLib.Shared;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Helpers;

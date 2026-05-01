@@ -3,7 +3,6 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
-using AssemblyLib.Shared;
 using EFT.InventoryLogic;
 using Serilog;
 using SPTarkov.DI.Annotations;

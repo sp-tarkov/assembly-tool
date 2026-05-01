@@ -1,6 +1,5 @@
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
-using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 

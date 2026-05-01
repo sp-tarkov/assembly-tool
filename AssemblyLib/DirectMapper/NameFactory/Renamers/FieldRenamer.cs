@@ -3,7 +3,6 @@ using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Extensions;
 using AssemblyLib.Models;
-using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 

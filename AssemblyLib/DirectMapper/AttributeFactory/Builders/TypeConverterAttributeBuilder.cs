@@ -1,7 +1,6 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
 using AssemblyLib.Extensions;
-using AssemblyLib.Shared;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 

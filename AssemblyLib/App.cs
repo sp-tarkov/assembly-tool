@@ -7,10 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Logging;
-using Serilog.Filters;
 using SPTarkov.DI;
 
-namespace AssemblyLib.Shared;
+namespace AssemblyLib;
 
 public class App
 {

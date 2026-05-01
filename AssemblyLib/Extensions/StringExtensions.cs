@@ -1,5 +1,3 @@
-using AssemblyLib.Shared;
-
 namespace AssemblyLib.Extensions;
 
 public static class StringExtensions

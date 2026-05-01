@@ -3,7 +3,6 @@ using AsmResolver.DotNet.Signatures;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.DirectMapper.Helpers;
 using AssemblyLib.Exceptions;
-using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 

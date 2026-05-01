@@ -1,5 +1,4 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Shared;
 using Serilog;
 using SPTarkov.DI.Annotations;
 

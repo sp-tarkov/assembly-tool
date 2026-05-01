@@ -584,11 +584,34 @@
         "NewName": "NtpRequest",
         "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
     },
-    //Todo: Move to it's own file?
-    "GException0": {
-        "NewName": "BackendException",
+    "Class1123": {
+        "NewName": "BuildInfo"
     },
-    "GException1": {
-        "NewName": "BackendWithCodeException",
+    "Class461`1": {
+        "RemoveType": true
+    },
+    "Class3647": {
+        "RemoveType": true
+    },
+    "Class3649": {
+        "RemoveType": true
+    },
+    "Class3650": {
+        "RemoveType": true
+    },
+    "Class3654": {
+        "RemoveType": true
+    },
+    "Class3655": {
+        "RemoveType": true
+    },
+    "Class3652": {
+        "RemoveType": true
+    },
+    "Class3653": {
+        "RemoveType": true
+    },
+    "Class929": {
+        "RemoveType": true
     }
 }

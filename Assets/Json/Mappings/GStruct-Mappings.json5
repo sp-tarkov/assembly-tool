@@ -1433,4 +1433,13 @@
     "NewName": "SwitchRenderersPacket",
     "NewNamespace": "EFT",
   },
+  "GStruct19": {
+    "RemoveType": true
+  },
+  "GStruct301": {
+    "RemoveType": true
+  },
+  "GStruct388": {
+    "RemoveType": true
+  }
 }

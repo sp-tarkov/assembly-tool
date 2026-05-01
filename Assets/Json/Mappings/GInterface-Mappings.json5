@@ -1931,5 +1931,20 @@
   "GInterface519": {
     "NewName": "IAchievementView",
     "NewNamespace": "EFT.Achievements"
-  }
+  },
+  "GInterface213": {
+    "RemoveType": true
+  },
+  "GInterface237": {
+    "RemoveType": true
+  },
+  "GInterface449": {
+    "RemoveType": true
+  },
+  "GInterface513": {
+    "RemoveType": true
+  },
+  "GInterface514": {
+    "RemoveType": true
+  },
 }

@@ -1,23 +1,23 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
+using AssemblyLib.Helpers;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Performance;
 
+/// <summary>
+///     Get rid of stopwatches allocations
+/// </summary>
+/// <param name="lookup"></param>
 [Injectable]
-public class CoverPointMasterRemoveStopWatchPatch(DataProvider dataProvider) : IPatch
+public class CoverPointMasterRemoveStopWatchPatch(ModuleMemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var body = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Name == "CoverPointMaster")
-            ?.Methods.FirstOrDefault(m => m.Name == "GetCoverPointMain2")
-            ?.CilMethodBody;
-
+        var body = lookup.Method<CoverPointMaster>("GetCoverPointMain2")?.CilMethodBody;
         if (body is null)
         {
             throw new FailedToFindTypeException(
@@ -27,14 +27,11 @@ public class CoverPointMasterRemoveStopWatchPatch(DataProvider dataProvider) : I
 
         var instructions = body.Instructions;
 
+        instructions[10].OpCode = CilOpCodes.Nop;
+        instructions[11].OpCode = CilOpCodes.Nop;
+        instructions[12].OpCode = CilOpCodes.Nop;
         instructions[69].OpCode = CilOpCodes.Nop;
 
-        instructions[12].OpCode = CilOpCodes.Nop;
-        instructions[11].OpCode = CilOpCodes.Nop;
-        instructions[10].OpCode = CilOpCodes.Nop;
-
         instructions.OptimizeMacros();
-
-        Log.Information("CoverPointMasterRemoveStopWatchPatch Successful");
     }
 }

@@ -3,25 +3,20 @@ using AsmResolver.DotNet.Signatures;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class ShowIncompatibleNotificationPatch(PatchHelper patchHelper, DataProvider dataProvider) : IPatch
+public class ShowIncompatibleNotificationPatch(ModuleMemberLookup lookup, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var targetMethod = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "Player")
-            ?.NestedTypes.FirstOrDefault(t => t.Name == "FirearmController")
-            ?.NestedTypes.FirstOrDefault(t => t.Name == "Idling")
-            ?.Methods.FirstOrDefault(m => m.Name == "ShowIncompatibleNotification");
-
+        var targetMethod = lookup.Method<Player.FirearmController.Idling>("ShowIncompatibleNotification");
         if (targetMethod is null)
         {
             throw new FailedToFindTypeException(
@@ -29,31 +24,16 @@ public class ShowIncompatibleNotificationPatch(PatchHelper patchHelper, DataProv
             );
         }
 
-        var declaringType = targetMethod.DeclaringType!;
         var module = dataProvider.LoadedModule!;
 
-        if (declaringType.BaseType?.Resolve(dataProvider.Context, out var baseType) != ResolutionStatus.Success)
-        {
-            throw new FailedToFindTypeException("Could not resolve Idling base type");
-        }
-
-        var player0Field = baseType?.Fields.FirstOrDefault(f => f.Name == "player_0");
+        // player_0 exists on FirearmOperation, the base type for Idling
+        var player0Field = lookup.Field<Player.FirearmController.FirearmOperation>("player_0");
         if (player0Field is null)
         {
             throw new FailedToFindTypeException("Could not find player_0 field");
         }
 
-        if (player0Field.Signature!.FieldType is not TypeDefOrRefSignature playerFieldSig)
-        {
-            throw new FailedToFindTypeException("player_0 type is not TypeDefOrRefSignature");
-        }
-
-        if (playerFieldSig.Type.Resolve(dataProvider.Context, out var playerFieldDef) != ResolutionStatus.Success)
-        {
-            throw new FailedToFindTypeException("Could not resolve playerFieldSig");
-        }
-
-        var isYourPlayerGetter = playerFieldDef?.Properties.FirstOrDefault(p => p.Name == "IsYourPlayer")?.GetMethod;
+        var isYourPlayerGetter = lookup.Property<Player>("IsYourPlayer")?.GetMethod;
         if (isYourPlayerGetter is null)
         {
             throw new FailedToFindTypeException("Could not find IsYourPlayer getter");
@@ -72,7 +52,5 @@ public class ShowIncompatibleNotificationPatch(PatchHelper patchHelper, DataProv
         instructions.Insert(3, new CilInstruction(CilOpCodes.Brtrue_S, originalFirst.CreateLabel()));
         instructions.Insert(4, new CilInstruction(CilOpCodes.Ret));
         instructions.CalculateOffsets();
-
-        Log.Information("ShowIncompatibleNotificationPatch Successful");
     }
 }

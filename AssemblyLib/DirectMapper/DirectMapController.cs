@@ -166,6 +166,7 @@ public class DirectMapController(
         foreach (var patch in patches.Where(p => p.Enabled))
         {
             patch.Patch();
+            logger.LogInformation("Patch {patchName} applied.", patch.GetType().Name);
         }
     }
 

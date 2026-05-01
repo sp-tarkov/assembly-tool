@@ -1,23 +1,18 @@
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
-using Serilog;
+using EFT;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
 
 [Injectable]
-public class RemoveHwInfoPatch(PatchHelper patchHelper, DataProvider dataProvider) : IPatch
+public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelper, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var moveNextMethod = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "TarkovApplication")
-            ?.NestedTypes.FirstOrDefault(t => t.Name == "CG_Struct35")
-            ?.Methods.FirstOrDefault(m => m.Name == "MoveNext");
-
+        var moveNextMethod = lookup.Method<TarkovApplication.CG_Struct35>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException(
@@ -27,6 +22,7 @@ public class RemoveHwInfoPatch(PatchHelper patchHelper, DataProvider dataProvide
 
         patchHelper.NopRange(moveNextMethod.CilMethodBody!.Instructions, 62, 94);
 
+        // Use old way here because we delete it, can't resolve it with strong typed code.
         var hwEchoType = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "HWEcho");
         if (hwEchoType is null)
         {
@@ -34,7 +30,5 @@ public class RemoveHwInfoPatch(PatchHelper patchHelper, DataProvider dataProvide
         }
 
         patchHelper.NukeType(hwEchoType);
-
-        Log.Information("RemoveHwInfoPatch Successful");
     }
 }

@@ -1,11 +1,13 @@
 using AsmResolver.PE.DotNet.Cil;
+using AssemblyLib.Helpers;
+using EFT.HealthSystem;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
-public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
+public class EffectTypeCodeReflectionPatch(ModuleMemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
@@ -14,10 +16,7 @@ public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
     /// </summary>
     public void Patch()
     {
-        var type = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.IsNested && t.Name == "EffectTypeCode");
-
+        var type = lookup.Type<HealthHelper.EffectTypeCode>();
         if (type is null)
         {
             throw new NullReferenceException("Could not find `EffectTypeCode` when patching");
@@ -42,7 +41,6 @@ public class EffectTypeCodeReflectionPatch(DataProvider dataProvider) : IPatch
 
             // 48 = Public | NonPublic
             instr.Operand = (sbyte)48;
-            Log.Information("SharedReflectionPatch Successful");
             break;
         }
     }

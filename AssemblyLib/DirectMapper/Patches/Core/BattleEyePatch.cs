@@ -1,37 +1,29 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
-using Serilog;
+using EFT;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
 
 [Injectable]
-public class BattleEyePatch(PatchHelper patchHelper, DataProvider dataProvider) : IPatch
+public class BattleEyePatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var runValidationMethod = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "AnticheatValidationOperation")
-            ?.Methods.FirstOrDefault(m => m.Name == "RunValidation");
-
-        if (runValidationMethod is null)
+        var runValidationMethod = lookup.Method<AnticheatValidationOperation>("RunValidation");
+        if (runValidationMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
                 "Could not find `Eft.AnticheatValidationOperation.RunValidation()` when patching"
             );
         }
 
-        patchHelper.NukeTaskBody(runValidationMethod.CilMethodBody!);
+        patchHelper.NukeTaskBody(runValidationMethod.CilMethodBody);
 
-        var bool0Field = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "AnticheatValidationOperation")
-            ?.Fields.FirstOrDefault(m => m.Name == "bool_0");
-
+        var bool0Field = lookup.Field<AnticheatValidationOperation>("bool_0");
         if (bool0Field is null)
         {
             throw new FailedToFindTypeException(
@@ -56,7 +48,5 @@ public class BattleEyePatch(PatchHelper patchHelper, DataProvider dataProvider) 
 
             instructions.CalculateOffsets();
         }
-
-        Log.Information("BattleEyePatch Successful");
     }
 }

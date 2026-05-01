@@ -10,7 +10,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider, ModuleMemberLookup lookup) : IPatch
+public class InventoryEquipmentPaymentSlotPatch(ModuleMemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
@@ -51,7 +51,5 @@ public class InventoryEquipmentPaymentSlotPatch(DataProvider dataProvider, Modul
         }
 
         instructions.CalculateOffsets();
-
-        Log.Information("InventoryEquipmentPaymentSlotPatch Successful");
     }
 }

@@ -1,18 +1,19 @@
 using AsmResolver.PE.DotNet.Cil;
+using AssemblyLib.Helpers;
+using EFT.Console.Commands;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
-public class SharedReflectionPatch(DataProvider dataProvider) : IPatch
+public class SharedReflectionPatch(ModuleMemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var type = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "Shared");
-
+        var type = lookup.Type<Shared>();
         if (type is null)
         {
             throw new NullReferenceException("Could not find `Shared` when patching");
@@ -35,7 +36,6 @@ public class SharedReflectionPatch(DataProvider dataProvider) : IPatch
 
             // 52 = Public | NonPublic | Instance
             instr.Operand = (sbyte)52;
-            Log.Information("SharedReflectionPatch Successful");
             break;
         }
     }

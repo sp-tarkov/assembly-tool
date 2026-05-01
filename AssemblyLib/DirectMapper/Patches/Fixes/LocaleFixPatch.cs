@@ -2,13 +2,15 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
+using AssemblyLib.Helpers;
+using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class LocaleFixPatch(DataProvider dataProvider) : IPatch
+public class LocaleFixPatch(ModuleMemberLookup lookup, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
@@ -19,13 +21,7 @@ public class LocaleFixPatch(DataProvider dataProvider) : IPatch
     /// </summary>
     public void Patch()
     {
-        var body = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "EftCreateProfileOperation")
-            ?.NestedTypes.FirstOrDefault(t => t.IsValueType)
-            ?.Methods.FirstOrDefault(m => m.Name == "MoveNext")
-            ?.CilMethodBody;
-
+        var body = lookup.Method<EftCreateProfileOperation.CG_Struct0>("MoveNext")?.CilMethodBody;
         if (body is null)
         {
             throw new FailedToFindTypeException(
@@ -33,11 +29,7 @@ public class LocaleFixPatch(DataProvider dataProvider) : IPatch
             );
         }
 
-        var containsCultureMethod = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "LocalizationManager")
-            ?.Methods.FirstOrDefault(m => m.Name == "ContainsCulture");
-
+        var containsCultureMethod = lookup.Method<LocalizationManager>("ContainsCulture");
         if (containsCultureMethod is null)
         {
             throw new FailedToFindTypeException(
@@ -82,8 +74,6 @@ public class LocaleFixPatch(DataProvider dataProvider) : IPatch
             instructions[searchIndex + 3].Operand = null;
 
             body.Instructions.OptimizeMacros();
-
-            Log.Information("LocaleFixPatch Successful");
             return;
         }
 

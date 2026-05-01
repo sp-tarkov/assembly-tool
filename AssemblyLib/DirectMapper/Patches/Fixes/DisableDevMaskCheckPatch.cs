@@ -1,31 +1,27 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class DisableDevMaskCheckPatch(PatchHelper patchHelper, DataProvider dataProvider) : IPatch
+public class DisableDevMaskCheckPatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var body = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == "EFT" && t.Name == "LocalPlayer")
-            ?.NestedTypes.FirstOrDefault(t => t.IsValueType)
-            ?.Methods.FirstOrDefault(m => m.Name == "MoveNext")
-            ?.CilMethodBody;
-
-        if (body is null)
+        var moveNextMethod = lookup.Method<LocalPlayer.CG_Struct0>("MoveNext");
+        if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException("Could not find `Eft.LocalPlayer.CG_Struct0.MoveNext()` when patching");
         }
 
-        var instructions = body.Instructions;
+        var body = moveNextMethod.CilMethodBody;
+        var instructions = body!.Instructions;
 
         patchHelper.NopRange(instructions, 365, 404);
 
@@ -37,7 +33,5 @@ public class DisableDevMaskCheckPatch(PatchHelper patchHelper, DataProvider data
         {
             body.ExceptionHandlers.Remove(handlerToRemove);
         }
-
-        Log.Information("DisableDevMaskCheckPatch Successful");
     }
 }

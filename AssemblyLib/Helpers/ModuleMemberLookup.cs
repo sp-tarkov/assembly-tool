@@ -7,17 +7,46 @@ namespace AssemblyLib.Helpers;
 [Injectable]
 public class ModuleMemberLookup(DataProvider dataProvider)
 {
-    /// <summary>Looks up a <see cref="TypeDefinition"/> by a reflected <see cref="Type"/>.</summary>
-    public TypeDefinition? Type(Type type) => Lookup<TypeDefinition>(type.MetadataToken);
+    /// <summary>
+    /// Looks up a <see cref="TypeDefinition"/> by a reflected <see cref="Type"/>.
+    /// Falls back to namespace+name search if the token doesn't match the loaded module.
+    /// </summary>
+    public TypeDefinition? Type(Type type)
+    {
+        var resolved = LookupByToken<TypeDefinition>(type.MetadataToken);
+
+        if (resolved?.Name == type.Name && resolved.Namespace == type.Namespace)
+            return resolved;
+
+        // Nested types: reflection reports the enclosing namespace, but AsmResolver
+        // stores them with Namespace == null under the declaring type's NestedTypes.
+        if (type.IsNested)
+            return ResolveNestedType(type);
+
+        return dataProvider
+            .LoadedModule!.GetAllTypes()
+            .FirstOrDefault(t => t.Namespace == type.Namespace && t.Name == type.Name);
+    }
 
     /// <summary>Looks up a <see cref="TypeDefinition"/> by a generic type parameter.</summary>
     public TypeDefinition? Type<T>() => Type(typeof(T));
 
-    /// <summary>Looks up a <see cref="FieldDefinition"/> by a reflected <see cref="FieldInfo"/>.</summary>
-    public FieldDefinition? Field(FieldInfo field) => Lookup<FieldDefinition>(field.MetadataToken);
+    /// <summary>
+    /// Looks up a <see cref="FieldDefinition"/> by a reflected <see cref="FieldInfo"/>.
+    /// Falls back to name-based search on the declaring type if the token doesn't match.
+    /// </summary>
+    public FieldDefinition? Field(FieldInfo field)
+    {
+        var resolved = LookupByToken<FieldDefinition>(field.MetadataToken);
+
+        if (resolved?.Name == field.Name)
+            return resolved;
+
+        return Type(field.DeclaringType!)?.Fields.FirstOrDefault(f => f.Name == field.Name);
+    }
 
     /// <summary>
-    /// Looks up a <see cref="FieldDefinition"/> by name on a given type.
+    /// Looks up a <see cref="FieldDefinition"/> by name on the given declaring type.
     /// Searches public and non-public instance and static fields.
     /// </summary>
     public FieldDefinition? Field(Type declaringType, string fieldName)
@@ -32,14 +61,27 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         return Field(fieldInfo);
     }
 
-    /// <summary>Looks up a <see cref="FieldDefinition"/> by name on a given type parameter.</summary>
+    /// <summary>Looks up a <see cref="FieldDefinition"/> by name on the given type parameter.</summary>
     public FieldDefinition? Field<TDeclaringType>(string fieldName) => Field(typeof(TDeclaringType), fieldName);
 
-    /// <summary>Looks up a <see cref="MethodDefinition"/> by a reflected <see cref="MethodBase"/>.</summary>
-    public MethodDefinition? Method(MethodBase method) => Lookup<MethodDefinition>(method.MetadataToken);
+    /// <summary>
+    /// Looks up a <see cref="MethodDefinition"/> by a reflected <see cref="MethodBase"/>.
+    /// Falls back to name-based search on the declaring type if the token doesn't match.
+    /// </summary>
+    public MethodDefinition? Method(MethodBase method)
+    {
+        var resolved = LookupByToken<MethodDefinition>(method.MetadataToken);
+
+        if (resolved?.Name == method.Name)
+            return resolved;
+
+        // Name-based fallback — match on name + parameter count to handle overloads
+        return Type(method.DeclaringType!)
+            ?.Methods.FirstOrDefault(m => m.Name == method.Name && m.Parameters.Count == method.GetParameters().Length);
+    }
 
     /// <summary>
-    /// Looks up a <see cref="MethodDefinition"/> by name on a given type.
+    /// Looks up a <see cref="MethodDefinition"/> by name on the given declaring type.
     /// Throws if the name is ambiguous — use the overload with parameter types to disambiguate.
     /// </summary>
     public MethodDefinition? Method(Type declaringType, string methodName)
@@ -67,19 +109,19 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         return Method(methodInfo);
     }
 
-    /// <summary>Looks up a <see cref="MethodDefinition"/> by name on a given type parameter.</summary>
+    /// <summary>Looks up a <see cref="MethodDefinition"/> by name on the given type parameter.</summary>
     public MethodDefinition? Method<TDeclaringType>(string methodName) => Method(typeof(TDeclaringType), methodName);
 
     /// <summary>
     /// Looks up a <see cref="MethodDefinition"/> by name and explicit parameter types
-    /// on a given type parameter.
+    /// on the given type parameter.
     /// </summary>
     public MethodDefinition? Method<TDeclaringType>(string methodName, params Type[] parameterTypes) =>
         Method(typeof(TDeclaringType), methodName, parameterTypes);
 
     /// <summary>
     /// Looks up a <see cref="PropertyDefinition"/> by a reflected <see cref="PropertyInfo"/>.
-    /// Resolves via the property's getter or setter method token.
+    /// Resolves via the property's getter or setter method token, with name-based fallback.
     /// </summary>
     public PropertyDefinition? Property(PropertyInfo property)
     {
@@ -93,13 +135,19 @@ public class ModuleMemberLookup(DataProvider dataProvider)
 
         var resolvedMethod = Method(accessor);
 
-        return resolvedMethod?.DeclaringType?.Properties.FirstOrDefault(p =>
+        var viaAccessor = resolvedMethod?.DeclaringType?.Properties.FirstOrDefault(p =>
             p.GetMethod == resolvedMethod || p.SetMethod == resolvedMethod
         );
+
+        if (viaAccessor is not null)
+            return viaAccessor;
+
+        // Fallback: find by name on the declaring type
+        return Type(property.DeclaringType!)?.Properties.FirstOrDefault(p => p.Name == property.Name);
     }
 
     /// <summary>
-    /// Looks up a <see cref="PropertyDefinition"/> by name on a given type.
+    /// Looks up a <see cref="PropertyDefinition"/> by name on the given declaring type.
     /// Searches public and non-public instance and static properties.
     /// </summary>
     public PropertyDefinition? Property(Type declaringType, string propertyName)
@@ -114,13 +162,13 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         return Property(propertyInfo);
     }
 
-    /// <summary>Looks up a <see cref="PropertyDefinition"/> by name on a given type parameter.</summary>
+    /// <summary>Looks up a <see cref="PropertyDefinition"/> by name on the given type parameter.</summary>
     public PropertyDefinition? Property<TDeclaringType>(string propertyName) =>
         Property(typeof(TDeclaringType), propertyName);
 
     /// <summary>
     /// Looks up an <see cref="EventDefinition"/> by a reflected <see cref="EventInfo"/>.
-    /// Resolves via the event's add or remove accessor method token.
+    /// Resolves via the event's add/remove accessor method token, with name-based fallback.
     /// </summary>
     public EventDefinition? Event(EventInfo evt)
     {
@@ -134,13 +182,19 @@ public class ModuleMemberLookup(DataProvider dataProvider)
 
         var resolvedMethod = Method(accessor);
 
-        return resolvedMethod?.DeclaringType?.Events.FirstOrDefault(e =>
+        var viaAccessor = resolvedMethod?.DeclaringType?.Events.FirstOrDefault(e =>
             e.AddMethod == resolvedMethod || e.RemoveMethod == resolvedMethod
         );
+
+        if (viaAccessor is not null)
+            return viaAccessor;
+
+        // Fallback: find by name on the declaring type
+        return Type(evt.DeclaringType!)?.Events.FirstOrDefault(e => e.Name == evt.Name);
     }
 
     /// <summary>
-    /// Looks up an <see cref="EventDefinition"/> by name on a given type.
+    /// Looks up an <see cref="EventDefinition"/> by name on the given declaring type.
     /// Searches public and non-public instance and static events.
     /// </summary>
     public EventDefinition? Event(Type declaringType, string eventName)
@@ -155,20 +209,69 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         return Event(eventInfo);
     }
 
-    /// <summary>Looks up an <see cref="EventDefinition"/> by name on a given type parameter.</summary>
+    /// <summary>Looks up an <see cref="EventDefinition"/> by name on the given type parameter.</summary>
     public EventDefinition? Event<TDeclaringType>(string eventName) => Event(typeof(TDeclaringType), eventName);
 
     /// <summary>
     /// Directly looks up any <see cref="IMemberDefinition"/> by a raw metadata token value.
-    /// Useful when you already have a token from another source.
+    /// No fallback is applied — the token is used as-is.
     /// </summary>
     public TMember? Lookup<TMember>(int metadataToken)
-        where TMember : class, IMemberDefinition =>
-        dataProvider.LoadedModule?.LookupMember<TMember>((uint)metadataToken);
+        where TMember : class, IMemberDefinition => LookupByToken<TMember>((uint)metadataToken);
 
     /// <summary>
     /// Directly looks up any <see cref="IMemberDefinition"/> by a raw metadata token value.
+    /// No fallback is applied — the token is used as-is.
     /// </summary>
     public TMember? Lookup<TMember>(uint metadataToken)
-        where TMember : class, IMemberDefinition => dataProvider.LoadedModule?.LookupMember<TMember>(metadataToken);
+        where TMember : class, IMemberDefinition => LookupByToken<TMember>(metadataToken);
+
+    private TMember? LookupByToken<TMember>(int metadataToken)
+        where TMember : class, IMemberDefinition => LookupByToken<TMember>((uint)metadataToken);
+
+    private TMember? LookupByToken<TMember>(uint metadataToken)
+        where TMember : class, IMemberDefinition
+    {
+        try
+        {
+            return dataProvider.LoadedModule!.LookupMember<TMember>(metadataToken);
+        }
+        catch
+        {
+            // Token is out of range or wrong table for this module — fallback will handle it
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Walks the full declaring-type chain from outermost to innermost,
+    /// following <see cref="TypeDefinition.NestedTypes"/> at each level.
+    /// </summary>
+    private TypeDefinition? ResolveNestedType(Type type)
+    {
+        // Build the chain of declaring types from outermost inward, e.g.:
+        //   TarkovApplication -> CG_Struct35
+        var chain = new Stack<Type>();
+        var cursor = type;
+        while (cursor is not null)
+        {
+            chain.Push(cursor);
+            cursor = cursor.DeclaringType;
+        }
+
+        // Resolve the outermost (non-nested) type first
+        var outermost = chain.Pop();
+        var current = dataProvider
+            .LoadedModule!.GetAllTypes()
+            .FirstOrDefault(t => t.Namespace == outermost.Namespace && t.Name == outermost.Name);
+
+        // Walk inward through each nested level
+        while (current is not null && chain.Count > 0)
+        {
+            var nested = chain.Pop();
+            current = current.NestedTypes.FirstOrDefault(t => t.Name == nested.Name);
+        }
+
+        return current;
+    }
 }

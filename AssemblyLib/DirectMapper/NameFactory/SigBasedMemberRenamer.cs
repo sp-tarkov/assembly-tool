@@ -86,13 +86,13 @@ public class SigBasedMemberRenamer(
 
             RenameMethodsOnType(targetType, dummyType);
             RenamePropertiesOnType(targetType, dummyType);
-            //RenameGenericParametersOnType(targetType, dummyType);
+            RenameGenericParametersOnType(targetType, dummyType);
         }
 
         // Second pass, handles actions that only require the target
         foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
         {
-            //RenameInterfacePrependedMethods(type);
+            RenameExplicitInterfaceMethods(type);
         }
     }
 
@@ -301,11 +301,14 @@ public class SigBasedMemberRenamer(
 
             targetGenericParameter.Name = dummyGenericParameter.Name;
 
-            logger.LogInformation(
-                "Renamed generic param: {old} -> {new}",
-                oldName,
-                targetGenericParameter.Name?.ToString()
-            );
+            if (logger.IsEnabled(LogLevel.Debug))
+            {
+                logger.LogDebug(
+                    "Renamed generic param: {old} -> {new}",
+                    oldName,
+                    targetGenericParameter.Name?.ToString()
+                );
+            }
         }
     }
 
@@ -337,16 +340,20 @@ public class SigBasedMemberRenamer(
                 var oldName = targetGenericParameter.Name?.ToString();
 
                 targetGenericParameter.Name = dummyGenericParameter.Name;
-                logger.LogInformation(
-                    "Renamed method generic param: {old} -> {new}",
-                    oldName,
-                    targetGenericParameter.Name?.ToString()
-                );
+
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    logger.LogDebug(
+                        "Renamed method generic param: {old} -> {new}",
+                        oldName,
+                        targetGenericParameter.Name?.ToString()
+                    );
+                }
             }
         }
     }
 
-    private void RenameInterfacePrependedMethods(TypeDefinition typeDef)
+    private void RenameExplicitInterfaceMethods(TypeDefinition typeDef)
     {
         foreach (var method in typeDef.Methods.Where(m => m.IsExplicitInterfaceImplementation()))
         {

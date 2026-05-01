@@ -505,6 +505,9 @@
         "NestedTypes": {
             "GInterface459": {
                 "NewName": "IPlatformTransportee"
+            },
+            "GClass3596": {
+                "NewName": "NetworkAdapter"
             }
         }
     },
@@ -614,7 +617,15 @@
     "EFT.Profile": {
         "NestedTypes": {
             "GClass2205": {
-                "NewName": "HealthInfo"
+                "NewName": "HealthInfo",
+                "NestedTypes": {
+                    "GClass2206": {
+                        "NewName": "EffectInfo"
+                    },
+                    "GClass2207": {
+                        "NewName": "BodyPartInfo"
+                    }
+                }
             },
             "GClass2208": {
                 "NewName": "UnlockedInfo"
@@ -700,6 +711,9 @@
         "NestedTypes": {
             "Class522": {
                 "NewName": "SonicTimeQueueItem"
+            },
+            "GClass898": {
+                "NewName": "SonicInfo"
             }
         }
     },
@@ -934,5 +948,140 @@
                 "NewName": "DecalDescription"
             },
         }
-    }
+    },
+    "EFT.InventoryLogic.Slot": {
+        "NestedTypes": {
+            "Class2456": {
+                "NewName": "ProtectedSlotItemAddress"
+            },
+            "Struct892": {
+                "NewName": "ItemWithConflicting"
+            },
+            "GClass1570": {
+                "NewName": "EquippedLockedSlot"
+            },
+            "GClass1571": {
+                "NewName": "SlotLockedError"
+            },
+            "GClass1572": {
+                "NewName": "SlotBlockedError"
+            },
+            "GClass1573": {
+                "NewName": "ConflictingSlotBlockedError"
+            },
+            "GClass1574": {
+                "NewName": "TooLargeStackError"
+            },
+            "GClass1575": {
+                "NewName": "InstallNotExaminedError"
+            },
+            "GClass1576": {
+                "NewName": "TakeNotExaminedError"
+            },
+            "GClass1577": {
+                "NewName": "MissingVitalPartsError"
+            },
+            "GClass1578": {
+                "NewName": "SlotNotEmptyError"
+            },
+            "GClass1579": {
+                "NewName": "ItemFiltersWontAllowError"
+            },
+            "GClass1580": {
+                "NewName": "ConflictingItemError"
+            },
+            "GClass1581": {
+                "NewName": "CantAttachWhileFoldedError"
+            },
+            "Class1025": {
+                "NewName": "ItemNotInSlotError"
+            },
+        }
+    },
+    "EFT.HealthSystem.ActiveHealthController": {
+        "NestedTypes": {
+            "GClass3008": {
+                "NewName": "Effect"
+            }
+        }
+    },
+    "EFT.UI.Ragfair.Offer": {
+        "NestedTypes": {
+            "GClass3939": {
+                "NewName": "Merchant"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerInsuranceScreen": {
+        "NestedTypes": {
+            "GClass3913": {
+                "NewName": "InsuranceScreenController"
+            }
+        }
+    },
+    "EFT.UI.TraderDialogScreen": {
+        "NestedTypes": {
+            "GClass3864": {
+                "NewName": "TraderDialogScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftBattleUIScreen": {
+        "NestedTypes": {
+            "GClass3865": {
+                "NewName": "EftBattleUIScreenController"
+            },
+            "GClass3866": {
+                "NewName": "RaidBattleUIScreenController"
+            },
+            "GClass3867": {
+                "NewName": "HideoutBattleUIScreenController"
+            }
+        }
+    },
+    "EFT.UI.InventoryScreen": {
+        "NestedTypes": {
+            "GClass3871": {
+                "NewName": "InventoryScreenController"
+            },
+            "GClass3872": {
+                "NewName": "LobbyInventoryScreenController"
+            },
+            "GClass3873": {
+                "NewName": "HideoutInventoryScreenController"
+            },
+            "GClass3874": {
+                "NewName": "MatchmakingInventoryScreenController"
+            },
+            "GClass3875": {
+                "NewName": "NoTaskBarInventoryScreenController"
+            },
+            "GClass3876": {
+                "NewName": "RaidInventoryScreenController"
+            }
+        }
+    },
+    "EFT.UI.MenuScreen": {
+        "NestedTypes": {
+            "GClass3877": {
+                "NewName": "MainMenuBaseScreenController"
+            },
+            "GClass3878": {
+                "NewName": "MainMenuScreenController"
+            },
+            "GClass3879": {
+                "NewName": "MainMenuReconnectScreenController"
+            },
+            "GClass3880": {
+                "NewName": "RaidMainMenuScreenController"
+            }
+        }
+    },
+    "EFT.UI.TransferItemsInRaidScreen": {
+        "NestedTypes": {
+            "GClass3893": {
+                "NewName": "TransferItemsInRaidScreenController"
+            }
+        }
+    },
 }

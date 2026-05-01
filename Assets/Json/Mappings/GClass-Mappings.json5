@@ -1392,7 +1392,30 @@
     },
     "GClass1346": {
         "NewName": "FastAnimatorControllerJsonSerializator",
-        "NewNamespace": "FastAnimatorSystem.JsonSerialization"
+        "NewNamespace": "FastAnimatorSystem.JsonSerialization",
+        "NestedTypes": {
+            "Class908": {
+                "NewName": "FlatToRealContext"
+            },
+            "GClass1347": {
+                "NewName": "FlatFastAnimatorController"
+            },
+            "GClass1348": {
+                "NewName": "FlatFastAnimatorControllerEntity"
+            },
+            "GClass1349": {
+                "NewName": "FlatMotion"
+            },
+            "GClass1350": {
+                "NewName": "FlatAnimatorControllerTransition"
+            },
+            "GClass1351": {
+                "NewName": "FlatTransitionCondition"
+            },
+            "GClass1352": {
+                "NewName": "FlatAnimatorParameter"
+            }
+        },
     },
     "GClass135": {
         "NewName": "PatrolStayAtPositionLayer"
@@ -2402,6 +2425,139 @@
             },
             "GClass1748": {
                 "NewName": "RunddansGlobalSettings"
+            },
+            "GClass1749": {
+                "NewName": "ItemsCommonSettings"
+            },
+            "GClass1750": {
+                "NewName": "WeaponFastDrawSettings"
+            },
+            "GClass1751": {
+                "NewName": "FavoriteItemsGlobalSettings"
+            },
+            "GClass1752": {
+                "NewName": "ColliderSettings"
+            },
+            "GClass1753": {
+                "NewName": "MountingGlobalSettings"
+            },
+            "GClass1754": {
+                "NewName": "HideoutManagement",
+                "NestedTypes": {
+                    "GClass1755": {
+                        "NewName": "PointsRate"
+                    },
+                    "GClass1756": {
+                        "NewName": "AdditionalEliteSlots"
+                    }
+                },
+            },
+            "GClass1757": {
+                "NewName": "Crafting"
+            },
+            "GClass1758": {
+                "NewName": "Metabolism"
+            },
+            "GClass1759": {
+                "NewName": "Immunity"
+            },
+            "GClass1760": {
+                "NewName": "Endurance"
+            },
+            "GClass1761": {
+                "NewName": "Strength"
+            },
+            "GClass1762": {
+                "NewName": "Vitality"
+            },
+            "GClass1763": {
+                "NewName": "HealthSkill"
+            },
+            "GClass1764": {
+                "NewName": "StressResistance"
+            },
+            "GClass1765": {
+                "NewName": "Throwing"
+            },
+            "GClass1766": {
+                "NewName": "RecoilControl"
+            },
+            "GClass1767": {
+                "NewName": "Revolver"
+            },
+            "GClass1768": {
+                "NewName": "Pistol"
+            },
+            "GClass1769": {
+                "NewName": "Assault"
+            },
+            "GClass1770": {
+                "NewName": "Shotgun"
+            },
+            "GClass1771": {
+                "NewName": "Sniper"
+            },
+            "GClass1772": {
+                "NewName": "DMR"
+            },
+            "GClass1773": {
+                "NewName": "CovertMovement"
+            },
+            "GClass1774": {
+                "NewName": "Search"
+            },
+            "GClass1775": {
+                "NewName": "MagDrills"
+            },
+            "GClass1776": {
+                "NewName": "Perception"
+            },
+            "GClass1777": {
+                "NewName": "Intellect"
+            },
+            "GClass1778": {
+                "NewName": "Attention"
+            },
+            "GClass1779": {
+                "NewName": "Charisma",
+                "NestedTypes": {
+                    "GClass1780": {
+                        "NewName": "CharismaBonusSettings"
+                    },
+                    "GClass1781": {
+                        "NewName": "LevelBonusSettings"
+                    },
+                    "GClass1782": {
+                        "NewName": "EliteBonusSettings"
+                    }
+                },
+            },
+            "GClass1783": {
+                "NewName": "Memory"
+            },
+            "GClass1784": {
+                "NewName": "Surgery"
+            },
+            "GClass1785": {
+                "NewName": "AimDrills"
+            },
+            "GClass1786": {
+                "NewName": "BuffSettings"
+            },
+            "GClass1787": {
+                "NewName": "WeaponTreatment"
+            },
+            "GClass1788": {
+                "NewName": "TroubleShooting"
+            },
+            "GClass1767": {
+                "NewName": "Revolver"
+            },
+            "GClass1789": {
+                "NewName": "LightVests"
+            },
+            "GClass1790": {
+                "NewName": "HeavyVests"
             },
             "GInterface168": {
                 "NewName": "ITraderInfo"
@@ -3608,7 +3764,15 @@
     },
     "GClass2388": {
         "NewName": "SettingsManager",
-        "NewNamespace": "EFT.Settings"
+        "NewNamespace": "EFT.Settings",
+        "NestedTypes": {
+            "GClass2390`2": {
+                "NewName": "SettingsWithController"
+            },
+            "GClass2389`1": {
+                "NewName": "SettingsWithProvider"
+            }
+        }
     },
     "GClass239": {
         "NewName": "GoToPointTacticalNode"
@@ -4998,7 +5162,12 @@
     },
     "GClass3009`1": {
         "NewName": "BaseHealthController",
-        "NewNamespace": "EFT.HealthSystem"
+        "NewNamespace": "EFT.HealthSystem",
+        "NestedTypes": {
+            "Class2234": {
+                "NewName": "BodyPartHealHelper"
+            }
+        },
     },
     "GClass3010": {
         "NewName": "PlayerHealthController",
@@ -5067,8 +5236,19 @@
             "GClass3031": {
                 "NewName": "LethalIntoxicationSettings"
             },
+            "GClass3032": {
+                "NewName": "HealerSettings"
+            },
             "GClass3033": {
-                "NewName": "RegenerationSettings"
+                "NewName": "RegenerationSettings",
+                "NestedTypes": {
+                    "GClass3034": {
+                        "NewName": "HealthSettings"
+                    },
+                    "GClass3035": {
+                        "NewName": "InfluenceSettings"
+                    },
+                },
             },
             "GClass3036": {
                 "NewName": "WoundSettings"
@@ -5095,7 +5275,12 @@
                 "NewName": "SandingScreenSettings"
             },
             "GClass3044": {
-                "NewName": "StimulatorSettings"
+                "NewName": "StimulatorSettings",
+                "NestedTypes": {
+                    "GClass3045": {
+                        "NewName": "StimulatorBuffSettings"
+                    }
+                },
             },
             "GClass3046": {
                 "NewName": "TremorSettings"
@@ -5105,6 +5290,9 @@
             },
             "GClass3048": {
                 "NewName": "HealthBoostSettings"
+            },
+            "GClass3049": {
+                "NewName": "ProbabilitySetting"
             },
             "GClass3050": {
                 "NewName": "ZombieInfectionSettings"
@@ -5479,7 +5667,12 @@
     },
     "GClass3130": {
         "NewName": "CurrencyUtil",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "GClass3131": {
+                "NewName": "CurrencyData"
+            }
+        }
     },
     "GClass3132": {
         "NewName": "ArmorPlatesFormatter",
@@ -6631,7 +6824,81 @@
     },
     "GClass3395": {
         "NewName": "ItemManipulator",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "GClass3394": {
+                "NewName": "ProxyItemAddress"
+            },
+            "GClass1591": {
+                "NewName": "MalfunctionError"
+            },
+            "GClass1592": {
+                "NewName": "ItemAlreadyThereError"
+            },
+            "GClass1593": {
+                "NewName": "ContainerLockedError"
+            },
+            "GClass1594": {
+                "NewName": "MovingToTraderError"
+            },
+            "GClass1595": {
+                "NewName": "MovingToScavError"
+            },
+            "GClass1596": {
+                "NewName": "DeepMoveError"
+            },
+            "GClass1597": {
+                "NewName": "TakeFromRagfairError"
+            },
+            "GClass1598": {
+                "NewName": "CannotLootUnlootableError"
+            },
+            "GClass1599": {
+                "NewName": "NotRaidMovableToSafeContainer"
+            },
+            "GClass1600": {
+                "NewName": "CantRemoveFromEquipmentSlotDuringRaid"
+            },
+            "GClass1601": {
+                "NewName": "CannotPutUnlootableError"
+            },
+            "GClass1602": {
+                "NewName": "NonQuestItemInQuestStashError"
+            },
+            "GClass1603": {
+                "NewName": "QuestItemInNonQuestStashError"
+            },
+            "GClass1604": {
+                "NewName": "AddCountError"
+            },
+            "GClass1605": {
+                "NewName": "ResizeError"
+            },
+            "Class1026": {
+                "NewName": "ItemLockSameStateError"
+            },
+            "Class1027": {
+                "NewName": "ItemLockWrongContainerError"
+            },
+            "GClass1606": {
+                "NewName": "ItemManuallyLockedError"
+            },
+            "GClass1607": {
+                "NewName": "ContainerWithLockedItemError"
+            },
+            "GClass1608": {
+                "NewName": "ItemCycleError"
+            },
+            "GClass1609": {
+                "NewName": "CountLimitError"
+            },
+            "GClass1610": {
+                "NewName": "InstallToFoldedError"
+            },
+            "GClass1611": {
+                "NewName": "TryLootUnmovableError"
+            },
+        },
     },
     "GClass3396": {
         "NewName": "SlotManipulator",
@@ -8540,7 +8807,12 @@
         }
     },
     "GClass691": {
-        "NewName": "GlobalEventDispatcher"
+        "NewName": "GlobalEventDispatcher",
+        "NestedTypes": {
+            "GClass692": {
+                "NewName": "PhraseDelegateInfo"
+            }
+        },
     },
     "GClass693": {
         "NewName": "CheckPoisitonDataCarePlayers"
@@ -8684,8 +8956,43 @@
     "GClass743": {
         "NestedTypes": {
             "GClass747": {
-                "NewName": "Worlds"
-            }
+                "NewName": "Worlds",
+                "NestedTypes": {
+                    "GClass748": {
+                        "NewName": "AwaitMultiWorldsOverlapBoxAsyncData"
+                    },
+                    "GClass749": {
+                        "NewName": "World"
+                    },
+                    "GClass750": {
+                        "NewName": "DefaultWorld"
+                    },
+                    "GClass751": {
+                        "NewName": "DisablerCullingObjectTriggersWorld"
+                    },
+                    "GClass752": {
+                        "NewName": "VolumePropagationAndEnvironmentSwitcherTriggersWorld"
+                    },
+                }
+            },
+            "Class421": {
+                "NewName": "Overseer"
+            },
+            "GClass744": {
+                "NewName": "Simulation"
+            },
+            "GClass745": {
+                "NewName": "UpdateController",
+                "NestedTypes": {
+                    "GClass746": {
+                        "NewName": "Quality"
+                    },
+                    "GStruct35": {
+                        "NewName": "RigidbodyData"
+                    },
+                }
+            },
+
         },
         "NewName": "PhysicsExtensions"
     },
@@ -8735,7 +9042,12 @@
         "NewName": "PlayerStateInfoExtension"
     },
     "GClass768": {
-        "NewName": "ContainerCollectionView"
+        "NewName": "ContainerCollectionView",
+        "NestedTypes": {
+            "GClass769": {
+                "NewName": "SlotView"
+            }
+        }
     },
     "GClass77": {
         "NewName": "BirdEyeFightLayer"
@@ -8761,7 +9073,12 @@
         }
     },
     "GClass776": {
-        "NewName": "Physical"
+        "NewName": "Physical",
+        "NestedTypes": {
+            "GClass773": {
+                "NewName": "Consumption"
+            }
+        }
     },
     "GClass777": {
         "NewName": "IdlePlayerInertia"

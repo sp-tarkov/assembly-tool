@@ -14360,10 +14360,6 @@
         "NewName": "ConditionUseItemProgressChecker",
         "NewNamespace": "EFT.Quests"
     },
-    "GClass3990": {
-        "NewName": "WeightCalculator",
-        "NewNamespace": "EFT.RocketLauncher.Explosion"
-    },
     "GClass894": {
         "NewName": "ReleaseListener",
         "NewNamespace": "Audio"
@@ -14444,6 +14440,9 @@
         "RemoveType": true
     },
     "GClass370": {
+        "RemoveType": true
+    },
+    "GClass3990": {
         "RemoveType": true
     },
 }

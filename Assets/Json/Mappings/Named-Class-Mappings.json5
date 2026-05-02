@@ -883,6 +883,12 @@
             },
             "GStruct1": {
                 "NewName": "GPUDataPair"
+            },
+            "GClass11": {
+                "NewName": "GPUGraphData"
+            },
+            "GClass12": {
+                "NewName": "GraphManagerInstance"
             }
         }
     },
@@ -1082,6 +1088,92 @@
             "GClass3893": {
                 "NewName": "TransferItemsInRaidScreenController"
             }
+        }
+    },
+    "EFT.UI.EftLoginScreen": {
+        "NestedTypes": {
+            "GClass3868": {
+                "NewName": "EftLoginScreenController"
+            }
+        }
+    },
+    "EFT.UI.MatchMakerSideSelectionScreen": {
+        "NestedTypes": {
+            "GClass3919": {
+                "NewName": "RaidSideSelectionScreenController"
+            }
+        }
+    },
+    "MgBelt": {
+        "NestedTypes": {
+            "GClass913": {
+                "NewName": "WaveInfo"
+            }
+        }
+    },
+    "BoidController": {
+        "NestedTypes": {
+            "GClass874": {
+                "NewName": "BoidProperties"
+            }
+        }
+    },
+    "PlayerMotor": {
+        "NestedTypes": {
+            "GClass765": {
+                "NewName": "Constants"
+            }
+        }
+    },
+    "Koenigz.PerfectCulling.EFT.PerfectCullingCrossSceneVolume": {
+        "NestedTypes": {
+            "GClass1254": {
+                "NewName": "RuntimeCrossGroupVolume"
+            }
+        }
+    },
+    "Koenigz.PerfectCulling.EFT.PerfectCullingSamplingBuffer": {
+        "NestedTypes": {
+            "GClass1246": {
+                "NewName": "AllocationData"
+            }
+        }
+    },
+    "RootMotion.FinalIK.RagdollUtility": {
+        "NestedTypes": {
+            "GClass1467": {
+                "NewName": "Rigidbone"
+            },
+            "GClass1468": {
+                "NewName": "Child"
+            }
+        }
+    },
+    "GPUInstancer.GPUInstancerManager": {
+        "NestedTypes": {
+            "GClass1261": {
+                "NewName": "GPUIThreadData"
+            },
+        }
+    },
+    "AnimationEventSystem.AnimationEventsEmitter": {
+        "NestedTypes": {
+            "GClass715": {
+                "NewName": "AnimationEventsEmitterLogger"
+            },
+            "Struct254": {
+                "NewName": "DelayedEventInfo"
+            }
+        }
+    },
+    "EFT.AssetsManager.AssetPoolObject": {
+        "NestedTypes": {
+            "Class3528": {
+                "NewName": "AssetsPoolObjectComponentPoolPolicy"
+            },
+            "GClass3969": {
+                "NewName": "ColliderLayer"
+            },
         }
     },
 }

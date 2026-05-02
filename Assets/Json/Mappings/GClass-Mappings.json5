@@ -1471,7 +1471,24 @@
     },
     "GClass1365": {
         "NewName": "BitsHelper",
-        "NewNamespace": "BitPacking"
+        "NewNamespace": "BitPacking",
+        "NestedTypes": {
+            "GClass1366`1": {
+                "NewName": "Enum"
+            },
+            "Class913`1": {
+                "NewName": "EnumToInt"
+            },
+            "Class915`1": {
+                "NewName": "EnumToLong"
+            },
+            "Class917`1": {
+                "NewName": "EnumToShort"
+            },
+            "Class919`1": {
+                "NewName": "EnumToByte"
+            },
+        },
     },
     "GClass1367": {
         "NewName": "BitWriter",
@@ -5175,7 +5192,19 @@
     },
     "GClass3011": {
         "NewName": "NetworkHealthController",
-        "NewNamespace": "EFT.HealthSystem"
+        "NewNamespace": "EFT.HealthSystem",
+        "NestedTypes": {
+            "GClass3014": {
+                "NewName": "Effect"
+            },
+            "Stimulator": {
+                "NestedTypes": {
+                    "Class2246": {
+                        "NewName": "Buff"
+                    },
+                }
+            }
+        },
     },
     "GClass3012": {
         "NewName": "ClientPlayerHealthController",
@@ -6800,7 +6829,12 @@
     },
     "GClass3387": {
         "NewName": "BackEndInventoryController",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "GClass3448": {
+                "NewName": "FullItemLocation"
+            }
+        },
     },
     "GClass3388": {
         "NewName": "OfflineInventoryController",
@@ -8815,7 +8849,15 @@
         },
     },
     "GClass693": {
-        "NewName": "CheckPoisitonDataCarePlayers"
+        "NewName": "CheckPoisitonDataCarePlayers",
+        "NestedTypes": {
+            "GClass694": {
+                "NewName": "CheckPlayerCarePlayers"
+            },
+            "GClass695": {
+                "NewName": "CheckPlayerCareDist"
+            },
+        },
     },
     "GClass696": {
         "NestedTypes": {
@@ -8937,6 +8979,9 @@
         "NestedTypes": {
             "GClass737": {
                 "NewName": "RaycastJobContainer"
+            },
+            "GClass738": {
+                "NewName": "BatchData"
             }
         },
         "NewName": "AsyncRaycastsBatchManager"

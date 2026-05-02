@@ -337,7 +337,12 @@
         "NewName": "BackendRequestParams"
     },
     "Class313": {
-        "NewName": "HTTPTransportManager"
+        "NewName": "HTTPTransportManager",
+        "NestedTypes": {
+            "Struct29`1": {
+                "NewName": "HTTPRequestResult"
+            }
+        },
     },
     "Class319": {
         "NewName": "HttpWebSender"

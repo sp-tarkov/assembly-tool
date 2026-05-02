@@ -739,7 +739,12 @@
     "SimpleCharacterController": {
         "NestedTypes": {
             "GClass755": {
-                "NewName": "CollidersArray"
+                "NewName": "CollidersArray",
+                "NestedTypes": {
+                    "GStruct36": {
+                        "NewName": "CollisionInfo"
+                    }
+                }
             }
         }
     },
@@ -1585,6 +1590,138 @@
         "NestedTypes": {
             "GClass1668": {
                 "NewName": "VectorComparer"
+            }
+        }
+    },
+    "MirzaBeig.Scripting.Effects.ParticleFlocking": {
+        "NestedTypes": {
+            "GStruct118": {
+                "NewName": "Voxel"
+            }
+        }
+    },
+    "RoadSplineGenerator": {
+        "NestedTypes": {
+            "GStruct61": {
+                "NewName": "Point"
+            }
+        }
+    },
+    "EFT.Weather.ToDController": {
+        "NestedTypes": {
+            "GStruct306": {
+                "NewName": "SphericalHarmonicsContainer"
+            },
+            "Struct797": {
+                "NewName": "ComputeSphericalHarmonicsContainerJob"
+            }
+        }
+    },
+    "EFT.Ballistics.BallisticsCalculator": {
+        "NestedTypes": {
+            "Struct976": {
+                "NewName": "Task"
+            }
+        }
+    },
+    "EFT.UI.BaseDropDownBox": {
+        "NestedTypes": {
+            "Struct1160": {
+                "NewName": "DropDownItem"
+            }
+        }
+    },
+    "BotUnderbarrelLauncherController": {
+        "NestedTypes": {
+            "Struct11": {
+                "NewName": "EnemyHysteresisEvaluation"
+            }
+        }
+    },
+    "BouncingObject": {
+        "NestedTypes": {
+            "Struct74": {
+                "NewName": "Jump"
+            }
+        }
+    },
+    "EFT.UI.CameraImage": {
+        "NestedTypes": {
+            "Struct1174": {
+                "NewName": "LevelRenderSettings"
+            }
+        }
+    },
+    "ChartAndGraph.CanvasLines": {
+        "NestedTypes": {
+            "Struct271": {
+                "NewName": "Line"
+            }
+        }
+    },
+    "FrustumScanner": {
+        "NestedTypes": {
+            "Struct144": {
+                "NewName": "RendererInfo"
+            }
+        }
+    },
+    "EFT.Interactive.GasLamp": {
+        "NestedTypes": {
+            "Struct973": {
+                "NewName": "LightDescriptor"
+            },
+            "Struct974": {
+                "NewName": "MultiFlareDescriptor"
+            }
+        }
+    },
+    "WindowsManagerUtilities.GeometryBuffers": {
+        "NestedTypes": {
+            "Struct178": {
+                "NewName": "UInt2"
+            }
+        }
+    },
+    "WindowsManagerUtilities.GeometryComputeBuffers": {
+        "NestedTypes": {
+            "Struct179": {
+                "NewName": "IntPair"
+            }
+        }
+    },
+    "MBOIT_Scattering": {
+        "NestedTypes": {
+            "Struct0": {
+                "NewName": "MboitScatterParameters"
+            }
+        }
+    },
+    "SnowFlakes": {
+        "NestedTypes": {
+            "Struct161": {
+                "NewName": "LightProperties"
+            }
+        }
+    },
+    "EFT.UI.TypeWriterComponent": {
+        "NestedTypes": {
+            "Struct1157": {
+                "NewName": "RichTextChar"
+            }
+        }
+    },
+    "EFT.TrafficCollectScenario": {
+        "NestedTypes": {
+            "Struct303": {
+                "NewName": "Data"
+            }
+        }
+    },
+    "Diz.Resources.EasyAssets": {
+        "NestedTypes": {
+            "Struct265": {
+                "NewName": "IntermediateBundleDetails"
             }
         }
     }

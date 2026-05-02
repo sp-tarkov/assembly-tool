@@ -538,7 +538,12 @@
     },
     "GClass1124": {
         "NewName": "PortalDataBufferService",
-        "NewNamespace": "Audio.SpatialSystem"
+        "NewNamespace": "Audio.SpatialSystem",
+        "NestedTypes": {
+            "Struct203": {
+                "NewName": "PendingUpdate"
+            }
+        }
     },
     "GClass1125": {
         "NewName": "PropagationVolumesManager",
@@ -735,7 +740,12 @@
     },
     "GClass1168": {
         "NewName": "ReflectionCalculator",
-        "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+        "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+        "NestedTypes": {
+            "Struct213": {
+                "NewName": "ClearPathPointInfosJob"
+            }
+        }
     },
     "GClass1169": {
         "NewName": "ReflectionCalculatorUtils",
@@ -1048,6 +1058,9 @@
         "NestedTypes": {
             "GClass1251": {
                 "NewName": "IndexDataDecompressor"
+            },
+            "GStruct112": {
+                "NewName": "SerializedOrientedBounds"
             }
         },
         "NewName": "PackedCullingGridData",
@@ -2152,7 +2165,15 @@
         "NewName": "BossTagillaAgroFightLayerClose"
     },
     "GClass16": {
-        "NewName": "ProfilerSpikeAnalyzer"
+        "NewName": "ProfilerSpikeAnalyzer",
+        "NestedTypes": {
+            "Struct5": {
+                "NewName": "SpikeFile"
+            },
+            "Class97": {
+                "NewName": "RecorderData"
+            }
+        }
     },
     "GClass160": {
         "NewName": "BossTagillaAmbushLayer"
@@ -3537,7 +3558,15 @@
         "NewNamespace": "EFT"
     },
     "GClass23": {
-        "NewName": "SimpleProfiler"
+        "NewName": "SimpleProfiler",
+        "NestedTypes": {
+            "GStruct4": {
+                "NewName": "Token"
+            },
+            "GStruct5": {
+                "NewName": "SampleReport"
+            }
+        },
     },
     "GClass2303": {
         "NewName": "AFKMonitor",
@@ -5010,11 +5039,21 @@
     },
     "GClass2950": {
         "NewName": "UnderbarrelRangeValueHandsOperation",
-        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct364": {
+                "NewName": "OperationCallbacks"
+            }
+        },
     },
     "GClass2951": {
         "NewName": "UnderbarrelReloadHandsOperation",
-        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct365": {
+                "NewName": "OperationCallbacks"
+            }
+        },
     },
     "GClass2952": {
         "NewName": "ZombieMeleeAttackOperation",
@@ -5490,7 +5529,12 @@
     },
     "GClass3074": {
         "NewName": "SnapshotInterpolator",
-        "NewNamespace": "EFT.Network"
+        "NewNamespace": "EFT.Network",
+        "NestedTypes": {
+            "GStruct417": {
+                "NewName": "SnapshotInterpolatorOptions"
+            }
+        },
     },
     "GClass3075`1": {
         "NewName": "SnapshotInterpolator",
@@ -7477,7 +7521,16 @@
     },
     "GClass3496": {
         "NewName": "SetDialogProgressOperation",
-        "NewNamespace": "EFT.InventoryLogic.Operations"
+        "NewNamespace": "EFT.InventoryLogic.Operations",
+        "NestedTypes": {
+            "DialogProgressInventoryCommand": {
+                "NestedTypes": {
+                    "GStruct427": {
+                        "NewName": "DialogProgressBackendData"
+                    }
+                }
+            }
+        }
     },
     "GClass3497": {
         "NewName": "SetPinLockOperation",
@@ -7995,7 +8048,12 @@
     },
     "GClass3982": {
         "NewName": "ParticleRenderer",
-        "NewNamespace": "EFT.RocketLauncher.Explosion"
+        "NewNamespace": "EFT.RocketLauncher.Explosion",
+        "NestedTypes": {
+            "Struct1283": {
+                "NewName": "Particle"
+            }
+        }
     },
     "GClass3983": {
         "NewName": "ExplosionPropagationModel",
@@ -8203,7 +8261,12 @@
     },
     "GClass4050": {
         "NewName": "PrestigeReward",
-        "NewNamespace": "EFT.Prestige"
+        "NewNamespace": "EFT.Prestige",
+        "NestedTypes": {
+            "Struct817": {
+                "NewName": "PrestigeRewardExtraData"
+            }
+        }
     },
     "GClass4051": {
         "NewName": "ConditionExtensions",
@@ -8256,6 +8319,12 @@
         "NestedTypes": {
             "Struct1306": {
                 "NewName": "Marker"
+            },
+            "GStruct463": {
+                "NewName": "Token"
+            },
+            "GStruct464": {
+                "NewName": "ReleaseToken"
             }
         },
         "NewName": "Profiler",
@@ -8471,7 +8540,12 @@
         "NewName": "BotLocalAvoidance"
     },
     "GClass496": {
-        "NewName": "BotMoverDebug"
+        "NewName": "BotMoverDebug",
+        "NestedTypes": {
+            "Struct14": {
+                "NewName": "DebugImpostorStruct"
+            }
+        },
     },
     "GClass5": {
         "NewName": "TOD_Util"
@@ -9144,7 +9218,12 @@
         "NewName": "OverlapBoxCollider"
     },
     "GClass742": {
-        "NewName": "OverlapBoxSearcher"
+        "NewName": "OverlapBoxSearcher",
+        "NestedTypes": { 
+            "GStruct34": {
+                "NewName": "ScheduledExecute",
+            }
+        }
     },
     "GClass743": {
         "NestedTypes": {
@@ -9367,7 +9446,12 @@
         "NewName": "BotConfigurationDataStore"
     },
     "GClass807": {
-        "NewName": "ClassStateStorage"
+        "NewName": "ClassStateStorage",
+        "NestedTypes": {
+            "Struct83": {
+                "NewName": "FieldDefault"
+            }
+        }
     },
     "GClass808": {
         "NewName": "ColorUtilities"
@@ -9756,7 +9840,12 @@
         "NewName": "ClothingIconCreator"
     },
     "GClass926": {
-        "NewName": "ItemIconCreator"
+        "NewName": "ItemIconCreator",
+        "NestedTypes": {
+            "Struct124": {
+                "NewName": "T2DInfo"
+            }
+        },
     },
     "GClass927": {
         "NewName": "PlayerIconCreator",
@@ -10110,7 +10199,15 @@
     },
     "GClass1481": {
         "NewName": "FastBitConverter",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils",
+        "NestedTypes": {
+            "Struct258": {
+                "NewName": "ConverterHelperDouble"
+            },
+            "Struct259": {
+                "NewName": "ConverterHelperFloat"
+            }
+        }
     },
     "GClass1484": {
         "NewName": "NetDataWriter",
@@ -11830,7 +11927,13 @@
         "NewName": "ThirdPersonStrategy"
     },
     "GClass1002": {
-        "NewName": "Extensions"
+        "NewName": "Extensions",
+        "NestedTypes": {
+            // Custom, doesn't exist in 1.0
+            "GStruct71": {
+                "NewName": "CommandBuffers"
+            }
+        }
     },
     "GClass1199": {
         "NewName": "HeadphonesEqView",
@@ -12625,7 +12728,7 @@
     },
     "GClass2570": {
         "NewName": "FenceTrader",
-        "NewNamespace": "EFT.Trading"
+        "NewNamespace": "EFT.Trading",
     },
     "GClass2571": {
         "NewName": "Requisite",

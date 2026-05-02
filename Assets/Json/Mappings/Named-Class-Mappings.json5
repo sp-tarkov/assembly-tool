@@ -1116,10 +1116,80 @@
             }
         }
     },
-    "EFT.UI.MatchMakerSideSelectionScreen": {
+    "EFT.UI.SkillsAndMasteringScreen": {
+        "NestedTypes": {
+            "GClass3804": {
+                "NewName": "SkillsAndMasteringTabController"
+            }
+        }
+    },
+    "EFT.UI.SurveyScreen": {
+        "NestedTypes": {
+            "GClass3801": {
+                "NewName": "SurveyTabController"
+            }
+        }
+    },
+    "EFT.UI.OverallScreen": {
+        "NestedTypes": {
+            "GClass3803": {
+                "NewName": "OverallTabController"
+            }
+        }
+    },
+    "EFT.UI.Map.MapScreen": {
+        "NestedTypes": {
+            "GClass3805": {
+                "NewName": "MapTabController"
+            }
+        }
+    },
+    "EFT.HandBook.HandbookScreen": {
+        "NestedTypes": {
+            "GClass3862": {
+                "NewName": "HandbookScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerSideSelectionScreen": {
         "NestedTypes": {
             "GClass3919": {
                 "NewName": "RaidSideSelectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerMapPointsScreen": {
+        "NestedTypes": {
+            "GClass3916": {
+                "NewName": "MapPointScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerFinalCountdown": {
+        "NestedTypes": {
+            "GClass3923": {
+                "NewName": "FinalCountdownScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerSelectionLocationScreen": {
+        "NestedTypes": {
+            "GClass3918": {
+                "NewName": "SelectionLocationScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerAcceptScreen": {
+        "NestedTypes": {
+            "GClass3914": {
+                "NewName": "MatchmakerAcceptScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.RaidReadyList": {
+        "NestedTypes": {
+            "GClass3929": {
+                "NewName": "RaidPlayerComparer"
             }
         }
     },
@@ -1141,6 +1211,20 @@
         "NestedTypes": {
             "GClass765": {
                 "NewName": "Constants"
+            }
+        }
+    },
+    "UnityUtils": {
+        "NestedTypes": {
+            "GClass843": {
+                "NewName": "RRTExtension"
+            }
+        }
+    },
+    "MineDirectional": {
+        "NestedTypes": {
+            "GClass704": {
+                "NewName": "MineDirectionSerializer"
             }
         }
     },
@@ -1371,6 +1455,26 @@
             }
         }
     },
+    "EFT.InventoryLogic.LockableComponent": {
+        "NestedTypes": {
+            "GClass1541": {
+                "NewName": "BadKeyError"
+            }
+        }
+    },
+    "EFT.InventoryLogic.Magazine": {
+        "NestedTypes": {
+            "GClass1588": {
+                "NewName": "LoadInsertedMagazineError"
+            },
+            "GClass1589": {
+                "NewName": "ItemFiltersWontAllowError"
+            },
+            "GClass1590": {
+                "NewName": "FullMagazineError"
+            }
+        }
+    },
     "EFT.UI.Screens.ScreenManager`1": {
         "NestedTypes": {
             "GClass3860`2": {
@@ -1403,6 +1507,84 @@
         "NestedTypes": {
             "GClass2791": {
                 "NewName": "TiltCalulator"
+            }
+        }
+    },
+    "EFT.HideoutPlayer": {
+        "NestedTypes": {
+            "GClass2352": {
+                "NewName": "HideoutNightVisionTemplate"
+            }
+        }
+    },
+    "EFT.ClientPlayer": {
+        "NestedTypes": {
+            "GClass2351": {
+                "NewName": "DataSender"
+            }
+        }
+    },
+    "Diz.Jobs.JobScheduler": {
+        "NestedTypes": {
+            "GClass1619": {
+                "NewName": "Stats"
+            }
+        }
+    },
+    "EFT.Interactive.WindowBreakingConfig": {
+        "NestedTypes": {
+            "GClass3720": {
+                "NewName": "MeshPiece"
+            }
+        }
+    },
+    "WinterScript": {
+        "NestedTypes": {
+            "GClass993": {
+                "NewName": "AudioLerper"
+            },
+            "GClass994": {
+                "NewName": "TerrainDetailsRepaint",
+                "NestedTypes": {
+                    "Class689": {
+                        "NewName": "DetailColorLerper"
+                    }
+                }
+            }
+        }
+    },
+    "WaterForSSR": {
+        "NestedTypes": {
+            "GClass983": {
+                "NewName": "WaterObject"
+            }
+        }
+    },
+    "WaterForSSRv2": {
+        "NestedTypes": {
+            "GClass984": {
+                "NewName": "WaterObject"
+            }
+        }
+    },
+    "CustomHandle": {
+        "NestedTypes": {
+            "GClass880`2": {
+                "NewName": "ActualHandle"
+            }
+        }
+    },
+    "ChartAndGraph.GraphChartBase": {
+        "NestedTypes": {
+            "GClass1667": {
+                "NewName": "GraphEventArgs"
+            }
+        }
+    },
+    "ChartAndGraph.GraphData": {
+        "NestedTypes": {
+            "GClass1668": {
+                "NewName": "VectorComparer"
             }
         }
     }

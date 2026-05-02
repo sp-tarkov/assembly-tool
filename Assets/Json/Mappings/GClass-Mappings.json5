@@ -286,7 +286,12 @@
     },
     "GClass1066": {
         "NewName": "DialogueChatMessage",
-        "NewNamespace": "ChatShared"
+        "NewNamespace": "ChatShared",
+        "NestedTypes": {
+            "GClass1067": {
+                "NewName": "ChatMessageParams"
+            }
+        },
     },
     "GClass1068": {
         "NewName": "MessageQuote",
@@ -1735,6 +1740,9 @@
                     "GClass1421": {
                         "NewName": "LootContainer"
                     },
+                    "GClass1422": {
+                        "NewName": "LocationBannerLocalization"
+                    },
                     "GClass1423": {
                         "NewName": "AirdropParameters"
                     },
@@ -1743,6 +1751,9 @@
                     },
                     "GClass1425": {
                         "NewName": "BotHalloween2024"
+                    },
+                    "GClass1426": {
+                        "NewName": "VSRFDespawn"
                     },
                     "GClass1427": {
                         "NewName": "CrowdAttackSpawnParam"
@@ -1983,7 +1994,17 @@
     },
     "GClass1499": {
         "NewName": "GlobalAudioSettings",
-        "NewNamespace": "CommonAssets.Scripts.Audio"
+        "NewNamespace": "CommonAssets.Scripts.Audio",
+        "NestedTypes": {
+            "GClass1500": {
+                "NewName": "RadioBroadcastSettings",
+                "NestedTypes": {
+                    "GClass1501": { 
+                        "NewName": "RadioStationSettings",
+                    }
+                }
+            },
+        }
     },
     "GClass15": {
         "NewName": "PauseReasonExtension"
@@ -3796,7 +3817,12 @@
     },
     "GClass2385": {
         "NewName": "RenderingUtils",
-        "NewNamespace": "EFT.Rendering.Clouds"
+        "NewNamespace": "EFT.Rendering.Clouds",
+        "NestedTypes": {
+            "GClass2386`1": {
+                "NewName": "ObjectPool"
+            }
+        }
     },
     "GClass2387": {
         "NewName": "ControlPressTypeOverride",
@@ -4392,8 +4418,19 @@
         "NestedTypes": {
             "GClass2662": {
                 "NestedTypes": {
+                    // Yo dawg I heard you were interested in some nested classes so I put some nested classes in your nested classes
                     "GClass2663": {
-                        "NewName": "TransferStashConfig"
+                        "NewName": "TransferStashConfig",
+                        "NestedTypes": {
+                            "GClass2664": {
+                                "NewName": "ItemFilter",
+                                "NestedTypes": {
+                                    "GClass1716": { 
+                                        "NewName": "UnifiedHandbookEntities",
+                                    }
+                                }
+                            }
+                        }
                     },
                     "GClass2665": {
                         "NewName": "AbilitiesConfig"
@@ -5236,6 +5273,9 @@
     "GClass3013": {
         "NestedTypes": {
             "GClass3015": {
+                "NewName": "Effect"
+            },
+            "GClass3016`1": {
                 "NewName": "Effect"
             }
         },
@@ -6868,7 +6908,20 @@
     },
     "GClass3383": {
         "NewName": "ItemController",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2455": {
+                "NewName": "ProtectedOwnerItself"
+            },
+            "GClass3389": {
+                "NewName": "InventoryLogger",
+                "NestedTypes": {
+                    "Class406": {
+                        "NewName": "InternalInventoryLogger"
+                    }
+                }
+            }
+        }
     },
     "GClass3384": {
         "NewName": "PersonItemController",
@@ -7835,6 +7888,9 @@
         "NestedTypes": {
             "GStruct452": {
                 "NewName": "PriceData"
+            },
+            "GClass729": {
+                "NewName": "InsuranceLogger"
             }
         }
     },
@@ -9542,7 +9598,21 @@
         "NewName": "GuidReferenceEqualityComparer"
     },
     "GClass877": {
-        "NewName": "pc_renderer"
+        "NewName": "pc_renderer",
+        "NestedTypes": {
+            "GStruct57": {
+                "NewName": "NativeMeshData"
+            },
+            "GStruct58": {
+                "NewName": "NativeRendererTransformation"
+            },
+            "GStruct59": {
+                "NewName": "NativeMeshRenderers"
+            },
+            "GClass878": {
+                "NewName": "pc_renderer_settings"
+            }
+        }
     },
     "GClass879": {
         "NestedTypes": {
@@ -10357,7 +10427,18 @@
     },
     "GClass1706": {
         "NewName": "ClientSettingsConfig",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GClass1707": {
+                "NewName": "ReleaseProfilerSettings"
+            },
+            "GClass1708": {
+                "NewName": "FramerateLimitSettings"
+            },
+            "GClass1709": {
+                "NewName": "NetworkStateViewSettings"
+            }
+        }
     },
     "GClass1710": {
         "NewName": "PlayerBridge",

@@ -615,11 +615,6 @@
             }
         }
     },
-    "EFT.BaseLocalGame`1": {
-        "MethodRenames": {
-            "method_11": "InitiateGameStopping"
-        }
-    },
     "EFT.Profile": {
         "NestedTypes": {
             "GClass2205": {

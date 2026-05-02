@@ -515,6 +515,9 @@
         "NestedTypes": {
             "GClass3815": {
                 "NewName": "FullOffer"
+            },
+            "GClass3816": {
+                "NewName": "OfferComparer"
             }
         }
     },
@@ -564,6 +567,9 @@
         "NestedTypes": {
             "GClass3911": {
                 "NewName": "SessionStatisticsScreenController"
+            },
+            "GClass3857": {
+                "NewName": "StatGroup"
             }
         }
     },
@@ -700,8 +706,21 @@
             }
         }
     },
+    "DeferredDecals.DeferredDecalRenderer": {
+        "NestedTypes": {
+            "GClass1032": {
+                "NewName": "ManagedMesh"
+            },
+            "Class721": {
+                "NewName": "CameraData"
+            }
+        }
+    },
     "StaticDeferredDecalRenderer": {
         "NestedTypes": {
+            "Class606": {
+                "NewName": "CameraDecalsCommandBuffers"
+            },
             "GClass970": {
                 "NewName": "DecalsData"
             }
@@ -1176,4 +1195,215 @@
             },
         }
     },
+    "EFT.UI.ProfileLoadingScreen": {
+        "NestedTypes": {
+            "GClass3884": {
+                "NewName": "ProfileLoadingScreenController"
+            }
+        }
+    },
+    "EFT.UI.TransferItemsScreen": {
+        "NestedTypes": {
+            "GClass3894": {
+                "NewName": "TransferItemsScreenController"
+            }
+        }
+    },
+    "EFT.UI.TradingScreen": {
+        "NestedTypes": {
+            "GClass3890": {
+                "NewName": "TradingScreenController"
+            },
+            "GClass3891": {
+                "NewName": "TradersScreenController"
+            },
+            "GClass3892": {
+                "NewName": "RagfairScreenController"
+            }
+        }
+    },
+    "EFT.UI.TraderScreensGroup": {
+        "NestedTypes": {
+            "GClass3888": {
+                "NewName": "TraderScreenController"
+            },
+            "GClass3889": {
+                "NewName": "DialogTraderScreenController"
+            }
+        }
+    },
+    "EFT.UI.Settings.SettingsScreen": {
+        "NestedTypes": {
+            "GClass3895": {
+                "NewName": "SettingsScreenController",
+                "NestedTypes": {
+                    "GClass3853": {
+                        "NewName": "SettingsGroups"
+                    }
+                }
+            },
+            "GClass3896": {
+                "NewName": "RaidSettingsScreenController"
+            },
+            "GClass3897": {
+                "NewName": "SettingsInMatchingScreenController"
+            },
+            "Struct1190": {
+                "NewName": "SettingsGroupObjects"
+            }
+        }
+    },
+    "EFT.UI.EditBuildScreen": {
+        "NestedTypes": {
+            "GClass3881": {
+                "NewName": "EditBuildScreenController"
+            }
+        }
+    },
+    "EFT.UI.RestorePasswordScreen": {
+        "NestedTypes": {
+            "GClass3886": {
+                "NewName": "RestorePasswordScreenController"
+            }
+        }
+    },
+    "EFT.UI.ReconnectionScreen": {
+        "NestedTypes": {
+            "GClass3885": {
+                "NewName": "ReconnectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.ObtainPrestigeScreen": {
+        "NestedTypes": {
+            "GClass3908": {
+                "NewName": "ObtainPrestigeScreenController"
+            }
+        }
+    },
+    "EFT.UI.EventDialogScreen": {
+        "NestedTypes": {
+            "GClass3863": {
+                "NewName": "EventDialogScreenController"
+            }
+        }
+    },
+    "EFT.UI.HideoutCircleOfCultistsScreen": {
+        "NestedTypes": {
+            "GClass3903": {
+                "NewName": "HideoutCircleOfCultistsScreenController"
+            }
+        }
+    },
+    "EFT.UI.HideoutMannequinEquipmentScreen": {
+        "NestedTypes": {
+            "GClass3904": {
+                "NewName": "HideoutMannequinEquipmentScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftValidateDeviceIdScreen": {
+        "NestedTypes": {
+            "GClass3869": {
+                "NewName": "EftValidateDeviceIdScreenControllerController"
+            }
+        }
+    },
+    "EFT.UI.EftSetNicknameScreen": {
+        "NestedTypes": {
+            "GClass3906": {
+                "NewName": "EftSetNicknameScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftAccountSideSelectionScreen": {
+        "NestedTypes": {
+            "GClass3905": {
+                "NewName": "EftAccountSideSelectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.WeaponModding.WeaponModdingScreen": {
+        "NestedTypes": {
+            "GClass3922": {
+                "NewName": "WeaponModdingScreenController"
+            }
+        }
+    },
+    "EFT.UI.NewsHubScreen": {
+        "NestedTypes": {
+            "GClass3882": {
+                "NewName": "NewsHubScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftWelcomeScreen": {
+        "NestedTypes": {
+            "GClass3907": {
+                "NewName": "EftWelcomeScreenController"
+            }
+        }
+    },
+    "EFT.UI.ItemsPanel": {
+        "NestedTypes": {
+            "GClass3802": {
+                "NewName": "ItemsTabController"
+            }
+        }
+    },
+    "EFT.UI.EquipmentBuildsScreen": {
+        "NestedTypes": {
+            "GClass3870": {
+                "NewName": "EquipmentBuildsScreenController"
+            },
+            "Class3064": {
+                "NewName": "EquipmentBuildsTabController"
+            },
+            "Class2830": {
+                "NewName": "EquipmentBuildWrapper"
+            },
+        }
+    },
+    "EFT.InventoryLogic.ItemTemplate": {
+        "NestedTypes": {
+            "GClass1868": {
+                "NewName": "TemplateSerializer"
+            }
+        }
+    },
+    "EFT.UI.Screens.ScreenManager`1": {
+        "NestedTypes": {
+            "GClass3860`2": {
+                "NewName": "ScreenController"
+            }
+        }
+    },
+    "UI.Hideout.BaseHideoutAreaTransferItemsScreen`2": {
+        "NestedTypes": {
+            "GClass3901": {
+                "NewName": "BaseHideoutAreaTransferItemsScreenController"
+            }
+        }
+    },
+    "UI.Hideout.HideoutAreaTransferItemsScreen": {
+        "NestedTypes": {
+            "GClass3902": {
+                "NewName": "HideoutAreaTransferItemsScreenController"
+            }
+        }
+    },
+    "EFT.Hideout.HideoutScreenRear": {
+        "NestedTypes": {
+            "GClass3921": {
+                "NewName": "HideoutScreenController"
+            }
+        }
+    },
+    "EFT.Animations.ProceduralWeaponAnimation": {
+        "NestedTypes": {
+            "GClass2791": {
+                "NewName": "TiltCalulator"
+            }
+        }
+    }
 }

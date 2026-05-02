@@ -1085,7 +1085,30 @@
     },
     "GClass1262": {
         "NewName": "GPUInstancerConstants",
-        "NewNamespace": "GPUInstancer"
+        "NewNamespace": "GPUInstancer",
+        "NestedTypes": {
+            "GClass1263": {
+                "NewName": "BufferToTextureKernelPoperties"
+            },
+            "GClass1264": {
+                "NewName": "VisibilityKernelPoperties"
+            },
+            "GClass1265": {
+                "NewName": "SetDataKernelProperties"
+            },
+            "GClass1266": {
+                "NewName": "CopyTextureKernelProperties"
+            },
+            "GClass1267": {
+                "NewName": "GrassKernelProperties"
+            },
+            "GClass1268": {
+                "NewName": "TreeKernelProperties"
+            },
+            "GClass1269": {
+                "NewName": "RuntimeModificationKernelProperties"
+            }
+        }
     },
     "GClass127": {
         "NewName": "PartisanFightManyLayer"
@@ -5530,6 +5553,12 @@
             "Struct891": {
                 "NewName": "VolatileBool"
             },
+            "Class2272`1": {
+                "NewName": "ObjectPool"
+            },
+            "GClass3096": {
+                "NewName": "Segment"
+            },
         }
     },
     "GClass3097": {
@@ -5617,7 +5646,33 @@
     },
     "GClass3114": {
         "NewName": "Grid",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2458": {
+                "NewName": "ProtectedGridItemAddress"
+            },
+            "GClass1542": {
+                "NewName": "WontFitToGridError"
+            },
+            "GClass1543": {
+                "NewName": "PlaceTakenByAnotherItemError"
+            },
+            "GClass1544": {
+                "NewName": "NoFreeSpaceError"
+            },
+            "GClass1545": {
+                "NewName": "ItemFiltersWontAllowError"
+            },
+            "GClass1546": {
+                "NewName": "ItemNotInGridError"
+            },
+            "GClass1547": {
+                "NewName": "ModificationUnavailable"
+            },
+            "GClass1548": {
+                "NewName": "MaxItemsCountReachedError"
+            }
+        },
     },
     "GClass3115": {
         "NewName": "CornucopiaGrid",
@@ -7796,12 +7851,46 @@
         "NewNamespace": "EFT.UI.Builds"
     },
     "GClass3961": {
-        "NewName": "BundlesManager",
-        "NewNamespace": "EFT.AssetsManager"
+        "NewName": "AssetsManager",
+        "NewNamespace": "EFT.AssetsManager",
+        "NestedTypes": {
+            "GClass730": {
+                "NewName": "AssetsManagerLogger"
+            },
+            "Class3515": {
+                "NewName": "LoadListBundleOperation"
+            },
+            "Class3516": {
+                "NewName": "LoadOperation"
+            },
+            "Class3517": {
+                "NewName": "LoadAssetOperation"
+            },
+            "Class3518": {
+                "NewName": "LoadMainAssetOperation"
+            },
+            "Class3519": {
+                "NewName": "LoadAllAssetOperation"
+            },
+            "Class3526": {
+                "NewName": "LoadSceneOperation"
+            }
+        }
     },
     "GClass3966": {
-        "NewName": "AssetsManager",
-        "NewNamespace": "EFT.AssetsManager"
+        "NewName": "BundlesManager",
+        "NewNamespace": "EFT.AssetsManager",
+        "NestedTypes": {
+            "Class3523": {
+                "NewName": "AssetBundleReference"
+            },
+            "GClass3967": {
+                "NewName": "BundleBytesLoadOperation"
+            },
+            "Class3524": {
+                "NewName": "BundleLoadOperation"
+            }
+        }
     },
     "GClass3970`1": {
         "NewName": "AbstractAssetsPool",
@@ -8946,6 +9035,9 @@
         "NestedTypes": {
             "GClass1886": {
                 "NewName": "PlayerSpawnData"
+            },
+            "GClass1887": {
+                "NewName": "SpawnData"
             }
         },
         "NewName": "SpawnsLogger",
@@ -9888,7 +9980,12 @@
     },
     "GClass1341": {
         "NewName": "FastAnimatorProcessor",
-        "NewNamespace": "FastAnimatorSystem"
+        "NewNamespace": "FastAnimatorSystem",
+        "NestedTypes": {
+            "GClass1342": {
+                "NewName": "FastAnimatorCache"
+            }
+        }
     },
     "GClass1354": {
         "NewName": "AvgMeasurer",

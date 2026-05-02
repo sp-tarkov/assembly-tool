@@ -286,7 +286,12 @@
     },
     "GClass1066": {
         "NewName": "DialogueChatMessage",
-        "NewNamespace": "ChatShared"
+        "NewNamespace": "ChatShared",
+        "NestedTypes": {
+            "GClass1067": {
+                "NewName": "ChatMessageParams"
+            }
+        },
     },
     "GClass1068": {
         "NewName": "MessageQuote",
@@ -533,7 +538,12 @@
     },
     "GClass1124": {
         "NewName": "PortalDataBufferService",
-        "NewNamespace": "Audio.SpatialSystem"
+        "NewNamespace": "Audio.SpatialSystem",
+        "NestedTypes": {
+            "Struct203": {
+                "NewName": "PendingUpdate"
+            }
+        }
     },
     "GClass1125": {
         "NewName": "PropagationVolumesManager",
@@ -730,7 +740,12 @@
     },
     "GClass1168": {
         "NewName": "ReflectionCalculator",
-        "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+        "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator",
+        "NestedTypes": {
+            "Struct213": {
+                "NewName": "ClearPathPointInfosJob"
+            }
+        }
     },
     "GClass1169": {
         "NewName": "ReflectionCalculatorUtils",
@@ -1043,6 +1058,9 @@
         "NestedTypes": {
             "GClass1251": {
                 "NewName": "IndexDataDecompressor"
+            },
+            "GStruct112": {
+                "NewName": "SerializedOrientedBounds"
             }
         },
         "NewName": "PackedCullingGridData",
@@ -1085,7 +1103,30 @@
     },
     "GClass1262": {
         "NewName": "GPUInstancerConstants",
-        "NewNamespace": "GPUInstancer"
+        "NewNamespace": "GPUInstancer",
+        "NestedTypes": {
+            "GClass1263": {
+                "NewName": "BufferToTextureKernelPoperties"
+            },
+            "GClass1264": {
+                "NewName": "VisibilityKernelPoperties"
+            },
+            "GClass1265": {
+                "NewName": "SetDataKernelProperties"
+            },
+            "GClass1266": {
+                "NewName": "CopyTextureKernelProperties"
+            },
+            "GClass1267": {
+                "NewName": "GrassKernelProperties"
+            },
+            "GClass1268": {
+                "NewName": "TreeKernelProperties"
+            },
+            "GClass1269": {
+                "NewName": "RuntimeModificationKernelProperties"
+            }
+        }
     },
     "GClass127": {
         "NewName": "PartisanFightManyLayer"
@@ -1471,7 +1512,24 @@
     },
     "GClass1365": {
         "NewName": "BitsHelper",
-        "NewNamespace": "BitPacking"
+        "NewNamespace": "BitPacking",
+        "NestedTypes": {
+            "GClass1366`1": {
+                "NewName": "Enum"
+            },
+            "Class913`1": {
+                "NewName": "EnumToInt"
+            },
+            "Class915`1": {
+                "NewName": "EnumToLong"
+            },
+            "Class917`1": {
+                "NewName": "EnumToShort"
+            },
+            "Class919`1": {
+                "NewName": "EnumToByte"
+            },
+        },
     },
     "GClass1367": {
         "NewName": "BitWriter",
@@ -1695,6 +1753,9 @@
                     "GClass1421": {
                         "NewName": "LootContainer"
                     },
+                    "GClass1422": {
+                        "NewName": "LocationBannerLocalization"
+                    },
                     "GClass1423": {
                         "NewName": "AirdropParameters"
                     },
@@ -1703,6 +1764,9 @@
                     },
                     "GClass1425": {
                         "NewName": "BotHalloween2024"
+                    },
+                    "GClass1426": {
+                        "NewName": "VSRFDespawn"
                     },
                     "GClass1427": {
                         "NewName": "CrowdAttackSpawnParam"
@@ -1943,7 +2007,17 @@
     },
     "GClass1499": {
         "NewName": "GlobalAudioSettings",
-        "NewNamespace": "CommonAssets.Scripts.Audio"
+        "NewNamespace": "CommonAssets.Scripts.Audio",
+        "NestedTypes": {
+            "GClass1500": {
+                "NewName": "RadioBroadcastSettings",
+                "NestedTypes": {
+                    "GClass1501": { 
+                        "NewName": "RadioStationSettings",
+                    }
+                }
+            },
+        }
     },
     "GClass15": {
         "NewName": "PauseReasonExtension"
@@ -2091,7 +2165,15 @@
         "NewName": "BossTagillaAgroFightLayerClose"
     },
     "GClass16": {
-        "NewName": "ProfilerSpikeAnalyzer"
+        "NewName": "ProfilerSpikeAnalyzer",
+        "NestedTypes": {
+            "Struct5": {
+                "NewName": "SpikeFile"
+            },
+            "Class97": {
+                "NewName": "RecorderData"
+            }
+        }
     },
     "GClass160": {
         "NewName": "BossTagillaAmbushLayer"
@@ -3476,7 +3558,15 @@
         "NewNamespace": "EFT"
     },
     "GClass23": {
-        "NewName": "SimpleProfiler"
+        "NewName": "SimpleProfiler",
+        "NestedTypes": {
+            "GStruct4": {
+                "NewName": "Token"
+            },
+            "GStruct5": {
+                "NewName": "SampleReport"
+            }
+        },
     },
     "GClass2303": {
         "NewName": "AFKMonitor",
@@ -3756,7 +3846,12 @@
     },
     "GClass2385": {
         "NewName": "RenderingUtils",
-        "NewNamespace": "EFT.Rendering.Clouds"
+        "NewNamespace": "EFT.Rendering.Clouds",
+        "NestedTypes": {
+            "GClass2386`1": {
+                "NewName": "ObjectPool"
+            }
+        }
     },
     "GClass2387": {
         "NewName": "ControlPressTypeOverride",
@@ -4352,8 +4447,19 @@
         "NestedTypes": {
             "GClass2662": {
                 "NestedTypes": {
+                    // Yo dawg I heard you were interested in some nested classes so I put some nested classes in your nested classes
                     "GClass2663": {
-                        "NewName": "TransferStashConfig"
+                        "NewName": "TransferStashConfig",
+                        "NestedTypes": {
+                            "GClass2664": {
+                                "NewName": "ItemFilter",
+                                "NestedTypes": {
+                                    "GClass1716": { 
+                                        "NewName": "UnifiedHandbookEntities",
+                                    }
+                                }
+                            }
+                        }
                     },
                     "GClass2665": {
                         "NewName": "AbilitiesConfig"
@@ -4933,11 +5039,21 @@
     },
     "GClass2950": {
         "NewName": "UnderbarrelRangeValueHandsOperation",
-        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct364": {
+                "NewName": "OperationCallbacks"
+            }
+        },
     },
     "GClass2951": {
         "NewName": "UnderbarrelReloadHandsOperation",
-        "NewNamespace": "EFT.NextObservedPlayer.Operations"
+        "NewNamespace": "EFT.NextObservedPlayer.Operations",
+        "NestedTypes": {
+            "GStruct365": {
+                "NewName": "OperationCallbacks"
+            }
+        },
     },
     "GClass2952": {
         "NewName": "ZombieMeleeAttackOperation",
@@ -5175,7 +5291,19 @@
     },
     "GClass3011": {
         "NewName": "NetworkHealthController",
-        "NewNamespace": "EFT.HealthSystem"
+        "NewNamespace": "EFT.HealthSystem",
+        "NestedTypes": {
+            "GClass3014": {
+                "NewName": "Effect"
+            },
+            "Stimulator": {
+                "NestedTypes": {
+                    "Class2246": {
+                        "NewName": "Buff"
+                    },
+                }
+            }
+        },
     },
     "GClass3012": {
         "NewName": "ClientPlayerHealthController",
@@ -5184,6 +5312,9 @@
     "GClass3013": {
         "NestedTypes": {
             "GClass3015": {
+                "NewName": "Effect"
+            },
+            "GClass3016`1": {
                 "NewName": "Effect"
             }
         },
@@ -5398,7 +5529,12 @@
     },
     "GClass3074": {
         "NewName": "SnapshotInterpolator",
-        "NewNamespace": "EFT.Network"
+        "NewNamespace": "EFT.Network",
+        "NestedTypes": {
+            "GStruct417": {
+                "NewName": "SnapshotInterpolatorOptions"
+            }
+        },
     },
     "GClass3075`1": {
         "NewName": "SnapshotInterpolator",
@@ -5501,6 +5637,12 @@
             "Struct891": {
                 "NewName": "VolatileBool"
             },
+            "Class2272`1": {
+                "NewName": "ObjectPool"
+            },
+            "GClass3096": {
+                "NewName": "Segment"
+            },
         }
     },
     "GClass3097": {
@@ -5588,7 +5730,33 @@
     },
     "GClass3114": {
         "NewName": "Grid",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2458": {
+                "NewName": "ProtectedGridItemAddress"
+            },
+            "GClass1542": {
+                "NewName": "WontFitToGridError"
+            },
+            "GClass1543": {
+                "NewName": "PlaceTakenByAnotherItemError"
+            },
+            "GClass1544": {
+                "NewName": "NoFreeSpaceError"
+            },
+            "GClass1545": {
+                "NewName": "ItemFiltersWontAllowError"
+            },
+            "GClass1546": {
+                "NewName": "ItemNotInGridError"
+            },
+            "GClass1547": {
+                "NewName": "ModificationUnavailable"
+            },
+            "GClass1548": {
+                "NewName": "MaxItemsCountReachedError"
+            }
+        },
     },
     "GClass3115": {
         "NewName": "CornucopiaGrid",
@@ -6784,7 +6952,20 @@
     },
     "GClass3383": {
         "NewName": "ItemController",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2455": {
+                "NewName": "ProtectedOwnerItself"
+            },
+            "GClass3389": {
+                "NewName": "InventoryLogger",
+                "NestedTypes": {
+                    "Class406": {
+                        "NewName": "InternalInventoryLogger"
+                    }
+                }
+            }
+        }
     },
     "GClass3384": {
         "NewName": "PersonItemController",
@@ -6800,7 +6981,12 @@
     },
     "GClass3387": {
         "NewName": "BackEndInventoryController",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "GClass3448": {
+                "NewName": "FullItemLocation"
+            }
+        },
     },
     "GClass3388": {
         "NewName": "OfflineInventoryController",
@@ -7335,7 +7521,16 @@
     },
     "GClass3496": {
         "NewName": "SetDialogProgressOperation",
-        "NewNamespace": "EFT.InventoryLogic.Operations"
+        "NewNamespace": "EFT.InventoryLogic.Operations",
+        "NestedTypes": {
+            "DialogProgressInventoryCommand": {
+                "NestedTypes": {
+                    "GStruct427": {
+                        "NewName": "DialogProgressBackendData"
+                    }
+                }
+            }
+        }
     },
     "GClass3497": {
         "NewName": "SetPinLockOperation",
@@ -7746,6 +7941,9 @@
         "NestedTypes": {
             "GStruct452": {
                 "NewName": "PriceData"
+            },
+            "GClass729": {
+                "NewName": "InsuranceLogger"
             }
         }
     },
@@ -7762,12 +7960,46 @@
         "NewNamespace": "EFT.UI.Builds"
     },
     "GClass3961": {
-        "NewName": "BundlesManager",
-        "NewNamespace": "EFT.AssetsManager"
+        "NewName": "AssetsManager",
+        "NewNamespace": "EFT.AssetsManager",
+        "NestedTypes": {
+            "GClass730": {
+                "NewName": "AssetsManagerLogger"
+            },
+            "Class3515": {
+                "NewName": "LoadListBundleOperation"
+            },
+            "Class3516": {
+                "NewName": "LoadOperation"
+            },
+            "Class3517": {
+                "NewName": "LoadAssetOperation"
+            },
+            "Class3518": {
+                "NewName": "LoadMainAssetOperation"
+            },
+            "Class3519": {
+                "NewName": "LoadAllAssetOperation"
+            },
+            "Class3526": {
+                "NewName": "LoadSceneOperation"
+            }
+        }
     },
     "GClass3966": {
-        "NewName": "AssetsManager",
-        "NewNamespace": "EFT.AssetsManager"
+        "NewName": "BundlesManager",
+        "NewNamespace": "EFT.AssetsManager",
+        "NestedTypes": {
+            "Class3523": {
+                "NewName": "AssetBundleReference"
+            },
+            "GClass3967": {
+                "NewName": "BundleBytesLoadOperation"
+            },
+            "Class3524": {
+                "NewName": "BundleLoadOperation"
+            }
+        }
     },
     "GClass3970`1": {
         "NewName": "AbstractAssetsPool",
@@ -7816,7 +8048,12 @@
     },
     "GClass3982": {
         "NewName": "ParticleRenderer",
-        "NewNamespace": "EFT.RocketLauncher.Explosion"
+        "NewNamespace": "EFT.RocketLauncher.Explosion",
+        "NestedTypes": {
+            "Struct1283": {
+                "NewName": "Particle"
+            }
+        }
     },
     "GClass3983": {
         "NewName": "ExplosionPropagationModel",
@@ -8024,7 +8261,12 @@
     },
     "GClass4050": {
         "NewName": "PrestigeReward",
-        "NewNamespace": "EFT.Prestige"
+        "NewNamespace": "EFT.Prestige",
+        "NestedTypes": {
+            "Struct817": {
+                "NewName": "PrestigeRewardExtraData"
+            }
+        }
     },
     "GClass4051": {
         "NewName": "ConditionExtensions",
@@ -8077,6 +8319,12 @@
         "NestedTypes": {
             "Struct1306": {
                 "NewName": "Marker"
+            },
+            "GStruct463": {
+                "NewName": "Token"
+            },
+            "GStruct464": {
+                "NewName": "ReleaseToken"
             }
         },
         "NewName": "Profiler",
@@ -8292,7 +8540,12 @@
         "NewName": "BotLocalAvoidance"
     },
     "GClass496": {
-        "NewName": "BotMoverDebug"
+        "NewName": "BotMoverDebug",
+        "NestedTypes": {
+            "Struct14": {
+                "NewName": "DebugImpostorStruct"
+            }
+        },
     },
     "GClass5": {
         "NewName": "TOD_Util"
@@ -8815,7 +9068,15 @@
         },
     },
     "GClass693": {
-        "NewName": "CheckPoisitonDataCarePlayers"
+        "NewName": "CheckPoisitonDataCarePlayers",
+        "NestedTypes": {
+            "GClass694": {
+                "NewName": "CheckPlayerCarePlayers"
+            },
+            "GClass695": {
+                "NewName": "CheckPlayerCareDist"
+            },
+        },
     },
     "GClass696": {
         "NestedTypes": {
@@ -8904,6 +9165,9 @@
         "NestedTypes": {
             "GClass1886": {
                 "NewName": "PlayerSpawnData"
+            },
+            "GClass1887": {
+                "NewName": "SpawnData"
             }
         },
         "NewName": "SpawnsLogger",
@@ -8937,6 +9201,9 @@
         "NestedTypes": {
             "GClass737": {
                 "NewName": "RaycastJobContainer"
+            },
+            "GClass738": {
+                "NewName": "BatchData"
             }
         },
         "NewName": "AsyncRaycastsBatchManager"
@@ -8951,7 +9218,12 @@
         "NewName": "OverlapBoxCollider"
     },
     "GClass742": {
-        "NewName": "OverlapBoxSearcher"
+        "NewName": "OverlapBoxSearcher",
+        "NestedTypes": { 
+            "GStruct34": {
+                "NewName": "ScheduledExecute",
+            }
+        }
     },
     "GClass743": {
         "NestedTypes": {
@@ -9174,7 +9446,12 @@
         "NewName": "BotConfigurationDataStore"
     },
     "GClass807": {
-        "NewName": "ClassStateStorage"
+        "NewName": "ClassStateStorage",
+        "NestedTypes": {
+            "Struct83": {
+                "NewName": "FieldDefault"
+            }
+        }
     },
     "GClass808": {
         "NewName": "ColorUtilities"
@@ -9405,7 +9682,21 @@
         "NewName": "GuidReferenceEqualityComparer"
     },
     "GClass877": {
-        "NewName": "pc_renderer"
+        "NewName": "pc_renderer",
+        "NestedTypes": {
+            "GStruct57": {
+                "NewName": "NativeMeshData"
+            },
+            "GStruct58": {
+                "NewName": "NativeRendererTransformation"
+            },
+            "GStruct59": {
+                "NewName": "NativeMeshRenderers"
+            },
+            "GClass878": {
+                "NewName": "pc_renderer_settings"
+            }
+        }
     },
     "GClass879": {
         "NestedTypes": {
@@ -9549,7 +9840,12 @@
         "NewName": "ClothingIconCreator"
     },
     "GClass926": {
-        "NewName": "ItemIconCreator"
+        "NewName": "ItemIconCreator",
+        "NestedTypes": {
+            "Struct124": {
+                "NewName": "T2DInfo"
+            }
+        },
     },
     "GClass927": {
         "NewName": "PlayerIconCreator",
@@ -9843,7 +10139,12 @@
     },
     "GClass1341": {
         "NewName": "FastAnimatorProcessor",
-        "NewNamespace": "FastAnimatorSystem"
+        "NewNamespace": "FastAnimatorSystem",
+        "NestedTypes": {
+            "GClass1342": {
+                "NewName": "FastAnimatorCache"
+            }
+        }
     },
     "GClass1354": {
         "NewName": "AvgMeasurer",
@@ -9898,7 +10199,15 @@
     },
     "GClass1481": {
         "NewName": "FastBitConverter",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils",
+        "NestedTypes": {
+            "Struct258": {
+                "NewName": "ConverterHelperDouble"
+            },
+            "Struct259": {
+                "NewName": "ConverterHelperFloat"
+            }
+        }
     },
     "GClass1484": {
         "NewName": "NetDataWriter",
@@ -10215,7 +10524,18 @@
     },
     "GClass1706": {
         "NewName": "ClientSettingsConfig",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "GClass1707": {
+                "NewName": "ReleaseProfilerSettings"
+            },
+            "GClass1708": {
+                "NewName": "FramerateLimitSettings"
+            },
+            "GClass1709": {
+                "NewName": "NetworkStateViewSettings"
+            }
+        }
     },
     "GClass1710": {
         "NewName": "PlayerBridge",
@@ -11607,7 +11927,13 @@
         "NewName": "ThirdPersonStrategy"
     },
     "GClass1002": {
-        "NewName": "Extensions"
+        "NewName": "Extensions",
+        "NestedTypes": {
+            // Custom, doesn't exist in 1.0
+            "GStruct71": {
+                "NewName": "CommandBuffers"
+            }
+        }
     },
     "GClass1199": {
         "NewName": "HeadphonesEqView",
@@ -12402,7 +12728,7 @@
     },
     "GClass2570": {
         "NewName": "FenceTrader",
-        "NewNamespace": "EFT.Trading"
+        "NewNamespace": "EFT.Trading",
     },
     "GClass2571": {
         "NewName": "Requisite",

@@ -515,6 +515,9 @@
         "NestedTypes": {
             "GClass3815": {
                 "NewName": "FullOffer"
+            },
+            "GClass3816": {
+                "NewName": "OfferComparer"
             }
         }
     },
@@ -564,6 +567,9 @@
         "NestedTypes": {
             "GClass3911": {
                 "NewName": "SessionStatisticsScreenController"
+            },
+            "GClass3857": {
+                "NewName": "StatGroup"
             }
         }
     },
@@ -700,8 +706,21 @@
             }
         }
     },
+    "DeferredDecals.DeferredDecalRenderer": {
+        "NestedTypes": {
+            "GClass1032": {
+                "NewName": "ManagedMesh"
+            },
+            "Class721": {
+                "NewName": "CameraData"
+            }
+        }
+    },
     "StaticDeferredDecalRenderer": {
         "NestedTypes": {
+            "Class606": {
+                "NewName": "CameraDecalsCommandBuffers"
+            },
             "GClass970": {
                 "NewName": "DecalsData"
             }
@@ -720,7 +739,12 @@
     "SimpleCharacterController": {
         "NestedTypes": {
             "GClass755": {
-                "NewName": "CollidersArray"
+                "NewName": "CollidersArray",
+                "NestedTypes": {
+                    "GStruct36": {
+                        "NewName": "CollisionInfo"
+                    }
+                }
             }
         }
     },
@@ -883,6 +907,12 @@
             },
             "GStruct1": {
                 "NewName": "GPUDataPair"
+            },
+            "GClass11": {
+                "NewName": "GPUGraphData"
+            },
+            "GClass12": {
+                "NewName": "GraphManagerInstance"
             }
         }
     },
@@ -1084,4 +1114,615 @@
             }
         }
     },
+    "EFT.UI.EftLoginScreen": {
+        "NestedTypes": {
+            "GClass3868": {
+                "NewName": "EftLoginScreenController"
+            }
+        }
+    },
+    "EFT.UI.SkillsAndMasteringScreen": {
+        "NestedTypes": {
+            "GClass3804": {
+                "NewName": "SkillsAndMasteringTabController"
+            }
+        }
+    },
+    "EFT.UI.SurveyScreen": {
+        "NestedTypes": {
+            "GClass3801": {
+                "NewName": "SurveyTabController"
+            }
+        }
+    },
+    "EFT.UI.OverallScreen": {
+        "NestedTypes": {
+            "GClass3803": {
+                "NewName": "OverallTabController"
+            }
+        }
+    },
+    "EFT.UI.Map.MapScreen": {
+        "NestedTypes": {
+            "GClass3805": {
+                "NewName": "MapTabController"
+            }
+        }
+    },
+    "EFT.HandBook.HandbookScreen": {
+        "NestedTypes": {
+            "GClass3862": {
+                "NewName": "HandbookScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerSideSelectionScreen": {
+        "NestedTypes": {
+            "GClass3919": {
+                "NewName": "RaidSideSelectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerMapPointsScreen": {
+        "NestedTypes": {
+            "GClass3916": {
+                "NewName": "MapPointScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchmakerFinalCountdown": {
+        "NestedTypes": {
+            "GClass3923": {
+                "NewName": "FinalCountdownScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerSelectionLocationScreen": {
+        "NestedTypes": {
+            "GClass3918": {
+                "NewName": "SelectionLocationScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.MatchMakerAcceptScreen": {
+        "NestedTypes": {
+            "GClass3914": {
+                "NewName": "MatchmakerAcceptScreenController"
+            }
+        }
+    },
+    "EFT.UI.Matchmaker.RaidReadyList": {
+        "NestedTypes": {
+            "GClass3929": {
+                "NewName": "RaidPlayerComparer"
+            }
+        }
+    },
+    "MgBelt": {
+        "NestedTypes": {
+            "GClass913": {
+                "NewName": "WaveInfo"
+            }
+        }
+    },
+    "BoidController": {
+        "NestedTypes": {
+            "GClass874": {
+                "NewName": "BoidProperties"
+            }
+        }
+    },
+    "PlayerMotor": {
+        "NestedTypes": {
+            "GClass765": {
+                "NewName": "Constants"
+            }
+        }
+    },
+    "UnityUtils": {
+        "NestedTypes": {
+            "GClass843": {
+                "NewName": "RRTExtension"
+            }
+        }
+    },
+    "MineDirectional": {
+        "NestedTypes": {
+            "GClass704": {
+                "NewName": "MineDirectionSerializer"
+            }
+        }
+    },
+    "Koenigz.PerfectCulling.EFT.PerfectCullingCrossSceneVolume": {
+        "NestedTypes": {
+            "GClass1254": {
+                "NewName": "RuntimeCrossGroupVolume"
+            }
+        }
+    },
+    "Koenigz.PerfectCulling.EFT.PerfectCullingSamplingBuffer": {
+        "NestedTypes": {
+            "GClass1246": {
+                "NewName": "AllocationData"
+            }
+        }
+    },
+    "RootMotion.FinalIK.RagdollUtility": {
+        "NestedTypes": {
+            "GClass1467": {
+                "NewName": "Rigidbone"
+            },
+            "GClass1468": {
+                "NewName": "Child"
+            }
+        }
+    },
+    "GPUInstancer.GPUInstancerManager": {
+        "NestedTypes": {
+            "GClass1261": {
+                "NewName": "GPUIThreadData"
+            },
+        }
+    },
+    "AnimationEventSystem.AnimationEventsEmitter": {
+        "NestedTypes": {
+            "GClass715": {
+                "NewName": "AnimationEventsEmitterLogger"
+            },
+            "Struct254": {
+                "NewName": "DelayedEventInfo"
+            }
+        }
+    },
+    "EFT.AssetsManager.AssetPoolObject": {
+        "NestedTypes": {
+            "Class3528": {
+                "NewName": "AssetsPoolObjectComponentPoolPolicy"
+            },
+            "GClass3969": {
+                "NewName": "ColliderLayer"
+            },
+        }
+    },
+    "EFT.UI.ProfileLoadingScreen": {
+        "NestedTypes": {
+            "GClass3884": {
+                "NewName": "ProfileLoadingScreenController"
+            }
+        }
+    },
+    "EFT.UI.TransferItemsScreen": {
+        "NestedTypes": {
+            "GClass3894": {
+                "NewName": "TransferItemsScreenController"
+            }
+        }
+    },
+    "EFT.UI.TradingScreen": {
+        "NestedTypes": {
+            "GClass3890": {
+                "NewName": "TradingScreenController"
+            },
+            "GClass3891": {
+                "NewName": "TradersScreenController"
+            },
+            "GClass3892": {
+                "NewName": "RagfairScreenController"
+            }
+        }
+    },
+    "EFT.UI.TraderScreensGroup": {
+        "NestedTypes": {
+            "GClass3888": {
+                "NewName": "TraderScreenController"
+            },
+            "GClass3889": {
+                "NewName": "DialogTraderScreenController"
+            }
+        }
+    },
+    "EFT.UI.Settings.SettingsScreen": {
+        "NestedTypes": {
+            "GClass3895": {
+                "NewName": "SettingsScreenController",
+                "NestedTypes": {
+                    "GClass3853": {
+                        "NewName": "SettingsGroups"
+                    }
+                }
+            },
+            "GClass3896": {
+                "NewName": "RaidSettingsScreenController"
+            },
+            "GClass3897": {
+                "NewName": "SettingsInMatchingScreenController"
+            },
+            "Struct1190": {
+                "NewName": "SettingsGroupObjects"
+            }
+        }
+    },
+    "EFT.UI.EditBuildScreen": {
+        "NestedTypes": {
+            "GClass3881": {
+                "NewName": "EditBuildScreenController"
+            }
+        }
+    },
+    "EFT.UI.RestorePasswordScreen": {
+        "NestedTypes": {
+            "GClass3886": {
+                "NewName": "RestorePasswordScreenController"
+            }
+        }
+    },
+    "EFT.UI.ReconnectionScreen": {
+        "NestedTypes": {
+            "GClass3885": {
+                "NewName": "ReconnectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.ObtainPrestigeScreen": {
+        "NestedTypes": {
+            "GClass3908": {
+                "NewName": "ObtainPrestigeScreenController"
+            }
+        }
+    },
+    "EFT.UI.EventDialogScreen": {
+        "NestedTypes": {
+            "GClass3863": {
+                "NewName": "EventDialogScreenController"
+            }
+        }
+    },
+    "EFT.UI.HideoutCircleOfCultistsScreen": {
+        "NestedTypes": {
+            "GClass3903": {
+                "NewName": "HideoutCircleOfCultistsScreenController"
+            }
+        }
+    },
+    "EFT.UI.HideoutMannequinEquipmentScreen": {
+        "NestedTypes": {
+            "GClass3904": {
+                "NewName": "HideoutMannequinEquipmentScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftValidateDeviceIdScreen": {
+        "NestedTypes": {
+            "GClass3869": {
+                "NewName": "EftValidateDeviceIdScreenControllerController"
+            }
+        }
+    },
+    "EFT.UI.EftSetNicknameScreen": {
+        "NestedTypes": {
+            "GClass3906": {
+                "NewName": "EftSetNicknameScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftAccountSideSelectionScreen": {
+        "NestedTypes": {
+            "GClass3905": {
+                "NewName": "EftAccountSideSelectionScreenController"
+            }
+        }
+    },
+    "EFT.UI.WeaponModding.WeaponModdingScreen": {
+        "NestedTypes": {
+            "GClass3922": {
+                "NewName": "WeaponModdingScreenController"
+            }
+        }
+    },
+    "EFT.UI.NewsHubScreen": {
+        "NestedTypes": {
+            "GClass3882": {
+                "NewName": "NewsHubScreenController"
+            }
+        }
+    },
+    "EFT.UI.EftWelcomeScreen": {
+        "NestedTypes": {
+            "GClass3907": {
+                "NewName": "EftWelcomeScreenController"
+            }
+        }
+    },
+    "EFT.UI.ItemsPanel": {
+        "NestedTypes": {
+            "GClass3802": {
+                "NewName": "ItemsTabController"
+            }
+        }
+    },
+    "EFT.UI.EquipmentBuildsScreen": {
+        "NestedTypes": {
+            "GClass3870": {
+                "NewName": "EquipmentBuildsScreenController"
+            },
+            "Class3064": {
+                "NewName": "EquipmentBuildsTabController"
+            },
+            "Class2830": {
+                "NewName": "EquipmentBuildWrapper"
+            },
+        }
+    },
+    "EFT.InventoryLogic.ItemTemplate": {
+        "NestedTypes": {
+            "GClass1868": {
+                "NewName": "TemplateSerializer"
+            }
+        }
+    },
+    "EFT.InventoryLogic.LockableComponent": {
+        "NestedTypes": {
+            "GClass1541": {
+                "NewName": "BadKeyError"
+            }
+        }
+    },
+    "EFT.InventoryLogic.Magazine": {
+        "NestedTypes": {
+            "GClass1588": {
+                "NewName": "LoadInsertedMagazineError"
+            },
+            "GClass1589": {
+                "NewName": "ItemFiltersWontAllowError"
+            },
+            "GClass1590": {
+                "NewName": "FullMagazineError"
+            }
+        }
+    },
+    "EFT.UI.Screens.ScreenManager`1": {
+        "NestedTypes": {
+            "GClass3860`2": {
+                "NewName": "ScreenController"
+            }
+        }
+    },
+    "UI.Hideout.BaseHideoutAreaTransferItemsScreen`2": {
+        "NestedTypes": {
+            "GClass3901": {
+                "NewName": "BaseHideoutAreaTransferItemsScreenController"
+            }
+        }
+    },
+    "UI.Hideout.HideoutAreaTransferItemsScreen": {
+        "NestedTypes": {
+            "GClass3902": {
+                "NewName": "HideoutAreaTransferItemsScreenController"
+            }
+        }
+    },
+    "EFT.Hideout.HideoutScreenRear": {
+        "NestedTypes": {
+            "GClass3921": {
+                "NewName": "HideoutScreenController"
+            }
+        }
+    },
+    "EFT.Animations.ProceduralWeaponAnimation": {
+        "NestedTypes": {
+            "GClass2791": {
+                "NewName": "TiltCalulator"
+            }
+        }
+    },
+    "EFT.HideoutPlayer": {
+        "NestedTypes": {
+            "GClass2352": {
+                "NewName": "HideoutNightVisionTemplate"
+            }
+        }
+    },
+    "EFT.ClientPlayer": {
+        "NestedTypes": {
+            "GClass2351": {
+                "NewName": "DataSender"
+            }
+        }
+    },
+    "Diz.Jobs.JobScheduler": {
+        "NestedTypes": {
+            "GClass1619": {
+                "NewName": "Stats"
+            }
+        }
+    },
+    "EFT.Interactive.WindowBreakingConfig": {
+        "NestedTypes": {
+            "GClass3720": {
+                "NewName": "MeshPiece"
+            }
+        }
+    },
+    "WinterScript": {
+        "NestedTypes": {
+            "GClass993": {
+                "NewName": "AudioLerper"
+            },
+            "GClass994": {
+                "NewName": "TerrainDetailsRepaint",
+                "NestedTypes": {
+                    "Class689": {
+                        "NewName": "DetailColorLerper"
+                    }
+                }
+            }
+        }
+    },
+    "WaterForSSR": {
+        "NestedTypes": {
+            "GClass983": {
+                "NewName": "WaterObject"
+            }
+        }
+    },
+    "WaterForSSRv2": {
+        "NestedTypes": {
+            "GClass984": {
+                "NewName": "WaterObject"
+            }
+        }
+    },
+    "CustomHandle": {
+        "NestedTypes": {
+            "GClass880`2": {
+                "NewName": "ActualHandle"
+            }
+        }
+    },
+    "ChartAndGraph.GraphChartBase": {
+        "NestedTypes": {
+            "GClass1667": {
+                "NewName": "GraphEventArgs"
+            }
+        }
+    },
+    "ChartAndGraph.GraphData": {
+        "NestedTypes": {
+            "GClass1668": {
+                "NewName": "VectorComparer"
+            }
+        }
+    },
+    "MirzaBeig.Scripting.Effects.ParticleFlocking": {
+        "NestedTypes": {
+            "GStruct118": {
+                "NewName": "Voxel"
+            }
+        }
+    },
+    "RoadSplineGenerator": {
+        "NestedTypes": {
+            "GStruct61": {
+                "NewName": "Point"
+            }
+        }
+    },
+    "EFT.Weather.ToDController": {
+        "NestedTypes": {
+            "GStruct306": {
+                "NewName": "SphericalHarmonicsContainer"
+            },
+            "Struct797": {
+                "NewName": "ComputeSphericalHarmonicsContainerJob"
+            }
+        }
+    },
+    "EFT.Ballistics.BallisticsCalculator": {
+        "NestedTypes": {
+            "Struct976": {
+                "NewName": "Task"
+            }
+        }
+    },
+    "EFT.UI.BaseDropDownBox": {
+        "NestedTypes": {
+            "Struct1160": {
+                "NewName": "DropDownItem"
+            }
+        }
+    },
+    "BotUnderbarrelLauncherController": {
+        "NestedTypes": {
+            "Struct11": {
+                "NewName": "EnemyHysteresisEvaluation"
+            }
+        }
+    },
+    "BouncingObject": {
+        "NestedTypes": {
+            "Struct74": {
+                "NewName": "Jump"
+            }
+        }
+    },
+    "EFT.UI.CameraImage": {
+        "NestedTypes": {
+            "Struct1174": {
+                "NewName": "LevelRenderSettings"
+            }
+        }
+    },
+    "ChartAndGraph.CanvasLines": {
+        "NestedTypes": {
+            "Struct271": {
+                "NewName": "Line"
+            }
+        }
+    },
+    "FrustumScanner": {
+        "NestedTypes": {
+            "Struct144": {
+                "NewName": "RendererInfo"
+            }
+        }
+    },
+    "EFT.Interactive.GasLamp": {
+        "NestedTypes": {
+            "Struct973": {
+                "NewName": "LightDescriptor"
+            },
+            "Struct974": {
+                "NewName": "MultiFlareDescriptor"
+            }
+        }
+    },
+    "WindowsManagerUtilities.GeometryBuffers": {
+        "NestedTypes": {
+            "Struct178": {
+                "NewName": "UInt2"
+            }
+        }
+    },
+    "WindowsManagerUtilities.GeometryComputeBuffers": {
+        "NestedTypes": {
+            "Struct179": {
+                "NewName": "IntPair"
+            }
+        }
+    },
+    "MBOIT_Scattering": {
+        "NestedTypes": {
+            "Struct0": {
+                "NewName": "MboitScatterParameters"
+            }
+        }
+    },
+    "SnowFlakes": {
+        "NestedTypes": {
+            "Struct161": {
+                "NewName": "LightProperties"
+            }
+        }
+    },
+    "EFT.UI.TypeWriterComponent": {
+        "NestedTypes": {
+            "Struct1157": {
+                "NewName": "RichTextChar"
+            }
+        }
+    },
+    "EFT.TrafficCollectScenario": {
+        "NestedTypes": {
+            "Struct303": {
+                "NewName": "Data"
+            }
+        }
+    },
+    "Diz.Resources.EasyAssets": {
+        "NestedTypes": {
+            "Struct265": {
+                "NewName": "IntermediateBundleDetails"
+            }
+        }
+    }
 }

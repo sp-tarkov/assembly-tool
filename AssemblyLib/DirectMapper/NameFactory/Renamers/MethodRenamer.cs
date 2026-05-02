@@ -1,6 +1,7 @@
 using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Extensions;
+using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
@@ -8,7 +9,11 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.NameFactory.Renamers;
 
 [Injectable]
-public class MethodRenamer(ILogger<MethodRenamer> logger, DataProvider dataProvider) : IRenamer
+public class MethodRenamer(
+    ILogger<MethodRenamer> logger,
+    DataProvider dataProvider,
+    MemberReferenceCache memberReferenceCache
+) : IRenamer
 {
     public int Priority => 0;
     public bool Enabled => true;
@@ -78,7 +83,19 @@ public class MethodRenamer(ILogger<MethodRenamer> logger, DataProvider dataProvi
                 continue;
             }
 
-            method.Name = new Utf8String($"{interfaceToRenameFor.Name}.{realMethodName}");
+            var newName = new Utf8String($"{interfaceToRenameFor.Name}.{realMethodName}");
+            method.Name = newName;
+            UpdateMethodMemberReferences(method, newName);
+        }
+    }
+
+    private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)
+    {
+        var cachedReferences = memberReferenceCache.GetMethodReferences(target);
+
+        foreach (var reference in cachedReferences)
+        {
+            reference.Name = newName;
         }
     }
 }

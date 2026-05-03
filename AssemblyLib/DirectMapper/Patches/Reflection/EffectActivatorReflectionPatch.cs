@@ -1,5 +1,4 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Helpers;
 using AssemblyLib.Patching.MemberLookup;
 using EFT.HealthSystem;
 using SPTarkov.DI.Annotations;

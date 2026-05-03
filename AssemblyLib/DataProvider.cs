@@ -2,7 +2,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AsmResolver.DotNet;
-using AssemblyLib.Exceptions;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;

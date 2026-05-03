@@ -1,6 +1,5 @@
 using AsmResolver;
 using AsmResolver.DotNet;
-using AssemblyLib.Extensions;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;

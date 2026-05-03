@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using AsmResolver.DotNet;
-using AssemblyLib.Extensions;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 

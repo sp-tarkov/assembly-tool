@@ -1,8 +1,6 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Helpers;
 using AssemblyLib.Patching.MemberLookup;
 using EFT.Console.Commands;
-using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;

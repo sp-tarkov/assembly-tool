@@ -1,8 +1,5 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Exceptions;
-using AssemblyLib.Helpers;
 using AssemblyLib.Patching.MemberLookup;
-using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Performance;

@@ -1,11 +1,7 @@
-using System.Reflection;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
-using AssemblyLib.Exceptions;
-using AssemblyLib.Helpers;
 using AssemblyLib.Patching.MemberLookup;
 using EFT.InventoryLogic;
-using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;

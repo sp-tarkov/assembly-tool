@@ -5,7 +5,6 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables;
-using AssemblyLib.Extensions;
 using AssemblyLib.Models;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;

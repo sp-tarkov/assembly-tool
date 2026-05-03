@@ -1,5 +1,3 @@
-using AssemblyLib.Exceptions;
-using AssemblyLib.Helpers;
 using AssemblyLib.Patching;
 using AssemblyLib.Patching.MemberLookup;
 using SPTarkov.DI.Annotations;

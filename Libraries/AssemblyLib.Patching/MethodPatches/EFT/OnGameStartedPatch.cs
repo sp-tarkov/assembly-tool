@@ -1,6 +1,7 @@
+using AssemblyLib.Patching.Tool;
 using EFT;
 
-namespace AssemblyLib.Patching.Patches;
+namespace AssemblyLib.Patching.MethodPatches.EFT;
 
 public class OnGameStartedPatch : GameWorld
 {

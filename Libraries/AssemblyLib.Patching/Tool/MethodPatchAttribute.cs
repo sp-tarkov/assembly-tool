@@ -1,6 +1,6 @@
 using System;
 
-namespace AssemblyLib.Patching;
+namespace AssemblyLib.Patching.Tool;
 
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
 public class MethodPatchAttribute(Type targetType, string methodName, MethodPatchType patchType) : Attribute

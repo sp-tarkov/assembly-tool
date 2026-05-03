@@ -1,4 +1,5 @@
 using System.Reflection;
+using AssemblyLib.Patching.Tool;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Patching;

@@ -4,6 +4,7 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
 using AsmResolver.DotNet.Signatures;
 using AsmResolver.PE.DotNet.Cil;
+using AssemblyLib.Patching.Tool;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Patching;

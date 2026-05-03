@@ -24,7 +24,6 @@ public class EnablePlayerScavPatch(ModuleMemberLookup lookup, PatchHelper patchH
             );
         }
 
-        moveNextMethod.DumpMethodInstructions();
         patchHelper.NopRange(moveNextMethod.CilMethodBody.Instructions, 144, 148);
     }
 }

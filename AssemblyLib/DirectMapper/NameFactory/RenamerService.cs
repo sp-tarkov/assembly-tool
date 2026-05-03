@@ -1,7 +1,6 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.NameFactory.Renamers;
 using AssemblyLib.Models;
-using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.NameFactory;

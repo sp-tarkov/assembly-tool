@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using AsmResolver.DotNet;
-using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Helpers;

@@ -5,7 +5,6 @@ using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using AssemblyLib.Patching;
-using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper;

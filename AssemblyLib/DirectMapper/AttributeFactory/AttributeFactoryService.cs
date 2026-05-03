@@ -1,6 +1,5 @@
 using AsmResolver.DotNet;
 using AssemblyLib.DirectMapper.AttributeFactory.Builders;
-using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.AttributeFactory;

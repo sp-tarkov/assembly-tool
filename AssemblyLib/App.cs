@@ -4,7 +4,6 @@ using AssemblyLib.DirectMapper;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Logging;
 using SPTarkov.DI;

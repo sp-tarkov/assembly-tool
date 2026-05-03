@@ -1,6 +1,5 @@
 ﻿using AsmResolver.DotNet;
 using AsmResolver.PE.DotNet.Metadata.Tables;
-using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Helpers;

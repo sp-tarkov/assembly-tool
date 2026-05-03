@@ -164,7 +164,10 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
 
         targetBody.Instructions.CalculateOffsets();
 
-        logger.LogDebug("Replaced body of {Target} with {Source}", target.FullName, source.FullName);
+        if (logger.IsEnabled(LogLevel.Debug))
+        {
+            logger.LogDebug("Replaced body of {Target} with {Source}", target.FullName, source.FullName);
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -273,16 +276,23 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
                 if (field is not null)
                 {
                     var imported = importer.ImportField(field);
-                    CilOpCode fieldOp = isGetter
-                        ? (field.IsStatic ? CilOpCodes.Ldsfld : CilOpCodes.Ldfld)
-                        : (field.IsStatic ? CilOpCodes.Stsfld : CilOpCodes.Stfld);
+                    var fieldOp = isGetter
+                        ? field.IsStatic
+                            ? CilOpCodes.Ldsfld
+                            : CilOpCodes.Ldfld
+                        : field.IsStatic
+                            ? CilOpCodes.Stsfld
+                            : CilOpCodes.Stfld;
 
-                    logger.LogDebug(
-                        "Rewrote accessor {A} → {Op} {F}",
-                        accessorName.Value,
-                        fieldOp.Mnemonic,
-                        field.FullName
-                    );
+                    if (logger.IsEnabled(LogLevel.Debug))
+                    {
+                        logger.LogDebug(
+                            "Rewrote accessor {A} → {Op} {F}",
+                            accessorName.Value,
+                            fieldOp.Mnemonic,
+                            field.FullName
+                        );
+                    }
 
                     return (fieldOp, imported);
                 }
@@ -299,12 +309,16 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
 
             if (field is not null)
             {
-                logger.LogDebug(
-                    "Rewrote method-ref field operand {M} → {Op} {F}",
-                    memberName.Value,
-                    opCode.Mnemonic,
-                    field.FullName
-                );
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    logger.LogDebug(
+                        "Rewrote method-ref field operand {M} → {Op} {F}",
+                        memberName.Value,
+                        opCode.Mnemonic,
+                        field.FullName
+                    );
+                }
+
                 return (opCode, importer.ImportField(field));
             }
         }

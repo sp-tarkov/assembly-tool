@@ -9,7 +9,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching;
 
 [Injectable]
-public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvider)
+public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvider, MethodBodyNuker nuker)
 {
     /// <summary>
     ///     Applies a prefix or postfix patch from <paramref name="source"/> into <paramref name="target"/>.
@@ -41,6 +41,9 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
                 break;
             case MethodPatchType.Postfix:
                 ApplyPostfix(targetBody, cloned, target.Signature!.ReturnType);
+                break;
+            case MethodPatchType.Replace:
+                ApplyReplace(target, source);
                 break;
             default:
                 throw new NotImplementedException($"Method patch type '{methodPatchType}' is not implemented.");
@@ -127,6 +130,41 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         }
 
         targetBody.Instructions.Add(CilOpCodes.Ret);
+    }
+
+    private void ApplyReplace(MethodDefinition target, MethodDefinition source)
+    {
+        if (target.CilMethodBody is null)
+        {
+            throw new InvalidOperationException($"Target method '{target.FullName}' has no CIL body.");
+        }
+
+        if (source.CilMethodBody is null)
+        {
+            throw new InvalidOperationException($"Source method '{source.FullName}' has no CIL body.");
+        }
+
+        var targetBody = target.CilMethodBody;
+        var module = dataProvider.LoadedModule!;
+
+        // Wipe the target body clean
+        targetBody.Instructions.Clear();
+        targetBody.ExceptionHandlers.Clear();
+        targetBody.LocalVariables.Clear();
+
+        // Clone the source body directly into the (now empty) target body
+        var (cloned, _) = CloneBody(source.CilMethodBody, targetBody, module);
+        foreach (var instr in cloned)
+        {
+            targetBody.Instructions.Add(instr);
+        }
+
+        targetBody.MaxStack = source.CilMethodBody.MaxStack;
+        targetBody.InitializeLocals = source.CilMethodBody.InitializeLocals;
+
+        targetBody.Instructions.CalculateOffsets();
+
+        logger.LogDebug("Replaced body of {Target} with {Source}", target.FullName, source.FullName);
     }
 
     // -------------------------------------------------------------------------

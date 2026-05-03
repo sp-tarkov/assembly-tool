@@ -24,7 +24,7 @@ public sealed class Statistics(ILogger<Statistics> logger, DataProvider dataProv
 
     public void DisplayAssemblyStatistics(string assemblyPath)
     {
-        var module = dataProvider.LoadModule(assemblyPath, false);
+        var module = dataProvider.LoadModule(assemblyPath);
         var types = module.GetAllTypes().Where(t => !t.IsCompilerGenerated());
 
         var totalTypes = types.Count();

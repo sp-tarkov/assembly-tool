@@ -11,4 +11,7 @@
   </Configurations>
   <Project Path="AssemblyLib/AssemblyLib.csproj" />
   <Project Path="AssemblyTool/AssemblyTool.csproj" />
+  <Project Path="EftCodeStub/EftCodeStub.csproj">
+    <BuildType Solution="WAIT_FOR_DEBUGGER|*" Project="Debug" />
+  </Project>
 </Solution>

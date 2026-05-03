@@ -1,7 +1,6 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Helpers;
 using EFT.HealthSystem;
-using Serilog;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;

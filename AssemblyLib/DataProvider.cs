@@ -29,7 +29,6 @@ public class DataProvider
     public RuntimeContext Context { get; private set; } = null!;
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? DummyDllModule { get; private set; }
-    public ModuleDefinition? Mscorlib { get; private set; }
 
     public bool IsDummyDllLoaded => DummyDllModule != null;
 
@@ -57,19 +56,14 @@ public class DataProvider
         "vmethod",
     ];
 
-    private ILogger<DataProvider> _logger;
+    private readonly ILogger<DataProvider> _logger;
 
-    public ModuleDefinition LoadModule(string path, bool loadMscorlib = true)
+    public ModuleDefinition LoadModule(string path)
     {
         var directory = Path.GetDirectoryName(path)!;
 
         var asm = AssemblyDefinition.FromFile(path);
         var module = asm.Modules.FirstOrDefault();
-
-        if (loadMscorlib)
-        {
-            Mscorlib = ModuleDefinition.FromFile(Path.Combine(directory, "mscorlib.dll"));
-        }
 
         LoadedModule = module ?? throw new NullReferenceException("Module is null...");
         Context = asm.RuntimeContext ?? throw new NullReferenceException("Could not get runtime context!");
@@ -89,6 +83,13 @@ public class DataProvider
             {
                 _logger.LogDebug("Loaded dependent module: {dll}", Path.GetFileNameWithoutExtension(dll));
             }
+        }
+
+        var codeStub = Path.Combine(AppContext.BaseDirectory, "EftCodeStub.dll");
+        if (File.Exists(codeStub))
+        {
+            Context.LoadAssembly(codeStub);
+            _logger.LogInformation("Loaded code stub module: EftCodeStub.dll");
         }
 
         return module;

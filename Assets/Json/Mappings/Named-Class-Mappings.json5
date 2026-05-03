@@ -1853,10 +1853,10 @@
             "Interface22": {
                 "NewName": "ICollectionCache"
             },
-            "GDelegate86": {
+            "GDelegate86`2": {
                 "NewName": "LightScrollerViewFactory"
             },
-            "GDelegate87": {
+            "GDelegate87`2": {
                 "NewName": "LightScrollerDataTypeGetter"
             }
         }

@@ -7,7 +7,8 @@ namespace AssemblyLib.Patching.ModulePatches.Fixes;
 ///     Disables anti-rmt shit
 /// </summary>
 [Injectable]
-public class DisableDiscardLimitsPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class DisableDiscardLimitsPatch(MemberLookup.ModuleMemberLookup lookup, MethodBodyNuker methodBodyNuker)
+    : IModulePatch
 {
     public bool Enabled => true;
 

@@ -4,7 +4,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Core;
 
 [Injectable]
-public class SslCertificatePatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class SslCertificatePatch(MemberLookup.ModuleMemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

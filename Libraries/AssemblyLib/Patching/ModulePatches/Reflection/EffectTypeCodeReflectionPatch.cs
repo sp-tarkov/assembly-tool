@@ -5,7 +5,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Reflection;
 
 [Injectable]
-public class EffectTypeCodeReflectionPatch(MemberLookup.MemberLookup lookup) : IModulePatch
+public class EffectTypeCodeReflectionPatch(MemberLookup.ModuleMemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

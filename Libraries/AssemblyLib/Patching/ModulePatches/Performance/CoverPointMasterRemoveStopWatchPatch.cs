@@ -8,7 +8,7 @@ namespace AssemblyLib.Patching.ModulePatches.Performance;
 /// </summary>
 /// <param name="lookup"></param>
 [Injectable]
-public class CoverPointMasterRemoveStopWatchPatch(MemberLookup.MemberLookup lookup) : IModulePatch
+public class CoverPointMasterRemoveStopWatchPatch(MemberLookup.ModuleMemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

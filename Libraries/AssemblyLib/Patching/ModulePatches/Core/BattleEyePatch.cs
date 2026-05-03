@@ -5,7 +5,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Core;
 
 [Injectable]
-public class BattleEyePatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class BattleEyePatch(MemberLookup.ModuleMemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

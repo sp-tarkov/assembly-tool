@@ -7,7 +7,7 @@ namespace AssemblyLib.Patching;
 [Injectable(InjectionType.Singleton)]
 public class PatchService(
     ILogger<PatchService> logger,
-    MemberLookup.MemberLookup lookup,
+    MemberLookup.ModuleMemberLookup lookup,
     MethodPatcher methodPatcher,
     IEnumerable<IModulePatch> modulePatches
 )

@@ -10,8 +10,10 @@ namespace AssemblyLib.Patching.ModulePatches.Fixes;
 /// line will fix this.
 /// </summary>
 [Injectable]
-public class FixUnityWarningSpamFromAirdropsPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker)
-    : IModulePatch
+public class FixUnityWarningSpamFromAirdropsPatch(
+    MemberLookup.ModuleMemberLookup lookup,
+    MethodBodyNuker methodBodyNuker
+) : IModulePatch
 {
     public bool Enabled => true;
 

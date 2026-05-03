@@ -7,7 +7,8 @@ namespace AssemblyLib.Patching.ModulePatches.Fixes;
 /// This patch removes the check if the player is a scav, allowing for scav's in offline raids
 /// </summary>
 [Injectable]
-public class EnablePlayerScavPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class EnablePlayerScavPatch(MemberLookup.ModuleMemberLookup lookup, MethodBodyNuker methodBodyNuker)
+    : IModulePatch
 {
     public bool Enabled => true;
 

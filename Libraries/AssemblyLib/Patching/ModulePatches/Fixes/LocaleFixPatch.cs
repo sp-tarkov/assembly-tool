@@ -8,7 +8,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
-public class LocaleFixPatch(MemberLookup.MemberLookup lookup, DataProvider dataProvider) : IModulePatch
+public class LocaleFixPatch(MemberLookup.ModuleMemberLookup lookup, DataProvider dataProvider) : IModulePatch
 {
     public bool Enabled => true;
 

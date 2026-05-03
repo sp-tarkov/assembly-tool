@@ -5,7 +5,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
-public class ShowIncompatibleNotificationPatch(MemberLookup.MemberLookup lookup, DataProvider dataProvider)
+public class ShowIncompatibleNotificationPatch(MemberLookup.ModuleMemberLookup lookup, DataProvider dataProvider)
     : IModulePatch
 {
     public bool Enabled => true;

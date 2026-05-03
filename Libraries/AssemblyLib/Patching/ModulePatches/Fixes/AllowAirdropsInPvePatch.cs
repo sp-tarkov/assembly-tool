@@ -8,7 +8,7 @@ namespace AssemblyLib.Patching.ModulePatches.Fixes;
 ///     Change min required players for airdrops from 6 to 1
 /// </summary>
 [Injectable]
-public class AllowAirdropsInPvePatch(MemberLookup.MemberLookup lookup) : IModulePatch
+public class AllowAirdropsInPvePatch(MemberLookup.ModuleMemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

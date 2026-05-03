@@ -4,7 +4,8 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
-public class DisableDevMaskCheckPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class DisableDevMaskCheckPatch(MemberLookup.ModuleMemberLookup lookup, MethodBodyNuker methodBodyNuker)
+    : IModulePatch
 {
     public bool Enabled => true;
 

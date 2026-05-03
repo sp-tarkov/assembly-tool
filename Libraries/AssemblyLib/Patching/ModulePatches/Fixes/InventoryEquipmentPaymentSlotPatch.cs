@@ -6,7 +6,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
-public class InventoryEquipmentPaymentSlotPatch(MemberLookup.MemberLookup lookup) : IModulePatch
+public class InventoryEquipmentPaymentSlotPatch(MemberLookup.ModuleMemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

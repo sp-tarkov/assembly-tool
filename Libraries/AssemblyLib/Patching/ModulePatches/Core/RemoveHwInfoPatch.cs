@@ -5,7 +5,7 @@ namespace AssemblyLib.Patching.ModulePatches.Core;
 
 [Injectable]
 public class RemoveHwInfoPatch(
-    MemberLookup.MemberLookup lookup,
+    MemberLookup.ModuleMemberLookup lookup,
     MethodBodyNuker methodBodyNuker,
     DataProvider dataProvider
 ) : IModulePatch

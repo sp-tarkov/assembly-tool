@@ -1,4 +1,4 @@
-namespace AssemblyLib.DirectMapper.NameFactory;
+namespace AssemblyLib.NameFactory;
 
 /// <summary>
 ///     Sorted by level of importance

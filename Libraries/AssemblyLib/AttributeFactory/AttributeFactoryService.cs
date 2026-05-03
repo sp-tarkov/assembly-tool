@@ -1,8 +1,8 @@
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.AttributeFactory.Builders;
+using AssemblyLib.AttributeFactory.Builders;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.AttributeFactory;
+namespace AssemblyLib.AttributeFactory;
 
 [Injectable(InjectionType.Singleton)]
 public class AttributeFactoryService(

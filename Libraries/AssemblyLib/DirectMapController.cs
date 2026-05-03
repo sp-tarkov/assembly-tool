@@ -1,13 +1,12 @@
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.AttributeFactory;
-using AssemblyLib.DirectMapper.NameFactory;
-using AssemblyLib.DirectMapper.Patches;
+using AssemblyLib.AttributeFactory;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
+using AssemblyLib.NameFactory;
 using AssemblyLib.Patching;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper;
+namespace AssemblyLib;
 
 [Injectable(InjectionType.Singleton)]
 public class DirectMapController(

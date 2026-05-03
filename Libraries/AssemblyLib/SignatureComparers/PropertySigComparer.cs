@@ -1,7 +1,7 @@
 using AsmResolver.DotNet;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.SignatureComparers;
+namespace AssemblyLib.SignatureComparers;
 
 [Injectable]
 public class PropertySigComparer

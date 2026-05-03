@@ -2,7 +2,7 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.AttributeFactory.Builders;
+namespace AssemblyLib.AttributeFactory.Builders;
 
 [Injectable]
 public class JsonConverterAttributeBuilder(ILogger<JsonConverterAttributeBuilder> logger, DataProvider dataProvider)

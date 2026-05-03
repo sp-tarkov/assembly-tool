@@ -1,11 +1,11 @@
 using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
-using AssemblyLib.DirectMapper.SignatureComparers;
 using AssemblyLib.Helpers;
+using AssemblyLib.SignatureComparers;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.NameFactory;
+namespace AssemblyLib.NameFactory;
 
 [Injectable]
 public class SigBasedMemberRenamer(

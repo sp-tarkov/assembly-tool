@@ -2,7 +2,7 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.SignatureComparers;
+namespace AssemblyLib.SignatureComparers;
 
 [Injectable]
 public class MethodSigComparer

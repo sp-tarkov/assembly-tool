@@ -1,4 +1,4 @@
-namespace AssemblyLib.DirectMapper.AttributeFactory;
+namespace AssemblyLib.AttributeFactory;
 
 public interface IAttributeBuilder
 {

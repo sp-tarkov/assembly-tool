@@ -4,7 +4,7 @@ using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.Renamers;
 
 [Injectable]
 public class MethodRenamer(

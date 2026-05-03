@@ -1,9 +1,9 @@
 using AsmResolver.DotNet;
-using AssemblyLib.DirectMapper.NameFactory.Renamers;
 using AssemblyLib.Models;
+using AssemblyLib.NameFactory.Renamers;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.NameFactory;
+namespace AssemblyLib.NameFactory;
 
 [Injectable]
 public class RenamerService(ILogger<RenamerService> logger, DataProvider dataProvider, IEnumerable<IRenamer> renamers)

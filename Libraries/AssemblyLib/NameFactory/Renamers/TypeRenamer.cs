@@ -3,7 +3,7 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.Renamers;
 
 [Injectable]
 public class TypeRenamer(ILogger<TypeRenamer> logger, DataProvider dataProvider) : IRenamer

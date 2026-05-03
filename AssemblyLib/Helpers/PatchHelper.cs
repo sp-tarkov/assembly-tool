@@ -15,7 +15,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeVoidBody(CilMethodBody methodBody)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(CilOpCodes.Ret);
     }
 
@@ -25,7 +25,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// <param name="methodBody"></param>
     public void NukeTaskBody(CilMethodBody methodBody)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(new CilInstruction(CilOpCodes.Call, GetTaskCompletedTaskRef()));
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -36,7 +36,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeBoolBody(CilMethodBody methodBody, bool returnValue = false)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(returnValue ? CilOpCodes.Ldc_I4_1 : CilOpCodes.Ldc_I4_0);
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -47,7 +47,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeInt32Body(CilMethodBody methodBody, int returnValue = 0)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldc_I4, returnValue));
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -58,7 +58,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeInt64Body(CilMethodBody methodBody, long returnValue = 0L)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldc_I8, returnValue));
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -69,7 +69,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeFloatBody(CilMethodBody methodBody, float returnValue = 0f)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldc_R4, returnValue));
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -80,7 +80,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeDoubleBody(CilMethodBody methodBody, double returnValue = 0.0)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(new CilInstruction(CilOpCodes.Ldc_R8, returnValue));
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -91,7 +91,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeStringBody(CilMethodBody methodBody, string? returnValue = null)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         if (returnValue is null)
         {
             methodBody.Instructions.Add(CilOpCodes.Ldnull);
@@ -109,7 +109,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
     /// </summary>
     public void NukeRefTypeBody(CilMethodBody methodBody)
     {
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
         methodBody.Instructions.Add(CilOpCodes.Ldnull);
         methodBody.Instructions.Add(CilOpCodes.Ret);
         methodBody.MaxStack = 1;
@@ -124,7 +124,7 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
         var module = dataProvider.LoadedModule!;
         var imported = module.DefaultImporter.ImportType(valueType);
 
-        methodBody.Instructions.Clear();
+        ResetBody(methodBody);
 
         // Allocate a local for the struct, zero it, and return it
         var local = new CilLocalVariable(imported.ToTypeSignature(dataProvider.Context));
@@ -280,5 +280,12 @@ public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
         );
 
         return dataProvider.LoadedModule.DefaultImporter.ImportMethod(completedTaskGetter);
+    }
+
+    private static void ResetBody(CilMethodBody body)
+    {
+        body.Instructions.Clear();
+        body.ExceptionHandlers.Clear();
+        body.LocalVariables.Clear();
     }
 }

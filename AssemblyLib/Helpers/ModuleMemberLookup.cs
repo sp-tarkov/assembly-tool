@@ -25,7 +25,10 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         foreach (var nestedName in parts.Skip(1))
         {
             if (current is null)
+            {
                 return null;
+            }
+
             current = current.NestedTypes.FirstOrDefault(t => t.Name == nestedName);
         }
 
@@ -41,12 +44,16 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         var resolved = LookupByToken<TypeDefinition>(type.MetadataToken);
 
         if (resolved?.Name == type.Name && resolved.Namespace == type.Namespace)
+        {
             return resolved;
+        }
 
         // Nested types: reflection reports the enclosing namespace, but AsmResolver
         // stores them with Namespace == null under the declaring type's NestedTypes.
         if (type.IsNested)
+        {
             return ResolveNestedType(type);
+        }
 
         return dataProvider
             .LoadedModule!.GetAllTypes()
@@ -72,7 +79,9 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         var resolved = LookupByToken<FieldDefinition>(field.MetadataToken);
 
         if (resolved?.Name == field.Name)
+        {
             return resolved;
+        }
 
         return Type(field.DeclaringType!)?.Fields.FirstOrDefault(f => f.Name == field.Name);
     }
@@ -118,13 +127,19 @@ public class ModuleMemberLookup(DataProvider dataProvider)
     public MethodDefinition? Method(MethodBase method)
     {
         var resolved = LookupByToken<MethodDefinition>(method.MetadataToken);
-
         if (resolved?.Name == method.Name)
+        {
             return resolved;
+        }
 
-        // Name-based fallback — match on name + parameter count to handle overloads
+        var expectedParams = method.GetParameters().Select(p => p.ParameterType.FullName).ToList();
+
         return Type(method.DeclaringType!)
-            ?.Methods.FirstOrDefault(m => m.Name == method.Name && m.Parameters.Count == method.GetParameters().Length);
+            ?.Methods.FirstOrDefault(m =>
+                m.Name == method.Name
+                && m.Parameters.Count == expectedParams.Count
+                && m.Parameters.Select(p => p.ParameterType.FullName).SequenceEqual(expectedParams)
+            );
     }
 
     /// <summary>
@@ -194,7 +209,9 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         );
 
         if (viaAccessor is not null)
+        {
             return viaAccessor;
+        }
 
         // Fallback: find by name on the declaring type
         return Type(property.DeclaringType!)?.Properties.FirstOrDefault(p => p.Name == property.Name);
@@ -241,7 +258,9 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         );
 
         if (viaAccessor is not null)
+        {
             return viaAccessor;
+        }
 
         // Fallback: find by name on the declaring type
         return Type(evt.DeclaringType!)?.Events.FirstOrDefault(e => e.Name == evt.Name);

@@ -1,12 +1,10 @@
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 [Injectable]
-public class DisableDevMaskCheckPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class DisableDevMaskCheckPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

@@ -1,16 +1,14 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Performance;
+namespace AssemblyLib.Patching.Patches.Performance;
 
 /// <summary>
 ///     Get rid of stopwatches allocations
 /// </summary>
 /// <param name="lookup"></param>
 [Injectable]
-public class CoverPointMasterRemoveStopWatchPatch(MemberLookup lookup) : IModulePatch
+public class CoverPointMasterRemoveStopWatchPatch(MemberLookup.MemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

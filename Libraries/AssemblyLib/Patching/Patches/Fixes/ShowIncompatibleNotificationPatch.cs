@@ -1,13 +1,12 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 [Injectable]
-public class ShowIncompatibleNotificationPatch(MemberLookup lookup, DataProvider dataProvider) : IModulePatch
+public class ShowIncompatibleNotificationPatch(MemberLookup.MemberLookup lookup, DataProvider dataProvider)
+    : IModulePatch
 {
     public bool Enabled => true;
 

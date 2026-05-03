@@ -1,15 +1,13 @@
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 /// <summary>
 ///     Disables anti-rmt shit
 /// </summary>
 [Injectable]
-public class DisableDiscardLimitsPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class DisableDiscardLimitsPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

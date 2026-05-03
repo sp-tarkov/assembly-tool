@@ -1,13 +1,14 @@
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Core;
+namespace AssemblyLib.Patching.Patches.Core;
 
 [Injectable]
-public class RemoveHwInfoPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker, DataProvider dataProvider)
-    : IModulePatch
+public class RemoveHwInfoPatch(
+    MemberLookup.MemberLookup lookup,
+    MethodBodyNuker methodBodyNuker,
+    DataProvider dataProvider
+) : IModulePatch
 {
     public bool Enabled => true;
 

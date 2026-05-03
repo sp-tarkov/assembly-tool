@@ -1,13 +1,11 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Core;
+namespace AssemblyLib.Patching.Patches.Core;
 
 [Injectable]
-public class BattleEyePatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class BattleEyePatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

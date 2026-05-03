@@ -4,7 +4,12 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching;
 
 [Injectable(InjectionType.Singleton)]
-public class PatchService(ILogger<PatchService> logger, MemberLookup.MemberLookup lookup, MethodPatcher methodPatcher)
+public class PatchService(
+    ILogger<PatchService> logger,
+    MemberLookup.MemberLookup lookup,
+    MethodPatcher methodPatcher,
+    IEnumerable<IModulePatch> modulePatches
+)
 {
     public void ApplyPatches()
     {

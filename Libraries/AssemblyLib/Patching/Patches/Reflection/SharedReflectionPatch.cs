@@ -1,13 +1,11 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT.Console.Commands;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Reflection;
+namespace AssemblyLib.Patching.Patches.Reflection;
 
 [Injectable]
-public class SharedReflectionPatch(MemberLookup lookup) : IModulePatch
+public class SharedReflectionPatch(MemberLookup.MemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

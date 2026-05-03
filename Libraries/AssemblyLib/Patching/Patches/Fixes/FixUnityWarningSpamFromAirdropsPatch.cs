@@ -1,8 +1,6 @@
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 /// <summary>
 /// Fixes Unity constantly spamming the console with "Setting linear velocity of a kinematic body is not supported" warnings after an airdrop crate spawns.
@@ -12,7 +10,8 @@ namespace AssemblyLib.DirectMapper.Patches.Fixes;
 /// line will fix this.
 /// </summary>
 [Injectable]
-public class FixUnityWarningSpamFromAirdropsPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class FixUnityWarningSpamFromAirdropsPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker)
+    : IModulePatch
 {
     public bool Enabled => true;
 

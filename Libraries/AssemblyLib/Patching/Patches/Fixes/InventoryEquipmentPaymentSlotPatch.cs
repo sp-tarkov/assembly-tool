@@ -1,14 +1,12 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT.InventoryLogic;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 [Injectable]
-public class InventoryEquipmentPaymentSlotPatch(MemberLookup lookup) : IModulePatch
+public class InventoryEquipmentPaymentSlotPatch(MemberLookup.MemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

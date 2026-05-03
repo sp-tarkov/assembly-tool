@@ -1,16 +1,14 @@
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 [Injectable]
-public class LocaleFixPatch(MemberLookup lookup, DataProvider dataProvider) : IModulePatch
+public class LocaleFixPatch(MemberLookup.MemberLookup lookup, DataProvider dataProvider) : IModulePatch
 {
     public bool Enabled => true;
 

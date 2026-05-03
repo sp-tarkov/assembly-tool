@@ -1,15 +1,13 @@
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Fixes;
+namespace AssemblyLib.Patching.Patches.Fixes;
 
 /// <summary>
 /// This patch removes the check if the player is a scav, allowing for scav's in offline raids
 /// </summary>
 [Injectable]
-public class EnablePlayerScavPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
+public class EnablePlayerScavPatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch
 {
     public bool Enabled => true;
 

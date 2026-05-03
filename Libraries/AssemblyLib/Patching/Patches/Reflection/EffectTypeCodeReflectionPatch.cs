@@ -1,13 +1,11 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Patching;
-using AssemblyLib.Patching.MemberLookup;
 using EFT.HealthSystem;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.DirectMapper.Patches.Reflection;
+namespace AssemblyLib.Patching.Patches.Reflection;
 
 [Injectable]
-public class EffectTypeCodeReflectionPatch(MemberLookup lookup) : IModulePatch
+public class EffectTypeCodeReflectionPatch(MemberLookup.MemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 

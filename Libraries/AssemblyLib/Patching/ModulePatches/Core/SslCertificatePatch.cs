@@ -1,7 +1,7 @@
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Core;
+namespace AssemblyLib.Patching.ModulePatches.Core;
 
 [Injectable]
 public class SslCertificatePatch(MemberLookup.MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IModulePatch

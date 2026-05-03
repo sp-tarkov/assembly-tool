@@ -2,7 +2,7 @@ using AsmResolver.PE.DotNet.Cil;
 using EFT.Console.Commands;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Reflection;
+namespace AssemblyLib.Patching.ModulePatches.Reflection;
 
 [Injectable]
 public class SharedReflectionPatch(MemberLookup.MemberLookup lookup) : IModulePatch

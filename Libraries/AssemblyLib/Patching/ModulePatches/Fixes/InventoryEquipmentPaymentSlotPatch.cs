@@ -3,7 +3,7 @@ using AsmResolver.DotNet.Serialized;
 using EFT.InventoryLogic;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Fixes;
+namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
 public class InventoryEquipmentPaymentSlotPatch(MemberLookup.MemberLookup lookup) : IModulePatch

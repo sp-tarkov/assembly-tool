@@ -5,7 +5,7 @@ using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Fixes;
+namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
 public class LocaleFixPatch(MemberLookup.MemberLookup lookup, DataProvider dataProvider) : IModulePatch

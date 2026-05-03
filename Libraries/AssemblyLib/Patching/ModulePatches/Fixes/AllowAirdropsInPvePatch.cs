@@ -2,7 +2,7 @@ using AsmResolver.PE.DotNet.Cil;
 using JsonType;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Fixes;
+namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 /// <summary>
 ///     Change min required players for airdrops from 6 to 1

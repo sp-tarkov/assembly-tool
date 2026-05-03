@@ -1,7 +1,7 @@
 using AsmResolver.PE.DotNet.Cil;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Performance;
+namespace AssemblyLib.Patching.ModulePatches.Performance;
 
 /// <summary>
 ///     Get rid of stopwatches allocations

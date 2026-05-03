@@ -1,6 +1,6 @@
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Fixes;
+namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 /// <summary>
 /// Fixes Unity constantly spamming the console with "Setting linear velocity of a kinematic body is not supported" warnings after an airdrop crate spawns.

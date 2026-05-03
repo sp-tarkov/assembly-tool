@@ -2,7 +2,7 @@ using AsmResolver.PE.DotNet.Cil;
 using EFT.HealthSystem;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Reflection;
+namespace AssemblyLib.Patching.ModulePatches.Reflection;
 
 [Injectable]
 public class EffectActivatorReflectionPatch(MemberLookup.MemberLookup lookup) : IModulePatch

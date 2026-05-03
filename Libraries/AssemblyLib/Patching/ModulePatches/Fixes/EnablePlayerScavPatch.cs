@@ -1,7 +1,7 @@
 using EFT;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Patching.Patches.Fixes;
+namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 /// <summary>
 /// This patch removes the check if the player is a scav, allowing for scav's in offline raids

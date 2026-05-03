@@ -13,7 +13,47 @@
     },
     "GClass1000": {
         "NewName": "MBOITParticlesManager",
-        "NewNamespace": "AbsolutDecals"
+        "NewNamespace": "AbsolutDecals",
+        "NestedTypes": {
+            "Class700": {
+                "NewName": "TextureArrayHolder"
+            },
+            "Class701": {
+                "NewName": "ResizableVertexBuffer",
+                "NestedTypes": {
+                    "Struct174": {
+                        "NewName": "ArrayChunk"
+                    }
+                }
+            },
+            "Struct166": {
+                "NewName": "VertexStruct"
+            },
+            "Struct167": {
+                "NewName": "DrawParams"
+            },
+            "Struct168": {
+                "NewName": "IndirectDrawArgs"
+            },
+            "Struct169": {
+                "NewName": "IndirectDispatchArgs"
+            },
+            "Struct170": {
+                "NewName": "GlobalOffsets"
+            },
+            "Struct171": {
+                "NewName": "DynamicSystem"
+            },
+            "Struct172": {
+                "NewName": "PerShaderData"
+            },
+            "Struct173": {
+                "NewName": "CopyTexturesJob"
+            },
+            "Struct175": {
+                "NewName": "MiscData"
+            }
+        }
     },
     "GClass1001": {
         "NewName": "CommandBufferManager"
@@ -2632,9 +2672,6 @@
             "GClass1788": {
                 "NewName": "TroubleShooting"
             },
-            "GClass1767": {
-                "NewName": "Revolver"
-            },
             "GClass1789": {
                 "NewName": "LightVests"
             },
@@ -3547,7 +3584,12 @@
     },
     "GClass2290": {
         "NewName": "BaseSpeaker",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class396": {
+                "NewName": "SpeakerLogger"
+            }
+        }
     },
     "GClass2293": {
         "NewName": "ServerHardwareDescription",
@@ -3807,7 +3849,20 @@
         "NewNamespace": "EFT"
     },
     "GClass2378": {
-        "NewName": "LoggerFactoryClass"
+        "NewName": "LoggerFactoryClass",
+        "NestedTypes": {
+            "Class401": {
+                "NewName": "AbstractILogger",
+                "NestedTypes": {
+                    "Class1814": {
+                        "NewName": "Scope"
+                    }
+                }
+            },
+            "Class402`1": {
+                "NewName": "LoggerT"
+            }
+        }
     },
     "GClass2379": {
         "NewName": "TweenExtensions",
@@ -4010,7 +4065,12 @@
     },
     "GClass2423": {
         "NewName": "HideoutRepresentation",
-        "NewNamespace": "EFT.Hideout"
+        "NewNamespace": "EFT.Hideout",
+        "NestedTypes": {
+            "Class404": {
+                "NewName": "HideoutLogger"
+            }
+        }
     },
     "GClass2424": {
         "NewName": "HideoutSettings",
@@ -4192,7 +4252,12 @@
     },
     "GClass2566": {
         "NewName": "NotificationManager",
-        "NewNamespace": "EFT.Communications"
+        "NewNamespace": "EFT.Communications",
+        "NestedTypes": {
+            "Class405": {
+                "NewName": "NotificationLogger"
+            }
+        }
     },
     "GClass2569": {
         "NewName": "Assortment",
@@ -7982,7 +8047,12 @@
                 "NewName": "LoadAllAssetOperation"
             },
             "Class3526": {
-                "NewName": "LoadSceneOperation"
+                "NewName": "LoadSceneOperation",
+                "NestedTypes": {
+                    "Class411": {
+                        "NewName": "Logger"
+                    }
+                }
             }
         }
     },
@@ -9120,7 +9190,12 @@
         "NewName": "ItemRotationExtensions"
     },
     "GClass708": {
-        "NewName": "AbstractLogger"
+        "NewName": "AbstractLogger",
+        "NestedTypes": {
+            "Class412": {
+                "NewName": "LogHandler"
+            }
+        }
     },
     "GClass709": {
         "NewName": "AIDecisionLogger"
@@ -11217,19 +11292,42 @@
         "NewName": "LookAround"
     },
     "GClass396": {
-        "NewName": "AICoversLogger"
+        "NewName": "AICoversLogger",
+        "NestedTypes": {
+            "Class381": {
+                "NewName": "Logger"
+            }
+        }
     },
     "GClass397": {
         "NewName": "AIDebugMain"
     },
     "GClass398": {
-        "NewName": "AILogger"
+        "NewName": "AILogger",
+        "NestedTypes": {
+            "Class382": {
+                "NewName": "AIDataLogger"
+            },
+            "Class383": {
+                "NewName": "AIVisionLogger"
+            }
+        }
     },
     "GClass399": {
-        "NewName": "AIMapSettingsLogger"
+        "NewName": "AIMapSettingsLogger",
+        "NestedTypes": {
+            "Class384": {
+                "NewName": "Logger"
+            }
+        }
     },
     "GClass400": {
-        "NewName": "AIMoveLogger"
+        "NewName": "AIMoveLogger",
+        "NestedTypes": {
+            "Class385": {
+                "NewName": "Logger"
+            }
+        }
     },
     "GClass401": {
         "NewName": "LastCoversSearchData"
@@ -12161,7 +12259,12 @@
     },
     "GClass2287": {
         "NewName": "LoadScenesFromPresetOperation",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class395": {
+                "NewName": "Logger"
+            }
+        }
     },
     "GClass2288": {
         "NewName": "ModernLoadScenesFromPreset",
@@ -15011,7 +15114,12 @@
         "NewName": "LogLevelExtensions",
     },
     "GClass814": {
-        "NewName": "PerformanceTestLogger"
+        "NewName": "PerformanceTestLogger",
+        "NestedTypes": {
+            "Class389": {
+                "NewName": "Logger"
+            }
+        }
     },
     "GClass1801": {
         "NewName": "Validator"

@@ -224,7 +224,12 @@
     },
     "Class2098": {
         "NewName": "ImpostorsMainCameraContext",
-        "NewNamespace": "EFT.Impostors"
+        "NewNamespace": "EFT.Impostors",
+        "NestedTypes": {
+            "Interface17": {
+                "NewName": "IDrawInstance"
+            }
+        }
     },
     "Class2099": {
         "NewName": "ImpostorsOpticCameraContext",
@@ -304,7 +309,12 @@
         "NewName": "WaitPlayerRequest"
     },
     "Class304": {
-        "NewName": "Backend"
+        "NewName": "Backend",
+        "NestedTypes": {
+            "Class386": {
+                "NewName": "BackendLogger"
+            }
+        }
     },
     "Class305`1": {
         "NewName": "ClientBackend",
@@ -316,11 +326,21 @@
     },
     "Class307": {
         "NewName": "ClientBackendSession",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class397": {
+                "NewName": "BackendQueueLogger"
+            }
+        }
     },
     "Class308": {
         "NewName": "EftClientBackendSession",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class398": {
+                "NewName": "PingLogger"
+            }
+        }
     },
     "Class310": {
         "NestedTypes": {

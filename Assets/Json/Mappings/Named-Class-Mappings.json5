@@ -27,16 +27,6 @@
             }
         }
     },
-    "EFT.ClientPlayer": {
-        "NestedTypes": {
-            "GInterface230": {
-                "NewName": "IClientPlayerDataSender"
-            },
-            "Class2443": {
-                "NewName": "ClientPlayerInventoryController"
-            }
-        }
-    },
     "EFT.Player": {
         "MethodRenames": {
             "method_0": "RecalculateMouseSensitivityModifier",
@@ -1521,6 +1511,74 @@
         "NestedTypes": {
             "GClass2351": {
                 "NewName": "DataSender"
+            },
+            "GInterface230": {
+                "NewName": "IClientPlayerDataSender"
+            },
+            "Class2443": {
+                "NewName": "ClientPlayerInventoryController"
+            },
+            "Struct555": {
+                "NewName": "OperationState"
+            },
+            "Struct556": {
+                "NewName": "EndedCutsceneInfoForServer"
+            },
+            "GDelegate74": {
+                "NewName": "SendDelegate"
+            },
+            "Class1679": {
+                "NewName": "PlayerVoipController",
+                "NestedTypes": {
+                    "Class1680": {
+                        "NewName": "TalksRegistry",
+                        "NestedTypes": {
+                            "Struct558": {
+                                "NewName": "Talk"
+                            }
+                        }
+                    },
+                    "Class1681": {
+                        "NewName": "AbstractState"
+                    },
+                    "Class1682": {
+                        "NewName": "AbstractStateMuted"
+                    },
+                    "Class1683": {
+                        "NewName": "StateReady"
+                    },
+                    "Class1684": {
+                        "NewName": "AbstractStateRestricted"
+                    },
+                    "Class1685": {
+                        "NewName": "StateOff"
+                    },
+                    "Class1686": {
+                        "NewName": "StateLimited"
+                    },
+                    "Class1687": {
+                        "NewName": "StateBlocked"
+                    },
+                    "Class1688": {
+                        "NewName": "StateBanned"
+                    },
+                    "Class1689": {
+                        "NewName": "StateMicrophoneFail"
+                    },
+                    "Class1690": {
+                        "NewName": "StateTalking"
+                    },
+                    "Struct557": {
+                        "NewName": "Restriction"
+                    }
+                }
+            },
+            "DataSender": {
+                "NestedTypes": {
+                    "GDelegate75": {
+                        "NewName": "DataSentDelegate"
+                    }
+                }
             }
         }
     },
@@ -1710,6 +1768,9 @@
         "NestedTypes": {
             "Struct303": {
                 "NewName": "Data"
+            },
+            "Class394": {
+                "NewName": "Logger"
             }
         }
     },
@@ -1717,6 +1778,86 @@
         "NestedTypes": {
             "Struct265": {
                 "NewName": "IntermediateBundleDetails"
+            }
+        }
+    },
+    "BodyPartCollider": {
+        "NestedTypes": {
+            "GInterface20": {
+                "NewName": "IObserverToPlayerBridge"
+            }
+        }
+    },
+    "CommonAssets.Scripts.Game.EndByExitTrigerScenario": {
+        "NestedTypes": {
+            "GInterface146": {
+                "NewName": "IGame"
+            },
+            "Class984": {
+                "NewName": "LocationEscape"
+            }
+        }
+    },
+    "AnimationEventSystem.AnimationEventsContainer": {
+        "NestedTypes": {
+            "Class392": {
+                "NewName": "AnimatorEventsControllerLogger",
+                "NestedTypes": {
+                    "Struct253": {
+                        "NewName": "LoggedInfo"
+                    }
+                }
+            }
+        }
+    },
+    "EFT.NetworkGameSession": {
+        "NestedTypes": {
+            "Class399": {
+                "NewName": "AnticheatLogger"
+            },
+            "Class400": {
+                "NewName": "ResourcesLogger"
+            }
+        }
+    },
+    "EFT.UI.Screens.UIScreen": {
+        "NestedTypes": {
+            "Class410": {
+                "NewName": "UIScreenLogger"
+            }
+        }
+    },
+    "UISoundsWrapper": {
+        "NestedTypes": {
+            "Class391": {
+                "NewName": "UISoundsLogger"
+            }
+        }
+    },
+    "EffectsController": {
+        "NestedTypes": {
+            "Interface4": {
+                "NewName": "IForceMaxValueOnStartAccumulator"
+            }
+        }
+    },
+    "EFT.EndByTimerScenario": {
+        "NestedTypes": {
+            "Interface8": {
+                "NewName": "IGame"
+            }
+        }
+    },
+    "EFT.UI.Utilities.LightScroller.LightScroller": {
+        "NestedTypes": {
+            "Interface22": {
+                "NewName": "ICollectionCache"
+            },
+            "GDelegate86": {
+                "NewName": "LightScrollerViewFactory"
+            },
+            "GDelegate87": {
+                "NewName": "LightScrollerDataTypeGetter"
             }
         }
     }

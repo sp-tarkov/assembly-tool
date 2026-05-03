@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <RootNamespace>EftCodeStub</RootNamespace>
   </PropertyGroup>
   <Import Project="..\AssemblyImport.props" />
 </Project>

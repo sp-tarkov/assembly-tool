@@ -25,7 +25,7 @@ public class OnGameStartedCodeStub(MemberLookup lookup, MethodPatcher methodPatc
         if (onGameStartedStub?.CilMethodBody?.Instructions is null)
         {
             throw new FailedToFindTypeException(
-                "Could not find `EftCodeStub.Eft.SptGameWorld.OnGameStarted()` when patching"
+                "Could not find `SptCodeStub.Eft.SptGameWorld.OnGameStarted()` when patching"
             );
         }
 

@@ -26,7 +26,7 @@
     <PackageReference Include="SPTarkov.DI" Version="4.0.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EftCodeStub\EftCodeStub.csproj" />
+    <ProjectReference Include="..\SptCodeStub\SptCodeStub.csproj" />
   </ItemGroup>
   <Import Project="..\AssemblyImport.props" />
 </Project>

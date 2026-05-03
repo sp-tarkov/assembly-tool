@@ -84,14 +84,14 @@ public class DataProvider
             }
         }
 
-        var codeStub = Path.Combine(AppContext.BaseDirectory, "EftCodeStub.dll");
+        var codeStub = Path.Combine(AppContext.BaseDirectory, "SptCodeStub.dll");
         if (File.Exists(codeStub))
         {
             StubModule =
                 Context.LoadAssembly(codeStub).Modules.FirstOrDefault()
                 ?? throw new NullReferenceException("Could not load assembly code stub!");
 
-            _logger.LogInformation("Loaded code stub module: EftCodeStub.dll");
+            _logger.LogInformation("Loaded code stub module: SptCodeStub.dll");
         }
 
         return module;

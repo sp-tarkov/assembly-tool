@@ -8,7 +8,7 @@ namespace AssemblyLib.Patching.ModulePatches.Fixes;
 public class ShowIncompatibleNotificationPatch(MemberLookup.ModuleMemberLookup lookup, DataProvider dataProvider)
     : IModulePatch
 {
-    public bool Enabled => true;
+    public bool Enabled => false;
 
     public void Patch()
     {

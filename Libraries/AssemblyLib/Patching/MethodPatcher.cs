@@ -38,7 +38,7 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         switch (methodPatchType)
         {
             case MethodPatchType.Prefix:
-                ApplyPrefix(targetBody, cloned);
+                ApplyPrefix(targetBody, cloned, source.Signature!.ReturnType);
                 break;
             case MethodPatchType.Postfix:
                 ApplyPostfix(targetBody, cloned, target.Signature!.ReturnType);
@@ -63,15 +63,63 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         }
     }
 
-    private static void ApplyPrefix(CilMethodBody targetBody, List<CilInstruction> prefix)
+    private static void ApplyPrefix(
+        CilMethodBody targetBody,
+        List<CilInstruction> prefix,
+        TypeSignature sourceReturnType
+    )
     {
-        // Drop the trailing ret from the patch body — fall through into original code
+        if (prefix.Count == 0)
+            return;
+
+        if (sourceReturnType.FullName == "System.Boolean")
+        {
+            ApplyBoolPrefix(targetBody, prefix);
+        }
+        else
+        {
+            ApplyVoidPrefix(targetBody, prefix);
+        }
+    }
+
+    private static void ApplyBoolPrefix(CilMethodBody targetBody, List<CilInstruction> prefix)
+    {
+        var checkPoint = new CilInstruction(CilOpCodes.Nop);
+        var finalRet = new CilInstruction(CilOpCodes.Ret);
+
+        // All rets in the prefix leave a bool on the stack — redirect to checkPoint
+        foreach (var instr in prefix)
+        {
+            if (instr.OpCode == CilOpCodes.Ret)
+            {
+                instr.OpCode = CilOpCodes.Br;
+                instr.Operand = new CilInstructionLabel(checkPoint);
+            }
+        }
+
+        // Capture original start BEFORE shifting the list
+        var originalStart = targetBody.Instructions[0];
+
+        for (var i = 0; i < prefix.Count; i++)
+            targetBody.Instructions.Insert(i, prefix[i]);
+
+        // Insert the dispatch block right after the prefix
+        var brFalse = new CilInstruction(CilOpCodes.Brfalse, new CilInstructionLabel(originalStart));
+        var brFinal = new CilInstruction(CilOpCodes.Br, new CilInstructionLabel(finalRet));
+
+        targetBody.Instructions.Insert(prefix.Count, checkPoint);
+        targetBody.Instructions.Insert(prefix.Count + 1, brFalse);
+        targetBody.Instructions.Insert(prefix.Count + 2, brFinal);
+
+        targetBody.Instructions.Add(finalRet);
+    }
+
+    private static void ApplyVoidPrefix(CilMethodBody targetBody, List<CilInstruction> prefix)
+    {
         NopTrailingRet(prefix);
 
         for (var i = 0; i < prefix.Count; i++)
-        {
             targetBody.Instructions.Insert(i, prefix[i]);
-        }
     }
 
     private static void ApplyPostfix(CilMethodBody targetBody, List<CilInstruction> postfix, TypeSignature returnType)
@@ -207,9 +255,22 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         // Import / remap operands
         for (var i = 0; i < srcList.Count; i++)
         {
+            var srcInstr = srcList[i];
+
+            // Expand short-form local opcodes FIRST — their index is baked into
+            // the opcode with no operand, so RemapOperand never gets a chance to
+            // remap them, causing index collisions with the target's existing locals
+            var shortLocal = TryExpandShortLocal(srcInstr.OpCode, source.LocalVariables, localMap);
+            if (shortLocal.HasValue)
+            {
+                cloned[i].OpCode = shortLocal.Value.opCode;
+                cloned[i].Operand = shortLocal.Value.operand;
+                continue;
+            }
+
             var (newOpCode, newOperand) = RemapInstruction(
-                srcList[i].OpCode,
-                srcList[i].Operand,
+                srcInstr.OpCode,
+                srcInstr.Operand,
                 instrMap,
                 localMap,
                 importer,
@@ -481,5 +542,49 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
             method.Name,
             new MethodSignature(isStatic ? 0 : CallingConventionAttributes.HasThis, module.CorLibTypeFactory.Void, [])
         );
+    }
+
+    private static (CilOpCode opCode, CilLocalVariable operand)? TryExpandShortLocal(
+        CilOpCode opCode,
+        IList<CilLocalVariable> srcLocals,
+        Dictionary<CilLocalVariable, CilLocalVariable> localMap
+    )
+    {
+        // Inline-index forms — index baked into opcode, no operand
+        (CilOpCode expanded, int index)? inlined = opCode.Code switch
+        {
+            CilCode.Ldloc_0 => (CilOpCodes.Ldloc, 0),
+            CilCode.Ldloc_1 => (CilOpCodes.Ldloc, 1),
+            CilCode.Ldloc_2 => (CilOpCodes.Ldloc, 2),
+            CilCode.Ldloc_3 => (CilOpCodes.Ldloc, 3),
+            CilCode.Stloc_0 => (CilOpCodes.Stloc, 0),
+            CilCode.Stloc_1 => (CilOpCodes.Stloc, 1),
+            CilCode.Stloc_2 => (CilOpCodes.Stloc, 2),
+            CilCode.Stloc_3 => (CilOpCodes.Stloc, 3),
+            _ => null,
+        };
+
+        if (inlined.HasValue)
+        {
+            var (expanded, index) = inlined.Value;
+            if (index >= srcLocals.Count)
+            {
+                return null;
+            }
+
+            return (expanded, localMap[srcLocals[index]]);
+        }
+
+        // Short operand forms (ldloc.s / stloc.s / ldloca.s) — operand is the
+        // source CilLocalVariable directly, remap it to the target local
+        CilOpCode? longForm = opCode.Code switch
+        {
+            CilCode.Ldloc_S => CilOpCodes.Ldloc,
+            CilCode.Stloc_S => CilOpCodes.Stloc,
+            CilCode.Ldloca_S => CilOpCodes.Ldloca,
+            _ => null,
+        };
+
+        return null; // not a short-form local — let normal remapping handle it
     }
 }

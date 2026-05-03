@@ -1,6 +1,8 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -8,13 +10,13 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class DisableDevMaskCheckPatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class DisableDevMaskCheckPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Method<LocalPlayer.CG_Struct0>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<LocalPlayer.CG_Struct0>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException("Could not find `Eft.LocalPlayer.CG_Struct0.MoveNext()` when patching");
@@ -23,7 +25,7 @@ public class DisableDevMaskCheckPatch(ModuleMemberLookup lookup, PatchHelper pat
         var body = moveNextMethod.CilMethodBody;
         var instructions = body!.Instructions;
 
-        patchHelper.NopRange(instructions, 365, 404);
+        methodBodyNuker.NopRange(instructions, 365, 404);
 
         var handlerToRemove = body.ExceptionHandlers.FirstOrDefault(h =>
             h.TryStart?.Offset >= instructions[365].Offset && h.TryEnd?.Offset <= instructions[404].Offset + 1

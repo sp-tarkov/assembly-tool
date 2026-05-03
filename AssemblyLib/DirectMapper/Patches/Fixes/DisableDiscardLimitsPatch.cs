@@ -1,5 +1,7 @@
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
@@ -9,13 +11,13 @@ namespace AssemblyLib.DirectMapper.Patches.Fixes;
 ///     Disables anti-rmt shit
 /// </summary>
 [Injectable]
-public class DisableDiscardLimitsPatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class DisableDiscardLimitsPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var discardLimitsGetter = lookup.Method<Player.PlayerOwnerInventoryController>("get_HasDiscardLimits");
+        var discardLimitsGetter = lookup.Eft.Method<Player.PlayerOwnerInventoryController>("get_HasDiscardLimits");
         if (discardLimitsGetter?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
@@ -23,6 +25,6 @@ public class DisableDiscardLimitsPatch(ModuleMemberLookup lookup, PatchHelper pa
             );
         }
 
-        patchHelper.NukeBoolBody(discardLimitsGetter.CilMethodBody);
+        methodBodyNuker.NukeBoolBody(discardLimitsGetter.CilMethodBody);
     }
 }

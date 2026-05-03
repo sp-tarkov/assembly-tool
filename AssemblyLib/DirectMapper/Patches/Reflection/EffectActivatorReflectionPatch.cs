@@ -1,12 +1,13 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using EFT.HealthSystem;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
-public class EffectActivatorReflectionPatch(ModuleMemberLookup lookup) : IPatch
+public class EffectActivatorReflectionPatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
@@ -15,7 +16,7 @@ public class EffectActivatorReflectionPatch(ModuleMemberLookup lookup) : IPatch
     /// </summary>
     public void Patch()
     {
-        var type = lookup.Type<HealthHelper.EffectActivator<ActiveHealthController>>();
+        var type = lookup.Eft.Type<HealthHelper.EffectActivator<ActiveHealthController>>();
         if (type is null)
         {
             throw new NullReferenceException(

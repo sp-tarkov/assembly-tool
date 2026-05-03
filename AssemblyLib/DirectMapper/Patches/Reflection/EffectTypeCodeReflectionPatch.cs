@@ -1,12 +1,12 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using EFT.HealthSystem;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
-public class EffectTypeCodeReflectionPatch(ModuleMemberLookup lookup) : IPatch
+public class EffectTypeCodeReflectionPatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
@@ -15,7 +15,7 @@ public class EffectTypeCodeReflectionPatch(ModuleMemberLookup lookup) : IPatch
     /// </summary>
     public void Patch()
     {
-        var type = lookup.Type<HealthHelper.EffectTypeCode>();
+        var type = lookup.Eft.Type<HealthHelper.EffectTypeCode>();
         if (type is null)
         {
             throw new NullReferenceException("Could not find `EffectTypeCode` when patching");

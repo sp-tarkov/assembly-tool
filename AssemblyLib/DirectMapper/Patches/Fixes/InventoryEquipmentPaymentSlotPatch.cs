@@ -3,6 +3,7 @@ using AsmResolver.DotNet;
 using AsmResolver.DotNet.Serialized;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using EFT.InventoryLogic;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -10,19 +11,19 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class InventoryEquipmentPaymentSlotPatch(ModuleMemberLookup lookup) : IPatch
+public class InventoryEquipmentPaymentSlotPatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var inventoryEquipmentType = lookup.Type<InventoryEquipment>();
+        var inventoryEquipmentType = lookup.Eft.Type<InventoryEquipment>();
         if (inventoryEquipmentType is null)
         {
             throw new FailedToFindTypeException("Could not find `Eft.InventoryEquipment` when patching");
         }
 
-        var paymentSlotsField = lookup.Field<InventoryEquipment>(nameof(InventoryEquipment._paymentSlots));
+        var paymentSlotsField = lookup.Eft.Field<InventoryEquipment>(nameof(InventoryEquipment._paymentSlots));
         if (paymentSlotsField is null)
         {
             throw new FailedToFindTypeException("Could not find _paymentSlots field");
@@ -35,7 +36,7 @@ public class InventoryEquipmentPaymentSlotPatch(ModuleMemberLookup lookup) : IPa
         );
         inventoryEquipmentType.Fields.Add(throwingGrenadeSlotsField);
 
-        var grenadeGetter = lookup.Method<InventoryEquipment>("get_GrenadeThrowingSlots");
+        var grenadeGetter = lookup.Eft.Method<InventoryEquipment>("get_GrenadeThrowingSlots");
         if (grenadeGetter is null)
         {
             throw new FailedToFindTypeException("Could not find get_GrenadeThrowingSlots");

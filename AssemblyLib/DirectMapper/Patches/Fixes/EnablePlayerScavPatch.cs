@@ -1,6 +1,7 @@
 using AssemblyLib.Exceptions;
-using AssemblyLib.Extensions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
@@ -10,13 +11,13 @@ namespace AssemblyLib.DirectMapper.Patches.Fixes;
 /// This patch removes the check if the player is a scav, allowing for scav's in offline raids
 /// </summary>
 [Injectable]
-public class EnablePlayerScavPatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class EnablePlayerScavPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Method<MainMenuShowOperation.CG_Struct14>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<MainMenuShowOperation.CG_Struct14>("MoveNext");
         if (moveNextMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
@@ -24,6 +25,6 @@ public class EnablePlayerScavPatch(ModuleMemberLookup lookup, PatchHelper patchH
             );
         }
 
-        patchHelper.NopRange(moveNextMethod.CilMethodBody.Instructions, 144, 148);
+        methodBodyNuker.NopRange(moveNextMethod.CilMethodBody.Instructions, 144, 148);
     }
 }

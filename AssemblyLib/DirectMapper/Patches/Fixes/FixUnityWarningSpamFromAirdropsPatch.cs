@@ -1,5 +1,7 @@
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
@@ -12,14 +14,14 @@ namespace AssemblyLib.DirectMapper.Patches.Fixes;
 /// line will fix this.
 /// </summary>
 [Injectable]
-public class FixUnityWarningSpamFromAirdropsPatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class FixUnityWarningSpamFromAirdropsPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
         // Use string based lookup because of weird unity struct layout things, the CLR doesn't like it.
-        var manualUpdateMethod = lookup.Method("EFT.Airdrop", "ServerAirDrop", "ManualUpdate");
+        var manualUpdateMethod = lookup.Eft.Method("EFT.Airdrop", "ServerAirDrop", "ManualUpdate");
         if (manualUpdateMethod?.CilMethodBody?.Instructions is null)
         {
             throw new FailedToFindTypeException(
@@ -28,6 +30,6 @@ public class FixUnityWarningSpamFromAirdropsPatch(ModuleMemberLookup lookup, Pat
         }
 
         // Remove `this.Rigidbody_0.velocity = Vector3.zero;`
-        patchHelper.NopRange(manualUpdateMethod.CilMethodBody.Instructions, 25, 28);
+        methodBodyNuker.NopRange(manualUpdateMethod.CilMethodBody.Instructions, 25, 28);
     }
 }

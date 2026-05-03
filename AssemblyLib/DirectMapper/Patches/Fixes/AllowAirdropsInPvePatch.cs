@@ -1,5 +1,5 @@
 using AsmResolver.PE.DotNet.Cil;
-using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using JsonType;
 using SPTarkov.DI.Annotations;
 
@@ -9,13 +9,13 @@ namespace AssemblyLib.DirectMapper.Patches.Fixes;
 ///     Change min required players for airdrops from 6 to 1
 /// </summary>
 [Injectable]
-public class AllowAirdropsInPvePatch(ModuleMemberLookup lookup) : IPatch
+public class AllowAirdropsInPvePatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var type = lookup.Type<LocationSettings.Location.AirdropParameters>();
+        var type = lookup.Eft.Type<LocationSettings.Location.AirdropParameters>();
         if (type is null)
         {
             throw new NullReferenceException(

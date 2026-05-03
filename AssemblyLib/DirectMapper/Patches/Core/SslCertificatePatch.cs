@@ -1,18 +1,20 @@
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
 
 [Injectable]
-public class SslCertificatePatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class SslCertificatePatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Method<ClientCertificateHandler>("ValidateCertificate", typeof(byte[]));
+        var moveNextMethod = lookup.Eft.Method<ClientCertificateHandler>("ValidateCertificate", typeof(byte[]));
         if (moveNextMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
@@ -20,6 +22,6 @@ public class SslCertificatePatch(ModuleMemberLookup lookup, PatchHelper patchHel
             );
         }
 
-        patchHelper.NukeBoolBody(moveNextMethod.CilMethodBody, true);
+        methodBodyNuker.NukeBoolBody(moveNextMethod.CilMethodBody, true);
     }
 }

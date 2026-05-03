@@ -1,6 +1,7 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using Serilog;
 using SPTarkov.DI.Annotations;
 
@@ -11,13 +12,13 @@ namespace AssemblyLib.DirectMapper.Patches.Performance;
 /// </summary>
 /// <param name="lookup"></param>
 [Injectable]
-public class CoverPointMasterRemoveStopWatchPatch(ModuleMemberLookup lookup) : IPatch
+public class CoverPointMasterRemoveStopWatchPatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var body = lookup.Method<CoverPointMaster>("GetCoverPointMain2")?.CilMethodBody;
+        var body = lookup.Eft.Method<CoverPointMaster>("GetCoverPointMain2")?.CilMethodBody;
         if (body is null)
         {
             throw new FailedToFindTypeException(

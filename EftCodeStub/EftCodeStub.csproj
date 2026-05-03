@@ -4,8 +4,5 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="SPT\" />
-  </ItemGroup>
   <Import Project="..\AssemblyImport.props" />
 </Project>

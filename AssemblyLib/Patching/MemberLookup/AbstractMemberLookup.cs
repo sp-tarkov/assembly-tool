@@ -1,12 +1,12 @@
 using System.Reflection;
 using AsmResolver.DotNet;
-using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Helpers;
+namespace AssemblyLib.Patching.MemberLookup;
 
-[Injectable]
-public class ModuleMemberLookup(DataProvider dataProvider)
+public abstract class AbstractMemberLookup
 {
+    protected abstract ModuleDefinition TargetModule { get; }
+
     /// <summary>
     /// Looks up a <see cref="TypeDefinition"/> by namespace and type name strings,
     /// bypassing reflection entirely. Use this when typeof(T) would cause a
@@ -18,9 +18,7 @@ public class ModuleMemberLookup(DataProvider dataProvider)
         var parts = typeName.Split('+');
         var outerName = parts[0];
 
-        var current = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == @namespace && t.Name == outerName);
+        var current = TargetModule.GetAllTypes().FirstOrDefault(t => t.Namespace == @namespace && t.Name == outerName);
 
         foreach (var nestedName in parts.Skip(1))
         {
@@ -55,9 +53,7 @@ public class ModuleMemberLookup(DataProvider dataProvider)
             return ResolveNestedType(type);
         }
 
-        return dataProvider
-            .LoadedModule!.GetAllTypes()
-            .FirstOrDefault(t => t.Namespace == type.Namespace && t.Name == type.Name);
+        return TargetModule.GetAllTypes().FirstOrDefault(t => t.Namespace == type.Namespace && t.Name == type.Name);
     }
 
     /// <summary>Looks up a <see cref="TypeDefinition"/> by a generic type parameter.</summary>
@@ -307,7 +303,7 @@ public class ModuleMemberLookup(DataProvider dataProvider)
     {
         try
         {
-            return dataProvider.LoadedModule!.LookupMember<TMember>(metadataToken);
+            return TargetModule.LookupMember<TMember>(metadataToken);
         }
         catch
         {
@@ -334,8 +330,8 @@ public class ModuleMemberLookup(DataProvider dataProvider)
 
         // Resolve the outermost (non-nested) type first
         var outermost = chain.Pop();
-        var current = dataProvider
-            .LoadedModule!.GetAllTypes()
+        var current = TargetModule
+            .GetAllTypes()
             .FirstOrDefault(t => t.Namespace == outermost.Namespace && t.Name == outermost.Name);
 
         // Walk inward through each nested level

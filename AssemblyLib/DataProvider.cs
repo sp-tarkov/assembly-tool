@@ -29,6 +29,7 @@ public class DataProvider
     public RuntimeContext Context { get; private set; } = null!;
     public ModuleDefinition? LoadedModule { get; private set; }
     public ModuleDefinition? DummyDllModule { get; private set; }
+    public ModuleDefinition? StubModule { get; private set; }
 
     public bool IsDummyDllLoaded => DummyDllModule != null;
 
@@ -88,7 +89,10 @@ public class DataProvider
         var codeStub = Path.Combine(AppContext.BaseDirectory, "EftCodeStub.dll");
         if (File.Exists(codeStub))
         {
-            Context.LoadAssembly(codeStub);
+            StubModule =
+                Context.LoadAssembly(codeStub).Modules.FirstOrDefault()
+                ?? throw new NullReferenceException("Could not load assembly code stub!");
+
             _logger.LogInformation("Loaded code stub module: EftCodeStub.dll");
         }
 

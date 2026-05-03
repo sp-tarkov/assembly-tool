@@ -1,18 +1,20 @@
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
 
 [Injectable]
-public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelper, DataProvider dataProvider) : IPatch
+public class RemoveHwInfoPatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Method<TarkovApplication.CG_Struct35>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_Struct35>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException(
@@ -20,7 +22,7 @@ public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelpe
             );
         }
 
-        patchHelper.NopRange(moveNextMethod.CilMethodBody!.Instructions, 62, 94);
+        methodBodyNuker.NopRange(moveNextMethod.CilMethodBody!.Instructions, 62, 94);
 
         // Use old way here because we delete it, can't resolve it with strong typed code.
         var hwEchoType = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "HWEcho");
@@ -29,9 +31,9 @@ public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelpe
             throw new FailedToFindTypeException("Could not find `HWEcho` when patching");
         }
 
-        patchHelper.NukeType(hwEchoType);
+        methodBodyNuker.NukeType(hwEchoType);
 
-        var sendMetricsJsonMethod = lookup.Method<ClientBackendSession>("SendMetricsJson");
+        var sendMetricsJsonMethod = lookup.Eft.Method<ClientBackendSession>("SendMetricsJson");
         if (sendMetricsJsonMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
@@ -39,6 +41,6 @@ public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelpe
             );
         }
 
-        patchHelper.NukeTaskBody(sendMetricsJsonMethod.CilMethodBody);
+        methodBodyNuker.NukeTaskBody(sendMetricsJsonMethod.CilMethodBody);
     }
 }

@@ -1,19 +1,21 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.DirectMapper.Patches.Core;
 
 [Injectable]
-public class BattleEyePatch(ModuleMemberLookup lookup, PatchHelper patchHelper) : IPatch
+public class BattleEyePatch(MemberLookup lookup, MethodBodyNuker methodBodyNuker) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var runValidationMethod = lookup.Method<AnticheatValidationOperation>("RunValidation");
+        var runValidationMethod = lookup.Eft.Method<AnticheatValidationOperation>("RunValidation");
         if (runValidationMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(
@@ -21,9 +23,9 @@ public class BattleEyePatch(ModuleMemberLookup lookup, PatchHelper patchHelper) 
             );
         }
 
-        patchHelper.NukeTaskBody(runValidationMethod.CilMethodBody);
+        methodBodyNuker.NukeTaskBody(runValidationMethod.CilMethodBody);
 
-        var bool0Field = lookup.Field<AnticheatValidationOperation>("bool_0");
+        var bool0Field = lookup.Eft.Field<AnticheatValidationOperation>("bool_0");
         if (bool0Field is null)
         {
             throw new FailedToFindTypeException(

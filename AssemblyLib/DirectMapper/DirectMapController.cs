@@ -4,6 +4,7 @@ using AssemblyLib.DirectMapper.NameFactory;
 using AssemblyLib.DirectMapper.Patches;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
+using AssemblyLib.Patching;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
@@ -19,7 +20,7 @@ public class DirectMapController(
     SigBasedMemberRenamer sigBasedMemberRenamer,
     Publicizer publicizer,
     MemberReferenceCache memberReferenceCache,
-    PatchHelper patchHelper,
+    MethodBodyNuker methodBodyNuker,
     IEnumerable<IPatch> patches
 )
 {
@@ -204,6 +205,6 @@ public class DirectMapController(
             return;
         }
 
-        patchHelper.NukeType(model.ToolData.Type);
+        methodBodyNuker.NukeType(model.ToolData.Type);
     }
 }

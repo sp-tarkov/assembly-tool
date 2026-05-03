@@ -5,10 +5,10 @@ using AsmResolver.PE.DotNet.Cil;
 using Microsoft.Extensions.Logging;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.Helpers;
+namespace AssemblyLib.Patching;
 
 [Injectable]
-public class PatchHelper(ILogger<PatchHelper> logger, DataProvider dataProvider)
+public class MethodBodyNuker(ILogger<MethodBodyNuker> logger, DataProvider dataProvider)
 {
     /// <summary>
     ///     Nukes all instructions from a void type method

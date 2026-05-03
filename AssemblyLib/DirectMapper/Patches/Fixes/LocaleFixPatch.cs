@@ -3,6 +3,7 @@ using AsmResolver.DotNet.Serialized;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Exceptions;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using EFT;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -10,7 +11,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Fixes;
 
 [Injectable]
-public class LocaleFixPatch(ModuleMemberLookup lookup, DataProvider dataProvider) : IPatch
+public class LocaleFixPatch(MemberLookup lookup, DataProvider dataProvider) : IPatch
 {
     public bool Enabled => true;
 
@@ -21,7 +22,7 @@ public class LocaleFixPatch(ModuleMemberLookup lookup, DataProvider dataProvider
     /// </summary>
     public void Patch()
     {
-        var body = lookup.Method<EftCreateProfileOperation.CG_Struct0>("MoveNext")?.CilMethodBody;
+        var body = lookup.Eft.Method<EftCreateProfileOperation.CG_Struct0>("MoveNext")?.CilMethodBody;
         if (body is null)
         {
             throw new FailedToFindTypeException(
@@ -29,7 +30,7 @@ public class LocaleFixPatch(ModuleMemberLookup lookup, DataProvider dataProvider
             );
         }
 
-        var containsCultureMethod = lookup.Method<LocalizationManager>("ContainsCulture");
+        var containsCultureMethod = lookup.Eft.Method<LocalizationManager>("ContainsCulture");
         if (containsCultureMethod is null)
         {
             throw new FailedToFindTypeException(

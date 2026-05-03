@@ -1,5 +1,6 @@
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Helpers;
+using AssemblyLib.Patching.MemberLookup;
 using EFT.Console.Commands;
 using Serilog;
 using SPTarkov.DI.Annotations;
@@ -7,13 +8,13 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.DirectMapper.Patches.Reflection;
 
 [Injectable]
-public class SharedReflectionPatch(ModuleMemberLookup lookup) : IPatch
+public class SharedReflectionPatch(MemberLookup lookup) : IPatch
 {
     public bool Enabled => true;
 
     public void Patch()
     {
-        var type = lookup.Type<Shared>();
+        var type = lookup.Eft.Type<Shared>();
         if (type is null)
         {
             throw new NullReferenceException("Could not find `Shared` when patching");

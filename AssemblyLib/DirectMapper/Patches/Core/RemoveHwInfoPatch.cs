@@ -30,5 +30,15 @@ public class RemoveHwInfoPatch(ModuleMemberLookup lookup, PatchHelper patchHelpe
         }
 
         patchHelper.NukeType(hwEchoType);
+
+        var sendMetricsJsonMethod = lookup.Method<ClientBackendSession>("SendMetricsJson");
+        if (sendMetricsJsonMethod?.CilMethodBody is null)
+        {
+            throw new FailedToFindTypeException(
+                "Could not find `EFT.ClientBackendSession.SendMetricsJson()` when patching"
+            );
+        }
+
+        patchHelper.NukeTaskBody(sendMetricsJsonMethod.CilMethodBody);
     }
 }

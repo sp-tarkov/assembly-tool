@@ -101,16 +101,10 @@ public class SigBasedMemberRenamer(
         var targetMethods = targetType.Methods.Where(FilterMethods).Where(m => m.Name!.IsObfuscatedName());
         var dummyMethods = dummyType.Methods.Where(FilterMethods).ToList();
 
-        var dummyMethodNames = dummyMethods.Select(m => m.Name).ToHashSet();
-
         foreach (var targetMethod in targetMethods)
         {
             // Already a named method, or is a void type method with no parameters
-            if (
-                dummyMethodNames.Contains(targetMethod.Name)
-                || targetMethod.IsVoidWithNoParameters()
-                || targetMethod.IsVoidWithOnlyGenericParameters()
-            )
+            if (targetMethod.IsVoidWithNoParameters() || targetMethod.IsVoidWithOnlyGenericParameters())
             {
                 continue;
             }
@@ -124,12 +118,24 @@ public class SigBasedMemberRenamer(
 
             foreach (var dummyMethod in dummyMethods.ToArray())
             {
-                if (
-                    !methodSignatureComparer.IsSame(targetMethod, dummyMethod)
-                    || targetMethod.Name!.Equals(dummyMethod.Name)
-                )
+                if (!methodSignatureComparer.IsSame(targetMethod, dummyMethod))
                 {
                     continue;
+                }
+
+                // A non-obfuscated method with this name+signature already exists on the type
+                // (e.g. a Unity API method that was never obfuscated). Consuming the dummy slot
+                // prevents a second obfuscated method from being renamed onto it.
+                if (
+                    targetType.Methods.Any(m =>
+                        m != targetMethod
+                        && m.Name == dummyMethod.Name
+                        && methodSignatureComparer.IsSame(m, dummyMethod)
+                    )
+                )
+                {
+                    dummyMethods.Remove(dummyMethod);
+                    break;
                 }
 
                 if (targetMethod.IsNewSlot)

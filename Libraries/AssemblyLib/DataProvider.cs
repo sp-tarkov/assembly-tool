@@ -143,14 +143,9 @@ public class DataProvider
                 localCount++;
             }
 
-            _logger.LogInformation(
-                "Direct Mapping file loaded {Count} mappings from: {Path}",
-                localCount,
-                Path.GetFileName(file)
-            );
+            _logger.LogInformation("Loaded {Count} mappings from: {Path}", localCount, Path.GetFileName(file));
         }
 
-        ValidateDuplicateNewNames(DirectMapModels);
         _logger.LogInformation("Total Count: {Count}", count);
     }
 
@@ -168,43 +163,6 @@ public class DataProvider
         }
 
         return count;
-    }
-
-    private static void ValidateDuplicateNewNames(
-        Dictionary<string, DirectMapModel> models,
-        string? parentName = null,
-        HashSet<string>? seenNames = null
-    )
-    {
-        seenNames ??= [];
-
-        foreach (var (originalName, mapping) in models)
-        {
-            // Use original name as fallback so nested paths are always well-formed
-            var effectiveName = mapping.NewName ?? originalName;
-
-            var currentName =
-                parentName != null ? $"{parentName}.{effectiveName}"
-                : mapping.NewNamespace != null ? $"{mapping.NewNamespace}.{effectiveName}"
-                : effectiveName;
-
-            // Only validate entries that actually declare a new name
-            if (mapping.NewName != null)
-            {
-                var arity = originalName.Contains('`') ? originalName.Split('`')[1] : null;
-                var seenKey = arity != null ? $"{currentName}`{arity}" : currentName;
-
-                if (!seenNames.Add(seenKey))
-                {
-                    throw new DuplicateDirectMapException($"Duplicate direct mapping new name found: {currentName}");
-                }
-            }
-
-            if (mapping.NestedTypes?.Count > 0)
-            {
-                ValidateDuplicateNewNames(mapping.NestedTypes, currentName, seenNames);
-            }
-        }
     }
 
     private static Settings LoadAppSettings()

@@ -4,6 +4,7 @@ using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using AssemblyLib.NameFactory;
 using AssemblyLib.Patching;
+using AssemblyLib.Validation;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib;
@@ -20,6 +21,7 @@ public class DirectMapController(
     MemberReferenceCache memberReferenceCache,
     MethodBodyNuker methodBodyNuker,
     PatchService patchService,
+    AssemblyValidatorService validatorService,
     IEnumerable<IModulePatch> modulePatches
 )
 {
@@ -35,8 +37,14 @@ public class DirectMapController(
             return;
         }
 
+        if (!validatorService.Validate(ValidationStage.PreMapping))
+            return;
+
         await DirectMapStage();
         PostDirectMapStage();
+
+        if (!validatorService.Validate(ValidationStage.PostMapping))
+            return;
 
         await assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
 

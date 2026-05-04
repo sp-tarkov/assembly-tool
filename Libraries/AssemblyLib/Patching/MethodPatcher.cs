@@ -2,6 +2,7 @@
 
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.DotNet.Collections;
 using AsmResolver.DotNet.Signatures;
 using AsmResolver.PE.DotNet.Cil;
 using AssemblyLib.Patching.Tool;
@@ -33,7 +34,8 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         var targetBody = target.CilMethodBody;
         var module = dataProvider.LoadedModule!;
 
-        var (cloned, _) = CloneBody(source.CilMethodBody, targetBody, module);
+        var argSlotMap = methodPatchType != MethodPatchType.Replace ? BuildArgSlotMap(source, target) : null;
+        var (cloned, _) = CloneBody(source.CilMethodBody, targetBody, module, source, target, argSlotMap);
 
         switch (methodPatchType)
         {
@@ -231,7 +233,10 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
     private (List<CilInstruction> instructions, Dictionary<CilLocalVariable, CilLocalVariable> localMap) CloneBody(
         CilMethodBody source,
         CilMethodBody targetBody,
-        ModuleDefinition module
+        ModuleDefinition module,
+        MethodDefinition? sourceMethod = null,
+        MethodDefinition? targetMethod = null,
+        Dictionary<int, int>? argSlotMap = null
     )
     {
         var importer = module.DefaultImporter;
@@ -266,6 +271,23 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
                 cloned[i].OpCode = shortLocal.Value.opCode;
                 cloned[i].Operand = shortLocal.Value.operand;
                 continue;
+            }
+
+            if (argSlotMap is not null && sourceMethod is not null && targetMethod is not null)
+            {
+                var remappedArg = TryRemapArgInstruction(
+                    srcInstr.OpCode,
+                    srcInstr.Operand,
+                    sourceMethod,
+                    targetMethod,
+                    argSlotMap
+                );
+                if (remappedArg.HasValue)
+                {
+                    cloned[i].OpCode = remappedArg.Value.opCode;
+                    cloned[i].Operand = remappedArg.Value.operand;
+                    continue;
+                }
             }
 
             var (newOpCode, newOperand) = RemapInstruction(
@@ -586,5 +608,129 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         };
 
         return null; // not a short-form local — let normal remapping handle it
+    }
+
+    /// <summary>
+    ///     Builds a mapping from source IL arg slot → target IL arg slot by matching parameter names.
+    ///     Allows patch methods to declare only the parameters they need, in any order.
+    /// </summary>
+    private static Dictionary<int, int> BuildArgSlotMap(MethodDefinition source, MethodDefinition target)
+    {
+        var map = new Dictionary<int, int>();
+
+        if (!source.IsStatic)
+        {
+            map[0] = 0; // this → this
+        }
+
+        for (var i = 0; i < source.Parameters.Count; i++)
+        {
+            var name = source.Parameters[i].Name;
+            var srcSlot = source.IsStatic ? i : i + 1;
+            var found = false;
+
+            for (var j = 0; j < target.Parameters.Count; j++)
+            {
+                if (target.Parameters[j].Name != name)
+                {
+                    continue;
+                }
+
+                map[srcSlot] = target.IsStatic ? j : j + 1;
+                found = true;
+                break;
+            }
+
+            if (!found)
+            {
+                throw new InvalidOperationException(
+                    $"Patch parameter '{name}' has no match in target method '{target.FullName}'."
+                );
+            }
+        }
+
+        return map;
+    }
+
+    /// <summary>
+    ///     Remaps ldarg / starg / ldarga instructions (including inline ldarg.0-3 forms)
+    ///     using the provided arg slot map so that patch parameters align with the target.
+    /// </summary>
+    private static (CilOpCode opCode, object? operand)? TryRemapArgInstruction(
+        CilOpCode opCode,
+        object? operand,
+        MethodDefinition sourceMethod,
+        MethodDefinition targetMethod,
+        Dictionary<int, int> argSlotMap
+    )
+    {
+        // Inline ldarg.0-3 — index baked into opcode, no operand
+        int? inlineSlot = opCode.Code switch
+        {
+            CilCode.Ldarg_0 => 0,
+            CilCode.Ldarg_1 => 1,
+            CilCode.Ldarg_2 => 2,
+            CilCode.Ldarg_3 => 3,
+            _ => null,
+        };
+
+        if (inlineSlot.HasValue)
+        {
+            if (!argSlotMap.TryGetValue(inlineSlot.Value, out var dstSlot))
+            {
+                return null;
+            }
+
+            if (dstSlot == inlineSlot.Value)
+            {
+                return (opCode, null); // no remapping needed
+            }
+
+            return dstSlot switch
+            {
+                0 => (CilOpCodes.Ldarg_0, null),
+                1 => (CilOpCodes.Ldarg_1, null),
+                2 => (CilOpCodes.Ldarg_2, null),
+                3 => (CilOpCodes.Ldarg_3, null),
+                _ => (CilOpCodes.Ldarg, GetParamBySlot(targetMethod, dstSlot)),
+            };
+        }
+
+        // Explicit ldarg / ldarg.s / starg / starg.s / ldarga / ldarga.s
+        if (operand is not Parameter srcParam)
+        {
+            return null;
+        }
+
+        var isLoad = opCode.Code is CilCode.Ldarg or CilCode.Ldarg_S;
+        var isStore = opCode.Code is CilCode.Starg or CilCode.Starg_S;
+        var isAddr = opCode.Code is CilCode.Ldarga or CilCode.Ldarga_S;
+
+        if (!isLoad && !isStore && !isAddr)
+        {
+            return null;
+        }
+
+        var srcSlot = GetArgSlot(sourceMethod, srcParam);
+        if (!argSlotMap.TryGetValue(srcSlot, out var targetSlot))
+        {
+            return null;
+        }
+
+        var newOpCode =
+            isLoad ? CilOpCodes.Ldarg
+            : isStore ? CilOpCodes.Starg
+            : CilOpCodes.Ldarga;
+
+        return (newOpCode, GetParamBySlot(targetMethod, targetSlot));
+    }
+
+    private static int GetArgSlot(MethodDefinition method, Parameter param) =>
+        method.IsStatic ? param.Index : param.Index + 1;
+
+    private static Parameter? GetParamBySlot(MethodDefinition method, int slot)
+    {
+        var idx = method.IsStatic ? slot : slot - 1;
+        return idx >= 0 && idx < method.Parameters.Count ? method.Parameters[idx] : null;
     }
 }

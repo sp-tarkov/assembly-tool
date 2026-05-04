@@ -21,7 +21,6 @@ public class EnablePlayerScavPatch(MemberLookup.ModuleMemberLookup lookup, Metho
                 "Could not find `Eft.MainMenuShowOperation.CG_Struct14.MoveNext()` when patching"
             );
         }
-
-        methodBodyNuker.NopRange(moveNextMethod.CilMethodBody.Instructions, 144, 148);
+        methodBodyNuker.NopRange(moveNextMethod.CilMethodBody.Instructions, 142, 145);
     }
 }

@@ -1119,6 +1119,10 @@
         "NewName": "RaycastHitExtensions",
         "NewNamespace": "Koenigz.PerfectCulling.EFT"
     },
+    "GClass1256": {
+        "NewName": "MouseLook",
+        "NewNamespace": "GPUInstancer"
+    },
     "GClass1257": {
         "NewName": "GPUInstancerAPI",
         "NewNamespace": "GPUInstancer"
@@ -5487,6 +5491,9 @@
             "GClass3049": {
                 "NewName": "ProbabilitySetting"
             },
+            "GClass3050": {
+                "NewName": "MusclePainSettings"
+            }
         },
         "NewName": "EffectsSettings",
         "NewNamespace": "EFT.HealthSystem"

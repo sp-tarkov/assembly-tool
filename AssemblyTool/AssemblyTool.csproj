@@ -16,7 +16,6 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
     <ProjectReference Include="..\Libraries\AssemblyLib\AssemblyLib.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
+    <ProjectReference Include="..\Libraries\AssemblyLib\AssemblyLib.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CliFx" Version="2.3.6" />

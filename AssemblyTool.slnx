@@ -9,6 +9,11 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="AssemblyLib/AssemblyLib.csproj" />
+  <Folder Name="/Libraries/">
+    <Project Path="Libraries/AssemblyLib.Patching/AssemblyLib.Patching.csproj">
+      <BuildType Solution="WAIT_FOR_DEBUGGER|*" Project="Debug" />
+    </Project>
+    <Project Path="Libraries/AssemblyLib/AssemblyLib.csproj" />
+  </Folder>
   <Project Path="AssemblyTool/AssemblyTool.csproj" />
 </Solution>

@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Helpers;
@@ -10,7 +11,6 @@ public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProv
     private readonly ConcurrentDictionary<FieldDefinition, List<MemberReference>> _fieldReferences = [];
     private readonly ConcurrentDictionary<MethodDefinition, List<MemberReference>> _methodReferences = [];
     private readonly ConcurrentDictionary<PropertyDefinition, List<MemberReference>> _propertyReferences = [];
-    private readonly ConcurrentDictionary<MethodDefinition, List<MethodDefinition>> _methodOverrides = [];
 
     private bool _hydrated;
 
@@ -33,10 +33,6 @@ public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProv
         logger.LogInformation(
             "Property definition cache hydrated with {count} property definitions",
             _propertyReferences.Count
-        );
-        logger.LogInformation(
-            "Method override cache hydrated with {count} methods that are overriden",
-            _methodOverrides.Count
         );
 
         _hydrated = true;
@@ -78,16 +74,6 @@ public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProv
             : throw new KeyNotFoundException($"Property {property.FullName} does not exist in cache");
     }
 
-    public List<MethodDefinition> GetMethodOverrides(MethodDefinition method)
-    {
-        if (!_hydrated)
-        {
-            throw new InvalidOperationException("MemberReferenceCache has not been hydrated");
-        }
-
-        return _methodOverrides.TryGetValue(method, out var value) ? value : [];
-    }
-
     private void CacheMethodReferences()
     {
         foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
@@ -110,12 +96,45 @@ public class MemberReferenceCache(ILogger<MemberReferenceCache> logger, DataProv
 
         foreach (var reference in dataProvider.LoadedModule!.GetImportedMemberReferences())
         {
-            var canResolve = reference.TryResolve(dataProvider.Context, out var resolved);
-            if (canResolve)
+            if (reference.TryResolve(dataProvider.Context, out var resolved))
             {
                 AddMetadataMemberToCache(resolved, reference);
             }
+            else
+            {
+                // TryResolve fails for MemberReferences whose declaring type is a generic
+                // instantiation (TypeSpecification). Unwrap the open generic and match by name.
+                var genericResolved = TryResolveViaGenericType(reference);
+                if (genericResolved is not null)
+                {
+                    AddMetadataMemberToCache(genericResolved, reference);
+                }
+            }
         }
+    }
+
+    private IMemberDefinition? TryResolveViaGenericType(MemberReference reference)
+    {
+        if (reference.DeclaringType is not TypeSpecification { Signature: GenericInstanceTypeSignature genericSig })
+        {
+            return null;
+        }
+
+        var typeDef = genericSig.GenericType.Resolve(dataProvider.Context);
+        if (typeDef is null)
+        {
+            return null;
+        }
+
+        var name = reference.Name;
+        var paramCount = (reference.Signature as MethodSignature)?.ParameterTypes.Count;
+
+        if (paramCount is not null)
+        {
+            return typeDef.Methods.FirstOrDefault(m => m.Name == name && m.Parameters.Count == paramCount.Value);
+        }
+
+        return typeDef.Fields.FirstOrDefault(f => f.Name == name);
     }
 
     private void AddMetadataMemberToCache(IMemberDefinition? definition, MemberReference reference)

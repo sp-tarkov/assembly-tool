@@ -24,7 +24,7 @@ public class MethodRenamer(
 
         if (toolData.Type?.IsInterface ?? false)
         {
-            RenameInterfacePrefacedMethods(toolData.Type);
+            //RenameInterfacePrefacedMethods(toolData.Type);
         }
 
         var methodsToRename = model.MethodRenames;
@@ -47,7 +47,9 @@ public class MethodRenamer(
                     logger.LogDebug("\t\tMethod: {old} -> {new}", method.Name.ToString(), newName);
                 }
 
-                method.Name = new Utf8String(newName);
+                var utf8NewName = new Utf8String(newName);
+                method.Name = utf8NewName;
+                UpdateMethodMemberReferences(method, utf8NewName);
             }
         }
     }

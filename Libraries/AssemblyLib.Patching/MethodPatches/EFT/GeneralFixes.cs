@@ -19,7 +19,7 @@ public class GeneralFixes
     }
 
     /// <summary>
-    ///     Disables RMT check for discard limits
+    ///     Fixes post raid scav raid xp not showing
     /// </summary>
     /// <returns>false, no limits</returns>
     [MethodPatch(

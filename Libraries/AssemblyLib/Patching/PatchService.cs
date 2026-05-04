@@ -42,7 +42,7 @@ public class PatchService(
                 throw new NullReferenceException("Could not find `MethodPatchAttribute`");
             }
 
-            var targetMethod = lookup.Eft.Method(attr.TargetType, attr.MethodName);
+            var targetMethod = lookup.Eft.Method(attr.TargetType, attr.MethodName, attr.TargetMethodParameterTypes);
             var targetName = $"{attr.TargetType.Name}.{attr.MethodName}";
             if (targetMethod is null)
             {

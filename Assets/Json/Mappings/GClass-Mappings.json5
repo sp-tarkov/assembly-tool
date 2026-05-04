@@ -1046,7 +1046,18 @@
     },
     "GClass1237": {
         "NewName": "CullingGridContentSwitcher",
-        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+        "NewNamespace": "Koenigz.PerfectCulling.EFT",
+        "NestedTypes": {
+            "Struct235": {
+                "NewName": "DynamicVisibilityUpdateJob"
+            },
+            "Struct235": {
+                "NewName": "StaticVisibilityQueueUpdateJob"
+            },
+            "Struct235": {
+                "NewName": "StaticVisibilityTestJob"
+            },
+        },
     },
     "GClass1238": {
         "NewName": "CullingGridVisibilitySampler",
@@ -4443,7 +4454,24 @@
     },
     "GClass2644": {
         "NewName": "CpuAffinityHelper",
-        "NewNamespace": "EFT.Utilities"
+        "NewNamespace": "EFT.Utilities",
+        "NestedTypes": {
+            "Struct800": {
+                "NewName": "PROCESSORCORE"
+            },
+            "Struct801": {
+                "NewName": "NUMANODE"
+            },
+            "Struct802": {
+                "NewName": "CACHE_DESCRIPTOR"
+            },
+            "Struct803": {
+                "NewName": "SYSTEM_LOGICAL_PROCESSOR_INFORMATION_UNION"
+            },
+            "Struct804": {
+                "NewName": "SYSTEM_LOGICAL_PROCESSOR_INFORMATION"
+            }
+        },
     },
     "GClass2645": {
         "NewName": "GetDriveTypeUtility",
@@ -4539,7 +4567,15 @@
     },
     "GClass2666": {
         "NewName": "MountingPointDetectionSystem",
-        "NewNamespace": "EFT.WeaponMounting"
+        "NewNamespace": "EFT.WeaponMounting",
+        "NestedTypes": {
+            "Struct818": {
+                "NewName": "HorizontalHits"
+            },
+            "Class2141": {
+                "NewName": "CoroutineWithData"
+            }
+        }
     },
     "GClass2667": {
         "NewName": "WeaponMountingComponent",
@@ -9752,7 +9788,12 @@
         "NewName": "CustomRangePlugin"
     },
     "GClass875": {
-        "NewName": "GuidManager"
+        "NewName": "GuidManager",
+        "NestedTypes": {
+            "Struct92": {
+                "NewName": "GuidInfo"
+            }
+        }
     },
     "GClass876": {
         "NewName": "GuidReferenceEqualityComparer"
@@ -9940,7 +9981,12 @@
         "NewName": "ItemIconCache"
     },
     "GClass931": {
-        "NewName": "IconCreatorGraphicsSettings"
+        "NewName": "IconCreatorGraphicsSettings",
+        "NestedTypes": {
+            "Struct128": {
+                "NewName": "T2DInfo"
+            }
+        },
     },
     "GClass932": {
         "NewName": "PlayerIconRequest"
@@ -11361,7 +11407,12 @@
         "NewName": "NavGraphWayCalc"
     },
     "GClass422`1": {
-        "NewName": "PriorityQueue"
+        "NewName": "PriorityQueue",
+        "NestedTypes": {
+            "Struct8`1": {
+                "NewName": "InnerNote"
+            }
+        }
     },
     "GClass423": {
         "NewName": "CoverWithPath"

@@ -196,7 +196,28 @@
     },
     "Class1821": {
         "NewName": "CloudLayerRenderer",
-        "NewNamespace": "EFT.Rendering.Clouds"
+        "NewNamespace": "EFT.Rendering.Clouds",
+        "NestedTypes": {
+            "Class1817": {
+                "NewName": "PrecomputationCache",
+                "NestedTypes": {
+                    "Class1818": {
+                        "NewName": "RefCountedData"
+                    }
+                }
+            },
+            "Class1819": {
+                "NewName": "PrecomputationData",
+                "NestedTypes": {
+                "Struct577": {
+                    "NewName": "TextureCache"
+                }
+            }
+            },
+            "Struct576": {
+                "NewName": "UpdateGuard"
+            }
+        }
     },
     "Class1824": {
         "NewName": "EFTAspectHelper",
@@ -575,7 +596,12 @@
     },
     "Class934": {
         "NewName": "ReliableChannel",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+        "NestedTypes": {
+            "Struct257": {
+                "NewName": "PendingPacket"
+            }
+        }
     },
     "Class935": {
         "NewName": "SequencedChannel",

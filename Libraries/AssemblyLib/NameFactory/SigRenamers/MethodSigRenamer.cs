@@ -5,98 +5,21 @@ using AssemblyLib.Helpers;
 using AssemblyLib.SignatureComparers;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.NameFactory;
+namespace AssemblyLib.NameFactory.SigRenamers;
 
 [Injectable]
-public class SigBasedMemberRenamer(
-    ILogger<SigBasedMemberRenamer> logger,
+public class MethodSigRenamer(
+    ILogger<MethodSigRenamer> logger,
     DataProvider dataProvider,
     MethodSigComparer methodSignatureComparer,
-    PropertySigComparer propertySigComparer,
     MemberReferenceCache memberReferenceCache
-)
+) : ISigRenamer
 {
-    // Key - Target :: Val - Dummy
-    private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
+    public int Priority => 0;
+    public bool Enabled => true;
+    public ERenamerType Type => ERenamerType.Methods;
 
-    public void RenameMembersBySignature()
-    {
-        if (!dataProvider.IsDummyDllLoaded)
-        {
-            return;
-        }
-
-        var targetTypes = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .Where(t => !t.FullName.IsObfuscatedName() && !t.IsCompilerGenerated() && !t.IsEnum)
-            .ToList();
-
-        var dummyTargetTypes = GetTargetTypesInDummy(targetTypes);
-        BuildTargetToDummyMap(targetTypes, dummyTargetTypes);
-        RenameAllTypes();
-    }
-
-    private List<TypeDefinition> GetTargetTypesInDummy(IEnumerable<TypeDefinition> targetTypes)
-    {
-        var targetTypeNameList = targetTypes.Select(t => t.FullName).ToList();
-        return dataProvider
-            .DummyDllModule!.GetAllTypes()
-            .Where(type => targetTypeNameList.Contains(type.FullName))
-            .ToList();
-    }
-
-    private void BuildTargetToDummyMap(
-        IEnumerable<TypeDefinition> targetTypes,
-        IEnumerable<TypeDefinition> dummyTargetTypes
-    )
-    {
-        foreach (var target in targetTypes)
-        {
-            var dummyType = dummyTargetTypes.FirstOrDefault(t => t.FullName == target.FullName);
-            if (dummyType is null)
-            {
-                /*
-                logger.LogWarning(
-                    "Type: {typeName} does not exist in the dummy dll. Sig based renaming will not happen.",
-                    target.FullName
-                );
-                */
-
-                continue;
-            }
-
-            _targetToDummyMap.Add(target, dummyType);
-        }
-
-        if (logger.IsEnabled(LogLevel.Debug))
-        {
-            logger.LogDebug("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
-        }
-    }
-
-    private void RenameAllTypes()
-    {
-        // First pass, handles actions that require both the target and the dummy
-        foreach (var (targetType, dummyType) in _targetToDummyMap)
-        {
-            if (logger.IsEnabled(LogLevel.Debug))
-            {
-                logger.LogDebug("Renaming members on: {type}", targetType.FullName);
-            }
-
-            RenameMethodsOnType(targetType, dummyType);
-            RenamePropertiesOnType(targetType, dummyType);
-            RenameGenericParametersOnType(targetType, dummyType);
-        }
-
-        // Second pass, handles actions that only require the target
-        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
-        {
-            RenameExplicitInterfaceMethods(type);
-        }
-    }
-
-    private void RenameMethodsOnType(TypeDefinition targetType, TypeDefinition dummyType)
+    public void Rename(TypeDefinition targetType, TypeDefinition dummyType)
     {
         var targetMethods = targetType.Methods.Where(FilterMethods).Where(m => m.Name!.IsObfuscatedName());
         var dummyMethods = dummyType.Methods.Where(FilterMethods).ToList();
@@ -245,120 +168,6 @@ public class SigBasedMemberRenamer(
         return null;
     }
 
-    private void RenamePropertiesOnType(TypeDefinition targetType, TypeDefinition dummyType)
-    {
-        var targetProperties = targetType.Properties;
-        var dummyProperties = dummyType.Properties.ToList();
-
-        // Removes properties that already exist
-        dummyProperties.RemoveAll(f => targetProperties.Any(t => t.Name == f.Name));
-
-        var dummyPropertiesNames = dummyProperties.Select(p => p.Name).ToHashSet();
-
-        foreach (var targetProperty in targetProperties)
-        {
-            if (dummyPropertiesNames.Contains(targetProperty.Name))
-            {
-                continue;
-            }
-
-            foreach (var dummyProperty in dummyProperties.ToArray())
-            {
-                if (!propertySigComparer.IsSame(targetProperty, dummyProperty))
-                {
-                    continue;
-                }
-
-                if (logger.IsEnabled(LogLevel.Debug))
-                {
-                    logger.LogDebug(
-                        "Renaming property: {old} -> {new}",
-                        targetProperty.FullName,
-                        dummyProperty.FullName
-                    );
-                }
-
-                targetProperty.Name = dummyProperty.Name;
-                dummyProperties.Remove(dummyProperty);
-                break;
-            }
-        }
-    }
-
-    private void RenameGenericParametersOnType(TypeDefinition targetType, TypeDefinition dummyType)
-    {
-        RenameGenericParametersOnMethods(targetType, dummyType);
-        if (!targetType.HasGenericParameters || targetType.GenericParameters.Count != dummyType.GenericParameters.Count)
-        {
-            return;
-        }
-
-        for (var i = 0; i < targetType.GenericParameters.Count; i++)
-        {
-            var targetGenericParameter = targetType.GenericParameters[i];
-            var dummyGenericParameter = dummyType.GenericParameters[i];
-
-            if (targetGenericParameter.Name?.ToString() == dummyGenericParameter.Name?.ToString())
-            {
-                continue;
-            }
-
-            var oldName = targetGenericParameter.Name?.ToString();
-
-            targetGenericParameter.Name = dummyGenericParameter.Name;
-
-            if (logger.IsEnabled(LogLevel.Debug))
-            {
-                logger.LogDebug(
-                    "Renamed generic param: {old} -> {new}",
-                    oldName,
-                    targetGenericParameter.Name?.ToString()
-                );
-            }
-        }
-    }
-
-    private void RenameGenericParametersOnMethods(TypeDefinition targetType, TypeDefinition dummyType)
-    {
-        foreach (var targetMethod in targetType.Methods)
-        {
-            var dummyMethod = dummyType.Methods.FirstOrDefault(m => m.Name == targetMethod.Name);
-
-            if (
-                dummyMethod is null
-                || !targetMethod.HasGenericParameters
-                || targetMethod.GenericParameters.Count != dummyMethod.GenericParameters.Count
-            )
-            {
-                continue;
-            }
-
-            for (var i = 0; i < targetMethod.GenericParameters.Count; i++)
-            {
-                var targetGenericParameter = targetMethod.GenericParameters[i];
-                var dummyGenericParameter = dummyMethod.GenericParameters[i];
-
-                if (targetGenericParameter.Name?.ToString() == dummyGenericParameter.Name?.ToString())
-                {
-                    continue;
-                }
-
-                var oldName = targetGenericParameter.Name?.ToString();
-
-                targetGenericParameter.Name = dummyGenericParameter.Name;
-
-                if (logger.IsEnabled(LogLevel.Debug))
-                {
-                    logger.LogDebug(
-                        "Renamed method generic param: {old} -> {new}",
-                        oldName,
-                        targetGenericParameter.Name?.ToString()
-                    );
-                }
-            }
-        }
-    }
-
     private void RenameExplicitInterfaceMethods(TypeDefinition typeDef)
     {
         foreach (var method in typeDef.Methods.Where(m => m.IsExplicitInterfaceImplementation()))
@@ -401,6 +210,16 @@ public class SigBasedMemberRenamer(
         }
     }
 
+    private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)
+    {
+        var cachedReferences = memberReferenceCache.GetMethodReferences(target);
+
+        foreach (var reference in cachedReferences)
+        {
+            reference.Name = newName;
+        }
+    }
+
     private static bool FilterMethods(MethodDefinition m)
     {
         return !m.IsCompilerControlled
@@ -411,15 +230,5 @@ public class SigBasedMemberRenamer(
             && !m.IsAddMethod
             && !m.IsRemoveMethod
             && !m.IsFireMethod;
-    }
-
-    private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)
-    {
-        var cachedReferences = memberReferenceCache.GetMethodReferences(target);
-
-        foreach (var reference in cachedReferences)
-        {
-            reference.Name = newName;
-        }
     }
 }

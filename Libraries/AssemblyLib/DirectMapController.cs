@@ -16,7 +16,6 @@ public class DirectMapController(
     AssemblyWriter assemblyWriter,
     DataProvider dataProvider,
     RenamerService renamerService,
-    SigBasedMemberRenamer sigBasedMemberRenamer,
     Publicizer publicizer,
     MemberReferenceCache memberReferenceCache,
     MethodBodyNuker methodBodyNuker,
@@ -86,7 +85,8 @@ public class DirectMapController(
         logger.LogInformation("Direct map stage");
 
         await RunDirectMappingProcess();
-        sigBasedMemberRenamer.RenameMembersBySignature();
+        renamerService.RenameBySignature();
+
         RunPublicizer();
     }
 
@@ -98,7 +98,7 @@ public class DirectMapController(
     {
         logger.LogInformation("Post direct map stage");
 
-        //renamerService.PostDirectMapStage();
+        renamerService.RenameBySignature();
         attributeFactory.UpdateConverterAttributes();
 
         FindAndRemoveTypesFromAssembly();

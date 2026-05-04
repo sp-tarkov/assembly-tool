@@ -1,8 +1,8 @@
 using AssemblyLib.Models;
 
-namespace AssemblyLib.NameFactory;
+namespace AssemblyLib.NameFactory.DirectMapRenamers;
 
-public interface IRenamer
+public interface IDirectMapRenamer
 {
     int Priority { get; }
     bool Enabled { get; }

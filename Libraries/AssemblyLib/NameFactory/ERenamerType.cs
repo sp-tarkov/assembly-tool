@@ -9,4 +9,5 @@ public enum ERenamerType
     Methods,
     Fields,
     Properties,
+    GenericParameters,
 }

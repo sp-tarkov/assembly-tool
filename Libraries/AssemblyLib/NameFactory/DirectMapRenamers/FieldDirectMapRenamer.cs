@@ -4,15 +4,15 @@ using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.DirectMapRenamers;
 
 [Injectable]
-public class FieldRenamer(
-    ILogger<FieldRenamer> logger,
+public class FieldDirectMapRenamer(
+    ILogger<FieldDirectMapRenamer> logger,
     DataProvider dataProvider,
     Statistics stats,
     MemberReferenceCache memberReferenceCache
-) : IRenamer
+) : IDirectMapRenamer
 {
     public int Priority => 0;
     public bool Enabled => false;

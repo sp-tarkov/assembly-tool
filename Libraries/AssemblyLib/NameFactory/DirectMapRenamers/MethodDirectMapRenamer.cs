@@ -4,14 +4,14 @@ using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.DirectMapRenamers;
 
 [Injectable]
-public class MethodRenamer(
-    ILogger<MethodRenamer> logger,
+public class MethodDirectMapRenamer(
+    ILogger<MethodDirectMapRenamer> logger,
     DataProvider dataProvider,
     MemberReferenceCache memberReferenceCache
-) : IRenamer
+) : IDirectMapRenamer
 {
     public int Priority => 0;
     public bool Enabled => true;

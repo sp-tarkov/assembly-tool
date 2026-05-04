@@ -1,13 +1,23 @@
+using AsmResolver;
 using AsmResolver.DotNet;
 using AssemblyLib.Models;
-using AssemblyLib.NameFactory.Renamers;
+using AssemblyLib.NameFactory.DirectMapRenamers;
+using AssemblyLib.NameFactory.SigRenamers;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.NameFactory;
 
 [Injectable]
-public class RenamerService(ILogger<RenamerService> logger, DataProvider dataProvider, IEnumerable<IRenamer> renamers)
+public class RenamerService(
+    ILogger<RenamerService> logger,
+    DataProvider dataProvider,
+    IEnumerable<IDirectMapRenamer> directRenamers,
+    IEnumerable<ISigRenamer> sigRenamers
+)
 {
+    // Key - Target :: Val - Dummy
+    private readonly Dictionary<TypeDefinition, TypeDefinition> _targetToDummyMap = [];
+
     /// <summary>
     ///     Recursively rename the mapping file and all nested types
     /// </summary>
@@ -63,7 +73,7 @@ public class RenamerService(ILogger<RenamerService> logger, DataProvider dataPro
 
     public void RenameCompilerGeneratedTypes()
     {
-        if (renamers.FirstOrDefault(r => r is TypeRenamer) is not TypeRenamer classRenamer)
+        if (directRenamers.FirstOrDefault(r => r is TypeDirectMapRenamer) is not TypeDirectMapRenamer classRenamer)
         {
             logger.LogError("Failed to find ClassRenamer type");
             return;
@@ -72,21 +82,35 @@ public class RenamerService(ILogger<RenamerService> logger, DataProvider dataPro
         classRenamer.RenameCompilerGeneratedTypes();
     }
 
-    public void PostDirectMapStage()
+    public void RenameBySignature()
     {
-        if (renamers.FirstOrDefault(r => r is FieldRenamer) is not FieldRenamer fieldRenamer)
+        if (!dataProvider.IsDummyDllLoaded)
+        {
+            return;
+        }
+
+        var targetTypes = dataProvider
+            .LoadedModule!.GetAllTypes()
+            .Where(t => !t.FullName.IsObfuscatedName() && !t.IsCompilerGenerated() && !t.IsEnum)
+            .ToList();
+
+        var dummyTargetTypes = GetTargetTypesInDummy(targetTypes);
+        BuildTargetToDummyMap(targetTypes, dummyTargetTypes);
+        RunSigBasedRenamers();
+
+        if (directRenamers.FirstOrDefault(r => r is FieldDirectMapRenamer) is not FieldDirectMapRenamer fieldRenamer)
         {
             logger.LogError("Failed to find FieldRenamer type");
             return;
         }
 
-        fieldRenamer.RenameObfuscatedFields();
-        fieldRenamer.FixCapitalizationOnPublicizedFields();
+        //fieldRenamer.RenameObfuscatedFields();
+        //fieldRenamer.FixCapitalizationOnPublicizedFields();
     }
 
     private void RenameMapping(DirectMapModel model)
     {
-        foreach (var renamer in renamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))
+        foreach (var renamer in directRenamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))
         {
             renamer.Rename(model);
         }
@@ -108,5 +132,108 @@ public class RenamerService(ILogger<RenamerService> logger, DataProvider dataPro
 
         toolData.FullOldName = model.ToolData.Type?.FullName;
         toolData.ShortOldName = toolData.Type!.Name!.ToString();
+    }
+
+    private List<TypeDefinition> GetTargetTypesInDummy(IEnumerable<TypeDefinition> targetTypes)
+    {
+        var targetTypeNameList = targetTypes.Select(t => t.FullName).ToList();
+        return dataProvider
+            .DummyDllModule!.GetAllTypes()
+            .Where(type => targetTypeNameList.Contains(type.FullName))
+            .ToList();
+    }
+
+    private void BuildTargetToDummyMap(
+        IEnumerable<TypeDefinition> targetTypes,
+        IEnumerable<TypeDefinition> dummyTargetTypes
+    )
+    {
+        foreach (var target in targetTypes)
+        {
+            var dummyType = dummyTargetTypes.FirstOrDefault(t => t.FullName == target.FullName);
+            if (dummyType is null)
+            {
+                /*
+                logger.LogWarning(
+                    "Type: {typeName} does not exist in the dummy dll. Sig based renaming will not happen.",
+                    target.FullName
+                );
+                */
+
+                continue;
+            }
+
+            _targetToDummyMap.TryAdd(target, dummyType);
+        }
+
+        if (logger.IsEnabled(LogLevel.Debug))
+        {
+            logger.LogDebug("Loaded {count} dummy types for member comparison", _targetToDummyMap.Count);
+        }
+    }
+
+    private void RunSigBasedRenamers()
+    {
+        // First pass, handles actions that require both the target and the dummy
+        foreach (var (targetType, dummyType) in _targetToDummyMap)
+        {
+            if (logger.IsEnabled(LogLevel.Debug))
+            {
+                logger.LogDebug("Renaming members on: {type}", targetType.FullName);
+            }
+
+            foreach (var renamer in sigRenamers)
+            {
+                renamer.Rename(targetType, dummyType);
+            }
+        }
+
+        // Second pass, handles actions that only require the target
+        foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
+        {
+            RenameExplicitInterfaceMethods(type);
+        }
+    }
+
+    private void RenameExplicitInterfaceMethods(TypeDefinition typeDef)
+    {
+        foreach (var method in typeDef.Methods.Where(m => m.IsExplicitInterfaceImplementation()))
+        {
+            var splitName = method.Name?.Split('.');
+            if (splitName is null || splitName.Length < 2)
+            {
+                continue;
+            }
+
+            var changedToken = false;
+            for (var i = 0; i < splitName.Length; i++)
+            {
+                if (
+                    splitName[i].IsObfuscatedName()
+                    && dataProvider.DirectMapModels.TryGetValue(splitName[i], out var model)
+                    && model.NewName != null
+                )
+                {
+                    splitName[i] = model.NewName;
+                    changedToken = true;
+                }
+            }
+
+            if (changedToken)
+            {
+                var newName = string.Join(".", splitName);
+
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    logger.LogDebug(
+                        "Renaming explicit interface method {old} -> {new}",
+                        method.Name?.ToString(),
+                        newName
+                    );
+                }
+
+                method.Name = new Utf8String(newName);
+            }
+        }
     }
 }

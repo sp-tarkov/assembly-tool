@@ -3,10 +3,10 @@ using AsmResolver.DotNet;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.DirectMapRenamers;
 
 [Injectable]
-public class TypeRenamer(ILogger<TypeRenamer> logger, DataProvider dataProvider) : IRenamer
+public class TypeDirectMapRenamer(ILogger<TypeDirectMapRenamer> logger, DataProvider dataProvider) : IDirectMapRenamer
 {
     public int Priority => -1;
     public bool Enabled => true;

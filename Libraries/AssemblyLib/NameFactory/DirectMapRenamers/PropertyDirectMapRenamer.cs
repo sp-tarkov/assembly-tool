@@ -4,10 +4,14 @@ using AssemblyLib.Helpers;
 using AssemblyLib.Models;
 using SPTarkov.DI.Annotations;
 
-namespace AssemblyLib.NameFactory.Renamers;
+namespace AssemblyLib.NameFactory.DirectMapRenamers;
 
 [Injectable]
-public class PropertyRenamer(ILogger<PropertyRenamer> logger, DataProvider dataProvider, Statistics stats) : IRenamer
+public class PropertyDirectMapRenamer(
+    ILogger<PropertyDirectMapRenamer> logger,
+    DataProvider dataProvider,
+    Statistics stats
+) : IDirectMapRenamer
 {
     public int Priority => 0;
     public bool Enabled => false;

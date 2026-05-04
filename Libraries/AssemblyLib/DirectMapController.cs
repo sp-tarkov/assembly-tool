@@ -22,6 +22,7 @@ public class DirectMapController(
     MethodBodyNuker methodBodyNuker,
     PatchService patchService,
     AssemblyValidatorService validatorService,
+    AssemblySelfReferenceHelper assemblySelfReferenceHelper,
     IEnumerable<IModulePatch> modulePatches
 )
 {
@@ -104,6 +105,8 @@ public class DirectMapController(
 
         patchService.ApplyPatches();
         ApplyPatches();
+
+        assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
     }
 
     /// <summary>

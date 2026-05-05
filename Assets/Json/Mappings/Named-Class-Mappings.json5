@@ -581,6 +581,9 @@
         "NestedTypes": {
             "GInterface469": {
                 "NewName": "IBreakable"
+            },
+            "Struct975": {
+                "NewName": "BrokenWindowDescription"
             }
         }
     },
@@ -1858,6 +1861,55 @@
             },
             "GDelegate87`2": {
                 "NewName": "LightScrollerDataTypeGetter"
+            }
+        }
+    },
+    "HairRenderer": {
+        "NestedTypes": {
+            "Class690": {
+                "NewName": "MeshSorter",
+                "NestedTypes": {
+                    "Class691": {
+                        "NewName": "Triangle"
+                    },
+                    "Class692": {
+                        "NewName": "Patch"
+                    },
+                    "Struct162": {
+                        "NewName": "SortablePatch"
+                    }
+                }
+            }
+        }
+    },
+    "ControlledLampGroup": {
+        "NestedTypes": {
+            "Struct72": {
+                "NewName": "MaterialEmissionInfo"
+            }
+        }
+    },
+    "Arena.UI.NicknameField": {
+        "NestedTypes": {
+            "Struct274": {
+                "NewName": "Pair"
+            }
+        }
+    },
+    "AmplifyMotion.MotionState": {
+        "NestedTypes": {
+            "Struct1313": {
+                "NewName": "MaterialDesc"
+            },
+            "Struct1314": {
+                "NewName": "Matrix3x4"
+            }
+        }
+    },
+    "WindowsManager": {
+        "NestedTypes": {
+            "Struct176": {
+                "NewName": "PiecesQueueElement"
             }
         }
     }

@@ -3,6 +3,9 @@
         "NestedTypes": {
             "GInterface34": {
                 "NewName": "ISourceGroup"
+            },
+            "Class510`1": {
+                "NewName": "BetterSourceFactory"
             }
         }
     },
@@ -605,6 +608,14 @@
         "NestedTypes": {
             "GClass607": {
                 "NewName": "AISimpleTaskData"
+            },
+            "Class284": {
+                "NewName": "AIRegularTaskGroup",
+                "NestedTypes": {
+                    "Class285": {
+                        "NewName": "AIRegularTaskData"
+                    }
+                }
             }
         }
     },
@@ -640,8 +651,11 @@
             "Class1100": {
                 "NewName": "TraceMessage"
             },
-            "Class1102": {
+            "Class1101": {
                 "NewName": "TraceMessageWithCode"
+            },
+            "Class1102": {
+                "NewName": "AcceptResponse"
             },
             "Class1103": {
                 "NewName": "AcceptReject"
@@ -1020,6 +1034,13 @@
         "NestedTypes": {
             "GClass3008": {
                 "NewName": "Effect"
+            },
+            "Stimulator": {
+                "NestedTypes": {
+                    "Class2222": {
+                        "NewName": "Buff"
+                    }
+                }
             }
         }
     },
@@ -1507,6 +1528,9 @@
         "NestedTypes": {
             "GClass2352": {
                 "NewName": "HideoutNightVisionTemplate"
+            },
+            "Class1309`1": {
+                "NewName": "HideoutSlotObserver"
             }
         }
     },
@@ -1646,6 +1670,9 @@
         "NestedTypes": {
             "GClass1668": {
                 "NewName": "VectorComparer"
+            },
+            "Class1078": {
+                "NewName": "Slider"
             }
         }
     },
@@ -1712,6 +1739,9 @@
         "NestedTypes": {
             "Struct271": {
                 "NewName": "Line"
+            },
+            "Class1065": {
+                "NewName": "LineSegement"
             }
         }
     },
@@ -1841,7 +1871,52 @@
         "NestedTypes": {
             "Interface4": {
                 "NewName": "IForceMaxValueOnStartAccumulator"
-            }
+            },
+            "Class633": {
+                "NewName": "EffectAccumulator"
+            },
+            "Class634": {
+                "NewName": "CC_FastVignetteAccumulator"
+            },
+            "Class635": {
+                "NewName": "CC_DoubleVisionAccumulator"
+            },
+            "Class636": {
+                "NewName": "CC_HueFocusAccumulator"
+            },
+            "Class637": {
+                "NewName": "CC_RadialBlurAccumulator"
+            },
+            "Class638": {
+                "NewName": "CC_SharpenAccumulator"
+            },
+            "Class639": {
+                "NewName": "FrostbiteAccumulator"
+            },
+            "Class640": {
+                "NewName": "DesaturateMaskAccumulator"
+            },
+            "Class641": {
+                "NewName": "DesaturateAccumulator"
+            },
+            "Class642": {
+                "NewName": "CC_BlendAccumulator"
+            },
+            "Class643": {
+                "NewName": "FlashAccumulator"
+            },
+            "Class644": {
+                "NewName": "FOV_Accumulator"
+            },
+            "Class645": {
+                "NewName": "CC_WiggleAccumulator"
+            },
+            "Class646": {
+                "NewName": "MotionBlurAccumulator"
+            },
+            "Class647": {
+                "NewName": "ZombieInfection_Accumulator"
+            },
         }
     },
     "EFT.EndByTimerScenario": {
@@ -1910,6 +1985,219 @@
         "NestedTypes": {
             "Struct176": {
                 "NewName": "PiecesQueueElement"
+            }
+        }
+    },
+    "Audio.AmbientSubsystem.AmbientSplineEmitter.SplineSoundEmitter.SplineTriggerChecker": {
+        "NestedTypes": {
+            "Struct231": {
+                "NewName": "DistanceCalculationJob"
+            }
+        }
+    },
+    "Audio.AmbientSubsystem.TriggerSoundBankPlayer": {
+        "NestedTypes": {
+            "Struct220": {
+                "NewName": "PlayerPlayingData"
+            }
+        }
+    },
+    "EFT.Hideout.SelectItemContextMenu": {
+        "NestedTypes": {
+            "Struct700": {
+                "NewName": "DirectionSettings"
+            }
+        }
+    },
+    "EFT.UI.EquipItemWindow": {
+        "NestedTypes": {
+            "Struct1171": {
+                "NewName": "EquipItemsGridParameters"
+            }
+        }
+    },
+    "EFT.UI.ValidationInputField": {
+        "NestedTypes": {
+            "Struct1167": {
+                "NewName": "Pair"
+            }
+        }
+    },
+    "EFT.Weather.TODSkySimple": {
+        "NestedTypes": {
+            "Struct798": {
+                "NewName": "SphericalHarmonicsContainer"
+            }
+        }
+    },
+    "Koenigz.PerfectCulling.EFT.PerfectCullingCrossSceneSampler": {
+        "NestedTypes": {
+            "Class854": {
+                "NewName": "WorkThreadParams"
+            },
+            "Class855": {
+                "NewName": "WorkItem"
+            },
+            "Class856": {
+                "NewName": "WorkJob",
+                "NestedTypes": {
+                    "Struct242": {
+                        "NewName": "PrepareVolumesJob"
+                    },
+                    "Struct243": {
+                        "NewName": "UpdateVisibilityJob"
+                    }
+                }
+            },
+            "Class857": {
+                "NewName": "GridTaskParameters"
+            },
+            "Class858": {
+                "NewName": "CameraState"
+            },
+            "Struct244": {
+                "NewName": "SnapUpdateJob"
+            },
+            "Struct245": {
+                "NewName": "SnapFillJob"
+            },
+            "Struct246": {
+                "NewName": "OverlapCellJob"
+            },
+            "Struct247": {
+                "NewName": "RecomputeVisibilityJob"
+            }
+        }
+    },
+    "ObservedCullingManager": {
+        "NestedTypes": {
+            "Struct164": {
+                "NewName": "ObservedCullingJob"
+            },
+            "Struct165": {
+                "NewName": "CullingItem"
+            }
+        }
+    },
+    "VolumetricFog": {
+        "NestedTypes": {
+            "Struct154": {
+                "NewName": "Vector3i"
+            },
+            "Struct155": {
+                "NewName": "PointLightParams"
+            },
+            "Struct156": {
+                "NewName": "TubeLightParams"
+            },
+            "Struct157": {
+                "NewName": "AreaLightParams"
+            },
+            "Struct158": {
+                "NewName": "FogEllipsoidParams"
+            }
+        }
+    },
+    "AmbientLight": {
+        "NestedTypes": {
+            "Class619": {
+                "NewName": "CamSettings"
+            }
+        }
+    },
+    "BotFriendlyTilt": {
+        "NestedTypes": {
+            "Class261": {
+                "NewName": "TiltPLayerRequests"
+            }
+        }
+    },
+    "ChartAndGraph.AxisBase": {
+        "NestedTypes": {
+            "Class1063": {
+                "NewName": "TextData"
+            }
+        }
+    },
+    "ChartAndGraph.GraphChart": {
+        "NestedTypes": {
+            "Class1075": {
+                "NewName": "CategoryObject"
+            }
+        }
+    },
+    "DebugBotData": {
+        "NestedTypes": {
+            "Class128": {
+                "NewName": "ZoneCount"
+            }
+        }
+    },
+    "DecalSystem": {
+        "NestedTypes": {
+            "Class624": {
+                "NewName": "Decal"
+            }
+        }
+    },
+    "DistantShadow": {
+        "NestedTypes": {
+            "Class613": {
+                "NewName": "CachedParameters"
+            },
+            "Class614": {
+                "NewName": "DrawRecord"
+            }
+        }
+    },
+    "EFT.BaseLocalGame`1": {
+        "NestedTypes": {
+            "Class1630": {
+                "NewName": "CustomUpdateTextureStreamingManager"
+            }
+        }
+    },
+    "EFT.BotsSmokesVisionSystem": {
+        "NestedTypes": {
+            "Class1093": {
+                "NewName": "GrenadeData"
+            }
+        }
+    },
+    "EFT.ClientFirearmController": {
+        "NestedTypes": {
+            "Class1265": {
+                "NewName": "ClientPlayerReloadCylinderMagOperation"
+            },
+            "Class1266": {
+                "NewName": "ClientPlayerReloadInternalMagOperation"
+            },
+            "Class1267": {
+                "NewName": "ClientPlayerReloadInternalMagWithOpenBoltOperation"
+            },
+            "Class1268": {
+                "NewName": "ClientBoltActionFireOperation"
+            },
+        }
+    },
+    "EFT.ExtendedPlayerOwner": {
+        "NestedTypes": {
+            "Class1784": {
+                "NewName": "MockedInputTree"
+            }
+        }
+    },
+    "EFT.Hideout.AreasPanel": {
+        "NestedTypes": {
+            "Class1973": {
+                "NewName": "AreasPanelComparer"
+            }
+        }
+    },
+    "EFT.Hideout.VideoAmbiance": {
+        "NestedTypes": {
+            "Class1889": {
+                "NewName": "CurrentVideoClip"
             }
         }
     }

@@ -123,30 +123,39 @@ public class DataProvider
             AllowTrailingCommas = true,
             ReadCommentHandling = JsonCommentHandling.Skip,
             UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+            AllowDuplicateProperties = false,
         };
 
-        var count = 0;
-        foreach (var file in Directory.GetFiles(_directMappingPath))
+        try
         {
-            var jsonText = File.ReadAllText(file);
-            var tmp = JsonSerializer.Deserialize<Dictionary<string, DirectMapModel>>(jsonText, settings)!;
-
-            count += CountMappingsRecursively(tmp, file);
-            var localCount = 0;
-            foreach (var (name, model) in tmp)
+            var count = 0;
+            foreach (var file in Directory.GetFiles(_directMappingPath))
             {
-                if (!DirectMapModels.TryAdd(name, model))
+                var jsonText = File.ReadAllText(file);
+                var tmp = JsonSerializer.Deserialize<Dictionary<string, DirectMapModel>>(jsonText, settings)!;
+
+                count += CountMappingsRecursively(tmp, file);
+                var localCount = 0;
+                foreach (var (name, model) in tmp)
                 {
-                    throw new DuplicateDirectMapException($"Duplicate direct mapping found, {name}");
+                    if (!DirectMapModels.TryAdd(name, model))
+                    {
+                        throw new DuplicateDirectMapException($"Duplicate direct mapping found, {name}");
+                    }
+
+                    localCount++;
                 }
 
-                localCount++;
+                _logger.LogInformation("Loaded {Count} mappings from: {Path}", localCount, Path.GetFileName(file));
             }
 
-            _logger.LogInformation("Loaded {Count} mappings from: {Path}", localCount, Path.GetFileName(file));
+            _logger.LogInformation("Total Count: {Count}", count);
         }
-
-        _logger.LogInformation("Total Count: {Count}", count);
+        catch (JsonException ex)
+        {
+            _logger.LogError("Json parsing error: {Message}  Json Path: {Path}", ex.Message, ex.Path ?? "");
+            throw;
+        }
     }
 
     private static int CountMappingsRecursively(Dictionary<string, DirectMapModel> models, string file)

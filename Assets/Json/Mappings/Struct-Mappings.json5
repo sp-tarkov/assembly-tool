@@ -81,4 +81,7 @@
   "Struct36": {
     "NewName": "WsConnectionParams",
   },
+  "Struct1343": {
+    "RemoveType": true
+  }
 }

@@ -14,7 +14,7 @@ public class RemoveHwInfoPatch(
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_Struct35>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_Struct39>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException(

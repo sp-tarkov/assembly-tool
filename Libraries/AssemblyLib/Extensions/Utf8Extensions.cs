@@ -1,4 +1,5 @@
-﻿using AsmResolver;
+﻿using System.Text;
+using AsmResolver;
 
 namespace AssemblyLib.Extensions;
 
@@ -48,16 +49,18 @@ internal static class Utf8Extensions
         /// <returns>True if it in the list</returns>
         public bool IsObfuscatedName()
         {
-            var realString = utf8.ToString();
+            var name = utf8.AsSpan();
+            name = name.TrimStart("_"u8);
 
-            if (realString.Trim().StartsWith('_'))
+            foreach (var prefix in DataProvider.ObfuscatedPrefixes)
             {
-                realString = realString.Replace("_", "");
+                if (name.StartsWith(Encoding.UTF8.GetBytes(prefix)))
+                {
+                    return true;
+                }
             }
 
-            var result = DataProvider.ObfuscatedNames.Any(item => realString.Contains(item, StringComparison.CurrentCultureIgnoreCase));
-
-            return result;
+            return false;
         }
     }
 }

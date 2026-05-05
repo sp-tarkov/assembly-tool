@@ -57,7 +57,7 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         return result;
     }
 
-    public async Task WriteAssembly(
+    public void WriteAssembly(
         ModuleDefinition module,
         string targetAssemblyPath,
         string dllName = "-cleaned-direct-mapped-publicized.dll"
@@ -92,7 +92,7 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
             return;
         }
 
-        await StartHollow(module.GetAllTypes());
+        _ = Task.Run(() => StartHollow(module.GetAllTypes()));
 
         var hollowedDir = Path.GetDirectoryName(outPath);
         var hollowedPath = Path.Combine(hollowedDir!, "Assembly-CSharp-hollowed.dll");

@@ -1,15 +1,10 @@
 using AsmResolver.DotNet;
-using AssemblyLib.SignatureComparers;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.NameFactory.SigRenamers;
 
 [Injectable]
-public class GenParmSigRenamer(
-    ILogger<PropertySigRenamer> logger,
-    DataProvider dataProvider,
-    PropertySigComparer propertySigComparer
-) : ISigRenamer
+public class GenParmSigRenamer(ILogger<PropertySigRenamer> logger) : ISigRenamer
 {
     public int Priority => 0;
     public bool Enabled => true;

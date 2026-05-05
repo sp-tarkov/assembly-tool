@@ -18,13 +18,13 @@ public class App
         ConfigureApplication();
     }
 
-    public async Task RunDirectMapProcess(string targetAssemblyPath, string? dummyDllPath)
+    public void RunDirectMapProcess(string targetAssemblyPath, string? dummyDllPath)
     {
         var controller = _provider?.GetService<DirectMapController>();
-        await controller?.Run(targetAssemblyPath, dummyDllPath)!;
+        controller?.Run(targetAssemblyPath, dummyDllPath);
     }
 
-    public async Task RunDirectMapTest(
+    public void RunDirectMapTest(
         string targetAssemblyPath,
         string dummyDllPath,
         string targetType,
@@ -38,7 +38,7 @@ public class App
         dataProvider.DirectMapModels.Add(targetType, testModel);
 
         var controller = _provider?.GetService<DirectMapController>();
-        await controller?.Run(targetAssemblyPath, dummyDllPath)!;
+        controller?.Run(targetAssemblyPath, dummyDllPath);
     }
 
     public Task DeObfuscate(string assemblyPath, bool isLauncher)

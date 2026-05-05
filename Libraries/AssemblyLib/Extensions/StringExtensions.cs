@@ -6,14 +6,18 @@ public static class StringExtensions
     {
         public bool IsObfuscatedName()
         {
-            if (str.Trim().StartsWith('_'))
+            var name = str.AsSpan().Trim();
+            name = name.TrimStart('_');
+
+            foreach (var prefix in DataProvider.ObfuscatedPrefixes)
             {
-                str = str.Replace("_", "");
+                if (name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
             }
 
-            var result = DataProvider.ObfuscatedNames.Any(item => str.Contains(item, StringComparison.CurrentCultureIgnoreCase));
-
-            return result;
+            return false;
         }
     }
 }

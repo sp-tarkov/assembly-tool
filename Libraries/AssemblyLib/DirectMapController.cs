@@ -29,25 +29,33 @@ public class DirectMapController(
 
     private string _targetAssemblyPath = string.Empty;
 
-    public async Task Run(string assemblyPath, string dummyDllPath)
+    public void Run(string assemblyPath, string dummyDllPath)
     {
-        if (!PrepareStage(assemblyPath, dummyDllPath))
+        try
         {
-            return;
+            if (!PrepareStage(assemblyPath, dummyDllPath))
+            {
+                return;
+            }
+
+            if (!validatorService.Validate(ValidationStage.PreMapping))
+                return;
+
+            DirectMapStage();
+            PostDirectMapStage();
+
+            if (!validatorService.Validate(ValidationStage.PostMapping))
+                return;
+
+            assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
+
+            logger.LogInformation("Direct map completed.");
         }
-
-        if (!validatorService.Validate(ValidationStage.PreMapping))
-            return;
-
-        await DirectMapStage();
-        await PostDirectMapStage();
-
-        if (!validatorService.Validate(ValidationStage.PostMapping))
-            return;
-
-        await assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
-
-        logger.LogInformation("Direct map completed.");
+        catch (Exception e)
+        {
+            logger.LogCritical("Exception while running the direct map process: {e}", e.Message);
+            throw;
+        }
     }
 
     /// <summary>
@@ -58,59 +66,82 @@ public class DirectMapController(
     /// <returns>true if tool is ready for use</returns>
     private bool PrepareStage(string assemblyPath, string dummyDllPath)
     {
-        logger.LogInformation("Prepare data stage");
-
-        Module = dataProvider.LoadModule(assemblyPath);
-        _targetAssemblyPath = assemblyPath;
-
-        if (!TryDeobfuscateAssembly())
+        try
         {
-            return false;
+            logger.LogInformation("Prepare data stage");
+
+            Module = dataProvider.LoadModule(assemblyPath);
+            _targetAssemblyPath = assemblyPath;
+
+            if (!TryDeobfuscateAssembly())
+            {
+                return false;
+            }
+
+            dataProvider.LoadDummyDllModule(dummyDllPath);
+
+            attributeFactory.PreInitializeAllAttributeSignatures();
+
+            memberReferenceCache.Hydrate();
+            return true;
         }
-
-        dataProvider.LoadDummyDllModule(dummyDllPath);
-
-        attributeFactory.PreInitializeAllAttributeSignatures();
-
-        memberReferenceCache.Hydrate();
-        return true;
+        catch (Exception e)
+        {
+            logger.LogCritical("Exception while in prepare stage: {e}", e.Message);
+            throw;
+        }
     }
 
     /// <summary>
     ///     Handles all actions relating directly to the direct mapping process including; direct mappings, signature mappings, and publication
     /// </summary>
-    private async Task DirectMapStage()
+    private void DirectMapStage()
     {
-        logger.LogInformation("Direct map stage");
+        try
+        {
+            logger.LogInformation("Direct map stage");
 
-        await RunDirectMappingProcess();
-        renamerService.RenameBySignature();
+            RunDirectMappingProcess();
+            renamerService.RenameBySignature();
 
-        RunPublicizer();
+            RunPublicizer();
+        }
+        catch (Exception e)
+        {
+            logger.LogCritical("Exception while in direct map stage: {e}", e.Message);
+            throw;
+        }
     }
 
     /// <summary>
     ///     Handles all actions after completing the direct mapping process including; Renaming obfuscated fields by on type name,
     /// fixing capitalization post publication, updating attributes and applying patches.
     /// </summary>
-    private async Task PostDirectMapStage()
+    private void PostDirectMapStage()
     {
-        logger.LogInformation("Post direct map stage");
+        try
+        {
+            logger.LogInformation("Post direct map stage");
 
-        renamerService.RenameBySignature();
-        attributeFactory.UpdateConverterAttributes();
+            attributeFactory.UpdateConverterAttributes();
 
-        FindAndRemoveTypesFromAssembly();
-        assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
+            FindAndRemoveTypesFromAssembly();
+            assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
 
-        await assemblyWriter.WriteAssembly(
-            Module!,
-            _targetAssemblyPath,
-            "-cleaned-direct-mapped-publicized-unpatched.dll"
-        );
+            assemblyWriter.WriteAssembly(
+                Module!,
+                _targetAssemblyPath,
+                "-cleaned-direct-mapped-publicized-unpatched.dll"
+            );
 
-        patchService.ApplyPatches();
-        assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
+            patchService.ApplyPatches();
+            assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
+        }
+        catch (Exception e)
+        {
+            logger.LogCritical("Exception while in post direct map stage: {e}", e.Message);
+            throw;
+        }
     }
 
     /// <summary>
@@ -153,7 +184,7 @@ public class DirectMapController(
     /// <summary>
     ///     Runs the direct mapping process
     /// </summary>
-    private async Task RunDirectMappingProcess()
+    private void RunDirectMappingProcess()
     {
         var mappings = dataProvider.DirectMapModels;
 
@@ -163,9 +194,10 @@ public class DirectMapController(
             return;
         }
 
+        logger.LogInformation("Renaming direct mappings");
         foreach (var (targetFullName, mapping) in mappings)
         {
-            await renamerService.RenameMappingRecursive(targetFullName, mapping);
+            renamerService.RenameMappingRecursive(targetFullName, mapping);
         }
 
         attributeFactory.UpdateAsyncAttributes();

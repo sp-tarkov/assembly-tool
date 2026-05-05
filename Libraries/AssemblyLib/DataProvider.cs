@@ -36,7 +36,7 @@ public class DataProvider
     private static readonly string _assetsPath = Path.Combine(AppContext.BaseDirectory, "Assets");
     private static readonly string _directMappingPath = Path.Combine(_assetsPath, "Json", "Mappings");
 
-    public static readonly ImmutableHashSet<string> ObfuscatedNames =
+    public static readonly string[] ObfuscatedPrefixes =
     [
         "Class",
         "Delegate",

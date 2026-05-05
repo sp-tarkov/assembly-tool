@@ -22,16 +22,18 @@ public class RunTest : ICommand
     [CommandParameter(1, IsRequired = true, Description = "The absolute path to the dummy dll")]
     public required string DummyDllPath { get; init; }
 
-    public async ValueTask ExecuteAsync(IConsole console)
+    public ValueTask ExecuteAsync(IConsole console)
     {
         var (target, model) = GatherTestInfo(console);
         if (target is null || model is null)
         {
-            return;
+            return ValueTask.CompletedTask;
         }
 
         var app = new App();
-        await app.RunDirectMapTest(TargetAssemblyPath, DummyDllPath, target, model);
+        app.RunDirectMapTest(TargetAssemblyPath, DummyDllPath, target, model);
+
+        return ValueTask.CompletedTask;
     }
 
     private (string?, DirectMapModel?) GatherTestInfo(IConsole console)

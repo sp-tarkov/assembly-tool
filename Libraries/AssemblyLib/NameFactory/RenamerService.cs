@@ -24,7 +24,7 @@ public class RenamerService(
     /// <param name="targetFullName">Target GCType to rename</param>
     /// <param name="model">model</param>
     /// <param name="parent">parent used in recursive call</param>
-    public Task RenameMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
+    public void RenameMappingRecursive(string targetFullName, DirectMapModel model, TypeDefinition? parent = null)
     {
         var toolData = model.ToolData;
 
@@ -35,13 +35,13 @@ public class RenamerService(
         catch (Exception ex)
         {
             logger.LogError("Error setting up tool data: {message}", ex.Message);
-            return Task.CompletedTask;
+            return;
         }
 
         if (toolData.Type is null)
         {
             logger.LogError("Failed to find type: {target}", targetFullName);
-            return Task.CompletedTask;
+            return;
         }
 
         // Do children type's first so the parent can be used to find them
@@ -68,7 +68,6 @@ public class RenamerService(
         }
 
         RenameMapping(model);
-        return Task.CompletedTask;
     }
 
     public void RenameCompilerGeneratedTypes()
@@ -97,15 +96,6 @@ public class RenamerService(
         var dummyTargetTypes = GetTargetTypesInDummy(targetTypes);
         BuildTargetToDummyMap(targetTypes, dummyTargetTypes);
         RunSigBasedRenamers();
-
-        if (directRenamers.FirstOrDefault(r => r is FieldDirectMapRenamer) is not FieldDirectMapRenamer fieldRenamer)
-        {
-            logger.LogError("Failed to find FieldRenamer type");
-            return;
-        }
-
-        //fieldRenamer.RenameObfuscatedFields();
-        //fieldRenamer.FixCapitalizationOnPublicizedFields();
     }
 
     private void RenameMapping(DirectMapModel model)
@@ -174,19 +164,22 @@ public class RenamerService(
 
     private void RunSigBasedRenamers()
     {
-        // First pass, handles actions that require both the target and the dummy
-        foreach (var (targetType, dummyType) in _targetToDummyMap)
+        foreach (var renamer in sigRenamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))
         {
-            if (logger.IsEnabled(LogLevel.Debug))
-            {
-                logger.LogDebug("Renaming members on: {type}", targetType.FullName);
-            }
+            logger.LogInformation("Running {type} sig renamer", renamer.Type.ToString());
 
-            foreach (var renamer in sigRenamers)
+            foreach (var (targetType, dummyType) in _targetToDummyMap)
             {
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    logger.LogDebug("Renaming members on: {type}", targetType.FullName);
+                }
+
                 renamer.Rename(targetType, dummyType);
             }
         }
+
+        // First pass, handles actions that require both the target and the dummy
 
         // Second pass, handles actions that only require the target
         foreach (var type in dataProvider.LoadedModule!.GetAllTypes())

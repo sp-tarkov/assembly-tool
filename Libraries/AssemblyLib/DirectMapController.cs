@@ -21,8 +21,7 @@ public class DirectMapController(
     MethodBodyNuker methodBodyNuker,
     PatchService patchService,
     AssemblyValidatorService validatorService,
-    AssemblySelfReferenceHelper assemblySelfReferenceHelper,
-    IEnumerable<IModulePatch> modulePatches
+    AssemblySelfReferenceHelper assemblySelfReferenceHelper
 )
 {
     private ModuleDefinition? Module { get; set; }
@@ -41,7 +40,7 @@ public class DirectMapController(
             return;
 
         await DirectMapStage();
-        PostDirectMapStage();
+        await PostDirectMapStage();
 
         if (!validatorService.Validate(ValidationStage.PostMapping))
             return;
@@ -94,7 +93,7 @@ public class DirectMapController(
     ///     Handles all actions after completing the direct mapping process including; Renaming obfuscated fields by on type name,
     /// fixing capitalization post publication, updating attributes and applying patches.
     /// </summary>
-    private void PostDirectMapStage()
+    private async Task PostDirectMapStage()
     {
         logger.LogInformation("Post direct map stage");
 
@@ -102,10 +101,15 @@ public class DirectMapController(
         attributeFactory.UpdateConverterAttributes();
 
         FindAndRemoveTypesFromAssembly();
+        assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
+
+        await assemblyWriter.WriteAssembly(
+            Module!,
+            _targetAssemblyPath,
+            "-cleaned-direct-mapped-publicized-unpatched.dll"
+        );
 
         patchService.ApplyPatches();
-        ApplyPatches();
-
         assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
     }
 
@@ -168,19 +172,6 @@ public class DirectMapController(
 
         // Make sure we don't do this until after renaming remaps
         renamerService.RenameCompilerGeneratedTypes();
-    }
-
-    /// <summary>
-    ///     Applies any existing patches
-    /// </summary>
-    /// <returns></returns>
-    private void ApplyPatches()
-    {
-        foreach (var patch in modulePatches.Where(p => p.Enabled))
-        {
-            patch.Patch();
-            logger.LogInformation("Patch {patchName} applied.", patch.GetType().Name);
-        }
     }
 
     /// <summary>

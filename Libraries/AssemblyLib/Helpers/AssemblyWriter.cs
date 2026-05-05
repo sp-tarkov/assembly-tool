@@ -57,9 +57,12 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         return result;
     }
 
-    public async Task WriteAssembly(ModuleDefinition module, string targetAssemblyPath)
+    public async Task WriteAssembly(
+        ModuleDefinition module,
+        string targetAssemblyPath,
+        string dllName = "-cleaned-direct-mapped-publicized.dll"
+    )
     {
-        const string dllName = "-cleaned-direct-mapped-publicized.dll";
         var outPath = Path.Combine(
             Path.GetDirectoryName(targetAssemblyPath)
                 ?? throw new NullReferenceException("Target assembly path is null"),
@@ -83,6 +86,11 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         }
 
         logger.LogInformation("Assembly written to: {outPath}", outPath);
+
+        if (dllName != "-cleaned-direct-mapped-publicized.dll")
+        {
+            return;
+        }
 
         await StartHollow(module.GetAllTypes());
 

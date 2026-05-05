@@ -18,7 +18,14 @@ public class PatchService(
         ApplyMethodPatches();
     }
 
-    private void ApplyModulePatches() { }
+    private void ApplyModulePatches()
+    {
+        foreach (var patch in modulePatches.Where(p => p.Enabled))
+        {
+            patch.Patch();
+            logger.LogInformation("Patch {patchName} applied.", patch.GetType().Name);
+        }
+    }
 
     private void ApplyMethodPatches()
     {

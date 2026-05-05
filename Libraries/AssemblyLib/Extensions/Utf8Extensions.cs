@@ -49,18 +49,7 @@ internal static class Utf8Extensions
         /// <returns>True if it in the list</returns>
         public bool IsObfuscatedName()
         {
-            var name = utf8.AsSpan();
-            name = name.TrimStart("_"u8);
-
-            foreach (var prefix in DataProvider.ObfuscatedPrefixes)
-            {
-                if (name.StartsWith(Encoding.UTF8.GetBytes(prefix)))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return utf8.ToString().IsObfuscatedName();
         }
     }
 }

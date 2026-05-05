@@ -12,7 +12,8 @@ public class RenamerService(
     ILogger<RenamerService> logger,
     DataProvider dataProvider,
     IEnumerable<IDirectMapRenamer> directRenamers,
-    IEnumerable<ISigRenamer> sigRenamers
+    IEnumerable<ISigRenamer> sigRenamers,
+    ObfuscatedFieldRenamer obfuscatedFieldRenamer
 )
 {
     // Key - Target :: Val - Dummy
@@ -164,6 +165,7 @@ public class RenamerService(
 
     private void RunSigBasedRenamers()
     {
+        // First pass, handles actions that require both the target and the dummy
         foreach (var renamer in sigRenamers.Where(r => r.Enabled).OrderByDescending(r => r.Priority))
         {
             logger.LogInformation("Running {type} sig renamer", renamer.Type.ToString());
@@ -179,11 +181,12 @@ public class RenamerService(
             }
         }
 
-        // First pass, handles actions that require both the target and the dummy
+        logger.LogInformation("Fixing obfuscated members");
 
         // Second pass, handles actions that only require the target
         foreach (var type in dataProvider.LoadedModule!.GetAllTypes())
         {
+            obfuscatedFieldRenamer.Rename(type);
             RenameExplicitInterfaceMethods(type);
         }
     }

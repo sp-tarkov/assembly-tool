@@ -19,11 +19,11 @@ public class LocaleFixPatch(MemberLookup.ModuleMemberLookup lookup, DataProvider
     /// </summary>
     public void Patch()
     {
-        var body = lookup.Eft.Method<EftCreateProfileOperation.CG_Struct0>("MoveNext")?.CilMethodBody;
+        var body = lookup.Eft.Method<EftCreateProfileOperation.CG_Struct3>("MoveNext")?.CilMethodBody;
         if (body is null)
         {
             throw new FailedToFindTypeException(
-                "Could not find `Eft.CreateProfileOperation.CG_Struct0.MoveNext()` when patching"
+                "Could not find `Eft.CreateProfileOperation.CG_Struct3.MoveNext()` when patching"
             );
         }
 

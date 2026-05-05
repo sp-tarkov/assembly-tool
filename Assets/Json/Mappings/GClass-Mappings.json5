@@ -220,7 +220,12 @@
     },
     "GClass1042": {
         "NewName": "AdditiveMeshBakeManager",
-        "NewNamespace": "CW2"
+        "NewNamespace": "CW2",
+        "NestedTypes": {
+            "Class739": {
+                "NewName": "MeshData"
+            }
+        }
     },
     "GClass1043": {
         "NewName": "AnimMath",
@@ -535,7 +540,12 @@
     },
     "GClass1114": {
         "NewName": "PhraseQueueSpeaker",
-        "NewNamespace": "Audio.QueueSpeakerSystem"
+        "NewNamespace": "Audio.QueueSpeakerSystem",
+        "NestedTypes": {
+            "Struct202": {
+                "NewName": "QueueData"
+            }
+        }
     },
     "GClass1115": {
         "NewName": "BtrDriverDialogueEventHandler",
@@ -764,7 +774,15 @@
     },
     "GClass1164": {
         "NewName": "SpatialAudioSystemPoolService",
-        "NewNamespace": "Audio.SpatialSystem.Utils"
+        "NewNamespace": "Audio.SpatialSystem.Utils",
+        "NestedTypes": {
+            "Class798": {
+                "NewName": "PoolInfo"
+            },
+            "Class799": {
+                "NewName": "PendingReturn"
+            }
+        }
     },
     "GClass1165": {
         "NewName": "AudioModuleNames",
@@ -1051,17 +1069,22 @@
             "Struct235": {
                 "NewName": "DynamicVisibilityUpdateJob"
             },
-            "Struct235": {
+            "Struct236": {
                 "NewName": "StaticVisibilityQueueUpdateJob"
             },
-            "Struct235": {
+            "Struct237": {
                 "NewName": "StaticVisibilityTestJob"
             },
         },
     },
     "GClass1238": {
         "NewName": "CullingGridVisibilitySampler",
-        "NewNamespace": "Koenigz.PerfectCulling.EFT"
+        "NewNamespace": "Koenigz.PerfectCulling.EFT",
+        "NestedTypes": {
+            "Struct238": {
+                "NewName": "TempRuntimeDecompress"
+            }
+        }
     },
     "GClass1239": {
         "NewName": "PerfectCullingSharedOccluderGenerator",
@@ -1232,7 +1255,15 @@
     },
     "GClass1281": {
         "NewName": "DriveAnalyzer",
-        "NewNamespace": "DriveAnalyzing"
+        "NewNamespace": "DriveAnalyzing",
+        "NestedTypes": {
+            "Struct249": {
+                "NewName": "DeviceSeekPenaltyDescriptor"
+            },
+            "Struct250": {
+                "NewName": "StoragePropertyQuery"
+            }
+        }
     },
     "GClass1282": {
         "NewName": "NetworkReader",
@@ -1267,7 +1298,12 @@
     },
     "GClass1290": {
         "NewName": "NetworkWriterExtensions",
-        "NewNamespace": "Mirror"
+        "NewNamespace": "Mirror",
+        "NestedTypes": {
+            "Struct251": {
+                "NewName": "UIntDouble"
+            }
+        }
     },
     "GClass1292": {
         "NewName": "SortedListExtensions",
@@ -2020,7 +2056,24 @@
     },
     "GClass1473": {
         "NewName": "NatPunchModule",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+        "NestedTypes": {
+            "Struct255": {
+                "NewName": "RequestEventData"
+            },
+            "Struct256": {
+                "NewName": "SuccessEventData"
+            },
+            "Class936": {
+                "NewName": "NatIntroduceRequestPacket"
+            },
+            "Class937": {
+                "NewName": "NatIntroduceResponsePacket"
+            },
+            "Class938": {
+                "NewName": "NatPunchPacket"
+            }
+        }
     },
     "GClass1476": {
         "NewName": "NetManager",
@@ -2282,7 +2335,15 @@
     },
     "GClass1629`2": {
         "NewName": "ConvertedBindableList",
-        "NewNamespace": "Diz.Binding"
+        "NewNamespace": "Diz.Binding",
+        "NestedTypes": {
+            "Class1045": {
+                "NewName": "IndexItem"
+            },
+            "GDelegate63": {
+                "NewName": "Converter"
+            }
+        }
     },
     "GClass163": {
         "NewName": "TagillaSearchLayer"
@@ -2381,7 +2442,12 @@
     },
     "GClass1664": {
         "NewName": "ChartCommon",
-        "NewNamespace": "ChartAndGraph"
+        "NewNamespace": "ChartAndGraph",
+        "NestedTypes": {
+            "Class1071": {
+                "NewName": "IntComparer"
+            }
+        }
     },
     "GClass1665": {
         "NewName": "DoubleVector4",
@@ -4013,18 +4079,87 @@
     },
     "GClass2409": {
         "NewName": "InputAxisCombination",
-        "NewNamespace": "EFT.InputSystem"
+        "NewNamespace": "EFT.InputSystem",
+        "NestedTypes": {
+            "Class1862": {
+                "NewName": "AxisCombinationState"
+            },
+            "Class1863": {
+                "NewName": "JustAxisState"
+            },
+            "Class1864": {
+                "NewName": "AxisWithKeysState"
+            },
+            "Class1865": {
+                "NewName": "IdlingState"
+            },
+            "Class1866": {
+                "NewName": "KeysPressedState"
+            }
+        }
     },
     "GClass241": {
         "NewName": "DebugAttackMovingTactical"
     },
     "GClass2410": {
         "NewName": "InputKeyCombination",
-        "NewNamespace": "EFT.InputSystem"
+        "NewNamespace": "EFT.InputSystem",
+        "NestedTypes": {
+            "Class1867": {
+                "NewName": "WaitForReleaseState"
+            },
+            "Class1868": {
+                "NewName": "LongTapWaitForReleaseState"
+            },
+            "Class1869": {
+                "NewName": "ClickWaitForReleaseState"
+            },
+            "Class1870": {
+                "NewName": "LongActionState"
+            },
+            "Class1871": {
+                "NewName": "LongTapPressedState"
+            },
+            "Class1872": {
+                "NewName": "WaitingForFirstReleaseState"
+            },
+            "Class1873": {
+                "NewName": "WaitingForSecondPressState"
+            },
+            "Class1874": {
+                "NewName": "WaitingForSecondReleaseState"
+            },
+            "Class1875": {
+                "NewName": "EmptyState"
+            },
+            "Class1878": {
+                "NewName": "DoubleClickIdlingState"
+            },
+            "Class1879": {
+                "NewName": "ClickIdlingState"
+            },
+            "Class1880": {
+                "NewName": "ReleaseIdlingState"
+            },
+            "Class1881": {
+                "NewName": "ReleasePressedState"
+            },
+            "Class1882": {
+                "NewName": "ReleaseStuckState"
+            },
+        }
     },
     "GClass2411": {
         "NewName": "ToggleInputKeyCombination",
-        "NewNamespace": "EFT.InputSystem"
+        "NewNamespace": "EFT.InputSystem",
+        "NestedTypes": {
+            "Class1876": {
+                "NewName": "ContinuousIdlingToggleState"
+            },
+            "Class1877": {
+                "NewName": "ContinuousPressedToggleState"
+            }
+        }
     },
     "GClass2412": {
         "NewName": "InputKey",
@@ -4094,7 +4229,12 @@
     },
     "GClass2437": {
         "NewName": "ProductionController",
-        "NewNamespace": "EFT.Hideout"
+        "NewNamespace": "EFT.Hideout",
+        "NestedTypes": {
+            "Class1938": {
+                "NewName": "ProductionCompletedEventData"
+            }
+        }
     },
     "GClass2438": {
         "NestedTypes": {
@@ -4268,6 +4408,12 @@
         "NestedTypes": {
             "Class405": {
                 "NewName": "NotificationLogger"
+            },
+            "Class2050": {
+                "NewName": "ChannelCreationTimeout"
+            },
+            "Class2051": {
+                "NewName": "SpamChecker"
             }
         }
     },
@@ -4299,12 +4445,23 @@
     },
     "GClass2576": {
         "NewName": "MagBuildsStorage",
-        "NewNamespace": "EFT.Builds"
+        "NewNamespace": "EFT.Builds",
+        "NestedTypes": {
+            "Class1022": {
+                "NewName": "PresetSourceError"
+            }
+        }
     },
     "GClass2577": {
         "NestedTypes": {
             "GClass2578": {
                 "NewName": "MagPresetItem"
+            },
+            "Class1023": {
+                "NewName": "NotEnoughAmmoError"
+            },
+            "Class1024": {
+                "NewName": "InvalidPresetNameError"
             }
         },
         "NewName": "MagPreset",
@@ -4475,7 +4632,27 @@
     },
     "GClass2645": {
         "NewName": "GetDriveTypeUtility",
-        "NewNamespace": "EFT.Utilities"
+        "NewNamespace": "EFT.Utilities",
+        "NestedTypes": {
+            "Struct805": {
+                "NewName": "STORAGE_PROPERTY_QUERY"
+            },
+            "Struct806": {
+                "NewName": "DEVICE_SEEK_PENALTY_DESCRIPTOR"
+            },
+            "Struct807": {
+                "NewName": "ATA_PASS_THROUGH_EX"
+            },
+            "Struct808": {
+                "NewName": "ATAIdentifyDeviceQuery"
+            },
+            "Struct809": {
+                "NewName": "DISK_EXTENT"
+            },
+            "Struct810": {
+                "NewName": "VOLUME_DISK_EXTENTS"
+            }
+        }
     },
     "GClass2646": {
         "NewName": "BaseTripwire",
@@ -5418,6 +5595,13 @@
             },
             "GClass3016`1": {
                 "NewName": "Effect"
+            },
+            "Stimulator": {
+                "NestedTypes": {
+                    "Class2252": {
+                        "NewName": "Buff"
+                    }
+                }
             }
         },
         "NewName": "OfflineHealthController",
@@ -9892,7 +10076,12 @@
         "NewName": "DefaultRepairStrategy"
     },
     "GClass906": {
-        "NewName": "ArmorRepairStrategy"
+        "NewName": "ArmorRepairStrategy",
+        "NestedTypes": {
+            "Class528": {
+                "NewName": "ItemRepairInfo"
+            }
+        }
     },
     "GClass908": {
         "NewName": "BetterValProcessor"
@@ -9926,7 +10115,12 @@
         "NewName": "ConcaveBorder"
     },
     "GClass917": {
-        "NewName": "BasePlayerCulling"
+        "NewName": "BasePlayerCulling",
+        "NestedTypes": {
+            "Class560": {
+                "NewName": "CullingStateToggle"
+            }
+        }
     },
     "GClass918": {
         "NewName": "OfflinePlayerCulling"
@@ -9951,7 +10145,12 @@
         "NewName": "EmptyShaderReplacer"
     },
     "GClass924`2": {
-        "NewName": "IconCreatorBase"
+        "NewName": "IconCreatorBase",
+        "NestedTypes": {
+            "Struct115": {
+                "NewName": "IconRenderSettings"
+            }
+        }
     },
     "GClass925": {
         "NewName": "ClothingIconCreator"
@@ -10017,7 +10216,12 @@
         "NewName": "AutoExchange"
     },
     "GClass938": {
-        "NewName": "DebugGraph"
+        "NewName": "DebugGraph",
+        "NestedTypes": {
+            "Class589": {
+                "NewName": "Value"
+            }
+        }
     },
     "GClass939": {
         "NewName": "FrustumScanner"
@@ -10293,7 +10497,20 @@
     },
     "GClass1454": {
         "NewName": "StateMachine",
-        "NewNamespace": "Assets.Scripts.Utils"
+        "NewNamespace": "Assets.Scripts.Utils",
+        "NestedTypes": {
+            "Class924": {
+                "NewName": "State"
+            },
+            "Class926": {
+                "NewName": "Event",
+                "NestedTypes": {
+                    "Class927": {
+                        "NewName": "Case"
+                    }
+                }
+            }
+        }
     },
     "GClass1455": {
         "NewName": "StateSwitcher",
@@ -11386,7 +11603,12 @@
         "NewName": "DebugCoversChecker"
     },
     "GClass410": {
-        "NewName": "DecisionProxy"
+        "NewName": "DecisionProxy",
+        "NestedTypes": {
+            "Class134": {
+                "NewName": "PreviousState"
+            }
+        }
     },
     "GClass415": {
         "NewName": "NavGraphAStarDebuggerStepData"

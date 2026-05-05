@@ -225,7 +225,17 @@
     },
     "Class1826": {
         "NewName": "EFTDisplayHelper",
-        "NewNamespace": "EFT.Settings.Graphics"
+        "NewNamespace": "EFT.Settings.Graphics",
+        "NestedTypes": {
+            "Class1827": {
+                "NewName": "Api",
+                "NestedTypes": {
+                    "Struct584": {
+                        "NewName": "RECT"
+                    }
+                }
+            }
+        }
     },
     "Class2046": {
         "NewName": "LongPollingRequestAbstract",
@@ -249,6 +259,15 @@
         "NestedTypes": {
             "Interface17": {
                 "NewName": "IDrawInstance"
+            },
+            "Class2102": {
+                "NewName": "DrawShader"
+            },
+            "Class2103": {
+                "NewName": "SharedShader"
+            },
+            "Class2104": {
+                "NewName": "CullingShader"
             }
         }
     },
@@ -268,6 +287,15 @@
         "NestedTypes": {
             "Class2106": {
                 "NewName": "State"
+            },
+            "Class2107": {
+                "NewName": "StateQualityHigh"
+            },
+            "Class2108": {
+                "NewName": "StateQualityLow"
+            },
+            "Class2109": {
+                "NewName": "StateQualityMedium"
             }
         },
         "NewName": "ImpostorsMaterialLoader",
@@ -303,6 +331,9 @@
             "Class2546": {
                 "NewName": "SpawnPointsFilteredCollection"
             },
+            "Class2547": {
+                "NewName": "InvalidSpawnPoint"
+            },
             "Class408": {
                 "NewName": "Logger"
             }
@@ -318,6 +349,24 @@
         "NestedTypes": {
             "Class409": {
                 "NewName": "Logger"
+            },
+            "Class2724": {
+                "NewName": "Diagnostics"
+            },
+            "Class2725": {
+                "NewName": "PingDiagnostics"
+            },
+            "Class2726": {
+                "NewName": "ProcessDiagnostics"
+            },
+            "Class2727": {
+                "NewName": "UnityPingDiagnostics"
+            },
+            "Class2728": {
+                "NewName": "UnityWebDiagnostics"
+            },
+            "Class2729": {
+                "NewName": "WebDiagnostics"
             }
         },
         "NewName": "ConnectionDiagnostics",
@@ -351,7 +400,16 @@
         "NestedTypes": {
             "Class397": {
                 "NewName": "BackendQueueLogger"
-            }
+            },
+            "Class1547": {
+                "NewName": "OperationWithCallback"
+            },
+            "Class1548": {
+                "NewName": "QueuedCommand"
+            },
+            "Class1549": {
+                "NewName": "ImmediateCommand"
+            },
         }
     },
     "Class308": {
@@ -491,10 +549,20 @@
         "NewName": "BokehRenderer"
     },
     "Class534": {
-        "NewName": "AnimationQueue"
+        "NewName": "AnimationQueue",
+        "NestedTypes": {
+            "Class535": {
+                "NewName": "Sample"
+            }
+        }
     },
     "Class536": {
-        "NewName": "AudioQueue"
+        "NewName": "AudioQueue",
+        "NestedTypes": {
+            "Class537": {
+                "NewName": "Sample"
+            }
+        }
     },
     "Class587`1": {
         "NewName": "CircularArray"

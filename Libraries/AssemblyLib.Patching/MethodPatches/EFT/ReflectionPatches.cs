@@ -22,7 +22,7 @@ public class GeneralReflectionPatches
 
         foreach (var type in types)
         {
-            if (type.IsClass && !type.IsAbstract && !type.GetInterfaces().Contains(typeof(T)))
+            if (type.IsClass && !type.IsAbstract && type.GetInterfaces().Contains(typeof(T)))
             {
                 result.Add(type);
             }
@@ -40,6 +40,14 @@ public class CommonEventDataCtorPatch : CommonEventData
     [Patch(typeof(CommonEventData), PatchTargetKind.Constructor, PatchType.Replace)]
     public void Patch()
     {
+        // We have to initialize the fields since we're wiping the instance constructor
+        _deserializeSentEventMap = [];
+        _events = [];
+        _eventsToApply = [];
+        _nameEventMap = [];
+        _pools = [];
+        _serializeSentEventMap = [];
+
         var types = typeof(IEvent).Assembly.GetTypes();
         foreach (var type in types)
         {

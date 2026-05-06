@@ -317,6 +317,9 @@
         "NestedTypes": {
             "Class2277": {
                 "NewName": "Core"
+            },
+            "Class2276": {
+                "NewName": "KickCommand"
             }
         },
         "NewName": "NetworkQualityWatcher",
@@ -440,6 +443,9 @@
         "NestedTypes": {
             "Struct29`1": {
                 "NewName": "HTTPRequestResult"
+            },
+            "Class314": {
+                "NewName": "IVPoolStrategy"
             }
         },
     },
@@ -571,7 +577,12 @@
         "NewName": "GameObjectPathFinder"
     },
     "Class679": {
-        "NewName": "SnowRenderer"
+        "NewName": "SnowRenderer",
+        "NestedTypes": {
+            "Class680": {
+                "NewName": "Data"
+            }
+        }
     },
     "Class682": {
         "NewName": "GUIMaskTex"

@@ -6,6 +6,12 @@
             },
             "Class510`1": {
                 "NewName": "BetterSourceFactory"
+            },
+            "GClass886`1": {
+                "NewName": "NonSpatialBypassAudioMixer"
+            },
+            "GClass887`1": {
+                "NewName": "NonspatialAudioMixer"
             }
         }
     },
@@ -1936,6 +1942,14 @@
             },
             "GDelegate87`2": {
                 "NewName": "LightScrollerDataTypeGetter"
+            },
+            "Class3178`2": {
+                "NewName": "CollectionCache",
+                "NestedTypes": {
+                    "Class3179": {
+                        "NewName": "ItemCache"
+                    }
+                }
             }
         }
     },
@@ -2198,6 +2212,373 @@
         "NestedTypes": {
             "Class1889": {
                 "NewName": "CurrentVideoClip"
+            }
+        }
+    },
+    "EFT.Interactive.GarlandSwitcher": {
+        "NestedTypes": {
+            "Class2713": {
+                "NewName": "GarlandSwitcher"
+            }
+        }
+    },
+    "EFT.Interactive.LampController": {
+        "NestedTypes": {
+            "Class2678": {
+                "NewName": "Blinker"
+            }
+        }
+    },
+    "EFT.Interactive.WindowBreaker": {
+        "NestedTypes": {
+            "Class2645": {
+                "NewName": "Piece"
+            }
+        }
+    },
+    "EFT.InventoryLogic.Item": {
+        "NestedTypes": {
+            "Class2351": {
+                "NewName": "ItemComparer"
+            }
+        }
+    },
+    "EFT.InventoryLogic.StackSlot": {
+        "NestedTypes": {
+            "Class2457": {
+                "NewName": "ProtectedStackSlotItemAddress"
+            }
+        }
+    },
+    "EFT.NetworkGame`1": {
+        "NestedTypes": {
+            "Class1652": {
+                "NewName": "CustomUpdateTextureStreamingManager"
+            }
+        }
+    },
+    "EFT.RadioTransmitterController": {
+        "NestedTypes": {
+            "Class1298": {
+                "NewName": "RadioTransmitterDropBackpack"
+            },
+            "Class1296": {
+                "NewName": "ServerRadioTransmitterDropBackpackOperation"
+            },
+            "Class1301": {
+                "NewName": "RadioTransmitterIdling"
+            },
+            "Class1304": {
+                "NewName": "RadioTransmitterRemove"
+            },
+            "Class1307": {
+                "NewName": "RadioTransmitterSpawn"
+            }
+        }
+    },
+    "EFT.RocketLauncher.Explosion.ExplosionTester": {
+        "NestedTypes": {
+            "Class3535": {
+                "NewName": "VisualSettings"
+            }
+        }
+    },
+    "EFT.Settings.Graphics.EftResolution": {
+        "NestedTypes": {
+            "Class1830": {
+                "NewName": "DefaultComparer"
+            },
+            "Class1831": {
+                "NewName": "ComplexComparer"
+            }
+        }
+    },
+    "EFT.SpeedTree.TreeWind": {
+        "NestedTypes": {
+            "Settings": {
+                "NestedTypes": {
+                    "Class2093": {
+                        "NewName": "SettingsEqualityComparer"
+                    }
+                }
+            }
+        }
+    },
+    "EFT.UI.Builds.MagPresetsListView": {
+        "NestedTypes": {
+            "Class2831": {
+                "NewName": "MagPresetWrapper"
+            }
+        }
+    },
+    "EFT.UI.CaptchaHandler": {
+        "NestedTypes": {
+            "Class3094`1": {
+                "NewName": "TaskResult"
+            }
+        }
+    },
+    "EFT.UI.Chat.ChatMembersPanel": {
+        "NestedTypes": {
+            "Class3372": {
+                "NewName": "ChatMemberComparer"
+            }
+        }
+    },
+    "EFT.UI.FilterPanel": {
+        "NestedTypes": {
+            "Class2832": {
+                "NewName": "FilterRule"
+            },
+            "Class2833": {
+                "NewName": "SpawnedInSessionFilterRule"
+            },
+            "Class2834": {
+                "NewName": "TypeRelatedFilterRule"
+            },
+            "Class3065": {
+                "NewName": "FilterTabController"
+            }
+        }
+    },
+    "EFT.UI.Gestures.GesturesQuickPanel": {
+        "NestedTypes": {
+            "Class3399": {
+                "NewName": "SituationPhrase"
+            }
+        }
+    },
+    "EFT.UI.GrenadeSelector": {
+        "NestedTypes": {
+            "Class2752": {
+                "NewName": "GrenadeDictionaryComparator"
+            }
+        }
+    },
+    "EFT.UI.HandbookFilterPanel": {
+        "NestedTypes": {
+            "Class2847": {
+                "NewName": "HandbookFilterTabController"
+            }
+        }
+    },
+    "EFT.UI.Health.DamagePanel": {
+        "NestedTypes": {
+            "Class3391": {
+                "NewName": "BodyPartDamageList"
+            }
+        }
+    },
+    "EFT.UI.ItemSpecificationPanel": {
+        "NestedTypes": {
+            "Class2318": {
+                "NewName": "FakeSlot"
+            }
+        }
+    },
+    "EFT.UI.ItemUiContext": {
+        "NestedTypes": {
+            "Class2918": {
+                "NewName": "WindowData"
+            }
+        }
+    },
+    "EFT.UI.TMP_FPSCounter": {
+        "NestedTypes": {
+            "Class2799": {
+                "NewName": "CounterLevel"
+            }
+        }
+    },
+    "EFT.UI.TraderDealScreen": {
+        "NestedTypes": {
+            "Class3066": {
+                "NewName": "TraderModeTabController"
+            },
+            "Class3067": {
+                "NewName": "TraderLoyaltyTabController"
+            }
+        }
+    },
+    "EFT.Weather.FactoryWinterController": {
+        "NestedTypes": {
+            "Class2113": {
+                "NewName": "AbstractState"
+            },
+            "Class2114": {
+                "NewName": "StateDefault"
+            },
+            "Class2115": {
+                "NewName": "StateWinter"
+            }
+        }
+    },
+    "EyeBurn": {
+        "NestedTypes": {
+            "Class611": {
+                "NewName": "EyeBurnSpot"
+            }
+        }
+    },
+    "GraphAnimation": {
+        "NestedTypes": {
+            "Class90": {
+                "NewName": "InnerAnimation"
+            }
+        }
+    },
+    "GrenadeEmission": {
+        "NestedTypes": {
+            "Class625": {
+                "NewName": "PSMaterial"
+            }
+        }
+    },
+    "GUILabelDebugger": {
+        "NestedTypes": {
+            "Class330": {
+                "NewName": "DebugLabel"
+            }
+        }
+    },
+    "HBAO_Core": {
+        "NestedTypes": {
+            "GAttribute14": {
+                "NewName": "SettingsGroup"
+            },
+            "Class618": {
+                "NewName": "MersenneTwister"
+            }
+        }
+    },
+    "HighLightMesh": {
+        "NestedTypes": {
+            "Class617": {
+                "NewName": "Part"
+            }
+        }
+    },
+    "InteractionReciver": {
+        "NestedTypes": {
+            "Class694": {
+                "NewName": "MicroLocation"
+            }
+        }
+    },
+    "MuzzleSmoke": {
+        "NestedTypes": {
+            "Class651": {
+                "NewName": "Point"
+            }
+        }
+    },
+    "RainController": {
+        "NestedTypes": {
+            "Class668": {
+                "NewName": "AbstractState"
+            },
+            "Class669": {
+                "NewName": "AbstractStateSummer"
+            },
+            "Class670": {
+                "NewName": "StateSummer"
+            },
+            "Class671": {
+                "NewName": "StateSpringEarly"
+            },
+            "Class672": {
+                "NewName": "StateSpring"
+            },
+            "Class673": {
+                "NewName": "StateAutumn"
+            },
+            "Class674": {
+                "NewName": "StateAutumnLate"
+            },
+            "Class675": {
+                "NewName": "AbstractStateWinter"
+            },
+            "Class676": {
+                "NewName": "StateWinter"
+            },
+            "Class677": {
+                "NewName": "StateWinterStorm"
+            },
+            "Class678": {
+                "NewName": "StateWinterStormReconnect"
+            }
+        }
+    },
+    "RoadsTerrainAligner": {
+        "NestedTypes": {
+            "Class575": {
+                "NewName": "Triangle"
+            }
+        }
+    },
+    "Screenshot360": {
+        "NestedTypes": {
+            "Class596": {
+                "NewName": "HiddenGO"
+            }
+        }
+    },
+    "SpeedTreeTerrainProcessor": {
+        "NestedTypes": {
+            "Class652": {
+                "NewName": "Prototype"
+            },
+            "Class653": {
+                "NewName": "PrototypeRenderer"
+            }
+        }
+    },
+    "TracersLight": {
+        "NestedTypes": {
+            "Class654": {
+                "NewName": "TracerInfo"
+            }
+        }
+    },
+    "TracerSystem": {
+        "NestedTypes": {
+            "Class632": {
+                "NewName": "Particle"
+            }
+        }
+    },
+    "TriggerColliderSearcher": {
+        "NestedTypes": {
+            "Class422": {
+                "NewName": "Core"
+            }
+        }
+    },
+    "UBHelper": {
+        "NestedTypes": {
+            "Class501": {
+                "NewName": "Styles"
+            }
+        }
+    },
+    "UI.Hideout.HideoutCustomizationOptionsPanel": {
+        "NestedTypes": {
+            "Class3062": {
+                "NewName": "TabController"
+            }
+        }
+    },
+    "UI.Hideout.HideoutCustomizationScreen": {
+        "NestedTypes": {
+            "Class3063": {
+                "NewName": "TabController"
+            }
+        }
+    },
+    "VoxelAmbientTest": {
+        "NestedTypes": {
+            "Class620": {
+                "NewName": "Image"
             }
         }
     }

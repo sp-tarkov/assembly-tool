@@ -60,7 +60,7 @@ public class JsonConverterAttributeBuilder(ILogger<JsonConverterAttributeBuilder
 
             if (newAttr != null)
             {
-                logger.LogInformation("Successfully created updated attribute for: {TypeName}", referencedTypeName);
+                //logger.LogInformation("Successfully created updated attribute for: {TypeName}", referencedTypeName);
                 replacements.Add((attr, newAttr));
             }
             else

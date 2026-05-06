@@ -225,7 +225,6 @@ public class MethodBodyNuker(ILogger<MethodBodyNuker> logger, DataProvider dataP
             }
         }
 
-        logger.LogInformation("Destroyed type {TypeName}", fullName);
         return true;
     }
 

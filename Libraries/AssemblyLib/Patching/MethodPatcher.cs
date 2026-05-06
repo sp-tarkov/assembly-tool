@@ -31,6 +31,13 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
             throw new InvalidOperationException($"Source method '{source.FullName}' has no CIL body.");
         }
 
+        if (IsConstructor(target) && source.Signature?.ReturnsValue == true)
+        {
+            throw new InvalidOperationException(
+                $"Constructor patch '{source.FullName}' must return void when patching '{target.FullName}'."
+            );
+        }
+
         var targetBody = target.CilMethodBody;
         var module = dataProvider.LoadedModule!;
 
@@ -727,6 +734,9 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
 
     private static int GetArgSlot(MethodDefinition method, Parameter param) =>
         method.IsStatic ? param.Index : param.Index + 1;
+
+    private static bool IsConstructor(MethodDefinition method) =>
+        method.Name?.ToString() is ".ctor" or ".cctor";
 
     private static Parameter? GetParamBySlot(MethodDefinition method, int slot)
     {

@@ -1,4 +1,5 @@
 using System.Reflection;
+using AsmResolver.DotNet;
 using AssemblyLib.Patching.Tool;
 using SPTarkov.DI.Annotations;
 
@@ -29,17 +30,17 @@ public class PatchService(
 
     private void ApplyMethodPatches()
     {
-        var methodPatches = AppDomain
+        var patchAssembly = AppDomain
             .CurrentDomain.GetAssemblies()
             .FirstOrDefault(a => a.GetName().Name == "AssemblyLib.Patching")
-            ?.GetTypes()
-            .Where(t => t.GetMethods().Any(m => m.GetCustomAttribute<MethodPatchAttribute>() != null));
+            ?? throw new NullReferenceException("Could not find `AssemblyLib.Patching` assembly.");
 
-        var patches = methodPatches.SelectMany(p =>
-            p.GetMethods().Where(m => m.GetCustomAttribute<MethodPatchAttribute>() != null)
-        );
+        var patches = patchAssembly
+            .GetTypes()
+            .SelectMany(p => p.GetMethods().Where(m => m.GetCustomAttribute<MethodPatchAttribute>() != null))
+            .ToList();
 
-        logger.LogInformation("Applying {count} method patches", patches.Count());
+        logger.LogInformation("Applying {count} method patches", patches.Count);
 
         foreach (var patch in patches)
         {
@@ -49,7 +50,7 @@ public class PatchService(
                 throw new NullReferenceException("Could not find `MethodPatchAttribute`");
             }
 
-            var targetMethod = lookup.Eft.Method(attr.TargetType, attr.MethodName, attr.TargetMethodParameterTypes);
+            var targetMethod = ResolveTargetMethod(attr);
             var targetName = $"{attr.TargetType.Name}.{attr.MethodName}";
             if (targetMethod is null)
             {
@@ -66,4 +67,20 @@ public class PatchService(
             logger.LogInformation("Applied PatchType: {patchType} to: {name}", attr.PatchType.ToString(), targetName);
         }
     }
+
+    private MethodDefinition? ResolveTargetMethod(MethodPatchAttribute attr) =>
+        attr.TargetKind switch
+        {
+            MethodPatchTargetKind.Method => lookup.Eft.Method(
+                attr.TargetType,
+                attr.MethodName,
+                attr.TargetMethodParameterTypes
+            ),
+            MethodPatchTargetKind.Constructor => lookup.Eft.Constructor(
+                attr.TargetType,
+                attr.TargetMethodParameterTypes
+            ),
+            MethodPatchTargetKind.StaticConstructor => lookup.Eft.StaticConstructor(attr.TargetType),
+            _ => throw new NotImplementedException($"Method patch target kind '{attr.TargetKind}' is not implemented."),
+        };
 }

@@ -167,6 +167,33 @@ public abstract class AbstractMemberLookup
         return Method(methodInfo);
     }
 
+    /// <summary>
+    /// Looks up an instance constructor by explicit parameter types.
+    /// </summary>
+    public MethodDefinition? Constructor(Type declaringType, params Type[] parameterTypes)
+    {
+        const BindingFlags flags =
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+        var constructorInfo =
+            declaringType.GetConstructor(flags, binder: null, parameterTypes, modifiers: null)
+            ?? throw new MissingMethodException(declaringType.FullName, ".ctor");
+
+        return Method(constructorInfo);
+    }
+
+    /// <summary>
+    /// Looks up a static constructor.
+    /// </summary>
+    public MethodDefinition? StaticConstructor(Type declaringType)
+    {
+        var constructorInfo =
+            declaringType.TypeInitializer
+            ?? throw new MissingMethodException(declaringType.FullName, ".cctor");
+
+        return Method(constructorInfo);
+    }
+
     /// <summary>Looks up a <see cref="MethodDefinition"/> by name on the given type parameter.</summary>
     public MethodDefinition? Method<TDeclaringType>(string methodName) => Method(typeof(TDeclaringType), methodName);
 

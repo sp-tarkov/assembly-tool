@@ -22,11 +22,6 @@ public class MethodDirectMapRenamer(
     {
         var toolData = model.ToolData;
 
-        if (toolData.Type?.IsInterface ?? false)
-        {
-            //RenameInterfacePrefacedMethods(toolData.Type);
-        }
-
         var methodsToRename = model.MethodRenames;
         if (methodsToRename is null || methodsToRename.Count == 0)
         {
@@ -51,41 +46,6 @@ public class MethodDirectMapRenamer(
                 method.Name = utf8NewName;
                 UpdateMethodMemberReferences(method, utf8NewName);
             }
-        }
-    }
-
-    private void RenameInterfacePrefacedMethods(TypeDefinition interfaceToRenameFor)
-    {
-        var implementations = dataProvider
-            .LoadedModule!.GetAllTypes()
-            .Where(t => t.Implements(interfaceToRenameFor.FullName));
-
-        if (!implementations.Any())
-        {
-            return;
-        }
-
-        var interfaceMethodNames = interfaceToRenameFor.Methods.Select(t => t.Name!.ToString()).ToArray();
-
-        foreach (var method in implementations.SelectMany(t => t.Methods))
-        {
-            var methodSplitName = method.Name!.Split('.');
-            if (methodSplitName.Length <= 1)
-            {
-                continue;
-            }
-
-            var realMethodName = methodSplitName.Last();
-
-            // Not a method impl from this interface
-            if (!interfaceMethodNames.Contains(realMethodName))
-            {
-                continue;
-            }
-
-            var newName = new Utf8String($"{interfaceToRenameFor.Name}.{realMethodName}");
-            method.Name = newName;
-            UpdateMethodMemberReferences(method, newName);
         }
     }
 

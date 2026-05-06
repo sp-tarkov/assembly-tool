@@ -14,11 +14,11 @@ public class RemoveHwInfoPatch(
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_Struct39>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_StartTask>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException(
-                "Could not find `EFT.TarkovApplication.CG_Struct35.MoveNext()` when patching"
+                "Could not find `EFT.TarkovApplication.CG_StartTask.MoveNext()` when patching"
             );
         }
 

@@ -14,7 +14,7 @@ public class EnablePlayerScavPatch(MemberLookup.ModuleMemberLookup lookup, Metho
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Eft.Method<MainMenuShowOperation.CG_Struct14>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<MainMenuShowOperation.CG_Struct444>("MoveNext");
         if (moveNextMethod?.CilMethodBody is null)
         {
             throw new FailedToFindTypeException(

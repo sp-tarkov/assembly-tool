@@ -10,4 +10,5 @@ public enum ERenamerType
     Fields,
     Properties,
     GenericParameters,
+    CompilerGenerated,
 }

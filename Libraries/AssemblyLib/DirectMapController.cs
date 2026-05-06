@@ -134,7 +134,7 @@ public class DirectMapController(
                 "-cleaned-direct-mapped-publicized-unpatched.dll"
             );
 
-            patchService.ApplyPatches();
+            //patchService.ApplyPatches();
             assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
         }
         catch (Exception e)
@@ -201,9 +201,6 @@ public class DirectMapController(
         }
 
         attributeFactory.UpdateAsyncAttributes();
-
-        // Make sure we don't do this until after renaming remaps
-        renamerService.RenameCompilerGeneratedTypes();
     }
 
     /// <summary>

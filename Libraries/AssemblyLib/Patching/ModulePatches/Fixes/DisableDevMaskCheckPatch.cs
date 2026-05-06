@@ -11,10 +11,10 @@ public class DisableDevMaskCheckPatch(MemberLookup.ModuleMemberLookup lookup, Me
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Eft.Method<LocalPlayer.CG_Struct2>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<LocalPlayer.CG_Create>("MoveNext");
         if (moveNextMethod is null)
         {
-            throw new FailedToFindTypeException("Could not find `Eft.LocalPlayer.CG_Struct0.MoveNext()` when patching");
+            throw new FailedToFindTypeException("Could not find `Eft.LocalPlayer.CG_Create.MoveNext()` when patching");
         }
 
         var body = moveNextMethod.CilMethodBody;

@@ -72,17 +72,6 @@ public class RenamerService(
         RenameMapping(model);
     }
 
-    public void RenameCompilerGeneratedTypes()
-    {
-        if (directRenamers.FirstOrDefault(r => r is TypeDirectMapRenamer) is not TypeDirectMapRenamer classRenamer)
-        {
-            logger.LogError("Failed to find ClassRenamer type");
-            return;
-        }
-
-        classRenamer.RenameCompilerGeneratedTypes();
-    }
-
     public void RenameBySignature()
     {
         if (!dataProvider.IsDummyDllLoaded)

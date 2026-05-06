@@ -12,7 +12,7 @@ public class GeneralFixes
     ///     Disables RMT check for discard limits
     /// </summary>
     /// <returns>false, no limits</returns>
-    [MethodPatch(typeof(Player.PlayerOwnerInventoryController), "get_HasDiscardLimits", PatchType.Replace)]
+    [Patch(typeof(Player.PlayerOwnerInventoryController), "get_HasDiscardLimits", PatchType.Replace)]
     public bool DisableDiscardLimits()
     {
         return false;
@@ -22,7 +22,7 @@ public class GeneralFixes
     ///     Fixes post raid scav raid xp not showing
     /// </summary>
     /// <returns>false, no limits</returns>
-    [MethodPatch(
+    [Patch(
         typeof(SessionResultExitStatus),
         nameof(SessionResultExitStatus.Show),
         PatchType.Prefix,

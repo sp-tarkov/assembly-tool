@@ -36,14 +36,14 @@ public class PatchService(
 
         var patches = patchAssembly
             .GetTypes()
-            .SelectMany(p => p.GetMethods().Where(m => m.GetCustomAttribute<MethodPatchAttribute>() != null))
+            .SelectMany(p => p.GetMethods().Where(m => m.GetCustomAttribute<PatchAttribute>() != null))
             .ToList();
 
         logger.LogInformation("Applying {count} method patches", patches.Count);
 
         foreach (var patch in patches)
         {
-            var attr = patch.GetCustomAttribute<MethodPatchAttribute>();
+            var attr = patch.GetCustomAttribute<PatchAttribute>();
             if (attr is null)
             {
                 throw new NullReferenceException("Could not find `MethodPatchAttribute`");
@@ -67,7 +67,7 @@ public class PatchService(
         }
     }
 
-    private MethodDefinition? ResolveTargetMethod(MethodPatchAttribute attr) =>
+    private MethodDefinition? ResolveTargetMethod(PatchAttribute attr) =>
         attr.TargetKind switch
         {
             PatchTargetKind.Method => lookup.Eft.Method(

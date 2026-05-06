@@ -3,9 +3,9 @@ using System;
 namespace AssemblyLib.Patching.Tool;
 
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-public class MethodPatchAttribute : Attribute
+public class PatchAttribute : Attribute
 {
-    public MethodPatchAttribute(Type targetType, string methodName, PatchType patchType, params Type[] methodTypeParams)
+    public PatchAttribute(Type targetType, string methodName, PatchType patchType, params Type[] methodTypeParams)
     {
         TargetType = targetType;
         MethodName = methodName;
@@ -14,10 +14,10 @@ public class MethodPatchAttribute : Attribute
         TargetKind = GetTargetKind(methodName);
     }
 
-    public MethodPatchAttribute(Type targetType, PatchType patchType, params Type[] constructorTypeParams)
+    public PatchAttribute(Type targetType, PatchType patchType, params Type[] constructorTypeParams)
         : this(targetType, PatchTargetKind.Constructor, patchType, constructorTypeParams) { }
 
-    public MethodPatchAttribute(
+    public PatchAttribute(
         Type targetType,
         PatchTargetKind targetKind,
         PatchType patchType,

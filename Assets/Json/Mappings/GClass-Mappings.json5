@@ -99,7 +99,12 @@
     },
     "GClass1012": {
         "NewName": "EditorGUIImitation",
-        "NewNamespace": "RuntimeInspector"
+        "NewNamespace": "RuntimeInspector",
+        "NestedTypes": {
+            "Class709": {
+                "NewName": "SliderState"
+            }
+        }
     },
     "GClass1013": {
         "NewName": "N",
@@ -134,7 +139,12 @@
     },
     "GClass1020": {
         "NewName": "LightPool",
-        "NewNamespace": "Systems.Effects"
+        "NewNamespace": "Systems.Effects",
+        "NestedTypes": {
+            "Class712": {
+                "NewName": "LightStruct"
+            }
+        }
     },
     "GClass1021": {
         "NewName": "PerformanceMeter",
@@ -959,7 +969,12 @@
     },
     "GClass1209`1": {
         "NewName": "IndexBuffer",
-        "NewNamespace": "Koenigz.PerfectCulling"
+        "NewNamespace": "Koenigz.PerfectCulling",
+        "NestedTypes": {
+            "Class824": {
+                "NewName": "BufferIterator"
+            }
+        }
     },
     "GClass121": {
         "NewName": "PartisanBadSavageLayer"
@@ -1025,7 +1040,18 @@
     },
     "GClass1226": {
         "NewName": "PerfectCullingMeshSplitting",
-        "NewNamespace": "Koenigz.PerfectCulling"
+        "NewNamespace": "Koenigz.PerfectCulling",
+        "NestedTypes": {
+            "Class828": {
+                "NewName": "SplitMeshData"
+            },
+            "Class829": {
+                "NewName": "TriangleData"
+            },
+            "Class830": {
+                "NewName": "TupleComparer"
+            }
+        }
     },
     "GClass1227": {
         "NewName": "PerfectCullingTemp",
@@ -2082,11 +2108,19 @@
             "GStruct149": {
                 "NewName": "NetPeerEnumerator"
             },
+            "Class940": {
+                "NewName": "IPEndPointComparer"
+            }
         }
     },
     "GClass1477": {
         "NewName": "NetPeer",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib",
+        "NestedTypes": {
+            "Class945": {
+                "NewName": "IncomingFragments"
+            }
+        }
     },
     "GClass148": {
         "NewName": "FollowerSanitarFightLayer"
@@ -3248,7 +3282,12 @@
     },
     "GClass1981": {
         "NewName": "SplitOperationDescriptor",
-        "NewNamespace": "EFT"
+        "NewNamespace": "EFT",
+        "NestedTypes": {
+            "Class1371": {
+                "NewName": "SplitIdGenerator"
+            }
+        }
     },
     "GClass1982": {
         "NewName": "OperateStationaryWeaponOperationDescriptor",
@@ -3639,7 +3678,12 @@
                 "NewName": "PoolResourceInfo"
             },
             "Class1448": {
-                "NewName": "Pools"
+                "NewName": "Pools",
+                "NestedTypes": {
+                    "Class1449": {
+                        "NewName": "AssetPoolData"
+                    }
+                }
             },
             "GClass2280": {
                 "NewName": "ResourceTypeComparer"
@@ -4023,7 +4067,24 @@
     },
     "GClass2395": {
         "NewName": "GraphicsSettingsVersions",
-        "NewNamespace": "EFT.Settings.Graphics"
+        "NewNamespace": "EFT.Settings.Graphics",
+        "NestedTypes": {
+            "Class1836": {
+                "NewName": "ResetGraphics"
+            },
+            "Class1837": {
+                "NewName": "ResetSSR"
+            },
+            "Class1838": {
+                "NewName": "Version1"
+            },
+            "Class1839": {
+                "NewName": "Version2"
+            },
+            "Class1840": {
+                "NewName": "Version3"
+            }
+        }
     },
     "GClass2396": {
         "NewName": "StoredDisplaySettings",
@@ -5424,7 +5485,12 @@
     },
     "GClass2975": {
         "NewName": "ObservedPlayerInventoryInfo",
-        "NewNamespace": "EFT.NextObservedPlayer"
+        "NewNamespace": "EFT.NextObservedPlayer",
+        "NestedTypes": {
+            "Class2199": {
+                "NewName": "ObservedProfileSkillInfo"
+            }
+        }
     },
     "GClass2976": {
         "NewName": "ObservedPlayerMessageJobs",
@@ -6673,7 +6739,12 @@
     },
     "GClass3259": {
         "NewName": "HideoutAreaContainer",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2311": {
+                "NewName": "HideoutAreaGrid"
+            }
+        }
     },
     "GClass326": {
         "NewName": "ExUsecAbstractStrategy"
@@ -7638,7 +7709,12 @@
     },
     "GClass3458": {
         "NewName": "InventorySelectableItemContext",
-        "NewNamespace": "EFT.InventoryLogic"
+        "NewNamespace": "EFT.InventoryLogic",
+        "NestedTypes": {
+            "Class2484": {
+                "NewName": "SelectionContextWrapper"
+            }
+        }
     },
     "GClass3459": {
         "NewName": "AreaStashItemContext",
@@ -7820,7 +7896,12 @@
     },
     "GClass3497": {
         "NewName": "SetPinLockOperation",
-        "NewNamespace": "EFT.InventoryLogic.Operations"
+        "NewNamespace": "EFT.InventoryLogic.Operations",
+        "NestedTypes": {
+            "Class2499": {
+                "NewName": "SetPinLockCommand"
+            }
+        }
     },
     "GClass3498": {
         "NewName": "SetupItemOperation",
@@ -8215,7 +8296,15 @@
     },
     "GClass3938": {
         "NewName": "RagFair",
-        "NewNamespace": "EFT.UI.Ragfair"
+        "NewNamespace": "EFT.UI.Ragfair",
+        "NestedTypes": {
+            "Class3404": {
+                "NewName": "CachedRagfairInfo"
+            },
+            "Class3406": {
+                "NewName": "Cache"
+            }
+        }
     },
     "GClass3943": {
         "NewName": "RagfairSearch",
@@ -9172,6 +9261,9 @@
         "NestedTypes": {
             "GInterface16": {
                 "NewName": "ITimer"
+            },
+            "Class297": {
+                "NewName": "Timer"
             }
         },
         "NewName": "TimerManager"
@@ -9908,7 +10000,12 @@
         "NewName": "UIDebug"
     },
     "GClass855": {
-        "NewName": "Utils"
+        "NewName": "Utils",
+        "NestedTypes": {
+            "Class468": {
+                "NewName": "IntContainer"
+            }
+        }
     },
     "GClass856": {
         "NewName": "MyExtensions"
@@ -9947,7 +10044,15 @@
         "NewName": "DebugUtils"
     },
     "GClass866`1": {
-        "NewName": "EnumHelper"
+        "NewName": "EnumHelper",
+        "NestedTypes": {
+            "Class488": {
+                "NewName": "EnumComparer"
+            },
+            "Class489": {
+                "NewName": "EnumEqualityComparer"
+            }
+        }
     },
     "GClass867": {
         "NewName": "EnumExtensions",
@@ -10266,7 +10371,12 @@
         "NewName": "SoundOcclusionObstacleChecker"
     },
     "GClass951": {
-        "NewName": "Spacer"
+        "NewName": "Spacer",
+        "NestedTypes": {
+            "Class598`1": {
+                "NewName": "Group"
+            }
+        }
     },
     "GClass952": {
         "NestedTypes": {
@@ -10329,10 +10439,29 @@
         "NewName": "QuadTree"
     },
     "GClass966": {
-        "NewName": "StaticDeferredDecalQuadTree"
+        "NewName": "StaticDeferredDecalQuadTree",
+        "NestedTypes": {
+            "Class604": {
+                "NewName": "WorkThreadParams"
+            },
+            "Class605": {
+                "NewName": "UpdateParams"
+            }
+        }
     },
     "GClass967": {
-        "NewName": "TextureQuadTree"
+        "NewName": "TextureQuadTree",
+        "NestedTypes": {
+            "Class607": {
+                "NewName": "ThreadResults"
+            },
+            "Class608": {
+                "NewName": "WorkThreadParams"
+            },
+            "Class609": {
+                "NewName": "UpdateParams"
+            }
+        }
     },
     "GClass968": {
         "NewName": "StaticDeferredDecalDrawInstance"
@@ -10554,11 +10683,99 @@
     },
     "GClass1485": {
         "NewName": "NetPacketProcessor",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils",
+        "NestedTypes": {
+            "Class947`1": {
+                "NewName": "HashCache"
+            }
+        }
     },
     "GClass1486": {
         "NewName": "NetSerializer",
-        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils"
+        "NewNamespace": "FlyingWormConsole3.LiteNetLib.Utils",
+        "NestedTypes": {
+            "Class956`1": {
+                "NewName": "FastCall"
+            },
+            "Class957`2": {
+                "NewName": "FastCallSpecific"
+            },
+            "Class958`2": {
+                "NewName": "FastCallSpecificAuto"
+            },
+            "Class961`2": {
+                "NewName": "FastCallStatic"
+            },
+            "Class962`2": {
+                "NewName": "FastCallStruct"
+            },
+            "Class963`2": {
+                "NewName": "FastCallClass"
+            },
+            "Class964`1": {
+                "NewName": "IntSerializer"
+            },
+            "Class965`1": {
+                "NewName": "UIntSerializer"
+            },
+            "Class966`1": {
+                "NewName": "ShortSerializer"
+            },
+            "Class967`1": {
+                "NewName": "UShortSerializer"
+            },
+            "Class968`1": {
+                "NewName": "LongSerializer"
+            },
+            "Class969`1": {
+                "NewName": "ULongSerializer"
+            },
+            "Class970`1": {
+                "NewName": "ByteSerializer"
+            },
+            "Class971`1": {
+                "NewName": "SByteSerializer"
+            },
+            "Class972`1": {
+                "NewName": "FloatSerializer"
+            },
+            "Class973`1": {
+                "NewName": "DoubleSerializer"
+            },
+            "Class974`1": {
+                "NewName": "BoolSerializer"
+            },
+            "Class959`1": {
+                "NewName": "CharSerializer"
+            },
+            "Class960`1": {
+                "NewName": "IPEndPointSerializer"
+            },
+            "Class975`1": {
+                "NewName": "StringSerializer"
+            },
+            "Class976`1": {
+                "NewName": "EnumByteSerializer"
+            },
+            "Class977`1": {
+                "NewName": "EnumIntSerializer"
+            },
+            "Class978`1": {
+                "NewName": "ClassInfo"
+            },
+            "Class979": {
+                "NewName": "CustomType"
+            },
+            "Class980`1": {
+                "NewName": "CustomTypeStruct"
+            },
+            "Class981`1": {
+                "NewName": "CustomTypeClass"
+            },
+            "Class982`1": {
+                "NewName": "CustomTypeStatic"
+            },
+        }
     },
     "GClass1487": {
         "NewName": "NtpPacket",
@@ -11230,6 +11447,9 @@
             },
             "Class1185`1": {
                 "NewName": "MemberMetaInfo"
+            },
+            "Class1186": {
+                "NewName": "FieldMetaInfo"
             },
             "Class1187": {
                 "NewName": "PropertyMetaInfo"

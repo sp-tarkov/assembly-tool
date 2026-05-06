@@ -30,9 +30,8 @@ public class PatchService(
 
     private void ApplyMethodPatches()
     {
-        var patchAssembly = AppDomain
-            .CurrentDomain.GetAssemblies()
-            .FirstOrDefault(a => a.GetName().Name == "AssemblyLib.Patching")
+        var patchAssembly =
+            AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "AssemblyLib.Patching")
             ?? throw new NullReferenceException("Could not find `AssemblyLib.Patching` assembly.");
 
         var patches = patchAssembly
@@ -71,16 +70,13 @@ public class PatchService(
     private MethodDefinition? ResolveTargetMethod(MethodPatchAttribute attr) =>
         attr.TargetKind switch
         {
-            MethodPatchTargetKind.Method => lookup.Eft.Method(
+            PatchTargetKind.Method => lookup.Eft.Method(
                 attr.TargetType,
                 attr.MethodName,
                 attr.TargetMethodParameterTypes
             ),
-            MethodPatchTargetKind.Constructor => lookup.Eft.Constructor(
-                attr.TargetType,
-                attr.TargetMethodParameterTypes
-            ),
-            MethodPatchTargetKind.StaticConstructor => lookup.Eft.StaticConstructor(attr.TargetType),
+            PatchTargetKind.Constructor => lookup.Eft.Constructor(attr.TargetType, attr.TargetMethodParameterTypes),
+            PatchTargetKind.StaticConstructor => lookup.Eft.StaticConstructor(attr.TargetType),
             _ => throw new NotImplementedException($"Method patch target kind '{attr.TargetKind}' is not implemented."),
         };
 }

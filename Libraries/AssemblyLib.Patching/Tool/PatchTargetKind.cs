@@ -1,6 +1,6 @@
 namespace AssemblyLib.Patching.Tool;
 
-public enum MethodPatchTargetKind
+public enum PatchTargetKind
 {
     Method,
     Constructor,

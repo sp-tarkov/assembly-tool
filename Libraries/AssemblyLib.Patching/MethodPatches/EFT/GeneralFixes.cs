@@ -12,7 +12,7 @@ public class GeneralFixes
     ///     Disables RMT check for discard limits
     /// </summary>
     /// <returns>false, no limits</returns>
-    [MethodPatch(typeof(Player.PlayerOwnerInventoryController), "get_HasDiscardLimits", MethodPatchType.Replace)]
+    [MethodPatch(typeof(Player.PlayerOwnerInventoryController), "get_HasDiscardLimits", PatchType.Replace)]
     public bool DisableDiscardLimits()
     {
         return false;
@@ -25,7 +25,7 @@ public class GeneralFixes
     [MethodPatch(
         typeof(SessionResultExitStatus),
         nameof(SessionResultExitStatus.Show),
-        MethodPatchType.Prefix,
+        PatchType.Prefix,
         typeof(Profile),
         typeof(PlayerVisualRepresentation),
         typeof(ESideType),

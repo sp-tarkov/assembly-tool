@@ -1,6 +1,6 @@
 namespace AssemblyLib.Patching.Tool;
 
-public enum MethodPatchType
+public enum PatchType
 {
     /// <summary>
     /// Pre-append a method's instructions to the target

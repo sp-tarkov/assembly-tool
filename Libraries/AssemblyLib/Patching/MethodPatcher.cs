@@ -16,10 +16,10 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
     /// <summary>
     ///     Applies a prefix or postfix patch from <paramref name="source"/> into <paramref name="target"/>.
     ///     The source method's instructions (and locals) are cloned and imported into the target module.
-    ///     For <see cref="MethodPatchType.Prefix"/>, the source body (minus its final ret) is prepended.
-    ///     For <see cref="MethodPatchType.Postfix"/>, every ret in the target is redirected through the source body.
+    ///     For <see cref="PatchType.Prefix"/>, the source body (minus its final ret) is prepended.
+    ///     For <see cref="PatchType.Postfix"/>, every ret in the target is redirected through the source body.
     /// </summary>
-    public void Patch(MethodDefinition target, MethodDefinition source, MethodPatchType methodPatchType)
+    public void Patch(MethodDefinition target, MethodDefinition source, PatchType patchType)
     {
         if (target.CilMethodBody is null)
         {
@@ -41,22 +41,22 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         var targetBody = target.CilMethodBody;
         var module = dataProvider.LoadedModule!;
 
-        var argSlotMap = methodPatchType != MethodPatchType.Replace ? BuildArgSlotMap(source, target) : null;
+        var argSlotMap = patchType != PatchType.Replace ? BuildArgSlotMap(source, target) : null;
         var (cloned, _) = CloneBody(source.CilMethodBody, targetBody, module, source, target, argSlotMap);
 
-        switch (methodPatchType)
+        switch (patchType)
         {
-            case MethodPatchType.Prefix:
+            case PatchType.Prefix:
                 ApplyPrefix(targetBody, cloned, source.Signature!.ReturnType);
                 break;
-            case MethodPatchType.Postfix:
+            case PatchType.Postfix:
                 ApplyPostfix(targetBody, cloned, target.Signature!.ReturnType);
                 break;
-            case MethodPatchType.Replace:
+            case PatchType.Replace:
                 ApplyReplace(target, source);
                 break;
             default:
-                throw new NotImplementedException($"Method patch type '{methodPatchType}' is not implemented.");
+                throw new NotImplementedException($"Method patch type '{patchType}' is not implemented.");
         }
 
         targetBody.Instructions.CalculateOffsets();
@@ -65,7 +65,7 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
         {
             logger.LogDebug(
                 "Applied {PatchType} patch from {Source} → {Target}",
-                methodPatchType,
+                patchType,
                 source.FullName,
                 target.FullName
             );
@@ -735,8 +735,7 @@ public class MethodPatcher(ILogger<MethodPatcher> logger, DataProvider dataProvi
     private static int GetArgSlot(MethodDefinition method, Parameter param) =>
         method.IsStatic ? param.Index : param.Index + 1;
 
-    private static bool IsConstructor(MethodDefinition method) =>
-        method.Name?.ToString() is ".ctor" or ".cctor";
+    private static bool IsConstructor(MethodDefinition method) => method.Name?.ToString() is ".ctor" or ".cctor";
 
     private static Parameter? GetParamBySlot(MethodDefinition method, int slot)
     {

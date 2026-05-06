@@ -12,7 +12,7 @@ public class GeneralReflectionPatches
     /// <summary>
     ///     Fixes reflection forcefully loading all assemblies into context
     /// </summary>
-    [MethodPatch(typeof(DataProvider), nameof(DataProvider.GetDataContainersTypes), MethodPatchType.Replace)]
+    [MethodPatch(typeof(DataProvider), nameof(DataProvider.GetDataContainersTypes), PatchType.Replace)]
     public List<Type> FixDataProviderReflectionPatch<T>()
         where T : IDataContainer
     {
@@ -37,7 +37,7 @@ public class CommonEventDataCtorPatch : CommonEventData
     /// <summary>
     ///     Fixes reflection forcefully loading all assemblies into context
     /// </summary>
-    [MethodPatch(typeof(CommonEventData), MethodPatchTargetKind.Constructor, MethodPatchType.Replace)]
+    [MethodPatch(typeof(CommonEventData), PatchTargetKind.Constructor, PatchType.Replace)]
     public void Patch()
     {
         var types = typeof(IEvent).Assembly.GetTypes();

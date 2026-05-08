@@ -45,7 +45,9 @@ public class DirectMapController(
             PostDirectMapStage();
 
             if (!validatorService.Validate(ValidationStage.PostMapping))
+            {
                 return;
+            }
 
             assemblyWriter.WriteAssembly(Module!, _targetAssemblyPath);
 

@@ -11,7 +11,12 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Helpers;
 
 [Injectable]
-public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider dataProvider)
+public sealed class AssemblyWriter(
+    ILogger<AssemblyWriter> logger,
+    DataProvider dataProvider,
+    SymbolGenerator symbolGenerator,
+    DebuggableAttributeHelper debuggableAttributeHelper
+)
 {
     internal DeObfuscationResult Deobfuscate(ModuleDefinition? module, string assemblyPath)
     {
@@ -77,6 +82,7 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
 
         try
         {
+            //debuggableAttributeHelper.RemoveDebuggableAttribute(module);
             module.Assembly!.Write(outPath);
         }
         catch (Exception e)
@@ -91,6 +97,8 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         {
             return;
         }
+
+        var symbolResult = symbolGenerator.GenerateForAssembly(outPath, GetSymbolPath(outPath, module));
 
         _ = Task.Run(() => StartHollow(module.GetAllTypes()));
 
@@ -110,10 +118,25 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
         logger.LogInformation("Hollowed written to: {outPath}", hollowedPath);
 
         CreateDelta(targetAssemblyPath, outPath, deltaPath);
-        CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath);
+        CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath, symbolResult);
     }
 
-    private void CopyToDevelopmentEnvironment(string asmPath, string hollowedPath, string deltaPath)
+    private static string GetSymbolPath(string assemblyPath, ModuleDefinition module)
+    {
+        var symbolName = Path.ChangeExtension(module.Name?.ToString() ?? Path.GetFileName(assemblyPath), ".pdb");
+
+        return Path.Combine(
+            Path.GetDirectoryName(assemblyPath) ?? throw new NullReferenceException("Assembly path is null"),
+            symbolName
+        );
+    }
+
+    private void CopyToDevelopmentEnvironment(
+        string asmPath,
+        string hollowedPath,
+        string deltaPath,
+        SyntheticSymbolGenerationResult symbolResult
+    )
     {
         if (
             dataProvider.Settings.CopyToGame
@@ -132,6 +155,7 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
             {
                 File.Copy(asmPath, gameDest, true);
                 logger.LogInformation("Assembly has been installed to the game: {GameDest}", gameDest);
+                CopySymbolsToGame(gameDest, symbolResult);
             }
         }
 
@@ -179,6 +203,30 @@ public sealed class AssemblyWriter(ILogger<AssemblyWriter> logger, DataProvider 
 
             logger.LogInformation("Delta has been copied to the launcher project: {HollowedDest}", deltaDest);
         }
+    }
+
+    private void CopySymbolsToGame(string gameAssemblyPath, SyntheticSymbolGenerationResult symbolResult)
+    {
+        var gameDir =
+            Path.GetDirectoryName(gameAssemblyPath) ?? throw new NullReferenceException("Game assembly path is null");
+
+        var pdbDest = Path.Combine(gameDir, Path.GetFileName(symbolResult.PdbPath));
+        File.Copy(symbolResult.PdbPath, pdbDest, true);
+
+        var mdbDest = $"{gameAssemblyPath}.mdb";
+        File.Copy(symbolResult.MdbPath, mdbDest, true);
+
+        if (File.Exists(symbolResult.SourcePath))
+        {
+            var sourceDest = Path.Combine(gameDir, Path.GetFileName(symbolResult.SourcePath));
+            File.Copy(symbolResult.SourcePath, sourceDest, true);
+        }
+
+        logger.LogInformation(
+            "Synthetic symbols have been installed to the game: {PdbDest}, {MdbDest}",
+            pdbDest,
+            mdbDest
+        );
     }
 
     /// <summary>

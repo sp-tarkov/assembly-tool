@@ -2,6 +2,7 @@
 using System.Runtime.Loader;
 using AssemblyLib.Helpers;
 using AssemblyLib.Models;
+using AssemblyLib.Patching;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -62,6 +63,27 @@ public class App
         return Task.CompletedTask;
     }
 
+    public Task RunPatch(string assemblyPath)
+    {
+        var dataProvider = _provider?.GetService<DataProvider>();
+        var patchService = _provider?.GetService<PatchService>();
+        var assemblyRefHelper = _provider?.GetService<AssemblySelfReferenceHelper>();
+        var assemblyWriter = _provider?.GetService<AssemblyWriter>();
+
+        var module = dataProvider?.LoadModule(assemblyPath);
+        if (module == null)
+        {
+            Log.Error("Module is null while trying to apply patches via command");
+            return Task.CompletedTask;
+        }
+
+        patchService?.ApplyPatches();
+        assemblyRefHelper?.RemoveSelfAssemblyReferences(module);
+        assemblyWriter?.WriteAssembly(module, assemblyPath);
+
+        return Task.CompletedTask;
+    }
+
     private void ConfigureApplication()
     {
         RegisterAssemblyResolve();
@@ -95,7 +117,7 @@ public class App
         _provider = services.BuildServiceProvider();
     }
 
-    private void RegisterAssemblyResolve()
+    private static void RegisterAssemblyResolve()
     {
         AssemblyLoadContext.Default.Resolving += (context, assemblyName) =>
         {

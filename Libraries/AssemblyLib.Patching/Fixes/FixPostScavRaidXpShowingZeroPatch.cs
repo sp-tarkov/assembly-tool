@@ -1,23 +1,13 @@
 using System;
-using AssemblyLib.Patching.Tool;
+using AssemblyLib.Patching.ToolTypes;
 using EFT;
 using EFT.Counters;
 using EFT.UI.SessionEnd;
 
-namespace AssemblyLib.Patching.MethodPatches.EFT;
+namespace AssemblyLib.Patching.Fixes;
 
-public class GeneralFixes
+public class FixPostScavRaidXpShowingZeroPatch
 {
-    /// <summary>
-    ///     Disables RMT check for discard limits
-    /// </summary>
-    /// <returns>false, no limits</returns>
-    [Patch(typeof(Player.PlayerOwnerInventoryController), "get_HasDiscardLimits", PatchType.Replace)]
-    public bool DisableDiscardLimits()
-    {
-        return false;
-    }
-
     /// <summary>
     ///     Fixes post raid scav raid xp not showing
     /// </summary>
@@ -34,7 +24,7 @@ public class GeneralFixes
         typeof(IEftSession),
         typeof(bool)
     )]
-    public void FixPostScavRaidXpShowingZeroPatch(Profile activeProfile, ESideType side)
+    public void Patch(Profile activeProfile, ESideType side)
     {
         if (activeProfile.Side == EPlayerSide.Savage)
         {

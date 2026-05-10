@@ -1,4 +1,4 @@
-namespace AssemblyLib.Patching.Tool;
+namespace AssemblyLib.Patching.ToolTypes;
 
 public enum PatchType
 {

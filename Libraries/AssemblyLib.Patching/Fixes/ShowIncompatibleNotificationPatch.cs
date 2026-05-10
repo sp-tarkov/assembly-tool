@@ -1,7 +1,7 @@
-using AssemblyLib.Patching.Tool;
+using AssemblyLib.Patching.ToolTypes;
 using EFT;
 
-namespace AssemblyLib.Patching.MethodPatches.EFT;
+namespace AssemblyLib.Patching.Fixes;
 
 public class ShowIncompatibleNotificationPatch(Player.FirearmController controller)
     : Player.FirearmController.Idling(controller)

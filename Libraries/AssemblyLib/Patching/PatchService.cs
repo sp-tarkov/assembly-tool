@@ -1,6 +1,6 @@
 using System.Reflection;
 using AsmResolver.DotNet;
-using AssemblyLib.Patching.Tool;
+using AssemblyLib.Patching.ToolTypes;
 using SPTarkov.DI.Annotations;
 
 namespace AssemblyLib.Patching;

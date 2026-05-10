@@ -1,6 +1,6 @@
 using System;
 
-namespace AssemblyLib.Patching.Tool;
+namespace AssemblyLib.Patching.ToolTypes;
 
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
 public class PatchAttribute : Attribute

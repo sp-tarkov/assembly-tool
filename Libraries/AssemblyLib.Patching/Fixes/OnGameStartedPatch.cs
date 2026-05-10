@@ -1,9 +1,9 @@
-using AssemblyLib.Patching.Tool;
+using AssemblyLib.Patching.ToolTypes;
 using EFT;
 
-namespace AssemblyLib.Patching.MethodPatches.EFT;
+namespace AssemblyLib.Patching.Fixes;
 
-public class OnGameStartedPatch : GameWorld
+public class OnGameStartedPatches : GameWorld
 {
     /// <summary>
     ///     Sets the player scav's inventory as found in raid

@@ -136,7 +136,7 @@ public class DirectMapController(
                 "-cleaned-direct-mapped-publicized-unpatched.dll"
             );
 
-            //patchService.ApplyPatches();
+            patchService.ApplyPatches();
             assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
         }
         catch (Exception e)

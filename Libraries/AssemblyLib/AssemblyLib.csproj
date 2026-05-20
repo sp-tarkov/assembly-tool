@@ -12,8 +12,8 @@
     <RootNamespace>AssemblyLib</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AsmResolver" Version="6.0.0-rc.1" />
-    <PackageReference Include="AsmResolver.DotNet" Version="6.0.0-rc.1" />
+    <PackageReference Include="AsmResolver" Version="6.0.0" />
+    <PackageReference Include="AsmResolver.DotNet" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />

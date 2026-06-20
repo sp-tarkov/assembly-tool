@@ -74,6 +74,11 @@ public sealed class AssemblyWriter(
             module.Name?.Replace(".dll", dllName) ?? Utf8String.Empty
         );
 
+        var originalPath =
+            Path.Combine(
+                Path.GetDirectoryName(targetAssemblyPath) ??
+                throw new NullReferenceException("Target assembly path is null"), "Assembly-CSharp.dll");
+
         var deltaPath = Path.Combine(
             Path.GetDirectoryName(targetAssemblyPath)
                 ?? throw new NullReferenceException("Target assembly path is null"),
@@ -117,7 +122,8 @@ public sealed class AssemblyWriter(
 
         logger.LogInformation("Hollowed written to: {outPath}", hollowedPath);
 
-        CreateDelta(targetAssemblyPath, outPath, deltaPath);
+        // At this point Assembly-CSharp-Cleaned.dll is loaded as the module. pass original pathing instead
+        CreateDelta(originalPath, outPath, deltaPath);
         CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath, symbolResult);
     }
 

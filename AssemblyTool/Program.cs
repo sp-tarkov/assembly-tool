@@ -5,11 +5,13 @@ namespace AssemblyTool;
 
 public static class Program
 {
-    public static async Task<int> Main() =>
-        await new CliApplicationBuilder()
+    public static async Task<int> Main()
+    {
+        return await new CliApplicationBuilder()
             .AddCommandsFromThisAssembly()
             .AllowDebugMode()
             .SetExecutableName("AssemblyTool")
             .Build()
             .RunAsync();
+    }
 }

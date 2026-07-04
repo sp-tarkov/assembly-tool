@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# AsmTool Specific
+[aA]ssets/Assemblies/AssemblyCSharp/*.dll
+
 # User-specific files
 *.rsuser
 *.suo

@@ -1,0 +1,87 @@
+{
+  "Struct160": {
+    "NewName": "SnowRendererData"
+  },
+  "Struct204": {
+    "NewName": "PropagationJob",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "Struct205": {
+    "NewName": "PropagationEffectCalculationJob",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "Struct206": {
+    "NewName": "FastClearCostsJob",
+    "NewNamespace": "Audio.SpatialSystem"
+  },
+  "Struct214": {
+    "NewName": "AggregateResultsJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+  },
+  "Struct215": {
+    "NewName": "ProcessAndAggregateJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+  },
+  "Struct216": {
+    "NewName": "ProcessHitsAndCombineJob",
+    "NewNamespace": "Audio.SpatialSystem.SpatialAudioCalculator"
+  },
+  "Struct217": {
+    "NewName": "DistanceCalculationJob",
+    "NewNamespace": "Audio.AmbientSubsystem"
+  },
+  "Struct218": {
+    "NewName": "OptimalScoreCalculationJob",
+    "NewNamespace": "Audio.AmbientSubsystem"
+  },
+  "Struct219": {
+    "NewName": "OptimalPortalCalculationJob",
+    "NewNamespace": "Audio.AmbientSubsystem"
+  },
+  "Struct225": {
+    "NewName": "AverageAttenuatedDirection",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct226": {
+    "NewName": "PointInSplineCheckJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct227": {
+    "NewName": "DistanceJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct229": {
+    "NewName": "AverageAttenuatedDirectionCalculationJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct228": {
+    "NewName": "TotalAttenuationCalculationJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct230": {
+    "NewName": "ClearJob",
+    "NewNamespace": "Audio.AmbientSubsystem.AmbientSplineEmitter"
+  },
+  "Struct263": {
+    "NewName": "JobContinuation",
+    "NewNamespace": "Diz.Jobs"
+  },
+  "Struct273": {
+    "NewName": "ChartItemIndex",
+    "NewNamespace": "ChartAndGraph.Common"
+  },
+  "Struct987": {
+    "NewName": "Diagnosis",
+    "NewNamespace": "EFT.BackEnd"
+  },
+  "Struct796": {
+    "NewName": "ImpostorStruct",
+    "NewNamespace": "EFT.Impostors"
+  },
+  "Struct36": {
+    "NewName": "WsConnectionParams",
+  },
+  "Struct1343": {
+    "RemoveType": true
+  }
+}

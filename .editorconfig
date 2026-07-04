@@ -151,6 +151,7 @@ resharper_possible_multiple_enumeration_highlighting = none
 # Ignored warnings
 dotnet_diagnostic.CS1591.severity = none
 dotnet_diagnostic.CA1822.severity = none
+dotnet_diagnostic.CA1873.severity = none
 
 # Xml project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,nativeproj,locproj}]

@@ -130,11 +130,14 @@ public class DirectMapController(
             FindAndRemoveTypesFromAssembly();
             assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);
 
-            assemblyWriter.WriteAssembly(
+            var asmPath = assemblyWriter.WriteAssembly(
                 Module!,
                 _targetAssemblyPath,
                 "-cleaned-direct-mapped-publicized-unpatched.dll"
             );
+
+            Module = dataProvider.LoadModule(asmPath);
+            logger.LogInformation("Assembly reloaded after unpatched write");
 
             patchService.ApplyPatches();
             assemblySelfReferenceHelper.RemoveSelfAssemblyReferences(dataProvider.LoadedModule!);

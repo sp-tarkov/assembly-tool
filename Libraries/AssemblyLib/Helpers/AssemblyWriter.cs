@@ -62,7 +62,7 @@ public sealed class AssemblyWriter(
         return result;
     }
 
-    public void WriteAssembly(
+    public string WriteAssembly(
         ModuleDefinition module,
         string targetAssemblyPath,
         string dllName = "-cleaned-direct-mapped-publicized.dll"
@@ -74,10 +74,11 @@ public sealed class AssemblyWriter(
             module.Name?.Replace(".dll", dllName) ?? Utf8String.Empty
         );
 
-        var originalPath =
-            Path.Combine(
-                Path.GetDirectoryName(targetAssemblyPath) ??
-                throw new NullReferenceException("Target assembly path is null"), "Assembly-CSharp.dll");
+        var originalPath = Path.Combine(
+            Path.GetDirectoryName(targetAssemblyPath)
+                ?? throw new NullReferenceException("Target assembly path is null"),
+            "Assembly-CSharp.dll"
+        );
 
         var deltaPath = Path.Combine(
             Path.GetDirectoryName(targetAssemblyPath)
@@ -100,7 +101,7 @@ public sealed class AssemblyWriter(
 
         if (dllName != "-cleaned-direct-mapped-publicized.dll")
         {
-            return;
+            return outPath;
         }
 
         var symbolResult = symbolGenerator.GenerateForAssembly(outPath, GetSymbolPath(outPath, module));
@@ -117,7 +118,7 @@ public sealed class AssemblyWriter(
         catch (Exception e)
         {
             logger.LogCritical("Exception during write hollow task:\n{Exception}", e.Message);
-            return;
+            return outPath;
         }
 
         logger.LogInformation("Hollowed written to: {outPath}", hollowedPath);
@@ -125,6 +126,8 @@ public sealed class AssemblyWriter(
         // At this point Assembly-CSharp-Cleaned.dll is loaded as the module. pass original pathing instead
         CreateDelta(originalPath, outPath, deltaPath);
         CopyToDevelopmentEnvironment(outPath, hollowedPath, deltaPath, symbolResult);
+
+        return outPath;
     }
 
     private static string GetSymbolPath(string assemblyPath, ModuleDefinition module)

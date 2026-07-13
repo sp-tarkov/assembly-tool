@@ -1,4 +1,274 @@
 {
+    "Class0`7": {
+        "NewName": "UpdateStatusRequestParams"
+    },
+    "Class1`3": {
+        "NewName": "CreateRaidGroupRequestParams"
+    },
+    "Class2`6": {
+        "NewName": "ApiEditorLoginRequestParams"
+    },
+    "Class3`1": {
+        "NewName": "ClientGameModeRequestParams"
+    },
+    "Class4`3": {
+        "NewName": "ClientGameHardwareCodeRequestParams"
+    },
+    "Class5`2": {
+        "NewName": "ClientGameVersionRequestParams"
+    },
+    "Class6`3": {
+        "NewName": "ItemsMovingRequestParams"
+    },
+    "Class7`1": {
+        "NewName": "ClientAirdropLootRequestParams"
+    },
+    "Class8`7": {
+        "NewName": "ConfirmPurchaseOperationParams"
+    },
+    "Class9`2": {
+        "NewName": "ConfirmPurchaseOperationParamsItem"
+    },
+    "Class10`5": {
+        "NewName": "ConfirmSellOperationParams"
+    },
+    "Class11`3": {
+        "NewName": "ConfirmSellOperationParamsItem"
+    },
+    "Class12`3": {
+        "NewName": "SellAllFromSavageOperationParams"
+    },
+    "Class13`3": {
+        "NewName": "CustomizationBuyOperationParams"
+    },
+    "Class14`3": {
+        "NewName": "TraderRepairOperationParams"
+    },
+    "Class15`2": {
+        "NewName": "GetInsurancePriceRequestParams"
+    },
+    "Class16`3": {
+        "NewName": "InsureOperationParams"
+    },
+    "Class17`4": {
+        "NewName": "CreateProfileRequestParams"
+    },
+    "Class18`3": {
+        "NewName": "SendDisconnectEventRequestParams"
+    },
+    "Class19`1": {
+        "NewName": "BotGenerateRequestParams"
+    },
+    "Class20`2": {
+        "NewName": "CustomizationSetOperationParams"
+    },
+    "Class21`1": {
+        "NewName": "NicknameRequestParams"
+    },
+    "Class22`5": {
+        "NewName": "StartMatchingRequestParams"
+    },
+    "Class23`2": {
+        "NewName": "StartGameRequestParams"
+    },
+    "Class24`1": {
+        "NewName": "GameStatusRequestParams"
+    },
+    "Class25`2": {
+        "NewName": "ProfileSettingsRequestParams"
+    },
+    "Class26`2": {
+        "NewName": "SendGroupInviteRequestParams"
+    },
+    "Class27`1": {
+        "NewName": "GroupInviteRequestParams"
+    },
+    "Class28`1": {
+        "NewName": "RemovePlayerFromGroupRequestParams"
+    },
+    "Class29`1": {
+        "NewName": "TransferGroupLeadershipRequestParams"
+    },
+    "Class30`1": {
+        "NewName": "SendReportRequestParams"
+    },
+    "Class31`1": {
+        "NewName": "GetCharServersRequestParams"
+    },
+    "Class32`1": {
+        "NewName": "GetOtherPlayerProfileRequestParams"
+    },
+    "Class33`2": {
+        "NewName": "GetDialogListRequestParams"
+    },
+    "Class34`4": {
+        "NewName": "GetDialogMessageRequestParams"
+    },
+    "Class35`1": {
+        "NewName": "DialogRequestParams"
+    },
+    "Class36`1": {
+        "NewName": "MutePlayerRequestParams"
+    },
+    "Class37`2": {
+        "NewName": "DialogPlayerRequestParams"
+    },
+    "Class38`1": {
+        "NewName": "ReadDialogsRequestParams"
+    },
+    "Class39`1": {
+        "NewName": "RemoveFromFriendsListRequestParams"
+    },
+    "Class40`1": {
+        "NewName": "SendFriendRequestRequestParams"
+    },
+    "Class41`1": {
+        "NewName": "FriendRequestRequestParams"
+    },
+    "Class42`2": {
+        "NewName": "CreateGroupDialogRequestParams"
+    },
+    "Class43`4": {
+        "NewName": "SendMessageRequestParams"
+    },
+    "Class44`4": {
+        "NewName": "InterGameTransferOperationParams"
+    },
+    "Class45`2": {
+        "NewName": "ReadEncyclopediaOperationParams"
+    },
+    "Class46`2": {
+        "NewName": "HwMetricsRequestParams"
+    },
+    "Class47`4": {
+        "NewName": "RagFairAddOfferOperationParams"
+    },
+    "Class48`2": {
+        "NewName": "RagFairRemoveOfferOperationParams"
+    },
+    "Class49`4": {
+        "NewName": "RagFairRenewOfferOperationParams"
+    },
+    "Class50`2": {
+        "NewName": "RagFairBuyOfferOperationParams"
+    },
+    "Class51`3": {
+        "NewName": "RagFairBuyOfferOperationParamsOffer"
+    },
+    "Class52`1": {
+        "NewName": "GetCaptchaRequestParams"
+    },
+    "Class53`3": {
+        "NewName": "ValidateCaptchaRequestParams"
+    },
+    "Class54`23": {
+        "NewName": "GetOffersRequestParams"
+    },
+    "Class55`1": {
+        "NewName": "GetMarketPricesRequestParams"
+    },
+    "Class56`1": {
+        "NewName": "FindOffersByIdRequestParams"
+    },
+    "Class57`3": {
+        "NewName": "RepairKitOperationParams"
+    },
+    "Class58`2": {
+        "NewName": "RedeemProfileRewardOperationParams"
+    },
+    "Class59`1": {
+        "NewName": "QuestListRequestParams"
+    },
+    "Class60`2": {
+        "NewName": "QuestOperationParams"
+    },
+    "Class61`3": {
+        "NewName": "RepeatableQuestAcceptOperationParams"
+    },
+    "Class62`4": {
+        "NewName": "RepeatableQuestCompleteOperationParams"
+    },
+    "Class63`3": {
+        "NewName": "QuestCompleteOperationParams"
+    },
+    "Class64`4": {
+        "NewName": "QuestHandoverOperationParams"
+    },
+    "Class65`4": {
+        "NewName": "SaveEquipmentBuildOperationParams"
+    },
+    "Class66`2": {
+        "NewName": "SetVariableValueOperationParams"
+    },
+    "Class67`1": {
+        "NewName": "UpdatePingOperationParams"
+    },
+    "Class68`2": {
+        "NewName": "RecordShootingRangePointsOperationParams"
+    },
+    "Class69`5": {
+        "NewName": "HideoutSingleProductionStartOperationParams"
+    },
+    "Class70`3": {
+        "NewName": "HideoutProductionOperationParams"
+    },
+    "Class71`2": {
+        "NewName": "HideoutCircleOfCultistProductionStartOperationParams"
+    },
+    "Class72`4": {
+        "NewName": "HideoutOperationParams"
+    },
+    "Class73`3": {
+        "NewName": "HideoutUpgradeCompleteOperationParams"
+    },
+    "Class74`5": {
+        "NewName": "HideoutImproveAreaOperationParams"
+    },
+    "Class75`4": {
+        "NewName": "HideoutToggleAreaOperationParams"
+    },
+    "Class76`4": {
+        "NewName": "HideoutTakeItemsFromAreaSlotsOperationParams"
+    },
+    "Class77`5": {
+        "NewName": "RestoreHealthOperationParams"
+    },
+    "Class78`5": {
+        "NewName": "MatchEndRequestParams"
+    },
+    "Class79": {
+        "NewName": "TokenIssueRequestParams"
+    },
+    "Class80`5": {
+        "NewName": "HideoutQuickTimeEventOperationParams"
+    },
+    "Class81`1": {
+        "NewName": "TraderDialogRequestParams"
+    },
+    "Class82`1": {
+        "NewName": "MarkSurveyAsViewedRequestParams"
+    },
+    "Class83`3": {
+        "NewName": "SetFavoriteItemsOperationParams"
+    },
+    "Class84`3": {
+        "NewName": "HideoutCustomizationApplyOperationParams"
+    },
+    "Class85`3": {
+        "NewName": "HideoutCustomizationSetMannequinPoseOperationParams"
+    },
+    "Class86`3": {
+        "NewName": "OpenRandomLootContainerOperationParams"
+    },
+    "Class87`2": {
+        "NewName": "InteractionContextHelperKeycardWrapper"
+    },
+    "Class88`2": {
+        "NewName": "InteractionContextHelperKeycardWrapperWrapper"
+    },
+    "Class89`2": {
+        "NewName": "ShowInternalLocationWrapper"
+    },
     "Class99": {
         "NewName": "AdvAssaultTargetLayer"
     },
@@ -604,6 +874,14 @@
     },
     "Class702": {
         "NewName": "Extension"
+    },
+    "Class705": {
+        "NewName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+        "NestedTypes": {
+            "Struct177": {
+                "NewName": "MonoScriptData"
+            }
+        }
     },
     "Class706": {
         "NewName": "CameraRenderData",

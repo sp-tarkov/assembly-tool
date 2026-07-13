@@ -24,31 +24,31 @@
         "NewName": "ClientAirdropLootRequestParams"
     },
     "Class8`7": {
-        "NewName": "ConfirmPurchaseOperation"
+        "NewName": "ConfirmPurchaseOperationParams"
     },
     "Class9`2": {
-        "NewName": "ConfirmPurchaseOperationItem"
+        "NewName": "ConfirmPurchaseOperationParamsItem"
     },
     "Class10`5": {
-        "NewName": "ConfirmSellOperation"
+        "NewName": "ConfirmSellOperationParams"
     },
     "Class11`3": {
-        "NewName": "ConfirmSellOperationItem"
+        "NewName": "ConfirmSellOperationParamsItem"
     },
     "Class12`3": {
-        "NewName": "SellAllFromSavageOperation"
+        "NewName": "SellAllFromSavageOperationParams"
     },
     "Class13`3": {
-        "NewName": "CustomizationBuyOperation"
+        "NewName": "CustomizationBuyOperationParams"
     },
     "Class14`3": {
-        "NewName": "TraderRepairOperation"
+        "NewName": "TraderRepairOperationParams"
     },
     "Class15`2": {
         "NewName": "GetInsurancePriceRequestParams"
     },
     "Class16`3": {
-        "NewName": "InsureOperation"
+        "NewName": "InsureOperationParams"
     },
     "Class17`4": {
         "NewName": "CreateProfileRequestParams"
@@ -60,7 +60,7 @@
         "NewName": "BotGenerateRequestParams"
     },
     "Class20`2": {
-        "NewName": "CustomizationSetOperation"
+        "NewName": "CustomizationSetOperationParams"
     },
     "Class21`1": {
         "NewName": "NicknameRequestParams"
@@ -132,28 +132,28 @@
         "NewName": "SendMessageRequestParams"
     },
     "Class44`4": {
-        "NewName": "InterGameTransferOperation"
+        "NewName": "InterGameTransferOperationParams"
     },
     "Class45`2": {
-        "NewName": "ReadEncyclopediaOperation"
+        "NewName": "ReadEncyclopediaOperationParams"
     },
     "Class46`2": {
         "NewName": "HwMetricsRequestParams"
     },
     "Class47`4": {
-        "NewName": "RagFairAddOfferOperation"
+        "NewName": "RagFairAddOfferOperationParams"
     },
     "Class48`2": {
-        "NewName": "RagFairRemoveOfferOperation"
+        "NewName": "RagFairRemoveOfferOperationParams"
     },
     "Class49`4": {
-        "NewName": "RagFairRenewOfferOperation"
+        "NewName": "RagFairRenewOfferOperationParams"
     },
     "Class50`2": {
-        "NewName": "RagFairBuyOfferOperation"
+        "NewName": "RagFairBuyOfferOperationParams"
     },
     "Class51`3": {
-        "NewName": "RagFairBuyOfferOperationOffer"
+        "NewName": "RagFairBuyOfferOperationParamsOffer"
     },
     "Class52`1": {
         "NewName": "GetCaptchaRequestParams"
@@ -171,67 +171,67 @@
         "NewName": "FindOffersByIdRequestParams"
     },
     "Class57`3": {
-        "NewName": "RepairKitOperation"
+        "NewName": "RepairKitOperationParams"
     },
     "Class58`2": {
-        "NewName": "RedeemProfileRewardOperation"
+        "NewName": "RedeemProfileRewardOperationParams"
     },
     "Class59`1": {
         "NewName": "QuestListRequestParams"
     },
     "Class60`2": {
-        "NewName": "QuestOperation"
+        "NewName": "QuestOperationParams"
     },
     "Class61`3": {
-        "NewName": "RepeatableQuestAcceptOperation"
+        "NewName": "RepeatableQuestAcceptOperationParams"
     },
     "Class62`4": {
-        "NewName": "RepeatableQuestCompleteOperation"
+        "NewName": "RepeatableQuestCompleteOperationParams"
     },
     "Class63`3": {
-        "NewName": "QuestCompleteOperation"
+        "NewName": "QuestCompleteOperationParams"
     },
     "Class64`4": {
-        "NewName": "QuestHandoverOperation"
+        "NewName": "QuestHandoverOperationParams"
     },
     "Class65`4": {
-        "NewName": "SaveEquipmentBuildOperation"
+        "NewName": "SaveEquipmentBuildOperationParams"
     },
     "Class66`2": {
-        "NewName": "SetVariableValueOperation"
+        "NewName": "SetVariableValueOperationParams"
     },
     "Class67`1": {
-        "NewName": "UpdatePingOperation"
+        "NewName": "UpdatePingOperationParams"
     },
     "Class68`2": {
-        "NewName": "RecordShootingRangePointsOperation"
+        "NewName": "RecordShootingRangePointsOperationParams"
     },
     "Class69`5": {
-        "NewName": "HideoutSingleProductionStartOperation"
+        "NewName": "HideoutSingleProductionStartOperationParams"
     },
     "Class70`3": {
-        "NewName": "HideoutProductionOperation"
+        "NewName": "HideoutProductionOperationParams"
     },
     "Class71`2": {
-        "NewName": "HideoutCircleOfCultistProductionStartOperation"
+        "NewName": "HideoutCircleOfCultistProductionStartOperationParams"
     },
     "Class72`4": {
-        "NewName": "HideoutOperation"
+        "NewName": "HideoutOperationParams"
     },
     "Class73`3": {
-        "NewName": "HideoutUpgradeCompleteOperation"
+        "NewName": "HideoutUpgradeCompleteOperationParams"
     },
     "Class74`5": {
-        "NewName": "HideoutImproveAreaOperation"
+        "NewName": "HideoutImproveAreaOperationParams"
     },
     "Class75`4": {
-        "NewName": "HideoutToggleAreaOperationn"
+        "NewName": "HideoutToggleAreaOperationParams"
     },
     "Class76`4": {
-        "NewName": "HideoutTakeItemsFromAreaSlotsOperation"
+        "NewName": "HideoutTakeItemsFromAreaSlotsOperationParams"
     },
     "Class77`5": {
-        "NewName": "RestoreHealthOperation"
+        "NewName": "RestoreHealthOperationParams"
     },
     "Class78`5": {
         "NewName": "MatchEndRequestParams"
@@ -240,7 +240,7 @@
         "NewName": "TokenIssueRequestParams"
     },
     "Class80`5": {
-        "NewName": "HideoutQuickTimeEventOperation"
+        "NewName": "HideoutQuickTimeEventOperationParams"
     },
     "Class81`1": {
         "NewName": "TraderDialogRequestParams"
@@ -249,16 +249,16 @@
         "NewName": "MarkSurveyAsViewedRequestParams"
     },
     "Class83`3": {
-        "NewName": "SetFavoriteItemsOperation"
+        "NewName": "SetFavoriteItemsOperationParams"
     },
     "Class84`3": {
-        "NewName": "HideoutCustomizationApplyOperation"
+        "NewName": "HideoutCustomizationApplyOperationParams"
     },
     "Class85`3": {
-        "NewName": "HideoutCustomizationSetMannequinPoseOperation"
+        "NewName": "HideoutCustomizationSetMannequinPoseOperationParams"
     },
     "Class86`3": {
-        "NewName": "OpenRandomLootContainerOperation"
+        "NewName": "OpenRandomLootContainerOperationParams"
     },
     "Class87`2": {
         "NewName": "InteractionContextHelperKeycardWrapper"

@@ -28,7 +28,9 @@ public class FixPostScavRaidXpShowingZeroPatch
     {
         if (activeProfile.Side == EPlayerSide.Savage)
         {
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             side = ESideType.Savage; // Also set side to correct value (defaults to USEC/BEAR when playing as scav)
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             var xpGainedInSession = activeProfile.Stats.Eft.SessionCounters.GetAllInt(CounterTag.Exp);
             activeProfile.Stats.Eft.TotalSessionExperience = (int)(
                 xpGainedInSession

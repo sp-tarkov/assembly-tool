@@ -518,8 +518,10 @@ public class CompilerGeneratedSigRenamer(
     private string? GetUniqueTypeName(TypeDefinition generatedType, string baseName)
     {
         var sanitizedBaseName = SanitizeIdentifier(baseName);
-        var genericArity = generatedType.GenericParameters.Count > 0
-            ? $"`{generatedType.GenericParameters.Count}"
+        var declaredGenericArity = generatedType.GenericParameters.Count
+            - (generatedType.DeclaringType?.GenericParameters.Count ?? 0);
+        var genericArity = declaredGenericArity > 0
+            ? $"`{declaredGenericArity}"
             : string.Empty;
 
         return GetUniqueName(

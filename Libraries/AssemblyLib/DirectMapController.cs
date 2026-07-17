@@ -103,7 +103,21 @@ public class DirectMapController(
         {
             logger.LogInformation("Direct map stage");
 
-            RunDirectMappingProcess();
+            var mappings = dataProvider.DirectMapModels;
+
+            if (mappings.Count == 0)
+            {
+                logger.LogError("No direct-mappings loaded.");
+                return;
+            }
+
+            logger.LogInformation("Renaming direct mappings");
+            foreach (var (targetFullName, mapping) in mappings)
+            {
+                renamerService.RenameMappingRecursive(targetFullName, mapping);
+            }
+
+            attributeFactory.UpdateAsyncAttributes();
             renamerService.RenameBySignature();
 
             RunPublicizer();
@@ -189,24 +203,7 @@ public class DirectMapController(
     /// <summary>
     ///     Runs the direct mapping process
     /// </summary>
-    private void RunDirectMappingProcess()
-    {
-        var mappings = dataProvider.DirectMapModels;
-
-        if (mappings.Count == 0)
-        {
-            logger.LogError("No direct-mappings loaded.");
-            return;
-        }
-
-        logger.LogInformation("Renaming direct mappings");
-        foreach (var (targetFullName, mapping) in mappings)
-        {
-            renamerService.RenameMappingRecursive(targetFullName, mapping);
-        }
-
-        attributeFactory.UpdateAsyncAttributes();
-    }
+    private void RunDirectMappingProcess() { }
 
     /// <summary>
     ///     Runs the publicizer over all types

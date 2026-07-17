@@ -14,7 +14,7 @@ public class PropertyDirectMapRenamer(
 ) : IDirectMapRenamer
 {
     public int Priority => 0;
-    public bool Enabled => false;
+    public bool Enabled => true;
 
     public ERenamerType Type => ERenamerType.Properties;
 

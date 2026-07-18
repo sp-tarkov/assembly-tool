@@ -11,7 +11,8 @@ public class FieldDirectMapRenamer(
     ILogger<FieldDirectMapRenamer> logger,
     DataProvider dataProvider,
     Statistics stats,
-    MemberReferenceCache memberReferenceCache
+    MemberReferenceCache memberReferenceCache,
+    DirectRenameCache directRenameCache
 ) : IDirectMapRenamer
 {
     public int Priority => 0;
@@ -40,6 +41,7 @@ public class FieldDirectMapRenamer(
 
                 field.Name = new Utf8String(newName);
                 UpdateFieldReferences(field, field.Name);
+                directRenameCache.Add(field);
             }
         }
     }

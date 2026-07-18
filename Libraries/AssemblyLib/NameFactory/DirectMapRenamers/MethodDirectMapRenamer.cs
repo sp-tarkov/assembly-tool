@@ -10,7 +10,8 @@ namespace AssemblyLib.NameFactory.DirectMapRenamers;
 public class MethodDirectMapRenamer(
     ILogger<MethodDirectMapRenamer> logger,
     DataProvider dataProvider,
-    MemberReferenceCache memberReferenceCache
+    MemberReferenceCache memberReferenceCache,
+    DirectRenameCache directRenameCache
 ) : IDirectMapRenamer
 {
     public int Priority => 0;
@@ -45,6 +46,7 @@ public class MethodDirectMapRenamer(
                 var utf8NewName = new Utf8String(newName);
                 method.Name = utf8NewName;
                 UpdateMethodMemberReferences(method, utf8NewName);
+                directRenameCache.Add(method);
             }
         }
     }

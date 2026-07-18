@@ -10,7 +10,8 @@ namespace AssemblyLib.NameFactory.SigRenamers;
 public class CompilerGeneratedSigRenamer(
     ILogger<CompilerGeneratedSigRenamer> logger,
     DataProvider dataProvider,
-    MemberReferenceCache memberReferenceCache
+    MemberReferenceCache memberReferenceCache,
+    DirectRenameCache directRenameCache
 ) : ISigRenamer
 {
     private readonly HashSet<TypeDefinition> _processedTypes = [];
@@ -176,7 +177,11 @@ public class CompilerGeneratedSigRenamer(
                 stack.Push(nestedType);
             }
 
-            if (type.IsCompilerGenerated() && IsCompilerGeneratedTypeCandidate(type))
+            if (
+                type.IsCompilerGenerated()
+                && IsCompilerGeneratedTypeCandidate(type)
+                && !directRenameCache.Contains(type)
+            )
             {
                 yield return type;
             }
@@ -185,14 +190,22 @@ public class CompilerGeneratedSigRenamer(
 
     private IEnumerable<MethodDefinition> GetCompilerGeneratedMethods(TypeDefinition targetType)
     {
-        foreach (var method in targetType.Methods.Where(IsCompilerGeneratedMethodCandidate))
+        foreach (
+            var method in targetType.Methods.Where(method =>
+                IsCompilerGeneratedMethodCandidate(method) && !directRenameCache.Contains(method)
+            )
+        )
         {
             yield return method;
         }
 
         foreach (var type in GetCompilerGeneratedTypes(targetType))
         {
-            foreach (var method in type.Methods.Where(IsCompilerGeneratedMethodCandidate))
+            foreach (
+                var method in type.Methods.Where(method =>
+                    IsCompilerGeneratedMethodCandidate(method) && !directRenameCache.Contains(method)
+                )
+            )
             {
                 yield return method;
             }

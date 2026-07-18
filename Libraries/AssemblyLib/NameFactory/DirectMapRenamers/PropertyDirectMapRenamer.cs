@@ -10,7 +10,8 @@ namespace AssemblyLib.NameFactory.DirectMapRenamers;
 public class PropertyDirectMapRenamer(
     ILogger<PropertyDirectMapRenamer> logger,
     DataProvider dataProvider,
-    Statistics stats
+    Statistics stats,
+    DirectRenameCache directRenameCache
 ) : IDirectMapRenamer
 {
     public int Priority => 0;
@@ -38,6 +39,7 @@ public class PropertyDirectMapRenamer(
                 }
 
                 prop.Name = new Utf8String(newName);
+                directRenameCache.Add(prop);
             }
         }
     }

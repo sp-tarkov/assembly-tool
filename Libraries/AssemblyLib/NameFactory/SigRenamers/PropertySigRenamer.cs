@@ -8,7 +8,8 @@ namespace AssemblyLib.NameFactory.SigRenamers;
 public class PropertySigRenamer(
     ILogger<PropertySigRenamer> logger,
     DataProvider dataProvider,
-    PropertySigComparer propertySigComparer
+    PropertySigComparer propertySigComparer,
+    DirectRenameCache directRenameCache
 ) : ISigRenamer
 {
     public int Priority => 0;
@@ -27,6 +28,11 @@ public class PropertySigRenamer(
 
         foreach (var targetProperty in targetProperties)
         {
+            if (directRenameCache.Contains(targetProperty))
+            {
+                continue;
+            }
+
             if (dummyPropertiesNames.Contains(targetProperty.Name))
             {
                 continue;

@@ -12,7 +12,8 @@ public class MethodSigRenamer(
     ILogger<MethodSigRenamer> logger,
     DataProvider dataProvider,
     MethodSigComparer methodSignatureComparer,
-    MemberReferenceCache memberReferenceCache
+    MemberReferenceCache memberReferenceCache,
+    DirectRenameCache directRenameCache
 ) : ISigRenamer
 {
     public int Priority => 0;
@@ -549,10 +550,11 @@ public class MethodSigRenamer(
             && methodSignatureComparer.IsSame(targetMethod, dummyMethod);
     }
 
-    private static IEnumerable<MethodDefinition> GetTargetCandidates(TypeDefinition targetType)
+    private IEnumerable<MethodDefinition> GetTargetCandidates(TypeDefinition targetType)
     {
         return targetType.Methods.Where(method =>
             FilterMethods(method)
+            && !directRenameCache.Contains(method)
             && method.Name is not null
             && method.Name.IsObfuscatedName()
             && (!method.IsVirtual || method.IsNewSlot)

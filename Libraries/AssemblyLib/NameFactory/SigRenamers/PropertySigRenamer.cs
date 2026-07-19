@@ -1,4 +1,5 @@
 using AsmResolver.DotNet;
+using AsmResolver.DotNet.Signatures;
 using AssemblyLib.SignatureComparers;
 using SPTarkov.DI.Annotations;
 
@@ -34,6 +35,12 @@ public class PropertySigRenamer(
             }
 
             if (dummyPropertiesNames.Contains(targetProperty.Name))
+            {
+                continue;
+            }
+
+            // Do not rename already named properties as they are already most likely correct
+            if (IsAlreadyNamed(targetProperty))
             {
                 continue;
             }
@@ -90,6 +97,95 @@ public class PropertySigRenamer(
             targetProperty.Name = dummyProperty.Name;
             dummyProperties.Remove(dummyProperty);
         }
+    }
+
+    /// <summary>
+    ///     CLR type names mapped to the C# keyword the deobfuscator uses when it auto names a member.
+    /// </summary>
+    private static readonly Dictionary<string, string> _keywordAliases = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["Boolean"] = "bool",
+        ["Byte"] = "byte",
+        ["SByte"] = "sbyte",
+        ["Char"] = "char",
+        ["Decimal"] = "decimal",
+        ["Double"] = "double",
+        ["Single"] = "float",
+        ["Int16"] = "short",
+        ["UInt16"] = "ushort",
+        ["Int32"] = "int",
+        ["UInt32"] = "uint",
+        ["Int64"] = "long",
+        ["UInt64"] = "ulong",
+        ["Object"] = "object",
+        ["String"] = "string",
+        ["IntPtr"] = "nint",
+        ["UIntPtr"] = "nuint",
+    };
+
+    /// <summary>
+    ///     Did this property already carry a real name in the original assembly?
+    ///     False for obfuscated names and for names derived from the property's own type
+    /// </summary>
+    private static bool IsAlreadyNamed(PropertyDefinition property)
+    {
+        var name = property.Name?.ToString();
+
+        if (string.IsNullOrEmpty(name))
+        {
+            return false;
+        }
+
+        return !name.IsObfuscatedName() && !IsTypeDerivedName(name, property.Signature?.ReturnType);
+    }
+
+    private static bool IsTypeDerivedName(string name, TypeSignature? type)
+    {
+        if (type is null)
+        {
+            return false;
+        }
+
+        // strip the trailing counter the deobfuscator appends, eg bool_0 -> bool
+        var baseName = name.TrimStart('_');
+        var underscore = baseName.LastIndexOf('_');
+
+        if (underscore > 0 && baseName[(underscore + 1)..].All(char.IsDigit))
+        {
+            baseName = baseName[..underscore];
+        }
+
+        if (baseName.Length == 0)
+        {
+            return false;
+        }
+
+        var typeName = type.Name?.ToString();
+
+        if (string.IsNullOrEmpty(typeName))
+        {
+            return false;
+        }
+
+        // drop generics
+        var tick = typeName.IndexOf('`');
+        if (tick > 0)
+        {
+            typeName = typeName[..tick];
+        }
+
+        typeName = new string(typeName.Where(char.IsLetterOrDigit).ToArray());
+
+        if (typeName.Length == 0)
+        {
+            return false;
+        }
+
+        return baseName.Equals(typeName, StringComparison.OrdinalIgnoreCase)
+            || (
+                _keywordAliases.TryGetValue(typeName, out var alias)
+                && baseName.Equals(alias, StringComparison.OrdinalIgnoreCase)
+            );
     }
 
     private static bool IsExplicitInterfaceProperty(PropertyDefinition property)

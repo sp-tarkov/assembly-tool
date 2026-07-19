@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using AsmResolver;
+using AsmResolver.DotNet.Signatures;
 
 namespace AssemblyLib.Extensions;
 
@@ -50,6 +51,15 @@ internal static class Utf8Extensions
         public bool IsObfuscatedName()
         {
             return utf8.ToString().IsObfuscatedName();
+        }
+
+        /// <summary>
+        ///     Did this member keep a real name from the original source?
+        /// </summary>
+        /// <param name="memberType">Field type or property return type</param>
+        public bool IsReal(TypeSignature? memberType)
+        {
+            return utf8.ToString().IsReal(memberType);
         }
     }
 }

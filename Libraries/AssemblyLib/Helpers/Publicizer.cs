@@ -86,6 +86,37 @@ public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProv
         stats.MethodPublicizedCount++;
     }
 
+    /// <summary>
+    ///     Does any base type declare a member under this name? If so the field must stay private.
+    /// </summary>
+    private bool ShadowsPublicBaseMember(TypeDefinition type, string? name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            return false;
+        }
+
+        var current = type.BaseType;
+        var guard = 0;
+
+        while (current is not null && guard++ < 32)
+        {
+            if (!current.TryResolve(dataProvider.Context, out var baseType))
+            {
+                return false;
+            }
+
+            if (baseType.Fields.Any(f => f.Name == name) || baseType.Properties.Any(p => p.Name == name))
+            {
+                return true;
+            }
+
+            current = baseType.BaseType;
+        }
+
+        return false;
+    }
+
     private void PublicizeFields(TypeDefinition type)
     {
         if (type.IsGameObject())
@@ -107,6 +138,20 @@ public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProv
         {
             if (field.IsPublic || field.IsEventField())
             {
+                continue;
+            }
+
+            if (ShadowsPublicBaseMember(type, field.Name?.ToString()))
+            {
+                if (logger.IsEnabled(LogLevel.Information))
+                {
+                    logger.LogInformation(
+                        "Not publicizing {type}::{field}, it shadows a public base member",
+                        type.FullName,
+                        field.Name?.ToString()
+                    );
+                }
+
                 continue;
             }
 

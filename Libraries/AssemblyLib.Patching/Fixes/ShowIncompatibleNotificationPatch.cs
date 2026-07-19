@@ -9,7 +9,7 @@ public class ShowIncompatibleNotificationPatch(Player.FirearmController controll
     [Patch(typeof(Player.FirearmController.Idling), nameof(ShowIncompatibleNotification), PatchType.Prefix)]
     public bool Patch()
     {
-        if (!player_0.IsYourPlayer)
+        if (!Player.IsYourPlayer)
         {
             return true;
         }

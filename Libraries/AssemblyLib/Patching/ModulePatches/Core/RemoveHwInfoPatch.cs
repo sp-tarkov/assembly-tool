@@ -1,3 +1,4 @@
+using AsmResolver.DotNet.Signatures;
 using EFT;
 using SPTarkov.DI.Annotations;
 
@@ -14,7 +15,7 @@ public class RemoveHwInfoPatch(
 
     public void Patch()
     {
-        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_StartTask>("MoveNext");
+        var moveNextMethod = lookup.Eft.Method<TarkovApplication.CG_StartTask2>("MoveNext");
         if (moveNextMethod is null)
         {
             throw new FailedToFindTypeException(
@@ -25,12 +26,7 @@ public class RemoveHwInfoPatch(
         methodBodyNuker.NopRange(moveNextMethod.CilMethodBody!.Instructions, 62, 94);
 
         // Use old way here because we delete it, can't resolve it with strong typed code.
-        var hwEchoType = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "HWEcho");
-        if (hwEchoType is null)
-        {
-            throw new FailedToFindTypeException("Could not find `HWEcho` when patching");
-        }
-
+        var hwEchoType = dataProvider.LoadedModule!.GetAllTypes().FirstOrDefault(t => t.Name == "HWEcho") ?? throw new FailedToFindTypeException("Could not find `HWEcho` when patching");
         methodBodyNuker.NukeType(hwEchoType);
 
         var sendMetricsJsonMethod = lookup.Eft.Method<ClientBackendSession>("SendMetricsJson");

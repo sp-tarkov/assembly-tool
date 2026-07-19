@@ -40,7 +40,7 @@ public class PropertySigRenamer(
             }
 
             // Do not rename already named properties as they are already most likely correct
-            if (GeneratedName.IsReal(targetProperty.Name?.ToString(), targetProperty.Signature?.ReturnType))
+            if (targetProperty.Name!.IsReal(targetProperty.Signature?.ReturnType))
             {
                 continue;
             }

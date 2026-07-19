@@ -45,7 +45,7 @@ public class FieldSigRenamer(
         {
             if (backingFields.TryGetValue(field, out var property))
             {
-                if (!GeneratedName.IsReal(property.Name?.ToString(), property.Signature?.ReturnType))
+                if (!property.Name!.IsReal(property.Signature?.ReturnType))
                 {
                     remaining.Add(field);
                     continue;
@@ -109,7 +109,7 @@ public class FieldSigRenamer(
                 continue;
             }
 
-            if (GeneratedName.IsReal(field.Name?.ToString(), field.Signature?.FieldType))
+            if (field.Name!.IsReal(field.Signature?.FieldType))
             {
                 continue;
             }

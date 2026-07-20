@@ -18,7 +18,9 @@ public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProv
         type.Attributes |= type.IsNested ? TypeAttributes.NestedPublic : TypeAttributes.Public; // Apply a public visibility attribute
         stats.TypePublicizedCount++;
 
-        if (type.IsSealed)
+        // A static class is abstract and sealed. Unsealing it stops it being static, which breaks
+        // any extension methods it holds, and nothing can inherit it anyway.
+        if (type.IsSealed && !type.IsAbstract)
         {
             type.Attributes &= ~TypeAttributes.Sealed; // Remove the Sealed attribute if it exists
         }

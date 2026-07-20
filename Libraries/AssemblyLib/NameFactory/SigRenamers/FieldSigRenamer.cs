@@ -69,6 +69,19 @@ public class FieldSigRenamer(
         MatchByKey(remaining, dummyPool, GetJsonPropertyName);
         MatchByKey(remaining, dummyPool, GetConstantKey);
 
+        // Alignment needs anchors, so it runs between the passes that make them
+        MatchByAlignment(targetType, dummyType, remaining, dummyPool);
+        MatchBySignature(remaining, dummyPool, forcedOnly: true);
+        MatchByAlignment(targetType, dummyType, remaining, dummyPool);
+
+        // Ordinal guesses go last, they would poison the anchors above
+        MatchBySignature(remaining, dummyPool, forcedOnly: false);
+        MatchByAlignment(targetType, dummyType, remaining, dummyPool);
+    }
+
+    /// <param name="forcedOnly">Take only groups holding one field per side, where nothing is guessed</param>
+    private void MatchBySignature(List<FieldDefinition> remaining, List<FieldDefinition> dummyPool, bool forcedOnly)
+    {
         foreach (var group in PartitionBySignature(remaining))
         {
             var dummies = dummyPool.Where(d => fieldSigComparer.IsSame(group[0], d)).ToList();
@@ -80,14 +93,20 @@ public class FieldSigRenamer(
             }
 
             // A single field each side is forced, longer runs lean on declaration order
-            if (group.Count > 1 && group.Count > MaxOrdinalChainLength)
+            if (group.Count > 1 && (forcedOnly || group.Count > MaxOrdinalChainLength))
             {
                 continue;
             }
 
             for (var i = 0; i < group.Count; i++)
             {
-                TryRename(group[i], dummies[i].Name?.ToString());
+                if (!TryRename(group[i], dummies[i].Name?.ToString()))
+                {
+                    continue;
+                }
+
+                remaining.Remove(group[i]);
+                dummyPool.Remove(dummies[i]);
             }
         }
     }
@@ -133,6 +152,99 @@ public class FieldSigRenamer(
             .Where(d => !IsCompilerBackingFieldName(d.Name?.ToString()))
             .Where(d => !targetNames.Contains(d.Name?.ToString()))
             .ToList();
+    }
+
+    /// <summary>
+    ///     Maps fields by position, but only once the two sides are shown to line up. Fields that
+    ///     already carry a real name act as anchors, so an added, removed or reordered field puts an
+    ///     anchor at the wrong index and the whole type is skipped.
+    /// </summary>
+    private void MatchByAlignment(
+        TypeDefinition targetType,
+        TypeDefinition dummyType,
+        List<FieldDefinition> remaining,
+        List<FieldDefinition> dummyPool
+    )
+    {
+        var targetFields = targetType.Fields;
+        var dummyFields = dummyType.Fields;
+
+        if (targetFields.Count == 0 || targetFields.Count != dummyFields.Count)
+        {
+            return;
+        }
+
+        var anchors = 0;
+
+        for (var i = 0; i < targetFields.Count; i++)
+        {
+            var targetName = targetFields[i].Name;
+            var dummyName = dummyFields[i].Name?.ToString();
+
+            if (targetName is null || dummyName is null)
+            {
+                return;
+            }
+
+            if (targetName.IsReal(targetFields[i].Signature?.FieldType))
+            {
+                if (targetName.ToString() != NormalizeName(dummyName))
+                {
+                    return;
+                }
+
+                anchors++;
+                continue;
+            }
+
+            // An unnamed field still has to agree on type
+            if (targetFields[i].Signature?.FieldType.Name != dummyFields[i].Signature?.FieldType.Name)
+            {
+                return;
+            }
+        }
+
+        // With nothing already named there is no proof the two sides line up
+        if (anchors == 0)
+        {
+            return;
+        }
+
+
+        for (var i = 0; i < targetFields.Count; i++)
+        {
+            var field = targetFields[i];
+
+            if (!remaining.Contains(field) || !TryRename(field, NormalizeName(dummyFields[i].Name!.ToString())))
+            {
+                continue;
+            }
+
+            remaining.Remove(field);
+            dummyPool.Remove(dummyFields[i]);
+        }
+    }
+
+    /// <summary>
+    ///     The dummy keeps compiler backing field names, we use the underscore form
+    /// </summary>
+    private static string NormalizeName(string name)
+    {
+        if (!IsCompilerBackingFieldName(name))
+        {
+            return name;
+        }
+
+        var close = name.IndexOf('>');
+
+        if (close <= 1)
+        {
+            return name;
+        }
+
+        var inner = name[1..close];
+
+        return $"_{char.ToLowerInvariant(inner[0])}{inner[1..]}";
     }
 
     /// <summary>

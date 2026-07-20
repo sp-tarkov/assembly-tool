@@ -15621,6 +15621,9 @@
     "GClass1157": {
         "NewName": "WorldDrawUtility"
     },
+    "GClass3618": {
+        "NewName": "ObservedDialogueController"
+    },
     "GClass213": {
         "RemoveType": true
     },
@@ -15670,9 +15673,6 @@
         "RemoveType": true
     },
     "GClass2724": {
-        "RemoveType": true
-    },
-    "GClass3618": {
         "RemoveType": true
     },
     "GClass1235": {

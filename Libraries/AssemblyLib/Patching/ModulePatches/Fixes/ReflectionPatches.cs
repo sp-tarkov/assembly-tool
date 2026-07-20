@@ -8,7 +8,7 @@ using SPTarkov.DI.Annotations;
 namespace AssemblyLib.Patching.ModulePatches.Fixes;
 
 [Injectable]
-public class ReflectionPatches(ModuleMemberLookup lookup) : IModulePatch
+public class ReflectionPatches(ILogger<ReflectionPatches> logger, ModuleMemberLookup lookup) : IModulePatch
 {
     public bool Enabled => true;
 
@@ -43,7 +43,7 @@ public class ReflectionPatches(ModuleMemberLookup lookup) : IModulePatch
 
     private void PatchEffectTypeCode()
     {
-        var type = lookup.Eft.Type<HealthHelper.EffectActivator<ActiveHealthController>>();
+        var type = lookup.Eft.Type<HealthHelper.EffectTypeCode>();
         if (type is null)
         {
             throw new NullReferenceException(
@@ -81,7 +81,7 @@ public class ReflectionPatches(ModuleMemberLookup lookup) : IModulePatch
         ChangeBindingFlags(staticCtor, 36, 52);
     }
 
-    private static void ChangeBindingFlags(MethodDefinition ctor, sbyte searchValue, sbyte newValue)
+    private void ChangeBindingFlags(MethodDefinition ctor, sbyte searchValue, sbyte newValue)
     {
         foreach (var instr in ctor.CilMethodBody!.Instructions)
         {
@@ -92,7 +92,9 @@ public class ReflectionPatches(ModuleMemberLookup lookup) : IModulePatch
             }
 
             instr.Operand = newValue;
-            break;
+            return;
         }
+
+        logger.LogError("Could not find BindingFlags to change");
     }
 }

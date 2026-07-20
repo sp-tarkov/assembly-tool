@@ -1,5 +1,7 @@
+using AsmResolver;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Signatures;
+using AssemblyLib.Helpers;
 using AssemblyLib.SignatureComparers;
 using SPTarkov.DI.Annotations;
 
@@ -10,10 +12,11 @@ public class PropertySigRenamer(
     ILogger<PropertySigRenamer> logger,
     DataProvider dataProvider,
     PropertySigComparer propertySigComparer,
+    MemberReferenceCache memberReferenceCache,
     DirectRenameCache directRenameCache
 ) : ISigRenamer
 {
-    public int Priority => 0;
+    public int Priority => 10;
     public bool Enabled => true;
     public ERenamerType Type => ERenamerType.Properties;
 
@@ -96,6 +99,89 @@ public class PropertySigRenamer(
 
             targetProperty.Name = dummyProperty.Name;
             dummyProperties.Remove(dummyProperty);
+        }
+
+        SyncAccessorNames(targetType);
+    }
+
+    /// <summary>
+    ///     Renaming a property leaves its accessors behind. syncs them back up to their new name
+    /// </summary>
+    private void SyncAccessorNames(TypeDefinition targetType)
+    {
+        foreach (var property in targetType.Properties)
+        {
+            var name = property.Name?.ToString();
+
+            // An explicit implementation owns its name, IFoo.Bar and get_IFoo.Bar
+            if (string.IsNullOrEmpty(name) || name.Contains('.', StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            SyncAccessor(targetType, property.GetMethod, $"get_{name}");
+            SyncAccessor(targetType, property.SetMethod, $"set_{name}");
+        }
+    }
+
+    private void SyncAccessor(TypeDefinition targetType, MethodDefinition? accessor, string newName)
+    {
+        var currentName = accessor?.Name?.ToString();
+
+        if (accessor is null || currentName is null || currentName == newName)
+        {
+            return;
+        }
+
+        if (currentName.Contains('.', StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        // A virtual accessor is one end of an override chain, renaming it on its own breaks dispatch
+        if (accessor.IsVirtual)
+        {
+            return;
+        }
+
+        if (targetType.Methods.Any(method => method.Name == newName))
+        {
+            logger.LogWarning(
+                "Trying to set duplicate accessor name: {name} in class {type}. Skipping.",
+                newName,
+                targetType.FullName
+            );
+
+            return;
+        }
+
+        if (logger.IsEnabled(LogLevel.Debug))
+        {
+            logger.LogDebug("Renaming accessor: {old} -> {new}", currentName, newName);
+        }
+
+        var utf8Name = new Utf8String(newName);
+
+        UpdateAccessorReferences(accessor, utf8Name);
+        accessor.Name = utf8Name;
+    }
+
+    private void UpdateAccessorReferences(MethodDefinition accessor, Utf8String newName)
+    {
+        List<MemberReference> references;
+
+        try
+        {
+            references = memberReferenceCache.GetMethodReferences(accessor);
+        }
+        catch (KeyNotFoundException)
+        {
+            return;
+        }
+
+        foreach (var reference in references)
+        {
+            reference.Name = newName;
         }
     }
 

@@ -16,7 +16,7 @@ public class PropertySigRenamer(
     DirectRenameCache directRenameCache
 ) : ISigRenamer
 {
-    public int Priority => 0;
+    public int Priority => 10;
     public bool Enabled => true;
     public ERenamerType Type => ERenamerType.Properties;
 

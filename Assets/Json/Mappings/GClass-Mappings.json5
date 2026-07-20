@@ -15622,6 +15622,7 @@
         "NewName": "WorldDrawUtility"
     },
     "GClass3618": {
+        // Custom, doesn't exist in the dummy anymore but fika uses it so xdx
         "NewName": "ObservedDialogueController"
     },
     "GClass213": {

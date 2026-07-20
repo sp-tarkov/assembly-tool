@@ -32,6 +32,88 @@ public class MethodSigRenamer(
         }
 
         RenameUnanchoredOrderedFallbackMatches(targetType, dummyType, consumedDummyMethods);
+
+        RenameByAlignment(targetType, dummyType, consumedDummyMethods);
+    }
+
+    /// <summary>
+    ///     Maps methods by position, but only once the two sides are shown to line up. Methods that
+    ///     already carry a real name act as anchors, so an added, removed or reordered method puts an
+    ///     anchor at the wrong index and the whole type is skipped.
+    /// </summary>
+    private void RenameByAlignment(
+        TypeDefinition targetType,
+        TypeDefinition dummyType,
+        ISet<MethodDefinition> consumedDummyMethods
+    )
+    {
+        var targetMethods = targetType.Methods;
+        var dummyMethods = dummyType.Methods;
+
+        if (targetMethods.Count == 0 || targetMethods.Count != dummyMethods.Count)
+        {
+            return;
+        }
+
+        var anchors = 0;
+
+        for (var i = 0; i < targetMethods.Count; i++)
+        {
+            var targetName = targetMethods[i].Name?.ToString();
+            var dummyName = dummyMethods[i].Name?.ToString();
+
+            if (targetName is null || dummyName is null)
+            {
+                return;
+            }
+
+            if (!targetName.IsObfuscatedName())
+            {
+                if (targetName != dummyName)
+                {
+                    return;
+                }
+
+                anchors++;
+                continue;
+            }
+
+            // An unnamed method still has to agree on its whole signature
+            if (!IsExactSignatureMatch(targetMethods[i], dummyMethods[i]))
+            {
+                return;
+            }
+        }
+
+        // With nothing already named there is no proof the two sides line up
+        if (anchors == 0)
+        {
+            return;
+        }
+
+        for (var i = 0; i < targetMethods.Count; i++)
+        {
+            var dummyMethod = dummyMethods[i];
+
+            if (consumedDummyMethods.Contains(dummyMethod) || !IsAlignmentCandidate(targetMethods[i]))
+            {
+                continue;
+            }
+
+            if (ApplyRename(targetType, targetMethods[i], dummyMethod))
+            {
+                consumedDummyMethods.Add(dummyMethod);
+            }
+        }
+    }
+
+    private bool IsAlignmentCandidate(MethodDefinition method)
+    {
+        return FilterMethods(method)
+            && !directRenameCache.Contains(method)
+            && method.Name is not null
+            && method.Name.IsObfuscatedName()
+            && (!method.IsVirtual || method.IsNewSlot);
     }
 
     private void RenameUniqueSignatureMatches(

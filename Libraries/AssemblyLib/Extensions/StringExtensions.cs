@@ -73,6 +73,12 @@ public static class StringExtensions
             }
 
             baseName = baseName[..underscore];
+
+            if (type is GenericParameterSignature)
+            {
+                return baseName.Equals("gparam", StringComparison.OrdinalIgnoreCase);
+            }
+
             var typeName = type.Name?.ToString();
 
             if (baseName.Length == 0 || string.IsNullOrEmpty(typeName))
@@ -81,7 +87,7 @@ public static class StringExtensions
             }
 
             // drop generics
-            var tick = typeName.IndexOf('`');
+            var tick = typeName.IndexOfAny(['`', '<']);
             if (tick > 0)
             {
                 typeName = typeName[..tick];

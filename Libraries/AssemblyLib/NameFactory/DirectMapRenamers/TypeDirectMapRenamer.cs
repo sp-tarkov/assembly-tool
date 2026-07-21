@@ -35,7 +35,11 @@ public class TypeDirectMapRenamer(DirectRenameCache directRenameCache) : IDirect
             return;
         }
 
-        var genericParametersCount = toolData.Type!.GenericParameters.Count;
+        // Nested type definitions include their declaring type's generic parameters in their own
+        // GenericParameters collection. The metadata name suffix only describes parameters introduced
+        // by this type (for example, Outer<T>.Inner<T1, T2> is named Inner`2, not Inner`3).
+        var genericParametersCount = toolData.Type!.GenericParameters.Count
+            - (toolData.Type.DeclaringType?.GenericParameters.Count ?? 0);
 
         var utf8Name =
             genericParametersCount > 0

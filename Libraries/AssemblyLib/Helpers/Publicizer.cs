@@ -60,7 +60,10 @@ public sealed class Publicizer(ILogger<Publicizer> logger, DataProvider dataProv
 
     private void PublicizeMethod(MethodDefinition method)
     {
-        if (method.IsCompilerControlled || method.IsPublic)
+        // Explicit-interface implementations must remain private. Their MethodImpl entry provides the
+        // callable interface slot; making the body public prevents decompilers from recognizing and
+        // linking the qualified member name back to that interface slot.
+        if (method.IsCompilerControlled || method.IsPublic || method.IsExplicitInterfaceImplementation())
         {
             return;
         }

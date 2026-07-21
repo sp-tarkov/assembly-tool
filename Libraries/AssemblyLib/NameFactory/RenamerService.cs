@@ -185,7 +185,7 @@ public class RenamerService(
     {
         foreach (var method in typeDef.Methods.Where(m => m.IsExplicitInterfaceImplementation()))
         {
-            RenameExplicitInterfaceMethod(method, method.GetExplicitInterfaceTarget());
+            RenameExplicitInterfaceMethod(method, method.GetExplicitInterfaceTarget(), typeDef);
         }
 
         var propertyNameCounts = typeDef.Properties
@@ -197,7 +197,7 @@ public class RenamerService(
             var explicitTarget = property.GetMethod?.GetExplicitInterfaceTarget()
                 ?? property.SetMethod?.GetExplicitInterfaceTarget();
 
-            RenameExplicitInterfaceProperty(property, explicitTarget, propertyNameCounts);
+            RenameExplicitInterfaceProperty(property, explicitTarget, propertyNameCounts, typeDef);
         }
 
         foreach (var @event in typeDef.Events)
@@ -206,11 +206,15 @@ public class RenamerService(
                 ?? @event.RemoveMethod?.GetExplicitInterfaceTarget()
                 ?? @event.FireMethod?.GetExplicitInterfaceTarget();
 
-            RenameExplicitInterfaceMember(@event, explicitTarget);
+            RenameExplicitInterfaceMember(@event, explicitTarget, typeDef);
         }
     }
 
-    private void RenameExplicitInterfaceMethod(MethodDefinition method, IMethodDefOrRef? explicitTarget)
+    private void RenameExplicitInterfaceMethod(
+        MethodDefinition method,
+        IMethodDefOrRef? explicitTarget,
+        TypeDefinition implementingType
+    )
     {
         var oldName = method.Name?.ToString();
         if (oldName is null)
@@ -218,7 +222,7 @@ public class RenamerService(
             return;
         }
 
-        var newName = GetExplicitInterfaceMethodName(oldName, explicitTarget);
+        var newName = GetExplicitInterfaceMethodName(oldName, explicitTarget, implementingType);
         if (newName is null || oldName == newName)
         {
             return;
@@ -236,7 +240,8 @@ public class RenamerService(
     private void RenameExplicitInterfaceProperty(
         PropertyDefinition property,
         IMethodDefOrRef? explicitTarget,
-        Dictionary<(string Name, string Params), int> propertyNameCounts
+        Dictionary<(string Name, string Params), int> propertyNameCounts,
+        TypeDefinition implementingType
     )
     {
         var oldName = property.Name?.ToString();
@@ -245,7 +250,7 @@ public class RenamerService(
             return;
         }
 
-        var newName = GetExplicitInterfaceMemberName(oldName, explicitTarget);
+        var newName = GetExplicitInterfaceMemberName(oldName, explicitTarget, implementingType);
         if (newName is null || oldName == newName)
         {
             return;
@@ -281,7 +286,11 @@ public class RenamerService(
         IncrementCount(propertyNameCounts, newKey);
     }
 
-    private void RenameExplicitInterfaceMember(IMemberDefinition member, IMethodDefOrRef? explicitTarget)
+    private void RenameExplicitInterfaceMember(
+        IMemberDefinition member,
+        IMethodDefOrRef? explicitTarget,
+        TypeDefinition implementingType
+    )
     {
         var oldName = member.Name?.ToString();
         if (oldName is null)
@@ -289,7 +298,7 @@ public class RenamerService(
             return;
         }
 
-        var newName = GetExplicitInterfaceMemberName(oldName, explicitTarget);
+        var newName = GetExplicitInterfaceMemberName(oldName, explicitTarget, implementingType);
         if (newName is null || oldName == newName)
         {
             return;
@@ -335,7 +344,11 @@ public class RenamerService(
         counts[key] = counts.GetValueOrDefault(key) + 1;
     }
 
-    private string? GetExplicitInterfaceMemberName(string oldName, IMethodDefOrRef? explicitTarget)
+    private string? GetExplicitInterfaceMemberName(
+        string oldName,
+        IMethodDefOrRef? explicitTarget,
+        TypeDefinition implementingType
+    )
     {
         if (!HasObfuscatedExplicitInterfaceToken(oldName))
         {
@@ -347,7 +360,7 @@ public class RenamerService(
             var memberName = GetExplicitInterfaceTargetMemberName(oldName, explicitTarget);
             if (memberName is not null)
             {
-                return $"{GetExplicitInterfaceTypeName(declaringType)}.{memberName}";
+                return $"{GetExplicitInterfaceTypeName(declaringType, implementingType)}.{memberName}";
             }
         }
 
@@ -378,7 +391,11 @@ public class RenamerService(
         return changedToken ? string.Join(".", splitName) : null;
     }
 
-    private string? GetExplicitInterfaceMethodName(string oldName, IMethodDefOrRef? explicitTarget)
+    private string? GetExplicitInterfaceMethodName(
+        string oldName,
+        IMethodDefOrRef? explicitTarget,
+        TypeDefinition implementingType
+    )
     {
         if (!HasObfuscatedExplicitInterfaceToken(oldName))
         {
@@ -388,7 +405,7 @@ public class RenamerService(
         if (explicitTarget?.DeclaringType is { } declaringType
             && explicitTarget.Name?.ToString() is { } targetName)
         {
-            return $"{GetExplicitInterfaceTypeName(declaringType)}.{targetName}";
+            return $"{GetExplicitInterfaceTypeName(declaringType, implementingType)}.{targetName}";
         }
 
         return GetMappedExplicitInterfaceName(oldName);
@@ -543,36 +560,52 @@ public class RenamerService(
         }
     }
 
-    private string GetExplicitInterfaceTypeName(ITypeDefOrRef type)
+    private string GetExplicitInterfaceTypeName(ITypeDefOrRef type, TypeDefinition implementingType)
     {
         return type switch
         {
-            TypeSpecification { Signature: GenericInstanceTypeSignature genericSig } => FormatGenericInstance(genericSig),
-            TypeSpecification { Signature: { } signature } => GetExplicitInterfaceTypeName(signature),
+            TypeSpecification { Signature: GenericInstanceTypeSignature genericSig } =>
+                FormatGenericInstance(genericSig, implementingType),
+            TypeSpecification { Signature: { } signature } =>
+                GetExplicitInterfaceTypeName(signature, implementingType),
             _ => GetMappedTypeName(type.Name?.ToString() ?? string.Empty) ?? RemoveGenericArity(type.FullName),
         };
     }
 
-    private string GetExplicitInterfaceTypeName(TypeSignature signature)
+    private string GetExplicitInterfaceTypeName(TypeSignature signature, TypeDefinition implementingType)
     {
+        // GenericParameterSignature.FullName is an IL placeholder such as !0. Explicit-interface method
+        // names use the source-style parameter name instead, such as IFoo<T>.Method.
         return signature switch
         {
-            GenericInstanceTypeSignature genericSig => FormatGenericInstance(genericSig),
-            TypeDefOrRefSignature typeSig => GetExplicitInterfaceTypeName(typeSig.Type),
+            GenericInstanceTypeSignature genericSig => FormatGenericInstance(genericSig, implementingType),
+            TypeDefOrRefSignature typeSig => GetExplicitInterfaceTypeName(typeSig.Type, implementingType),
+            GenericParameterSignature
+            {
+                ParameterType: GenericParameterType.Type,
+                Index: var index,
+            } genericParameter when index >= 0 && index < implementingType.GenericParameters.Count =>
+                implementingType.GenericParameters[index].Name?.ToString() ?? genericParameter.FullName,
             _ => RemoveGenericArity(signature.FullName),
         };
     }
 
-    private string FormatGenericInstance(GenericInstanceTypeSignature genericSig)
+    private string FormatGenericInstance(
+        GenericInstanceTypeSignature genericSig,
+        TypeDefinition implementingType
+    )
     {
-        var genericTypeName = GetExplicitInterfaceTypeName(genericSig.GenericType);
+        var genericTypeName = GetExplicitInterfaceTypeName(genericSig.GenericType, implementingType);
         var tickIndex = genericTypeName.IndexOf('`', StringComparison.Ordinal);
         if (tickIndex >= 0)
         {
             genericTypeName = genericTypeName[..tickIndex];
         }
 
-        var genericArgs = string.Join(", ", genericSig.TypeArguments.Select(GetExplicitInterfaceTypeName));
+        var genericArgs = string.Join(
+            ", ",
+            genericSig.TypeArguments.Select(argument => GetExplicitInterfaceTypeName(argument, implementingType))
+        );
 
         return $"{genericTypeName}<{genericArgs}>";
     }

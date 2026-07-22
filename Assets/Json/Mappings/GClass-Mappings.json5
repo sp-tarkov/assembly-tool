@@ -15623,7 +15623,8 @@
     },
     "GClass3618": {
         // Custom, doesn't exist in the dummy anymore but fika uses it so xdx
-        "NewName": "ObservedDialogueController"
+        "NewName": "NetworkDialogueController",
+        "NewNamespace": "EFT.Dialogs"
     },
     "GClass213": {
         "RemoveType": true

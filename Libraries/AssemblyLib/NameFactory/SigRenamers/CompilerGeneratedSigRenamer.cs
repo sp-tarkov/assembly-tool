@@ -23,49 +23,62 @@ public class CompilerGeneratedSigRenamer(
 
     public void Rename(TypeDefinition targetType, TypeDefinition dummyType)
     {
-        if (!_processedTypes.Add(targetType))
+        throw new NotImplementedException("This method is intentionally not implemented. This should never be hit.");
+    }
+
+    public void Rename(IEnumerable<TypeDefinition> targetTypes)
+    {
+        foreach (var targetType in targetTypes)
+        {
+            if (!_processedTypes.Add(targetType))
+            {
+                return;
+            }
+
+            RenameCompilerGeneratedType(targetType);
+            RenameCompilerGeneratedTypes(targetType);
+            RenameCompilerGeneratedMethods(targetType);
+        }
+    }
+
+    private void RenameCompilerGeneratedType(TypeDefinition generatedType)
+    {
+        if (
+            !generatedType.IsCompilerGenerated()
+            || !IsCompilerGeneratedTypeCandidate(generatedType)
+            || directRenameCache.Contains(generatedType)
+        )
         {
             return;
         }
 
-        RenameCompilerGeneratedTypes(targetType);
-        RenameCompilerGeneratedMethods(targetType);
+        var sourceMethod = GetUniqueReferencingMethod(GetReferenceIndex().TypeReferences, generatedType);
+        if (sourceMethod?.Name is null)
+        {
+            PrefixCompilerGeneratedTypeName(generatedType);
+            return;
+        }
+
+        var newName = GetUniqueTypeName(generatedType, $"CG_{GetMethodNamePrefix(sourceMethod)}");
+        if (newName is null)
+        {
+            PrefixCompilerGeneratedTypeName(generatedType);
+            return;
+        }
+
+        if (logger.IsEnabled(LogLevel.Debug))
+        {
+            logger.LogDebug("Renaming compiler generated type: {old} -> {new}", generatedType.FullName, newName);
+        }
+
+        generatedType.Name = new Utf8String(newName);
     }
 
     private void RenameCompilerGeneratedTypes(TypeDefinition targetType)
     {
-        var referenceIndex = GetReferenceIndex();
-
         foreach (var generatedType in GetCompilerGeneratedTypes(targetType))
         {
-            var sourceMethod = GetUniqueReferencingMethod(referenceIndex.TypeReferences, generatedType);
-            if (sourceMethod?.Name is null)
-            {
-                PrefixCompilerGeneratedTypeName(generatedType);
-                continue;
-            }
-
-            var newName = GetUniqueTypeName(
-                generatedType,
-                $"CG_{GetMethodNamePrefix(sourceMethod)}"
-            );
-
-            if (newName is null)
-            {
-                PrefixCompilerGeneratedTypeName(generatedType);
-                continue;
-            }
-
-            if (logger.IsEnabled(LogLevel.Debug))
-            {
-                logger.LogDebug(
-                    "Renaming compiler generated type: {old} -> {new}",
-                    generatedType.FullName,
-                    newName
-                );
-            }
-
-            generatedType.Name = new Utf8String(newName);
+            RenameCompilerGeneratedType(generatedType);
         }
     }
 
@@ -124,11 +137,7 @@ public class CompilerGeneratedSigRenamer(
 
         if (logger.IsEnabled(LogLevel.Debug))
         {
-            logger.LogDebug(
-                "Prefixing compiler generated type: {old} -> {new}",
-                generatedType.FullName,
-                newName
-            );
+            logger.LogDebug("Prefixing compiler generated type: {old} -> {new}", generatedType.FullName, newName);
         }
 
         generatedType.Name = new Utf8String(newName);
@@ -154,11 +163,7 @@ public class CompilerGeneratedSigRenamer(
 
         if (logger.IsEnabled(LogLevel.Debug))
         {
-            logger.LogDebug(
-                "Prefixing compiler generated method: {old} -> {new}",
-                generatedMethod.FullName,
-                newName
-            );
+            logger.LogDebug("Prefixing compiler generated method: {old} -> {new}", generatedMethod.FullName, newName);
         }
 
         var utf8Name = new Utf8String(newName);
@@ -270,18 +275,13 @@ public class CompilerGeneratedSigRenamer(
     private IEnumerable<MethodDefinition> GetReferenceSourceMethods()
     {
         return dataProvider
-            .LoadedModule!
-            .GetAllTypes()
+            .LoadedModule!.GetAllTypes()
             .Where(type => !type.IsCompilerGenerated())
             .SelectMany(type => type.Methods)
             .Where(IsReferenceSourceMethod);
     }
 
-    private void AddOperandReferences(
-        MethodDefinition sourceMethod,
-        object? operand,
-        ReferenceIndex referenceIndex
-    )
+    private void AddOperandReferences(MethodDefinition sourceMethod, object? operand, ReferenceIndex referenceIndex)
     {
         switch (operand)
         {
@@ -367,11 +367,7 @@ public class CompilerGeneratedSigRenamer(
         AddReference(referenceIndex.MethodReferences, referencedMethod, sourceMethod);
     }
 
-    private void AddTypeReference(
-        MethodDefinition sourceMethod,
-        ITypeDefOrRef? type,
-        ReferenceIndex referenceIndex
-    )
+    private void AddTypeReference(MethodDefinition sourceMethod, ITypeDefOrRef? type, ReferenceIndex referenceIndex)
     {
         switch (type)
         {
@@ -392,7 +388,11 @@ public class CompilerGeneratedSigRenamer(
             return;
         }
 
-        if (typeDefinition is null || !typeDefinition.IsCompilerGenerated() || !IsCompilerGeneratedTypeCandidate(typeDefinition))
+        if (
+            typeDefinition is null
+            || !typeDefinition.IsCompilerGenerated()
+            || !IsCompilerGeneratedTypeCandidate(typeDefinition)
+        )
         {
             return;
         }
@@ -531,11 +531,9 @@ public class CompilerGeneratedSigRenamer(
     private string? GetUniqueTypeName(TypeDefinition generatedType, string baseName)
     {
         var sanitizedBaseName = SanitizeIdentifier(baseName);
-        var declaredGenericArity = generatedType.GenericParameters.Count
-            - (generatedType.DeclaringType?.GenericParameters.Count ?? 0);
-        var genericArity = declaredGenericArity > 0
-            ? $"`{declaredGenericArity}"
-            : string.Empty;
+        var declaredGenericArity =
+            generatedType.GenericParameters.Count - (generatedType.DeclaringType?.GenericParameters.Count ?? 0);
+        var genericArity = declaredGenericArity > 0 ? $"`{declaredGenericArity}" : string.Empty;
 
         return GetUniqueName(
             sanitizedBaseName,
@@ -555,11 +553,7 @@ public class CompilerGeneratedSigRenamer(
         );
     }
 
-    private static string? GetUniqueName(
-        string baseName,
-        Func<string, bool> hasCollision,
-        string suffix
-    )
+    private static string? GetUniqueName(string baseName, Func<string, bool> hasCollision, string suffix)
     {
         if (!hasCollision(baseName))
         {
@@ -589,9 +583,12 @@ public class CompilerGeneratedSigRenamer(
             );
         }
 
-        return GetDeclaringTypeCollisionScopes(generatedType.DeclaringType).Any(type =>
-            type.NestedTypes.Any(nestedType => nestedType != generatedType && nestedType.Name?.ToString() == candidateName)
-        );
+        return GetDeclaringTypeCollisionScopes(generatedType.DeclaringType)
+            .Any(type =>
+                type.NestedTypes.Any(nestedType =>
+                    nestedType != generatedType && nestedType.Name?.ToString() == candidateName
+                )
+            );
     }
 
     private IEnumerable<TypeDefinition> GetDeclaringTypeCollisionScopes(TypeDefinition declaringType)
@@ -616,8 +613,9 @@ public class CompilerGeneratedSigRenamer(
     private static bool HasMethodNameCollision(MethodDefinition generatedMethod, string candidateName)
     {
         return generatedMethod.DeclaringType?.Methods.Any(method =>
-            method != generatedMethod && method.Name?.ToString() == candidateName
-        ) ?? false;
+                method != generatedMethod && method.Name?.ToString() == candidateName
+            )
+            ?? false;
     }
 
     private static string GetMethodNamePrefix(MethodDefinition method)
@@ -675,9 +673,7 @@ public class CompilerGeneratedSigRenamer(
     }
 
     private static bool IsCompilerGeneratedTypeCandidate(TypeDefinition type) =>
-        type.Name?.ToString() is { } name
-        && name.IsObfuscatedName()
-        && (type.IsClass || type.IsStruct());
+        type.Name?.ToString() is { } name && name.IsObfuscatedName() && (type.IsClass || type.IsStruct());
 
     private void UpdateMethodMemberReferences(MethodDefinition target, Utf8String newName)
     {

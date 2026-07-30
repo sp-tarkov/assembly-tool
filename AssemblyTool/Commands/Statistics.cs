@@ -1,4 +1,4 @@
-﻿using AssemblyLib.Shared;
+﻿using AssemblyLib;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Version>1.0.0</Version>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ServerGarbageCollection>true</ServerGarbageCollection>
@@ -16,10 +16,10 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyLib\AssemblyLib.csproj" />
+    <ProjectReference Include="..\Libraries\AssemblyLib\AssemblyLib.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CliFx" Version="2.3.5" />
+    <PackageReference Include="CliFx" Version="2.3.6" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

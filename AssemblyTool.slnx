@@ -1,0 +1,19 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="WAIT_FOR_DEBUGGER" />
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM" />
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Libraries/">
+    <Project Path="Libraries/AssemblyLib.Patching/AssemblyLib.Patching.csproj">
+      <BuildType Solution="WAIT_FOR_DEBUGGER|*" Project="Debug" />
+    </Project>
+    <Project Path="Libraries/AssemblyLib/AssemblyLib.csproj" />
+  </Folder>
+  <Project Path="AssemblyTool/AssemblyTool.csproj" />
+</Solution>

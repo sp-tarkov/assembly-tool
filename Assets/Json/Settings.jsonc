@@ -1,9 +1,10 @@
 {
-  "MappingPath": "",
-  "GamePath": "G:\\4.0.0 - Dev",
+  "GamePath": "",
   "CopyToGame": true,
-  "ModulesProjectPath": "G:\\Development\\SPT\\modules",
+  "ModulesProjectPath": "",
   "CopyToModules": true,
+  "LauncherProjectPath": "",
+  "CopyToLauncher": true,
   "TypeNamesToMatch": [
     "Class",
     "GClass",
@@ -47,7 +48,7 @@
   ],
   "ItemObjectIdOverrides":
    {
-    
+
   },
   "TemplateObjectIdOverrides": {
     "543be5e94bdc2df1348b4568": "KeyTemplateClass"
